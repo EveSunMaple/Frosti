@@ -1,0 +1,69 @@
+---
+import ThemeIcon from "../components/ThemeIcon.astro";
+import Profile from "../components/ProfileCard.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  USER_NICKNAME,
+  USER_DESCRIPTION,
+  TRANSITION_API,
+} from "../consts";
+const {
+  image,
+  site_title = SITE_TITLE,
+  site_description = SITE_DESCRIPTION,
+  user_name = USER_NICKNAME,
+  user_description = USER_DESCRIPTION,
+  includeSidebar = true,
+  PageID,
+} = Astro.props;
+---
+
+<html lang="zh-cn">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+    />
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
+    {TRANSITION_API && <ViewTransitions />}
+  </head>
+  <body>
+    <ThemeIcon />
+    <div class="miniheader">
+      <Header title={SITE_TITLE} />
+    </div>
+    {includeSidebar && <Profile sideBarActiveItemID={PageID} />}
+    <main class="main">
+      <div class="viewport">
+        <div class="sidebar"></div>
+        <slot />
+      </div>
+    </main>
+    <style>
+      .miniheader {
+        display: none;
+      }
+
+      @media screen and (max-width: 900px) {
+        .miniheader {
+          display: block;
+        }
+      }
+      .profile {
+        display: block;
+      }
+
+      @media screen and (max-width: 900px) {
+        .profile {
+          display: none;
+        }
+      }
+    </style>
+  </body>
+</html>

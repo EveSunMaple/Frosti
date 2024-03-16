@@ -1,0 +1,25 @@
+---
+const { PageID } = Astro.props;
+const activeClass = "on"; // For primary color replace with `active` class
+---
+
+<ul class="profile-menu">
+    <li><a class="menu-item" id="home" href="/">Home</a></li>
+    <li><a class="menu-item" id="about" href="/about">About</a></li>
+    <li><a class="menu-item" id="blog" href="/blog/">Blog</a></li>
+    <li><a class="menu-item" id="projects" href="/projects">Projects</a></li>
+    <li><a class="menu-item" id="friend" href="/friends/">Friends</a></li>
+    <li>
+        <a
+            class="menu-item"
+            href="mailto:contact.evesunmaple@outlook.com"
+            target="_blank"
+            referrerpolicy="no-referrer-when-downgrade">Contact</a
+        >
+    </li>
+</ul>
+
+<script define:vars={{ sideBarActiveItemID: PageID, activeClass: activeClass }}>
+const activeItemElem = document.getElementById(sideBarActiveItemID);
+activeItemElem && activeItemElem.classList.add(activeClass);
+</script>
