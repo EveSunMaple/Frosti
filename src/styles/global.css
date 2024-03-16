@@ -74,8 +74,6 @@ main {
 	background-color: var(--background);
 	width: 720px;
 	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
 }
 
 html.dark main {
@@ -297,13 +295,14 @@ html.dark hr {
 
 .back-card {
 	position: absolute;
-	top: 7%;
+	top: 50%;
 	right: 10%;
 	width: 50%;
-	height: 300px;
+	min-height: 300px;
 	background-color: var(--badge);
 	border-radius: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transform: translateY(-50%); 
 	transition: color 0.3s, background-color 0.3s;
 }
 

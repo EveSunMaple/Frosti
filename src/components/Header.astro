@@ -1,10 +1,12 @@
 ---
 import HeaderLink from './HeaderLink.astro';
+import ThemeIcon from "../components/ThemeIcon.astro";
 import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
+		<ThemeIcon />
 		<h2><a href="/">{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>

@@ -1,5 +1,4 @@
 ---
-import ThemeIcon from "../components/ThemeIcon.astro";
 import Profile from "../components/ProfileCard.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
@@ -34,7 +33,6 @@ const {
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
-    <ThemeIcon />
     <div class="miniheader">
       <Header title={SITE_TITLE} />
     </div>
@@ -48,6 +46,8 @@ const {
     <style>
       .miniheader {
         display: none;
+        position: fixed;
+        width: 100%;
       }
 
       @media screen and (max-width: 900px) {
