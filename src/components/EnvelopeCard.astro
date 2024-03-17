@@ -1,0 +1,44 @@
+---
+const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+import { Image } from "astro:assets";
+const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+---
+
+<div class="envelope-back" transition:animate="slide">
+  <div class="envelope-image">
+    {
+      img && (
+        <Image
+          src={img}
+          width="300"
+          height="200"
+          format="webp"
+          alt={title}
+          class="image"
+          loading="lazy"
+        />
+      )
+    }
+  </div>
+  <div class="envelope-card">
+    <a href={url} target={target}>
+      <div class="envelope-info">
+        <h1 class="envelope-title">
+          {title}
+          {badge && <div class="badge">{badge}</div>}
+        </h1>
+        <p class="desc">{desc}</p>
+        <div class="card-actions">
+          {
+            tags &&
+              tags.map((tag) => (
+                <a href={`${tag_url}/${tag}`} class="tag">
+                  {tag}
+                </a>
+              ))
+          }
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

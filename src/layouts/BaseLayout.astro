@@ -3,6 +3,7 @@ import Profile from "../components/ProfileCard.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import ThemeIcon from "../components/ThemeIcon.astro";
 import { ViewTransitions } from "astro:transitions";
 import {
   SITE_TITLE,
@@ -24,6 +25,15 @@ const {
 
 <html lang="zh-cn">
   <head>
+    <script>
+      document.addEventListener("astro:page-load", () => {
+        if (localStorage.theme)
+          document.documentElement.setAttribute(
+            "data-theme",
+            localStorage.theme
+          );
+      });
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
@@ -36,34 +46,15 @@ const {
     <div class="miniheader">
       <Header title={SITE_TITLE} />
     </div>
-    {includeSidebar && <Profile sideBarActiveItemID={PageID} />}
+    <div class="profile">
+      {includeSidebar && <Profile PageID={PageID} />}
+    </div>
     <main class="main">
       <div class="viewport">
         <div class="sidebar"></div>
         <slot />
       </div>
     </main>
-    <style>
-      .miniheader {
-        display: none;
-        position: fixed;
-        width: 100%;
-      }
-
-      @media screen and (max-width: 900px) {
-        .miniheader {
-          display: block;
-        }
-      }
-      .profile {
-        display: block;
-      }
-
-      @media screen and (max-width: 900px) {
-        .profile {
-          display: none;
-        }
-      }
-    </style>
+    <ThemeIcon />
   </body>
 </html>

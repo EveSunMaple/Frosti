@@ -14,7 +14,28 @@ html.dark {
 	color: var(--text-dark);
 }
 
-:root {
+[data-theme="light"] {
+	--background: #D6E6F2;
+	--accent: #769FCD;
+	--badge: #B9D7EA;
+	--card: #F7FBFC;
+	--text: #0f1219;
+	--background-dark: #35374B;
+	--accent-dark: #78A083;
+	--badge-dark: #50727B;
+	--card-dark: #344955;
+	--text-dark: #cececc;
+
+	--black: 15, 18, 25;
+	--gray: 96, 115, 159;
+	--gray-light: 229, 233, 240;
+	--gray-dark: 34, 41, 57;
+	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
+		0 16px 32px rgba(var(--gray), 33%);
+}
+
+[data-theme="dark"] {
 	--background: #D6E6F2;
 	--accent: #769FCD;
 	--badge: #B9D7EA;
@@ -144,6 +165,7 @@ html.dark b {
 
 a {
 	color: var(--accent);
+    text-decoration: none;
 }
 
 a:hover {
@@ -293,17 +315,123 @@ html.dark hr {
 	/* 垂直对齐方式为顶部对齐 */
 }
 
+.navbar {
+	position: relative;
+	padding: 20px 0px;
+	width: 80%;
+	left: 10%;
+	border-radius: 0px 0px 20px 20px;
+	transform: translateY(-200px);
+	text-align: center;
+	background-color: var(--card);
+	transition: color 0.3s, background-color 0.3s, transform 1.3s ease, width 0.8s, height 0.8s;
+	z-index: 10;
+}
+
+html.dark .navbar {
+	background-color: var(--card-dark);
+}
+
+.navbar-title {
+	font-size: 2em;
+	font-weight: 700;
+	color: var(--text);
+	text-decoration: none;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+html.dark .navbar-title {
+	color: var(--text-dark);
+}
+
+.envelope-background {
+	position: absolute;
+	top: 25px;
+	right: 10%;
+	width: 50%;
+	min-height: 300px;
+	background-color: transparent;
+}
+
+.envelope-back {
+    margin-top: 30px;
+	position: relative;
+	width: 100%;
+	height: 200px;
+	min-height: 200px;
+	background-color: var(--badge);
+	border-radius: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
+}
+
+html.dark .envelope-back {
+	background-color: var(--badge-dark);
+}
+
+.envelope-image {
+	position: absolute;
+    right: 0; 
+    width: 40%;
+    height: 100%;
+	border-radius: 20px;
+}
+
+.envelope-image img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+	border-radius: 20px;
+  }
+
+.envelope-card {
+	position: absolute;
+    left: 0; 
+    width: 80%;
+    height: 100%;
+	background-color: var(--card);
+	border-radius: 20px;
+    overflow: hidden; 
+	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
+}
+
+html.dark .envelope-card
+{
+	background-color: var(--card-dark);
+}
+
+.envelope-card:hover{
+	width: 70%;
+}
+
+.envelope-info {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.envelope-title {
+	font-size: 2em;
+	padding: 30px 30px 0px 30px;
+}
+
+.desc {
+	padding: 30px;
+	margin-top: -30px;
+    max-height: 1.5em; 
+}
+
+  
 .back-card {
 	position: absolute;
-	top: 50%;
+	top: 55px;
 	right: 10%;
 	width: 50%;
 	min-height: 300px;
 	background-color: var(--badge);
 	border-radius: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transform: translateY(-50%); 
-	transition: color 0.3s, background-color 0.3s;
+	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
 }
 
 html.dark .back-card {
@@ -321,7 +449,8 @@ html.dark .back-card {
 }
 
 html.dark .back-card::before {
-	color: var(--text-dark); /* 设置文本颜色 */
+	color: var(--text-dark);
+	/* 设置文本颜色 */
 }
 
 .main-card {
@@ -339,8 +468,7 @@ html.dark .main-card {
 
 .profile-card {
 	position: fixed;
-	width: 20%;
-	/* 设置 Profile 组件的宽度 */
+	width: 250px;
 	min-width: 250px;
 	top: 50%;
 	left: 10%;
@@ -349,7 +477,7 @@ html.dark .main-card {
 	background-color: var(--card);
 	border-radius: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transition: color 0.3s, background-color 0.3s;
+	transition: color 0.3s, background-color 0.3s, transform 1.0s ease;
 }
 
 html.dark .profile-card {
@@ -372,6 +500,31 @@ html.dark .profile-card {
 .profile-info h2 {
 	margin-bottom: 10px;
 	transition: color 0.3s, background-color 0.3s;
+}
+
+@media screen and (max-width: 1100px) {
+	.envelope-background {
+		position: absolute;
+		top: 150px;
+		right: 10%;
+		width: 80%;
+		min-height: 300px;
+	}
+	.back-card {
+		position: absolute;
+		top: 150px;
+		right: 10%;
+		width: 80%;
+		min-height: 300px;
+	}
+
+	.profile-card {
+		transform: translate(-500px, -50%);
+	}
+
+	.navbar {
+		transform: translateY(0px);
+	}
 }
 
 .menu-item {
@@ -397,6 +550,14 @@ html.dark .menu-item {
 }
 
 html.dark .menu-item:hover {
+	background-color: var(--badge-dark);
+}
+
+.menu-item.on {
+	background-color: var(--badge);
+}
+
+html.dark .menu-item.on {
 	background-color: var(--badge-dark);
 }
 
@@ -427,4 +588,46 @@ html.dark .social-icon {
 
 html.dark .social-icon:hover {
 	color: var(--badge-dark);
+}
+
+#themeToggle {
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	bottom: 20px;
+	right: 20px;
+	padding: 10px;
+	border: 0;
+	background: var(--card);
+	cursor: pointer;
+	border-radius: 5px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+html.dark #themeToggle {
+	background: var(--card-dark);
+}
+
+#themeToggle:hover {
+	background-color: var(--badge);
+}
+
+html.dark #themeToggle:hover {
+	background-color: var(--badge-dark);
+}
+
+.sun {
+	fill: var(--text);
+}
+
+.moon {
+	fill: transparent;
+}
+
+html.dark .sun {
+	fill: transparent;
+}
+
+html.dark .moon {
+	fill: var(--text-dark);
 }
