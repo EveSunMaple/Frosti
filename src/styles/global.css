@@ -7,6 +7,7 @@ html {
 	background-color: var(--background);
 	color: var(--text);
 	scroll-behavior: smooth;
+	padding: 0px;
 }
 
 html.dark {
@@ -93,8 +94,6 @@ html.dark body {
 
 main {
 	background-color: var(--background);
-	width: 720px;
-	max-width: calc(100% - 2em);
 }
 
 html.dark main {
@@ -308,24 +307,26 @@ html.dark hr {
 	white-space: nowrap;
 }
 
-.wrapper {
+.main {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	left: 50%;
+	transform: translateX(-50%);
 	display: flex;
-	/* 使用 Flexbox 布局 */
 	align-items: flex-start;
-	/* 垂直对齐方式为顶部对齐 */
 }
 
 .navbar {
-	position: relative;
+	position: fixed;
 	padding: 20px 0px;
-	width: 80%;
-	left: 10%;
-	border-radius: 0px 0px 20px 20px;
+	width: 100%;
 	transform: translateY(-200px);
 	text-align: center;
 	background-color: var(--card);
 	transition: color 0.3s, background-color 0.3s, transform 1.3s ease, width 0.8s, height 0.8s;
-	z-index: 10;
+	z-index: 100;
 }
 
 html.dark .navbar {
@@ -344,13 +345,24 @@ html.dark .navbar-title {
 	color: var(--text-dark);
 }
 
-.envelope-background {
-	position: absolute;
-	top: 25px;
-	right: 10%;
-	width: 50%;
-	min-height: 300px;
+.profile {
+	position: relative;
+	padding: 40px 40px 40px 60px;
+}
+
+.background {
+	position: relative;
+	box-sizing: border-box;
+	padding: 40px 60px 40px 40px;
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+	overflow: auto;
 	background-color: transparent;
+}
+
+.envelope-background {
+    margin-top: -30px;
 }
 
 .envelope-back {
@@ -423,10 +435,10 @@ html.dark .envelope-card
 
   
 .back-card {
-	position: absolute;
-	top: 55px;
-	right: 10%;
-	width: 50%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 300px;
 	min-height: 300px;
 	background-color: var(--badge);
 	border-radius: 20px;
@@ -454,7 +466,8 @@ html.dark .back-card::before {
 }
 
 .main-card {
-	margin-top: 150px;
+	position: relative;
+	top: 150px;
 	padding: 20px 20px 20px 20px;
 	background-color: var(--card);
 	border-radius: 20px;
@@ -467,12 +480,8 @@ html.dark .main-card {
 }
 
 .profile-card {
-	position: fixed;
 	width: 250px;
 	min-width: 250px;
-	top: 50%;
-	left: 10%;
-	transform: translateY(-50%);
 	padding: 40px 20px 20px 20px;
 	background-color: var(--card);
 	border-radius: 20px;
@@ -503,25 +512,16 @@ html.dark .profile-card {
 }
 
 @media screen and (max-width: 1100px) {
-	.envelope-background {
+	.profile {
 		position: absolute;
-		top: 150px;
-		right: 10%;
-		width: 80%;
-		min-height: 300px;
 	}
-	.back-card {
-		position: absolute;
-		top: 150px;
-		right: 10%;
-		width: 80%;
-		min-height: 300px;
+	.background {
+		position: relative;
+		padding: 140px 40px 40px 40px;
 	}
-
 	.profile-card {
-		transform: translate(-500px, -50%);
+		transform: translateX(-500px);
 	}
-
 	.navbar {
 		transform: translateY(0px);
 	}

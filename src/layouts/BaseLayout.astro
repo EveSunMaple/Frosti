@@ -43,15 +43,12 @@ const {
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
-    <div class="miniheader">
-      <Header title={SITE_TITLE} />
-    </div>
-    <div class="profile">
-      {includeSidebar && <Profile PageID={PageID} />}
-    </div>
+    <Header title={SITE_TITLE} />
     <main class="main">
-      <div class="viewport">
-        <div class="sidebar"></div>
+      <div class="profile">
+        {includeSidebar && <Profile PageID={PageID} />}
+      </div>
+      <div class="background">
         <slot />
       </div>
     </main>
