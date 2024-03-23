@@ -4,10 +4,8 @@ import Menu from "../components/ProfileCardMenu.astro"
 import Footer from "../components/ProfileCardFooter.astro"
 import { SITE_TITLE, SITE_DESCRIPTION, USER_NICKNAME, USER_DESCRIPTION, TRANSITION_API } from "../consts";
 const {
-  site_title = SITE_TITLE,
-  site_description = SITE_DESCRIPTION,
-  user_title = USER_NICKNAME,
-  user_description = USER_DESCRIPTION,
+  name,
+  desc,
   includeSidebar = true,
   PageID,
 } = Astro.props;
@@ -26,7 +24,8 @@ const {
     />
   </div>
   <div class="profile-info">
-    <!-- 你的个人信息，比如名字、简介等 -->
+    <div class="profile-name">{name}</div>
+    <div class="profile-desc">{desc}</div>
   </div>
   <Menu PageID={PageID} />
   <Footer />

@@ -1,12 +1,18 @@
 ---
+import License from "../components/License.astro"
+import Comment from "../components/Comment.astro"
 const {
   image,
   title,
+  isBlog,
+  url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props;
 ---
 
 <div class="back-card" title={title} transition:animate="slide">
     <div class="main-card">
         <slot />
+        {isBlog && <License title={title} url={url} />}
+        {isBlog && <Comment />}
     </div>
 </div>

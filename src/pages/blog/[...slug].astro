@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BaseCard from "../../components/BaseCard.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -18,7 +17,7 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout PageID="blog">
-  <BaseCard title={post.data.title}>
+  <BaseCard title={post.data.title} isBlog=true>
     <Content />
   </BaseCard>
 </BaseLayout>

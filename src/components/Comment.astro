@@ -1,0 +1,29 @@
+---
+
+---
+</br>
+<div class="comment">
+  <h2 id="h2">Comment</h2>
+  <div id="waline"></div>
+</div>
+<script type="module">
+  import { init } from "https://unpkg.com/@waline/client@v3/dist/waline.js";
+
+  init({
+    el: "#waline",
+    serverURL: "https://waline.saroprock.com",
+    // dark: true,
+    reaction: [
+      "https://saroprock.s3.bitiful.net/good.png",
+      "https://saroprock.s3.bitiful.net/bad.png",
+      "https://saroprock.s3.bitiful.net/happy.png",
+      "https://saroprock.s3.bitiful.net/color.png",
+      "https://saroprock.s3.bitiful.net/confuse.png",
+      "https://saroprock.s3.bitiful.net/heart.png",
+      "https://saroprock.s3.bitiful.net/rocket.png",
+      "https://saroprock.s3.bitiful.net/eyes.png",
+    ],
+    emoji: false,
+    search: false,
+  });
+</script>

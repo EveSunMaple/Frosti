@@ -26,30 +26,24 @@ const {
 <html lang="zh-cn">
   <head>
     <script>
-      document.addEventListener("astro:page-load", () => {
-        if (localStorage.theme)
-          document.documentElement.setAttribute(
-            "data-theme",
-            localStorage.theme
-          );
-      });
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
+    <BaseHead title={site_title} description={site_description} image={image} />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
     <Header title={SITE_TITLE} />
     <main class="main">
       <div class="profile">
-        {includeSidebar && <Profile PageID={PageID} />}
+        {includeSidebar && <Profile name={user_name} desc={user_description} PageID={PageID} />}
       </div>
       <div class="background">
         <slot />
+        <Footer />
       </div>
     </main>
     <ThemeIcon />

@@ -33,9 +33,11 @@
     })();
 
     if (theme === "light") {
+      document.documentElement.classList.add("light");
       document.documentElement.classList.remove("dark");
     } else {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     }
 
     window.localStorage.setItem("theme", theme);
@@ -46,6 +48,13 @@
 
       const isDark = element.classList.contains("dark");
       localStorage.setItem("theme", isDark ? "dark" : "light");
+      if (!isDark) {
+        document.documentElement.classList.add("light");
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+        document.documentElement.classList.remove("light");
+      }
     };
 
     document

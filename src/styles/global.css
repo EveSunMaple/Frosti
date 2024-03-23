@@ -10,22 +10,12 @@ html {
 	padding: 0px;
 }
 
-html.dark {
-	background-color: var(--background-dark);
-	color: var(--text-dark);
-}
-
-[data-theme="light"] {
+[class="light"] {
 	--background: #D6E6F2;
 	--accent: #769FCD;
 	--badge: #B9D7EA;
 	--card: #F7FBFC;
 	--text: #0f1219;
-	--background-dark: #35374B;
-	--accent-dark: #78A083;
-	--badge-dark: #50727B;
-	--card-dark: #344955;
-	--text-dark: #cececc;
 
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
@@ -36,17 +26,12 @@ html.dark {
 		0 16px 32px rgba(var(--gray), 33%);
 }
 
-[data-theme="dark"] {
-	--background: #D6E6F2;
-	--accent: #769FCD;
-	--badge: #B9D7EA;
-	--card: #F7FBFC;
-	--text: #0f1219;
-	--background-dark: #35374B;
-	--accent-dark: #78A083;
-	--badge-dark: #50727B;
-	--card-dark: #344955;
-	--text-dark: #cececc;
+[class="dark"] {
+	--background: #35374B;
+	--accent: #78A083;
+	--badge: #50727B;
+	--card: #344955;
+	--text: #cececc;
 
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
@@ -87,25 +72,19 @@ body {
 	line-height: 1.7;
 }
 
-html.dark body {
-	background-color: var(--background-dark);
-	color: var(--text-dark);
-}
-
 main {
 	background-color: var(--background);
 }
 
-html.dark main {
-	background-color: var(--background-dark);
-}
-
 footer {
-	background-color: var(--background);
-}
-
-html.dark footer {
-	background-color: var(--background-dark);
+	position: relative;
+	top: 30px;
+	padding: 20px 20px 20px 20px;
+	background-color: var(--card);
+	border-radius: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: color 0.3s, background-color 0.3s;
+	text-align: center;
 }
 
 h1,
@@ -116,17 +95,6 @@ h5,
 h6 {
 	margin: 0 0 0.5rem 0;
 	color: var(--text);
-	line-height: 1.2;
-}
-
-html.dark h1,
-html.dark h2,
-html.dark h3,
-html.dark h4,
-html.dark h5,
-html.dark h6 {
-	margin: 0 0 0.5rem 0;
-	color: var(--text-dark);
 	line-height: 1.2;
 }
 
@@ -156,27 +124,13 @@ b {
 	color: var(--text);
 }
 
-html.dark strong,
-html.dark b {
-	font-weight: 700;
-	color: var(--text-dark);
-}
-
 a {
 	color: var(--accent);
-    text-decoration: none;
+	text-decoration: none;
 }
 
 a:hover {
 	color: var(--accent);
-}
-
-html.dark a {
-	color: var(--accent-dark);
-}
-
-html.dark a:hover {
-	color: var(--accent-dark);
 }
 
 p {
@@ -189,36 +143,16 @@ p {
 	color: var(--text);
 }
 
-html.dark p {
-	color: var(--text-dark);
-}
-
-html.dark .prose p {
-	color: var(--text-dark);
-}
-
 em {
 	color: var(--text);
-}
-
-html.dark em {
-	color: var(--text-dark);
 }
 
 li {
 	color: var(--text);
 }
 
-html.dark li {
-	color: var(--text-dark);
-}
-
 th {
 	color: var(--text);
-}
-
-html.dark th {
-	color: var(--text-dark);
 }
 
 textarea {
@@ -262,21 +196,9 @@ blockquote {
 	font-size: 1.333em;
 }
 
-html.dark blockquote {
-	border-left: 4px solid var(--accent-dark);
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
-}
-
 hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-dark));
-}
-
-html.dark hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
 }
 
 @media (max-width: 720px) {
@@ -329,20 +251,12 @@ html.dark hr {
 	z-index: 100;
 }
 
-html.dark .navbar {
-	background-color: var(--card-dark);
-}
-
 .navbar-title {
 	font-size: 2em;
 	font-weight: 700;
 	color: var(--text);
 	text-decoration: none;
 	transition: color 0.3s, background-color 0.3s;
-}
-
-html.dark .navbar-title {
-	color: var(--text-dark);
 }
 
 .profile {
@@ -362,11 +276,11 @@ html.dark .navbar-title {
 }
 
 .envelope-background {
-    margin-top: -30px;
+	margin-top: -30px;
 }
 
 .envelope-back {
-    margin-top: 30px;
+	margin-top: 30px;
 	position: relative;
 	width: 100%;
 	height: 200px;
@@ -377,42 +291,33 @@ html.dark .navbar-title {
 	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
 }
 
-html.dark .envelope-back {
-	background-color: var(--badge-dark);
-}
-
 .envelope-image {
 	position: absolute;
-    right: 0; 
-    width: 40%;
-    height: 100%;
+	right: 0;
+	width: 40%;
+	height: 100%;
 	border-radius: 20px;
 }
 
 .envelope-image img {
-    width: 100%; 
-    height: 100%;
-    object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	border-radius: 20px;
-  }
+}
 
 .envelope-card {
 	position: absolute;
-    left: 0; 
-    width: 80%;
-    height: 100%;
+	left: 0;
+	width: 80%;
+	height: 100%;
 	background-color: var(--card);
 	border-radius: 20px;
-    overflow: hidden; 
+	overflow: hidden;
 	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
 }
 
-html.dark .envelope-card
-{
-	background-color: var(--card-dark);
-}
-
-.envelope-card:hover{
+.envelope-card:hover {
 	width: 70%;
 }
 
@@ -430,24 +335,19 @@ html.dark .envelope-card
 .desc {
 	padding: 30px;
 	margin-top: -30px;
-    max-height: 1.5em; 
+	max-height: 1.5em;
 }
 
-  
+
 .back-card {
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
-	height: 300px;
-	min-height: 300px;
+	padding-bottom: 150px; 
 	background-color: var(--badge);
 	border-radius: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
-}
-
-html.dark .back-card {
-	background-color: var(--badge-dark);
 }
 
 .back-card::before {
@@ -460,11 +360,6 @@ html.dark .back-card {
 	transition: color 0.3s, background-color 0.3s;
 }
 
-html.dark .back-card::before {
-	color: var(--text-dark);
-	/* 设置文本颜色 */
-}
-
 .main-card {
 	position: relative;
 	top: 150px;
@@ -472,11 +367,42 @@ html.dark .back-card::before {
 	background-color: var(--card);
 	border-radius: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
+}
+
+.license-card {
+	position: relative;
+	width: 100%;
+	background-color: var(--badge);
+    margin: -20px;
+	padding: 20px;
+	overflow: hidden;
 	transition: color 0.3s, background-color 0.3s;
 }
 
-html.dark .main-card {
-	background-color: var(--card-dark);
+.license-card svg{
+	position: absolute;
+	right: 10%;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 200px;
+	height: 200px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.license-cc {
+	fill: var(--card);
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.license-title {
+	font-weight: 700;
+	color: var(--text);
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.license-url {
+	transition: color 0.3s, background-color 0.3s;
 }
 
 .profile-card {
@@ -489,13 +415,8 @@ html.dark .main-card {
 	transition: color 0.3s, background-color 0.3s, transform 1.0s ease;
 }
 
-html.dark .profile-card {
-	background-color: var(--card-dark);
-}
-
 .profile-picture {
 	text-align: center;
-	margin-bottom: 20px;
 	transition: color 0.3s, background-color 0.3s;
 }
 
@@ -506,8 +427,24 @@ html.dark .profile-card {
 	transition: color 0.3s, background-color 0.3s;
 }
 
-.profile-info h2 {
-	margin-bottom: 10px;
+.profile-info {
+	position: relative;
+	margin-top: 0px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.profile-name {
+	font-size: 24px;
+	color: var(--text);
+	text-align: center;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.profile-desc {
+	font-size: 16px;
+	color: var(--text);
+	text-align: center;
+	line-height: 0.4;
 	transition: color 0.3s, background-color 0.3s;
 }
 
@@ -515,13 +452,16 @@ html.dark .profile-card {
 	.profile {
 		position: absolute;
 	}
+
 	.background {
 		position: relative;
 		padding: 140px 40px 40px 40px;
 	}
+
 	.profile-card {
 		transform: translateX(-500px);
 	}
+
 	.navbar {
 		transform: translateY(0px);
 	}
@@ -541,24 +481,12 @@ html.dark .profile-card {
 	transition: color 0.3s, background-color 0.3s;
 }
 
-html.dark .menu-item {
-	color: var(--text-dark);
-}
-
 .menu-item:hover {
 	background-color: var(--badge);
 }
 
-html.dark .menu-item:hover {
-	background-color: var(--badge-dark);
-}
-
 .menu-item.on {
-	background-color: var(--badge);
-}
-
-html.dark .menu-item.on {
-	background-color: var(--badge-dark);
+	background-color: var(--background);
 }
 
 .social-icons {
@@ -578,16 +506,8 @@ html.dark .menu-item.on {
 	transition: color 0.3s, background-color 0.3s;
 }
 
-html.dark .social-icon {
-	color: var(--text-dark);
-}
-
 .social-icon:hover {
 	color: var(--badge);
-}
-
-html.dark .social-icon:hover {
-	color: var(--badge-dark);
 }
 
 #themeToggle {
@@ -604,16 +524,8 @@ html.dark .social-icon:hover {
 	transition: color 0.3s, background-color 0.3s;
 }
 
-html.dark #themeToggle {
-	background: var(--card-dark);
-}
-
 #themeToggle:hover {
 	background-color: var(--badge);
-}
-
-html.dark #themeToggle:hover {
-	background-color: var(--badge-dark);
 }
 
 .sun {
@@ -622,12 +534,4 @@ html.dark #themeToggle:hover {
 
 .moon {
 	fill: transparent;
-}
-
-html.dark .sun {
-	fill: transparent;
-}
-
-html.dark .moon {
-	fill: var(--text-dark);
 }
