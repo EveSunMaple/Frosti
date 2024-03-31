@@ -58,6 +58,14 @@ html {
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Cascadia';
+	src: url('/fonts/CascadiaMono.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
 body {
 	font-family: 'Atkinson', sans-serif;
 	margin: 0;
@@ -166,6 +174,8 @@ input {
 
 table {
 	width: 100%;
+	padding: 10px;
+	border-radius: 10px;
 }
 
 img {
@@ -175,12 +185,16 @@ img {
 }
 
 code {
+	font-family: 'Cascadia';
+	font-size: 0.875em;
 	padding: 2px 5px;
-	background-color: var(--gray-light);
+	background-color: var(--badge);
 	border-radius: 2px;
 }
 
 pre {
+	font-family: 'Cascadia';
+	font-size: 0.875em;
 	padding: 1.5em;
 	border-radius: 8px;
 }
@@ -193,12 +207,20 @@ blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
 	margin: 0px;
-	font-size: 1.333em;
 }
 
 hr {
+	height: 1px;
 	border: none;
-	border-top: 1px solid rgb(var(--gray-dark));
+	border-top: 1px dashed var(--accent);
+}
+.hr-title {
+    border: 0;
+    color: var(--accent);
+    background: linear-gradient(currentColor, currentColor) no-repeat center;
+    background-size: calc(100% - 1.5em - 6px) 1px;
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 720px) {
@@ -330,12 +352,18 @@ hr {
 .envelope-title {
 	font-size: 2em;
 	padding: 30px 30px 0px 30px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .desc {
-	padding: 30px;
+	padding: 30px 30px 0px 30px;
 	margin-top: -30px;
-	max-height: 1.5em;
+	max-height: 2em;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
@@ -343,44 +371,48 @@ hr {
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
-	padding-bottom: 150px; 
 	background-color: var(--badge);
 	border-radius: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
-}
-
-.back-card::before {
-	position: absolute;
-	font-size: 56px;
-	color: var(--text);
-	content: attr(title);
-	margin-top: 30px;
-	margin-left: 30px;
-	transition: color 0.3s, background-color 0.3s;
+	overflow: hidden;
 }
 
 .main-card {
 	position: relative;
-	top: 150px;
 	padding: 20px 20px 20px 20px;
 	background-color: var(--card);
 	border-radius: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
+	z-index: 10;
+}
+
+.card-img {
+	position: relative;
+	top: 0;
+	border-radius: 20px 0px 0px;
+	margin-bottom: -30%;
+	z-index: 2;
+	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s, margin-bottom 0.8s;
+}
+
+.card-img:hover {
+	margin-bottom: -40px;
+	cursor: pointer;
 }
 
 .license-card {
 	position: relative;
 	width: 100%;
 	background-color: var(--badge);
-    margin: -20px;
+	margin: -20px;
 	padding: 20px;
 	overflow: hidden;
 	transition: color 0.3s, background-color 0.3s;
 }
 
-.license-card svg{
+.license-card svg {
 	position: absolute;
 	right: 10%;
 	top: 50%;
@@ -392,7 +424,7 @@ hr {
 
 .license-cc {
 	fill: var(--card);
-	transition: color 0.3s, background-color 0.3s;
+	transition: color 0.3s, background-color 0.3s, fill 0.3s;
 }
 
 .license-title {
@@ -508,6 +540,63 @@ hr {
 
 .social-icon:hover {
 	color: var(--badge);
+}
+
+.next-btn {
+	display: flex;
+	justify-content: space-between;
+}
+
+.base-btn {
+	display: flex;
+	align-items: center; /* 垂直居中对齐 */
+	color: var(--text);
+	background-color: var(--card);
+	border-radius: 20px;
+	padding: 10px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.info {
+	padding: 10px 30px 30px 30px;
+}
+
+.badge {
+	color: var(--text);
+	font-size: 0.85em;
+	display: inline-block;
+	background-color: var(--badge);
+	border-radius: 20px;
+	padding: 0px 10px 0px 10px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.data {
+	color: var(--text);
+	display: inline-block;
+	background-color: var(--background);
+	border-width: 3px;
+	border-style: solid;
+	border-color: var(--accent);
+	border-radius: 10px;
+	padding: 5px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.tags {
+	display: inline-block;
+	background-color: var(--background);
+	border-width: 3px;
+	border-style: solid;
+	border-color: var(--accent);
+	border-radius: 10px;
+	padding: 5px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.tag {
+	color: var(--text);
+	transition: color 0.3s, background-color 0.3s;
 }
 
 #themeToggle {

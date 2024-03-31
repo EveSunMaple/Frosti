@@ -1,18 +1,70 @@
 ---
-import License from "../components/License.astro"
-import Comment from "../components/Comment.astro"
+import { Image } from "astro:assets";
+import License from "../components/License.astro";
+import Comment from "../components/Comment.astro";
+import dayjs from "dayjs";
 const {
-  image,
   title,
+  image,
+  pubDate,
+  badge,
+  tags,
   isBlog,
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props;
+const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+const displayDate = dayjs(pubDate).format('ddd MMM DD YYYY');
 ---
 
 <div class="back-card" title={title} transition:animate="slide">
-    <div class="main-card">
-        <slot />
-        {isBlog && <License title={title} url={url} />}
-        {isBlog && <Comment />}
-    </div>
+  {
+    image && (
+      <Image
+        src={image}
+        width="1920"
+        height="1080"
+        format="webp"
+        alt={title}
+        class="card-img"
+        loading="lazy"
+      />
+    )
+  }
+  <div class="main-card">
+    {
+      isBlog && (
+        <>
+          <h1 id="h1">
+            {badge && <div class="badge">{badge}</div>}
+            {title}
+          </h1>
+          <div class="card-info">
+            {displayDate && (
+              <div class="data">
+                {displayDate}
+              </div>
+            )}
+            <div class="tags">
+              {tags &&
+                tags.map((tag) => (
+                  <a href={`${tag_url}/${tag}`} class="tag">
+                    {tag}
+                  </a>
+                ))}
+            </div>
+          </div>
+          <hr class="hr-title">
+        </>
+      )
+    }
+    <slot />
+    {
+      isBlog && (
+        <>
+          <License title={title} url={url} />
+          <Comment />
+        </>
+      )
+    }
+  </div>
 </div>

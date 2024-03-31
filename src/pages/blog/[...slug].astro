@@ -17,7 +17,14 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout PageID="blog">
-  <BaseCard title={post.data.title} isBlog=true>
+  <BaseCard
+    title={post.data.title}
+    image={post.data.heroImage}
+    pubDate={post.data.pubDate}
+    badge={post.data.badge}
+    tags={post.data.tags}
+    isBlog="true"
+  >
     <Content />
   </BaseCard>
 </BaseLayout>

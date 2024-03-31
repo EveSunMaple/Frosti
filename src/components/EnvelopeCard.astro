@@ -1,15 +1,26 @@
 ---
-const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
 import { Image } from "astro:assets";
+import dayjs from "dayjs";
+const {
+  title,
+  image,
+  desc,
+  pubDate,
+  url,
+  badge,
+  tags,
+  target = "_blank",
+} = Astro.props;
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+const displayDate = dayjs(pubDate).format('ddd MMM DD YYYY');
 ---
 
 <div class="envelope-back" transition:animate="slide">
   <div class="envelope-image">
     {
-      img && (
+      image && (
         <Image
-          src={img}
+          src={image}
           width="300"
           height="200"
           format="webp"
@@ -24,19 +35,22 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
     <a href={url} target={target}>
       <div class="envelope-info">
         <h1 class="envelope-title">
-          {title}
           {badge && <div class="badge">{badge}</div>}
+          {title}
         </h1>
-        <p class="desc">{desc}</p>
-        <div class="card-actions">
-          {
-            tags &&
-              tags.map((tag) => (
-                <a href={`${tag_url}/${tag}`} class="tag">
-                  {tag}
-                </a>
-              ))
-          }
+        <div class="desc">{desc}</div>
+        <div class="info">
+          {displayDate && <div class="data">{displayDate}</div>}
+          <div class="tags">
+            {
+              tags &&
+                tags.map((tag) => (
+                  <a href={`${tag_url}/${tag}`} class="tag">
+                    {tag}
+                  </a>
+                ))
+            }
+          </div>
         </div>
       </div>
     </a>
