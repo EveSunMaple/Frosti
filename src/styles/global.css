@@ -3,43 +3,16 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
+
+* {
+	transition: margin-bottom 0.8s;
+}
+
 html {
 	background-color: var(--background);
 	color: var(--text);
 	scroll-behavior: smooth;
 	padding: 0px;
-}
-
-[class="light"] {
-	--background: #D6E6F2;
-	--accent: #769FCD;
-	--badge: #B9D7EA;
-	--card: #F7FBFC;
-	--text: #0f1219;
-
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
-}
-
-[class="dark"] {
-	--background: #35374B;
-	--accent: #78A083;
-	--badge: #50727B;
-	--card: #344955;
-	--text: #cececc;
-
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
 }
 
 @font-face {
@@ -60,38 +33,28 @@ html {
 
 @font-face {
 	font-family: 'Cascadia';
-	src: url('/fonts/CascadiaMono.woff2') format('woff2');
+	src: url('/fonts/CascadiaCode.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
 
 body {
-	font-family: 'Atkinson', sans-serif;
+	font-family: sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	background-color: var(--background);
-	color: var(--text);
 	font-size: 20px;
 	line-height: 1.7;
-}
-
-main {
-	background-color: var(--background);
 }
 
 footer {
 	position: relative;
 	top: 30px;
-	padding: 20px 20px 20px 20px;
-	background-color: var(--card);
 	border-radius: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transition: color 0.3s, background-color 0.3s;
 	text-align: center;
 }
 
@@ -102,8 +65,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: var(--text);
-	line-height: 1.2;
+	line-height: 2;
 }
 
 h1 {
@@ -129,38 +91,38 @@ h5 {
 strong,
 b {
 	font-weight: 700;
-	color: var(--text);
 }
 
 a {
-	color: var(--accent);
 	text-decoration: none;
 }
 
 a:hover {
-	color: var(--accent);
+	color: oklch(var(--a));
 }
 
 p {
 	margin-bottom: 1em;
-	color: var(--text);
 }
 
 .prose p {
 	margin-bottom: 2em;
-	color: var(--text);
 }
 
-em {
-	color: var(--text);
+ol {
+	padding: 10px;
+	list-style: decimal;
+	list-style-position: inside;
 }
 
-li {
-	color: var(--text);
+ul {
+	padding: 10px;
+	list-style: circle;
+	list-style-position: inside;
 }
 
-th {
-	color: var(--text);
+thead {
+	color: oklch(var(--s));
 }
 
 textarea {
@@ -173,9 +135,12 @@ input {
 }
 
 table {
-	width: 100%;
-	padding: 10px;
-	border-radius: 10px;
+  border-collapse: collapse;
+}
+
+table tr {
+height: 2.5em;
+  border-bottom: 1px solid oklch(var(--nc));
 }
 
 img {
@@ -188,7 +153,6 @@ code {
 	font-family: 'Cascadia';
 	font-size: 0.875em;
 	padding: 2px 5px;
-	background-color: var(--badge);
 	border-radius: 2px;
 }
 
@@ -199,28 +163,28 @@ pre {
 	border-radius: 8px;
 }
 
+.astro-code {
+	margin-bottom: 0.75em;
+}
+
 pre>code {
 	all: unset;
 }
 
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid oklch(var(--a));
 	padding: 0 0 0 20px;
 	margin: 0px;
 }
 
 hr {
-	height: 1px;
-	border: none;
-	border-top: 1px dashed var(--accent);
-}
-.hr-title {
-    border: 0;
-    color: var(--accent);
-    background: linear-gradient(currentColor, currentColor) no-repeat center;
-    background-size: calc(100% - 1.5em - 6px) 1px;
-    display: flex;
-    justify-content: space-between;
+	border: 0;
+	color: oklch(var(--bc));
+	background: linear-gradient(currentColor, currentColor) no-repeat center;
+	background-size: calc(100% - 1.5em - 6px) 1px;
+	display: flex;
+	justify-content: space-between;
+	height: 50px;
 }
 
 @media (max-width: 720px) {
@@ -268,17 +232,11 @@ hr {
 	width: 100%;
 	transform: translateY(-200px);
 	text-align: center;
-	background-color: var(--card);
-	transition: color 0.3s, background-color 0.3s, transform 1.3s ease, width 0.8s, height 0.8s;
 	z-index: 100;
 }
 
 .navbar-title {
-	font-size: 2em;
-	font-weight: 700;
-	color: var(--text);
 	text-decoration: none;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .profile {
@@ -307,10 +265,6 @@ hr {
 	width: 100%;
 	height: 200px;
 	min-height: 200px;
-	background-color: var(--badge);
-	border-radius: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
 }
 
 .envelope-image {
@@ -333,28 +287,22 @@ hr {
 	left: 0;
 	width: 80%;
 	height: 100%;
-	background-color: var(--card);
 	border-radius: 20px;
 	overflow: hidden;
-	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
-}
-
-.envelope-card:hover {
-	width: 70%;
 }
 
 .envelope-info {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	z-index: 100;
 }
 
 .envelope-title {
 	font-size: 2em;
-	padding: 30px 30px 0px 30px;
 	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .desc {
@@ -362,8 +310,8 @@ hr {
 	margin-top: -30px;
 	max-height: 2em;
 	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 
@@ -371,20 +319,12 @@ hr {
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
-	background-color: var(--badge);
-	border-radius: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
 	overflow: hidden;
 }
 
 .main-card {
 	position: relative;
-	padding: 20px 20px 20px 20px;
-	background-color: var(--card);
-	border-radius: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s;
+	line-height: 1.5;
 	z-index: 10;
 }
 
@@ -394,7 +334,6 @@ hr {
 	border-radius: 20px 0px 0px;
 	margin-bottom: -30%;
 	z-index: 2;
-	transition: color 0.3s, background-color 0.3s, width 0.8s, height 0.8s, margin-bottom 0.8s;
 }
 
 .card-img:hover {
@@ -405,11 +344,9 @@ hr {
 .license-card {
 	position: relative;
 	width: 100%;
-	background-color: var(--badge);
 	margin: -20px;
 	padding: 20px;
 	overflow: hidden;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .license-card svg {
@@ -419,65 +356,40 @@ hr {
 	transform: translateY(-50%);
 	width: 200px;
 	height: 200px;
-	transition: color 0.3s, background-color 0.3s;
-}
-
-.license-cc {
-	fill: var(--card);
-	transition: color 0.3s, background-color 0.3s, fill 0.3s;
 }
 
 .license-title {
 	font-weight: 700;
-	color: var(--text);
-	transition: color 0.3s, background-color 0.3s;
-}
-
-.license-url {
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .profile-card {
-	width: 250px;
-	min-width: 250px;
-	padding: 40px 20px 20px 20px;
-	background-color: var(--card);
-	border-radius: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transition: color 0.3s, background-color 0.3s, transform 1.0s ease;
+	width: 300px;
+	min-width: 300px;
 }
 
 .profile-picture {
 	text-align: center;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .profile-picture img {
 	width: 200px;
 	height: 200px;
-	border-radius: 50%;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .profile-info {
 	position: relative;
 	margin-top: 0px;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .profile-name {
 	font-size: 24px;
-	color: var(--text);
 	text-align: center;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .profile-desc {
 	font-size: 16px;
-	color: var(--text);
 	text-align: center;
 	line-height: 0.4;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 @media screen and (max-width: 1100px) {
@@ -500,30 +412,19 @@ hr {
 }
 
 .menu-item {
-	border-radius: 10px;
 	display: inline-block;
-	padding: 10px 20px;
 	text-decoration: none;
-	color: var(--text);
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
-	width: 150px;
+	width: 100%;
+	font-weight: 700;
+	font-size: 1.45em;
 	text-align: center;
-	transition: color 0.3s, background-color 0.3s;
-}
-
-.menu-item:hover {
-	background-color: var(--badge);
-}
-
-.menu-item.on {
-	background-color: var(--background);
 }
 
 .social-icons {
 	text-align: center;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .social-icon {
@@ -533,9 +434,7 @@ hr {
 	line-height: 30px;
 	width: 30px;
 	font-size: 20px;
-	color: var(--text);
 	text-decoration: none;
-	transition: color 0.3s, background-color 0.3s;
 }
 
 .social-icon:hover {
@@ -549,57 +448,11 @@ hr {
 
 .base-btn {
 	display: flex;
-	align-items: center; /* 垂直居中对齐 */
-	color: var(--text);
-	background-color: var(--card);
-	border-radius: 20px;
-	padding: 10px;
-	transition: color 0.3s, background-color 0.3s;
+	align-items: center;
+	/* 垂直居中对齐 */
 }
 
-.info {
-	padding: 10px 30px 30px 30px;
-}
-
-.badge {
-	color: var(--text);
-	font-size: 0.85em;
-	display: inline-block;
-	background-color: var(--badge);
-	border-radius: 20px;
-	padding: 0px 10px 0px 10px;
-	transition: color 0.3s, background-color 0.3s;
-}
-
-.data {
-	color: var(--text);
-	display: inline-block;
-	background-color: var(--background);
-	border-width: 3px;
-	border-style: solid;
-	border-color: var(--accent);
-	border-radius: 10px;
-	padding: 5px;
-	transition: color 0.3s, background-color 0.3s;
-}
-
-.tags {
-	display: inline-block;
-	background-color: var(--background);
-	border-width: 3px;
-	border-style: solid;
-	border-color: var(--accent);
-	border-radius: 10px;
-	padding: 5px;
-	transition: color 0.3s, background-color 0.3s;
-}
-
-.tag {
-	color: var(--text);
-	transition: color 0.3s, background-color 0.3s;
-}
-
-#themeToggle {
+#btn-theme {
 	position: fixed;
 	width: 50px;
 	height: 50px;
@@ -610,17 +463,10 @@ hr {
 	background: var(--card);
 	cursor: pointer;
 	border-radius: 5px;
-	transition: color 0.3s, background-color 0.3s;
 }
 
-#themeToggle:hover {
-	background-color: var(--badge);
-}
-
-.sun {
-	fill: var(--text);
-}
-
-.moon {
-	fill: transparent;
+.info {
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }

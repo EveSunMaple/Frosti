@@ -13,10 +13,14 @@ const {
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props;
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
-const displayDate = dayjs(pubDate).format('ddd MMM DD YYYY');
+const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
 ---
 
-<div class="back-card" title={title} transition:animate="slide">
+<div
+  class="back-card card bg-base-100 shadow-xl"
+  title={title}
+  transition:animate="slide"
+>
   {
     image && (
       <Image
@@ -30,30 +34,33 @@ const displayDate = dayjs(pubDate).format('ddd MMM DD YYYY');
       />
     )
   }
-  <div class="main-card">
+  <div class="main-card card bg-base-100 p-6">
     {
       isBlog && (
         <>
-          <h1 id="h1">
-            {badge && <div class="badge">{badge}</div>}
-            {title}
-          </h1>
-          <div class="card-info">
+          <h1 id="h1">{title}</h1>
+          <div class="info">
             {displayDate && (
-              <div class="data">
-                {displayDate}
-              </div>
+              <div class="badge badge-neutral">{displayDate}</div>
             )}
+            {badge && <div class="badge badge-primary">{badge}</div>}
             <div class="tags">
+              <code>Tag: </code>
               {tags &&
                 tags.map((tag) => (
-                  <a href={`${tag_url}/${tag}`} class="tag">
-                    {tag}
-                  </a>
+                  <>
+                    <a
+                      href={`${tag_url}/${tag}`}
+                      class="btn btn-xs btn-secondary"
+                    >
+                      {tag}
+                    </a>
+                    <span>&thinsp;</span>
+                  </>
                 ))}
             </div>
           </div>
-          <hr class="hr-title">
+          <hr />
         </>
       )
     }

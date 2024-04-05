@@ -12,10 +12,13 @@ const {
   target = "_blank",
 } = Astro.props;
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
-const displayDate = dayjs(pubDate).format('ddd MMM DD YYYY');
+const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
 ---
 
-<div class="envelope-back" transition:animate="slide">
+<div
+  class="envelope-back card bg-base-100 shadow-xl"
+  transition:animate="slide"
+>
   <div class="envelope-image">
     {
       image && (
@@ -25,34 +28,39 @@ const displayDate = dayjs(pubDate).format('ddd MMM DD YYYY');
           height="200"
           format="webp"
           alt={title}
-          class="image"
+          class="mask"
           loading="lazy"
         />
       )
     }
   </div>
-  <div class="envelope-card">
-    <a href={url} target={target}>
-      <div class="envelope-info">
-        <h1 class="envelope-title">
-          {badge && <div class="badge">{badge}</div>}
-          {title}
-        </h1>
-        <div class="desc">{desc}</div>
-        <div class="info">
-          {displayDate && <div class="data">{displayDate}</div>}
-          <div class="tags">
-            {
-              tags &&
-                tags.map((tag) => (
-                  <a href={`${tag_url}/${tag}`} class="tag">
+  <div class="envelope-card card bg-base-100">
+    <div class="envelope-info px-6 py-3">
+      <a href={url} target={target} class="envelope-title">
+        {title}
+      </a>
+      <div class="info">{desc}</div>
+      <div class="info">
+        {displayDate && <div class="badge badge-neutral">{displayDate}</div>}
+        {badge && <div class="badge badge-primary">{badge}</div>}
+        <div class="tags">
+          <code>Tag: </code>
+          {
+            tags &&
+              tags.map((tag) => (
+                <>
+                  <a
+                    href={`${tag_url}/${tag}`}
+                    class="btn btn-xs btn-secondary"
+                  >
                     {tag}
                   </a>
-                ))
-            }
-          </div>
+                  <span>&thinsp;</span>
+                </>
+              ))
+          }
         </div>
       </div>
-    </a>
+    </div>
   </div>
 </div>

@@ -13,7 +13,12 @@
     "@astrojs/mdx": "^2.2.2",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.2",
+    "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.5.12",
     "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "daisyui": "^4.10.1",
+    "tailwindcss": "^3.4.3"
   }
 }

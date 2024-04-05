@@ -1,11 +1,13 @@
 ---
 title: 'Markdown Style Guide'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-pubDate: 'Jul 01 2022'
+pubDate: 'Jul 01 2024'
 heroImage: '/blog-placeholder-1.jpg'
 tags:
   - Makrdown
 badge: NEW
+---
+
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
@@ -117,17 +119,34 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 Output
 
-```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
-  </head>
-  <body>
-    <p>Test</p>
-  </body>
-</html>
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5 + 5;
+int n, k, a[N];
+long long ans;
+vector<int> v[N];
+int main()
+{
+    scanf("%d%d", &n, &k);
+    for (int i = 1; i <= n; i++)
+    {
+        scanf("%d", &a[i]);
+        v[i % k].push_back(a[i]);
+    }
+    for (int i = 0; i < k; i++)
+        sort(v[i].rbegin(), v[i].rend());
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j + 1 < v[i].size(); j += 2)
+        {
+            ans += v[i][j] + v[i][j + 1];
+        }
+    }
+    printf("%lld\n", ans);
+    return 0;
+}
+
 ```
 
 ## List Types

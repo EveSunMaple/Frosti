@@ -3,15 +3,15 @@ const { PageID } = Astro.props;
 const activeClass = "on"; // For primary color replace with `active` class
 ---
 
-<ul class="profile-menu">
-    <li><a class="menu-item" id="home" href="/">Home</a></li>
-    <li><a class="menu-item" id="about" href="/about">About</a></li>
-    <li><a class="menu-item" id="blog" href="/blog">Blogs</a></li>
-    <li><a class="menu-item" id="project" href="/project">Projects</a></li>
-    <li><a class="menu-item" id="friend" href="/friend">Friends</a></li>
+<ul class="menu bg-base-100 w-full">
+    <li><a class="menu-item p-4" id="home" href="/">Home</a></li>
+    <li><a class="menu-item p-4" id="about" href="/about">About</a></li>
+    <li><a class="menu-item p-4" id="blog" href="/blog">Blogs</a></li>
+    <li><a class="menu-item p-4" id="project" href="/project">Projects</a></li>
+    <li><a class="menu-item p-4" id="friend" href="/friend">Friends</a></li>
     <li>
         <a
-            class="menu-item"
+            class="menu-item p-4"
             href="mailto:contact.evesunmaple@outlook.com"
             target="_blank"
             referrerpolicy="no-referrer-when-downgrade">Contact</a

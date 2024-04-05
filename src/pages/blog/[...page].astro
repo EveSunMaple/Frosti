@@ -35,7 +35,7 @@ const { page } = Astro.props;
   <div class="next-btn">
     {
       page.url.prev ? (
-        <a href={page.url.prev} class="base-btn">
+        <a href={page.url.prev} class="btn bg-base-100 shadow-xl">
           {" "}
           <svg
             class="h-6 w-6 fill-current md:h-8 md:w-8"
@@ -54,7 +54,7 @@ const { page } = Astro.props;
     }
     {
       page.url.next ? (
-        <a href={page.url.next} class="base-btn">
+        <a href={page.url.next} class="btn bg-base-100 shadow-xl">
           Older Posts{" "}
           <svg
             class="h-6 w-6 fill-current md:h-8 md:w-8"
