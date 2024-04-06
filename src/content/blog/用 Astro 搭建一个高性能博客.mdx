@@ -10,6 +10,12 @@ tags:
   - 博客
 badge: 教程
 ---
+
+import Info from '../../components/blog/info.astro';
+import Error from '../../components/blog/error.astro';
+import Warning from '../../components/blog/warning.astro';
+import Success from '../../components/blog/success.astro';
+
 ## 前言
 
 > 本篇文章的目的旨在读者无须在多个窗口间跳动即可完成 Astro 的部署与个性化。**需要下载的内容可在本页面一键下载**
@@ -18,7 +24,7 @@ badge: 教程
 
 关于这个问题，你可以访问它的官方网站：[为什么是 Astro? | Docs](https://docs.astro.build/zh-cn/concepts/why-astro/)
 
-> 如果你想了解我的想法，请移动至本文结尾
+<Info>如果你想了解我的想法，请移动至本文结尾</Info>
 
 ## 需要的环境
 
@@ -37,7 +43,7 @@ npm install -g pnpm
 
 ## 创建你的博客项目
 
-> Astro 不像 Hexo，可以安装多个主题，然后只用写几个配置文件就好了——还能随便切换主题。Astro 每个主题就是一个项目，而每位作者用的 `frontmatter` 格式可能都不一样，所以为了避免频繁迁移项目，请先选好自己要使用的主题。
+<Warning> Astro 不像 Hexo，可以安装多个主题，然后只用写几个配置文件就好了——还能随便切换主题。Astro 每个主题就是一个项目，而每位作者用的 `frontmatter` 格式可能都不一样，所以为了避免频繁迁移项目，请先选好自己要使用的主题。 </Warning>
 
 ### 选择你需要的主题
 

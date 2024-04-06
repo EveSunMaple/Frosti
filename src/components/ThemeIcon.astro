@@ -2,10 +2,10 @@
 
 ---
 
-<div class="flex justify-center my-10" id="btn-theme">
-  <label class="" id="themeLabel">
+<div class="flex justify-center card bg-base-100 shadow-xl sidebtn" id="btn-theme">
+  <label class="" id="themeLabel1">
     <!-- this hidden checkbox controls the state -->
-    <input type="checkbox" id="themeToggle" />
+    <input type="checkbox" id="themeToggle1" />
     <!-- sun icon -->
     <svg
       class="swap-on fill-current w-10 h-10"
@@ -46,21 +46,36 @@
       setTheme(userPreferredTheme);
     }
 
-    const themeLabel = document.getElementById("themeLabel");
-    const themeToggle = document.getElementById("themeToggle");
-    if (document.documentElement.getAttribute("data-theme") === "dracula") {
-      themeToggle.checked = true;
-    }
+    const themeLabel1 = document.getElementById("themeLabel1");
+    const themeToggle1 = document.getElementById("themeToggle1");
+    const themeLabel2 = document.getElementById("themeLabel2");
+    const themeToggle2 = document.getElementById("themeToggle2");
 
-    themeLabel.classList.add("swap");
-    themeLabel.classList.add("swap-rotate");
+    // 同步按钮状态的函数
+    const syncThemeToggle = () => {
+      const currentTheme = localStorage.getItem("theme");
+      const isChecked = currentTheme === "dracula";
+      themeToggle1.checked = isChecked;
+      themeToggle2.checked = isChecked;
+    };
 
+    // 初始同步按钮状态
+    syncThemeToggle();
+
+    themeLabel1.classList.add("swap");
+    themeLabel1.classList.add("swap-rotate");
+    themeLabel2.classList.add("swap");
+    themeLabel2.classList.add("swap-rotate");
+
+    // 按钮点击事件处理函数
     const handleToggleClick = () => {
       const currentTheme = localStorage.getItem("theme");
       const newTheme = currentTheme === "winter" ? "dracula" : "winter";
       setTheme(newTheme);
+      syncThemeToggle();
     };
 
-    themeToggle.addEventListener("click", handleToggleClick);
+    themeToggle1.addEventListener("click", handleToggleClick);
+    themeToggle2.addEventListener("click", handleToggleClick);
 });
 </script>

@@ -9,8 +9,6 @@
 }
 
 html {
-	background-color: var(--background);
-	color: var(--text);
 	scroll-behavior: smooth;
 	padding: 0px;
 }
@@ -65,60 +63,59 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	line-height: 2;
+	margin-bottom: 0.25em;
 }
 
 h1 {
-	font-size: 3.052em;
-}
-
-h2 {
 	font-size: 2.441em;
 }
 
-h3 {
+h2 {
 	font-size: 1.953em;
 }
 
-h4 {
+h3 {
 	font-size: 1.563em;
 }
 
-h5 {
+h4 {
 	font-size: 1.25em;
+}
+
+h5 {
+	font-size: 1.15em;
 }
 
 strong,
 b {
 	font-weight: 700;
+	margin: 0.5em;
 }
 
 a {
 	text-decoration: none;
 }
 
-a:hover {
-	color: oklch(var(--a));
-}
-
 p {
-	margin-bottom: 1em;
-}
-
-.prose p {
-	margin-bottom: 2em;
+	margin: 0.5em;
 }
 
 ol {
-	padding: 10px;
+	padding: 0px 0px 0px 40px;
 	list-style: decimal;
-	list-style-position: inside;
 }
 
 ul {
-	padding: 10px;
-	list-style: circle;
-	list-style-position: inside;
+	padding: 0px 0px 0px 40px;
+	list-style: disc;
+}
+
+li {
+	margin-bottom: 0.75em;
+}
+
+li::marker {
+	color: oklch(var(--a));
 }
 
 thead {
@@ -135,12 +132,13 @@ input {
 }
 
 table {
-  border-collapse: collapse;
+	border-collapse: collapse;
+	margin: 0.5em;
 }
 
 table tr {
-height: 2.5em;
-  border-bottom: 1px solid oklch(var(--nc));
+	height: 2.5em;
+	border-bottom: 1px solid oklch(var(--nc));
 }
 
 img {
@@ -161,10 +159,11 @@ pre {
 	font-size: 0.875em;
 	padding: 1.5em;
 	border-radius: 8px;
+	margin: 0.5em;
 }
 
 .astro-code {
-	margin-bottom: 0.75em;
+	margin: 0.5em;
 }
 
 pre>code {
@@ -172,9 +171,11 @@ pre>code {
 }
 
 blockquote {
+	background-color: oklch(var(--b3));
+	border-radius: 8px;
 	border-left: 4px solid oklch(var(--a));
-	padding: 0 0 0 20px;
-	margin: 0px;
+	padding: 10px 10px 10px 20px;
+	margin: 0.5em;
 }
 
 hr {
@@ -228,11 +229,12 @@ hr {
 
 .navbar {
 	position: fixed;
-	padding: 20px 0px;
+	padding: 0;
 	width: 100%;
 	transform: translateY(-200px);
 	text-align: center;
 	z-index: 100;
+	transition: transform 0.3s ease;
 }
 
 .navbar-title {
@@ -295,6 +297,9 @@ hr {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	z-index: 100;
 }
 
@@ -365,6 +370,7 @@ hr {
 .profile-card {
 	width: 300px;
 	min-width: 300px;
+	transition: transform 0.3s ease;
 }
 
 .profile-picture {
@@ -392,6 +398,24 @@ hr {
 	line-height: 0.4;
 }
 
+.head-menu {
+	position: fixed;
+	transform: translateY(-100%);
+	transition: transform 0.3s ease;
+	display: none;
+	width: 100%;
+	z-index: 50;
+}
+
+.head-menu.open {
+	transform: translateY(70px);
+}
+
+.sidebtn {
+	transform: translateX(0);
+	transition: transform 0.3s ease;
+}
+
 @media screen and (max-width: 1100px) {
 	.profile {
 		position: absolute;
@@ -403,11 +427,19 @@ hr {
 	}
 
 	.profile-card {
-		transform: translateX(-500px);
+		transform: translateX(-200%);
 	}
 
 	.navbar {
 		transform: translateY(0px);
+	}
+
+	.head-menu {
+		display: block;
+	}
+
+	.sidebtn {
+		transform: translateX(200%);
 	}
 }
 
@@ -460,13 +492,12 @@ hr {
 	right: 20px;
 	padding: 10px;
 	border: 0;
-	background: var(--card);
 	cursor: pointer;
 	border-radius: 5px;
 }
 
 .info {
-	overflow: hidden; 
+	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
