@@ -34,10 +34,15 @@ const {
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
+    <script src="../scripts/copybutton.mjs"></script>
     <Header title={SITE_TITLE} />
     <main class="main">
       <div class="profile">
-        {includeSidebar && <Profile name={user_name} desc={user_description} PageID={PageID} />}
+        {
+          includeSidebar && (
+            <Profile name={user_name} desc={user_description} PageID={PageID} />
+          )
+        }
       </div>
       <div class="background">
         <slot />
