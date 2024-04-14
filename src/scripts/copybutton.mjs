@@ -13,6 +13,7 @@ document.addEventListener('astro:page-load', () => {
     copyButton.style.borderRadius = '4px';
     copyButton.style.color = '#fff';
     copyButton.style.border = 'none';
+    copyButton.style.zIndex = 100;
 
     container.appendChild(copyButton);
     codeBlock.parentNode.insertBefore(container, codeBlock);

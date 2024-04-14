@@ -3,7 +3,6 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
- border-radius: var(--rounded-box, 1rem);
 * {
 	transition: margin-bottom 0.8s;
 }
@@ -154,12 +153,9 @@ pre>code {
 	all: unset;
 }
 
-blockquote {
-	background-color: oklch(var(--b3));
-	border-radius: 8px;
-	border-left: 4px solid oklch(var(--a));
-	padding: 10px 10px 10px 20px;
+.alert {
 	margin: 0.5em;
+	width: auto;
 }
 
 hr {

@@ -17,8 +17,10 @@
     "astro": "^4.6.1",
     "dayjs": "^1.11.10",
     "katex": "^0.16.10",
+    "prismjs": "^1.29.0",
     "rehype-katex": "^7.0.0",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "shiki": "^1.3.0"
   },
   "devDependencies": {
     "daisyui": "^4.10.1",
