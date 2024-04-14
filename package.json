@@ -10,12 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.2.4",
+    "@astrojs/mdx": "^2.3.0",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.2",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.5.16",
-    "dayjs": "^1.11.10"
+    "astro": "^4.6.1",
+    "dayjs": "^1.11.10",
+    "katex": "^0.16.10",
+    "rehype-katex": "^7.0.0",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "daisyui": "^4.10.1",

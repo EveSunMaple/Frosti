@@ -20,7 +20,7 @@ const { page } = Astro.props;
       page.data.map((post) => (
         <EnvelopeCard
           title={post.data.title}
-          image={post.data.heroImage}
+          image={post.data.image}
           desc={post.data.description}
           url={"/blog/" + post.slug}
           pubDate={post.data.pubDate}
