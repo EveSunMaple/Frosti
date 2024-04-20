@@ -4,11 +4,12 @@
 
 [**🖥️ Frosti Demo**](https://forsti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
 
->[INFO] 更好的阅读体验请前往 ->
+> [!NOTE] 
+> 更好的阅读体验请前往 ->
 
 ## 🖥️ 预览
 
-.[view](./view.png)
+![view](./view.png)
 
 ## ✨ 特点
 
