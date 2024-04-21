@@ -93,10 +93,6 @@ ul {
 	list-style: disc;
 }
 
-li {
-	margin-bottom: 0.75em;
-}
-
 li::marker {
 	color: oklch(var(--a));
 }
@@ -125,8 +121,6 @@ table tr {
 }
 
 img {
-	max-width: 100%;
-	height: auto;
 	border-radius: 8px;
 }
 

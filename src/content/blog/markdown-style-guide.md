@@ -8,6 +8,72 @@ tags:
 badge: Guide
 ---
 
+```sh
+\Frosti
+├── astro.config.mjs
+├── categories.txt
+├── index.png
+├── package-lock.json
+├── package.json
+├── pnpm-lock.yaml
+├── public
+|  ├── favicon.svg
+|  ├── fonts
+|  |  └── CascadiaCode.woff2
+|  ├── home.webp
+|  └── profile.webp
+├── README.md
+├── README.zh-CN.md
+├── src
+|  ├── components
+|  |  ├── BaseCard.astro
+|  |  ├── BaseHead.astro
+|  |  ├── blog
+|  |  |  ├── error.astro
+|  |  |  ├── info.astro
+|  |  |  ├── success.astro
+|  |  |  └── warning.astro
+|  |  ├── Comment.astro
+|  |  ├── EnvelopeCard.astro
+|  |  ├── Footer.astro
+|  |  ├── FormattedDate.astro
+|  |  ├── Header.astro
+|  |  ├── HeaderLink.astro
+|  |  ├── License.astro
+|  |  ├── page
+|  |  |  ├── FriendCard.astro
+|  |  |  └── TimeLine.astro
+|  |  ├── ProfileCard.astro
+|  |  ├── ProfileCardFooter.astro
+|  |  ├── ProfileCardMenu.astro
+|  |  └── ThemeIcon.astro
+|  ├── consts.ts
+|  ├── content
+|  |  ├── blog
+|  |  |  ├── markdown-style-guide.md
+|  |  |  └── using-mdx.mdx
+|  |  └── config.ts
+|  ├── env.d.ts
+|  ├── layouts
+|  |  └── BaseLayout.astro
+|  ├── pages
+|  |  ├── about.astro
+|  |  ├── blog
+|  |  |  ├── tag
+|  |  |  ├── [...page].astro
+|  |  |  └── [...slug].astro
+|  |  ├── friend.astro
+|  |  ├── index.astro
+|  |  ├── project.astro
+|  |  └── rss.xml.js
+|  ├── scripts
+|  |  └── copybutton.mjs
+|  └── styles
+|     └── global.css
+├── tailwind.config.js
+├── tsconfig.json
+└── view.png
+```
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
 
 ## Headings

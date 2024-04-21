@@ -23,7 +23,7 @@
 
 ## 🚀 项目结构
 
-```bash
+```sh
 \Frosti
 ├── astro.config.mjs
 ├── categories.txt
@@ -49,13 +49,15 @@
 |  |  |  ├── success.astro
 |  |  |  └── warning.astro
 |  |  ├── Comment.astro
-|  |  ├── CopyBtn.astro
 |  |  ├── EnvelopeCard.astro
 |  |  ├── Footer.astro
 |  |  ├── FormattedDate.astro
 |  |  ├── Header.astro
 |  |  ├── HeaderLink.astro
 |  |  ├── License.astro
+|  |  ├── page
+|  |  |  ├── FriendCard.astro
+|  |  |  └── TimeLine.astro
 |  |  ├── ProfileCard.astro
 |  |  ├── ProfileCardFooter.astro
 |  |  ├── ProfileCardMenu.astro
@@ -84,7 +86,8 @@
 |  └── styles
 |     └── global.css
 ├── tailwind.config.js
-└── tsconfig.json
+├── tsconfig.json
+└── view.png
 ```
 
 ## ✒️ 文章信息
@@ -102,7 +105,7 @@
 
 通过将 `--template` 参数传递给 `create astro` 命令来使用 Frosti ！
 
-```bash
+```sh
 npm create astro@latest -- --template EveSunMaple/Frosti
 ```
 

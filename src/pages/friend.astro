@@ -1,19 +1,69 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BaseCard from "../components/BaseCard.astro";
+import FriendCard from "../components/page/FriendCard.astro";
 ---
 
 <!doctype html>
 <BaseLayout PageID="friend">
-  <BaseCard title="Hi! 欢迎来到Friends！">
-    <div class="pb-12 mt-5">
-      <h2 id="h2">
-		这是一个友链页面！</h2>
-      <p>
-        <text class="text-lg">
-			这是一个友链页面！
-        </text>
-      </p>
-    </div>
-  </BaseCard>
+  <BaseCard title="Friend">
+    <h1 id="h1">Friend</h1>
+    <hr />
+    <div class="grid grid-cols-2 gap-4">
+      <FriendCard
+        title="EveSunMaple"
+        desc="一位普通的高中学生"
+        url="https://www.saroprock.com"
+        img="https://www.saroprock.com/profile.webp"
+      />
+      <FriendCard
+        title="EveSunMaple"
+        desc="Author of Frosti Theme Template"
+        url="https://www.saroprock.com"
+        img="https://www.saroprock.com/profile.webp"
+      />
+      <FriendCard
+        title="Echo 的小窝"
+        img="https://yy.liveout.cn/photo/photo2.jpg"
+        desc="漂泊于互联网中的小窝"
+        badge=""
+        url="https://www.liveout.cn/"
+      />
+      <FriendCard
+        title="Dash 博客"
+        img="https://s1.ax1x.com/2023/07/06/pC6Z3hd.jpg"
+        desc="⌈搏海之明辉，何来彼岸？⌋"
+        badge=""
+        url="https://dashbing.github.io/"
+      />
+      <FriendCard
+        title="安知鱼"
+        img="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"
+        desc="生活明朗，万物可爱"
+        badge=""
+        url="https://blog.anheyu.com/"
+      />
+      <FriendCard
+        title="张洪Heo"
+        img="https://bu.dusays.com/2022/12/28/63ac2812183aa.png"
+        desc="分享设计与科技生活"
+        badge=""
+        url="https://blog.zhheo.com/"
+      />
+      <FriendCard
+        title="ayublog`Blog"
+        img="https://ooo.0x0.ooo/2023/10/28/ONobPG.jpg"
+        desc="实事求是 坚韧不拔 有志竟成 朝夕不倦"
+        badge=""
+        url="https://www.maresera.top/"
+      />
+      <FriendCard
+        title="Include 的小船"
+        img="https://include-xb.github.io/img/header.png"
+        desc="潮生理棹，潮平系缆，潮落浩歌归去"
+        badge="FD"
+        url="https://include-xb.github.io/"
+      />
+    </div></BaseCard
+  >
 </BaseLayout>
