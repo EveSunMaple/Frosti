@@ -2,7 +2,7 @@
 
 **一个简洁、优雅、快速的静态博客模板！使用 [Astro](https://astro.build/) 开发！**
 
-[**🖥️ Frosti Demo**](https://forsti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
+[**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
 
 > [!NOTE] 
 > 更好的阅读体验请前往 ->
@@ -108,15 +108,15 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 ## 🎯 计划
 
-- [] 添加目录(已做好但没有写 CSS )
-- [] 添加时间线组件
-- [] 添加友链组件
+- [ ] 添加目录(已做好但没有写 CSS )
+- [ ] 添加时间线组件
+- [ ] 添加友链组件
 
 ## 👀 问题
 
-- [] `global.css` 过于混乱
-- [] **白天** / **黑夜** 模式目前无法实现缓动
-- [] 网站评分还没有到达 400 分
+- [ ] `global.css` 过于混乱
+- [ ] **白天** / **黑夜** 模式目前无法实现缓动
+- [ ] 网站评分还没有到达 400 分
 
 ## 🎉 感谢
 

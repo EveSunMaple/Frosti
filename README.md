@@ -2,7 +2,7 @@
 
 **A clean, elegant, and fast static blog template! Developed using [Astro](https://astro.build/)！**
 
-[**🖥️ Frosti Demo**](https://forsti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
+[**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
 
 > [!NOTE]
 > For a better reading experience, visit ->
@@ -108,15 +108,15 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 ## 🎯 Plans
 
-- [] Add table of contents (done but CSS not written)
-- [] Add timeline component
-- [] Add friends link component
+- [ ] Add table of contents (done but CSS not written)
+- [ ] Add timeline component
+- [ ] Add friends link component
 
 ## 👀 Issues
 
-- [] `global.css` is too messy
-- [] **Light** / **Dark** mode transition is currently not implemented
-- [] Website score has not reached 400 yet
+- [ ] `global.css` is too messy
+- [ ] **Light** / **Dark** mode transition is currently not implemented
+- [ ] Website score has not reached 400 yet
 
 ## 🎉 Acknowledgments
 
