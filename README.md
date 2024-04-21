@@ -112,8 +112,8 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 ## 🎯 Plans
 
 - [ ] Add table of contents (done but CSS not written)
-- [ ] Add timeline component
-- [ ] Add friends link component
+- [x] Add timeline component ~~(Apr 21, 2024)~~
+- [x] Add friends link component ~~(Apr 21, 2024)~~
 
 ## 👀 Issues
 
