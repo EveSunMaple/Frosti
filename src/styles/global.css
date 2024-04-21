@@ -382,7 +382,7 @@ hr {
 }
 
 .head-menu.open {
-	transform: translateY(70px);
+	transform: translateY(60px);
 }
 
 .sidebtn {
