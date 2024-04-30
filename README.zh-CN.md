@@ -5,7 +5,7 @@
 [**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
 
 > [!NOTE] 
-> 更好的阅读体验请前往 ->
+> 更好的阅读体验请前往 -> https://frosti.saroprock.com
 
 ## 🖥️ 预览
 
@@ -13,13 +13,21 @@
 
 ## ✨ 特点
 
-- ✅ 页面子路由
+- ✅ 视图过渡动画
 - ✅ 优秀的访问速度
 - ✅ **白天** / **黑夜** 模式可用
 - ✅ 为丰富文章内容提供的各种组件
+    - 多样的 Alert
+    - 代码框复制按钮
+    - 更多 [daisyUI](https://daisyui.com/) 支持的内容……
 - ✅ 为丰富页面内容提供的各种组件
+    - 时间线组件
+    - 友链卡片组件
 - ✅ 使用 [Waline](https://waline.js.org/) 搭建的评论系统
 - ✅ 使用 [Tailwind CSS](https://tailwindcss.com/) 与 [daisyUI](https://daisyui.com/) 构建的漂亮页面
+
+> [!NOTE] 
+> 评论系统需自己配置，详见 [Waline](https://waline.js.org/) 更改 `src\components\Comment.astro`
 
 ## 🚀 项目结构
 
@@ -27,7 +35,6 @@
 \Frosti
 ├── astro.config.mjs
 ├── categories.txt
-├── index.png
 ├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
@@ -36,7 +43,8 @@
 |  ├── fonts
 |  |  └── CascadiaCode.woff2
 |  ├── home.webp
-|  └── profile.webp
+|  ├── profile.webp
+|  └── view.png
 ├── README.md
 ├── README.zh-CN.md
 ├── src
@@ -79,6 +87,7 @@
 |  |  |  └── [...slug].astro
 |  |  ├── friend.astro
 |  |  ├── index.astro
+|  |  ├── index.mdx
 |  |  ├── project.astro
 |  |  └── rss.xml.js
 |  ├── scripts
@@ -124,4 +133,5 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 ## 🎉 感谢
 
 @[Saicaca](https://github.com/saicaca) 他的启迪是我制作此主题的主要原因
+
 @[WRXinYue](https://github.com/WRXinYue) 在我前期入门时帮助了我很多

@@ -1,11 +1,11 @@
 # 🧊 Frosti
 
-**A clean, elegant, and fast static blog template! Developed using [Astro](https://astro.build/)！**
+**A clean, elegant, and fast static blog template! Developed with [Astro](https://astro.build/)!**
 
 [**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
 
-> [!NOTE]
-> For a better reading experience, visit ->
+> [!NOTE] 
+> For a better reading experience, please visit -> https://frosti.saroprock.com
 
 ## 🖥️ Preview
 
@@ -13,13 +13,21 @@
 
 ## ✨ Features
 
-- ✅ Page sub-routing
+- ✅ View transition animations
 - ✅ Excellent loading speed
-- ✅ **Light** / **Dark** modes available
+- ✅ **Light** / **Dark** mode available
 - ✅ Various components for enriching article content
+    - Diverse alerts
+    - Code block copy buttons
+    - More content supported by [daisyUI](https://daisyui.com/)……
 - ✅ Various components for enriching page content
+    - Timeline component
+    - Friends card component
 - ✅ Comment system built with [Waline](https://waline.js.org/)
 - ✅ Beautiful pages built with [Tailwind CSS](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
+
+> [!NOTE]
+> The comment system needs to be configured by oneself, please refer to [Waline](https://waline.js.org/) Change `src\components\Comment.astro`.
 
 ## 🚀 Project Structure
 
@@ -27,7 +35,6 @@
 \Frosti
 ├── astro.config.mjs
 ├── categories.txt
-├── index.png
 ├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
@@ -36,7 +43,8 @@
 |  ├── fonts
 |  |  └── CascadiaCode.woff2
 |  ├── home.webp
-|  └── profile.webp
+|  ├── profile.webp
+|  └── view.png
 ├── README.md
 ├── README.zh-CN.md
 ├── src
@@ -79,6 +87,7 @@
 |  |  |  └── [...slug].astro
 |  |  ├── friend.astro
 |  |  ├── index.astro
+|  |  ├── index.mdx
 |  |  ├── project.astro
 |  |  └── rss.xml.js
 |  ├── scripts
@@ -111,17 +120,18 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 ## 🎯 Plans
 
-- [ ] Add table of contents (done but CSS not written)
+- [ ] Add table of contents (done but CSS not written yet)
 - [x] Add timeline component ~~(Apr 21, 2024)~~
-- [x] Add friends link component ~~(Apr 21, 2024)~~
+- [x] Add friends component ~~(Apr 21, 2024)~~
 
 ## 👀 Issues
 
 - [ ] `global.css` is too messy
-- [ ] **Light** / **Dark** mode transition is currently not implemented
-- [ ] Website score has not reached 400 yet
+- [ ] **Light** / **Dark** mode transition currently not implemented
+- [ ] Website score has not reached 400 points yet
 
-## 🎉 Acknowledgments
+## 🎉 Thanks
 
-@[Saicaca](https://github.com/saicaca) His inspiration is the main reason for me to create this theme
-@[WRXinYue](https://github.com/WRXinYue) Helped me a lot in my early learning phase
+@[Saicaca](https://github.com/saicaca) His inspiration was the main reason for me to create this theme.
+
+@[WRXinYue](https://github.com/WRXinYue) Helped me a lot when I was first starting out.

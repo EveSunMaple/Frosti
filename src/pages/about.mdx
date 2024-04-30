@@ -1,0 +1,79 @@
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseCard from "../components/BaseCard.astro";
+import error from "../components/blog/error.astro";
+import info from "../components/blog/info.astro";
+import success from "../components/blog/success.astro";
+import warn from "../components/blog/warning.astro";
+import TimeLine from "../components/page/TimeLine.astro";
+import FriendCard from "../components/page/FriendCard.astro";
+
+<BaseLayout PageID="about">
+  <BaseCard title="about">
+# About Frosti
+
+---
+
+## Brief introduction
+
+Frosti is a static blog template created by EveSunMaple using Astro, designed to replace bloated Hexo. The author is only a high school student, and there are many imperfections in this template that need to be modified. If you are interested, please visit the Github repository.
+
+## TimeLine
+
+    <ul class="timeline timeline-vertical">
+      <li>
+        <TimeLine time="Mar 17, 2024" left="true" check="true">
+          Project creation, building the prototype.
+        </TimeLine>
+        <hr class="bg-primary" />
+      </li>
+      <li>
+        <hr class="bg-primary" />
+        <TimeLine time="Mar 23, 2024" check="true">
+          Basic page construction completed, add comment system.
+        </TimeLine>
+        <hr class="bg-primary" />
+      </li>
+      <li>
+        <hr class="bg-primary" />
+        <TimeLine time="Mar 31, 2024" left="true" check="true">
+          First large-scale article testing.
+        </TimeLine>
+        <hr class="bg-primary" />
+      </li>
+      <li>
+        <hr class="bg-primary" />
+        <TimeLine time="Apr 5, 2024" check="true">
+          Using Tailwind CSS and daisyUI.
+        </TimeLine>
+        <hr class="bg-primary" />
+      </li>
+      <li>
+        <hr class="bg-primary" />
+        <TimeLine time="Apr 13, 2024" left="true" check="true">
+          Add Code Copy Button.
+        </TimeLine>
+        <hr class="bg-primary" />
+      </li>
+      <li>
+        <hr class="bg-primary" />
+        <TimeLine time="Apr 14, 2024" check="true">
+          Add Mathematical Formula Renderer(rehypeKatex).
+        </TimeLine>
+        <hr class="bg-primary" />
+      </li>
+      <li>
+        <hr class="bg-primary" />
+        <TimeLine time="Mar 31, 2024" left="true" check="true">
+          Add README, add components, release version 1.0.0!
+        </TimeLine>
+        <hr class="bg-neutral-content" />
+      </li>
+      <li>
+        <hr class="bg-neutral-content" />
+        <TimeLine time="WAITING"> 
+          Add Table of Contents.
+        </TimeLine>
+      </li>
+    </ul>
+  </BaseCard>
+</BaseLayout>
