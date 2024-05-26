@@ -5,13 +5,23 @@ import info from "../components/blog/info.astro";
 import success from "../components/blog/success.astro";
 import warn from "../components/blog/warning.astro";
 import TimeLine from "../components/page/TimeLine.astro";
-import FriendCard from "../components/page/FriendCard.astro";
+import LinkCard from "../components/page/LinkCard.astro";
+import EnvelopeCard from "../components/EnvelopeCard.astro";
 
 <BaseLayout PageID="project">
   <BaseCard title="Project">
-    # Project
+# Project
     
-    ---
+---
     
   </BaseCard>
+  <EnvelopeCard
+    title="Frosti"
+    image="https://frosti.saroprock.com/view.png"
+    desc="一个干净、优美、快速的博客模板！"
+    url="frosti"
+    pubDate="Mar 17 2024"
+    badge="NEW"
+    target="_self"
+  />
 </BaseLayout>

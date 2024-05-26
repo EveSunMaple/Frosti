@@ -1,0 +1,132 @@
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseCard from "../components/BaseCard.astro";
+import error from "../components/blog/error.astro";
+import INFO from "../components/blog/info.astro";
+import success from "../components/blog/success.astro";
+import warn from "../components/blog/warning.astro";
+import TimeLine from "../components/page/TimeLine.astro";
+import LinkCard from "../components/page/LinkCard.astro";
+
+<BaseLayout PageID="project">
+  <BaseCard title="Frosti"
+            image="https://frosti.saroprock.com/view.png">
+
+一个干净、优美、快速的博客模板！使用 `Astro` 制作！
+
+<INFO>此项目仍在开发中，欢迎 `Watch` ！ <button class="btn">[了解更多](https://github.com/EveSunMaple/Frosti)</button></INFO>
+
+# 🧊 Frosti Introduction
+
+---
+
+**Presenting Frosti: Your Cool Companion for Static Blogging**
+
+![Frosti](https://frosti.saroprock.com/view.png)
+
+In search of a static blog template that's as sleek as it is speedy? Look no further than Frosti! Developed with [Astro](https://astro.build/), Frosti offers a seamless and stylish solution for bloggers who value both aesthetics and performance.
+
+## Key Features:
+
+- **Simplicity:** Frosti boasts a minimalist design that keeps your content front and center.
+- **Speed:** With lightning-fast loading times, Frosti ensures your readers won't be left twiddling their thumbs.
+- **Day/Night Modes:** Enjoy your reading experience in both light and dark modes for optimal comfort.
+- **Component Rich:** Frosti comes packed with a variety of components to enhance your articles and pages.
+- **Comment System:** Engage with your readers effortlessly thanks to the built-in comment system powered by [Waline](https://waline.js.org/).
+- **Stylish Design:** Crafted with the elegance of [Tailwind CSS](https://tailwindcss.com/) and the charm of [daisyUI](https://daisyui.com/), Frosti offers visually stunning pages that captivate your audience.
+
+## Project Structure:
+
+```sh
+\Frosti
+├── astro.config.mjs
+├── categories.txt
+├── package-lock.json
+├── package.json
+├── pnpm-lock.yaml
+├── public
+|  ├── favicon.svg
+|  ├── fonts
+|  |  └── CascadiaCode.woff2
+|  ├── home.webp
+|  ├── profile.webp
+|  └── view.png
+├── README.md
+├── README.zh-CN.md
+├── src
+|  ├── components
+|  |  ├── BaseCard.astro
+|  |  ├── BaseHead.astro
+|  |  ├── blog
+|  |  |  ├── error.astro
+|  |  |  ├── info.astro
+|  |  |  ├── success.astro
+|  |  |  └── warning.astro
+|  |  ├── Comment.astro
+|  |  ├── EnvelopeCard.astro
+|  |  ├── Footer.astro
+|  |  ├── FormattedDate.astro
+|  |  ├── Header.astro
+|  |  ├── HeaderLink.astro
+|  |  ├── License.astro
+|  |  ├── page
+|  |  |  ├── LinkCard.astro
+|  |  |  └── TimeLine.astro
+|  |  ├── ProfileCard.astro
+|  |  ├── ProfileCardFooter.astro
+|  |  ├── ProfileCardMenu.astro
+|  |  └── ThemeIcon.astro
+|  ├── consts.ts
+|  ├── content
+|  |  ├── blog
+|  |  |  ├── markdown-style-guide.md
+|  |  |  └── using-mdx.mdx
+|  |  └── config.ts
+|  ├── env.d.ts
+|  ├── layouts
+|  |  └── BaseLayout.astro
+|  ├── pages
+|  |  ├── about.astro
+|  |  ├── blog
+|  |  |  ├── tag
+|  |  |  ├── [...page].astro
+|  |  |  └── [...slug].astro
+|  |  ├── friend.astro
+|  |  ├── index.astro
+|  |  ├── index.mdx
+|  |  ├── project.astro
+|  |  └── rss.xml.js
+|  ├── scripts
+|  |  └── copybutton.mjs
+|  └── styles
+|     └── global.css
+├── tailwind.config.js
+├── tsconfig.json
+└── view.png
+```
+
+## How to Use:
+
+Getting started with Frosti couldn't be easier! Simply use the `--template` parameter with the `create astro` command:
+
+```bash
+npm create astro@latest -- --template EveSunMaple/Frosti
+```
+
+## Future Plans:
+
+While Frosti is already an impressive template, the developers have exciting plans for its future development:
+
+- **Table of Contents:** Enhance navigation with a table of contents feature.
+- **Timeline Component:** Add a timeline component for showcasing chronological content.
+- **Friends Link Component:** Foster community engagement with a friends link component.
+
+## Acknowledgments:
+
+Frosti owes its existence to the contributions and inspiration from:
+
+- **@[Saicaca](https://github.com/saicaca):** Whose insights were instrumental in the creation of this theme.
+- **@[WRXinYue](https://github.com/WRXinYue):** For invaluable assistance during the early stages of development.
+
+Whether you're a seasoned blogger or just dipping your toes into the world of blogging, Frosti provides the perfect platform to share your thoughts with the world. Try Frosti today and take your blogging experience to new heights!
+  </BaseCard>
+</BaseLayout>
