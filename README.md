@@ -64,7 +64,7 @@
 |  |  ├── HeaderLink.astro
 |  |  ├── License.astro
 |  |  ├── page
-|  |  |  ├── FriendCard.astro
+|  |  |  ├── LinkCard.astro
 |  |  |  └── TimeLine.astro
 |  |  ├── ProfileCard.astro
 |  |  ├── ProfileCardFooter.astro
@@ -128,7 +128,7 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 - [ ] `global.css` is too messy
 - [ ] **Light** / **Dark** mode transition currently not implemented
-- [ ] Website score has not reached 400 points yet
+- [ ] ~~Website score has not reached 400 points yet~~ 395 points now
 
 ## 🎉 Thanks
 
