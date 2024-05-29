@@ -194,10 +194,6 @@ hr {
 	body {
 		font-size: 18px;
 	}
-
-	main {
-		padding: 1em;
-	}
 }
 
 .sr-only {
@@ -249,6 +245,7 @@ hr {
 }
 
 .background {
+	margin-top: -30px;
 	position: relative;
 	box-sizing: border-box;
 	padding: 20px 60px 20px 20px;
@@ -257,10 +254,6 @@ hr {
 	max-height: 100%;
 	overflow: auto;
 	background-color: transparent;
-}
-
-.envelope-background {
-	margin-top: -30px;
 }
 
 .envelope-back {
@@ -321,8 +314,8 @@ hr {
 	white-space: nowrap;
 }
 
-
 .back-card {
+	margin-top: 30px;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);

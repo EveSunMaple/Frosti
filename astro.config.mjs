@@ -19,7 +19,7 @@ export default defineConfig({
             node.properties.className.push('mockup-code');
           }
           if (node.tagName === 'blockquote' && node.properties) {
-			node.properties.className = ['alert'];
+            node.properties.className = ['alert'];
           }
         }
       },
