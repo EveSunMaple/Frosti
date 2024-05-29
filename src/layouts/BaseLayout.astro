@@ -47,9 +47,11 @@ const {
         }
       </div>
       <div class="background">
-        <slot />
-        <Footer />
-        <br>
+        <div class="base-background">
+          <slot />
+          <Footer />
+          <br />
+        </div>
       </div>
     </main>
     <ThemeIcon />

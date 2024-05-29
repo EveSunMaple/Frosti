@@ -245,7 +245,6 @@ hr {
 }
 
 .background {
-	margin-top: -30px;
 	position: relative;
 	box-sizing: border-box;
 	padding: 20px 60px 20px 20px;
@@ -254,6 +253,14 @@ hr {
 	max-height: 100%;
 	overflow: auto;
 	background-color: transparent;
+}
+
+.base-background {
+	margin-top: -30px;
+}
+
+.envelope-background {
+	margin-top: -30px;
 }
 
 .envelope-back {
