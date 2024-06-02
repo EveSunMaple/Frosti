@@ -4,7 +4,6 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from "@astrojs/tailwind";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import rehypeExternalLinks from 'rehype-external-links';
 
 export default defineConfig({
   site: 'https://www.saroprock.com',
@@ -25,12 +24,6 @@ export default defineConfig({
         }
       },
       rehypeKatex,
-      [
-        rehypeExternalLinks,
-        {
-          content: { type: 'text', value: ' 🔗' }
-        }
-      ],
     ]
   }
 });
