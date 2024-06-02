@@ -11,6 +11,10 @@
 
 ![view](https://frosti.saroprock.com/view.png)
 
+## ⏲️ performance
+
+![speed](./400.png)
+
 ## ✨ Features
 
 - ✅ View transition animations
