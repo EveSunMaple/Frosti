@@ -3,7 +3,7 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
- * {
+* {
 	transition: margin-bottom 0.8s;
 }
 
@@ -83,8 +83,9 @@ a {
 }
 
 .main-card p a,
-.main-card li a{
-	color: #0051C2
+.main-card li a {
+	color: oklch(var(--p));
+	text-decoration: underline;
 }
 
 p {
