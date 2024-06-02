@@ -1,0 +1,38 @@
+---
+
+---
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    function getRepoInfoFromUrl(repoUrl) {
+      const urlParts = repoUrl.split("/");
+      const owner = urlParts[urlParts.length - 2];
+      const repo = urlParts[urlParts.length - 1];
+      return { owner, repo };
+    }
+    const envelopes = document.querySelectorAll(".envelope-back");
+
+    envelopes.forEach((envelope) => {
+      const repoLinkElement = envelope.querySelector(".envelope-title");
+      const repoUrl = repoLinkElement.getAttribute("href");
+      const { owner, repo } = getRepoInfoFromUrl(repoUrl);
+      const apiUrl = `https://api.github.com/repos/${owner}/${repo}`;
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          envelope.querySelector(".repo-user span").textContent =
+            data.owner.login;
+          envelope.querySelector(".repo-fork span").textContent =
+            data.forks_count;
+          envelope.querySelector(".repo-star span").textContent =
+            data.stargazers_count;
+          envelope.querySelector(".repo-watch span").textContent =
+            data.subscribers_count;
+        })
+        .catch((error) => {
+          console.error("Error fetching repository data:", error);
+        });
+    });
+  });
+</script>

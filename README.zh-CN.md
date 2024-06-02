@@ -9,7 +9,7 @@
 
 ## 🖥️ 预览
 
-![view](./view.png)
+![view](https://frosti.saroprock.com/view.png)
 
 ## ✨ 特点
 

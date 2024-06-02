@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+import dayjs from "dayjs";
+const { title, image, desc, url, target = "_blank" } = Astro.props;
+---
+
+<div class="envelope-back card bg-base-100 shadow-xl">
+  <div class="envelope-image">
+    {
+      image && (
+        <Image
+          src={image}
+          width="300"
+          height="200"
+          format="webp"
+          alt={title}
+          class="mask"
+          loading="lazy"
+        />
+      )
+    }
+  </div>
+  <div class="envelope-card card bg-base-100">
+    <div class="envelope-info px-6 py-3">
+      <a href={url} target={target} class="envelope-title">
+        {title}
+      </a>
+      <div class="info">{desc}</div>
+      <div class="info flex">
+        <span class="repo-user flex items-center"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="fill: currentColor;transform: ;msFilter:;"
+            class="w-6 h-6"
+            ><path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z"
+            ></path>
+          </svg><span class="text-sm badge badge-ghost"
+            ><span class="loading loading-spinner loading-xs"></span></span
+          ></span
+        >
+        <span>&thinsp;</span>
+        <span class="repo-watch flex items-center"
+          ><svg
+            viewBox="-2 -6 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMinYMin"
+            style="fill: currentColor;transform: ;msFilter:;"
+            class="w-6 h-6"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke="#CCCCCC"
+              stroke-width="0.144"></g><g id="SVGRepo_iconCarrier"
+              ><path
+                d="M18 6c0-1.81-3.76-3.985-8.007-4C5.775 1.985 2 4.178 2 6c0 1.825 3.754 4.006 7.997 4C14.252 9.994 18 7.82 18 6zm-8 6c-5.042.007-10-2.686-10-6S4.984-.017 10 0c5.016.017 10 2.686 10 6s-4.958 5.993-10 6zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+              ></path></g
+            ></svg
+          ><span class="text-sm badge badge-ghost"
+            ><span class="loading loading-spinner loading-xs"></span></span
+          ></span
+        >
+        <span>&thinsp;</span>
+        <span class="repo-fork flex items-center"
+          ><svg
+            viewBox="-4 -2 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMinYMin"
+            style="fill: currentColor;transform: ;msFilter:;"
+            class="w-6 h-6"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"
+              ><path
+                d="M8 18a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm1.033-3.817A3.001 3.001 0 1 1 7 14.17v-1.047c0-.074.003-.148.008-.221a1 1 0 0 0-.462-.637L3.46 10.42A3 3 0 0 1 2 7.845V5.829a3.001 3.001 0 1 1 2 0v2.016a1 1 0 0 0 .487.858l3.086 1.846a3 3 0 0 1 .443.324 3 3 0 0 1 .444-.324l3.086-1.846a1 1 0 0 0 .487-.858V5.841A3.001 3.001 0 0 1 13 0a3 3 0 0 1 1.033 5.817v2.028a3 3 0 0 1-1.46 2.575l-3.086 1.846a1 1 0 0 0-.462.637c.005.073.008.147.008.22v1.06zM3 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+              ></path></g
+            ></svg
+          ><span class="text-sm badge badge-ghost"
+            ><span class="loading loading-spinner loading-xs"></span></span
+          ></span
+        >
+        <span>&thinsp;</span>
+        <span class="repo-star flex items-center"
+          ><svg
+            viewBox="-2 -2.5 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMinYMin"
+            style="fill: currentColor;transform: ;msFilter:;"
+            class="w-6 h-6"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"
+              ><path
+                d="M10 13.554l3.517 1.85-.672-3.917 2.846-2.774-3.932-.571L10 4.579 8.241 8.142l-3.932.571 2.846 2.774-.672 3.916L10 13.554zm0 2.26L3.827 19.06l1.179-6.875L.01 7.317l6.902-1.003L10 .06l3.087 6.254 6.902 1.003-4.995 4.868 1.18 6.875L10 15.814z"
+              ></path></g
+            ></svg
+          >
+          <span class="text-sm badge badge-ghost"
+            ><span class="loading loading-spinner loading-xs"></span></span
+          ></span
+        >
+      </div>
+      <div class="repo-link">
+        <code>Link: </code>
+        <span class="text-sm badge badge-info">{url}</span>
+      </div>
+    </div>
+  </div>
+</div>

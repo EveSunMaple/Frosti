@@ -11,5 +11,16 @@
 
 ### Refactored
 
-* 优化了部分内容，评分 395
+* 优化了部分内容，评分 **395**
 * 修改了 README
+
+## [1.1.0] - 2024-6-2
+
+### Features
+
+* 新增 `ProjectCard`
+* 完善了 Project 页面
+
+### Refactored
+
+* 取消了头图的懒加载，删去了莫名其妙的 br
