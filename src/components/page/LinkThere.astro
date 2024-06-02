@@ -1,0 +1,18 @@
+---
+const { desc, url, className, target = "_blank" } = Astro.props;
+---
+
+<div
+  class="rounded-lg bg-base-100 hover:shadow-xl hover:transition-all ease-in-out hover:scale-[102%]"
+>
+  <a href={url} target={target}>
+    <div class="hero-content flex-col md:flex-row">
+      <div class={className}>
+        <slot />
+      </div>
+      <div class="grow w-full">
+        <p class="py-1 text-1xl">{desc}</p>
+      </div>
+    </div>
+  </a>
+</div>
