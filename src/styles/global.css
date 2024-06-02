@@ -84,7 +84,7 @@ a {
 
 .main-card p a,
 .main-card li a{
-	color: oklch(var(--p));
+	color: #0051C2
 }
 
 p {
