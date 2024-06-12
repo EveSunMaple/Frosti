@@ -3,8 +3,15 @@ const today = new Date();
 ---
 
 <footer class="footer card bg-base-100 shadow-xl p-6">
-  <div class="date">
+  <div class="inline">
     &copy; {today.getFullYear()} EveSunMaple ❤️
+    <code
+      >Visitor count:<span id="busuanzi_value_page_pv"
+        ><span class="loading loading-spinner loading-xs"></span></span
+      ><code>/</code><span id="busuanzi_value_site_pv"
+        ><span class="loading loading-spinner loading-xs"></span></span
+      ></code
+    >
   </div>
   <div class="inline">
     Developed by <a
@@ -19,4 +26,16 @@ const today = new Date();
       class="font-bold">Frosti Template ⚡️</a
     >
   </div>
+  <div id="busuanzi"></div>
 </footer>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const busuanziDiv = document.getElementById("busuanzi");
+    if (busuanziDiv) {
+      const script = document.createElement("script");
+      script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+      script.async = true;
+      busuanziDiv.appendChild(script);
+    }
+  });
+</script>

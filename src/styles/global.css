@@ -39,6 +39,11 @@ footer {
 	text-align: center;
 }
 
+.footer {
+	row-gap: 0;
+	place-items: unset;
+}
+
 h1,
 h2,
 h3,
