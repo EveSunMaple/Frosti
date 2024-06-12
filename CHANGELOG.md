@@ -30,3 +30,9 @@
 ### Refactored
 
 * 优化链接样式，在 `pagespeed.web` 获得 400 分
+
+## [1.1.2] - 2024-6-12
+
+### Features
+
+* 新增 `busuanzi` 计数器
