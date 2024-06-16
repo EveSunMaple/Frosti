@@ -36,3 +36,12 @@
 ### Features
 
 * 新增 `busuanzi` 计数器
+
+## [1.2.0] - 024-6-16
+
+### Features
+
+* `css` 已经改为 `scss`
+* 自定义了 `waline` 的样式
+* 完善了 `Footnotes` 的样式
+* 添加图标

@@ -4,7 +4,7 @@
 
 [**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
 
-> [!NOTE] 
+> [!NOTE]
 > For a better reading experience, please visit -> https://frosti.saroprock.com
 
 ## 🖥️ Preview
@@ -21,12 +21,12 @@
 - ✅ Excellent loading speed
 - ✅ **Light** / **Dark** mode available
 - ✅ Various components for enriching article content
-    - Diverse alerts
-    - Code block copy buttons
-    - More content supported by [daisyUI](https://daisyui.com/)……
+  - Diverse alerts
+  - Code block copy buttons
+  - More content supported by [daisyUI](https://daisyui.com/)……
 - ✅ Various components for enriching page content
-    - Timeline component
-    - Friends card component
+  - Timeline component
+  - Friends card component
 - ✅ Comment system built with [Waline](https://waline.js.org/)
 - ✅ Beautiful pages built with [Tailwind CSS](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
 
@@ -105,14 +105,14 @@
 
 ## ✒️ Article Information
 
-| Name | Meaning | Mandatory |
-| :---: | :---: | :---: |
-| title | Article title | Yes |
-| description | Article description | Yes |
-| pubDate | Article date | Yes |
-| image | Article cover | No |
-| tags | Article tags | No |
-| badge | Article badge | No |
+|    Name    |       Meaning       | Mandatory |
+| :---------: | :-----------------: | :-------: |
+|    title    |    Article title    |    Yes    |
+| description | Article description |    Yes    |
+|   pubDate   |    Article date    |    Yes    |
+|    image    |    Article cover    |    No    |
+|    tags    |    Article tags    |    No    |
+|    badge    |    Article badge    |    No    |
 
 ## ⬇️ Usage
 
@@ -132,10 +132,11 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 - [ ] `global.css` is too messy
 - [ ] **Light** / **Dark** mode transition currently not implemented
-- [ ] ~~Website score has not reached 400 points yet~~ 395 points now
+- [x] ~~Website score has not reached 400 points yet~~ `GET IT✨`
 
 ## 🎉 Thanks
 
 @[Saicaca](https://github.com/saicaca) His inspiration was the main reason for me to create this theme.
 
 @[WRXinYue](https://github.com/WRXinYue) Helped me a lot when I was first starting out.
+

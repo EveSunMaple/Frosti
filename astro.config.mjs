@@ -7,6 +7,11 @@ import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
   site: 'https://www.saroprock.com',
+  style: {
+    scss: {
+      includePaths: ['./src/styles'],
+    },
+  },
   integrations: [mdx(), sitemap(), tailwind()],
   markdown: {
     remarkPlugins: [
