@@ -37,12 +37,18 @@
 
 ```sh
 \Frosti
+├── 400.png
 ├── astro.config.mjs
 ├── categories.txt
+├── CHANGELOG.md
+├── LICENSE
+├── node_modules
+|  ├── @astrojs
 ├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
 ├── public
+|  ├── favicon.ico
 |  ├── favicon.svg
 |  ├── fonts
 |  |  └── CascadiaCode.woff2
@@ -50,7 +56,6 @@
 |  ├── profile.webp
 |  └── view.png
 ├── README.md
-├── README.zh-CN.md
 ├── src
 |  ├── components
 |  |  ├── BaseCard.astro
@@ -69,10 +74,13 @@
 |  |  ├── License.astro
 |  |  ├── page
 |  |  |  ├── LinkCard.astro
+|  |  |  ├── LinkThere.astro
 |  |  |  └── TimeLine.astro
 |  |  ├── ProfileCard.astro
 |  |  ├── ProfileCardFooter.astro
 |  |  ├── ProfileCardMenu.astro
+|  |  ├── ProjectCard.astro
+|  |  ├── ProjectJS.astro
 |  |  └── ThemeIcon.astro
 |  ├── consts.ts
 |  ├── content
@@ -84,26 +92,28 @@
 |  ├── layouts
 |  |  └── BaseLayout.astro
 |  ├── pages
-|  |  ├── about.astro
+|  |  ├── about.mdx
 |  |  ├── blog
 |  |  |  ├── tag
 |  |  |  ├── [...page].astro
 |  |  |  └── [...slug].astro
-|  |  ├── friend.astro
-|  |  ├── index.astro
+|  |  ├── friend.mdx
+|  |  ├── frosti.mdx
 |  |  ├── index.mdx
-|  |  ├── project.astro
+|  |  ├── project.mdx
 |  |  └── rss.xml.js
 |  ├── scripts
-|  |  └── copybutton.mjs
+|  |  ├── copybutton.mjs
+|  |  └── time.mjs
 |  └── styles
-|     └── global.css
+|     ├── global.scss
+|     └── waline.scss
 ├── tailwind.config.js
-├── tsconfig.json
-└── view.png
+└── tsconfig.json
 ```
 
 ## ✒️ 文章信息
+
 
 |    名称    |   含义   | 是否必要 |
 | :---------: | :------: | :------: |
@@ -124,19 +134,18 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 ## 🎯 计划
 
-- [ ] 添加目录(已做好但没有写 CSS )
-- [x] 添加时间线组件 ~~(Apr 21, 2024)~~
-- [x] 添加友链组件 ~~(Apr 21, 2024)~~
+- [ ]  添加目录(已做好但没有写 CSS )
+- [X]  添加时间线组件 ~~(Apr 21, 2024)~~
+- [X]  添加友链组件 ~~(Apr 21, 2024)~~
 
 ## 👀 问题
 
-- [ ] `global.css` 过于混乱
-- [ ] **白天** / **黑夜** 模式目前无法实现缓动
-- [x] ~~网站评分还没有到达 400 分~~ `已经达成✨`
+- [X]  ~~`global.css` 过于混乱~~ 
+- [X]  ~~**白天** / **黑夜** 模式目前无法实现缓动~~ `足够了🛠️`
+- [X]  ~~网站评分还没有到达 400 分~~ `已经达成✨`
 
 ## 🎉 感谢
 
 @[Saicaca](https://github.com/saicaca) 他的启迪是我制作此主题的主要原因
 
 @[WRXinYue](https://github.com/WRXinYue) 在我前期入门时帮助了我很多
-

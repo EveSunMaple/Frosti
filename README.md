@@ -37,12 +37,18 @@
 
 ```sh
 \Frosti
+├── 400.png
 ├── astro.config.mjs
 ├── categories.txt
+├── CHANGELOG.md
+├── LICENSE
+├── node_modules
+|  ├── @astrojs
 ├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
 ├── public
+|  ├── favicon.ico
 |  ├── favicon.svg
 |  ├── fonts
 |  |  └── CascadiaCode.woff2
@@ -50,7 +56,6 @@
 |  ├── profile.webp
 |  └── view.png
 ├── README.md
-├── README.zh-CN.md
 ├── src
 |  ├── components
 |  |  ├── BaseCard.astro
@@ -69,10 +74,13 @@
 |  |  ├── License.astro
 |  |  ├── page
 |  |  |  ├── LinkCard.astro
+|  |  |  ├── LinkThere.astro
 |  |  |  └── TimeLine.astro
 |  |  ├── ProfileCard.astro
 |  |  ├── ProfileCardFooter.astro
 |  |  ├── ProfileCardMenu.astro
+|  |  ├── ProjectCard.astro
+|  |  ├── ProjectJS.astro
 |  |  └── ThemeIcon.astro
 |  ├── consts.ts
 |  ├── content
@@ -84,23 +92,24 @@
 |  ├── layouts
 |  |  └── BaseLayout.astro
 |  ├── pages
-|  |  ├── about.astro
+|  |  ├── about.mdx
 |  |  ├── blog
 |  |  |  ├── tag
 |  |  |  ├── [...page].astro
 |  |  |  └── [...slug].astro
-|  |  ├── friend.astro
-|  |  ├── index.astro
+|  |  ├── friend.mdx
+|  |  ├── frosti.mdx
 |  |  ├── index.mdx
-|  |  ├── project.astro
+|  |  ├── project.mdx
 |  |  └── rss.xml.js
 |  ├── scripts
-|  |  └── copybutton.mjs
+|  |  ├── copybutton.mjs
+|  |  └── time.mjs
 |  └── styles
-|     └── global.css
+|     ├── global.scss
+|     └── waline.scss
 ├── tailwind.config.js
-├── tsconfig.json
-└── view.png
+└── tsconfig.json
 ```
 
 ## ✒️ Article Information
@@ -130,8 +139,8 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 ## 👀 Issues
 
-- [ ] `global.css` is too messy
-- [ ] **Light** / **Dark** mode transition currently not implemented
+- [X] ~~`global.css` is too messy~~
+- [X] ~~**Light** / **Dark** mode transition ~~currently not implemented~~ `ENOUGH🛠️`
 - [x] ~~Website score has not reached 400 points yet~~ `GET IT✨`
 
 ## 🎉 Thanks

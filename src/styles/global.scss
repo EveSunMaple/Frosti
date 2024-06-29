@@ -1,498 +1,328 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
-* {
-	transition: margin-bottom 0.8s;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* HTML and Body Styles */
 html {
-	scroll-behavior: smooth;
-	padding: 0px;
-}
-
-@font-face {
-	font-family: 'Cascadia';
-	src: url('/fonts/CascadiaCode.woff2') format('woff2');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+  @apply scroll-smooth;
 }
 
 body {
-	font-family: sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	font-size: 20px;
-	line-height: 1.7;
-}
-
-footer {
-	position: relative;
-	top: 30px;
-	border-radius: 20px;
-	text-align: center;
-}
-
-.footer {
-	row-gap: 0;
-	place-items: unset;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	margin-bottom: 0.25em;
-	text-shadow: 0.01em -0.01em #fff, -0.01em 0.01em #999, -0.1em 0.1em 5px #80808080;
-}
-
-h1 {
-	font-size: 2.441em;
-}
-
-h2 {
-	font-size: 1.953em;
-}
-
-h3 {
-	font-size: 1.563em;
-}
-
-h4 {
-	font-size: 1.25em;
-}
-
-h5 {
-	font-size: 1.15em;
-}
-
-strong,
-b {
-	font-weight: 700;
-	margin: 0.5em;
-}
-
-.link-card a,
-a {
-	position: relative;
-	text-decoration: none;
-}
-
-.main-card p a,
-.main-card li a {
-	color: oklch(var(--p));
-	text-decoration: underline;
-}
-
-p {
-	margin: 0.5em;
-}
-
-ol {
-	padding: 0px 0px 0px 40px;
-	list-style: decimal;
-}
-
-ul {
-	padding: 0px 0px 0px 40px;
-	list-style: disc;
-}
-
-li::marker {
-	color: oklch(var(--a));
-}
-
-thead {
-	color: oklch(var(--s));
-}
-
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-
-input {
-	font-size: 16px;
-}
-
-table {
-	border-collapse: collapse;
-	margin: 0.5em;
-}
-
-table tr {
-	height: 2.5em;
-	border-bottom: 1px solid oklch(var(--nc));
-}
-
-img {
-	border-radius: 8px;
-}
-
-code {
-	font-family: 'Cascadia';
-	font-size: 0.875em;
-	padding: 2px 5px;
-	border-radius: 2px;
-}
-
-pre {
-	font-family: 'Cascadia';
-	font-size: 0.875em;
-	padding: 1.5em;
-	border-radius: 8px;
-	margin: 0.5em;
-}
-
-.astro-code {
-	margin: 0.5em;
-}
-
-pre>code {
-	all: unset;
-}
-
-.alert {
-	margin: 0.5em;
-	width: auto;
-}
-
-hr {
-	border: 0;
-	color: oklch(var(--bc));
-	background: linear-gradient(currentColor, currentColor) no-repeat center;
-	background-size: calc(100% - 1.5em - 6px) 1px;
-	display: flex;
-	justify-content: space-between;
-	height: 50px;
+  @apply m-0 p-0 text-left bg-cover text-xl leading-7;
+  background-size: 100% 600px;
 }
 
 @media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
+  body {
+    @apply text-lg;
+  }
+}
+
+/* Font Face */
+@font-face {
+  font-family: 'Cascadia';
+  src: url('/fonts/CascadiaCode.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Text Styles */
+p, ol, ul {
+  @apply m-2;
+}
+
+ol {
+  @apply pl-[40px] list-decimal;
+}
+
+ul {
+  @apply pl-[40px] list-disc;
+}
+
+li::marker {
+  color: oklch(var(--a));
+}
+
+thead {
+  color: oklch(var(--s));
+}
+
+textarea, input {
+  @apply text-base;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  @apply m-2 mb-1;
+  text-shadow: 0.01em -0.01em #fff, -0.01em 0.01em #999, -0.1em 0.1em 5px #80808080;
+}
+
+h1 {
+  @apply text-5xl;
+}
+
+h2 {
+  @apply text-4xl;
+}
+
+h3 {
+  @apply text-3xl;
+}
+
+h4 {
+  @apply text-2xl;
+}
+
+h5 {
+  @apply text-xl;
+}
+
+/* Strong and Bold Text */
+strong, b {
+  @apply font-bold m-2;
+}
+
+/* Links */
+.link-card a, a {
+  @apply relative no-underline;
+}
+
+.main-card p a, .main-card li a {
+  color: oklch(var(--p));
+  @apply underline;
+}
+
+/* Table Styles */
+table {
+  @apply border-collapse m-2;
+}
+
+table tr {
+  @apply h-10 border-0 border-gray-300;
+  border-color: oklch(var(--nc));
+}
+
+/* Image Styles */
+img {
+  @apply rounded-lg;
+}
+
+/* Code and Preformatted Text */
+code {
+  font-family: 'Cascadia';
+  @apply text-sm p-[2px_5px] rounded-sm;
+}
+
+pre {
+  font-family: 'Cascadia';
+  @apply text-sm p-6 rounded-lg m-2;
+}
+
+pre>code {
+  all: unset;
+}
+
+/* Miscellaneous Styles */
+footer {
+  @apply relative top-7 rounded-xl;
+}
+
+.footer {
+  @apply gap-0 items-start;
+}
+
+.alert {
+  @apply m-2 w-auto;
+}
+
+hr {
+  border: 0;
+  color: oklch(var(--bc));
+  background: linear-gradient(currentColor, currentColor) no-repeat center;
+  background-size: calc(100% - 1.5em - 6px) 1px;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
 }
 
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+  @apply border-0 p-0 m-0 absolute h-[1px] w-[1px] overflow-hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip-path: inset(50%);
+  @apply whitespace-nowrap;
 }
 
+/* Layout and Positioning */
 .main {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	padding: 0px;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	align-items: flex-start;
+  @apply fixed w-full h-full p-0 left-1/2 transform -translate-x-1/2 flex items-start;
 }
 
 .navbar {
-	position: fixed;
-	padding: 0;
-	width: 100%;
-	transform: translateY(-200px);
-	text-align: center;
-	z-index: 100;
-	transition: transform 0.3s ease;
+  @apply fixed p-0 w-full transform -translate-y-full text-center z-50 transition-transform z-50;
 }
 
 .navbar-title {
-	text-decoration: none;
+  @apply no-underline;
 }
 
 .profile {
-	position: relative;
-	padding: 20px 10px 20px 60px;
+  @apply relative p-[20px_10px_20px_60px];
 }
 
 .background {
-	position: relative;
-	box-sizing: border-box;
-	padding: 20px 60px 20px 20px;
-	width: 100%;
-	height: 100%;
-	max-height: 100%;
-	overflow: auto;
-	background-color: transparent;
+  @apply relative box-border p-[20px_60px_20px_20px] w-full h-full max-h-full overflow-auto bg-transparent;
 }
 
-.base-background {
-	margin-top: -30px;
-}
-
-.envelope-background {
-	margin-top: -30px;
+.base-background, .envelope-background {
+  @apply -mt-8;
 }
 
 .envelope-back {
-	margin-top: 30px;
-	position: relative;
-	width: 100%;
-	height: 200px;
-	min-height: 200px;
+  @apply mt-8 relative w-full h-[200px] min-h-[200px] overflow-hidden;
 }
 
 .envelope-image {
-	position: absolute;
-	right: 0;
-	width: 40%;
-	height: 100%;
-	border-radius: 20px;
+  @apply absolute right-0 w-2/5 h-full rounded-3xl;
 }
 
 .envelope-image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 20px;
+  @apply w-full h-full object-cover;
 }
 
 .envelope-card {
-	position: absolute;
-	left: 0;
-	width: 80%;
-	height: 100%;
-	border-radius: 20px;
-	overflow: hidden;
+  @apply absolute left-0 w-4/5 h-full rounded-3xl overflow-hidden;
 }
 
 .envelope-info {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	z-index: 100;
+  @apply relative w-full h-full overflow-hidden whitespace-nowrap text-ellipsis z-50;
 }
 
 .envelope-title {
-	font-size: 2em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+  @apply text-5xl overflow-hidden text-ellipsis whitespace-nowrap;
+  text-shadow: 0.01em -0.01em #fff, -0.01em 0.01em #999, -0.1em 0.1em 5px #80808080;
 }
 
 .desc {
-	padding: 30px 30px 0px 30px;
-	margin-top: -30px;
-	max-height: 2em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+  @apply p-[30px_30px_0_30px] -mt-8 max-h-8 overflow-hidden text-ellipsis whitespace-nowrap;
 }
 
 .back-card {
-	margin-top: 30px;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	overflow: hidden;
+  @apply mt-8 relative left-1/2 transform -translate-x-1/2 overflow-hidden;
 }
 
 .main-card {
-	position: relative;
-	line-height: 1.5;
-	z-index: 10;
+  @apply relative leading-6 z-10 p-8;
 }
 
 .card-img {
-	position: relative;
-	top: 0;
-	border-radius: 20px 0px 0px;
-	margin-bottom: -30%;
-	z-index: 2;
+  @apply relative top-0 -mb-[30%] z-10;
 }
 
-.card-img:hover {
-	margin-bottom: -40px;
-	cursor: pointer;
-}
+/*.card-img:hover {
+  @apply -mb-[40px] cursor-pointer;
+}*/
 
 .license-card {
-	position: relative;
-	width: 100%;
-	margin: -20px;
-	padding: 20px;
-	overflow: hidden;
+  @apply relative w-full -m-5 p-5 overflow-hidden;
 }
 
 .license-card svg {
-	position: absolute;
-	right: 10%;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 200px;
-	height: 200px;
+  @apply absolute right-[10%] top-2/4 transform translate-y-2/4 w-[200px] h-[200px];
 }
 
 .license-title {
-	font-weight: 700;
+  @apply font-bold;
 }
 
 .profile-card {
-	width: 300px;
-	min-width: 300px;
-	transition: transform 0.3s ease;
+  @apply w-[300px] min-w-[300px] transition-transform;
 }
 
 .profile-picture {
-	text-align: center;
+  @apply text-center;
 }
 
 .profile-picture img {
-	width: 200px;
-	height: 200px;
+  @apply w-[200px] h-[200px];
 }
 
 .profile-info {
-	position: relative;
-	margin-top: 0px;
+  @apply relative text-base;
 }
 
 .profile-name {
-	font-size: 24px;
-	text-align: center;
+  @apply text-2xl text-center;
 }
 
 .profile-desc {
-	font-size: 16px;
-	text-align: center;
-	line-height: 0.4;
+  @apply text-base text-center;
 }
 
 .head-menu {
-	position: fixed;
-	transform: translateY(-100%);
-	transition: transform 0.3s ease;
-	display: none;
-	width: 100%;
-	z-index: 50;
+  @apply fixed -translate-y-full transition-transform hidden w-full z-10;
 }
 
 .head-menu.open {
-	transform: translateY(60px);
+  @apply translate-y-[60px];
 }
 
 .sidebtn {
-	transform: translateX(0);
-	transition: transform 0.3s ease;
+  @apply translate-x-0 transition-transform;
 }
 
-@media screen and (max-width: 600px) {
-	.clock {
-		position: absolute;
-		transform: translateX(-200%);
-	}
-}
+  .clock {
+    @apply max-sm:absolute max-sm:-translate-x-[200%];
+  }
 
-@media screen and (max-width: 1100px) {
-	.profile {
-		position: absolute;
-	}
+  .profile {
+    @apply max-md:absolute;
+  }
 
-	.background {
-		position: relative;
-		padding: 140px 10px 10px 10px;
-	}
+  .background {
+    @apply max-md:relative max-md:p-[40px_10px_10px_10px];
+  }
 
-	.profile-card {
-		transform: translateX(-200%);
-	}
+  .profile-card {
+    @apply max-md:-translate-x-[200%];
+  }
 
-	.navbar {
-		transform: translateY(0px);
-	}
+  .navbar {
+    @apply max-md:translate-y-0;
+  }
 
-	.head-menu {
-		display: block;
-	}
+  .head-menu {
+    @apply max-md:block;
+  }
 
-	.sidebtn {
-		transform: translateX(200%);
-	}
-}
+  .sidebtn {
+    @apply max-md:translate-x-[200%];
+  }
 
 .menu-item {
-	display: inline-block;
-	text-decoration: none;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	font-weight: 700;
-	font-size: 1.45em;
-	text-align: center;
+  @apply inline-block no-underline bg-transparent border-none cursor-pointer w-full font-bold text-[1.45em] text-center;
 }
 
 .social-icons {
-	text-align: center;
+  @apply text-center;
 }
 
 .social-icon {
-	border-radius: 10px;
-	display: inline-block;
-	margin: 0 5px;
-	line-height: 30px;
-	width: 30px;
-	font-size: 20px;
-	text-decoration: none;
-}
-
-.social-icon:hover {
-	color: var(--badge);
+  @apply rounded-[10px] inline-block m-[0_5px] leading-[30px] w-[30px] text-xl no-underline;
 }
 
 .next-btn {
-	display: flex;
-	justify-content: space-between;
+  @apply flex justify-between;
 }
 
 .base-btn {
-	display: flex;
-	align-items: center;
-	/* 垂直居中对齐 */
+  @apply flex items-center;
 }
 
 #btn-theme {
-	position: fixed;
-	width: 50px;
-	height: 50px;
-	bottom: 20px;
-	right: 20px;
-	padding: 10px;
-	border: 0;
-	cursor: pointer;
-	border-radius: 5px;
+  @apply fixed w-[50px] h-[50px] bottom-[20px] right-[20px] p-[10px] border-0 cursor-pointer rounded-[5px];
 }
 
 .info {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+  @apply overflow-hidden whitespace-nowrap text-ellipsis m-2;
 }
