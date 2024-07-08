@@ -12,7 +12,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -20,6 +20,12 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
+
+<!-- Page Specific Metadata -->
+<title>{title}</title>
+<meta name="description" content={description} />
+{image && <meta property="og:image" content={image} />}
+<link rel="canonical" href={canonicalURL.toString()} />
 
 <!-- Font preloads -->
 <link
@@ -29,3 +35,5 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
   type="font/woff2"
   crossorigin
 />
+
+<!-- Scripts preloads -->

@@ -4,31 +4,19 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from "@astrojs/tailwind";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import playformCompress from "@playform/compress";
 
+// https://astro.build/config
 export default defineConfig({
   site: 'https://www.saroprock.com',
   style: {
     scss: {
-      includePaths: ['./src/styles'],
-    },
+      includePaths: ['./src/styles']
+    }
   },
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [mdx(), sitemap(), tailwind(), playformCompress()],
   markdown: {
-    remarkPlugins: [
-      remarkMath,
-    ],
-    rehypePlugins: [
-      () => async (tree) => {
-        for (const node of tree.children) {
-          if (node.tagName === 'pre' && node.properties && node.properties.className) {
-            node.properties.className.push('mockup-code');
-          }
-          if (node.tagName === 'blockquote' && node.properties) {
-            node.properties.className = ['alert'];
-          }
-        }
-      },
-      rehypeKatex,
-    ]
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex]
   }
 });

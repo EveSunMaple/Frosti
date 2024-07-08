@@ -1,6 +1,4 @@
 ---
-const { PageID } = Astro.props;
-const activeClass = "on"; // For primary color replace with `active` class
 ---
 
 <ul class="menu bg-base-100 w-full m-0">
@@ -18,8 +16,3 @@ const activeClass = "on"; // For primary color replace with `active` class
     >
   </li>
 </ul>
-
-<script define:vars={{ sideBarActiveItemID: PageID, activeClass: activeClass }}>
-  const activeItemElem = document.getElementById(sideBarActiveItemID);
-  activeItemElem && activeItemElem.classList.add(activeClass);
-</script>
