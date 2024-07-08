@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.7.0",
     "@astrojs/mdx": "^2.3.1",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
@@ -23,7 +24,8 @@
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
     "sass": "^1.77.6",
-    "shiki": "^1.10.3"
+    "shiki": "^1.10.3",
+    "typescript": "^5.5.3"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
