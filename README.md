@@ -13,10 +13,12 @@
 
 ## ⏲️ performance
 
+![speed](./400-lighthouse.png)
 ![speed](./400.png)
 
 ## ✨ Features
 
+- ✅ Lighthouse 400
 - ✅ View transition animations
 - ✅ Excellent loading speed
 - ✅ **Light** / **Dark** mode available
@@ -42,8 +44,6 @@
 ├── categories.txt
 ├── CHANGELOG.md
 ├── LICENSE
-├── node_modules
-|  ├── @astrojs
 ├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
@@ -70,7 +70,7 @@
 |  |  ├── Footer.astro
 |  |  ├── FormattedDate.astro
 |  |  ├── Header.astro
-|  |  ├── HeaderLink.astro
+|  |  ├── HeaderMenu.astro
 |  |  ├── License.astro
 |  |  ├── page
 |  |  |  ├── LinkCard.astro

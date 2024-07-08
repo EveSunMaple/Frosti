@@ -13,10 +13,12 @@
 
 ## ⏲️ 性能
 
+![speed](./400-lighthouse.png)
 ![speed](./400.png)
 
 ## ✨ 特点
 
+- ✅ Lighthouse 400
 - ✅ 视图过渡动画
 - ✅ 优秀的访问速度
 - ✅ **白天** / **黑夜** 模式可用
@@ -42,8 +44,6 @@
 ├── categories.txt
 ├── CHANGELOG.md
 ├── LICENSE
-├── node_modules
-|  ├── @astrojs
 ├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
@@ -70,7 +70,7 @@
 |  |  ├── Footer.astro
 |  |  ├── FormattedDate.astro
 |  |  ├── Header.astro
-|  |  ├── HeaderLink.astro
+|  |  ├── HeaderMenu.astro
 |  |  ├── License.astro
 |  |  ├── page
 |  |  |  ├── LinkCard.astro
