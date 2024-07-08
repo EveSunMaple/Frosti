@@ -15,15 +15,15 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@playform/compress": "^0.0.13",
-    "astro": "^4.11.3",
+    "astro": "^4.11.5",
     "dayjs": "^1.11.11",
-    "katex": "^0.16.10",
+    "katex": "^0.16.11",
     "prismjs": "^1.29.0",
     "rehype-external-links": "^3.0.0",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
     "sass": "^1.77.6",
-    "shiki": "^1.10.0"
+    "shiki": "^1.10.3"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
