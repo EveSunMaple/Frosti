@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import playformCompress from "@playform/compress";
+import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,12 +15,12 @@ export default defineConfig({
       includePaths: ['./src/styles']
     }
   },
-  integrations: [mdx(), sitemap(), tailwind(), playformCompress()],
+  integrations: [mdx(), sitemap(), tailwind(), playformCompress(), pagefind()],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex]
   },
   build: {
-    outDir: 'public',
-  }
+    format: "file",
+  },
 });

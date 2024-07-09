@@ -280,7 +280,7 @@ hr {
   }
 
   .background {
-    @apply max-md:relative max-md:p-[40px_10px_10px_10px];
+    @apply max-md:relative max-md:p-[40px_10px_10px_10px] max-md:mt-12;
   }
 
   .profile-card {

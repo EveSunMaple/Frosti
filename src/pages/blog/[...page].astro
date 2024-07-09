@@ -1,9 +1,9 @@
 ---
 import EnvelopeCard from "../../components/EnvelopeCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Footer from "../../components/Footer.astro";
+import BaseCard from "../../components/BaseCard.astro";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
+import Search from "astro-pagefind/components/Search";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("blog");
@@ -15,6 +15,14 @@ const { page } = Astro.props;
 ---
 
 <BaseLayout PageID="blog">
+  <BaseCard title="search">
+    <Search
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{ showImages: false }}
+    />
+  </BaseCard>
+  <br>
   <div class="envelope-background">
     {
       page.data.map((post) => (

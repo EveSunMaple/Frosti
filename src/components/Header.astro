@@ -1,35 +1,30 @@
 ---
-import Search from "../components/HeaderSearch.astro";
 import Menu from "../components/HeaderMenu.astro";
 import { SITE_TITLE } from "../consts";
 ---
 
-<div class="navbar bg-base-100">
+<div class="navbar bg-base-100 shadow-xl">
   <div class="navbar-start">
     <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+      <div tabindex="0" role="button" class="btn btn-ghost" id="content" title="Content">
         <svg
+          class="swap-off fill-current"
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+          width="32"
+          height="32"
+          viewBox="0 0 512 512"
+          ><path
+            d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+          ></path></svg
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h7"></path>
-        </svg>
       </div>
       <Menu />
     </div>
   </div>
   <div class="navbar-center">
-    <a class="btn btn-ghost text-xl">SaroProck ⚡️</a>
+    <a class="btn btn-ghost text-xl" href="/">SaroProck ⚡️</a>
   </div>
   <div class="navbar-end">
-    <Search />
     <div class="flex justify-center card bg-base-100 w-12 h-12">
       <label for="themeToggle2" class="" id="themeLabel2"
         ><span class="sr-only">Theme Toggle</span>
