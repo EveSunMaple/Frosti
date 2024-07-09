@@ -23,9 +23,6 @@ importers:
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.11.5(@types/node@20.14.2)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)(typescript@5.5.3))(tailwindcss@3.4.4)
-      '@pagefind/default-ui':
-        specifier: ^1.1.0
-        version: 1.1.0
       '@playform/compress':
         specifier: ^0.0.13
         version: 0.0.13(@types/node@20.14.2)(sass@1.77.6)(typescript@5.5.3)
