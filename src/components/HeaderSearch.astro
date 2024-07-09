@@ -1,0 +1,27 @@
+<input type="text" id="search" placeholder="搜索..." />
+<div id="search-results"></div>
+
+<script type="module">
+  const pagefind = await import("/pagefind/pagefind.js");
+  pagefind.init();
+  document.getElementById("search").addEventListener("input", async (event) => {
+    const search = event.target.value;
+    const results = await pagefind.search(search);
+    const resultsContainer = document.getElementById("search-results");
+
+    if (results.results.length === 0) {
+      resultsContainer.innerHTML = "<p>没有找到结果喵~</p>";
+    } else {
+      resultsContainer.innerHTML = results.results
+        .map(
+          (result) => `
+          <div>
+            <a href="${result.url}">${result.title || "未命名页面"}</a>
+            <p>${result.excerpt || "没有摘要可显示"}</p>
+          </div>
+        `
+        )
+        .join("");
+    }
+  });
+</script>
