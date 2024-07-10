@@ -7,6 +7,14 @@ html {
   @apply scroll-smooth;
 }
 
+html[data-theme="dracula"] {
+  --pagefind-ui-primary: oklch(var(--nc));
+  --pagefind-ui-text: oklch(var(--nc));
+  --pagefind-ui-background: oklch(var(--b1));
+  --pagefind-ui-border: oklch(var(--n));
+  --pagefind-ui-tag: oklch(var(--b1));
+}
+
 body {
   @apply m-0 p-0 text-left bg-cover text-xl leading-7;
   background-size: 100% 600px;
@@ -28,7 +36,9 @@ body {
 }
 
 /* Text Styles */
-p, ol, ul {
+p,
+ol,
+ul {
   @apply m-2;
 }
 
@@ -48,12 +58,18 @@ thead {
   color: oklch(var(--s));
 }
 
-textarea, input {
+textarea,
+input {
   @apply text-base;
 }
 
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @apply m-2 mb-1;
   text-shadow: 0.01em -0.01em #fff, -0.01em 0.01em #999, -0.1em 0.1em 5px #80808080;
 }
@@ -79,16 +95,23 @@ h5 {
 }
 
 /* Strong and Bold Text */
-strong, b {
+strong,
+b {
   @apply font-bold m-2;
 }
 
+em {
+  @apply m-2;
+}
+
 /* Links */
-.link-card a, a {
+.link-card a,
+a {
   @apply relative no-underline;
 }
 
-.main-card p a, .main-card li a {
+.main-card p a,
+.main-card li a {
   color: oklch(var(--p));
   @apply underline;
 }
@@ -174,7 +197,8 @@ hr {
   @apply relative box-border p-[20px_60px_20px_20px] w-full h-full max-h-full overflow-auto bg-transparent;
 }
 
-.base-background, .envelope-background {
+.base-background,
+.envelope-background {
   @apply -mt-8;
 }
 
@@ -271,33 +295,33 @@ hr {
   @apply translate-x-0 transition-transform;
 }
 
-  .clock {
-    @apply max-sm:absolute max-sm:-translate-x-[200%];
-  }
+.clock {
+  @apply max-sm:absolute max-sm:-translate-x-[200%];
+}
 
-  .profile {
-    @apply max-md:absolute;
-  }
+.profile {
+  @apply max-md:absolute;
+}
 
-  .background {
-    @apply max-md:relative max-md:p-[40px_10px_10px_10px] max-md:mt-12;
-  }
+.background {
+  @apply max-md:relative max-md:p-[40px_10px_10px_10px] max-md:mt-12;
+}
 
-  .profile-card {
-    @apply max-md:-translate-x-[200%];
-  }
+.profile-card {
+  @apply max-md:-translate-x-[200%];
+}
 
-  .navbar {
-    @apply max-md:translate-y-0;
-  }
+.navbar {
+  @apply max-md:translate-y-0;
+}
 
-  .head-menu {
-    @apply max-md:block;
-  }
+.head-menu {
+  @apply max-md:block;
+}
 
-  .sidebtn {
-    @apply max-md:translate-x-[200%];
-  }
+.sidebtn {
+  @apply max-md:translate-x-[200%];
+}
 
 .menu-item {
   @apply inline-block no-underline bg-transparent border-none cursor-pointer w-full font-bold text-[1.45em] text-center;

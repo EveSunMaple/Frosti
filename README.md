@@ -20,7 +20,7 @@
 
 - ✅ Lighthouse 400
 - ✅ View transition animations
-- ✅ Excellent loading speed
+- ✅ You can search your articles
 - ✅ **Light** / **Dark** mode available
 - ✅ Various components for enriching article content
   - Diverse alerts

@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import License from "../components/License.astro";
-import Comment from "../components/Comment.astro";
+import CommentWaline from "./CommentWaline.astro";
+import CommentTwikoo from "./CommentTwikoo.astro";
 import dayjs from "dayjs";
 const {
   title,
@@ -65,7 +66,7 @@ const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
       isBlog && (
         <>
           <License title={title} url={url} />
-          <Comment />
+          <CommentWaline />
         </>
       )
     }
