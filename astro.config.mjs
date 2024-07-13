@@ -18,6 +18,15 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), tailwind(), playformCompress(), pagefind()],
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex]
+    rehypePlugins: [() => async (tree) => {
+      for (const node of tree.children) {
+        if (node.tagName === 'pre' && node.properties && node.properties.className) {
+          node.properties.className.push('mockup-code');
+        }
+        if (node.tagName === 'blockquote' && node.properties) {
+          node.properties.className = ['alert'];
+        }
+      }
+    }, rehypeKatex]
   },
 });

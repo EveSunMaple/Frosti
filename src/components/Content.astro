@@ -1,0 +1,87 @@
+---
+
+---
+
+<div
+  class="fixed overflow-auto max-w-96 min-w-64 max-h-96 p-4 card bg-base-100 shadow-xl content-box sidebtn hide"
+  id="content-box"
+>
+</div>
+<div
+  class="flex justify-center card bg-base-100 shadow-xl sidebtn bottom-24"
+  id="btn-theme"
+>
+  <label for="contentToggle" class="" id="contentLabel"
+    ><span class="sr-only">Content Toggle</span>
+    <input type="checkbox" id="contentToggle" />
+    <svg
+      class="swap-off fill-current"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 512 512"
+      ><path
+        d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+      ></path></svg
+    >
+
+    <!-- close icon -->
+    <svg
+      class="swap-on fill-current"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 512 512"
+      ><polygon
+        points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"
+      ></polygon></svg
+    >
+    <path
+      d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
+    ></path>
+  </label>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    const generateTocContent = () => {
+      let tocContent = "<ul>";
+      let levelCounters = [0, 0, 0, 0, 0, 0];
+      headings.forEach((heading) => {
+        const headingId = heading.id;
+        const headingText = heading.textContent;
+        const headingLevel = parseInt(heading.tagName.charAt(1));
+        if (headingId && headingText && headingLevel) {
+          const level = parseInt(heading.tagName.charAt(1), 10) - 1;
+          levelCounters[level]++;
+          levelCounters.fill(0, level + 1);
+          const numbering = levelCounters.slice(1, level + 1).join(".");
+          tocContent += `<li><a class="level-${headingLevel}" href="#${headingId}"><span class="toc-number">${numbering}</span>${headingText}</a></li>`;
+        }
+      });
+      tocContent += "</ul>";
+      return tocContent;
+    };
+    const contentLabel = document.getElementById("contentLabel");
+    const contentToggle = document.getElementById("contentToggle");
+
+    const tocBox = document.getElementById("content-box");
+    tocBox.innerHTML = generateTocContent();
+    contentLabel.classList.add("swap");
+    contentLabel.classList.add("swap-rotate");
+
+    const toggleTocBox = () => {
+      if (tocBox.classList.contains("hide")) {
+        tocBox.classList.remove("hide");
+        tocBox.classList.add("show");
+        console.log("A");
+      } else {
+        tocBox.classList.remove("show");
+        tocBox.classList.add("hide");
+        console.log("B");
+      }
+    };
+    contentToggle.addEventListener("click", toggleTocBox);
+  });
+</script>

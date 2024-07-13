@@ -19,6 +19,7 @@
 ## ✨ Features
 
 - ✅ Lighthouse 400
+- ✅ Blog content support
 - ✅ View transition animations
 - ✅ You can search your articles
 - ✅ **Light** / **Dark** mode available
@@ -65,6 +66,7 @@
 |  |  |  ├── info.astro
 |  |  |  ├── success.astro
 |  |  |  └── warning.astro
+|  |  ├── Content.astro
 |  |  ├── Comment.astro
 |  |  ├── EnvelopeCard.astro
 |  |  ├── Footer.astro
@@ -114,14 +116,14 @@
 
 ## ✒️ Article Information
 
-|    Name    |       Meaning       | Mandatory |
+|    Name     |       Meaning       | Mandatory |
 | :---------: | :-----------------: | :-------: |
 |    title    |    Article title    |    Yes    |
 | description | Article description |    Yes    |
-|   pubDate   |    Article date    |    Yes    |
-|    image    |    Article cover    |    No    |
-|    tags    |    Article tags    |    No    |
-|    badge    |    Article badge    |    No    |
+|   pubDate   |    Article date     |    Yes    |
+|    image    |    Article cover    |    No     |
+|    tags     |    Article tags     |    No     |
+|    badge    |    Article badge    |    No     |
 
 ## ⬇️ Usage
 
@@ -133,14 +135,14 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 ## 🎯 Plans
 
-- [ ] Add table of contents (done but CSS not written yet)
+- [x] Add table of contents (done but CSS not written yet) ~~(Jul 13 2024)~~
 - [x] Add timeline component ~~(Apr 21, 2024)~~
 - [x] Add friends component ~~(Apr 21, 2024)~~
 
 ## 👀 Issues
 
-- [X] ~~`global.css` is too messy~~
-- [X] ~~**Light** / **Dark** mode transition ~~currently not implemented~~ `ENOUGH🛠️`
+- [x] ~~`global.css` is too messy~~
+- [x] ~~**Light** / **Dark** mode transition ~~currently not implemented~~ `ENOUGH🛠️`
 - [x] ~~Website score has not reached 400 points yet~~ `GET IT✨`
 
 ## 🎉 Thanks
@@ -148,4 +150,3 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 @[Saicaca](https://github.com/saicaca) His inspiration was the main reason for me to create this theme.
 
 @[WRXinYue](https://github.com/WRXinYue) Helped me a lot when I was first starting out.
-

@@ -5,6 +5,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ThemeIcon from "../components/ThemeIcon.astro";
+import Content from "../components/Content.astro";
 import { ViewTransitions } from "astro:transitions";
 import {
   SITE_TITLE,
@@ -26,11 +27,11 @@ const {
 
 <html lang="zh-cn" class="bg-base-300" title="main-page">
   <title class="sr-only">Frosti</title>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <BaseHead title={site_title} description={site_description} image={image} />
-    {TRANSITION_API && <ViewTransitions />}
-  </head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <BaseHead title={site_title} description={site_description} image={image} />
+  {TRANSITION_API && <ViewTransitions />}
+
   <body>
     <script src="../scripts/copybutton.mjs"></script>
     <Header title={SITE_TITLE} />
@@ -50,6 +51,7 @@ const {
         </div>
       </div>
     </main>
+    <Content />
     <ThemeIcon />
   </body>
 </html>

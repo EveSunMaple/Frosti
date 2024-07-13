@@ -1,0 +1,184 @@
+---
+title: Using mdx in Frosti
+description: Create more components with mdx!
+pubDate: 07 12 2024
+image: https://saroprock.oss-cn-hangzhou.aliyuncs.com/img/diary-968592_1280.jpg
+tags:
+  - Frosti
+  - Blog
+  - Project
+---
+
+import Collapse from "../../components/blog/collapse.astro";
+import Diff from "../../components/blog/diff.astro";
+import Error from "../../components/blog/error.astro";
+import Info from "../../components/blog/info.astro";
+import Kbd from "../../components/blog/kbd.astro";
+import Success from "../../components/blog/success.astro";
+import Warning from "../../components/blog/warning.astro";
+import TimeLine from "../../components/page/TimeLine.astro";
+import LinkCard from "../../components/page/LinkCard.astro";
+
+## Preface
+
+This article describes how to use the components provided by Frosti in `mdx` to realize the functions that can't be realized by normal `md`.
+
+## Main text
+
+### Getting started
+
+First you need to create an `mdx` file, which is as simple as changing the extension to `.mdx`.
+
+### Introducing
+
+The components provided by Frosti are placed in the `/blog` and `/page` folders. Write something in the document properties (frontmatter):
+
+```js
+import Collapse from "../../components/blog/collapse.astro";
+import Diff from "../../components/blog/diff.astro";
+import Error from "../../components/blog/error.astro";
+import Info from "../../components/blog/info.astro"; 
+import Kbd from "../../components/blog/kbd.astro";
+import Success from "../../components/blog/success.astro";
+import Warning from "../../components/blog/warning.astro";
+import TimeLine from "../../components/page/TimeLine.astro"; 
+import LinkCard from "../../components/page/LinkCard.astro";
+```
+
+### Example
+
+#### Collapse
+
+<Collapse title="This is an example text." > This is the hidden content! </Collapse>
+
+```js
+<Collapse title="This is an example text." > This is the hidden content! </Collapse>
+```
+
+#### Diff
+
+<Diff r="/r.png" l="/l.png"></Diff>
+
+```js
+<Diff r="/r.png" l="/l.png"></Diff>
+```
+
+#### Error
+
+<Error>Maybe something went wrong? </Error>
+
+```js
+<Error>Maybe something went wrong? </Error>
+```
+
+#### Warning
+
+<Warning>Hey! Watch out for potholes! </Warning>
+
+```js
+<Warning>Hey! Watch out for potholes! </Warning>
+```
+
+#### Message
+
+<Info>It's just a message. </Info>
+
+```js
+<Info>It's just a message. </Info>
+```
+
+#### Success
+
+<Success>Congratulations on your successful deployment! </Success>
+
+```js
+<Success>Congratulations on your successful deployment! </Success>
+```
+
+#### Kbd
+
+<Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> to copy the text.
+
+```js
+<Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> to copy the text.
+```
+
+#### TimeLine
+
+<ul class="timeline timeline-vertical">
+  <li>
+    <TimeLine time="2024 3 17" left="true" check="true">
+      Frosti project launched!
+    </TimeLine>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <TimeLine time="2024 4 5" check="true">
+      Using Tailwind CSS and daisyUI.
+    </TimeLine>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <TimeLine time="2024 5 31" left="true" check="true">
+      Frosti releases the first version!
+    </TimeLine>
+    <hr class="bg-neutral-content" />
+  </li>
+  <li>
+    <hr class="bg-neutral-content" />
+    <TimeLine time="……"> 
+      Stay tuned!
+    </TimeLine>
+  </li>
+</ul>
+
+```js
+<ul class="timeline timeline-vertical">
+  <li>
+    <TimeLine time="2024 3 17" left="true" check="true">
+      Frosti project launched!
+    </TimeLine>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <TimeLine time="2024 4 5" check="true">
+      Using Tailwind CSS and daisyUI.
+    </TimeLine>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <TimeLine time="2024 5 31" left="true" check="true">
+      Frosti releases the first version!
+    </TimeLine>
+    <hr class="bg-neutral-content" />
+  </li>
+  <li>
+    <hr class="bg-neutral-content" />
+    <TimeLine time="……"> 
+      Stay tuned!
+    </TimeLine>
+  </li>
+</ul>
+```
+
+#### LinkCard
+
+<LinkCard
+  title="Frosti"
+  desc="My blog project!"
+  url="https://github.com/EveSunMaple/Frosti"
+  img="/favicon.ico"
+/>
+
+```js
+<LinkCard
+  title="Frosti"
+  desc="My blog project!"
+  url="https://github.com/EveSunMaple/Frosti"
+  img="/favicon.ico"
+/>
+```

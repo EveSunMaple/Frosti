@@ -39,7 +39,7 @@ body {
 p,
 ol,
 ul {
-  @apply m-2;
+  @apply m-2 leading-normal;
 }
 
 ol {
@@ -50,8 +50,22 @@ ul {
   @apply pl-[40px] list-disc;
 }
 
-li::marker {
+li::marker,
+.toc-number {
   color: oklch(var(--a));
+}
+
+.level-1,
+.level-2,
+.level-3,
+.level-4,
+.level-5,
+.level-6 {
+  @apply btn btn-ghost;
+}
+
+#content-box li, #content-box ul{
+  @apply list-none m-0 p-0;
 }
 
 thead {
@@ -178,7 +192,7 @@ hr {
 
 /* Layout and Positioning */
 .main {
-  @apply fixed w-full h-full p-0 left-1/2 transform -translate-x-1/2 flex items-start;
+  @apply fixed w-full h-full p-0 left-1/2 transform -translate-x-1/2 flex items-start max-w-screen-2xl;
 }
 
 .navbar {
@@ -304,7 +318,7 @@ hr {
 }
 
 .background {
-  @apply max-md:relative max-md:p-[40px_10px_10px_10px] max-md:mt-12;
+  @apply max-md:relative max-md:p-[80px_10px_10px_10px];
 }
 
 .profile-card {
@@ -344,7 +358,19 @@ hr {
 }
 
 #btn-theme {
-  @apply fixed w-[50px] h-[50px] bottom-[20px] right-[20px] p-[10px] border-0 cursor-pointer rounded-[5px];
+  @apply fixed w-[50px] h-[50px] right-[20px] p-[10px] border-0 cursor-pointer rounded-[5px];
+}
+
+#content-box {
+  @apply right-[20px] bottom-48;
+}
+
+.show {
+  @apply translate-x-[0%];
+}
+
+.hide {
+  @apply translate-x-[200%];
 }
 
 .info {
