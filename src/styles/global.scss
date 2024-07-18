@@ -12,7 +12,14 @@ html[data-theme="dracula"] {
   --pagefind-ui-text: oklch(var(--nc));
   --pagefind-ui-background: oklch(var(--b1));
   --pagefind-ui-border: oklch(var(--n));
-  --pagefind-ui-tag: oklch(var(--b1));
+  --pagefind-ui-tag: oklch(var(--b1));  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
 }
 
 body {
@@ -153,7 +160,11 @@ code {
 
 pre {
   font-family: 'Cascadia';
-  @apply text-sm p-6 rounded-lg m-2;
+  @apply text-sm p-6 m-2 mockup-code;
+}
+
+blockquote {
+  @apply alert;
 }
 
 pre>code {
@@ -375,4 +386,19 @@ hr {
 
 .info {
   @apply overflow-hidden whitespace-nowrap text-ellipsis m-2;
+}
+
+pre .line {
+  counter-increment: line;
+  padding-left: 2.5em;
+}
+
+pre :not(:last-child).line::before {
+  content: counter(line);
+  position: absolute;
+  left: 0;
+  width: 3em;
+  text-align: right;
+  margin-right: 10px;
+  color: #888;
 }
