@@ -12,7 +12,6 @@ document.addEventListener('astro:page-load', () => {
     copyButton.style.width = '30px';
     copyButton.style.height = '30px';
     copyButton.style.borderRadius = '4px';
-    copyButton.style.color = '#fff';
     copyButton.style.border = 'none';
     copyButton.style.zIndex = 100;
 

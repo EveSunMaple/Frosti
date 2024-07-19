@@ -6,7 +6,10 @@
 html {
   @apply scroll-smooth;
 }
-
+.astro-code,
+.astro-code span {
+  background-color: oklch(var(--b2)) !important;
+}
 html[data-theme="dracula"] {
   --pagefind-ui-primary: oklch(var(--nc));
   --pagefind-ui-text: oklch(var(--nc));

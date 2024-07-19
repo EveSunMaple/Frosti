@@ -50,11 +50,15 @@ Frosti 使用 `Shiki` 来渲染代码框， `Shiki` 已经提供了足够多的�
 
 有关于 `Shiki` 的主题详见：https://shiki.style/themes
 
-在 `astro.config.mjs` 中修改内容（某些内容不需要）：
+在 `astro.config.mjs` 中修改内容：
 
 ```js
-themes: {
-  light: 'github-light', // 白天主题
-  dark: 'github-dark',   // 夜晚主题
+markdown: {
+  shikiConfig: {
+    themes: {
+      light: 'github-light',
+      dark: 'github-dark',
+    },
+  },
 },
 ```

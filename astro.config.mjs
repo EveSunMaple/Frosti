@@ -11,18 +11,18 @@ import pagefind from "astro-pagefind";
 export default defineConfig({
   site: 'https://www.saroprock.com',
   style: {
-    shikiConfig: {
-      themes: {
-        light: 'github-dark',
-        dark: 'github-dark',
-      },
-    },
     scss: {
       includePaths: ['./src/styles']
     }
   },
   integrations: [mdx(), sitemap(), tailwind(), playformCompress(), pagefind()],
   markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    },
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex]
   },
