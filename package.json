@@ -16,10 +16,10 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@playform/compress": "^0.0.13",
-    "astro": "^4.11.5",
+    "astro": "^4.12.2",
     "astro-icon": "^1.1.0",
     "astro-pagefind": "^1.5.0",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "katex": "^0.16.11",
     "pagefind": "^1.1.0",
     "prismjs": "^1.29.0",
@@ -33,6 +33,6 @@
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.6"
   }
 }
