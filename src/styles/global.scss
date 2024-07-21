@@ -65,13 +65,9 @@ li::marker,
   color: oklch(var(--a));
 }
 
-.level-1,
-.level-2,
-.level-3,
-.level-4,
-.level-5,
-.level-6 {
-  @apply btn btn-ghost;
+.level-1::before{
+  content: "⚝";
+  color: oklch(var(--a));
 }
 
 #content-box li, #content-box ul{
@@ -176,7 +172,7 @@ pre>code {
 
 /* Miscellaneous Styles */
 footer {
-  @apply relative top-7 rounded-xl;
+  @apply relative rounded-xl;
 }
 
 .footer {
@@ -227,7 +223,7 @@ hr {
 
 .base-background,
 .envelope-background {
-  @apply -mt-8;
+  @apply mt-8;
 }
 
 .envelope-back {
@@ -260,7 +256,7 @@ hr {
 }
 
 .back-card {
-  @apply mt-8 relative left-1/2 transform -translate-x-1/2 overflow-hidden;
+  @apply mb-8 relative left-1/2 transform -translate-x-1/2 overflow-hidden;
 }
 
 .main-card {
@@ -373,10 +369,6 @@ hr {
 
 #btn-theme {
   @apply fixed w-[50px] h-[50px] right-[20px] p-[10px] border-0 cursor-pointer rounded-[5px];
-}
-
-#content-box {
-  @apply right-[20px] bottom-48;
 }
 
 .show {

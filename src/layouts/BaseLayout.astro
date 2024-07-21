@@ -21,21 +21,29 @@ const { image, includeSidebar = true } = Astro.props;
   <body>
     <script src="../scripts/copybutton.mjs"></script>
     <Header title={SITE_TITLE} />
-    <div class="main">
-      <div class="profile">
-        {includeSidebar && <Profile />}
-      </div>
-      <div class="background">
-        <div class="base-background">
-          <main>
-            <slot />
-          </main>
-          <Footer />
-          <br />
+    <div class="max-w-7xl m-auto">
+      <div class="relative grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
+        <div class="md:col-span-1 top-4 bg-white bg-opacity-0 p-2">
+          {
+            includeSidebar && (
+              <>
+                <Profile />
+                <Content />
+              </>
+            )
+          }
+        </div>
+        <div class="md:col-span-3 overflow-hidden bg-white bg-opacity-0 p-2">
+          <div class="">
+            <main>
+              <slot />
+            </main>
+            <Footer />
+            <br />
+          </div>
         </div>
       </div>
     </div>
-    <Content />
     <ThemeIcon />
   </body>
 </html>

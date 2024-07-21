@@ -24,8 +24,7 @@ const { page }: { page: Page } = Astro.props;
       uiOptions={{ showImages: false }}
     />
   </BaseCard>
-  <br />
-  <div class="envelope-background">
+  <div class="envelope-background mt-8">
     {
       page.data.map((post: Post) => (
         <EnvelopeCard
