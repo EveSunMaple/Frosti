@@ -6,6 +6,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import playformCompress from "@playform/compress";
 import pagefind from "astro-pagefind";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,7 +16,7 @@ export default defineConfig({
       includePaths: ['./src/styles']
     }
   },
-  integrations: [mdx(), sitemap(), tailwind(), playformCompress(), pagefind()],
+  integrations: [mdx(), icon(), sitemap(), tailwind(), playformCompress(), pagefind()],
   markdown: {
     shikiConfig: {
       themes: {

@@ -2,9 +2,7 @@
 import EnvelopeCard from "../../../../components/EnvelopeCard.astro";
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import BaseCard from "../../../../components/BaseCard.astro";
-import Footer from "../../../../components/Footer.astro";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../../../components/FormattedDate.astro";
 
 export async function getStaticPaths({ paginate }) {
   const all_posts = await getCollection("blog");
@@ -30,21 +28,33 @@ const params = Astro.params;
   <BaseCard title="tag">
     <h1 id="h1">{"Blog - " + params.tag}</h1>
   </BaseCard>
-  <br>
+  <br />
   <div class="envelope-background">
     {
-      page.data.map((post) => (
-        <EnvelopeCard
-          title={post.data.title}
-          image={post.data.image}
-          desc={post.data.description}
-          url={"/blog/" + post.slug}
-          pubDate={post.data.pubDate}
-          badge={post.data.badge}
-          tags={post.data.tags}
-          target="_self"
-        />
-      ))
+      page.data.map(
+        (post: {
+          data: {
+            title: any;
+            image: any;
+            description: any;
+            pubDate: any;
+            badge: any;
+            tags: any;
+          };
+          slug: string;
+        }) => (
+          <EnvelopeCard
+            title={post.data.title}
+            image={post.data.image}
+            desc={post.data.description}
+            url={"/blog/" + post.slug}
+            pubDate={post.data.pubDate}
+            badge={post.data.badge}
+            tags={post.data.tags}
+            target="_self"
+          />
+        )
+      )
     }
   </div>
 </BaseLayout>

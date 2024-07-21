@@ -1,5 +1,5 @@
 ---
-const today = new Date();
+import { USER_NAME } from "../consts";
 ---
 
 <footer class="footer card bg-base-100 shadow-xl p-8">
@@ -21,7 +21,7 @@ const today = new Date();
       Copyright © <a
         href="https://www.saroprock.com"
         target="_blank"
-        class="font-bold">EveSunMaple</a
+        class="font-bold">{USER_NAME}</a
       >
       {new Date().getFullYear()} - All right reserved
     </p>

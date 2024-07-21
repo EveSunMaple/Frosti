@@ -1,28 +1,20 @@
 ---
 import { Image } from "astro:assets";
-import Menu from "../components/ProfileCardMenu.astro"
-import Footer from "../components/ProfileCardFooter.astro"
-import { SITE_TITLE, SITE_DESCRIPTION, USER_NICKNAME, USER_DESCRIPTION, TRANSITION_API } from "../consts";
-const {
-  name,
-  desc,
-  includeSidebar = true,
-} = Astro.props;
+import Menu from "../components/ProfileCardMenu.astro";
+import Footer from "../components/ProfileCardFooter.astro";
+import { USER_AVATAR } from "../consts";
 ---
 
 <div class="profile-card card bg-base-100 shadow-xl p-4">
   <div class="avatar px-6">
-    <!-- 你的个人头像 -->
     <Image
       class="mask mask-circle"
       format="webp"
       width={300}
       height={300}
-      src="/profile.webp"
+      src={USER_AVATAR}
       alt="Profile image"
     />
-  </div>
-  <div class="profile-info">
   </div>
   <Menu />
   <Footer />

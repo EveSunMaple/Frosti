@@ -1,5 +1,5 @@
 ---
-
+import { SERVER_URL } from "../consts";
 ---
 
 <br />
@@ -8,13 +8,17 @@
   href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css"
 />
 <div class="comment">
-  <div id="waline"></div>
+  <div id="waline" data-server-url={SERVER_URL}></div>
 </div>
 <script type="module">
   import { init } from "https://unpkg.com/@waline/client@v3/dist/waline.js";
+
+  const serverURL = document
+    .getElementById("waline")
+    .getAttribute("data-server-url");
   init({
     el: "#waline",
-    serverURL: "https://demo.saroprock.com",
+    serverURL: serverURL,
     dark: 'html[data-theme="dracula"]',
     reaction: [
       "https://saroprock.s3.bitiful.net/good.png",
@@ -31,9 +35,6 @@
   });
   const wlButtons = document.querySelectorAll(".wl-btn");
   const wlPanel = document.querySelectorAll(".wl-panel");
-  const wlHeader = document.querySelectorAll(".wl-header-item");
-  const wlInput = document.querySelectorAll(".wl-input");
-  const wlTextarea = document.querySelectorAll(".wl-editor");
   const Footnotes = document.querySelectorAll(".footnotes");
   const svgContent = `
     <svg
@@ -50,9 +51,9 @@
       ></path>
     </svg>
   `;
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = svgContent;
-    const svgElement = tempDiv.firstElementChild;
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = svgContent;
+  const svgElement = tempDiv.firstElementChild;
   wlButtons.forEach((button) => {
     button.classList.add("btn");
   });
@@ -60,7 +61,7 @@
     item.classList.add("card", "bg-base-100", "shadow-xl");
   });
   Footnotes.forEach((item) => {
-    item.classList.add("alert","alert-info");
+    item.classList.add("alert", "alert-info");
     item.insertBefore(svgElement, item.firstChild);
   });
 </script>

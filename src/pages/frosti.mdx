@@ -1,9 +1,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BaseCard from "../components/BaseCard.astro";
-import error from "../components/blog/error.astro";
-import INFO from "../components/blog/info.astro";
-import success from "../components/blog/success.astro";
-import warn from "../components/blog/warning.astro";
+import Collapse from "../components/blog/collapse.astro";
+import Diff from "../components/blog/diff.astro";
+import Error from "../components/blog/error.astro";
+import Info from "../components/blog/info.astro";
+import Kbd from "../components/blog/kbd.astro";
+import Success from "../components/blog/success.astro";
+import Warning from "../components/blog/warning.astro";
 import TimeLine from "../components/page/TimeLine.astro";
 import LinkCard from "../components/page/LinkCard.astro";
 
@@ -13,7 +16,10 @@ import LinkCard from "../components/page/LinkCard.astro";
 
 一个干净、优美、快速的博客模板！使用 `Astro` 制作！
 
-<INFO>此项目仍在开发中，欢迎 `Watch` ！ <button class="btn">[了解更多](https://github.com/EveSunMaple/Frosti)</button></INFO>
+<INFO>
+  此项目仍在开发中，欢迎 `Watch` ！{" "}
+  <button class="btn">[了解更多](https://github.com/EveSunMaple/Frosti)</button>
+</INFO>
 
 # 🧊 Frosti Introduction
 
@@ -128,5 +134,6 @@ Frosti owes its existence to the contributions and inspiration from:
 - **@[WRXinYue](https://github.com/WRXinYue):** For invaluable assistance during the early stages of development.
 
 Whether you're a seasoned blogger or just dipping your toes into the world of blogging, Frosti provides the perfect platform to share your thoughts with the world. Try Frosti today and take your blogging experience to new heights!
+
   </BaseCard>
 </BaseLayout>

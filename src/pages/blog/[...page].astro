@@ -11,7 +11,27 @@ export async function getStaticPaths({ paginate }) {
   return paginate(posts, { pageSize: 5 });
 }
 
-const { page } = Astro.props;
+interface Post {
+  data: {
+    title: string;
+    image: string;
+    description: string;
+    pubDate: Date;
+    badge: string;
+    tags: string[];
+  };
+  slug: string;
+}
+
+interface Page {
+  url: {
+    prev?: string;
+    next?: string;
+  };
+  data: Post[];
+}
+
+const { page }: { page: Page } = Astro.props;
 ---
 
 <BaseLayout PageID="blog">
@@ -22,10 +42,10 @@ const { page } = Astro.props;
       uiOptions={{ showImages: false }}
     />
   </BaseCard>
-  <br>
+  <br />
   <div class="envelope-background">
     {
-      page.data.map((post) => (
+      page.data.map((post: Post) => (
         <EnvelopeCard
           title={post.data.title}
           image={post.data.image}
@@ -39,12 +59,11 @@ const { page } = Astro.props;
       ))
     }
   </div>
-  <br>
+  <br />
   <div class="next-btn">
     {
       page.url.prev ? (
         <a href={page.url.prev} class="btn bg-base-100 shadow-xl">
-          {" "}
           <svg
             class="h-6 w-6 fill-current md:h-8 md:w-8"
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +90,6 @@ const { page } = Astro.props;
             height="24"
             viewBox="0 0 24 24"
           >
-            {" "}
             <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
           </svg>
         </a>

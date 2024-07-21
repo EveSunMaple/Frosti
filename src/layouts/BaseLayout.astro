@@ -7,50 +7,34 @@ import Footer from "../components/Footer.astro";
 import ThemeIcon from "../components/ThemeIcon.astro";
 import Content from "../components/Content.astro";
 import { ViewTransitions } from "astro:transitions";
-import {
-  SITE_TITLE,
-  SITE_DESCRIPTION,
-  USER_NICKNAME,
-  USER_DESCRIPTION,
-  TRANSITION_API,
-} from "../consts";
-const {
-  image,
-  site_title = SITE_TITLE,
-  site_description = SITE_DESCRIPTION,
-  user_name = USER_NICKNAME,
-  user_description = USER_DESCRIPTION,
-  includeSidebar = true,
-  PageID,
-} = Astro.props;
+import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../consts";
+const { image, includeSidebar = true } = Astro.props;
 ---
 
 <html lang="zh-cn" class="bg-base-300" title="main-page">
   <title class="sr-only">Frosti</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <BaseHead title={site_title} description={site_description} image={image} />
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
   {TRANSITION_API && <ViewTransitions />}
 
   <body>
     <script src="../scripts/copybutton.mjs"></script>
     <Header title={SITE_TITLE} />
-    <main class="main">
+    <div class="main">
       <div class="profile">
-        {
-          includeSidebar && (
-            <Profile name={user_name} desc={user_description} PageID={PageID} />
-          )
-        }
+        {includeSidebar && <Profile />}
       </div>
       <div class="background">
         <div class="base-background">
-          <slot />
+          <main>
+            <slot />
+          </main>
           <Footer />
           <br />
         </div>
       </div>
-    </main>
+    </div>
     <Content />
     <ThemeIcon />
   </body>
