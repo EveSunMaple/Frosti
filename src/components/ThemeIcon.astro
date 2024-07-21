@@ -32,7 +32,7 @@
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const setTheme = (theme) => {
+    const setTheme = (theme: string) => {
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
     };

@@ -44,13 +44,6 @@
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    function getRepoInfoFromUrl(repoUrl) {
-      const urlParts = repoUrl ? repoUrl.split("/") : [];
-      const owner = urlParts[urlParts.length - 2] || "";
-      const repo = urlParts[urlParts.length - 1] || "";
-      return { owner, repo };
-    }
-
     const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
     const generateTocContent = () => {

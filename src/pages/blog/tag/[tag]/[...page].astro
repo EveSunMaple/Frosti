@@ -1,60 +1,52 @@
 ---
+import type { Post, Page } from "../../../../types";
 import EnvelopeCard from "../../../../components/EnvelopeCard.astro";
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import BaseCard from "../../../../components/BaseCard.astro";
 import { getCollection } from "astro:content";
+import { infoTest } from "../../../../consts";
 
 export async function getStaticPaths({ paginate }) {
   const all_posts = await getCollection("blog");
-  const all_tags = all_posts.flatMap((post) => {
-    return post.data.tags || [];
-  });
+
+  const all_tags = [
+    ...new Set(all_posts.flatMap((post) => post.data.tags || [])),
+  ];
 
   return all_tags.flatMap((tag) => {
-    const filtred_posts = all_posts.filter((post) => {
-      return post.data.tags?.includes(tag);
-    });
-    return paginate(filtred_posts, {
+    const filtered_posts = all_posts.filter((post) =>
+      post.data.tags?.includes(tag)
+    );
+    return paginate(filtered_posts, {
       params: { tag },
       pageSize: 5,
     });
   });
 }
-const { page } = Astro.props;
+
+const { page } = Astro.props as { page: Page };
 const params = Astro.params;
 ---
 
 <BaseLayout PageID="blog">
   <BaseCard title="tag">
-    <h1 id="h1">{"Blog - " + params.tag}</h1>
+    <h1 id="h1">{infoTest.tagPage + params.tag}</h1>
   </BaseCard>
   <br />
   <div class="envelope-background">
     {
-      page.data.map(
-        (post: {
-          data: {
-            title: any;
-            image: any;
-            description: any;
-            pubDate: any;
-            badge: any;
-            tags: any;
-          };
-          slug: string;
-        }) => (
-          <EnvelopeCard
-            title={post.data.title}
-            image={post.data.image}
-            desc={post.data.description}
-            url={"/blog/" + post.slug}
-            pubDate={post.data.pubDate}
-            badge={post.data.badge}
-            tags={post.data.tags}
-            target="_self"
-          />
-        )
-      )
+      page.data.map((post: Post) => (
+        <EnvelopeCard
+          title={post.data.title}
+          image={post.data.image}
+          desc={post.data.description}
+          url={"/blog/" + post.slug}
+          pubDate={post.data.pubDate}
+          badge={post.data.badge}
+          tags={post.data.tags}
+          target="_self"
+        />
+      ))
     }
   </div>
 </BaseLayout>

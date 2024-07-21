@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import dayjs from "dayjs";
+import { infoTest } from "../consts";
 const {
   title,
   image,
@@ -13,6 +14,7 @@ const {
 } = Astro.props;
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
+const hasTags = tags && tags.length > 0;
 ---
 
 <div class="envelope-back card bg-base-100 shadow-xl">
@@ -33,16 +35,16 @@ const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
   <div class="envelope-card card bg-base-100">
     <div class="envelope-info p-6">
       <a href={url} target={target} class="envelope-title">
-        {title}
+        <h1 id="h1">{title}</h1>
       </a>
       <div class="info">{desc}</div>
       <div class="info">
         {displayDate && <div class="badge badge-neutral">{displayDate}</div>}
         {badge && <div class="badge badge-primary">{badge}</div>}
         <div class="tags">
-          <code>Tag: </code>
+          <code>{infoTest.tag}</code>
           {
-            tags &&
+            hasTags ? (
               tags.map((tag) => (
                 <>
                   <a
@@ -54,6 +56,11 @@ const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
                   <span>&thinsp;</span>
                 </>
               ))
+            ) : (
+              <div class="btn btn-xs btn-secondary btn-disabled">
+                {infoTest.noTag}
+              </div>
+            )
           }
         </div>
       </div>
