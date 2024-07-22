@@ -10,13 +10,17 @@ import ThemeIcon from "../components/ThemeIcon.astro";
     <ThemeIcon />
   </div>
   <div
-    class="mb-b w-full max-h-[600px] overflow-hide top-8 card bg-base-100 shadow-xl p-4 menu"
+    class="mb-b w-full max-h-[65vh] overflow-hide top-8 card bg-base-100 shadow-xl p-4 menu"
     id="content-box"
   >
     <div class="skeleton h-4 w-28"></div>
+    <br />
     <div class="skeleton h-4 w-full"></div>
+    <br />
     <div class="skeleton h-4 w-full"></div>
+    <br />
     <div class="skeleton h-4 w-full"></div>
+    <br />
   </div>
 </div>
 <script>
@@ -24,7 +28,7 @@ import ThemeIcon from "../components/ThemeIcon.astro";
     const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
     const generateTocContent = () => {
-      let tocContent = "<ul class='overflow-auto w-full'>";
+      let tocContent = "<ul class='overflow-auto w-full list-none m-0 p-0'>";
       let levelCounters = [0, 0, 0, 0, 0, 0];
       headings.forEach((heading) => {
         const headingId = heading.id;
@@ -37,7 +41,7 @@ import ThemeIcon from "../components/ThemeIcon.astro";
           levelCounters.fill(0, level + 1);
           var numbering = levelCounters.slice(1, level + 1).join(".");
           if (numbering == "") numbering = "⚝";
-          tocContent += `<li><a class="w-full text-base font-semibold p-2 level-${headingLevel}" href="#${headingId}"><span class="toc-number">${numbering}</span>${headingText}</a></li>`;
+          tocContent += `<li class="list-none m-0 p-0"><a class="w-full text-base font-semibold p-2 level-${headingLevel}" href="#${headingId}"><span class="toc-number">${numbering}</span>${headingText}</a></li>`;
         }
       });
       tocContent += "</ul>";

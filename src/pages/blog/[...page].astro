@@ -24,7 +24,7 @@ const { page }: { page: Page } = Astro.props;
       uiOptions={{ showImages: false }}
     />
   </BaseCard>
-  <div class="envelope-background mt-8">
+  <div class="mt-8">
     {
       page.data.map((post: Post) => (
         <EnvelopeCard
@@ -41,7 +41,7 @@ const { page }: { page: Page } = Astro.props;
     }
   </div>
   <br />
-  <div class="next-btn">
+  <div class="flex justify-between mb-8">
     {
       page.url.prev ? (
         <a href={page.url.prev} class="btn bg-base-100 shadow-xl">

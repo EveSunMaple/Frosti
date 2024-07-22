@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import License from "../components/License.astro";
 import CommentWaline from "./CommentWaline.astro";
 import dayjs from "dayjs";
-import { DATE_FORMAT } from "../consts";
+import { DATE_FORMAT, infoTest } from "../consts";
 const {
   title,
   image,
@@ -14,9 +14,13 @@ const {
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props;
 const displayDate = dayjs(pubDate).format(DATE_FORMAT);
+const hasTags = tags && tags.length > 0;
 ---
 
-<div class="back-card card bg-base-100 shadow-xl" title={title}>
+<div
+  class="mb-8 relative left-1/2 transform -translate-x-1/2 overflow-hidden card bg-base-100 shadow-xl"
+  title={title}
+>
   {
     image && (
       <Image
@@ -30,7 +34,7 @@ const displayDate = dayjs(pubDate).format(DATE_FORMAT);
       />
     )
   }
-  <div class="main-card card bg-base-100">
+  <div class="main-card relative leading-6 z-10 p-8 card bg-base-100">
     {
       isBlog && (
         <>
@@ -41,8 +45,8 @@ const displayDate = dayjs(pubDate).format(DATE_FORMAT);
             )}
             {badge && <div class="badge badge-primary">{badge}</div>}
             <div class="tags">
-              <code>Tag: </code>
-              {tags &&
+              <code>{infoTest.tag}</code>
+              {hasTags ? (
                 tags.map((tag) => (
                   <>
                     <a
@@ -53,7 +57,12 @@ const displayDate = dayjs(pubDate).format(DATE_FORMAT);
                     </a>
                     <span>&thinsp;</span>
                   </>
-                ))}
+                ))
+              ) : (
+                <div class="btn btn-xs btn-secondary btn-disabled">
+                  {infoTest.noTag}
+                </div>
+              )}
             </div>
           </div>
           <hr />

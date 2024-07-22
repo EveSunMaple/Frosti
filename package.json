@@ -1,7 +1,7 @@
 {
   "name": "frosti",
   "type": "module",
-  "version": "2.4.1",
+  "version": "2.5.0-alpha.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -29,7 +29,7 @@
     "sass": "^1.77.8",
     "shiki": "^1.11.0",
     "twikoo": "^1.6.38",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",

@@ -3,13 +3,13 @@ import { socialIcons } from "../consts.ts";
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="social-icons bg-base-200 p-4 rounded-lg gap-4">
+<div class="text-center bg-base-200 p-4 rounded-lg gap-4">
   {
     socialIcons.map((icon) => (
       <a
         href={icon.href}
         target="_blank"
-        class="social-icon"
+        class="text-center rounded-[10px] inline-block m-[0_5px] leading-[30px] w-[30px] text-2xl no-underline"
         aria-label={icon.ariaLabel}
         title={icon.title}
       >
