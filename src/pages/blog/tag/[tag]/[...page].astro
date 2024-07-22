@@ -32,7 +32,6 @@ const params = Astro.params;
   <BaseCard title="tag">
     <h1 id="h1">{infoTest.tagPage + params.tag}</h1>
   </BaseCard>
-  <br />
   <div class="envelope-background">
     {
       page.data.map((post: Post) => (
@@ -49,4 +48,5 @@ const params = Astro.params;
       ))
     }
   </div>
+  <br />
 </BaseLayout>
