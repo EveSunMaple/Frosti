@@ -17,28 +17,20 @@ const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
 const hasTags = tags && tags.length > 0;
 ---
 
-<div class="envelope-back card bg-base-100 shadow-xl">
-  <div class="envelope-image">
-    {
-      image && (
-        <Image
-          src={image}
-          width="300"
-          height="200"
-          format="webp"
-          alt={title}
-          loading="lazy"
-        />
-      )
-    }
-  </div>
-  <div class="envelope-card card bg-base-100">
-    <div class="envelope-info p-6">
-      <a href={url} target={target} class="envelope-title">
-        <h1 id="h1">{title}</h1>
+<div
+  class="mt-8 relative w-full overflow-hidden card bg-base-100 shadow-xl flex flex-col lg:flex-row"
+>
+  <div
+    class="relative w-full h-auto rounded-3xl overflow-hidden card bg-base-100 flex-1 lg:order-1 order-2 flex"
+  >
+    <div class="relative w-full h-full p-6 flex flex-col justify-between">
+      <a href={url} target={target}>
+        <h1 id="h1">
+          {title}
+        </h1>
       </a>
-      <div class="info">{desc}</div>
-      <div class="info">
+      <div class="m-2">{desc}</div>
+      <div class="m-2">
         {displayDate && <div class="badge badge-neutral">{displayDate}</div>}
         {badge && <div class="badge badge-primary">{badge}</div>}
         <div class="tags">
@@ -65,5 +57,23 @@ const hasTags = tags && tags.length > 0;
         </div>
       </div>
     </div>
+  </div>
+
+  <div
+    class="relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1"
+  >
+    {
+      image && (
+        <Image
+          src={image}
+          alt={title}
+          width="300"
+          height="200"
+          format="webp"
+          loading="lazy"
+          class="object-cover w-full h-full"
+        />
+      )
+    }
   </div>
 </div>

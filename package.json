@@ -1,7 +1,7 @@
 {
   "name": "frosti",
   "type": "module",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -18,7 +18,7 @@
     "@playform/compress": "^0.0.13",
     "astro": "^4.12.2",
     "astro-icon": "^1.1.0",
-    "astro-pagefind": "^1.5.0",
+    "astro-pagefind": "^1.6.0",
     "dayjs": "^1.11.12",
     "katex": "^0.16.11",
     "pagefind": "^1.1.0",
@@ -27,7 +27,7 @@
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
     "sass": "^1.77.8",
-    "shiki": "^1.10.3",
+    "shiki": "^1.11.0",
     "twikoo": "^1.6.38",
     "typescript": "^5.5.3"
   },

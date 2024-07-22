@@ -1,18 +1,25 @@
 ---
 import { menuItems } from "../consts";
+import { Icon } from "astro-icon/components";
 ---
 
-<ul class="menu bg-base-100 w-full m-0">
+<ul
+  class="menu bg-base-100 w-full m-0 flex flex-col items-center lg:items-start"
+>
   {
     menuItems.map((item) => (
-      <li>
+      <li class="w-full">
         <a
-          class="menu-item p-4"
+          class="flex justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4"
           id={item.id}
+          title={item.id}
           href={item.href}
           target={item.target || "_self"}
         >
-          {item.text}
+          <span class="inline-flex justify-center">
+            <Icon name={`menu/${item.svg}`} />
+          </span>
+          <span class="hidden lg:inline ml-2">{item.text}</span>
         </a>
       </li>
     ))

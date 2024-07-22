@@ -4,7 +4,6 @@ import Profile from "../components/ProfileCard.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import ThemeIcon from "../components/ThemeIcon.astro";
 import Content from "../components/Content.astro";
 import { ViewTransitions } from "astro:transitions";
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../consts";
@@ -22,8 +21,12 @@ const { image, includeSidebar = true } = Astro.props;
     <script src="../scripts/copybutton.mjs"></script>
     <Header title={SITE_TITLE} />
     <div class="max-w-7xl m-auto">
-      <div class="relative grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
-        <div class="md:col-span-1 top-4 bg-white bg-opacity-0 p-2">
+      <div
+        class="relative grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4 top-16 md:top-0"
+      >
+        <div
+          class="md:col-span-1 top-4 bg-white bg-opacity-0 p-2 hidden max-md:hidden md:inline order-2 md:order-1"
+        >
           {
             includeSidebar && (
               <>
@@ -33,7 +36,9 @@ const { image, includeSidebar = true } = Astro.props;
             )
           }
         </div>
-        <div class="md:col-span-3 overflow-hidden bg-white bg-opacity-0 p-2">
+        <div
+          class="col-span-3 md:col-span-4 lg:col-span-3 overflow-hidden bg-white bg-opacity-0 p-2 order-1 md:order-2"
+        >
           <div class="">
             <main>
               <slot />
@@ -44,6 +49,5 @@ const { image, includeSidebar = true } = Astro.props;
         </div>
       </div>
     </div>
-    <ThemeIcon />
   </body>
 </html>

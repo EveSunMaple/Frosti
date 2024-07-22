@@ -1,6 +1,6 @@
 ---
 title: Using mdx in Frosti
-description: Create more components with mdx!
+description: Using MDX in Frosti to enrich article content with more components
 pubDate: 07 12 2024
 image: https://saroprock.oss-cn-hangzhou.aliyuncs.com/img/diary-968592_1280.jpg
 tags:
@@ -37,11 +37,11 @@ The components provided by Frosti are placed in the `/blog` and `/page` folders.
 import Collapse from "../../components/blog/collapse.astro";
 import Diff from "../../components/blog/diff.astro";
 import Error from "../../components/blog/error.astro";
-import Info from "../../components/blog/info.astro"; 
+import Info from "../../components/blog/info.astro";
 import Kbd from "../../components/blog/kbd.astro";
 import Success from "../../components/blog/success.astro";
 import Warning from "../../components/blog/warning.astro";
-import TimeLine from "../../components/page/TimeLine.astro"; 
+import TimeLine from "../../components/page/TimeLine.astro";
 import LinkCard from "../../components/page/LinkCard.astro";
 ```
 
@@ -49,10 +49,16 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 #### Collapse
 
-<Collapse title="This is an example text." > This is the hidden content! </Collapse>
+<Collapse title="This is an example text.">
+  {" "}
+  This is the hidden content!{" "}
+</Collapse>
 
 ```js
-<Collapse title="This is an example text." > This is the hidden content! </Collapse>
+<Collapse title="This is an example text.">
+  {" "}
+  This is the hidden content!{" "}
+</Collapse>
 ```
 
 #### Diff
@@ -128,9 +134,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
   </li>
   <li>
     <hr class="bg-neutral-content" />
-    <TimeLine time="……"> 
-      Stay tuned!
-    </TimeLine>
+    <TimeLine time="……">Stay tuned!</TimeLine>
   </li>
 </ul>
 
@@ -158,9 +162,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
   </li>
   <li>
     <hr class="bg-neutral-content" />
-    <TimeLine time="……"> 
-      Stay tuned!
-    </TimeLine>
+    <TimeLine time="……">Stay tuned!</TimeLine>
   </li>
 </ul>
 ```

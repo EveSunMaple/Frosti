@@ -1,17 +1,24 @@
 ---
-
+import ThemeIcon from "../components/ThemeIcon.astro";
 ---
 
-<div
-  class="flex-col gap-4 mb-b w-full max-w-[300px] max-h-[600px] overflow-hide sticky top-8 card bg-base-100 shadow-xl p-4 menu"
-  id="content-box"
->
-  <div class="skeleton h-4 w-28"></div>
-  <div class="skeleton h-4 w-full"></div>
-  <div class="skeleton h-4 w-full"></div>
-  <div class="skeleton h-4 w-full"></div>
+<div class="flex-col gap-4 w-full sticky top-8">
+  <div
+    class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center mb-b w-full max-h-[600px] overflow-hide card bg-base-100 shadow-xl p-4"
+    id="button-box"
+  >
+    <ThemeIcon />
+  </div>
+  <div
+    class="mb-b w-full max-h-[600px] overflow-hide top-8 card bg-base-100 shadow-xl p-4 menu"
+    id="content-box"
+  >
+    <div class="skeleton h-4 w-28"></div>
+    <div class="skeleton h-4 w-full"></div>
+    <div class="skeleton h-4 w-full"></div>
+    <div class="skeleton h-4 w-full"></div>
+  </div>
 </div>
-
 <script>
   document.addEventListener("astro:page-load", () => {
     const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -28,7 +35,8 @@
           const level = headingLevel - 1;
           levelCounters[level]++;
           levelCounters.fill(0, level + 1);
-          const numbering = levelCounters.slice(1, level + 1).join(".");
+          var numbering = levelCounters.slice(1, level + 1).join(".");
+          if (numbering == "") numbering = "⚝";
           tocContent += `<li><a class="w-full text-base font-semibold p-2 level-${headingLevel}" href="#${headingId}"><span class="toc-number">${numbering}</span>${headingText}</a></li>`;
         }
       });

@@ -2,11 +2,8 @@
 
 ---
 
-<div
-  class="flex justify-center card bg-base-100 shadow-xl sidebtn bottom-6"
-  id="btn-theme"
->
-  <label for="themeToggle1" class="" id="themeLabel1"
+<button class="flex justify-center card bg-base-100 btn btn-ghost w-auto h-10">
+  <label for="themeToggle1" id="themeLabel1"
     ><span class="sr-only">Theme Toggle</span>
     <input type="checkbox" id="themeToggle1" />
     <svg
@@ -28,7 +25,28 @@
       ></path>
     </svg>
   </label>
-</div>
+</button>
+
+<button
+  class="flex justify-center card bg-base-100 transition-none btn btn-ghost w-auto h-10"
+  id="backToTop"
+  ><span class="sr-only">To Top Button</span><svg
+    viewBox="0 0 24 24"
+    fill="fill-current w-10 h-10"
+    xmlns="http://www.w3.org/2000/svg"
+    ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+      id="SVGRepo_tracerCarrier"
+      stroke-linecap="round"
+      stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+      <path
+        d="M12 5V19M12 5L6 11M12 5L18 11"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </g></svg
+  ></button
+>
 
 <script>
   document.addEventListener("astro:page-load", () => {
@@ -88,6 +106,17 @@
     }
     if (themeToggle2) {
       themeToggle2.addEventListener("click", handleToggleClick);
+    }
+
+    const backToTopButton = document.getElementById("backToTop");
+
+    if (backToTopButton) {
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
     }
   });
 </script>

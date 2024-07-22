@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* HTML and Body Styles */
 html {
   @apply scroll-smooth;
@@ -62,11 +63,6 @@ ul {
 
 li::marker,
 .toc-number {
-  color: oklch(var(--a));
-}
-
-.level-1::before{
-  content: "⚝";
   color: oklch(var(--a));
 }
 
@@ -147,8 +143,8 @@ table tr {
 }
 
 /* Image Styles */
-img {
-  @apply rounded-lg;
+.main-card img {
+  @apply rounded-xl;
 }
 
 /* Code and Preformatted Text */
@@ -244,11 +240,6 @@ hr {
 
 .envelope-info {
   @apply relative w-full h-full overflow-hidden whitespace-nowrap text-ellipsis z-50;
-}
-
-.envelope-title {
-  @apply text-5xl overflow-hidden text-ellipsis whitespace-nowrap;
-  text-shadow: 0.01em -0.01em #fff, -0.01em 0.01em #999, -0.1em 0.1em 5px #80808080;
 }
 
 .desc {
@@ -356,7 +347,7 @@ hr {
 }
 
 .social-icon {
-  @apply rounded-[10px] inline-block m-[0_5px] leading-[30px] w-[30px] text-xl no-underline;
+  @apply text-center rounded-[10px] inline-block m-[0_5px] leading-[30px] w-[30px] text-2xl no-underline;
 }
 
 .next-btn {

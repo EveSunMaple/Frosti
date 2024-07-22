@@ -26,16 +26,17 @@ export const infoTest = {
 
 // Menu items for navigation
 export const menuItems = [
-  { id: "home", text: "Home", href: "/" }, // Home page
-  { id: "about", text: "About", href: "/about" }, // About page
-  { id: "blog", text: "Blogs", href: "/blog" }, // Blog page
-  { id: "project", text: "Projects", href: "/project" }, // Projects page
-  { id: "friend", text: "Friends", href: "/friend" }, // Friends page
+  { id: "home", text: "Home", href: "/", svg: "home" }, // Home page
+  { id: "about", text: "About", href: "/about", svg: "about" }, // About page
+  { id: "blog", text: "Blogs", href: "/blog", svg: "blog" }, // Blog page
+  { id: "project", text: "Projects", href: "/project", svg: "project" }, // Projects page
+  { id: "friend", text: "Friends", href: "/friend", svg: "friend" }, // Friends page
   {
     id: "contact",
     text: "Contact",
     href: "mailto:contact.evesunmaple@outlook.com", // Contact email
     target: "_blank", // Open in a new tab
+    svg: "contact",
   },
 ];
 
@@ -58,12 +59,6 @@ export const socialIcons = [
     ariaLabel: "BiliBili",
     title: "BiliBili",
     svg: "bilibili",
-  },
-  {
-    href: "https://www.zhihu.com/people/sunmaple-20",
-    ariaLabel: "知乎",
-    title: "知乎",
-    svg: "zhihu",
   },
   {
     href: "/rss.xml",
