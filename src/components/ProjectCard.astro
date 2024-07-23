@@ -8,11 +8,13 @@ const { title, image, desc, url, target = "_blank" } = Astro.props;
   class="mt-8 relative w-full overflow-hidden card bg-base-100 shadow-xl flex flex-col lg:flex-row"
 >
   <div
-    class="relative w-full h-auto rounded-3xl overflow-hidden card bg-base-100 flex-1 lg:order-1 order-2 flex card bg-base-100"
+    class="erelative w-full h-auto rounded-3xl overflow-hidden card bg-base-100 flex-1 lg:order-1 order-2 flex card bg-base-100"
   >
-    <div class="relative w-full h-full p-6 flex flex-col justify-between">
-      <a href={url} target={target}>
-        <h1 id="h1">{title}</h1>
+    <div
+      class="envelope-back relative w-full h-full p-6 flex flex-col justify-between"
+    >
+      <a class="envelope-title" href={url} target={target}>
+        <h1 id={title}>{title}</h1>
       </a>
       <div class="m-2">{desc}</div>
       <div class="m-2 flex">
