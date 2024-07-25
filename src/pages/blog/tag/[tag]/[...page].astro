@@ -6,7 +6,7 @@ import BaseCard from "../../../../components/BaseCard.astro";
 import { getCollection } from "astro:content";
 import { infoTest } from "../../../../consts";
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: { paginate: any }) {
   const all_posts = await getCollection("blog");
 
   const all_tags = [

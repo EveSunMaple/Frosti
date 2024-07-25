@@ -7,7 +7,7 @@ import { getCollection } from "astro:content";
 import Search from "astro-pagefind/components/Search";
 import { infoTest } from "../../consts";
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: { paginate: any }) {
   const posts = await getCollection("blog");
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return paginate(posts, { pageSize: 5 });

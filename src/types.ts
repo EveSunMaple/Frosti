@@ -17,3 +17,24 @@ export interface Page {
   };
   data: Post[];
 }
+
+export interface CardInfo {
+  title: string;
+  image?: string;
+  pubDate?: Date;
+  badge?: string;
+  tags?: string[];
+  isBlog: boolean;
+  url?: string;
+}
+
+export interface EnvelopeInfo {
+  title: string;
+  desc: string;
+  image?: string;
+  pubDate?: Date;
+  badge?: string;
+  tags?: string[];
+  isBlog: boolean;
+  url: string;
+}

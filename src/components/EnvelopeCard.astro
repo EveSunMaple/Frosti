@@ -1,20 +1,14 @@
 ---
-import { Image } from "astro:assets";
 import dayjs from "dayjs";
+import { Image } from "astro:assets";
 import { infoTest } from "../consts";
-const {
-  title,
-  image,
-  desc,
-  pubDate,
-  url,
-  badge,
-  tags,
-  target = "_blank",
-} = Astro.props;
+import type { EnvelopeInfo } from "../types";
+const { title, desc, image, pubDate, badge, tags, url } =
+  Astro.props as EnvelopeInfo;
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
 const hasTags = tags && tags.length > 0;
+const target = "_blank";
 ---
 
 <div
