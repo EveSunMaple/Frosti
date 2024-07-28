@@ -22,7 +22,7 @@ const { image, includeSidebar = true } = Astro.props;
     <Header title={SITE_TITLE} />
     <div class="max-w-7xl m-auto">
       <div
-        class="relative grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4 top-16 md:top-0"
+        class="relative grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-0 md:p-0 lg:p-4 top-16 md:top-0"
       >
         <div
           class="md:col-span-1 top-4 bg-white bg-opacity-0 p-2 hidden max-md:hidden md:inline order-2 md:order-1"
@@ -39,7 +39,7 @@ const { image, includeSidebar = true } = Astro.props;
         <div
           class="col-span-3 md:col-span-4 lg:col-span-3 bg-white bg-opacity-0 p-2 order-1 md:order-2"
         >
-          <div class="">
+          <div>
             <main>
               <slot />
             </main>

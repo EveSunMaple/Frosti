@@ -33,7 +33,7 @@ First you need to create an `mdx` file, which is as simple as changing the exten
 
 The components provided by Frosti are placed in the `/blog` and `/page` folders. Write something in the document properties (frontmatter):
 
-```js
+```astro
 import Collapse from "../../components/blog/collapse.astro";
 import Diff from "../../components/blog/diff.astro";
 import Error from "../../components/blog/error.astro";
@@ -54,7 +54,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
   This is the hidden content!{" "}
 </Collapse>
 
-```js
+```astro
 <Collapse title="This is an example text.">
   {" "}
   This is the hidden content!{" "}
@@ -65,7 +65,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 <Diff r="/r.png" l="/l.png"></Diff>
 
-```js
+```astro
 <Diff r="/r.png" l="/l.png"></Diff>
 ```
 
@@ -73,7 +73,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 <Error>Maybe something went wrong? </Error>
 
-```js
+```astro
 <Error>Maybe something went wrong? </Error>
 ```
 
@@ -81,7 +81,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 <Warning>Hey! Watch out for potholes! </Warning>
 
-```js
+```astro
 <Warning>Hey! Watch out for potholes! </Warning>
 ```
 
@@ -89,7 +89,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 <Info>It's just a message. </Info>
 
-```js
+```astro
 <Info>It's just a message. </Info>
 ```
 
@@ -97,7 +97,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 <Success>Congratulations on your successful deployment! </Success>
 
-```js
+```astro
 <Success>Congratulations on your successful deployment! </Success>
 ```
 
@@ -105,7 +105,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> to copy the text.
 
-```js
+```astro
 <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> to copy the text.
 ```
 
@@ -138,7 +138,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
   </li>
 </ul>
 
-```js
+```astro
 <ul class="timeline timeline-vertical">
   <li>
     <TimeLine time="2024 3 17" left="true" check="true">
@@ -176,7 +176,7 @@ import LinkCard from "../../components/page/LinkCard.astro";
   img="/favicon.ico"
 />
 
-```js
+```astro
 <LinkCard
   title="Frosti"
   desc="My blog project!"

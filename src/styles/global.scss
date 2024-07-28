@@ -6,11 +6,6 @@ html {
   @apply scroll-smooth;
 }
 
-.astro-code,
-.astro-code span {
-  background-color: oklch(var(--b2)) !important;
-}
-
 .link-card a,
 a {
   @apply relative no-underline;
@@ -29,7 +24,7 @@ a {
 .alert,
 .collapse,
 .diff{
-  @apply m-2;
+  @apply my-2;
 }
 
 html[data-theme="dracula"] {
@@ -38,14 +33,17 @@ html[data-theme="dracula"] {
   --pagefind-ui-background: oklch(var(--b1));
   --pagefind-ui-border: oklch(var(--n));
   --pagefind-ui-tag: oklch(var(--b1));
-
-  .astro-code,
-  .astro-code span {
+  .highlight,
+  .frosti-code,
+  .frosti-code span {
     color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
+    background-color: oklch(var(--n)) !important;
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+  .highlight-tools {
+    background-color: oklch(var(--n));
   }
 }
 
@@ -71,7 +69,7 @@ body {
 p,
 ol,
 ul {
-  @apply m-2 leading-normal;
+  @apply my-2 leading-normal;
 }
 
 ol {
@@ -101,7 +99,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply m-2 mb-1;
+  @apply my-2 mb-1;
   text-shadow: 0.01em -0.01em #fff, -0.01em 0.01em #999, -0.1em 0.1em 5px #80808080;
 }
 
@@ -127,15 +125,15 @@ h5 {
 
 strong,
 b {
-  @apply font-bold m-2;
+  @apply font-bold my-2;
 }
 
 em {
-  @apply m-2;
+  @apply my-2;
 }
 
 table {
-  @apply border-collapse m-2;
+  @apply border-collapse my-2;
 }
 
 table tr {
@@ -150,7 +148,6 @@ code {
 
 pre {
   font-family: 'Cascadia';
-  @apply text-sm p-6 m-2 mockup-code;
 }
 
 blockquote {
@@ -171,17 +168,56 @@ hr {
   height: 50px;
 }
 
-pre .line {
-  counter-increment: line;
-  padding-left: 2.5em;
+.card figure{
+  @apply block;
+  @apply relative;
 }
 
-pre :not(:last-child).line::before {
-  content: counter(line);
-  position: absolute;
-  left: 0;
-  width: 3em;
-  text-align: right;
-  margin-right: 10px;
+.frosti-code,
+.frosti-code span {
+  @apply text-sm;
+  background-color: oklch(var(--b2));
+}
+
+.highlight {
+  position: relative;
+  border-radius: var(--rounded-box, 1rem);
+  overflow: hidden;
+  margin: 0.5rem 0;
+  background-color: oklch(var(--b2));
+}
+
+.highlight-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.0rem;
+  background-color: oklch(var(--nc));
+}
+
+.highlight-code{
+  @apply flex;
+}
+
+.highlight-code .code{
+  @apply flex-auto;
+  overflow: auto;
+}
+
+.highlight-code .gutter{
+  @apply flex-none text-right;
   color: #888;
+  user-select: none;
+  border-right: 1px solid #888;
+}
+
+.highlight .code-lang {
+  font-family: 'Cascadia';
+  user-select: none;
+}
+
+pre {
+  margin: 0;
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
 }
