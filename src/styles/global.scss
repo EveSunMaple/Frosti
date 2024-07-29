@@ -147,6 +147,7 @@ code {
 
 pre {
   font-family: 'Cascadia';
+  padding: 10px;
 }
 
 blockquote {
@@ -159,10 +160,10 @@ pre>code {
 
 hr {
   border: 0;
+  display: flex;
   color: oklch(var(--bc));
   background: linear-gradient(currentColor, currentColor) no-repeat center;
   background-size: calc(100% - 1.5em - 6px) 1px;
-  display: flex;
   justify-content: space-between;
   height: 50px;
 }
@@ -213,10 +214,4 @@ hr {
 .highlight .code-lang {
   font-family: 'Cascadia';
   user-select: none;
-}
-
-pre {
-  margin: 0;
-  padding: 10px;
-  border-radius: 0 0 5px 5px;
 }

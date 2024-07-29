@@ -1,7 +1,7 @@
 {
   "name": "frosti-test",
   "type": "module",
-  "version": "2.5.0-beta",
+  "version": "2.5.0-beta.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

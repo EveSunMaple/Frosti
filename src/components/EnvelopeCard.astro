@@ -8,7 +8,7 @@ const { title, desc, image, pubDate, badge, tags, url } =
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
 const hasTags = tags && tags.length > 0;
-const target = "_blank";
+const target = "_self";
 ---
 
 <div
