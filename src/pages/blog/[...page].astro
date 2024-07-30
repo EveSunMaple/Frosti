@@ -16,7 +16,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 const { page }: { page: Page } = Astro.props;
 ---
 
-<BaseLayout PageID="blog">
+<BaseLayout title="blog">
   <BaseCard title="search">
     <Search
       id="search"
@@ -24,7 +24,7 @@ const { page }: { page: Page } = Astro.props;
       uiOptions={{ showImages: false }}
     />
   </BaseCard>
-  <div class="mt-8">
+  <div class="mt-8 mb-8">
     {
       page.data.map((post: Post) => (
         <EnvelopeCard
@@ -40,7 +40,6 @@ const { page }: { page: Page } = Astro.props;
       ))
     }
   </div>
-  <br />
   <div class="flex justify-between mb-8">
     {
       page.url.prev ? (

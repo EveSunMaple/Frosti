@@ -16,7 +16,7 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BaseLayout PageID="blog">
+<BaseLayout title="blog">
   <BaseCard
     title={post.data.title}
     image={post.data.image}

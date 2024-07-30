@@ -202,11 +202,11 @@ hr {
 .highlight-code .code{
   @apply flex-auto;
   overflow: auto;
+  padding-right: 4em;
 }
 
 .highlight-code .gutter{
   @apply flex-none text-right;
-  color: #888;
   user-select: none;
   border-right: 1px solid #888;
 }

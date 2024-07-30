@@ -28,11 +28,11 @@ const { page } = Astro.props as { page: Page };
 const params = Astro.params;
 ---
 
-<BaseLayout PageID="blog">
+<BaseLayout title="tag">
   <BaseCard title="tag">
     <h1 id="h1">{infoTest.tagPage + params.tag}</h1>
   </BaseCard>
-  <div class="mt-8">
+  <div class="mt-8 mb-8">
     {
       page.data.map((post: Post) => (
         <EnvelopeCard
@@ -48,5 +48,4 @@ const params = Astro.params;
       ))
     }
   </div>
-  <br />
 </BaseLayout>

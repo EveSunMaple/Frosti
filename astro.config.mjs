@@ -57,13 +57,13 @@ export default defineConfig({
             const lineNumberPre = {
               type: 'element',
               tagName: 'pre',
-              properties: { className: ['frosti-code'] },
+              properties: { className: ['frosti-code', 'gutter'] },
               children: [lineNumberCode],
             };
             const codeContentPre = {
               type: 'element',
               tagName: 'pre',
-              properties: { className: ['frosti-code'] },
+              properties: { className: ['frosti-code', 'code'] },
               children: [],
             };
             node.children.forEach((lineNode, index, count) => {
@@ -87,20 +87,7 @@ export default defineConfig({
               type: 'element',
               tagName: 'div',
               properties: { className: ['highlight-code'] },
-              children: [
-                {
-                  type: 'element',
-                  tagName: 'div',
-                  properties: { className: ['gutter'] },
-                  children: [lineNumberPre],
-                },
-                {
-                  type: 'element',
-                  tagName: 'div',
-                  properties: { className: ['code'] },
-                  children: [codeContentPre],
-                },
-              ],
+              children: [lineNumberPre, codeContentPre],
             };
             return {
               type: 'element',

@@ -12,41 +12,42 @@ import LinkCard from "../components/page/LinkCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import ProjectJS from "../components/ProjectJS.astro";
 
-<BaseLayout PageID="project">
+<BaseLayout title="Project">
   <BaseCard title="Project">
   # Project
 
 ---
 
   </BaseCard>
-  <ProjectCard
-    title="Frosti"
-    image="https://frosti.saroprock.com/view.png"
-    desc="一个干净、优美、快速的博客模板！"
-    url="https://github.com/EveSunMaple/Frosti"
-    target="_self"
-  />
-  <ProjectCard
-    title="Word-testing-application"
-    image="https://raw.githubusercontent.com/EveSunMaple/Word-testing-application/master/view.png"
-    desc="一个用Python和Tkinter制作的单词测试应用"
-    url="https://github.com/EveSunMaple/Word-testing-application"
-    target="_self"
-  />
-  <ProjectCard
-    title="InfinitySky"
-    image="https://raw.githubusercontent.com/EveSunMaple/InfinitySky/master/view.png"
-    desc="一个ExtraEasy2D的示例项目"
-    url="https://github.com/EveSunMaple/InfinitySky"
-    target="_self"
-  />
-  <ProjectCard
-    title="code-judge"
-    image="https://raw.githubusercontent.com/EveSunMaple/code-judge/master/index.png"
-    desc="An elegant yet uncomplicated CPP judging system for informatics competitions."
-    url="https://github.com/EveSunMaple/code-judge"
-    target="_self"
-  />
-  <br />
+  <div class="mt-8 mb-8">
+    <ProjectCard
+      title="Frosti"
+      image="https://frosti.saroprock.com/view.png"
+      desc="一个干净、优美、快速的博客模板！"
+      url="https://github.com/EveSunMaple/Frosti"
+      target="_self"
+    />
+    <ProjectCard
+      title="Word-testing-application"
+      image="https://raw.githubusercontent.com/EveSunMaple/Word-testing-application/master/view.png"
+      desc="一个用Python和Tkinter制作的单词测试应用"
+      url="https://github.com/EveSunMaple/Word-testing-application"
+      target="_self"
+    />
+    <ProjectCard
+      title="InfinitySky"
+      image="https://raw.githubusercontent.com/EveSunMaple/InfinitySky/master/view.png"
+      desc="一个ExtraEasy2D的示例项目"
+      url="https://github.com/EveSunMaple/InfinitySky"
+      target="_self"
+    />
+    <ProjectCard
+      title="code-judge"
+      image="https://raw.githubusercontent.com/EveSunMaple/code-judge/master/index.png"
+      desc="An elegant yet uncomplicated CPP judging system for informatics competitions."
+      url="https://github.com/EveSunMaple/code-judge"
+      target="_self"
+    />
+  </div>
 </BaseLayout>
 <ProjectJS />

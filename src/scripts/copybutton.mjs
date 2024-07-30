@@ -1,5 +1,5 @@
 document.addEventListener('astro:page-load', () => {
-  var codeBlocks = document.querySelectorAll('.code > pre');
+  var codeBlocks = document.querySelectorAll('.code');
   var toolsBlocks = document.querySelectorAll('.highlight-tools');
 
   codeBlocks.forEach(function (codeBlock, index) {
