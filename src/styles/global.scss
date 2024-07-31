@@ -215,3 +215,11 @@ hr {
   font-family: 'Cascadia';
   user-select: none;
 }
+
+details summary {
+  list-style: none;
+  outline: none; 
+  align-items: center;
+  justify-content: center; 
+  cursor: pointer; 
+}

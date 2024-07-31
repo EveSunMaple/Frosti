@@ -10,10 +10,37 @@ import { infoTest } from "../../consts";
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const posts = await getCollection("blog");
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  return paginate(posts, { pageSize: 5 });
+  return paginate(posts, { pageSize: 10 });
 }
 
 const { page }: { page: Page } = Astro.props;
+
+function generatePageLinks(totalPages: number): {
+  active: string[];
+  hidden: string[];
+} {
+  const pages = {
+    active: [] as string[],
+    hidden: [] as string[],
+  };
+
+  if (totalPages > 3) {
+    pages.active.push("1");
+    pages.active.push("...");
+    pages.active.push(totalPages.toString());
+    for (let i = 2; i <= totalPages - 1; i++) {
+      pages.hidden.push(i.toString());
+    }
+  } else {
+    for (let i = 1; i <= totalPages; i++) {
+      pages.active.push(i.toString());
+    }
+  }
+  return pages;
+}
+
+const totalPages = Math.ceil(page.total / page.size);
+const pageLinks = generatePageLinks(totalPages);
 ---
 
 <BaseLayout title="blog">
@@ -41,41 +68,93 @@ const { page }: { page: Page } = Astro.props;
     }
   </div>
   <div class="flex justify-between mb-8">
-    {
-      page.url.prev ? (
-        <a href={page.url.prev} class="btn bg-base-100 shadow-xl">
-          <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
-          </svg>{" "}
-          {infoTest.prevPage}
-        </a>
-      ) : (
-        <div />
-      )
-    }
-    {
-      page.url.next ? (
-        <a href={page.url.next} class="btn bg-base-100 shadow-xl">
-          {infoTest.nextPage}{" "}
-          <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-          </svg>
-        </a>
-      ) : (
-        <div />
-      )
-    }
+    <a
+      href={page.url.prev ? page.url.prev : ``}
+      class={page.url.prev
+        ? `btn bg-base-100 shadow-xl`
+        : `btn  btn-disabled bg-base-100 shadow-xl`}
+    >
+      <svg
+        class="h-6 w-6 fill-current md:h-8 md:w-8"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+        ></path>
+      </svg>
+      {infoTest.prevPage}
+    </a>
+    <div class="join">
+      {
+        totalPages > 4 ? (
+          <>
+            {pageLinks.active.map((link) =>
+              link === "..." ? (
+                <div class="dropdown dropdown-top join-item rounded-none">
+                  <div
+                    tabindex="0"
+                    role="button"
+                    class="btn rounded-none w-[55px]"
+                  >
+                    ...
+                  </div>
+                  <ul
+                    tabindex="0"
+                    class="menu dropdown-content bg-base-100 rounded-box z-[100] p-2 shadow-xl"
+                  >
+                    {pageLinks.hidden.map((hidden) => (
+                      <li>
+                        <a
+                          href={hidden === "1" ? `/blog` : `/blog/${hidden}`}
+                          class={`menu-item ${hidden === page.current ? "btn-active" : ""}`}
+                        >
+                          {hidden}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={link === "1" ? `/blog` : `/blog/${link}`}
+                  class={`join-item btn ${link === page.current ? "btn-active" : ""}`}
+                >
+                  {link}
+                </a>
+              )
+            )}
+          </>
+        ) : (
+          pageLinks.active.map((link) => (
+            <a
+              href={link === "1" ? `/blog` : `/blog/${link}`}
+              class={`join-item btn ${link === page.current ? "btn-active" : ""}`}
+            >
+              {link}
+            </a>
+          ))
+        )
+      }
+    </div>
+    <a
+      href={page.url.next ? page.url.next : ``}
+      class={page.url.next
+        ? `btn bg-base-100 shadow-xl`
+        : `btn  btn-disabled bg-base-100 shadow-xl`}
+    >
+      {infoTest.nextPage}
+      <svg
+        class="h-6 w-6 fill-current md:h-8 md:w-8"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+        ></path>
+      </svg>
+    </a>
   </div>
 </BaseLayout>

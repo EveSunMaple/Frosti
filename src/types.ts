@@ -16,6 +16,9 @@ export interface Page {
     next?: string;
   };
   data: Post[];
+  total: number;
+  size: number;
+  current: string;
 }
 
 export interface CardInfo {
