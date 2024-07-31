@@ -10,7 +10,7 @@ import { infoTest } from "../../consts";
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const posts = await getCollection("blog");
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  return paginate(posts, { pageSize: 10 });
+  return paginate(posts, { pageSize: 8 });
 }
 
 const { page }: { page: Page } = Astro.props;
