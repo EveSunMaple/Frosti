@@ -1,20 +1,20 @@
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import tailwind from "@astrojs/tailwind";
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
-import playformCompress from "@playform/compress";
-import pagefind from "astro-pagefind";
-import icon from "astro-icon";
+import { defineConfig } from 'astro/config'
+import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
+import tailwind from '@astrojs/tailwind'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import playformCompress from '@playform/compress'
+import pagefind from 'astro-pagefind'
+import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.saroprock.com',
   style: {
     scss: {
-      includePaths: ['./src/styles']
-    }
+      includePaths: ['./src/styles'],
+    },
   },
   integrations: [mdx(), icon(), sitemap(), tailwind(), playformCompress(), pagefind()],
   markdown: {
@@ -26,13 +26,13 @@ export default defineConfig({
       transformers: [
         {
           preprocess(code, { lang }) {
-            this.lang = lang;
-            return code;
+            this.lang = lang
+            return code
           },
           root(node) {
             if (node.tagName === 'pre') {
-              node.tagName = 'figure';
-              node.properties.className = ['highlight', this.lang];
+              node.tagName = 'figure'
+              node.properties.className = ['highlight', this.lang]
             }
           },
           pre(node) {
@@ -48,26 +48,26 @@ export default defineConfig({
                   children: [{ type: 'text', value: this.lang.toUpperCase() }],
                 },
               ],
-            };
+            }
             const lineNumberCode = {
               type: 'element',
               tagName: 'code',
               children: [],
-            };
+            }
             const lineNumberPre = {
               type: 'element',
               tagName: 'pre',
               properties: { className: ['frosti-code', 'gutter'] },
               children: [lineNumberCode],
-            };
+            }
             const codeContentPre = {
               type: 'element',
               tagName: 'pre',
               properties: { className: ['frosti-code', 'code'] },
               children: [],
-            };
+            }
             node.children.forEach((lineNode, index, count) => {
-              count = 0;
+              count = 0
               lineNode.children.forEach(() => {
                 if (count & 1 === 1) {
                   lineNumberCode.children.push({
@@ -75,31 +75,31 @@ export default defineConfig({
                     tagName: 'div',
                     properties: { className: ['line'] },
                     children: [{ type: 'text', value: String(index + 1) }],
-                  });
-                  index++;
+                  })
+                  index++
                 }
-                count++;
-              });
+                count++
+              })
 
-              codeContentPre.children.push(lineNode);
-            });
+              codeContentPre.children.push(lineNode)
+            })
             const table = {
               type: 'element',
               tagName: 'div',
               properties: { className: ['highlight-code'] },
               children: [lineNumberPre, codeContentPre],
-            };
+            }
             return {
               type: 'element',
               tagName: 'figure',
               properties: { className: ['highlight', this.lang] },
               children: [toolsDiv, table],
-            };
+            }
           },
         },
       ],
     },
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex]
+    rehypePlugins: [rehypeKatex],
   },
-});
+})
