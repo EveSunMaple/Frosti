@@ -42,12 +42,12 @@ const hasTags = tags && tags.length > 0;
       isBlog && (
         <>
           <h1 id="h1">{title}</h1>
-          <div class="info" style="margin-top:15px">
+          <div class="info mt-5">
             {displayDate && (
-              <div class="badge badge-neutral">{displayDate}</div>
+              <div class="badge badge-neutral mr-2">{displayDate}</div>
             )}
             {badge && <div class="badge badge-primary">{badge}</div>}
-            <div class="tags" style="margin-top:15px">
+            <div class="tags mt-4">
               <code>{infoTest.tag}</code>
               {hasTags ? (
                 tags.map((tag) => (
