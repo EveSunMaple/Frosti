@@ -6,7 +6,7 @@
   class="flex justify-center card bg-base-100 btn btn-ghost w-auto h-10"
   id="themeToggle"
 >
-  <label for="themeToggle1" id="themeLabel1"
+  <label for="themeToggle1" id="themeLabel1" class="hidden"
     ><span class="sr-only">Theme Toggle</span>
     <input type="checkbox" id="themeToggle1" />
     <svg
@@ -100,10 +100,12 @@
 
     // Add classes if elements are not null
     if (themeLabel1) {
+      themeLabel1.classList.remove("hidden");
       themeLabel1.classList.add("swap");
       themeLabel1.classList.add("swap-rotate");
     }
     if (themeLabel2) {
+      themeLabel2.classList.remove("hidden");
       themeLabel2.classList.add("swap");
       themeLabel2.classList.add("swap-rotate");
     }

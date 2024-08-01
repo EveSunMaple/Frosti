@@ -10,11 +10,13 @@ const {
   image,
   pubDate,
   badge,
+  categories,
   tags,
   isBlog = false,
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props as CardInfo;
 const displayDate = dayjs(pubDate).format(DATE_FORMAT);
+const hasTategories = categories && categories.length > 0;
 const hasTags = tags && tags.length > 0;
 ---
 
@@ -42,12 +44,30 @@ const hasTags = tags && tags.length > 0;
       isBlog && (
         <>
           <h1 id="h1">{title}</h1>
-          <div class="info mt-5">
+          <div class="info mt-2">
             {displayDate && (
-              <div class="badge badge-neutral mr-2">{displayDate}</div>
+              <div class="badge badge-neutral">{displayDate}</div>
+            )}
+            <span>&thinsp;</span>
+            {hasTategories ? (
+              categories.map((categoroy) => (
+                <>
+                  <a
+                    href={`/blog/categories/${categoroy}`}
+                    class="btn btn-xs btn-accent rounded-full"
+                  >
+                    {categoroy}
+                  </a>
+                  <span>&thinsp;</span>
+                </>
+              ))
+            ) : (
+              <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
+                {infoTest.noCategory}
+              </div>
             )}
             {badge && <div class="badge badge-primary">{badge}</div>}
-            <div class="tags mt-4">
+            <div class="tags mt-2">
               <code>{infoTest.tag}</code>
               {hasTags ? (
                 tags.map((tag) => (

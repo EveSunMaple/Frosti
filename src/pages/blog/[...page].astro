@@ -61,6 +61,7 @@ const pageLinks = generatePageLinks(totalPages);
           url={"/blog/" + post.slug}
           pubDate={post.data.pubDate}
           badge={post.data.badge}
+          categories={post.data.categories}
           tags={post.data.tags}
           target="_self"
         />
@@ -69,7 +70,7 @@ const pageLinks = generatePageLinks(totalPages);
   </div>
   <div class="flex justify-between mb-8">
     <a
-      href={page.url.prev ? page.url.prev : ``}
+      href={page.url.prev ? page.url.prev : `javascript:`}
       class={page.url.prev
         ? `btn bg-base-100 shadow-xl`
         : `btn  btn-disabled bg-base-100 shadow-xl`}
@@ -84,7 +85,7 @@ const pageLinks = generatePageLinks(totalPages);
         <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
         ></path>
       </svg>
-      {infoTest.prevPage}
+      <span class="hidden lg:inline ml-2">{infoTest.prevPage}</span>
     </a>
     <div class="join">
       {
@@ -96,19 +97,18 @@ const pageLinks = generatePageLinks(totalPages);
                   <div
                     tabindex="0"
                     role="button"
-                    class="btn rounded-none w-[55px]"
+                    class="btn bg-base-100 rounded-none w-[55px]"
                   >
                     ...
                   </div>
-                  <ul
-                    tabindex="0"
-                    class="menu dropdown-content bg-base-100 rounded-box z-[100] p-2 shadow-xl"
-                  >
+                  <ul class="menu dropdown-content bg-base-100 rounded-box z-[100] p-2 shadow-xl">
                     {pageLinks.hidden.map((hidden) => (
                       <li>
                         <a
+                          title={hidden}
+                          aria-label={hidden}
                           href={hidden === "1" ? `/blog` : `/blog/${hidden}`}
-                          class={`menu-item ${hidden === page.current ? "btn-active" : ""}`}
+                          class={`menu-item bg-base-100 ${hidden === page.current ? "btn-active" : ""}`}
                         >
                           {hidden}
                         </a>
@@ -118,8 +118,10 @@ const pageLinks = generatePageLinks(totalPages);
                 </div>
               ) : (
                 <a
+                  title={link}
+                  aria-label={link}
                   href={link === "1" ? `/blog` : `/blog/${link}`}
-                  class={`join-item btn ${link === page.current ? "btn-active" : ""}`}
+                  class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
                 >
                   {link}
                 </a>
@@ -129,8 +131,10 @@ const pageLinks = generatePageLinks(totalPages);
         ) : (
           pageLinks.active.map((link) => (
             <a
+              title={link}
+              aria-label={link}
               href={link === "1" ? `/blog` : `/blog/${link}`}
-              class={`join-item btn ${link === page.current ? "btn-active" : ""}`}
+              class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
             >
               {link}
             </a>
@@ -139,12 +143,12 @@ const pageLinks = generatePageLinks(totalPages);
       }
     </div>
     <a
-      href={page.url.next ? page.url.next : ``}
+      href={page.url.next ? page.url.next : `javascript:`}
       class={page.url.next
         ? `btn bg-base-100 shadow-xl`
         : `btn  btn-disabled bg-base-100 shadow-xl`}
     >
-      {infoTest.nextPage}
+      <span class="hidden lg:inline ml-2">{infoTest.nextPage}</span>
       <svg
         class="h-6 w-6 fill-current md:h-8 md:w-8"
         xmlns="http://www.w3.org/2000/svg"

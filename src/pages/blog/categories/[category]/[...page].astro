@@ -9,24 +9,24 @@ import { infoTest } from "../../../../consts";
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const all_posts = await getCollection("blog");
 
-  const all_tags = [
-    ...new Set(all_posts.flatMap((post) => post.data.tags || [])),
+  const all_categories = [
+    ...new Set(all_posts.flatMap((post: any) => post.data.categories || [])),
   ];
 
   all_posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  return all_tags.flatMap((tag) => {
+  return all_categories.flatMap((category) => {
     const filtered_posts = all_posts.filter((post) =>
-      post.data.tags?.includes(tag)
+      post.data.categories?.includes(category)
     );
     return paginate(filtered_posts, {
-      params: { tag },
+      params: { category },
       pageSize: 8,
     });
   });
 }
 
 const { page } = Astro.props as { page: Page };
-const params = Astro.params;
+const params = Astro.params as { category: string; page: string };
 
 function generatePageLinks(totalPages: number): {
   active: string[];
@@ -56,9 +56,9 @@ const totalPages = Math.ceil(page.total / page.size);
 const pageLinks = generatePageLinks(totalPages);
 ---
 
-<BaseLayout title="Tag">
-  <BaseCard title="Tag">
-    <h1 id="h1">{infoTest.tagPage + params.tag}</h1>
+<BaseLayout title="Category">
+  <BaseCard title="Category">
+    <h1 id="h1">{infoTest.categoryPage + params.category}</h1>
   </BaseCard>
   <div class="mt-8 mb-8">
     {
@@ -118,8 +118,8 @@ const pageLinks = generatePageLinks(totalPages);
                           aria-label={hidden}
                           href={
                             hidden === "1"
-                              ? `/blog/tag/${params.tag}`
-                              : `/blog/tag/${params.tag}/${hidden}`
+                              ? `/blog/categories/${params.category}`
+                              : `/blog/categories/${params.category}/${hidden}`
                           }
                           class={`menu-item bg-base-100 ${hidden === page.current ? "btn-active" : ""}`}
                         >
@@ -135,8 +135,8 @@ const pageLinks = generatePageLinks(totalPages);
                   aria-label={link}
                   href={
                     link === "1"
-                      ? `/blog/tag/${params.tag}`
-                      : `/blog/tag/${params.tag}/${link}`
+                      ? `/blog/categories/${params.category}`
+                      : `/blog/categories/${params.category}/${link}`
                   }
                   class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
                 >
@@ -152,8 +152,8 @@ const pageLinks = generatePageLinks(totalPages);
               aria-label={link}
               href={
                 link === "1"
-                  ? `/blog/tag/${params.tag}`
-                  : `/blog/tag/${params.tag}/${link}`
+                  ? `/blog/categories/${params.category}`
+                  : `/blog/categories/${params.category}/${link}`
               }
               class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
             >

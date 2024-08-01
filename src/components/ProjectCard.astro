@@ -14,7 +14,7 @@ const { title, image, desc, url, target = "_blank" } = Astro.props;
       class="envelope-back relative w-full h-full p-6 flex flex-col justify-between"
     >
       <a class="envelope-title" href={url} target={target}>
-        <h1 id={title}>{title}</h1>
+        <h1 id={title} class="p-2">{title}</h1>
       </a>
       <div class="m-2">{desc}</div>
       <div class="m-2 flex">
@@ -103,21 +103,19 @@ const { title, image, desc, url, target = "_blank" } = Astro.props;
       </div>
     </div>
   </div>
-  <div
-    class="relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1"
-  >
-    {
-      image && (
+  {
+    image && (
+      <div class="relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1">
         <Image
           src={image}
           alt={title}
           width="300"
           height="200"
           format="webp"
-          loading="lazy"
+          loading="eager"
           class="object-cover w-full h-full"
         />
-      )
-    }
-  </div>
+      </div>
+    )
+  }
 </div>

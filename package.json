@@ -1,7 +1,7 @@
 {
   "name": "frosti-test",
   "type": "module",
-  "version": "2.5.0-rc",
+  "version": "2.5.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -16,7 +16,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@playform/compress": "^0.0.13",
-    "astro": "^4.12.3",
+    "astro": "^4.13.0",
     "astro-icon": "^1.1.0",
     "astro-pagefind": "^1.6.0",
     "dayjs": "^1.11.12",
@@ -27,7 +27,7 @@
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
     "sass": "^1.77.8",
-    "shiki": "^1.12.0",
+    "shiki": "^1.12.1",
     "twikoo": "^1.6.38",
     "typescript": "^5.5.4"
   },

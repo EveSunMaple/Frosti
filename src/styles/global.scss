@@ -216,10 +216,6 @@ hr {
   user-select: none;
 }
 
-details summary {
-  list-style: none;
-  outline: none; 
-  align-items: center;
-  justify-content: center; 
-  cursor: pointer; 
+.menu-item summary::after{
+  position: absolute;
 }

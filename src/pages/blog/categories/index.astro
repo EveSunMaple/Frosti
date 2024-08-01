@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BaseCard from "../../../components/BaseCard.astro";
+import LinkCard from "../../../components/page/LinkCard.astro";
+import { infoTest, categoriesInfo } from "../../../consts";
+---
+
+<BaseLayout title="Categories">
+  <BaseCard title="Categories">
+    <h1 id="h1">{infoTest.categoriesPage}</h1>
+    <hr />
+    <div class="grid grid-cols-2 gap-4">
+      {
+        categoriesInfo.map((item) => (
+          <LinkCard
+            title={item.title}
+            desc={item.desc}
+            url={`/blog/categories/${item.title}`}
+            target={item.target || "_self"}
+          />
+        ))
+      }
+    </div>
+  </BaseCard>
+</BaseLayout>;

@@ -3,7 +3,6 @@ import { menuItems } from "../consts.ts";
 ---
 
 <ul
-  tabindex="0"
   class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-xl"
 >
   {
@@ -12,8 +11,10 @@ import { menuItems } from "../consts.ts";
         <a
           class="menu-item text-xl font-bold p-4"
           id={`header-${item.id}`}
+          title={item.id}
           href={item.href}
           target={item.target || "_self"}
+          aria-label={item.text}
         >
           {item.text}
         </a>

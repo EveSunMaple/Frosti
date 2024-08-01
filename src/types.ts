@@ -1,10 +1,12 @@
 export interface Post {
   data: {
+    [x: string]: any;
     title: string;
     image: string;
     description: string;
     pubDate: Date;
     badge: string;
+    categories: string[];
     tags: string[];
   };
   slug: string;
@@ -26,6 +28,7 @@ export interface CardInfo {
   image?: string;
   pubDate?: Date;
   badge?: string;
+  categories?: string[];
   tags?: string[];
   isBlog: boolean;
   url?: string;
@@ -37,6 +40,7 @@ export interface EnvelopeInfo {
   image?: string;
   pubDate?: Date;
   badge?: string;
+  categories?: string[];
   tags?: string[];
   isBlog: boolean;
   url: string;
