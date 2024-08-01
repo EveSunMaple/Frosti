@@ -41,9 +41,6 @@ dependencies:
   pagefind:
     specifier: ^1.1.0
     version: 1.1.0
-  prismjs:
-    specifier: ^1.29.0
-    version: 1.29.0
   rehype-external-links:
     specifier: ^3.0.0
     version: 3.0.0

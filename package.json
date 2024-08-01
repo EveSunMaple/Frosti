@@ -24,7 +24,6 @@
     "dayjs": "^1.11.12",
     "katex": "^0.16.11",
     "pagefind": "^1.1.0",
-    "prismjs": "^1.29.0",
     "rehype-external-links": "^3.0.0",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",

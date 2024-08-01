@@ -69,7 +69,7 @@ export default defineConfig({
             node.children.forEach((lineNode, index, count) => {
               count = 0
               lineNode.children.forEach(() => {
-                if (count & 1 === 1) {
+                if ((count % 2) === 1) {
                   lineNumberCode.children.push({
                     type: 'element',
                     tagName: 'div',
