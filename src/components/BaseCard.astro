@@ -42,12 +42,17 @@ const hasTags = tags && tags.length > 0;
       isBlog && (
         <>
           <h1 id="h1">{title}</h1>
-          <div class="info">
+          <div class="info" style="margin-top:15px">
             {displayDate && (
               <div class="badge badge-neutral">{displayDate}</div>
             )}
+            <span id="busuanzi_container_page_pv">              
+              <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+              </script>
+              <div class="badge badge-neutral">阅读量：<span id="busuanzi_value_page_pv"></span></div>
+            </span>
             {badge && <div class="badge badge-primary">{badge}</div>}
-            <div class="tags">
+            <div class="tags" style="margin-top:15px">
               <code>{infoTest.tag}</code>
               {hasTags ? (
                 tags.map((tag) => (
