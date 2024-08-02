@@ -46,7 +46,7 @@
   - 安装只需要一行命令
   - 可以在 `consts.ts` 自定义您博客的内容
 
-> [!IMPROTANT]
+> [!IMPORTANT]
 > 评论系统需自己配置，详见 [Waline](https://waline.js.org/) 更改 `src\components\Comment.astro`
 
 ## ✒️ 文章信息
@@ -63,7 +63,7 @@
 
 ## ⬇️ 使用方法
 
-> [!IMPROTANT]
+> [!IMPORTANT]
 > 不推荐直接克隆本仓库来构建博客！
 
 通过将 `--template` 参数传递给 `create astro` 命令来使用 Frosti ！

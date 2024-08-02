@@ -46,7 +46,7 @@
   - Installation requires only one command
   - Customize your blog content in `consts.ts`
 
-> [!IMPROTANT]
+> [!IMPORTANT]
 > The comment system needs to be configured by yourself. See [Waline](https://waline.js.org/) for details. Modify `src\components\Comment.astro`
 
 ## ✒️ Article Information
@@ -63,7 +63,7 @@
 
 ## ⬇️ Usage
 
-> [!IMPROTANT]
+> [!IMPORTANT]
 > It is not recommended to clone this repository directly to build your blog!
 
 Use Frosti by passing the `--template` parameter to the `create astro` command!
