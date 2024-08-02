@@ -1,131 +1,70 @@
 # 🧊 Frosti
 
-**A clean, elegant, and fast static blog template! Developed with [Astro](https://astro.build/)!**
+**A clean, elegant, and fast static blog template! 🚀 Developed with [Astro](https://astro.build/)!**
 
-[**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
+[**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 Chinese README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️ My Blog**](https://www.saroprock.com)
 
 > [!NOTE]
-> For a better reading experience, please visit -> https://frosti.saroprock.com
+> It is recommended to check out the theme preview first -> https://frosti.saroprock.com
 
 ## 🖥️ Preview
 
-![view](https://frosti.saroprock.com/view.png)
+![view](https://frosti.saroprock.com/display/Frosti_1.png)
+![view](https://frosti.saroprock.com/display/Frosti_2.png)
+![view](https://frosti.saroprock.com/display/Frosti_3.png)
+![view](https://frosti.saroprock.com/display/Frosti_4.png)
 
-## ⏲️ performance
+## ⏲️ Performance
 
 ![speed](./400-lighthouse.png)
-![speed](./400.png)
 
 ## ✨ Features
 
-- ✅ Lighthouse 400
-- ✅ Blog content support
-- ✅ View transition animations
-- ✅ You can search your articles
-- ✅ **Light** / **Dark** mode available
-- ✅ Various components for enriching article content
-  - Diverse alerts
-  - Code block copy buttons
-  - More content supported by [daisyUI](https://daisyui.com/)……
-- ✅ Various components for enriching page content
-  - Timeline component
-  - Friends card component
+- ✅ Lightning-fast access speed and excellent SEO
+- ✅ View transition animations (using ViewTransitionsAPI)
+- ✅ Sidebar integration
+  - Define sidebar content in `consts.ts`
+  - Social info card at the bottom
+  - Theme switch and back-to-top button at the bottom
+  - Persistent sidebar article directory
+- ✅ Search your articles (using pagefind)
+- ✅ **Day** / **Night** mode available
+- ✅ Various components to enrich your blog content
+  - Collapsible pages
+  - Link cards
+  - Timeline components
+  - Various Alerts
+  - Code block copy button
+  - Image comparison
+  - End-of-article copyright information
 - ✅ Comment system built with [Waline](https://waline.js.org/)
-- ✅ Beautiful pages built with [Tailwind CSS](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
+- ✅ Responsive pages built with [Tailwind CSS](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
+  - The entire blog is styled for desktop, tablet, and mobile modes
+  - Cards adapt their layout according to your device
+  - Theme switch button automatically matches the theme
+- 🛠️ Easy to use blog
+  - Installation requires only one command
+  - Customize your blog content in `consts.ts`
 
-> [!NOTE]
-> The comment system needs to be configured by oneself, please refer to [Waline](https://waline.js.org/) Change `src\components\Comment.astro`.
-
-## 🚀 Project Structure
-
-```sh
-\Frosti
-├── 400.png
-├── astro.config.mjs
-├── categories.txt
-├── CHANGELOG.md
-├── LICENSE
-├── package-lock.json
-├── package.json
-├── pnpm-lock.yaml
-├── public
-|  ├── favicon.ico
-|  ├── favicon.svg
-|  ├── fonts
-|  |  └── CascadiaCode.woff2
-|  ├── home.webp
-|  ├── profile.webp
-|  └── view.png
-├── README.md
-├── src
-|  ├── components
-|  |  ├── BaseCard.astro
-|  |  ├── BaseHead.astro
-|  |  ├── blog
-|  |  |  ├── error.astro
-|  |  |  ├── info.astro
-|  |  |  ├── success.astro
-|  |  |  └── warning.astro
-|  |  ├── Content.astro
-|  |  ├── Comment.astro
-|  |  ├── EnvelopeCard.astro
-|  |  ├── Footer.astro
-|  |  ├── FormattedDate.astro
-|  |  ├── Header.astro
-|  |  ├── HeaderMenu.astro
-|  |  ├── License.astro
-|  |  ├── page
-|  |  |  ├── LinkCard.astro
-|  |  |  ├── LinkThere.astro
-|  |  |  └── TimeLine.astro
-|  |  ├── ProfileCard.astro
-|  |  ├── ProfileCardFooter.astro
-|  |  ├── ProfileCardMenu.astro
-|  |  ├── ProjectCard.astro
-|  |  ├── ProjectJS.astro
-|  |  └── ThemeIcon.astro
-|  ├── consts.ts
-|  ├── content
-|  |  ├── blog
-|  |  |  ├── markdown-style-guide.md
-|  |  |  └── using-mdx.mdx
-|  |  └── config.ts
-|  ├── env.d.ts
-|  ├── layouts
-|  |  └── BaseLayout.astro
-|  ├── pages
-|  |  ├── about.mdx
-|  |  ├── blog
-|  |  |  ├── tag
-|  |  |  ├── [...page].astro
-|  |  |  └── [...slug].astro
-|  |  ├── friend.mdx
-|  |  ├── frosti.mdx
-|  |  ├── index.mdx
-|  |  ├── project.mdx
-|  |  └── rss.xml.js
-|  ├── scripts
-|  |  ├── copybutton.mjs
-|  |  └── time.mjs
-|  └── styles
-|     ├── global.scss
-|     └── waline.scss
-├── tailwind.config.js
-└── tsconfig.json
-```
+> [!IMPROTANT]
+> The comment system needs to be configured by yourself. See [Waline](https://waline.js.org/) for details. Modify `src\components\Comment.astro`
 
 ## ✒️ Article Information
 
-|    Name     |       Meaning       | Mandatory |
-| :---------: | :-----------------: | :-------: |
-|    title    |    Article title    |    Yes    |
-| description | Article description |    Yes    |
-|   pubDate   |    Article date     |    Yes    |
-|    image    |    Article cover    |    No     |
-|    tags     |    Article tags     |    No     |
-|    badge    |    Article badge    |    No     |
+|    Name     |      Meaning       | Required |
+| :---------: | :----------------: | :------: |
+|    title    |   Article title    |   Yes    |
+| description |  Article summary   |   Yes    |
+|   pubDate   |    Article date    |   Yes    |
+|    image    |   Article cover    |    No    |
+| categories  | Article categories |    No    |
+|    tags     |    Article tags    |    No    |
+|    badge    |   Article badge    |    No    |
 
 ## ⬇️ Usage
+
+> [!IMPROTANT]
+> It is not recommended to clone this repository directly to build your blog!
 
 Use Frosti by passing the `--template` parameter to the `create astro` command!
 
@@ -133,20 +72,21 @@ Use Frosti by passing the `--template` parameter to the `create astro` command!
 npm create astro@latest -- --template EveSunMaple/Frosti
 ```
 
+> [!NOTE]
+> Frosti builds by default using pnpm. If you encounter errors, please run `pnpm update`
+
 ## 🎯 Plans
 
-- [x] Add table of contents (done but CSS not written yet) ~~(Jul 13 2024)~~
-- [x] Add timeline component ~~(Apr 21, 2024)~~
-- [x] Add friends component ~~(Apr 21, 2024)~~
+- [ ] Try integrating headless CMS
+- [ ] Fix known style bugs
+- [ ] More...
 
 ## 👀 Issues
 
-- [x] ~~`global.css` is too messy~~
-- [x] ~~**Light** / **Dark** mode transition ~~currently not implemented~~ `ENOUGH🛠️`
-- [x] ~~Website score has not reached 400 points yet~~ `GET IT✨`
+If you find any problems, please submit an Issue!
 
 ## 🎉 Thanks
 
-@[Saicaca](https://github.com/saicaca) His inspiration was the main reason for me to create this theme.
+@[Saicaca](https://github.com/saicaca) His inspiration was the main reason I created this theme
 
-@[WRXinYue](https://github.com/WRXinYue) Helped me a lot when I was first starting out.
+@[WRXinYue](https://github.com/WRXinYue) Helped me a lot when I was getting started
