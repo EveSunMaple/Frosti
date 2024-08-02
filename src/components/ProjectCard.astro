@@ -14,7 +14,7 @@ const { title, image, desc, url, target = "_blank" } = Astro.props;
       class="envelope-back relative w-full h-full p-6 flex flex-col justify-between"
     >
       <a class="envelope-title" href={url} target={target}>
-        <h1 id={title} class="p-2">{title}</h1>
+        <h1 id={title} class="p-2 m-0">{title}</h1>
       </a>
       <div class="m-2">{desc}</div>
       <div class="m-2 flex">
