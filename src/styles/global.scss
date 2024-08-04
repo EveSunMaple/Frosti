@@ -146,7 +146,7 @@ table tr {
 
 code {
   font-family: 'Cascadia';
-  @apply text-sm p-[2px_5px] rounded-sm;
+  @apply text-xl p-[2px_5px] rounded-sm;
 }
 
 pre {
@@ -171,6 +171,15 @@ hr {
   justify-content: space-between;
   height: 50px;
 }
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+thead th {
+  border-bottom: 3px solid oklch(var(--bc) / 0.25);
+}
+
 
 .card figure{
   @apply block;
