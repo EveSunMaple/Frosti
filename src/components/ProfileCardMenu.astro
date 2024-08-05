@@ -21,6 +21,7 @@ import { Icon } from "astro-icon/components";
               {item.subItems.map((subItem) => (
                 <li>
                   <a
+                    tabindex="0"
                     class="menu-item text-xl font-bold p-4"
                     id={`header-${subItem.id}`}
                     href={subItem.href}
@@ -38,6 +39,7 @@ import { Icon } from "astro-icon/components";
           </details>
         ) : (
           <a
+            tabindex="0"
             class="flex justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4"
             id={item.id}
             title={item.id}

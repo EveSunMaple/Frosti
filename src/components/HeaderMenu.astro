@@ -9,6 +9,7 @@ import { menuItems } from "../consts.ts";
     menuItems.map((item) => (
       <li>
         <a
+          tabindex="0"
           class="menu-item text-xl font-bold p-4"
           id={`header-${item.id}`}
           title={item.id}
