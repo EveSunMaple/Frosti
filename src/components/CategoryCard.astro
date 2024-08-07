@@ -24,21 +24,22 @@ export async function getTagsWithCounts(): Promise<TagCount[]> {
 const tagsWithCounts = await getTagsWithCounts();
 ---
 
-<div
-  class="flex flex-wrap gap-2.5 bg-base-100 shadow-xl p-4 gap-4 w-full mb-8 overflow-auto no-card"
->
-  <div class="btn btn-sm btn-ghost no-animation w-full font-bold">
-    {infoTest.categoryCard}
+<div class="bg-base-100 shadow-xl w-full mb-8 no-card">
+  <div class="p-4">
+    <div class="btn btn-sm btn-ghost no-animation w-full font-bold">
+      {infoTest.categoryCard}
+    </div>
   </div>
-  {
-    tagsWithCounts.map(({ category, count }) => (
-      <span class="inline">
-        <a href={`/blog/categories/${category}`} class="btn btn-sm">
-          {category}
-          <div class="badge badge-accent">{count}</div>
-        </a>
-      </span>
-    ))
-  }
+  <div class="flex flex-wrap gap-2.5 w-full p-4 max-h-[300px] overflow-auto">
+    {
+      tagsWithCounts.map(({ category, count }) => (
+        <span class="inline">
+          <a href={`/blog/categories/${category}`} class="btn btn-sm">
+            {category}
+            <div class="badge badge-accent">{count}</div>
+          </a>
+        </span>
+      ))
+    }
+  </div>
 </div>
-<style></style>
