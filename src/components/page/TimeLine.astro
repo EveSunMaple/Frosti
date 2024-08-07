@@ -1,18 +1,55 @@
 ---
-const { time, check = false, left = false } = Astro.props;
+interface TimelineItem {
+  year: string;
+  event: string;
+}
+
+interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
 ---
 
-<div class={(!left && "timeline-start") || (left && "timeline-end")}>{time}</div>
-<div class="timeline-middle">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-    class={(!check && "w-5 h-5") || (check && "w-5 h-5 text-primary")}
-    ><path
-      fill-rule="evenodd"
-      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-      clip-rule="evenodd"></path></svg
-  >
-</div>
-<div class={(!left && "timeline-end timeline-box") || (left && "timeline-start timeline-box")}><slot /></div>
+<ul class="timeline timeline-vertical m-0 p-0">
+  {
+    items.map((item, index) => (
+      <li>{index !== 0 && <hr class="bg-neutral-content" />}
+        {index % 2 === 0 ? (
+        <div class="timeline-start">{item.year}</div>
+        <div class="timeline-middle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-5 w-5"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="timeline-end timeline-box">{item.event}</div>
+        ):(<div class="timeline-start timeline-box">{item.event}</div>
+        <div class="timeline-middle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-5 w-5"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="timeline-end">{item.year}</div>)}
+        <hr class="bg-neutral-content" />
+      </li>
+    ))
+  }
+</ul>

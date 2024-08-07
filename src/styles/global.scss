@@ -4,6 +4,10 @@
 
 html {
   @apply scroll-smooth;
+} 
+
+.no-card {
+  border-radius: var(--rounded-box, 1rem);
 }
 
 .link-card a,
@@ -17,8 +21,12 @@ a {
 
 .main-card p a,
 .main-card li a {
-  color: oklch(var(--p));
   @apply underline;
+}
+
+.main-card p a:hover,
+.main-card li a:hover {
+  color: oklch(var(--p));
 }
 
 .alert,
@@ -65,16 +73,6 @@ body {
   font-display: swap;
 }
 
-.main-card p,
-.main-card ol,
-.main-card ul,
-.main-card li {
-  @apply my-2 leading-normal;
-}
-.timeline li {
-  @apply my-0 leading-none;
-}
-
 ol {
   @apply pl-[40px] list-decimal;
 }
@@ -102,12 +100,11 @@ h3,
 h4,
 h5,
 h6 {
-  @apply my-2 mb-1;
-  text-shadow: 0.01em -0.01em #fff, -0.01em 0.01em #999, -0.1em 0.1em 5px #80808080;
+  @apply my-2 mb-1 font-semibold;
 }
 
 h1 {
-  @apply text-5xl leading-tight mt-8;
+  @apply text-5xl leading-tight mt-7;
 }
 
 h2 {
@@ -137,6 +134,7 @@ em {
 
 table {
   @apply border-collapse my-2;
+  table-layout: fixed
 }
 
 table tr {
@@ -163,13 +161,7 @@ pre>code {
 }
 
 hr {
-  border: 0;
-  display: flex;
-  color: oklch(var(--bc) / 0.25);
-  background: linear-gradient(currentColor, currentColor) no-repeat center;
-  background-size: 100% 1px;
-  justify-content: space-between;
-  height: 50px;
+  @apply my-2;
 }
 
 tr:last-child td {
@@ -231,4 +223,24 @@ thead th {
 
 .menu-item summary::after{
   position: absolute;
+}
+
+.main-card p,
+.main-card ol,
+.main-card ul,
+.main-card li,
+.timeline-box {
+  @apply my-2 leading-normal;
+}
+
+.timeline{
+  @applt pl-0;
+}
+
+.timeline li {
+  @apply my-0 leading-none;
+}
+
+.footnotes{
+  @apply alert;
 }

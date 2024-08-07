@@ -49,26 +49,25 @@ const hasTags = tags && tags.length > 0;
               <div class="badge badge-neutral">{displayDate}</div>
             )}
             <span>&thinsp;</span>
-            {hasTategories ? (
-              categories.map((categoroy) => (
-                <>
-                  <a
-                    href={`/blog/categories/${categoroy}`}
-                    class="btn btn-xs btn-accent rounded-full"
-                  >
-                    {categoroy}
-                  </a>
-                  <span>&thinsp;</span>
-                </>
-              ))
-            ) : (
-              <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
-                {infoTest.noCategory}
-              </div>
-            )}
             {badge && <div class="badge badge-primary">{badge}</div>}
             <div class="tags mt-2">
-              <code>{infoTest.tag}</code>
+              {hasTategories ? (
+                categories.map((categoroy) => (
+                  <>
+                    <a
+                      href={`/blog/categories/${categoroy}`}
+                      class="btn btn-xs btn-accent"
+                    >
+                      {categoroy}
+                    </a>
+                    <span>&thinsp;</span>
+                  </>
+                ))
+              ) : (
+                <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
+                  {infoTest.noCategory}
+                </div>
+              )}
               {hasTags ? (
                 tags.map((tag) => (
                   <>

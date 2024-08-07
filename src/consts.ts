@@ -19,9 +19,10 @@ export const TRANSITION_API = true;
 export const infoTest = {
   tag: "Tag: ",
   noTag: "untagged",
+  tagCard: "Tags",
   tagPage: "Tag - ",
   noCategory: "uncategorized",
-  categoriesPage: "Categories",
+  categoryCard: "Categories",
   categoryPage: "Category - ",
   link: "Link: ",
   prevPage: "Recent posts",
@@ -60,13 +61,6 @@ export const menuItems = [
         svg: "heart",
         target: "_self",
       }, // Life category
-      {
-        id: "categories",
-        text: "All categories",
-        href: "/blog/categories",
-        svg: "categories",
-        target: "_self",
-      }, // All categories
     ],
   }, // Blog page with sub-items
   {
@@ -118,9 +112,4 @@ export const socialIcons = [
     title: "RSS Feed",
     svg: "rss",
   },
-];
-// Category Information
-export const categoriesInfo = [
-  { title: "tech", desc: "About tech", target: "_self" },
-  { title: "life", desc: "About life", target: "_self" },
 ];

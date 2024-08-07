@@ -111,60 +111,26 @@ import LinkCard from "../../components/page/LinkCard.astro";
 
 #### TimeLine
 
-<ul class="timeline timeline-vertical">
-  <li>
-    <TimeLine time="2024 3 17" left="true" check="true">
-      Frosti project launched!
-    </TimeLine>
-    <hr class="bg-primary" />
-  </li>
-  <li>
-    <hr class="bg-primary" />
-    <TimeLine time="2024 4 5" check="true">
-      Using Tailwind CSS and daisyUI.
-    </TimeLine>
-    <hr class="bg-primary" />
-  </li>
-  <li>
-    <hr class="bg-primary" />
-    <TimeLine time="2024 5 31" left="true" check="true">
-      Frosti releases the first version!
-    </TimeLine>
-    <hr class="bg-neutral-content" />
-  </li>
-  <li>
-    <hr class="bg-neutral-content" />
-    <TimeLine time="……">Stay tuned!</TimeLine>
-  </li>
-</ul>
+<TimeLine
+  items={[
+    { year: "1984", event: "First Macintosh computer" },
+    { year: "1998", event: "iMac" },
+    { year: "2001", event: "iPod" },
+    { year: "2007", event: "iPhone" },
+    { year: "2015", event: "Apple Watch" },
+  ]}
+/>
 
 ```astro
-<ul class="timeline timeline-vertical">
-  <li>
-    <TimeLine time="2024 3 17" left="true" check="true">
-      Frosti project launched!
-    </TimeLine>
-    <hr class="bg-primary" />
-  </li>
-  <li>
-    <hr class="bg-primary" />
-    <TimeLine time="2024 4 5" check="true">
-      Using Tailwind CSS and daisyUI.
-    </TimeLine>
-    <hr class="bg-primary" />
-  </li>
-  <li>
-    <hr class="bg-primary" />
-    <TimeLine time="2024 5 31" left="true" check="true">
-      Frosti releases the first version!
-    </TimeLine>
-    <hr class="bg-neutral-content" />
-  </li>
-  <li>
-    <hr class="bg-neutral-content" />
-    <TimeLine time="……">Stay tuned!</TimeLine>
-  </li>
-</ul>
+<TimeLine
+  items={[
+    { year: "1984", event: "First Macintosh computer" },
+    { year: "1998", event: "iMac" },
+    { year: "2001", event: "iPod" },
+    { year: "2007", event: "iPhone" },
+    { year: "2015", event: "Apple Watch" },
+  ]}
+/>
 ```
 
 #### LinkCard

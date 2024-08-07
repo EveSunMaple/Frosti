@@ -5,6 +5,8 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Content from "../components/Content.astro";
+import TagCard from "../components/TagCard.astro";
+import CategoryCard from "../components/CategoryCard.astro";
 import { ViewTransitions } from "astro:transitions";
 import {
   SITE_TAB,
@@ -36,6 +38,8 @@ const { title, image, includeSidebar = true } = Astro.props;
             includeSidebar && (
               <>
                 <Profile />
+                <CategoryCard />
+                <TagCard />
                 <Content />
               </>
             )

@@ -33,35 +33,4 @@ import { SERVER_URL } from "../consts";
     emoji: false,
     search: false,
   });
-  const wlButtons = document.querySelectorAll(".wl-btn");
-  const wlPanel = document.querySelectorAll(".wl-panel");
-  const Footnotes = document.querySelectorAll(".footnotes");
-  const svgContent = `
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      class="stroke-current shrink-0 w-6 h-6"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      ></path>
-    </svg>
-  `;
-  const tempDiv = document.createElement("div");
-  tempDiv.innerHTML = svgContent;
-  const svgElement = tempDiv.firstElementChild;
-  wlButtons.forEach((button) => {
-    button.classList.add("btn");
-  });
-  wlPanel.forEach((item) => {
-    item.classList.add("card", "bg-base-100", "shadow-xl");
-  });
-  Footnotes.forEach((item) => {
-    item.classList.add("alert");
-    item.insertBefore(svgElement, item.firstChild);
-  });
 </script>
