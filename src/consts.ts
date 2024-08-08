@@ -15,6 +15,12 @@ export const USER_AVATAR = "/profile.webp";
 export const SERVER_URL = "https://demo.saroprock.com";
 export const TRANSITION_API = true;
 
+// Site theme
+export const siteTheme = {
+  light: "winter",
+  dark: "dracula",
+};
+
 // Some informative text on the site
 export const infoTest = {
   tag: "Tag: ",

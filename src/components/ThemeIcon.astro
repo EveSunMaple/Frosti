@@ -1,5 +1,5 @@
 ---
-
+import { siteTheme } from "../consts";
 ---
 
 <button
@@ -31,7 +31,7 @@
 </button>
 
 <button
-  class="flex justify-center card bg-base-100 transition-none btn btn-ghost w-auto h-10"
+  class="flex justify-center card bg-base-100 btn btn-ghost w-auto h-10"
   id="backToTop"
   ><span class="sr-only">To Top Button</span><svg
     viewBox="0 0 24 24"
@@ -50,25 +50,23 @@
     </g></svg
   ></button
 >
-
+<script>
+  document.addEventListener("astro:after-swap", () => {
+    const storedTheme = localStorage.getItem("theme");
+    const userPreferredTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "winter"
+      : "dracula";
+    const theme = storedTheme || userPreferredTheme;
+    document.documentElement.setAttribute("data-theme", theme);
+  });
+</script>
 <script>
   document.addEventListener("astro:page-load", () => {
     const setTheme = (theme: string) => {
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
     };
-
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      setTheme(storedTheme);
-    } else {
-      const userPreferredTheme = window.matchMedia(
-        "(prefers-color-scheme: dracula)"
-      ).matches
-        ? "dracula"
-        : "winter";
-      setTheme(userPreferredTheme);
-    }
 
     const themeToggle = document.getElementById("themeToggle");
     const themeLabel1 = document.getElementById(
@@ -86,37 +84,23 @@
 
     const syncThemeToggle = () => {
       const currentTheme = localStorage.getItem("theme");
-      // Check and update the classes for themeLabel elements if they exist
       if (themeLabel1 && themeLabel2 && themeToggle1 && themeToggle2) {
-        themeLabel1.classList.toggle("active", currentTheme === "dracula");
-        themeLabel2.classList.toggle("active", currentTheme === "winter");
-        const isChecked = currentTheme === "dracula";
-        themeToggle1.checked = isChecked;
-        themeToggle2.checked = isChecked;
+        const isDark = currentTheme === "dracula";
+        themeLabel1.classList.toggle("active", isDark);
+        themeLabel2.classList.toggle("active", !isDark);
+        themeToggle1.checked = isDark;
+        themeToggle2.checked = isDark;
       }
     };
 
     syncThemeToggle();
 
-    // Add classes if elements are not null
-    if (themeLabel1) {
-      themeLabel1.classList.remove("hidden");
-      themeLabel1.classList.add("swap");
-      themeLabel1.classList.add("swap-rotate");
-    }
-    if (themeLabel2) {
-      themeLabel2.classList.remove("hidden");
-      themeLabel2.classList.add("swap");
-      themeLabel2.classList.add("swap-rotate");
-    }
-
-    const sidebarToggleClick = () => {
-      themeToggle1.checked = !themeToggle1.checked;
-      const currentTheme = localStorage.getItem("theme");
-      const newTheme = currentTheme === "winter" ? "dracula" : "winter";
-      setTheme(newTheme);
-      syncThemeToggle();
-    };
+    [themeLabel1, themeLabel2].forEach((label) => {
+      if (label) {
+        label.classList.remove("hidden");
+        label.classList.add("swap", "swap-rotate");
+      }
+    });
 
     const handleToggleClick = () => {
       const currentTheme = localStorage.getItem("theme");
@@ -125,11 +109,11 @@
       syncThemeToggle();
     };
 
-    // Add event listeners if elements are not null
     if (themeToggle1 && themeToggle) {
       themeToggle1.disabled = true;
-      themeToggle.addEventListener("click", sidebarToggleClick);
+      themeToggle.addEventListener("click", handleToggleClick);
     }
+
     if (themeToggle2) {
       themeToggle2.addEventListener("click", handleToggleClick);
     }
@@ -138,10 +122,7 @@
 
     if (backToTopButton) {
       backToTopButton.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
   });

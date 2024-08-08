@@ -17,15 +17,30 @@ import {
 const { title, image, includeSidebar = true } = Astro.props;
 ---
 
-<html lang="zh-cn" class="bg-base-300">
-  <title class="sr-only">{`${SITE_TAB} - ${title}`}</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
-  {TRANSITION_API && <ViewTransitions />}
-
+<!doctype html>
+<html lang="zh-cn" class="bg-base-300" data-theme="winter">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="sr-only">{`${SITE_TAB} - ${title}`}</title>
+    <script is:inline>
+      (function () {
+        const storedTheme = localStorage.getItem("theme");
+        const userPreferredTheme = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches
+          ? "winter"
+          : "dracula";
+        const theme = storedTheme || userPreferredTheme;
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
+    {TRANSITION_API && <ViewTransitions />}
+    <link rel="stylesheet" href="/node_modules/katex/dist/katex.min.css" />
+  </head>
   <body>
-    <script src="../scripts/copybutton.mjs"></script>
+    <script src="../scripts/copybutton.js"></script>
     <Header title={SITE_TITLE} />
     <div class="max-w-7xl m-auto">
       <div
