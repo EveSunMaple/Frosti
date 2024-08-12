@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function addCopyButton() {
   var codeBlocks = document.querySelectorAll('.code');
   var toolsBlocks = document.querySelectorAll('.highlight-tools');
 
@@ -34,4 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-});
+}
+
+document.addEventListener("DOMContentLoaded", addCopyButton);
+
+document.addEventListener("swup:page:view", addCopyButton);

@@ -24,7 +24,7 @@ import ThemeIcon from "../components/ThemeIcon.astro";
   </div>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  function addContent() {
     const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
     const generateTocContent = () => {
@@ -52,5 +52,9 @@ import ThemeIcon from "../components/ThemeIcon.astro";
     if (tocBox) {
       tocBox.innerHTML = generateTocContent();
     }
-  });
+  }
+
+  document.addEventListener("DOMContentLoaded", addContent);
+
+  document.addEventListener("swup:page:view", addContent);
 </script>
