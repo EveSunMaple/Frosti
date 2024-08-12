@@ -10,9 +10,6 @@
 ## 🖥️ Preview
 
 ![view](https://frosti.saroprock.com/display/Frosti_1.png)
-![view](https://frosti.saroprock.com/display/Frosti_2.png)
-![view](https://frosti.saroprock.com/display/Frosti_3.png)
-![view](https://frosti.saroprock.com/display/Frosti_4.png)
 
 ## ⏲️ Performance
 
@@ -21,7 +18,7 @@
 ## ✨ Features
 
 - ✅ Lightning-fast access speed and excellent SEO
-- ✅ View transition animations (using ViewTransitionsAPI)
+- ✅ View transition animations (using Swup)
 - ✅ Sidebar integration
   - Define sidebar content in `consts.ts`
   - Social info card at the bottom

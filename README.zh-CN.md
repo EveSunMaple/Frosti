@@ -10,9 +10,6 @@
 ## 🖥️ 预览
 
 ![view](https://frosti.saroprock.com/display/Frosti_1.png)
-![view](https://frosti.saroprock.com/display/Frosti_2.png)
-![view](https://frosti.saroprock.com/display/Frosti_3.png)
-![view](https://frosti.saroprock.com/display/Frosti_4.png)
 
 ## ⏲️ 性能
 
@@ -21,7 +18,7 @@
 ## ✨ 特点
 
 - ✅ 极速的访问速度与优秀的 SEO
-- ✅ 视图过渡动画（使用 ViewTransitionsAPI）
+- ✅ 视图过渡动画（使用 Swup）
 - ✅ 侧边栏集成
   - 在 `consts.ts` 定义侧边导航栏的内容
   - 底部社交信息卡片
