@@ -1,4 +1,4 @@
-document.addEventListener('astro:page-load', () => {
+document.addEventListener("DOMContentLoaded", () => {
   var codeBlocks = document.querySelectorAll('.code');
   var toolsBlocks = document.querySelectorAll('.highlight-tools');
 

@@ -1,0 +1,19 @@
+.transition-main {
+    transition-property: opacity, transform;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+    transform: translateY(0);
+    opacity: 1;
+    position: relative;
+  }
+  
+  html.is-animating .transition-main {
+    opacity: 0;
+    transform: translateY(-40px); 
+    transition: 500ms ease;
+  }
+  
+  html.is-leaving .transition-main {
+    transform: translateY(40px);
+    transition: 500ms ease;
+  }

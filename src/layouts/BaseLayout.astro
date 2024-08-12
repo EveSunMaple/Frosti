@@ -7,7 +7,6 @@ import Footer from "../components/Footer.astro";
 import Content from "../components/Content.astro";
 import TagCard from "../components/TagCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
-import { ViewTransitions } from "astro:transitions";
 import {
   SITE_TAB,
   SITE_TITLE,
@@ -36,8 +35,6 @@ const { title, image, includeSidebar = true } = Astro.props;
       })();
     </script>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
-    {TRANSITION_API && <ViewTransitions />}
-    <link rel="stylesheet" href="/node_modules/katex/dist/katex.min.css" />
   </head>
   <body>
     <script src="../scripts/copybutton.js"></script>
@@ -65,10 +62,12 @@ const { title, image, includeSidebar = true } = Astro.props;
         >
           <div>
             <main>
-              <slot />
+              <main id="swup" class="detail transition-main">
+                <slot />
+                <Footer />
+              </main>
+              <br />
             </main>
-            <Footer />
-            <br />
           </div>
         </div>
       </div>

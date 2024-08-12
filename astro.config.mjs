@@ -5,9 +5,13 @@ import tailwind from "@astrojs/tailwind";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import playformCompress from "@playform/compress";
-import vercel from '@astrojs/vercel/static';
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
+
+import swup from '@swup/astro';
+import SwupScrollPlugin from '@swup/scroll-plugin';
+import SwupParallelPlugin from '@swup/parallel-plugin';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +21,10 @@ export default defineConfig({
       includePaths: ['./src/styles']
     }
   },
-  integrations: [mdx(), icon(), sitemap(), tailwind(), playformCompress(), pagefind()],
+  integrations: [mdx(), icon(), swup({
+    plugins: [new SwupScrollPlugin(), new SwupParallelPlugin()],
+    containers: ["#swup"]
+  }), sitemap(), tailwind(), playformCompress(), pagefind()],
   markdown: {
     shikiConfig: {
       themes: {

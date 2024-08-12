@@ -1,5 +1,5 @@
 ---
-import { siteTheme } from "../consts";
+
 ---
 
 <button
@@ -51,18 +51,7 @@ import { siteTheme } from "../consts";
   ></button
 >
 <script>
-  document.addEventListener("astro:after-swap", () => {
-    const storedTheme = localStorage.getItem("theme");
-    const userPreferredTheme = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? "winter"
-      : "dracula";
-    const theme = storedTheme || userPreferredTheme;
-    document.documentElement.setAttribute("data-theme", theme);
-  });
-</script>
-<script>
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const setTheme = (theme: string) => {
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);

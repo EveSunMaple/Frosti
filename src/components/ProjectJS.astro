@@ -3,7 +3,7 @@
 ---
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     function getRepoInfoFromUrl(repoUrl: string) {
       const urlParts = repoUrl.split("/");
       const owner = urlParts[urlParts.length - 2];
