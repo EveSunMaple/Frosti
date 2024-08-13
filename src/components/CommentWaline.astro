@@ -10,7 +10,7 @@ import { SERVER_URL } from "../consts";
 <div class="comment">
   <div id="waline" data-server-url={SERVER_URL}></div>
 </div>
-<script type="module">
+<script type="module" is:inline>
   import { init } from "https://unpkg.com/@waline/client@v3/dist/waline.js";
 
   const serverURL = document

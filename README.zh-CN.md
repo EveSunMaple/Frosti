@@ -9,7 +9,7 @@
 
 ## 🖥️ 预览
 
-![view](https://frosti.saroprock.com/display/Frosti_1.png)
+![view](./Frosti_1.png)
 
 ## ⏲️ 性能
 

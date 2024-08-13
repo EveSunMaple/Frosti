@@ -13,7 +13,6 @@ export const USER_AVATAR = "/profile.webp";
 
 // Server and transition settings
 export const SERVER_URL = "https://demo.saroprock.com";
-export const TRANSITION_API = true;
 
 // Some informative text on the site
 export const infoTest = {
