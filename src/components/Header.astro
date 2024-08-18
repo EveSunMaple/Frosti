@@ -7,27 +7,29 @@ import { SITE_TITLE } from "../consts";
   class="navbar max-md:translate-y-0 fixed px-2 w-full transform -translate-y-full text-center z-50 transition-transform bg-base-100 shadow-xl"
 >
   <div class="navbar-start">
-    <div class="dropdown">
-      <div
-        tabindex="0"
-        role="button"
-        class="btn btn-ghost"
-        id="content"
-        title="Content"
-      >
-        <svg
-          class="swap-off fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512"
-          ><path
-            d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-          ></path></svg
+    <details>
+      <summary>
+        <div
+          tabindex="0"
+          role="button"
+          class="btn btn-ghost"
+          id="navbar"
+          title="Navbar"
         >
-      </div>
+          <svg
+            class="swap-off fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512"
+            ><path
+              d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+            ></path>
+          </svg>
+        </div>
+      </summary>
       <Menu />
-    </div>
+    </details>
   </div>
   <div class="navbar-center">
     <a class="btn btn-ghost text-xl" href="/">{SITE_TITLE}</a>

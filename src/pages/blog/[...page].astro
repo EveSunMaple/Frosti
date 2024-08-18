@@ -9,8 +9,17 @@ import { infoTest } from "../../consts";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const posts = await getCollection("blog");
-  posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  return paginate(posts, { pageSize: 8 });
+  const topPosts = posts.filter((post) => post.data.badge === "Pin");
+  const otherPosts = posts.filter((post) => post.data.badge !== "Pin");
+
+  topPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  otherPosts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  const sortedPosts = [...topPosts, ...otherPosts];
+
+  return paginate(sortedPosts, { pageSize: 8 });
 }
 
 const { page }: { page: Page } = Astro.props;
@@ -73,7 +82,7 @@ const pageLinks = generatePageLinks(totalPages);
       href={page.url.prev ? page.url.prev : `javascript:`}
       class={page.url.prev
         ? `btn bg-base-100 shadow-xl`
-        : `btn  btn-disabled bg-base-100 shadow-xl`}
+        : `btn btn-disabled bg-base-100 shadow-xl`}
     >
       <svg
         class="h-6 w-6 fill-current md:h-8 md:w-8"
@@ -146,7 +155,7 @@ const pageLinks = generatePageLinks(totalPages);
       href={page.url.next ? page.url.next : `javascript:`}
       class={page.url.next
         ? `btn bg-base-100 shadow-xl`
-        : `btn  btn-disabled bg-base-100 shadow-xl`}
+        : `btn btn-disabled bg-base-100 shadow-xl`}
     >
       <span class="hidden lg:inline ml-2">{infoTest.nextPage}</span>
       <svg

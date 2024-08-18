@@ -59,6 +59,10 @@ body {
   background-size: 100% 600px;
 }
 
+summary {
+  list-style: none; 
+}
+
 @media (max-width: 720px) {
   body {
     @apply text-lg;
