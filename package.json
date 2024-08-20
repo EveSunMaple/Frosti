@@ -29,6 +29,7 @@
     "astro-pagefind": "^1.6.0",
     "dayjs": "^1.11.12",
     "katex": "^0.16.11",
+    "medium-zoom": "^1.1.0",
     "pagefind": "^1.1.0",
     "prismjs": "^1.29.0",
     "react": "^18.3.1",

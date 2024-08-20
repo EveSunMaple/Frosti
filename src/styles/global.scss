@@ -15,6 +15,10 @@ a {
   @apply relative no-underline;
 }
 
+.medium-zoom-image--opened {
+  @apply rounded-xl;
+}
+
 .main-card img {
   @apply rounded-xl;
 }
