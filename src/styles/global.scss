@@ -15,8 +15,12 @@ a {
   @apply relative no-underline;
 }
 
+.katex-display {
+  overflow-x: auto;
+}
+
 .medium-zoom-image--opened {
-  @apply rounded-xl;
+  @apply rounded-xl shadow-xl;
 }
 
 .main-card img {

@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BaseCard from "../../components/BaseCard.astro";
-import "medium-zoom/dist/style.css";
 import { type CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -30,11 +29,3 @@ const { Content } = await post.render();
     <Content />
   </BaseCard>
 </BaseLayout>
-<script>
-  import mediumZoom from "medium-zoom/dist/pure";
-  mediumZoom(".main-card img", { margin: 24, background: "#00000080" });
-
-  document.addEventListener("swup:page:view", () => {
-    mediumZoom(".main-card img", { margin: 24, background: "#00000080" });
-  });
-</script>

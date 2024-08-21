@@ -1,4 +1,5 @@
 ---
+import "medium-zoom/dist/style.css";
 import "/node_modules/katex/dist/katex.min.css";
 import Profile from "../components/ProfileCard.astro";
 import BaseHead from "../components/BaseHead.astro";
@@ -110,6 +111,13 @@ const { title, image, includeSidebar = true } = Astro.props;
       });
     });
   }
+
+  import mediumZoom from "medium-zoom/dist/pure";
+  mediumZoom(".main-card img", { margin: 24, background: "#00000080" });
+
+  document.addEventListener("swup:page:view", () => {
+    mediumZoom(".main-card img", { margin: 24, background: "#00000080" });
+  });
 
   document.addEventListener("DOMContentLoaded", addCopyButton);
 
