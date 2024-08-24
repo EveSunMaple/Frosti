@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-const { title, image, desc, url, target = "_blank" } = Astro.props;
+const { title, image, desc, url, badge, target = "_blank" } = Astro.props;
 ---
 
 <div
@@ -16,6 +16,7 @@ const { title, image, desc, url, target = "_blank" } = Astro.props;
         <h1 id={title} class="p-2 m-0">{title}</h1>
       </a>
       <div class="m-2">{desc}</div>
+      {badge && <div class="badge badge-ghost m-2">{badge}</div>}
       <div class="m-2 flex">
         <span class="repo-user flex items-center"
           ><svg
