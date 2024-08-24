@@ -40,10 +40,6 @@
   line-height: 1.75
 }
 
-[data-waline] p {
-  color: var(--waline-color)
-}
-
 [data-waline] a {
   position: relative;
   display: inline-block;
@@ -105,7 +101,6 @@
 [data-waline] pre code {
   padding: 0;
   background: rgba(0, 0, 0, 0);
-  color: var(--waline-color);
   white-space: pre-wrap;
   word-break: keep-all
 }
@@ -143,7 +138,6 @@
   border: 1px solid var(--waline-border-color);
   border-radius: .5em;
   background: rgba(0, 0, 0, 0);
-  color: var(--waline-color);
   font-weight: 400;
   font-size: .75em;
   line-height: 1.5;
@@ -260,7 +254,6 @@
 }
 
 .wl-panel {
-  @apply card bg-base-100 shadow-xl;
   position: relative;
   flex-shrink: 1;
   width: 100%;
@@ -283,7 +276,6 @@
 .wl-header label {
   min-width: 40px;
   padding: .75em .5em;
-  color: var(--waline-color);
   font-size: .75em;
   text-align: center
 }
@@ -293,19 +285,32 @@
   width: 0;
   padding: .5em;
   background: rgba(0, 0, 0, 0);
-  font-size: .625em;
   resize: none;
   z-index: 1000;
 }
 
 .wl-header-item {
+  @apply join;
   display: flex;
   flex: 1
 }
 
+.wl-header-item label{
+  @apply join-item;
+}
+
+.wl-header-item .wl-input{
+  @apply input input-bordered input-xs w-full max-w-xs join-item;
+}
+
+.wl-header-item label,
+.wl-header-item .wl-input{
+  @apply join-item;
+}
+
 @media(max-width: 580px) {
-  .wl-header-item:not(:last-child) {
-    border-bottom: 2px dashed var(--waline-border-color)
+  .wl-header-item {
+    margin-top: .50em;
   }
 }
 
@@ -335,24 +340,17 @@
 }
 
 .wl-editor {
-  position: relative;
-  width: calc(100% - 1em);
-  padding: 0;
+  @apply textarea textarea-bordered;
+  width: calc(100% - 3em);
+  padding: 1em;
   min-height: 8.75em;
   margin: .75em .5em;
   border-radius: .5em;
   background: rgba(0, 0, 0, 0);
   font-size: .875em;
-  resize: vertical
-}
-
-.wl-editor,
-.wl-input {
+  resize: vertical;
   max-width: 100%;
-  border: none;
-  color: var(--waline-color);
   outline: none;
-  transition: all .25s ease
 }
 
 .wl-editor:focus,
@@ -408,7 +406,6 @@
   padding: 0;
   border: none;
   background: rgba(0, 0, 0, 0);
-  color: var(--waline-color);
   font-size: 16px;
   cursor: pointer
 }
@@ -423,10 +420,6 @@
 
 #wl-image-upload {
   display: none
-}
-
-#wl-image-upload:focus+label {
-  color: var(--waline-color)
 }
 
 #wl-image-upload:focus-visible+label {
@@ -770,7 +763,6 @@
   align-items: center;
   border: none;
   background: rgba(0, 0, 0, 0);
-  color: var(--waline-color);
   line-height: 1;
   cursor: pointer;
   transition: color .2s ease
@@ -926,7 +918,6 @@
 .wl-empty {
   overflow: auto;
   padding: 1.25em;
-  color: var(--waline-color);
   text-align: center
 }
 
@@ -1208,7 +1199,6 @@
 .wl-user-list a,
 .wl-user-list a:hover,
 .wl-user-list a:visited {
-  color: var(--waline-color);
   text-decoration: none
 }
 
