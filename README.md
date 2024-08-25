@@ -2,7 +2,7 @@
 
 **A clean, elegant, and fast static blog template! 🚀 Developed with [Astro](https://astro.build/)!**
 
-[**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 Chinese README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️ My Blog**](https://www.saroprock.com)
+[**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 Chinese README（中文 README）**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️ My Blog**](https://www.saroprock.com)
 
 > [!NOTE]
 > It is recommended to check out the theme preview first -> https://frosti.saroprock.com
@@ -17,16 +17,16 @@
 
 ## ✨ Features
 
-- ✅ Lightning-fast access speed and excellent SEO
-- ✅ View transition animations (using Swup)
-- ✅ Sidebar integration
+- [x] Lightning-fast access speed and excellent SEO
+- [x] View transition animations (using Swup)
+- [x] Sidebar integration
   - Define sidebar content in `consts.ts`
   - Social info card at the bottom
   - Theme switch and back-to-top button at the bottom
   - Persistent sidebar article directory
-- ✅ Search your articles (using pagefind)
-- ✅ **Day** / **Night** mode available
-- ✅ Various components to enrich your blog content
+- [x] Search your articles (using pagefind)
+- [x] **Day** / **Night** mode available
+- [x] Various components to enrich your blog content
   - Collapsible pages
   - Link cards
   - Timeline components
@@ -34,13 +34,13 @@
   - Code block copy button
   - Image comparison
   - End-of-article copyright information
-- ✅ Comment system built with [Waline](https://waline.js.org/)
-- ✅ Responsive pages built with [Tailwind CSS](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
+- [x] Comment system built with [Waline](https://waline.js.org/)
+- [x] Responsive pages built with [Tailwind CSS](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
   - The entire blog is styled for desktop, tablet, and mobile modes
   - Cards adapt their layout according to your device
   - Theme switch button automatically matches the theme
 - 🛠️ Easy to use blog
-  - Installation requires only one command
+  - Simple and easy deployment and usage
   - Customize your blog content in `consts.ts`
 
 > [!IMPORTANT]
@@ -60,17 +60,50 @@
 
 ## ⬇️ Usage
 
-> [!IMPORTANT]
-> It is not recommended to clone this repository directly to build your blog!
+Before trying to set up your own blog with Frosti, you should have a basic understanding of the following:
 
-Use Frosti by passing the `--template` parameter to the `create astro` command!
+- Basic knowledge of Node.js projects
+- Methods of deploying static sites
+- Basic concepts and implementation of web frontend
+- Basic methods of network service operation and maintenance
+
+Frosti is a rather simple and elegant static blog template, but using it requires some basic knowledge of web frontend and computer science. If you have no related experience, you might encounter some difficulties during usage. Therefore, we suggest learning some basic programming and frontend development knowledge first, which will help you better understand and utilize Frosti.
+
+> [!IMPORTANT]
+> Frosti uses pnpm as the package manager. If you haven't installed pnpm, please install it first.
+
+1. Install the pnpm package manager
 
 ```sh
-npm create astro@latest -- --template EveSunMaple/Frosti
+npm i -g pnpm
+```
+
+2. Clone the project
+```sh
+git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti
+```
+3. Enter the project folder
+```sh
+cd Frosti
+```
+4. Install dependencies
+```sh
+pnpm i
+```
+
+5. Debug and run the project
+```sh
+pnpm run dev # Start the debug server
+
+pnpm run build # Build the project into static files
 ```
 
 > [!NOTE]
-> Frosti builds by default using pnpm. If you encounter errors, please run `pnpm update`
+> Frosti defaults to building with `pnpm build`. If an error occurs, please run `pnpm update`.
+
+> [!TIP]
+> You can also deploy Frosti using other methods like Vercel, Netlify, etc. However, you need to have a basic understanding of these services.
+> [Astro-supported deployment methods](https://docs.astro.build/en/guides/deploy/)
 
 ## 🎯 Plans
 
@@ -80,7 +113,11 @@ npm create astro@latest -- --template EveSunMaple/Frosti
 
 ## 👀 Issues
 
-If you find any problems, please submit an Issue!
+In this new era of AI development, if you encounter problems during deployment, please consult `Bing AI`, `ChatGPT`, etc. first, as they can help you solve most issues.
+
+Of course, if you have any questions or suggestions, you can submit issues to provide feedback or communicate with the developer!
+
+For beginners or those unfamiliar with the process, before asking questions in a group or opening a new issue, please read [**How to Ask Questions the Smart Way**](https://github.com/tvvocold/How-To-Ask-Questions-The-Smart-Way) first. This will help you ask questions more effectively and make it easier for the developer to identify and solve the problem.
 
 ## 🎉 Thanks
 
