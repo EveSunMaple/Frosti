@@ -16,7 +16,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   all_posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return all_categories.flatMap((category) => {
     const filtered_posts = all_posts.filter((post) =>
-      post.data.categories?.includes(category)
+      post.data.categories?.includes(category),
     );
     return paginate(filtered_posts, {
       params: { category },
@@ -143,7 +143,7 @@ const pageLinks = generatePageLinks(totalPages);
                 >
                   {link}
                 </a>
-              )
+              ),
             )}
           </>
         ) : (

@@ -30,6 +30,8 @@ export interface CardInfo {
   badge?: string;
   categories?: string[];
   tags?: string[];
+  word?: string;
+  time?: string;
   isBlog: boolean;
   url?: string;
 }

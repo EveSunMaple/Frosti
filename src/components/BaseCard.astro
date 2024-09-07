@@ -12,6 +12,8 @@ const {
   badge,
   categories,
   tags,
+  word,
+  time,
   isBlog = false,
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props as CardInfo;
@@ -43,7 +45,12 @@ const hasTags = tags && tags.length > 0;
     {
       isBlog && (
         <>
-          <h1 id="h1">{title}</h1>
+          <div role="alert" class="alert">
+            This article is approximately {time} and contains {word} words.
+          </div>
+          <h1 id="h1" class="mt-2">
+            {title}
+          </h1>
           <div class="info mt-2">
             {displayDate && (
               <div class="badge badge-neutral">{displayDate}</div>
@@ -87,7 +94,7 @@ const hasTags = tags && tags.length > 0;
               )}
             </div>
           </div>
-          <hr />
+          <hr class="mt-6" />
         </>
       )
     }

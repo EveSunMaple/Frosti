@@ -4,7 +4,7 @@
 
 html {
   @apply scroll-smooth;
-} 
+}
 
 .no-card {
   border-radius: var(--rounded-box, 1rem);
@@ -29,7 +29,12 @@ a {
 
 .main-card p a,
 .main-card li a {
-  @apply underline;
+  @apply underline inline-flex;
+
+  svg {
+    @apply inline-block;
+    vertical-align: -0.25rem;
+  }
 }
 
 .main-card p a:hover,
@@ -39,7 +44,7 @@ a {
 
 .alert,
 .collapse,
-.diff{
+.diff {
   @apply my-2;
 }
 
@@ -49,6 +54,7 @@ html[data-theme="dracula"] {
   --pagefind-ui-background: oklch(var(--b1));
   --pagefind-ui-border: oklch(var(--n));
   --pagefind-ui-tag: oklch(var(--b1));
+
   .highlight,
   .frosti-code,
   .frosti-code span {
@@ -57,6 +63,7 @@ html[data-theme="dracula"] {
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
+
   .highlight-tools {
     background-color: oklch(var(--n)) !important;
   }
@@ -68,7 +75,7 @@ body {
 }
 
 summary {
-  list-style: none; 
+  list-style: none;
 }
 
 @media (max-width: 720px) {
@@ -78,8 +85,8 @@ summary {
 }
 
 @font-face {
-  font-family: 'Cascadia';
-  src: url('/fonts/CascadiaCode.woff2') format('woff2');
+  font-family: "Cascadia";
+  src: url("/fonts/CascadiaCode.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -97,6 +104,7 @@ li::marker,
 .toc-number {
   color: oklch(var(--p));
 }
+
 thead {
   color: oklch(var(--s));
 }
@@ -120,19 +128,19 @@ h1 {
 }
 
 h2 {
-  @apply text-4xl leading-snug mt-6 ;
+  @apply text-4xl leading-snug mt-6;
 }
 
 h3 {
-  @apply text-3xl leading-normal mt-5 ;
+  @apply text-3xl leading-normal mt-5;
 }
 
 h4 {
-  @apply text-2xl leading-relaxed mt-4 ;
+  @apply text-2xl leading-relaxed mt-4;
 }
 
 h5 {
-  @apply text-xl leading-relaxed mt-3 ;
+  @apply text-xl leading-relaxed mt-3;
 }
 
 strong,
@@ -146,7 +154,7 @@ em {
 
 table {
   @apply border-collapse my-2;
-  table-layout: fixed
+  table-layout: fixed;
 }
 
 table tr {
@@ -155,12 +163,12 @@ table tr {
 }
 
 code {
-  font-family: 'Cascadia';
+  font-family: "Cascadia";
   @apply text-xl p-[2px_5px] rounded-sm;
 }
 
 pre {
-  font-family: 'Cascadia';
+  font-family: "Cascadia";
   padding: 10px;
 }
 
@@ -184,8 +192,7 @@ thead th {
   border-bottom: 1px solid oklch(var(--bc) / 0.25);
 }
 
-
-.card figure{
+.card figure {
   @apply block;
   @apply relative;
 }
@@ -208,32 +215,32 @@ thead th {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1.0rem;
+  padding: 0.5rem 1rem;
   background-color: oklch(var(--nc));
 }
 
-.highlight-code{
+.highlight-code {
   @apply flex;
 }
 
-.highlight-code .code{
+.highlight-code .code {
   @apply flex-auto;
   overflow: auto;
   padding-right: 4em;
 }
 
-.highlight-code .gutter{
+.highlight-code .gutter {
   @apply flex-none text-right;
   user-select: none;
   border-right: 1px solid #888;
 }
 
 .highlight .code-lang {
-  font-family: 'Cascadia';
+  font-family: "Cascadia";
   user-select: none;
 }
 
-.menu-item summary::after{
+.menu-item summary::after {
   position: absolute;
 }
 
@@ -245,7 +252,7 @@ thead th {
   @apply my-2 leading-normal;
 }
 
-.timeline{
+.timeline {
   @apply pl-0;
 }
 
@@ -253,6 +260,6 @@ thead th {
   @apply my-0 leading-none;
 }
 
-.footnotes{
+.footnotes {
   @apply alert;
 }

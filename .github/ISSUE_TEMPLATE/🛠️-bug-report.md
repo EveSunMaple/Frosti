@@ -1,10 +1,9 @@
 ---
 name: "\U0001F6E0️ Bug report"
 about: Create a report to help us improve
-title: ''
+title: ""
 labels: bug
-assignees: ''
-
+assignees: ""
 ---
 
 **Title:** 🛠️ Bug Report: [Brief Description of the Issue]
@@ -17,6 +16,7 @@ assignees: ''
 A detailed description of the bug or issue. Include any error messages, unexpected behavior, or deviations from the expected functionality.
 
 **Steps to Reproduce:**
+
 1. [First step to reproduce the issue]
 2. [Second step to reproduce the issue]
 3. [Additional steps if necessary]
@@ -31,6 +31,7 @@ Describe what actually happened, including any error messages or incorrect behav
 [Attach any relevant screenshots, logs, or files that help illustrate the issue]
 
 **Additional Information:**
+
 - [Any additional information that might help in diagnosing the problem]
 - [If the issue is related to specific conditions or user actions, mention those here]
 
@@ -44,5 +45,6 @@ Describe what actually happened, including any error messages or incorrect behav
 [If you have a suggestion for fixing the issue or know the cause, provide details here]
 
 **Contact Information:**
+
 - Name: [Your Name]
 - Email: [Your Email]

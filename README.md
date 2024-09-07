@@ -2,14 +2,11 @@
 
 [![license](https://badgen.net/github/license/EveSunMaple/Frosti)](https://github.com/EveSunMaple/Frosti/blob/main/LICENSE)&nbsp;&nbsp;&nbsp;[![release](https://badgen.net/github/release/EveSunMaple/Frosti)](https://github.com/EveSunMaple/Frosti/releases)&nbsp;&nbsp;&nbsp;[![stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/EveSunMaple/Frosti)
 
-
 <pre align="center">
 A simple, elegant, and fast static blog template! 🚀 Built with Astro
 </pre>
 
-
 [**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 Chinese README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
-
 
 > [!TIP]
 > It is recommended to preview this theme first
@@ -39,15 +36,15 @@ A simple, elegant, and fast static blog template! 🚀 Built with Astro
 
 ## ✒️ Article Information
 
-|    Name     |   Meaning   | Required |
-| :---------: | :---------: | :------: |
-|    title    | Article title |   Yes    |
-| description | Article summary |   Yes    |
-|   pubDate   | Article date |   Yes    |
-|    image    | Article cover |   No     |
-| categories  | Article categories |  No  |
-|    tags     | Article tags |   No     |
-|    badge    | Article badge |  No     |
+|    Name     |      Meaning       | Required |
+| :---------: | :----------------: | :------: |
+|    title    |   Article title    |   Yes    |
+| description |  Article summary   |   Yes    |
+|   pubDate   |    Article date    |   Yes    |
+|    image    |   Article cover    |    No    |
+| categories  | Article categories |    No    |
+|    tags     |    Article tags    |    No    |
+|    badge    |   Article badge    |    No    |
 
 > [!TIP]
 > You can pin your article by setting the `badge` attribute to `Pin`
@@ -66,31 +63,38 @@ pnpm create astro@latest -- --template EveSunMaple/Frosti
 <details>
   <summary><h3>Encountering Issues? Build by Cloning This Repository!</h3></summary>
 
-  1. Install the pnpm package manager
+1. Install the pnpm package manager
 
-  ```sh
-  npm i -g pnpm
-  ```
-  
-  2. Clone the project
-  ```sh
-  git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti
-  ```
-  3. Enter the project folder
-  ```sh
-  cd Frosti
-  ```
-  4. Install dependencies
-  ```sh
-  pnpm i
-  ```
-  
-  5. Debug and run the project
-  ```sh
-  pnpm run dev # Start the debug server
-  
-  pnpm run build # Build the project as static files
-  ```
+```sh
+npm i -g pnpm
+```
+
+2. Clone the project
+
+```sh
+git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti
+```
+
+3. Enter the project folder
+
+```sh
+cd Frosti
+```
+
+4. Install dependencies
+
+```sh
+pnpm i
+```
+
+5. Debug and run the project
+
+```sh
+pnpm run dev # Start the debug server
+
+pnpm run build # Build the project as static files
+```
+
 </details>
 
 > [!NOTE]

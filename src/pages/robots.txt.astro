@@ -1,0 +1,10 @@
+---
+const allowAll = true;
+const siteUrl = Astro.site;
+---
+
+<raw>
+  User-agent: *
+  {allowAll ? "Allow: /" : "Disallow: /"}
+  Sitemap: {siteUrl}sitemap-0.xml
+</raw>

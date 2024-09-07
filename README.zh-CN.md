@@ -2,14 +2,11 @@
 
 [![license](https://badgen.net/github/license/EveSunMaple/Frosti)](https://github.com/EveSunMaple/Frosti/blob/main/LICENSE)&nbsp;&nbsp;&nbsp;[![release](https://badgen.net/github/release/EveSunMaple/Frosti)](https://github.com/EveSunMaple/Frosti/releases)&nbsp;&nbsp;&nbsp;[![stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/EveSunMaple/Frosti)
 
-
 <pre align="center">
 一个简洁、优雅、快速的静态博客模板！🚀 使用 Astro 开发
 </pre>
 
-
 [**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️My Blog**](https://www.saroprock.com)
-
 
 > [!TIP]
 > 推荐先查看此主题的预览
@@ -66,31 +63,38 @@ pnpm create astro@latest -- --template EveSunMaple/Frosti
 <details>
   <summary><h3>出现问题？通过克隆本仓库构建！</h3></summary>
 
-  1. 安装pnpm包管理器
+1. 安装pnpm包管理器
 
-  ```sh
-  npm i -g pnpm
-  ```
-  
-  2. 克隆项目
-  ```sh
-  git clone --depth 1 https://github.com/  EveSunMaple/Frosti.git Frosti
-  ```
-  3. 进入项目文件夹
-  ```sh
-  cd Frosti
-  ```
-  4. 安装依赖
-  ```sh
-  pnpm i
-  ```
-  
-  5. 调试、运行项目
-  ```sh
-  pnpm run dev # 启动调试服务器
-  
-  pnpm run build # 构建项目为静态文件
-  ```
+```sh
+npm i -g pnpm
+```
+
+2. 克隆项目
+
+```sh
+git clone --depth 1 https://github.com/  EveSunMaple/Frosti.git Frosti
+```
+
+3. 进入项目文件夹
+
+```sh
+cd Frosti
+```
+
+4. 安装依赖
+
+```sh
+pnpm i
+```
+
+5. 调试、运行项目
+
+```sh
+pnpm run dev # 启动调试服务器
+
+pnpm run build # 构建项目为静态文件
+```
+
 </details>
 
 > [!NOTE]

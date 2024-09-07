@@ -22,7 +22,7 @@ const { title, image, includeSidebar = true } = Astro.props;
       (function () {
         const storedTheme = localStorage.getItem("theme");
         const userPreferredTheme = window.matchMedia(
-          "(prefers-color-scheme: dark)"
+          "(prefers-color-scheme: dark)",
         ).matches
           ? "winter"
           : "dracula";
@@ -106,7 +106,7 @@ const { title, image, includeSidebar = true } = Astro.props;
           },
           function (err) {
             console.error("error", err);
-          }
+          },
         );
       });
     });

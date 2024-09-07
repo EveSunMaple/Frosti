@@ -1,10 +1,9 @@
 ---
 name: "\U0001F680 Enhancement Request"
 about: Suggest an idea for this project
-title: ''
+title: ""
 labels: enhancement
-assignees: ''
-
+assignees: ""
 ---
 
 **Title:** 🚀 Enhancement Request: [Brief Description of the Enhancement]
@@ -20,6 +19,7 @@ A detailed description of the proposed enhancement. Explain what new functionali
 Explain why this enhancement is needed. Include any problems it will solve or improvements it will bring to the user experience.
 
 **Proposed Changes:**
+
 1. **Feature Addition:** [Describe the new feature or functionality in detail]
 2. **UI/UX Improvements:** [If applicable, describe any changes to the user interface or user experience]
 3. **Performance Enhancements:** [If applicable, describe how the enhancement will improve performance]
@@ -31,6 +31,7 @@ List the advantages and benefits of implementing this enhancement. Explain how i
 Provide any examples or use cases that illustrate the enhancement. Include mockups, wireframes, or screenshots if available.
 
 **Additional Information:**
+
 - [Any additional context or information that would be helpful]
 - [Include any related issues or requests if applicable]
 
@@ -39,5 +40,6 @@ Provide any examples or use cases that illustrate the enhancement. Include mocku
 **Estimated Effort:** [Estimate the effort required to implement this enhancement, if known]
 
 **Contact Information:**
+
 - Name: [Your Name]
 - Email: [Your Email]

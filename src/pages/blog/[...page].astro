@@ -14,7 +14,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 
   topPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   otherPosts.sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   );
 
   const sortedPosts = [...topPosts, ...otherPosts];
@@ -134,7 +134,7 @@ const pageLinks = generatePageLinks(totalPages);
                 >
                   {link}
                 </a>
-              )
+              ),
             )}
           </>
         ) : (
