@@ -48,6 +48,14 @@ a {
   @apply my-2;
 }
 
+.alert
+{
+  svg {
+  @apply inline-block;
+  vertical-align: -0.25rem;
+  }
+}
+
 html[data-theme="dracula"] {
   --pagefind-ui-primary: oklch(var(--nc));
   --pagefind-ui-text: oklch(var(--nc));
@@ -121,6 +129,11 @@ h4,
 h5,
 h6 {
   @apply my-2 mb-1 font-semibold;
+
+  svg {
+    @apply inline-block;
+    vertical-align: -0.25rem;
+  }
 }
 
 h1 {
