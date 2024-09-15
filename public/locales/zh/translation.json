@@ -2,10 +2,10 @@
   "label": {
     "noTag": "未分配标签",
     "tagCard": "标签",
-    "tagPage": "标签 - ",
+    "tagPage": "标签",
     "noCategory": "未分配分类",
     "categoryCard": "分类",
-    "categoryPage": "分类 - ",
+    "categoryPage": "分类",
     "link": "链接: ",
     "prevPage": "上一页",
     "nextPage": "下一页",

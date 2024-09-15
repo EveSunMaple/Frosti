@@ -2,10 +2,10 @@
   "label": {
     "noTag": "No tags assigned",
     "tagCard": "Tags",
-    "tagPage": "Tag - ",
+    "tagPage": "Tag",
     "noCategory": "No categories assigned",
     "categoryCard": "Categories",
-    "categoryPage": "Category - ",
+    "categoryPage": "Category",
     "link": "Link: ",
     "prevPage": "Recent posts",
     "nextPage": "Older posts",
