@@ -36,7 +36,7 @@ const target = "_self";
       <div class="m-2">{desc}</div>
       <div class="m-2">
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center gap-2 flex-wrap">
             {
               displayDate && (
                 <div class="badge badge-neutral">{displayDate}</div>
@@ -44,10 +44,14 @@ const target = "_self";
             }
             {badge && <div class="badge badge-primary">{badge}</div>}
           </div>
-          {time && <div class="badge">{`${time} ${t("label.readTime")}`}</div>}
+          {
+            time && (
+              <div class="badge  whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
+            )
+          }
         </div>
         <div class="flex items-center justify-between mt-2">
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center gap-2 flex-wrap">
             {
               hasTategories ? (
                 categories.map((categoroy) => (
@@ -85,7 +89,11 @@ const target = "_self";
               )
             }
           </div>
-          {word && <div class="badge">{`${word} ${t("label.wordCount")}`}</div>}
+          {
+            word && (
+              <div class="badge whitespace-nowrap">{`${word} ${t("label.wordCount")}`}</div>
+            )
+          }
         </div>
       </div>
     </div>
