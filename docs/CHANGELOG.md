@@ -433,7 +433,7 @@
         };
         ```
     
-    4. 在 'BaseLoyout.astro' 中更改为您的语言代码，比如：
+    4. 在 'BaseLayout.astro' 中更改为您的语言代码，比如：
 
         ```astro
         ...
