@@ -3,8 +3,9 @@ import dayjs from "dayjs";
 import { Image } from "astro:assets";
 import License from "../components/License.astro";
 import CommentWaline from "./CommentWaline.astro";
-import { DATE_FORMAT, infoTest } from "../consts";
+import { DATE_FORMAT } from "../consts";
 import type { CardInfo } from "../types";
+import { t } from "i18next";
 const {
   title = "undefined",
   image,
@@ -45,52 +46,58 @@ const hasTags = tags && tags.length > 0;
     {
       isBlog && (
         <>
-          <div role="alert" class="alert">
-            This article is approximately {time} and contains {word} words.
-          </div>
           <h1 id="h1" class="mt-2">
             {title}
           </h1>
           <div class="info mt-2">
-            {displayDate && (
-              <div class="badge badge-neutral">{displayDate}</div>
-            )}
-            <span>&thinsp;</span>
-            {badge && <div class="badge badge-primary">{badge}</div>}
-            <div class="tags mt-2">
-              {hasTategories ? (
-                categories.map((categoroy) => (
-                  <>
-                    <a
-                      href={`/blog/categories/${categoroy}`}
-                      class="btn btn-xs btn-accent"
-                    >
-                      {categoroy}
-                    </a>
-                    <span>&thinsp;</span>
-                  </>
-                ))
-              ) : (
-                <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
-                  {infoTest.noCategory}
-                </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                {displayDate && (
+                  <div class="badge badge-neutral">{displayDate}</div>
+                )}
+                {badge && <div class="badge badge-primary">{badge}</div>}
+              </div>
+              {time && (
+                <div class="badge">{`${time} ${t("label.readTime")}`}</div>
               )}
-              {hasTags ? (
-                tags.map((tag) => (
-                  <>
-                    <a
-                      href={`/blog/tag/${tag}`}
-                      class="btn btn-xs btn-secondary"
-                    >
-                      {tag}
-                    </a>
-                    <span>&thinsp;</span>
-                  </>
-                ))
-              ) : (
-                <div class="btn btn-xs btn-secondary btn-disabled">
-                  {infoTest.noTag}
-                </div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <div class="flex items-center space-x-2">
+                {hasTategories ? (
+                  categories.map((categoroy) => (
+                    <>
+                      <a
+                        href={`/blog/categories/${categoroy}`}
+                        class="btn btn-xs btn-accent"
+                      >
+                        {categoroy}
+                      </a>
+                    </>
+                  ))
+                ) : (
+                  <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
+                    {t("label.noCategory")}
+                  </div>
+                )}
+                {hasTags ? (
+                  tags.map((tag) => (
+                    <>
+                      <a
+                        href={`/blog/tag/${tag}`}
+                        class="btn btn-xs btn-secondary"
+                      >
+                        {tag}
+                      </a>
+                    </>
+                  ))
+                ) : (
+                  <div class="btn btn-xs btn-secondary btn-disabled">
+                    {t("label.noTag")}
+                  </div>
+                )}
+              </div>
+              {word && (
+                <div class="badge">{`${word} ${t("label.wordCount")}`}</div>
               )}
             </div>
           </div>

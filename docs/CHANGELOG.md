@@ -388,3 +388,72 @@
 
 - 修复了评论系统反应表情加载不出来的问题（图床垮了）
 - 修复了 `global.scss` 中错误的 applt 拼写
+
+## [2.6.0] - 2024-9-15
+
+### Features
+
+- 新增了导航栏的逻辑，现在点击按钮也可以收回（🚧 此内容可能存在问题，需要收集更多信息 🚧）
+- 为每一个标题添加了按钮，您可以将指针放在标题上，点击按钮即可跳转
+- 为卡片图片添加了一个跳转样式，鼠标放上后会有一个放大的动画与箭头
+- 为链接添加了新的样式，现在它们更生动、更引人注目
+- 添加了字数统计与阅读时间计算的功能，您可以在博客中看到它们的统计结果
+- 新增分享功能，现在您可以通过文末按钮直接将文章分享到社交媒体上
+- 新增 i18n ，移除了老旧的 `infoTest` ，现在所有的语言都在 `public/locales` 文件夹中
+
+    这意味着您可以添加多种语言并随时切换，教程如下：
+
+    1. 在 `public/locales` 文件夹中添加您的语言文件，先添加一个名为语言代码的文件夹，然后在里面添加一个 json 文件，文件名必须为 `translation.json`
+    2. 复制已有的 `translation.json` 文件，然后修改其中的内容，比如：
+
+        ```json
+        {
+        "label": {
+          "noTag": "No tags assigned",
+          "tagCard": "Tags",
+          "tagPage": "Tag - ",
+          "noCategory": "No categories assigned",
+          "categoryCard": "Categories",
+          "categoryPage": "Category - ",
+          "link": "Link: ",
+          "prevPage": "Recent posts",
+          "nextPage": "Older posts",
+          "wordCount": "words",
+          "readTime": "minutes"
+          }
+        }
+        ```
+
+    3. 在 `astro-i18next.config.mjs` 中添加您的语言代码，比如：
+
+        ```mjs
+        export default {
+        defaultLocale: "en",
+        locales: ['en', 'zh', 'xx'] // 这里添加您的语言代码
+        };
+        ```
+    
+    4. 在 'BaseLoyout.astro' 中更改为您的语言代码，比如：
+
+        ```astro
+        ...
+        import i18next, { t, changeLanguage } from "i18next";
+
+        changeLanguage("xx");
+        ...
+        ```
+
+> [!NOTE]
+> 欢迎大家为主题添加语言支持！
+
+### Refactored
+
+- 新增 docs 文件夹
+- 修改了 blockquote 的内边距
+- 修改标签页标题，坚持内容优先，把 `${SITE_TAB} - ${title}` 改成了 `${title} - ${SITE_TAB}`
+
+### Fix
+
+- 修复了在标题与 alert 中错误的外链 svg 样式
+- 修复了 toc 错误获取 # 的问题
+- 修复了导航栏逻辑

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { infoTest } from "../consts";
+import { t } from "i18next";
 
 interface TagCount {
   category: string;
@@ -27,7 +27,7 @@ const tagsWithCounts = await getTagsWithCounts();
 <div class="bg-base-100 shadow-xl w-full mb-8 no-card p-4">
   <div class="p-4">
     <div class="btn btn-sm btn-ghost no-animation w-full font-bold">
-      {infoTest.categoryCard}
+      {t("label.categoryCard")}
     </div>
   </div>
   <div class="flex flex-wrap gap-2.5 w-full max-h-[300px] overflow-auto">

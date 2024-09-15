@@ -101,7 +101,11 @@ const { title, image, desc, url, badge, target = "_blank" } = Astro.props;
   </div>
   {
     image && (
-      <div class="relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1">
+      <a
+        href={url}
+        target={target}
+        class="image-link relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1"
+      >
         <Image
           src={image}
           alt={title}
@@ -111,7 +115,7 @@ const { title, image, desc, url, badge, target = "_blank" } = Astro.props;
           loading="eager"
           class="object-cover w-full h-full"
         />
-      </div>
+      </a>
     )
   }
 </div>

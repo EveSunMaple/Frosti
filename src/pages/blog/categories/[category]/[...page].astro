@@ -4,7 +4,7 @@ import EnvelopeCard from "../../../../components/EnvelopeCard.astro";
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import BaseCard from "../../../../components/BaseCard.astro";
 import { getCollection } from "astro:content";
-import { infoTest } from "../../../../consts";
+import { t } from "i18next";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const all_posts = await getCollection("blog");
@@ -58,7 +58,7 @@ const pageLinks = generatePageLinks(totalPages);
 
 <BaseLayout title="Category">
   <BaseCard title="Category">
-    <h1 id="h1">{infoTest.categoryPage + params.category}</h1>
+    <h1 id="h1">{`${t("label.categoryPage")} + ${params.category}`}</h1>
     <hr />
   </BaseCard>
   <div class="mt-8 mb-8">
@@ -95,7 +95,7 @@ const pageLinks = generatePageLinks(totalPages);
         <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
         ></path>
       </svg>
-      <span class="hidden lg:inline"> {infoTest.prevPage}</span>
+      <span class="hidden lg:inline"> {t("label.prevPage")}</span>
     </a>
     <div class="join">
       {
@@ -170,7 +170,7 @@ const pageLinks = generatePageLinks(totalPages);
         ? `btn bg-base-100 shadow-xl`
         : `btn btn-disabled bg-base-100 shadow-xl`}
     >
-      <span class="hidden lg:inline"> {infoTest.nextPage}</span>
+      <span class="hidden lg:inline"> {t("label.prevPage")}</span>
       <svg
         class="h-6 w-6 fill-current md:h-8 md:w-8"
         xmlns="http://www.w3.org/2000/svg"

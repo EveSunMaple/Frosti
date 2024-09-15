@@ -31,11 +31,12 @@ import ThemeIcon from "../components/ThemeIcon.astro";
       let tocContent = "<ul class='overflow-auto w-full list-none m-0 p-0'>";
       let levelCounters = [0, 0, 0, 0, 0, 0];
       headings.forEach((heading) => {
+        let headingText = heading.textContent;
         const headingId = heading.id;
-        const headingText = heading.textContent;
         const headingLevel = parseInt(heading.tagName.charAt(1), 10);
 
         if (headingId && headingText && headingLevel) {
+          headingText = headingText.replace(/#/g, "");
           const level = headingLevel - 1;
           levelCounters[level]++;
           levelCounters.fill(0, level + 1);

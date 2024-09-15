@@ -10,11 +10,13 @@ import rehypeKatex from "rehype-katex";
 import rehypeExternalLinks from 'rehype-external-links';
 import playformCompress from "@playform/compress";
 
+import astroI18next from "astro-i18next";
+
 import swup from "@swup/astro";
 import SwupScrollPlugin from "@swup/scroll-plugin";
 import SwupParallelPlugin from "@swup/parallel-plugin";
 
-import { remarkWordCount } from './src/plugins/remark-word-count.mjs';
+import { remarkAddAnchor } from './src/plugins/remark-add-anchor.mjs';
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
 
 // https://astro.build/config
@@ -39,6 +41,7 @@ export default defineConfig({
     sitemap(),
     tailwind(),
     pagefind(),
+    astroI18next(),
     playformCompress(),
   ],
   markdown: {
@@ -123,7 +126,7 @@ export default defineConfig({
         },
       ],
     },
-    remarkPlugins: [remarkMath, remarkWordCount, remarkReadingTime],
+    remarkPlugins: [remarkMath, remarkAddAnchor, remarkReadingTime],
     rehypePlugins: [rehypeKatex,
       [
         rehypeExternalLinks,

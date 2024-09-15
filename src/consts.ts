@@ -14,20 +14,6 @@ export const USER_AVATAR = "/profile.webp";
 // Server and transition settings
 export const SERVER_URL = "https://demo.saroprock.com";
 
-// Some informative text on the site
-export const infoTest = {
-  tag: "Tag: ",
-  noTag: "untagged",
-  tagCard: "Tags",
-  tagPage: "Tag - ",
-  noCategory: "uncategorized",
-  categoryCard: "Categories",
-  categoryPage: "Category - ",
-  link: "Link: ",
-  prevPage: "Recent posts",
-  nextPage: "Older posts",
-};
-
 // Menu items for navigation
 export const menuItems = [
   { id: "home", text: "Home", href: "/", svg: "home", target: "_self" }, // Home page

@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BaseCard from "../../components/BaseCard.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
+import { t } from "i18next";
 
 export async function getStaticPaths() {
   const blog = await getCollection("blog");
@@ -26,8 +27,8 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     badge={post.data.badge}
     categories={post.data.categories}
     tags={post.data.tags}
-    word={remarkPluginFrontmatter.wordCount}
-    time={remarkPluginFrontmatter.minutesRead}
+    word={remarkPluginFrontmatter.totalCharCount}
+    time={remarkPluginFrontmatter.readingTime}
     isBlog="true"
   >
     <Content />
