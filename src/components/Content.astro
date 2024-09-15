@@ -24,6 +24,17 @@ import ThemeIcon from "../components/ThemeIcon.astro";
   </div>
 </div>
 <script>
+  function getCleanText(element: HTMLElement) {
+    let text = "";
+    element.childNodes.forEach((node: ChildNode) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        text += node.textContent;
+      } else if (node.nodeType === Node.ELEMENT_NODE && (node as HTMLElement).className !== 'katex-mathml') {
+        text += getCleanText(node as HTMLElement);
+      }
+    });
+    return text;
+  }
   function addContent() {
     const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
@@ -31,7 +42,7 @@ import ThemeIcon from "../components/ThemeIcon.astro";
       let tocContent = "<ul class='overflow-auto w-full list-none m-0 p-0'>";
       let levelCounters = [0, 0, 0, 0, 0, 0];
       headings.forEach((heading) => {
-        let headingText = heading.textContent;
+        let headingText = getCleanText(heading as HTMLElement);
         const headingId = heading.id;
         const headingLevel = parseInt(heading.tagName.charAt(1), 10);
 
