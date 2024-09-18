@@ -23,7 +23,7 @@ a {
   @apply rounded-xl shadow-xl;
 }
 
-.main-card img {
+.main-card img:not(.link-card img) {
   @apply rounded-xl;
 }
 
