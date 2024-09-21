@@ -9,7 +9,7 @@ import Content from "../components/Content.astro";
 import TagCard from "../components/TagCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
 import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import i18next, { t, changeLanguage } from "i18next";
+import i18next, { changeLanguage } from "i18next";
 
 changeLanguage("en");
 const { title, image, includeSidebar = true } = Astro.props;
@@ -19,7 +19,7 @@ const { title, image, includeSidebar = true } = Astro.props;
 <html lang={i18next.language} class="bg-base-300" data-theme="winter">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
     <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
     <script is:inline>
       (function () {
@@ -116,10 +116,16 @@ const { title, image, includeSidebar = true } = Astro.props;
   }
 
   import mediumZoom from "medium-zoom/dist/pure";
-  mediumZoom(".main-card img:not(.link-card img)", { margin: 24, background: "#00000080" });
+  mediumZoom(".main-card img:not(.link-card img)", {
+    margin: 24,
+    background: "#00000080",
+  });
 
   document.addEventListener("swup:page:view", () => {
-    mediumZoom(".main-card img:not(.link-card img)", { margin: 24, background: "#00000080" });
+    mediumZoom(".main-card img:not(.link-card img)", {
+      margin: 24,
+      background: "#00000080",
+    });
   });
 
   document.addEventListener("DOMContentLoaded", addCopyButton);

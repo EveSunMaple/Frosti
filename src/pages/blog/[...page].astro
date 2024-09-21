@@ -22,7 +22,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   // 获取统计信息
   const postsWithStats = await Promise.all(
     sortedPosts.map(async (post) => {
-      const { Content, remarkPluginFrontmatter } = await post.render();
+      const { remarkPluginFrontmatter } = await post.render();
 
       // 将统计信息添加到 post 数据中
       return {

@@ -13,15 +13,16 @@ import playformCompress from "@playform/compress";
 import astroI18next from "astro-i18next";
 
 import swup from "@swup/astro";
-import SwupScrollPlugin from "@swup/scroll-plugin";
-import SwupParallelPlugin from "@swup/parallel-plugin";
 
 import { remarkAddAnchor } from './src/plugins/remark-add-anchor.mjs';
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
 
+const { USER_SITE } = await import('./src/consts.ts');
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://frosti.saroprock.com",
+  site: USER_SITE,
+  output: 'static',
   style: {
     scss: {
       includePaths: ["./src/styles"],
@@ -31,7 +32,15 @@ export default defineConfig({
     mdx(),
     icon(),
     swup({
-      plugins: [new SwupScrollPlugin(), new SwupParallelPlugin()],
+      cache: true,
+      progress: true,
+      accessibility: true,
+      smoothScrolling: true,
+      preload: {
+        hover: true,
+        visible: true
+      },
+      theme: 'slide',
       containers: ["#swup"],
     }),
     terser({

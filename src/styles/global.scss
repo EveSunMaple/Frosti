@@ -365,3 +365,7 @@ thead th {
 .footnotes {
   @apply alert;
 }
+
+.swup-progress-bar {
+  background-color: oklch(var(--p));
+}

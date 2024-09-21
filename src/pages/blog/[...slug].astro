@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BaseCard from "../../components/BaseCard.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import { t } from "i18next";
 
 export async function getStaticPaths() {
   const blog = await getCollection("blog");
