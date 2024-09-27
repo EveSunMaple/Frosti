@@ -38,7 +38,7 @@ export default defineConfig({
       smoothScrolling: true,
       preload: {
         hover: true,
-        visible: true
+        visible: false
       },
       theme: 'slide',
       containers: ["#swup"],
