@@ -24,7 +24,7 @@ const hasTags = tags && tags.length > 0;
 ---
 
 <div
-  class="mb-8 relative left-1/2 transform -translate-x-1/2 overflow-hidden card bg-base-100 shadow-xl"
+  class="relative w-full overflow-hidden card bg-base-100 shadow-xl fade-in-up transition-colors"
   title={title}
 >
   {
@@ -41,7 +41,7 @@ const hasTags = tags && tags.length > 0;
     )
   }
   <div
-    class="main-card relative leading-6 z-10 p-6 md:p-6 lg:p-8 card bg-base-100"
+    class="main-card relative leading-6 z-10 p-6 md:p-6 lg:p-8 card bg-base-100 fade-in-up transition-colors"
   >
     {
       isBlog && (
@@ -58,7 +58,7 @@ const hasTags = tags && tags.length > 0;
                 {badge && <div class="badge badge-primary">{badge}</div>}
               </div>
               {time && (
-                <div class="badge  whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
+                <div class="badge whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
               )}
             </div>
             <div class="flex items-center justify-between mt-2">

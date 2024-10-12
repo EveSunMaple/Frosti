@@ -1,9 +1,9 @@
 ---
-import Menu from "../components/HeaderMenu.astro";
+import Menu from "../components/NavbarMenu.astro";
 import { SITE_TITLE } from "../consts";
 ---
 
-<div
+<navbar
   class="navbar max-md:translate-y-0 fixed px-2 w-full transform -translate-y-full text-center z-50 transition-transform bg-base-100 shadow-xl"
 >
   <div class="navbar-start">
@@ -58,7 +58,7 @@ import { SITE_TITLE } from "../consts";
       </label>
     </div>
   </div>
-</div>
+</navbar>
 <script>
   // 当用户点击菜单区域外部区域的时候, 关闭菜单
   document.addEventListener("click", function (event) {

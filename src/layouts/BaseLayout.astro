@@ -3,11 +3,11 @@ import "medium-zoom/dist/style.css";
 import "/node_modules/katex/dist/katex.min.css";
 import Profile from "../components/ProfileCard.astro";
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import Content from "../components/Content.astro";
 import TagCard from "../components/TagCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
+import SidebarTool from "../components/SidebarTool.astro";
 import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import i18next, { changeLanguage } from "i18next";
 
@@ -19,7 +19,6 @@ const { title, image, includeSidebar = true } = Astro.props;
 <html lang={i18next.language} class="bg-base-300" data-theme="winter">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
     <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
     <script is:inline>
       (function () {
@@ -36,7 +35,7 @@ const { title, image, includeSidebar = true } = Astro.props;
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
   </head>
   <body>
-    <Header title={SITE_TITLE} />
+    <Navbar title={SITE_TITLE} />
     <div class="max-w-7xl m-auto">
       <div
         class="relative grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-0 md:p-0 lg:p-4 top-16 md:top-0"
@@ -50,7 +49,7 @@ const { title, image, includeSidebar = true } = Astro.props;
                 <Profile />
                 <CategoryCard />
                 <TagCard />
-                <Content />
+                <SidebarTool />
               </>
             )
           }
@@ -60,8 +59,10 @@ const { title, image, includeSidebar = true } = Astro.props;
         >
           <div>
             <main id="swup" class="detail transition-main">
-              <slot />
-              <Footer />
+              <div class="grid grid-cols-1 gap-8 fade-in-up">
+                <slot />
+                <Footer />
+              </div>
             </main>
             <br />
           </div>

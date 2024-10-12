@@ -475,3 +475,45 @@
 - 修复了一堆拼写错误（存在于 2.6.0 的 release 中）
 - 删除了在 LinkCard 中不恰当的图片放大功能
 - 移除了 `transition.scss` ，改用 swup 默认主题代替（我不知道这对改善崩溃问题是否有用）
+
+## [2.7.0] - 2024-10-12
+
+### Features
+
+- 添加昼夜转换过渡
+- 自定义了博客中的标题 `ID` ，当前命名格式为 `heading-${headingCount}` ，避免了出现同名标题无法跳转的问题
+- 为博客目录功能添加了 "聚焦" 功能，现在目录会根据您当前阅读的部分自动滚动
+- 为博客 `main` 中的卡片添加了逐次进入样式，使用 `sass` 制作：
+
+    ```scss
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 0.5s ease forwards;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.1}s;
+        }
+      }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    ```
+
+### Refactored
+
+- 修改了原网站图标
+- 修改了原不规范的文件命名
+- 修改了原不合理的布局
+- 修改了侧边栏按钮的样式，使用 `join` 组合元素
+- 微调 `padding`
+
+### Fix
+
+- 修复了在重名 `ID` 下无法跳转的问题

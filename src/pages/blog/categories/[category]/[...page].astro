@@ -61,24 +61,22 @@ const pageLinks = generatePageLinks(totalPages);
     <h1 id="h1">{`${t("label.categoryPage")} - ${params.category}`}</h1>
     <hr />
   </BaseCard>
-  <div class="mt-8 mb-8">
-    {
-      page.data.map((post: Post) => (
-        <EnvelopeCard
-          title={post.data.title}
-          image={post.data.image}
-          desc={post.data.description}
-          url={"/blog/" + post.slug}
-          pubDate={post.data.pubDate}
-          badge={post.data.badge}
-          categories={post.data.categories}
-          tags={post.data.tags}
-          target="_self"
-        />
-      ))
-    }
-  </div>
-  <div class="flex justify-between mb-8">
+  {
+    page.data.map((post: Post) => (
+      <EnvelopeCard
+        title={post.data.title}
+        image={post.data.image}
+        desc={post.data.description}
+        url={"/blog/" + post.slug}
+        pubDate={post.data.pubDate}
+        badge={post.data.badge}
+        categories={post.data.categories}
+        tags={post.data.tags}
+        target="_self"
+      />
+    ))
+  }
+  <div class="flex justify-between fade-in-up">
     <a
       href={page.url.prev || "'#'"}
       class={page.url.prev

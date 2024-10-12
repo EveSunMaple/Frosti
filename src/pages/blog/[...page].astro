@@ -77,26 +77,24 @@ const pageLinks = generatePageLinks(totalPages);
       uiOptions={{ showImages: false }}
     />
   </BaseCard>
-  <div class="mt-8 mb-8">
-    {
-      page.data.map((post: Post) => (
-        <EnvelopeCard
-          title={post.data.title}
-          image={post.data.image}
-          desc={post.data.description}
-          url={"/blog/" + post.slug}
-          pubDate={post.data.pubDate}
-          badge={post.data.badge}
-          categories={post.data.categories}
-          tags={post.data.tags}
-          word={post.remarkPluginFrontmatter.totalCharCount}
-          time={post.remarkPluginFrontmatter.readingTime}
-          target="_self"
-        />
-      ))
-    }
-  </div>
-  <div class="flex justify-between mb-8">
+  {
+    page.data.map((post: Post) => (
+      <EnvelopeCard
+        title={post.data.title}
+        image={post.data.image}
+        desc={post.data.description}
+        url={"/blog/" + post.slug}
+        pubDate={post.data.pubDate}
+        badge={post.data.badge}
+        categories={post.data.categories}
+        tags={post.data.tags}
+        word={post.remarkPluginFrontmatter.totalCharCount}
+        time={post.remarkPluginFrontmatter.readingTime}
+        target="_self"
+      />
+    ))
+  }
+  <div class="flex justify-between fade-in-up">
     <a
       href={page.url.prev ? page.url.prev : `javascript:`}
       class={page.url.prev

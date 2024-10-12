@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  @apply scroll-smooth;
+  @apply scroll-smooth transition-colors;
 }
 
 .no-card {
@@ -179,23 +179,23 @@ h6 {
 }
 
 h1 {
-  @apply text-5xl leading-tight mt-7;
+  @apply text-5xl leading-tight pt-7;
 }
 
 h2 {
-  @apply text-4xl leading-snug mt-6;
+  @apply text-4xl leading-snug pt-6;
 }
 
 h3 {
-  @apply text-3xl leading-normal mt-5;
+  @apply text-3xl leading-normal pt-5;
 }
 
 h4 {
-  @apply text-2xl leading-relaxed mt-4;
+  @apply text-2xl leading-relaxed pt-4;
 }
 
 h5 {
-  @apply text-xl leading-relaxed mt-3;
+  @apply text-xl leading-relaxed pt-3;
 }
 
 strong,
@@ -368,4 +368,23 @@ thead th {
 
 .swup-progress-bar {
   background-color: oklch(var(--p));
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.5s ease forwards;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

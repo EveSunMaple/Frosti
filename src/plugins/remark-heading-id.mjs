@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 
-export function remarkAddAnchor() {
+export function remarkHeadingId() {
     return function (tree) {
         let headingCount = 0;
         visit(tree, 'heading', (node) => {
@@ -15,13 +15,6 @@ export function remarkAddAnchor() {
             }
 
             node.data.hProperties.id = headingId;
-
-            const anchorHtml = {
-                type: 'html',
-                value: `<a href="#${headingId}" class="anchor"><span class="anchor-icon" data-pagefind-ignore="">#</span></a>`,
-            };
-
-            node.children.push(anchorHtml);
         });
     };
 }
