@@ -42,7 +42,7 @@ export default defineConfig({
         hover: true,
         visible: false
       },
-      theme: 'slide',
+      // theme: 'slide',
       containers: ["#swup"],
     }),
     terser({
