@@ -128,13 +128,15 @@ const { title, image, includeSidebar = true } = Astro.props;
       background: "#00000080",
     });
   });
-
-  document.addEventListener("DOMContentLoaded", addCopyButton);
-
-  document.addEventListener("swup:page:view", addCopyButton);
-
   document.addEventListener("swup:page:view", () => {
     const astroPageLoadEvent = new Event("astro:page-load");
     document.dispatchEvent(astroPageLoadEvent);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const astroPageLoadEvent = new Event("swup:page:view");
+    document.dispatchEvent(astroPageLoadEvent);
+
+    document.addEventListener("swup:page:view", addCopyButton);
   });
 </script>

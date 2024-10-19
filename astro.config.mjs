@@ -16,8 +16,6 @@ import swup from "@swup/astro";
 
 import { remarkAddAnchor } from './src/plugins/remark-add-anchor.mjs';
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const { USER_SITE } = await import('./src/consts.ts');
 
