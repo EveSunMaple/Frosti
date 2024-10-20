@@ -9,13 +9,14 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeExternalLinks from 'rehype-external-links';
 import playformCompress from "@playform/compress";
-
-import astroI18next from "astro-i18next";
+import partytown from "@astrojs/partytown";
 
 import swup from "@swup/astro";
+import astroI18next from "astro-i18next";
 
 import { remarkAddAnchor } from './src/plugins/remark-add-anchor.mjs';
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
+
 
 const { USER_SITE } = await import('./src/consts.ts');
 
@@ -28,31 +29,21 @@ export default defineConfig({
       includePaths: ["./src/styles"],
     },
   },
-  integrations: [
-    mdx(),
-    icon(),
-    swup({
-      cache: true,
-      progress: true,
-      accessibility: true,
-      smoothScrolling: true,
-      preload: {
-        hover: true,
-        visible: false
-      },
-      // theme: 'slide',
-      containers: ["#swup"],
-    }),
-    terser({
-      compress: true,
-      mangle: true,
-    }),
-    sitemap(),
-    tailwind(),
-    pagefind(),
-    astroI18next(),
-    playformCompress(),
-  ],
+  integrations: [mdx(), icon(), swup({
+    cache: true,
+    progress: true,
+    accessibility: true,
+    smoothScrolling: true,
+    preload: {
+      hover: true,
+      visible: false
+    },
+    // theme: 'slide',
+    containers: ["#swup"],
+  }), terser({
+    compress: true,
+    mangle: true,
+  }), sitemap(), tailwind(), pagefind(), astroI18next(), playformCompress(), partytown()],
   markdown: {
     shikiConfig: {
       themes: {
