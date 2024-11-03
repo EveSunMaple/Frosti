@@ -7,29 +7,49 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import TagCard from "../components/TagCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
-import SidebarTool from "../components/SidebarTool.astro";
-import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import ToolCard from "../components/ToolCard.astro";
+import {
+  SITE_LANG,
+  SITE_TAB,
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  DAISYUI_THEME,
+} from "../consts";
 import i18next, { changeLanguage } from "i18next";
-
-changeLanguage("en");
+changeLanguage(SITE_LANG);
 const { title, image, includeSidebar = true } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={i18next.language} class="bg-base-300" data-theme="winter">
+<html
+  lang={i18next.language}
+  class="bg-base-300"
+  data-light={DAISYUI_THEME.light}
+  data-dark={DAISYUI_THEME.dark}
+  data-theme="winter"
+  data-theme-type="light"
+>
   <head>
     <meta charset="UTF-8" />
     <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
     <script is:inline>
       (function () {
-        const storedTheme = localStorage.getItem("theme");
+        let storedTheme = localStorage.getItem("theme");
         const userPreferredTheme = window.matchMedia(
           "(prefers-color-scheme: dark)",
         ).matches
-          ? "winter"
-          : "dracula";
+          ? "light"
+          : "dark";
+        const light = document.documentElement.dataset.light;
+        const dark = document.documentElement.dataset.dark;
+        if (storedTheme != "light" && storedTheme != "dark") {
+          storedTheme = "light";
+          localStorage.setItem("theme", storedTheme);
+        }
         const theme = storedTheme || userPreferredTheme;
-        document.documentElement.setAttribute("data-theme", theme);
+        const currentTheme = theme === "light" ? light : dark;
+        document.documentElement.setAttribute("data-theme-type", theme);
+        document.documentElement.setAttribute("data-theme", currentTheme);
       })();
     </script>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
@@ -49,7 +69,7 @@ const { title, image, includeSidebar = true } = Astro.props;
                 <Profile />
                 <CategoryCard />
                 <TagCard />
-                <SidebarTool />
+                <ToolCard />
               </>
             )
           }
@@ -131,7 +151,7 @@ const { title, image, includeSidebar = true } = Astro.props;
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    const astroPageLoadEvent = new Event("swup:page:view");
-    document.dispatchEvent(astroPageLoadEvent);
+    const ContentLoadEvent = new Event("swup:page:view");
+    document.dispatchEvent(ContentLoadEvent);
   });
 </script>

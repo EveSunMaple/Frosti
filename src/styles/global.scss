@@ -59,7 +59,16 @@ a {
   @apply my-2;
 }
 
-html[data-theme="dracula"] {
+html[data-theme-type="light"] {
+  #content-box {
+    .active {
+      color: oklch(var(--n));
+      background-color: oklch(var(--b3));
+    }
+  }
+}
+
+html[data-theme-type="dark"] {
   --pagefind-ui-primary: oklch(var(--nc));
   --pagefind-ui-text: oklch(var(--nc));
   --pagefind-ui-background: oklch(var(--b1));

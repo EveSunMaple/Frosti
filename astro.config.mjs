@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import { CODE_THEME } from "./src/consts.ts";
 import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
 import terser from "@rollup/plugin-terser";
@@ -43,12 +44,12 @@ export default defineConfig({
   }), terser({
     compress: true,
     mangle: true,
-  }), sitemap(), tailwind(), pagefind(), astroI18next(), playformCompress(), partytown()],
+  }), sitemap(), tailwind(), pagefind(), astroI18next(), playformCompress()],
   markdown: {
     shikiConfig: {
       themes: {
-        light: "github-light",
-        dark: "github-dark",
+        light: CODE_THEME.light,
+        dark: CODE_THEME.dark,
       },
       transformers: [
         {

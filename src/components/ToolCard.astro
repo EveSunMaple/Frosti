@@ -1,5 +1,6 @@
 ---
-import ThemeIcon from "../components/ThemeIcon.astro";
+import ThemeButton from "../widget/ThemeButton.astro";
+import BackToTopButton from "../widget/BackToTopButton.astro";
 ---
 
 <div class="flex-col gap-4 w-full sticky top-8">
@@ -7,8 +8,10 @@ import ThemeIcon from "../components/ThemeIcon.astro";
     class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center mb-b w-full max-h-[600px] overflow-hide card bg-base-100 shadow-xl p-4 transition-colors"
     id="button-box"
   >
-    <ThemeIcon />
+    <BackToTopButton id="back-button" className="card" />
+    <ThemeButton id="side-theme-button" className="card" />
   </div>
+
   <div
     class="mb-b w-full max-h-[65vh] overflow-hide top-8 card bg-base-100 shadow-xl p-4 menu transition-colors"
     id="content-box"
@@ -84,7 +87,9 @@ import ThemeIcon from "../components/ThemeIcon.astro";
         const currentHeading = document.querySelector(
           `a[href="#${headings[i].id}"]`,
         ) as HTMLElement;
-        totalHeight += currentHeading.offsetHeight;
+        if (currentHeading) {
+          totalHeight += currentHeading.offsetHeight;
+        }
       }
       return totalHeight;
     };

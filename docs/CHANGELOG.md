@@ -528,3 +528,25 @@
 
 - 修复了滚动问题
 - 修复了在站内跳转时目录中 `active` 保留的问题
+
+## [2.8.0] - 2024-11-3
+
+### Features
+
+- 学习了 Astro 中自定义元素的用法，现在两个交互按钮单独分为 widget 可以重用
+- 在 `consts.ts` 新增了 `SITE_LANG` 作为网站的语言配置
+- 在 `consts.ts` 新增了 `DAIYSUI_THEME` 作为 DaiysUI 的主题配置，详见 https://daisyui.com/docs/themes/ （此内容需要更多适配）
+- 在 `consts.ts` 新增了 `CODE_THEME` 作为 shiki 的主题配置
+
+#### preview
+
+### Refactored
+
+- 侧边栏与导航栏修改
+- 移除了不必要的工具
+- 修改了 active 样式（选择性）
+
+### Fix
+
+- 修复了控制台报错
+- 补上了 `ProjectCard` 缺失的颜色过渡
