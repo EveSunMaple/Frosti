@@ -19,7 +19,7 @@ export const SERVER_URL = "https://demo.saroprock.com";
 // Theme settings
 export const DAISYUI_THEME = {
   light: "winter",
-  dark: "black",
+  dark: "dracula",
 }
 export const CODE_THEME = {
   light: "github-light",
