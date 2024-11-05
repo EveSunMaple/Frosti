@@ -45,6 +45,7 @@ import { Icon } from "astro-icon/components";
             title={item.id}
             href={item.href}
             target={item.target || "_self"}
+            aria-label={item.text}
           >
             <span class="inline-flex justify-center">
               <Icon name={`menu/${item.svg}`} />

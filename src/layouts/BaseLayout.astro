@@ -138,7 +138,7 @@ const { title, image, includeSidebar = true } = Astro.props;
 
   import mediumZoom from "medium-zoom/dist/pure";
   document.addEventListener("swup:page:view", () => {
-    mediumZoom(".main-card img:not(.link-card img)", {
+    mediumZoom(".main-card img:not(.link-card img):not(.comment img)", {
       margin: 24,
       background: "#00000080",
     });
