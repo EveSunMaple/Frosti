@@ -98,16 +98,9 @@ summary {
   list-style: none;
 }
 
-@media (max-width: 720px) {
-  body {
-    @apply text-lg;
-  }
-}
-
 @font-face {
   font-family: "Cascadia";
   src: url("/fonts/CascadiaCode.woff2") format("woff2");
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -362,6 +355,12 @@ thead th {
   transform: translate(-50%, -50%) scale(0.8);
 }
 
+.copy-btn {
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
 
 .timeline {
   @apply pl-0;

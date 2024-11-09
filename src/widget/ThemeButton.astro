@@ -40,6 +40,7 @@ const { id, className } = Astro.props;
     connectedCallback() {
       const $ = (selector: string) => this.querySelector(selector);
 
+      const themeInfo = document.getElementById("theme") as HTMLElement;
       const themeToggle = $("#themeToggle") as HTMLInputElement;
       const themeButton = $("#themeButton") as HTMLInputElement;
       const themeLabel = $("#themeLabel") as HTMLLabelElement;
@@ -55,8 +56,8 @@ const { id, className } = Astro.props;
       });
 
       const setTheme = (theme: string, storage: string) => {
-        document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.setAttribute("data-theme-type", storage);
+        document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", storage);
       };
 
@@ -85,7 +86,6 @@ const { id, className } = Astro.props;
         const currentTheme = theme === "light" ? light : dark;
         setTheme(currentTheme, theme);
         syncThemeToggle();
-        console.log(currentTheme + theme);
       };
 
       syncThemeToggle();

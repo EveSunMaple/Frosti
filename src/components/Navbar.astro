@@ -5,7 +5,8 @@ import { SITE_TITLE } from "../consts";
 ---
 
 <navbar
-  class="navbar max-md:translate-y-0 fixed px-2 w-full transform -translate-y-full text-center z-50 transition-colors bg-base-100 shadow-xl"
+  class="navbar fixed px-2 w-full transform transition-all duration-300 ease-in-out text-center z-50 bg-base-100 shadow-xl md:hidden"
+  id="navbar"
 >
   <div class="navbar-start">
     <details class="dropdown" id="dropdown">
@@ -22,10 +23,11 @@ import { SITE_TITLE } from "../consts";
           width="32"
           height="32"
           viewBox="0 0 512 512"
-          ><path
-            d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-          ></path></svg
         >
+          <path
+            d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+          ></path>
+        </svg>
       </summary>
       <Menu />
     </details>
@@ -37,32 +39,77 @@ import { SITE_TITLE } from "../consts";
     <ThemeButton id="navbar-theme" className="w-auto" />
   </div>
 </navbar>
+
 <script>
-  // 当用户点击菜单区域外部区域的时候, 关闭菜单
+  let lastScrollY = window.scrollY;
+  const navbar = document.getElementById("navbar");
+
+  // 监听滚动事件
+  window.addEventListener("scroll", () => {
+    if (navbar) {
+      if (window.scrollY > lastScrollY && window.scrollY > 50) {
+        // 向下滚动，隐藏导航栏
+        navbar.classList.add("-translate-y-full");
+        navbar.classList.remove("translate-y-0");
+        const dropdown = document.getElementById("dropdown");
+        if (dropdown) {
+          dropdown.removeAttribute("open");
+        }
+      } else if (window.scrollY < lastScrollY) {
+        // 向上滚动，显示导航栏
+        navbar.classList.remove("-translate-y-full");
+        navbar.classList.add("translate-y-0");
+      }
+      lastScrollY = window.scrollY;
+    }
+  });
+
+  // 当用户点击菜单区域外部区域时, 关闭菜单
   document.addEventListener("click", function (event) {
-    const dropdown = document.getElementById("dropdown") as HTMLElement;
-    const isClickInside = dropdown.contains(event.target as Node);
-    if (!isClickInside && dropdown.hasAttribute("open")) {
-      dropdown.removeAttribute("open");
+    const dropdown = document.getElementById("dropdown");
+    if (dropdown) {
+      const isClickInside = dropdown.contains(event.target as Node);
+      if (!isClickInside && dropdown.hasAttribute("open")) {
+        dropdown.removeAttribute("open");
+        dropdown.style.transform = "translateY(-100%)"; // 关闭时向上滑动
+      }
     }
   });
 
-  // 当用户滑动菜单区域外部区域的时候, 关闭菜单
+  // 当用户触摸菜单区域外部区域时, 关闭菜单
   document.addEventListener("touchmove", function (event) {
-    const dropdown = document.getElementById("dropdown") as HTMLElement;
-    const isTouchInside = dropdown.contains(event.target as Node);
-    if (!isTouchInside && dropdown.hasAttribute("open")) {
-      dropdown.removeAttribute("open");
+    const dropdown = document.getElementById("dropdown");
+    if (dropdown) {
+      const isTouchInside = dropdown.contains(event.target as Node);
+      if (!isTouchInside && dropdown.hasAttribute("open")) {
+        dropdown.removeAttribute("open");
+      }
     }
   });
 
-  // 当用户点击菜单的具体的选项的时候, 关闭菜单
+  // 当用户点击菜单的具体选项时, 关闭菜单
   document.querySelectorAll("#dropdown > ul > li").forEach((item) => {
     item.addEventListener("click", function () {
-      const dropdown = document.getElementById("dropdown") as HTMLElement;
-      if (dropdown.hasAttribute("open")) {
+      const dropdown = document.getElementById("dropdown");
+      if (dropdown && dropdown.hasAttribute("open")) {
         dropdown.removeAttribute("open");
       }
     });
   });
+
+  // 页面滑动时, 关闭菜单
+  window.addEventListener("scroll", function () {
+    const dropdown = document.getElementById("dropdown");
+    if (dropdown && dropdown.hasAttribute("open")) {
+      dropdown.removeAttribute("open");
+    }
+  });
+
+  // 打开菜单时, 设置 transform 为 0
+  function openDropdown() {
+    const dropdown = document.getElementById("dropdown");
+    if (dropdown && !dropdown.hasAttribute("open")) {
+      dropdown.setAttribute("open", "true");
+    }
+  }
 </script>
