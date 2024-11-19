@@ -16,6 +16,10 @@ export const USER_AVATAR = "/profile.webp";
 // Server and transition settings
 export const SERVER_URL = "https://demo.saroprock.com";
 
+
+//Rss full text or not
+export const RSS_FULL_TEXT = false;
+
 // Theme settings
 export const DAISYUI_THEME = {
   light: "winter",
