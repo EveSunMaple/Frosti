@@ -98,13 +98,6 @@ summary {
   list-style: none;
 }
 
-@font-face {
-  font-family: "Cascadia";
-  src: url("/fonts/CascadiaCode.woff2") format("woff2");
-  font-style: normal;
-  font-display: swap;
-}
-
 a {
   svg {
     @apply inline-block;
@@ -220,12 +213,12 @@ table tr {
 }
 
 code {
-  font-family: "Cascadia";
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   @apply text-xl p-[2px_5px] rounded-sm;
 }
 
 pre {
-  font-family: "Cascadia";
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   padding: 10px;
 }
 
@@ -293,7 +286,7 @@ thead th {
 }
 
 .highlight .code-lang {
-  font-family: "Cascadia";
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   user-select: none;
 }
 
