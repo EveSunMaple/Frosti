@@ -6,10 +6,6 @@ html {
   @apply scroll-smooth transition-colors;
 }
 
-.no-card {
-  border-radius: var(--rounded-box, 1rem);
-}
-
 .link-card a,
 a {
   @apply relative no-underline;

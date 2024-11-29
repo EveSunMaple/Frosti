@@ -22,21 +22,21 @@ const target = "_self";
 ---
 
 <div
-  class="relative w-full overflow-hidden card bg-base-100 shadow-xl flex flex-col lg:flex-row fade-in-up transition-colors"
+  class="relative bg-base-100 overflow-hidden shadow-xl rounded-xl flex flex-col lg:flex-row"
 >
   <div
-    class="relative w-full h-auto rounded-0 overflow-hidden card bg-base-100 flex-1 lg:order-1 order-2 flex fade-in-up transition-colors"
+    class="relative overflow-hidden bg-base-100 flex-1 lg:order-1 order-2 flex fade-in-up transition-colors rounded-none"
   >
-    <div class="relative w-full h-full p-6 flex flex-col justify-between">
+    <div class="relative w-full p-6 flex flex-col justify-between">
       <a href={url} target={target}>
-        <h1 id={title} class="text-4xl leading-snug m-0 p-2">
+        <h1 id={title} class="text-4xl m-0 p-2">
           {title}
         </h1>
       </a>
       <div class="m-2">{desc}</div>
-      <div class="m-2">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2 flex-wrap">
+      <div class="m-2 w-full">
+        <div class="flex w-full items-center justify-between">
+          <div class="flex w-full items-center gap-2 flex-wrap">
             {
               displayDate && (
                 <div class="badge badge-neutral">{displayDate}</div>

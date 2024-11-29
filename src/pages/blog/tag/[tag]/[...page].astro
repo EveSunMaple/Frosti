@@ -14,8 +14,22 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   ];
 
   all_posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  const postsWithStats = await Promise.all(
+    all_posts.map(async (post) => {
+      const { remarkPluginFrontmatter } = await post.render();
+      return {
+        ...post,
+        remarkPluginFrontmatter: {
+          readingTime: remarkPluginFrontmatter.readingTime,
+          totalCharCount: remarkPluginFrontmatter.totalCharCount,
+        },
+      };
+    }),
+  );
+
   return all_tags.flatMap((tag) => {
-    const filtered_posts = all_posts.filter((post) =>
+    const filtered_posts = postsWithStats.filter((post) =>
       post.data.tags?.includes(tag),
     );
     return paginate(filtered_posts, {
@@ -72,6 +86,8 @@ const pageLinks = generatePageLinks(totalPages);
         badge={post.data.badge}
         categories={post.data.categories}
         tags={post.data.tags}
+        word={post.remarkPluginFrontmatter.totalCharCount}
+        time={post.remarkPluginFrontmatter.readingTime}
         target="_self"
       />
     ))
@@ -95,7 +111,7 @@ const pageLinks = generatePageLinks(totalPages);
       </svg>
       <span class="hidden lg:inline"> {t("label.prevPage")}</span>
     </a>
-    <div class="join">
+    <div class={totalPages > 4 ? "join" : ""}>
       {
         totalPages > 4 ? (
           <>
@@ -117,8 +133,8 @@ const pageLinks = generatePageLinks(totalPages);
                           aria-label={hidden}
                           href={
                             hidden === "1"
-                              ? `/blog/tag/${params.tag}`
-                              : `/blog/tag/${params.tag}/${hidden}`
+                              ? `/blog/tags/${params.tag}`
+                              : `/blog/tags/${params.tag}/${hidden}`
                           }
                           class={`menu-item bg-base-100 ${hidden === page.current ? "btn-active" : ""}`}
                         >
@@ -134,8 +150,8 @@ const pageLinks = generatePageLinks(totalPages);
                   aria-label={link}
                   href={
                     link === "1"
-                      ? `/blog/tag/${params.tag}`
-                      : `/blog/tag/${params.tag}/${link}`
+                      ? `/blog/tags/${params.tag}`
+                      : `/blog/tags/${params.tag}/${link}`
                   }
                   class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
                 >
@@ -151,8 +167,8 @@ const pageLinks = generatePageLinks(totalPages);
               aria-label={link}
               href={
                 link === "1"
-                  ? `/blog/tag/${params.tag}`
-                  : `/blog/tag/${params.tag}/${link}`
+                  ? `/blog/tags/${params.tag}`
+                  : `/blog/tags/${params.tag}/${link}`
               }
               class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
             >
@@ -168,7 +184,7 @@ const pageLinks = generatePageLinks(totalPages);
         ? `btn bg-base-100 shadow-xl`
         : `btn btn-disabled bg-base-100 shadow-xl`}
     >
-      <span class="hidden lg:inline"> {t("label.nextPage")}</span>
+      <span class="hidden lg:inline"> {t("label.prevPage")}</span>
       <svg
         class="h-6 w-6 fill-current md:h-8 md:w-8"
         xmlns="http://www.w3.org/2000/svg"
