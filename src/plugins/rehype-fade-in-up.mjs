@@ -9,7 +9,11 @@ export function rehypeFadeInUp() {
 
       const existingClass = node.properties.className || [];
 
-      if (!existingClass.includes('anchor-icon') && !existingClass.includes('anchor')) {
+      if (!existingClass.includes('anchor-icon')
+        && !existingClass.includes('anchor')
+        && !existingClass.includes('btn')
+        && !existingClass.includes('swap-on')
+        && !existingClass.includes('swap-off')) {
         node.properties.className = Array.isArray(existingClass)
           ? [...existingClass, 'fade-in-up']
           : ['fade-in-up'];
