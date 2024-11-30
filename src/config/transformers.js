@@ -7,7 +7,7 @@ export const transformers = [
     root(node) {
       if (node.tagName === "pre") {
         node.tagName = "figure";
-        node.properties.className = ["highlight", this.lang];
+        node.properties.className = ["highlight", "fade-in-up", this.lang];
       }
     },
     pre(node) {

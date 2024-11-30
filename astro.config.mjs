@@ -16,6 +16,7 @@ import astroI18next from "astro-i18next";
 
 import { transformers } from './src/config/transformers.js';
 
+import { rehypeFadeInUp } from './src/plugins/rehype-fade-in-up.mjs';
 import { remarkAddAnchor } from './src/plugins/remark-add-anchor.mjs';
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
 
@@ -55,7 +56,7 @@ export default defineConfig({
       transformers: transformers
     },
     remarkPlugins: [remarkMath, remarkAddAnchor, remarkReadingTime],
-    rehypePlugins: [rehypeKatex,
+    rehypePlugins: [rehypeKatex, rehypeFadeInUp,
       [
         rehypeExternalLinks,
         {
@@ -128,7 +129,7 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern-compiler', 
+          api: 'modern-compiler',
         },
       },
     },

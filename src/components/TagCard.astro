@@ -30,7 +30,7 @@ const tagsWithCounts = await getTagsWithCounts();
     {
       tagsWithCounts.map(({ tag, count }) => (
         <span class="join">
-          <a href={`/blog/tag/${tag}`} class="btn btn-xs join-item">
+          <a href={`/blog/tags/${tag}`} class="btn btn-xs join-item">
             {tag}
           </a>
           <div class="btn btn-xs btn-secondary no-animation glass bg-secondary join-item">

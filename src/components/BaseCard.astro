@@ -17,6 +17,7 @@ const {
   word,
   time,
   isBlog = false,
+  comment = false,
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props as CardInfo;
 const displayDate = dayjs(pubDate).format(DATE_FORMAT);
@@ -42,10 +43,10 @@ const hasTags = tags && tags.length > 0;
   {
     isBlog && (
       <>
-        <h1 id="h1" class="mt-2">
+        <h1 id="h1" class="mt-2 fade-in-up">
           {title}
         </h1>
-        <div class="mt-2">
+        <div class="mt-2 fade-in-up">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               {displayDate && (
@@ -79,7 +80,7 @@ const hasTags = tags && tags.length > 0;
                 tags.map((tag) => (
                   <>
                     <a
-                      href={`/blog/tag/${tag}`}
+                      href={`/blog/tags/${tag}`}
                       class="btn btn-xs btn-secondary"
                     >
                       {tag}
@@ -106,7 +107,7 @@ const hasTags = tags && tags.length > 0;
     isBlog && (
       <>
         <License title={title} url={url} />
-        <CommentWaline />
+        {comment && <CommentWaline />}
       </>
     )
   }

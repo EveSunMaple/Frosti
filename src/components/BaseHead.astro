@@ -25,12 +25,3 @@ const { title, description, image } = Astro.props;
 <meta name="description" content={description} />
 {image && <meta property="og:image" content={image} />}
 <link rel="canonical" href={canonicalURL.toString()} />
-
-<!-- Font preloads -->
-<link
-  rel="preload"
-  href="/fonts/CascadiaCode.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>

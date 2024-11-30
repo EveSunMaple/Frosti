@@ -11,10 +11,11 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="timeline timeline-vertical m-0 p-0">
+<ul class="timeline timeline-vertical m-0 p-0 fade-in-up">
   {
     items.map((item, index) => (
-      <li>{index !== 0 && <hr class="bg-neutral-content" />}
+      <li class="fade-in-up">
+        {index !== 0 && <hr class="bg-neutral-content" />}
         {index % 2 === 0 ? (
         <div class="timeline-start"><time class="font-mono italic">{item.year}</time></div>
         <div class="timeline-middle">

@@ -18,7 +18,7 @@ export function remarkAddAnchor() {
 
             const anchorHtml = {
                 type: 'html',
-                value: `<a href="#${headingId}" class="anchor"><span class="anchor-icon" data-pagefind-ignore="">#</span></a>`,
+                value: `<a href="#${headingId}" class="anchor"><span class="anchor-icon" data-pagefind-ignore=""  aria-hidden="true">#</span></a>`,
             };
 
             node.children.push(anchorHtml);

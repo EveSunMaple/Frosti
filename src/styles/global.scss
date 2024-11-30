@@ -1,4 +1,3 @@
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -372,9 +371,9 @@ thead th {
   transform: translateY(50px);
   animation: fadeInUp 0.5s ease forwards;
 
-  @for $i from 1 through 10 {
+  @for $i from 1 through 100 {
     &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.1}s;
+      animation-delay: #{$i * 0.05}s;
     }
   }
 }

@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+const { title, image, url } = Astro.props;
+const target = "_self";
+---
+
+<div
+  class="relative bg-base-100 overflow-hidden shadow-xl rounded-xl flex flex-col lg:flex-row fade-in-up"
+>
+  <div
+    class="relative overflow-hidden bg-base-100 flex-1 lg:order-1 order-2 flex transition-colors rounded-none"
+  >
+    <slot />
+  </div>
+  {
+    image && (
+      <a
+        href={url}
+        target={target}
+        class="image-link relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1"
+      >
+        <Image
+          src={image}
+          alt={title}
+          width="300"
+          height="200"
+          format="webp"
+          loading="eager"
+          class="object-cover w-full h-full"
+        />
+      </a>
+    )
+  }
+</div>
