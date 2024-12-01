@@ -5,14 +5,26 @@ import { t } from "i18next";
 ---
 
 <br />
-<div role="alert" class="relative alert transition-colors fade-in-up">
-  <div class="relative p-4 bg-text-background">
+<div role="alert" class="alert transition-colors fade-in-up">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    viewBox="0 0 16 16"
+    class="ml-8"
+    ><path
+      fill="currentColor"
+      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.408 5.89c-.83 0-1.318.64-1.318 1.753v.742c0 1.108.479 1.727 1.318 1.727c.69 0 1.138-.435 1.187-1.05h1.147v.114c-.058 1.147-1.029 1.938-2.343 1.938c-1.612 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75c1.319 0 2.29.812 2.343 1.999v.11H6.595c-.049-.638-.506-1.108-1.187-1.108Zm5.404 0c-.831 0-1.319.64-1.319 1.753v.742c0 1.108.48 1.727 1.319 1.727c.69 0 1.138-.435 1.186-1.05h1.147v.114c-.057 1.147-1.028 1.938-2.342 1.938c-1.613 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75c1.318 0 2.29.812 2.342 1.999v.11h-1.147c-.048-.638-.505-1.108-1.186-1.108Z"
+    ></path></svg
+  >
+  <div class="relative p-4">
     <div class="relative p-4 z-10">
       <h3 class="relative font-bold mt-0">{title}</h3>
       <div class="text-sm mt-2">
         <p>
-          © {USER_NAME} | <a href="{licenseLink}" class="text-blue-600"
-            >CC BY 4.0</a
+          © {USER_NAME} | <a
+            href="https://creativecommons.org/licenses/by-sa/4.0/deed"
+            class="text-blue-600">CC BY-SA 4.0</a
           >
         </p>
       </div>
@@ -55,6 +67,7 @@ import { t } from "i18next";
       rel="noopener"
     >
       <div class="resp-sharing-button resp-sharing-button--twitter">
+        <span class="sr-only">X (Twitter)</span>
         <div aria-hidden="true" class="resp-sharing-button__icon">
           <svg
             role="img"
@@ -77,6 +90,7 @@ import { t } from "i18next";
       rel="noopener"
     >
       <div class="resp-sharing-button resp-sharing-button--telegram">
+        <span class="sr-only">Telegram</span>
         <div aria-hidden="true" class="resp-sharing-button__icon">
           <svg
             role="img"
@@ -99,6 +113,7 @@ import { t } from "i18next";
       rel="noopener"
     >
       <div class="resp-sharing-button resp-sharing-button--douban">
+        <span class="sr-only">Douban</span>
         <div aria-hidden="true" class="resp-sharing-button__icon">
           <svg
             role="img"
@@ -121,6 +136,7 @@ import { t } from "i18next";
       rel="noopener"
     >
       <div class="resp-sharing-button resp-sharing-button--reddit">
+        <span class="sr-only">Reddit</span>
         <div aria-hidden="true" class="resp-sharing-button__icon">
           <svg
             role="img"
@@ -143,6 +159,7 @@ import { t } from "i18next";
       rel="noopener"
     >
       <div class="resp-sharing-button resp-sharing-button--facebook">
+        <span class="sr-only">Facebook</span>
         <div aria-hidden="true" class="resp-sharing-button__icon">
           <svg
             role="img"
@@ -165,6 +182,7 @@ import { t } from "i18next";
       rel="noopener"
     >
       <div class="resp-sharing-button resp-sharing-button--pocket">
+        <span class="sr-only">Pocket</span>
         <div aria-hidden="true" class="resp-sharing-button__icon">
           <svg
             role="img"
@@ -187,6 +205,7 @@ import { t } from "i18next";
       rel="noopener"
     >
       <div class="resp-sharing-button resp-sharing-button--email">
+        <span class="sr-only">E-Mail</span>
         <div aria-hidden="true" class="resp-sharing-button__icon">
           <svg
             role="img"
