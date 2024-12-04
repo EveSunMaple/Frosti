@@ -6,10 +6,6 @@ html {
   @apply scroll-smooth transition-colors;
 }
 
-.no-card {
-  border-radius: var(--rounded-box, 1rem);
-}
-
 .link-card a,
 a {
   @apply relative no-underline;
@@ -376,9 +372,9 @@ thead th {
   transform: translateY(50px);
   animation: fadeInUp 0.5s ease forwards;
 
-  @for $i from 1 through 10 {
+  @for $i from 1 through 100 {
     &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.1}s;
+      animation-delay: #{$i * 0.05}s;
     }
   }
 }

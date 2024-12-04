@@ -1,6 +1,6 @@
 ---
 import dayjs from "dayjs";
-import { Image } from "astro:assets";
+import CardHorizontal from "../layouts/CardHorizontal.astro";
 import type { EnvelopeInfo } from "../types";
 import { t } from "i18next";
 const {
@@ -21,101 +21,71 @@ const hasTags = tags && tags.length > 0;
 const target = "_self";
 ---
 
-<div
-  class="relative w-full overflow-hidden card bg-base-100 shadow-xl flex flex-col lg:flex-row fade-in-up transition-colors"
->
-  <div
-    class="relative w-full h-auto rounded-0 overflow-hidden card bg-base-100 flex-1 lg:order-1 order-2 flex fade-in-up transition-colors"
-  >
-    <div class="relative w-full h-full p-6 flex flex-col justify-between">
-      <a href={url} target={target}>
-        <h1 id={title} class="text-4xl leading-snug m-0 p-2">
-          {title}
-        </h1>
-      </a>
-      <div class="m-2">{desc}</div>
-      <div class="m-2">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2 flex-wrap">
-            {
-              displayDate && (
-                <div class="badge badge-neutral">{displayDate}</div>
-              )
-            }
-            {badge && <div class="badge badge-primary">{badge}</div>}
-          </div>
+<CardHorizontal title={title} image={image} url={url}>
+  <div class="relative w-full p-6 flex flex-col justify-between">
+    <a href={url} target={target}>
+      <h1 id={title} class="text-4xl m-0 p-2">
+        {title}
+      </h1>
+    </a>
+    <div class="m-2">{desc}</div>
+    <div class="m-2 w-full">
+      <div class="flex w-full items-center justify-between">
+        <div class="flex w-full items-center gap-2 flex-wrap">
+          {displayDate && <div class="badge badge-neutral">{displayDate}</div>}
+          {badge && <div class="badge badge-primary">{badge}</div>}
+        </div>
+        {
+          time && (
+            <div class="badge  whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
+          )
+        }
+      </div>
+      <div class="flex items-center justify-between mt-2">
+        <div class="flex items-center gap-2 flex-wrap">
           {
-            time && (
-              <div class="badge  whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
+            hasTategories ? (
+              categories.map((categoroy) => (
+                <>
+                  <a
+                    href={`/blog/categories/${categoroy}`}
+                    class="btn btn-xs btn-accent"
+                  >
+                    {categoroy}
+                  </a>
+                </>
+              ))
+            ) : (
+              <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
+                {t("label.noCategory")}
+              </div>
+            )
+          }
+          {
+            hasTags ? (
+              tags.map((tag) => (
+                <>
+                  <a
+                    href={`/blog/tags/${tag}`}
+                    class="btn btn-xs btn-secondary"
+                  >
+                    {tag}
+                  </a>
+                </>
+              ))
+            ) : (
+              <div class="btn btn-xs btn-secondary btn-disabled">
+                {t("label.noTag")}
+              </div>
             )
           }
         </div>
-        <div class="flex items-center justify-between mt-2">
-          <div class="flex items-center gap-2 flex-wrap">
-            {
-              hasTategories ? (
-                categories.map((categoroy) => (
-                  <>
-                    <a
-                      href={`/blog/categories/${categoroy}`}
-                      class="btn btn-xs btn-accent"
-                    >
-                      {categoroy}
-                    </a>
-                  </>
-                ))
-              ) : (
-                <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
-                  {t("label.noCategory")}
-                </div>
-              )
-            }
-            {
-              hasTags ? (
-                tags.map((tag) => (
-                  <>
-                    <a
-                      href={`/blog/tag/${tag}`}
-                      class="btn btn-xs btn-secondary"
-                    >
-                      {tag}
-                    </a>
-                  </>
-                ))
-              ) : (
-                <div class="btn btn-xs btn-secondary btn-disabled">
-                  {t("label.noTag")}
-                </div>
-              )
-            }
-          </div>
-          {
-            word && (
-              <div class="badge whitespace-nowrap">{`${word} ${t("label.wordCount")}`}</div>
-            )
-          }
-        </div>
+        {
+          word && (
+            <div class="badge whitespace-nowrap">{`${word} ${t("label.wordCount")}`}</div>
+          )
+        }
       </div>
     </div>
   </div>
-
-  {
-    image && (
-      <a
-        href={url}
-        target={target}
-        class="image-link relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1"
-      >
-        <Image
-          src={image}
-          alt={title}
-          width="300"
-          height="200"
-          format="webp"
-          loading="eager"
-          class="object-cover w-full h-full"
-        />
-      </a>
-    )
-  }
-</div>
+</CardHorizontal>

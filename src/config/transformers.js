@@ -7,10 +7,12 @@ export const transformers = [
     root(node) {
       if (node.tagName === "pre") {
         node.tagName = "figure";
-        node.properties.className = ["highlight", this.lang];
+        node.properties.className = ["highlight", "fade-in-up", this.lang];
       }
     },
     pre(node) {
+
+      const uniqueId = crypto.randomUUID();
       // 复制按钮 HTML
       const copyButtonHTML = {
         type: "element",
@@ -20,12 +22,38 @@ export const transformers = [
           {
             type: "element",
             tagName: "label",
-            properties: { className: ["swap", "swap-flip", "btn", "btn-ghost", "btn-sm", "copy-btn"] },
+            properties: {
+              className: [
+                "swap",
+                "swap-flip",
+                "btn",
+                "btn-ghost",
+                "btn-sm",
+                "copy-btn",
+              ],
+              for: uniqueId, // 关联控件
+              "aria-label": "Copy to clipboard",
+            },
             children: [
               {
                 type: "element",
+                tagName: "span",
+                properties: { className: ["sr-only"], },
+                children: [
+                  {
+                    type: "text",
+                    value: "Copy to clipboard",
+                  },
+                ],
+              },
+              {
+                type: "element",
                 tagName: "input",
-                properties: { className: ["copy-checkbox"], type: "checkbox" },
+                properties: {
+                  className: ["copy-checkbox"],
+                  type: "checkbox",
+                  id: uniqueId, // 使用唯一的 id
+                },
               },
               {
                 type: "element",
@@ -114,7 +142,6 @@ export const transformers = [
             properties: { className: ["code-lang"] },
             children: [{ type: "text", value: this.lang.toUpperCase() }],
           },
-          copyButtonHTML,
         ],
       };
 
@@ -140,8 +167,8 @@ export const transformers = [
       };
 
       // 填充代码内容和行号
-      node.children.forEach((lineNode, index, count) => {
-        count = 0;
+      node.children.forEach((lineNode, index) => {
+        let count = 0;
         lineNode.children.forEach(() => {
           if (count % 2 === 1) {
             lineNumberCode.children.push({
@@ -156,6 +183,7 @@ export const transformers = [
         });
 
         codeContentPre.children.push(lineNode);
+        toolsDiv.children.push(copyButtonHTML); // 为每个代码框生成唯一的复制按钮
       });
 
       // 生成最终的代码块结构
@@ -175,4 +203,3 @@ export const transformers = [
     },
   },
 ];
-

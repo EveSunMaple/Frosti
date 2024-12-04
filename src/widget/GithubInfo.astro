@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+const { url } = Astro.props;
+---
+
+<github-info class="m-2 flex" data-url={url}>
+  <span class="repo-user flex items-center">
+    <Icon name="ri:github-line" />
+    <span class="text-sm badge badge-ghost">
+      <span class="loading loading-spinner loading-xs"></span>
+    </span>
+  </span>
+  <span>&thinsp;</span>
+  <span class="repo-watch flex items-center">
+    <Icon name="ri:eye-line" />
+    <span class="text-sm badge badge-ghost">
+      <span class="loading loading-spinner loading-xs"> </span>
+    </span>
+  </span>
+  <span>&thinsp;</span>
+  <span class="repo-fork flex items-center">
+    <Icon name="ri:git-fork-line" />
+    <span class="text-sm badge badge-ghost">
+      <span class="loading loading-spinner loading-xs"> </span>
+    </span>
+  </span>
+  <span>&thinsp;</span>
+  <span class="repo-star flex items-center">
+    <Icon name="ri:star-line" />
+    <span class="text-sm badge badge-ghost">
+      <span class="loading loading-spinner loading-xs"> </span>
+    </span>
+  </span>
+</github-info>
+<script>
+  class GithubInfo extends HTMLElement {
+    connectedCallback() {
+      const repoUrl = this.dataset.url;
+      if (!repoUrl) return;
+
+      const { owner, repo } = this.getRepoInfoFromUrl(repoUrl);
+      const apiUrl = `https://api.github.com/repos/${owner}/${repo}`;
+
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) throw new Error("Failed to fetch repository info.");
+          return response.json();
+        })
+        .then((data) => {
+          this.querySelector(".repo-user span")!.textContent = data.owner.login;
+          this.querySelector(".repo-fork span")!.textContent = data.forks_count;
+          this.querySelector(".repo-star span")!.textContent =
+            data.stargazers_count;
+          this.querySelector(".repo-watch span")!.textContent =
+            data.subscribers_count;
+        })
+        .catch((error) => {
+          console.error("Error fetching repository info:", error);
+        });
+    }
+
+    getRepoInfoFromUrl(repoUrl: string) {
+      const urlParts = repoUrl.split("/");
+      const owner = urlParts[urlParts.length - 2];
+      const repo = urlParts[urlParts.length - 1];
+      return { owner, repo };
+    }
+  }
+
+  customElements.define("github-info", GithubInfo);
+</script>

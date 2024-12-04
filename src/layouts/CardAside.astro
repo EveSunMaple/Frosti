@@ -1,0 +1,14 @@
+---
+const { title = "undefined" } = Astro.props;
+---
+
+<div
+  class="bg-base-100 w-full mb-8 p-4 overflow-hidden transition-colors shadow-xl rounded-xl"
+>
+  <div class="px-4 mb-4">
+    <div class="btn btn-sm btn-ghost no-animation w-full font-bold">
+      {title}
+    </div>
+  </div>
+  <slot />
+</div>

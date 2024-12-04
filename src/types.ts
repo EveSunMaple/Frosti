@@ -38,6 +38,7 @@ export interface CardInfo {
   word?: string;
   time?: string;
   isBlog: boolean;
+  comment?: boolean;
   url?: string;
 }
 

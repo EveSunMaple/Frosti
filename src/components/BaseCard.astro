@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { Image } from "astro:assets";
 import License from "../components/License.astro";
 import CommentWaline from "./CommentWaline.astro";
+import CardVertical from "../layouts/CardVertical.astro";
 import { DATE_FORMAT } from "../consts";
 import type { CardInfo } from "../types";
 import { t } from "i18next";
@@ -16,6 +17,7 @@ const {
   word,
   time,
   isBlog = false,
+  comment = false,
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props as CardInfo;
 const displayDate = dayjs(pubDate).format(DATE_FORMAT);
@@ -23,9 +25,7 @@ const hasTategories = categories && categories.length > 0;
 const hasTags = tags && tags.length > 0;
 ---
 
-<div
-  class="relative w-full overflow-hidden card bg-base-100 shadow-xl fade-in-up transition-colors"
->
+<CardVertical>
   {
     image && (
       <Image
@@ -36,82 +36,79 @@ const hasTags = tags && tags.length > 0;
         alt={title}
         class="card-img"
         loading="eager"
+        slot="image"
       />
     )
   }
-  <div
-    class="main-card relative leading-6 z-10 p-6 md:p-6 lg:p-8 card bg-base-100 fade-in-up transition-colors"
-  >
-    {
-      isBlog && (
-        <>
-          <h1 id="h1" class="mt-2">
-            {title}
-          </h1>
-          <div class="info mt-2">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                {displayDate && (
-                  <div class="badge badge-neutral">{displayDate}</div>
-                )}
-                {badge && <div class="badge badge-primary">{badge}</div>}
-              </div>
-              {time && (
-                <div class="badge whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
+  {
+    isBlog && (
+      <>
+        <h1 id="h1" class="mt-2 fade-in-up">
+          {title}
+        </h1>
+        <div class="mt-2 fade-in-up">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              {displayDate && (
+                <div class="badge badge-neutral">{displayDate}</div>
               )}
+              {badge && <div class="badge badge-primary">{badge}</div>}
             </div>
-            <div class="flex items-center justify-between mt-2">
-              <div class="flex items-center gap-2 flex-wrap">
-                {hasTategories ? (
-                  categories.map((categoroy) => (
-                    <>
-                      <a
-                        href={`/blog/categories/${categoroy}`}
-                        class="btn btn-xs btn-accent"
-                      >
-                        {categoroy}
-                      </a>
-                    </>
-                  ))
-                ) : (
-                  <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
-                    {t("label.noCategory")}
-                  </div>
-                )}
-                {hasTags ? (
-                  tags.map((tag) => (
-                    <>
-                      <a
-                        href={`/blog/tag/${tag}`}
-                        class="btn btn-xs btn-secondary"
-                      >
-                        {tag}
-                      </a>
-                    </>
-                  ))
-                ) : (
-                  <div class="btn btn-xs btn-secondary btn-disabled">
-                    {t("label.noTag")}
-                  </div>
-                )}
-              </div>
-              {word && (
-                <div class="badge  whitespace-nowrap">{`${word} ${t("label.wordCount")}`}</div>
-              )}
-            </div>
+            {time && (
+              <div class="badge whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
+            )}
           </div>
-          <hr class="mt-6" />
-        </>
-      )
-    }
-    <slot />
-    {
-      isBlog && (
-        <>
-          <License title={title} url={url} />
-          <CommentWaline />
-        </>
-      )
-    }
-  </div>
-</div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex items-center gap-2 flex-wrap">
+              {hasTategories ? (
+                categories.map((categoroy) => (
+                  <>
+                    <a
+                      href={`/blog/categories/${categoroy}`}
+                      class="btn btn-xs btn-accent"
+                    >
+                      {categoroy}
+                    </a>
+                  </>
+                ))
+              ) : (
+                <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
+                  {t("label.noCategory")}
+                </div>
+              )}
+              {hasTags ? (
+                tags.map((tag) => (
+                  <>
+                    <a
+                      href={`/blog/tags/${tag}`}
+                      class="btn btn-xs btn-secondary"
+                    >
+                      {tag}
+                    </a>
+                  </>
+                ))
+              ) : (
+                <div class="btn btn-xs btn-secondary btn-disabled">
+                  {t("label.noTag")}
+                </div>
+              )}
+            </div>
+            {word && (
+              <div class="badge  whitespace-nowrap">{`${word} ${t("label.wordCount")}`}</div>
+            )}
+          </div>
+        </div>
+        <hr class="mt-6" />
+      </>
+    )
+  }
+  <slot />
+  {
+    isBlog && (
+      <>
+        <License title={title} url={url} />
+        {comment && <CommentWaline />}
+      </>
+    )
+  }
+</CardVertical>

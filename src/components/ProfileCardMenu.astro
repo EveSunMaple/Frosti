@@ -12,9 +12,7 @@ import { Icon } from "astro-icon/components";
         {item.subItems ? (
           <details class="menu-item">
             <summary class="justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4">
-              <span class="justify-center">
-                <Icon name={`menu/${item.svg}`} />
-              </span>
+              <Icon name={item.svg} />
               <span class="hidden lg:inline ml-2">{item.text}</span>
             </summary>
             <ul>
@@ -28,9 +26,7 @@ import { Icon } from "astro-icon/components";
                     target={subItem.target || "_self"}
                     aria-label={subItem.text}
                   >
-                    <span class="inline-flex justify-center">
-                      <Icon name={`menu/${subItem.svg}`} />
-                    </span>
+                    <Icon name={subItem.svg} />
                     <span class="hidden lg:inline ml-2">{subItem.text}</span>
                   </a>
                 </li>
@@ -47,9 +43,7 @@ import { Icon } from "astro-icon/components";
             target={item.target || "_self"}
             aria-label={item.text}
           >
-            <span class="inline-flex justify-center">
-              <Icon name={`menu/${item.svg}`} />
-            </span>
+            <Icon name={item.svg} />
             <span class="hidden lg:inline ml-2">{item.text}</span>
           </a>
         )}

@@ -9,7 +9,7 @@ const { id, className } = Astro.props;
   data-light={DAISYUI_THEME.light}
   data-dark={DAISYUI_THEME.dark}
 >
-  <button class:list={[className, "btn", "btn-ghost"]} id="themeButton">
+  <button class:list={[className, "btn", "btn-ghost"]} id=`themeButton`>
     <label for="themeToggle" id="themeLabel" class="hidden"
       ><span class="sr-only">Theme Toggle</span>
       <input type="checkbox" id="themeToggle" />
@@ -39,8 +39,6 @@ const { id, className } = Astro.props;
   class FrostiTheme extends HTMLElement {
     connectedCallback() {
       const $ = (selector: string) => this.querySelector(selector);
-
-      const themeInfo = document.getElementById("theme") as HTMLElement;
       const themeToggle = $("#themeToggle") as HTMLInputElement;
       const themeButton = $("#themeButton") as HTMLInputElement;
       const themeLabel = $("#themeLabel") as HTMLLabelElement;

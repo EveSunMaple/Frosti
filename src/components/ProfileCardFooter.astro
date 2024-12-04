@@ -3,7 +3,7 @@ import { socialIcons } from "../consts.ts";
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="text-center bg-base-200 p-4 rounded-lg gap-4 transition-colors">
+<div class="text-center bg-base-200 p-4 gap-4 transition-colors rounded-lg">
   {
     socialIcons.map((icon) => (
       <a
@@ -13,7 +13,7 @@ import { Icon } from "astro-icon/components";
         aria-label={icon.ariaLabel}
         title={icon.title}
       >
-        <Icon name={`social/${icon.svg}`} />
+        <Icon name={icon.svg} />
       </a>
     ))
   }

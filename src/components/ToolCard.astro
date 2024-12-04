@@ -1,29 +1,35 @@
 ---
+import CardAside from "../layouts/CardAside.astro";
 import ThemeButton from "../widget/ThemeButton.astro";
 import BackToTopButton from "../widget/BackToTopButton.astro";
+import { t } from "i18next";
 ---
 
-<div class="flex-col gap-4 w-full sticky top-8">
-  <div
-    class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center mb-b w-full max-h-[600px] overflow-hide card bg-base-100 shadow-xl p-4 transition-colors"
-    id="button-box"
-  >
-    <BackToTopButton id="back-button" className="card" />
-    <ThemeButton id="side-theme-button" className="card" />
+<div class="w-full overflow-hidden grid gap-8 w-full sticky top-8">
+  <div class="w-full overflow-hidden rounded-xl">
+    <div
+      class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center w-full overflow-hide bg-base-100 p-4 transition-colors shadow-xl rounded-xl"
+      id="button-box"
+    >
+      <ThemeButton id="side-theme-button" className="card" />
+      <BackToTopButton id="back-button" className="card" />
+    </div>
   </div>
 
-  <div
-    class="mb-b w-full max-h-[65vh] overflow-hide top-8 card bg-base-100 shadow-xl p-4 menu transition-colors"
-    id="content-box"
-  >
-    <div class="skeleton h-4 w-28"></div>
-    <br />
-    <div class="skeleton h-4 w-full"></div>
-    <br />
-    <div class="skeleton h-4 w-full"></div>
-    <br />
-    <div class="skeleton h-4 w-full"></div>
-    <br />
+  <div class="w-full overflow-hidden rounded-xl">
+    <div
+      class="mb-b w-full max-h-[65vh] overflow-hide top-8 bg-base-100 p-4 menu transition-colors shadow-xl rounded-xl"
+      id="content-box"
+    >
+      <div class="skeleton h-4 w-28"></div>
+      <br />
+      <div class="skeleton h-4 w-full"></div>
+      <br />
+      <div class="skeleton h-4 w-full"></div>
+      <br />
+      <div class="skeleton h-4 w-full"></div>
+      <br />
+    </div>
   </div>
 </div>
 <script>
@@ -34,7 +40,7 @@ import BackToTopButton from "../widget/BackToTopButton.astro";
         text += node.textContent;
       } else if (
         node.nodeType === Node.ELEMENT_NODE &&
-        (node as HTMLElement).className !== "katex-mathml"
+        !(node as HTMLElement).classList.contains("sr-only") // 忽略 sr-only 类
       ) {
         text += getCleanText(node as HTMLElement);
       }
