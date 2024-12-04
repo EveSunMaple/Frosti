@@ -12,20 +12,41 @@ export const transformers = [
     },
     pre(node) {
       // 复制按钮 HTML
-      const copyButtonHTML = {
-        type: "element",
-        tagName: "div",
-        properties: { className: ["code-container"] },
-        children: [
-          {
-            type: "element",
-            tagName: "label",
-            properties: { className: ["swap", "swap-flip", "btn", "btn-ghost", "btn-sm", "copy-btn"] },
-            children: [
+      const copyButtonHTML = (index) => {
+        const uniqueId = `copy-checkbox-${index}`; // 使用 index 来生成唯一的 id
+        return {
+          type: "element",
+          tagName: "div",
+          properties: { className: ["code-container"] },
+          children: [
+            {
+              type: "element",
+              tagName: "label",
+              properties: {
+                className: [
+                  "swap",
+                  "swap-flip",
+                  "btn",
+                  "btn-ghost",
+                  "btn-sm",
+                  "copy-btn",
+                ],
+                for: uniqueId, // 关联控件
+                "aria-label": "Copy to clipboard",
+              },
+              children: [{
+                type: "text",
+                value: "Copy to clipboard",
+                className: ["sr-only"],
+              },
               {
                 type: "element",
                 tagName: "input",
-                properties: { className: ["copy-checkbox"], type: "checkbox" },
+                properties: {
+                  className: ["copy-checkbox"],
+                  type: "checkbox",
+                  id: uniqueId, // 使用唯一的 id
+                },
               },
               {
                 type: "element",
@@ -97,9 +118,10 @@ export const transformers = [
                   },
                 ],
               },
-            ],
-          },
-        ],
+              ],
+            },
+          ],
+        };
       };
 
       // 生成工具栏（包含代码语言标签）
@@ -114,7 +136,6 @@ export const transformers = [
             properties: { className: ["code-lang"] },
             children: [{ type: "text", value: this.lang.toUpperCase() }],
           },
-          copyButtonHTML,
         ],
       };
 
@@ -156,6 +177,7 @@ export const transformers = [
         });
 
         codeContentPre.children.push(lineNode);
+        toolsDiv.children.push(copyButtonHTML(index)); // 为每个代码框生成唯一的复制按钮
       });
 
       // 生成最终的代码块结构
@@ -175,4 +197,3 @@ export const transformers = [
     },
   },
 ];
-

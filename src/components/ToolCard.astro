@@ -40,7 +40,7 @@ import { t } from "i18next";
         text += node.textContent;
       } else if (
         node.nodeType === Node.ELEMENT_NODE &&
-        (node as HTMLElement).className !== "katex-mathml"
+        !(node as HTMLElement).classList.contains("sr-only") // 忽略 sr-only 类
       ) {
         text += getCleanText(node as HTMLElement);
       }

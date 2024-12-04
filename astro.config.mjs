@@ -32,7 +32,13 @@ export default defineConfig({
       includePaths: ["./src/styles"],
     },
   },
-  integrations: [mdx(), icon(), swup({
+  integrations: [mdx(),
+  icon({
+    include: {
+      mdi: ["*"], // (Default) Loads entire Material Design Icon set
+    },
+  }),
+  swup({
     cache: true,
     progress: true,
     accessibility: true,
