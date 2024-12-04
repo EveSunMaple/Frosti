@@ -565,3 +565,32 @@
 ### Fix
 
 - 修复了若干问题
+
+## [2.8.1] - 2024-12-5
+
+### Features
+
+- 新增 `sitmap.xml` 代替自动生成的 `sitmap-0.xml`
+- 重写 `rss.xml.ts` 完善了格式并在 RSS 中添加了全文内容
+- 新增可重用组件 `GithubInfo` 路径:src\widget\GithubInfo.astro
+- 新增卡片布局 包括 `Aside` / `Horizontal` / `Vertical`
+- 为博客文章内容添加了渐入效果
+- 添加了手动开关评论系统的功能
+
+### Refactored
+
+- 组件布局统一并修改
+- 重写了博客底部 License 组件的样式
+- 清理了全局的 ClassName 以简化代码
+- 将 `tag` 路由更名为 `tags`
+
+### Fix
+
+- 可访问性修复:为必要的组件添加了 `aria-label` 以及由 `sr-only` 包裹的文本
+- 为代码框中的复制按钮添加了随机的专属的 `id` 与表单链接
+- 修复了分页按钮在仅有一页时出现的样式错误
+- 修复了在标签与分类页面下不显示字数与阅读时长的问题
+
+### Chore
+
+- 使用 `iconify` 代替了本地存储 svg 的方式
