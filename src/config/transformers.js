@@ -11,9 +11,13 @@ export const transformers = [
       }
     },
     pre(node) {
+      const generateUniqueId = () => {
+        return `copy-checkbox-${Math.random().toString(36).slice(2, 9)}`;
+      };
+
       // 复制按钮 HTML
       const copyButtonHTML = (index) => {
-        const uniqueId = `copy-checkbox-${index}`; // 使用 index 来生成唯一的 id
+        const uniqueId = `${generateUniqueId()}-${index}`; // 使用 index 来生成唯一的 id
         return {
           type: "element",
           tagName: "div",
@@ -34,90 +38,97 @@ export const transformers = [
                 for: uniqueId, // 关联控件
                 "aria-label": "Copy to clipboard",
               },
-              children: [{
-                type: "text",
-                value: "Copy to clipboard",
-                className: ["sr-only"],
-              },
-              {
-                type: "element",
-                tagName: "input",
-                properties: {
-                  className: ["copy-checkbox"],
-                  type: "checkbox",
-                  id: uniqueId, // 使用唯一的 id
+              children: [
+                {
+                  type: "element",
+                  tagName: "span",
+                  properties: { className: ["sr-only"], },
+                  children: [
+                    {
+                      type: "text",
+                      value: "Copy to clipboard",
+                    },
+                  ],
                 },
-              },
-              {
-                type: "element",
-                tagName: "div",
-                properties: { className: ["swap-on"] },
-                children: [
-                  {
-                    type: "element",
-                    tagName: "svg",
-                    properties: {
-                      viewBox: "0 -0.5 25 25",
-                      fill: "none",
-                      xmlns: "http://www.w3.org/2000/svg",
-                      className: "stroke-current shrink-0 h-6 w-6",
-                    },
-                    children: [
-                      {
-                        type: "element",
-                        tagName: "path",
-                        properties: {
-                          d: "M5.5 12.5L10.167 17L19.5 8",
-                          strokeWidth: "1.5",
-                          strokeLinecap: "round",
-                          strokeLinejoin: "round",
-                        },
-                      },
-                    ],
+                {
+                  type: "element",
+                  tagName: "input",
+                  properties: {
+                    className: ["copy-checkbox"],
+                    type: "checkbox",
+                    id: uniqueId, // 使用唯一的 id
                   },
-                ],
-              },
-              {
-                type: "element",
-                tagName: "div",
-                properties: { className: ["swap-off"] },
-                children: [
-                  {
-                    type: "element",
-                    tagName: "svg",
-                    properties: {
-                      viewBox: "0 -0.5 25 25",
-                      fill: "none",
-                      xmlns: "http://www.w3.org/2000/svg",
-                      className: "stroke-current shrink-0 h-6 w-6",
+                },
+                {
+                  type: "element",
+                  tagName: "div",
+                  properties: { className: ["swap-on"] },
+                  children: [
+                    {
+                      type: "element",
+                      tagName: "svg",
+                      properties: {
+                        viewBox: "0 -0.5 25 25",
+                        fill: "none",
+                        xmlns: "http://www.w3.org/2000/svg",
+                        className: "stroke-current shrink-0 h-6 w-6",
+                      },
+                      children: [
+                        {
+                          type: "element",
+                          tagName: "path",
+                          properties: {
+                            d: "M5.5 12.5L10.167 17L19.5 8",
+                            strokeWidth: "1.5",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                          },
+                        },
+                      ],
                     },
-                    children: [
-                      {
-                        type: "element",
-                        tagName: "path",
-                        properties: {
-                          fillRule: "evenodd",
-                          clipRule: "evenodd",
-                          d: "M17.676 14.248C17.676 15.8651 16.3651 17.176 14.748 17.176H7.428C5.81091 17.176 4.5 15.8651 4.5 14.248V6.928C4.5 5.31091 5.81091 4 7.428 4H14.748C16.3651 4 17.676 5.31091 17.676 6.928V14.248Z",
-                          strokeWidth: "1.5",
-                          strokeLinecap: "round",
-                          strokeLinejoin: "round",
-                        },
+                  ],
+                },
+                {
+                  type: "element",
+                  tagName: "div",
+                  properties: { className: ["swap-off"] },
+                  children: [
+                    {
+                      type: "element",
+                      tagName: "svg",
+                      properties: {
+                        viewBox: "0 -0.5 25 25",
+                        fill: "none",
+                        xmlns: "http://www.w3.org/2000/svg",
+                        className: "stroke-current shrink-0 h-6 w-6",
                       },
-                      {
-                        type: "element",
-                        tagName: "path",
-                        properties: {
-                          d: "M10.252 20H17.572C19.1891 20 20.5 18.689 20.5 17.072V9.75195",
-                          strokeWidth: "1.5",
-                          strokeLinecap: "round",
-                          strokeLinejoin: "round",
+                      children: [
+                        {
+                          type: "element",
+                          tagName: "path",
+                          properties: {
+                            fillRule: "evenodd",
+                            clipRule: "evenodd",
+                            d: "M17.676 14.248C17.676 15.8651 16.3651 17.176 14.748 17.176H7.428C5.81091 17.176 4.5 15.8651 4.5 14.248V6.928C4.5 5.31091 5.81091 4 7.428 4H14.748C16.3651 4 17.676 5.31091 17.676 6.928V14.248Z",
+                            strokeWidth: "1.5",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                          },
                         },
-                      },
-                    ],
-                  },
-                ],
-              },
+                        {
+                          type: "element",
+                          tagName: "path",
+                          properties: {
+                            d: "M10.252 20H17.572C19.1891 20 20.5 18.689 20.5 17.072V9.75195",
+                            strokeWidth: "1.5",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
               ],
             },
           ],
