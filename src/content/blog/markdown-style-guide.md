@@ -222,7 +222,7 @@ int main()
   - Milk
   - Cheese
 
-## Other Elements — abbr, sub, sup, kbd, mark
+## Other Elements
 
 #### Syntax
 

@@ -20,7 +20,7 @@ export function remarkAddAnchor() {
             const anchorHtml = {
                 type: 'html',
                 value: `<a href="#${headingId}" class="anchor" aria-label="Anchor to ${node.children.map(child => child.value).join(' ')}">
-                          <span class="anchor-icon" data-pagefind-ignore="" aria-hidden="true">#</span>
+                          <span class="anchor-icon" data-pagefind-ignore="" aria-hidden="true"></span>
                           <span class="sr-only">Link to ${node.children.map(child => child.value).join(' ')}</span>
                         </a>`,
             };

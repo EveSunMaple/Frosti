@@ -151,6 +151,11 @@ input {
   background-color: oklch(var(--p) / 0.2);
 }
 
+.anchor-icon::before {
+  content: "#";
+  color: inherit;
+}
+
 h1:hover .anchor,
 h2:hover .anchor,
 h3:hover .anchor,
@@ -204,13 +209,14 @@ table {
 }
 
 table tr {
-  @apply h-10 border-0 border-gray-300;
+  @apply h-10 border-0;
   border-color: oklch(var(--nc));
 }
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-  @apply text-xl p-[2px_5px] rounded-sm;
+  @apply border-solid border-2 rounded-lg p-0.5;
+  border-color: oklch(var(--nc));
 }
 
 pre {
@@ -360,7 +366,7 @@ thead th {
 }
 
 .footnotes {
-  @apply alert;
+  @apply border-solid border-2 mt-8 transition-all rounded-xl p-8;
 }
 
 .swup-progress-bar {

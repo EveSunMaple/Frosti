@@ -71,7 +71,6 @@ import { SITE_TITLE } from "../consts";
       const isClickInside = dropdown.contains(event.target as Node);
       if (!isClickInside && dropdown.hasAttribute("open")) {
         dropdown.removeAttribute("open");
-        dropdown.style.transform = "translateY(-100%)"; // 关闭时向上滑动
       }
     }
   });
@@ -80,15 +79,15 @@ import { SITE_TITLE } from "../consts";
   document.addEventListener("touchmove", function (event) {
     const dropdown = document.getElementById("dropdown");
     if (dropdown) {
-      const isTouchInside = dropdown.contains(event.target as Node);
-      if (!isTouchInside && dropdown.hasAttribute("open")) {
+      const isClickInside = dropdown.contains(event.target as Node);
+      if (!isClickInside && dropdown.hasAttribute("open")) {
         dropdown.removeAttribute("open");
       }
     }
   });
 
   // 当用户点击菜单的具体选项时, 关闭菜单
-  document.querySelectorAll("#dropdown > ul > li").forEach((item) => {
+  document.querySelectorAll("#dropdown > ul > li > a").forEach((item) => {
     item.addEventListener("click", function () {
       const dropdown = document.getElementById("dropdown");
       if (dropdown && dropdown.hasAttribute("open")) {
@@ -97,6 +96,17 @@ import { SITE_TITLE } from "../consts";
     });
   });
 
+  document
+    .querySelectorAll("#dropdown > ul > li > details > ul > li > a")
+    .forEach((item) => {
+      item.addEventListener("click", function () {
+        const dropdown = document.getElementById("dropdown");
+        if (dropdown && dropdown.hasAttribute("open")) {
+          dropdown.removeAttribute("open");
+        }
+      });
+    });
+
   // 页面滑动时, 关闭菜单
   window.addEventListener("scroll", function () {
     const dropdown = document.getElementById("dropdown");
@@ -104,12 +114,4 @@ import { SITE_TITLE } from "../consts";
       dropdown.removeAttribute("open");
     }
   });
-
-  // 打开菜单时, 设置 transform 为 0
-  function openDropdown() {
-    const dropdown = document.getElementById("dropdown");
-    if (dropdown && !dropdown.hasAttribute("open")) {
-      dropdown.setAttribute("open", "true");
-    }
-  }
 </script>

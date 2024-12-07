@@ -9,7 +9,8 @@ export function rehypeFadeInUp() {
 
       const existingClass = node.properties.className || [];
 
-      if (!existingClass.includes('anchor-icon')
+      if (node.tagName !== 'img'
+        && !existingClass.includes('anchor-icon')
         && !existingClass.includes('anchor')
         && !existingClass.includes('btn')
         && !existingClass.includes('swap-on')

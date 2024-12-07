@@ -5,7 +5,7 @@ import BackToTopButton from "../widget/BackToTopButton.astro";
 import { t } from "i18next";
 ---
 
-<div class="w-full overflow-hidden grid gap-8 w-full sticky top-8">
+<div class="overflow-hidden grid gap-8 w-full sticky top-8">
   <div class="w-full overflow-hidden rounded-xl">
     <div
       class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center w-full overflow-hide bg-base-100 p-4 transition-colors shadow-xl rounded-xl"
@@ -40,7 +40,7 @@ import { t } from "i18next";
         text += node.textContent;
       } else if (
         node.nodeType === Node.ELEMENT_NODE &&
-        !(node as HTMLElement).classList.contains("sr-only") // 忽略 sr-only 类
+        !(node as HTMLElement).classList.contains("sr-only")
       ) {
         text += getCleanText(node as HTMLElement);
       }
@@ -64,7 +64,6 @@ import { t } from "i18next";
         const headingLevel = parseInt(heading.tagName.charAt(1), 10);
 
         if (headingId && headingText && headingLevel) {
-          headingText = headingText.replace(/#/g, "");
           const level = headingLevel - 1;
           levelCounters[level]++;
           levelCounters.fill(0, level + 1);
