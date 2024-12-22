@@ -5,7 +5,7 @@ import { SITE_TITLE } from "../consts";
 ---
 
 <navbar
-  class="navbar fixed px-2 w-full transform transition-all duration-300 ease-in-out text-center z-50 bg-base-100 shadow-xl md:hidden"
+  class="navbar fixed px-2 w-full transform transition-all duration-500 ease-in-out text-center z-50 backdrop-blur-md bg-base-100/85 shadow-lg md:hidden"
   id="navbar"
 >
   <div class="navbar-start">
@@ -18,7 +18,7 @@ import { SITE_TITLE } from "../consts";
         title="Content"
       >
         <svg
-          class="swap-off fill-current"
+          class="swap-off fill-current transform transition-transform duration-300"
           xmlns="http://www.w3.org/2000/svg"
           width="32"
           height="32"
@@ -33,7 +33,12 @@ import { SITE_TITLE } from "../consts";
     </details>
   </div>
   <div class="navbar-center">
-    <a class="btn btn-ghost text-xl" href="/">{SITE_TITLE}</a>
+    <a
+      class="btn btn-ghost text-xl hover:scale-105 transition-transform duration-300"
+      href="/"
+    >
+      {SITE_TITLE}
+    </a>
   </div>
   <div class="navbar-end">
     <ThemeButton id="navbar-theme" className="w-auto" />
@@ -44,74 +49,66 @@ import { SITE_TITLE } from "../consts";
   let lastScrollY = window.scrollY;
   const navbar = document.getElementById("navbar");
 
-  // 监听滚动事件
-  window.addEventListener("scroll", () => {
+  const handleScroll = () => {
     if (navbar) {
+      // Add smooth class transitions
       if (window.scrollY > lastScrollY && window.scrollY > 50) {
-        // 向下滚动，隐藏导航栏
-        navbar.classList.add("-translate-y-full");
+        navbar.classList.add("-translate-y-full", "duration-500");
         navbar.classList.remove("translate-y-0");
         const dropdown = document.getElementById("dropdown");
         if (dropdown) {
           dropdown.removeAttribute("open");
         }
       } else if (window.scrollY < lastScrollY) {
-        // 向上滚动，显示导航栏
         navbar.classList.remove("-translate-y-full");
-        navbar.classList.add("translate-y-0");
+        navbar.classList.add("translate-y-0", "duration-300");
       }
+
       lastScrollY = window.scrollY;
     }
-  });
+  };
 
-  // 当用户点击菜单区域外部区域时, 关闭菜单
-  document.addEventListener("click", function (event) {
-    const dropdown = document.getElementById("dropdown");
-    if (dropdown) {
-      const isClickInside = dropdown.contains(event.target as Node);
-      if (!isClickInside && dropdown.hasAttribute("open")) {
-        dropdown.removeAttribute("open");
-      }
-    }
-  });
-
-  // 当用户触摸菜单区域外部区域时, 关闭菜单
-  document.addEventListener("touchmove", function (event) {
-    const dropdown = document.getElementById("dropdown");
-    if (dropdown) {
-      const isClickInside = dropdown.contains(event.target as Node);
-      if (!isClickInside && dropdown.hasAttribute("open")) {
-        dropdown.removeAttribute("open");
-      }
-    }
-  });
-
-  // 当用户点击菜单的具体选项时, 关闭菜单
-  document.querySelectorAll("#dropdown > ul > li > a").forEach((item) => {
-    item.addEventListener("click", function () {
-      const dropdown = document.getElementById("dropdown");
-      if (dropdown && dropdown.hasAttribute("open")) {
-        dropdown.removeAttribute("open");
-      }
-    });
-  });
-
-  document
-    .querySelectorAll("#dropdown > ul > li > details > ul > li > a")
-    .forEach((item) => {
-      item.addEventListener("click", function () {
-        const dropdown = document.getElementById("dropdown");
-        if (dropdown && dropdown.hasAttribute("open")) {
-          dropdown.removeAttribute("open");
-        }
+  // Throttle scroll event for better performance
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
       });
-    });
+      ticking = true;
+    }
+  });
 
-  // 页面滑动时, 关闭菜单
-  window.addEventListener("scroll", function () {
+  // Click outside to close dropdown
+  document.addEventListener("click", (event) => {
     const dropdown = document.getElementById("dropdown");
-    if (dropdown && dropdown.hasAttribute("open")) {
+    if (dropdown) {
+      const isClickInside = dropdown.contains(event.target as Node);
+      if (!isClickInside && dropdown.hasAttribute("open")) {
+        dropdown.removeAttribute("open");
+      }
+    }
+  });
+
+  // Touch events
+  document.addEventListener("touchmove", (event) => {
+    const dropdown = document.getElementById("dropdown");
+    if (dropdown?.hasAttribute("open")) {
       dropdown.removeAttribute("open");
     }
   });
+
+  // Close dropdown on menu item click
+  const closeDropdownOnClick = (selector: string) => {
+    document.querySelectorAll(selector).forEach((item) => {
+      item.addEventListener("click", () => {
+        const dropdown = document.getElementById("dropdown");
+        dropdown?.removeAttribute("open");
+      });
+    });
+  };
+
+  closeDropdownOnClick("#dropdown > ul > li > a");
+  closeDropdownOnClick("#dropdown > ul > li > details > ul > li > a");
 </script>

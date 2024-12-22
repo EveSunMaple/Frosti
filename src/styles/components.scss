@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-category {
+  @apply bg-primary/10 hover:bg-primary text-primary hover:text-primary-content border-none hover:scale-110 transition-all duration-300;
+}
+
+.btn-tag {
+  @apply bg-secondary/10 hover:bg-secondary text-secondary hover:text-secondary-content border-none hover:scale-110 transition-all duration-300;
+}

@@ -1,16 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import CardAside from "../layouts/CardAside.astro";
+import TagButton from "../widget/TagButton.astro";
 import { t } from "i18next";
 
-interface TagCount {
+interface CategoryCount {
   category: string;
   count: number;
 }
 
-export async function getTagsWithCounts(): Promise<TagCount[]> {
+export async function getTagsWithCounts(): Promise<CategoryCount[]> {
   const posts = await getCollection("blog");
-
   const tagMap = new Map<string, number>();
 
   posts.forEach((post) => {
@@ -22,21 +22,20 @@ export async function getTagsWithCounts(): Promise<TagCount[]> {
 
   return Array.from(tagMap, ([category, count]) => ({ category, count }));
 }
+
 const tagsWithCounts = await getTagsWithCounts();
 ---
 
 <CardAside title={t("label.categoryCard")}>
-  <div class="flex flex-wrap gap-2.5 w-full max-h-[300px] overflow-auto">
+  <div class="flex flex-wrap gap-2 w-full max-h-[300px] p-1">
     {
       tagsWithCounts.map(({ category, count }) => (
-        <span class="join">
-          <a href={`/blog/categories/${category}`} class="btn btn-xs join-item">
-            {category}
-          </a>
-          <div class="btn btn-xs btn-accent no-animation glass bg-accent join-item">
-            {count}
-          </div>
-        </span>
+        <TagButton
+          text={category}
+          count={count}
+          href={`/blog/categories/${category}`}
+          type="category"
+        />
       ))
     }
   </div>

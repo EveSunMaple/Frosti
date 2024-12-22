@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  @apply scroll-smooth transition-colors;
+  @apply scroll-smooth;
 }
 
 .link-card a,
@@ -62,6 +62,15 @@ html[data-theme-type="light"] {
       background-color: oklch(var(--b3));
     }
   }
+}
+
+#catalogs::-webkit-scrollbar {
+  display: none;
+}
+
+#catalogs {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 html[data-theme-type="dark"] {
@@ -215,9 +224,14 @@ table tr {
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-  @apply border-solid border-2 rounded-lg p-0.5;
-  border-color: oklch(var(--nc));
+  white-space: nowrap;
+  @apply border border-solid rounded-md px-1 py-0.5 text-base;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
 }
+
+
 
 pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
@@ -357,6 +371,14 @@ thead th {
   z-index: 10;
 }
 
+.btn-category {
+  @apply bg-primary/10 hover:bg-primary text-primary hover:text-primary-content border-none hover:scale-110 transition-all duration-300;
+}
+
+.btn-tag {
+  @apply bg-secondary/10 hover:bg-secondary text-secondary hover:text-secondary-content border-none hover:scale-110 transition-all duration-300;
+}
+
 .timeline {
   @apply pl-0;
 }
@@ -366,7 +388,7 @@ thead th {
 }
 
 .footnotes {
-  @apply border-solid border-2 mt-8 transition-all rounded-xl p-8;
+  @apply border-solid border-2 mt-8 mb-2 transition-all rounded-xl p-8;
 }
 
 .swup-progress-bar {

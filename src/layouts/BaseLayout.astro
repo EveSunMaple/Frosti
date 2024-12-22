@@ -16,7 +16,14 @@ import {
   DAISYUI_THEME,
 } from "../consts";
 import i18next, { changeLanguage } from "i18next";
+
 changeLanguage(SITE_LANG);
+
+interface Props {
+  title: string;
+  image?: string;
+}
+
 const { title, image } = Astro.props;
 ---
 
@@ -29,133 +36,114 @@ const { title, image } = Astro.props;
 >
   <head>
     <meta charset="UTF-8" />
-    <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
-    <script
-      data-light={DAISYUI_THEME.light}
-      data-dark={DAISYUI_THEME.dark}
-      is:inline
-    >
-      (function () {
-        let storedTheme = localStorage.getItem("theme");
-        const userPreferredTheme = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches
-          ? "light"
-          : "dark";
-
-        const scriptElement = document.querySelector(
-          "script[data-light][data-dark]",
-        );
-
-        const light = scriptElement?.dataset.light;
-        const dark = scriptElement?.dataset.dark;
-
-        if (storedTheme !== "light" && storedTheme !== "dark") {
-          storedTheme = "light";
-          localStorage.setItem("theme", storedTheme);
-        }
-        const theme = storedTheme || userPreferredTheme;
-        const currentTheme = theme === "light" ? light : dark;
-
-        document.documentElement.setAttribute("data-theme-type", theme);
-        document.documentElement.setAttribute("data-theme", currentTheme);
-      })();
-    </script>
+    <title>{`${title} - ${SITE_TAB}`}</title>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
+    <script define:vars={{ DAISYUI_THEME }} is:inline>
+      function initTheme() {
+        const storedTheme =
+          localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "light"
+            : "dark");
+        const theme =
+          storedTheme === "light" ? DAISYUI_THEME.light : DAISYUI_THEME.dark;
+
+        if (!["light", "dark"].includes(storedTheme)) {
+          localStorage.setItem("theme", "light");
+        }
+
+        document.documentElement.setAttribute("data-theme-type", storedTheme);
+        document.documentElement.setAttribute("data-theme", theme);
+      }
+
+      initTheme();
+    </script>
   </head>
 
   <body>
-    <section
-      id="theme"
-      data-light={DAISYUI_THEME.light}
-      data-dark={DAISYUI_THEME.dark}
-      data-theme="light"
-    >
-    </section>
     <Navbar title={SITE_TITLE} />
-    <div class="max-w-6xl m-auto">
+
+    <div class="max-w-6xl mx-auto">
       <div
         class="relative grid gap-4 p-0 lg:p-4 md:grid-cols-5 lg:grid-cols-4 top-20 md:top-0 text-base lg:text-lg"
       >
-        <!-- Sidebar Section -->
-        <div class="md:col-span-1 top-4 p-2 hidden md:block order-2 md:order-1">
+        {/* Sidebar */}
+        <aside
+          class="md:col-span-1 top-4 p-2 hidden md:block order-2 md:order-1 space-y-4"
+        >
           <Profile />
           <CategoryCard />
           <TagCard />
           <ToolCard />
-        </div>
+        </aside>
 
-        <!-- Main Content Section -->
-        <div
-          class="col-span-3 md:col-span-4 lg:col-span-3 p-2 order-1 md:order-2"
+        {/* Main Content */}
+        <main
+          id="swup"
+          class="col-span-3 md:col-span-4 lg:col-span-3 p-2 order-1 md:order-2 detail transition-main"
         >
-          <main id="swup" class="detail transition-main">
-            <div class="grid gap-8 fade-in-up">
-              <slot />
-              <Footer />
-            </div>
-          </main>
-        </div>
+          <div class="grid gap-8 fade-in-up">
+            <slot />
+            <Footer />
+          </div>
+        </main>
       </div>
     </div>
   </body>
 </html>
+
 <script>
-  function addCopyButton() {
-    const copyButtons = document.querySelectorAll(".copy-btn");
+  class PageManager {
+    static initCopyButtons() {
+      document.querySelectorAll(".copy-btn").forEach((button) => {
+        const copyCheckbox = button.querySelector(
+          ".copy-checkbox",
+        ) as HTMLInputElement;
+        const codeBlock = button
+          .closest(".highlight")
+          ?.querySelector(".code") as HTMLElement;
 
-    copyButtons.forEach((button) => {
-      const copyCheckbox = button.querySelector(
-        ".copy-checkbox",
-      ) as HTMLInputElement;
+        if (!copyCheckbox || !codeBlock) return;
 
-      if (copyCheckbox && button instanceof HTMLElement) {
-        const codeBlock = button.closest(".highlight")?.querySelector(".code");
+        copyCheckbox.addEventListener("change", async () => {
+          if (!copyCheckbox.checked) return;
 
-        if (codeBlock && codeBlock instanceof HTMLElement) {
-          const code = codeBlock.innerText;
+          try {
+            await navigator.clipboard.writeText(codeBlock.innerText);
+            copyCheckbox.disabled = true;
+            button.setAttribute("title", "Copied!");
 
-          copyCheckbox.addEventListener("change", function () {
-            if (copyCheckbox.checked) {
-              navigator.clipboard.writeText(code).then(
-                function () {
-                  copyCheckbox.setAttribute("disabled", "true");
-                  button.setAttribute("title", "Copied!");
-                  setTimeout(() => {
-                    copyCheckbox.removeAttribute("disabled");
-                    button.removeAttribute("title");
-                    copyCheckbox.checked = false;
-                  }, 1500);
-                },
-                function (err) {
-                  console.error("Copy failed:", err);
-                },
-              );
-            }
-          });
-        } else {
-          console.error("codeBlock is null or not an HTMLElement");
-        }
-      }
-    });
+            setTimeout(() => {
+              copyCheckbox.disabled = false;
+              button.removeAttribute("title");
+              copyCheckbox.checked = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        });
+      });
+    }
+
+    static initImageZoom() {
+      import("medium-zoom/dist/pure").then(({ default: mediumZoom }) => {
+        mediumZoom(".main-card img:not(.link-card img):not(.comment img)", {
+          margin: 24,
+          background: "#00000080",
+        });
+      });
+    }
+
+    static init() {
+      this.initCopyButtons();
+      this.initImageZoom();
+      document.dispatchEvent(new Event("astro:page-load"));
+    }
   }
 
-  import mediumZoom from "medium-zoom/dist/pure";
-  document.addEventListener("swup:page:view", () => {
-    mediumZoom(".main-card img:not(.link-card img):not(.comment img)", {
-      margin: 24,
-      background: "#00000080",
-    });
-  });
-
-  document.addEventListener("swup:page:view", () => {
-    addCopyButton();
-    const astroPageLoadEvent = new Event("astro:page-load");
-    document.dispatchEvent(astroPageLoadEvent);
-  });
-
+  // 初始化页面功能
+  document.addEventListener("swup:page:view", () => PageManager.init());
   document.addEventListener("DOMContentLoaded", () => {
-    const ContentLoadEvent = new Event("swup:page:view");
-    document.dispatchEvent(ContentLoadEvent);
+    document.dispatchEvent(new Event("swup:page:view"));
   });
 </script>

@@ -1,18 +1,52 @@
 ---
 import GithubInfo from "../widget/GithubInfo.astro";
 import CardHorizontal from "../layouts/CardHorizontal.astro";
+
+interface Props {
+  title: string;
+  image?: string;
+  desc: string;
+  url: string;
+  badge?: string;
+  target?: string;
+}
+
 const { title, image, desc, url, badge, target = "_blank" } = Astro.props;
 ---
 
 <CardHorizontal title={title} image={image} url={url}>
-  <div class="relative w-full p-6 flex flex-col justify-between">
-    <a href={url} target={target}>
-      <h1 id={title} class="text-4xl m-0 p-2">
+  <div class="relative w-full flex flex-col justify-between group">
+    <!-- Title -->
+    <a
+      href={url}
+      target={target}
+      class="block hover:-translate-y-0.5 transition-transform duration-300"
+    >
+      <h1
+        id={title}
+        class="text-3xl leading-normal pt-0 font-bold text-base-content bg-clip-text bg-gradient-to-r from-primary to-secondary transition-colors duration-300 hover:text-transparent"
+      >
         {title}
       </h1>
     </a>
-    <div class="m-2">{desc}</div>
-    {badge && <div class="badge badge-ghost m-2">{badge}</div>}
-    <GithubInfo url={url} />
+
+    <!-- Description -->
+    <p class="mt-3 text-base-content/80 line-clamp-2">
+      {desc}
+    </p>
+
+    <!-- Meta Information -->
+    <div class="mt-4 space-y-4">
+      {
+        badge && (
+          <span class="badge badge-ghost hover:badge-primary hover:scale-105 transition-all duration-300">
+            {badge}
+          </span>
+        )
+      }
+
+      <!-- GitHub Info -->
+      <GithubInfo url={url} />
+    </div>
   </div>
 </CardHorizontal>

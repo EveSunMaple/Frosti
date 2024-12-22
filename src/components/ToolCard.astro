@@ -1,14 +1,12 @@
 ---
-import CardAside from "../layouts/CardAside.astro";
 import ThemeButton from "../widget/ThemeButton.astro";
 import BackToTopButton from "../widget/BackToTopButton.astro";
-import { t } from "i18next";
 ---
 
-<div class="overflow-hidden grid gap-8 w-full sticky top-8">
-  <div class="w-full overflow-hidden rounded-xl">
+<div class="grid gap-8 w-full sticky top-8">
+  <div class="w-full shadow-xl rounded-xl">
     <div
-      class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center w-full overflow-hide bg-base-100 p-4 transition-colors shadow-xl rounded-xl"
+      class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center w-full bg-base-100 p-4 rounded-xl"
       id="button-box"
     >
       <ThemeButton id="side-theme-button" className="card" />
@@ -16,9 +14,9 @@ import { t } from "i18next";
     </div>
   </div>
 
-  <div class="w-full overflow-hidden rounded-xl">
+  <div class="w-full shadow-xl rounded-xl">
     <div
-      class="mb-b w-full max-h-[65vh] overflow-hide top-8 bg-base-100 p-4 menu transition-colors shadow-xl rounded-xl"
+      class="mb-b w-full max-h-[65vh] top-8 bg-base-100 p-4 menu rounded-xl"
       id="content-box"
     >
       <div class="skeleton h-4 w-28"></div>

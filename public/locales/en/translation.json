@@ -11,6 +11,8 @@
     "nextPage": "Older posts",
     "wordCount": "words",
     "readTime": "minutes",
-    "share": "Share"
+    "share": "Share",
+    "shareCard": "Share this article",
+    "close": "Close"
   }
 }
