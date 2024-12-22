@@ -33,7 +33,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
     }),
   );
 
-  return paginate(postsWithStats, { pageSize: 5 });
+  return paginate(postsWithStats, { pageSize: 8 });
 }
 
 const { page }: { page: Page } = Astro.props;
