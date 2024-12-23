@@ -1,5 +1,15 @@
 ---
+interface Props {
+  size?: "sm" | "md" | "lg";
+}
 
+const { size = "md" } = Astro.props;
+
+const sizeClasses = {
+  sm: "kbd-sm",
+  md: "",
+  lg: "kbd-lg",
+};
 ---
 
-<kbd class="kbd fade-in-up"><slot /></kbd>
+<kbd class:list={["kbd fade-in-up", sizeClasses[size]]}><slot /></kbd>

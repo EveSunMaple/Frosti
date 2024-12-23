@@ -1,13 +1,20 @@
 ---
-const { r, l } = Astro.props;
+interface Props {
+  r: string; // right image
+  l: string; // left image
+  rightAlt?: string;
+  leftAlt?: string;
+}
+
+const { r, l, rightAlt = "Right image", leftAlt = "Left image" } = Astro.props;
 ---
 
-<div class="diff aspect-[16/9] fade-in-up">
+<div class="diff aspect-[16/9] rounded-lg overflow-hidden fade-in-up">
   <div class="diff-item-1">
-    <img alt="daisy" src={r} />
+    <img alt={leftAlt} src={l} loading="lazy" />
   </div>
   <div class="diff-item-2">
-    <img alt="daisy" src={l} />
+    <img alt={rightAlt} src={r} loading="lazy" />
   </div>
   <div class="diff-resizer"></div>
 </div>

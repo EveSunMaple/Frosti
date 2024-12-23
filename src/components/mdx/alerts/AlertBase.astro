@@ -1,0 +1,23 @@
+---
+import IconBase from "../icons/IconBase.astro";
+
+interface Props {
+  type: "info" | "success" | "warning" | "error";
+  icon: string;
+}
+
+const { type, icon } = Astro.props;
+---
+
+<div role="alert" class={`alert alert-${type} fade-in-up`}>
+  <slot name="icon">
+    <IconBase name={icon} />
+  </slot>
+  <span><slot /></span>
+</div>
+
+<style>
+  .alert {
+    @apply border border-opacity-20;
+  }
+</style>

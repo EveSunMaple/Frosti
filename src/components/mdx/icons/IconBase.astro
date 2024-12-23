@@ -1,0 +1,12 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = "w-6 h-6" } = Astro.props;
+---
+
+<Icon name={name} class={`shrink-0 ${className}`} />

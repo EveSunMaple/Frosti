@@ -1,33 +1,59 @@
 ---
 const { title, img, desc, url, badge, target = "_blank" } = Astro.props;
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 ---
 
 <div
-  class="rounded-lg bg-base-100 hover:shadow-xl transition-all ease-in-out hover:scale-[102%] link-card fade-in-up"
+  class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 animate-fade-in-up"
 >
-  <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row">
+  <a href={url} target={target} class="card-body p-4 md:p-6">
+    <div class="flex flex-col md:flex-row gap-4 items-center">
       {
-        img && (
+        img ? (
           <Image
             src={img}
-            width={100}
-            height={100}
+            width={150}
+            height={150}
             format="webp"
             alt={title}
             loading="eager"
-            class="max-w-full md:max-w-[13rem] rounded-lg"
+            class="rounded-lg object-cover w-full md:w-[150px] h-[150px]"
           />
+        ) : (
+          <div class="flex items-center justify-center w-[150px] h-[150px] bg-base-200 rounded-lg">
+            <Icon name="lucide:image" class="w-12 h-12 text-base-content/50" />
+          </div>
         )
       }
-      <div class="grow w-full">
-        <h1 class="text-xl font-bold">
-          {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
-        </h1>
-        <p class="py-1 text-1xl">{desc}</p>
+      <div class="flex-1 space-y-2">
+        <div class="flex items-center gap-2 flex-wrap">
+          <h2 class="card-title text-xl md:text-2xl">{title}</h2>
+          {
+            badge && (
+              <div class="badge badge-secondary badge-lg font-medium">
+                {badge}
+              </div>
+            )
+          }
+        </div>
+        <p class="text-base-content/80 line-clamp-3">{desc}</p>
+        <div class="card-actions justify-end">
+          <div
+            class="flex items-center gap-1 text-primary hover:text-primary-focus transition-colors"
+          >
+            <span class="text-sm font-medium">Learn more</span>
+            <Icon name="lucide:arrow-right" class="w-4 h-4" />
+          </div>
+        </div>
       </div>
     </div>
   </a>
 </div>
+
+<style>
+  .card {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--color-border), 0.1);
+  }
+</style>

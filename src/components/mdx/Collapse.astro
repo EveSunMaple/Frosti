@@ -1,11 +1,30 @@
 ---
+import IconBase from "./icons/IconBase.astro";
+
+interface Props {
+  title: string;
+}
+
 const { title } = Astro.props;
 ---
 
 <details
-  tabindex="0"
-  class="collapse collapse-arrow border-base-300 bg-base-200 border fade-in-up"
+  class="group collapse bg-base-200 rounded-2xl border border-base-300 fade-in-up overflow-hidden"
 >
-  <summary class="collapse-title text-xl font-medium">{title}</summary>
-  <div class="collapse-content"><slot /></div>
+  <summary
+    class="collapse-title text-xl font-medium cursor-pointer hover:bg-base-300/50 transition-colors"
+  >
+    <div class="flex items-center justify-between">
+      {title}
+      <IconBase
+        name="lucide:chevron-down"
+        class="w-5 h-5 transform transition-transform group-open:rotate-180"
+      />
+    </div>
+  </summary>
+  <div class="collapse-content">
+    <div class="pt-4">
+      <slot />
+    </div>
+  </div>
 </details>
