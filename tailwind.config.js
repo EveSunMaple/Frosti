@@ -5,6 +5,9 @@ module.exports = {
   theme: {
     extend: {},
   },
+  safelist: [
+    'alert', 'alert-info', 'alert-success', 'alert-warning', 'alert-error',
+  ],
   plugins: [require("daisyui"), addDynamicIconSelectors],
   daisyui: {
     themes: true, // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
