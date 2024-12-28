@@ -27,7 +27,7 @@ const tagsWithCounts = await getTagsWithCounts();
 ---
 
 <CardAside title={t("label.tagCard")}>
-  <div class="flex flex-wrap gap-2 w-full max-h-[300px] p-1">
+  <div class="flex flex-wrap gap-2 w-full max-h-[300px] p-1 overflow-auto">
     {
       tagsWithCounts.map(({ tag, count }) => (
         <TagButton
