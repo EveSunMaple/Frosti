@@ -24,8 +24,10 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : null;
 
 <CardHorizontal title={title} image={image} url={url}>
   <div class="relative w-full flex flex-col justify-between group">
-    <div class="flex justify-between items-center mb-4 text-sm opacity-75">
-      <div class="flex items-center gap-2">
+    <div
+      class="flex justify-between items-center mb-4 text-xs sm:text-sm opacity-75"
+    >
+      <div class="flex flex-wrap items-center gap-2">
         {
           displayDate && (
             <span class="flex items-center gap-1">
@@ -36,7 +38,7 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : null;
         }
         {
           badge && (
-            <span class="flex items-center gap-1">
+            <span class="flex flex-wrap items-center gap-1">
               <Icon name="ri:bookmark-2-line" class="h-4 w-4" />
               {badge}
             </span>
@@ -44,7 +46,7 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : null;
         }
       </div>
 
-      <div class="flex items-center gap-1">
+      <div class="flex flex-wrap items-center gap-1">
         <Icon name="ri:book-open-line" class="h-4 w-4" />
         <span>{word} {t("label.wordCount")} · {time} {t("label.readTime")}</span
         >

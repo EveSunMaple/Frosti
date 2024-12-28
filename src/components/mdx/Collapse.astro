@@ -1,5 +1,5 @@
 ---
-import IconBase from "./icons/IconBase.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   title: string;
@@ -16,9 +16,9 @@ const { title } = Astro.props;
   >
     <div class="flex items-center justify-between">
       {title}
-      <IconBase
+      <Icon
         name="lucide:chevron-down"
-        class="w-5 h-5 transform transition-transform group-open:rotate-180"
+        class="shrink-0 w-5 h-5 transform transition-transform group-open:rotate-180"
       />
     </div>
   </summary>

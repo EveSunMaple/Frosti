@@ -1,37 +1,22 @@
 ---
+import { Icon } from "astro-icon/components";
 import Menu from "../components/NavbarMenu.astro";
 import ThemeButton from "../widget/ThemeButton.astro";
 import { SITE_TITLE } from "../consts";
 ---
 
 <navbar
-  class="navbar fixed px-2 w-full transform transition-all duration-500 ease-in-out text-center z-50 backdrop-blur-md bg-base-100/85 shadow-lg md:hidden"
+  class="navbar fixed px-2 w-full transform transition-transform delay-300 duration-500 ease-in-out text-center z-50 bg-base-100 shadow-lg md:hidden"
   id="navbar"
 >
   <div class="navbar-start">
-    <details class="dropdown" id="dropdown">
-      <summary
-        tabindex="0"
-        role="button"
-        class="btn btn-ghost"
-        id="content"
-        title="Content"
-      >
-        <svg
-          class="swap-off fill-current transform transition-transform duration-300"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512"
-        >
-          <path
-            d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-          ></path>
-        </svg>
-      </summary>
-      <Menu />
-    </details>
+    <label class="btn btn-ghost swap swap-rotate">
+      <input type="checkbox" id="menu-toggle" />
+      <Icon name="mdi:menu" class="swap-off w-8 h-8" />
+      <Icon name="mdi:close" class="swap-on w-8 h-8" />
+    </label>
   </div>
+
   <div class="navbar-center">
     <a
       class="btn btn-ghost text-xl hover:scale-105 transition-transform duration-300"
@@ -40,24 +25,55 @@ import { SITE_TITLE } from "../consts";
       {SITE_TITLE}
     </a>
   </div>
+
   <div class="navbar-end">
     <ThemeButton id="navbar-theme" className="w-auto" />
   </div>
+
+  <div
+    id="header-menu"
+    class="absolute top-full left-0 w-full transform -translate-x-full transition-transform duration-300 ease-in-out"
+  >
+    <Menu />
+  </div>
 </navbar>
+
+<style>
+  #header-menu.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>
 
 <script>
   let lastScrollY = window.scrollY;
-  const navbar = document.getElementById("navbar");
+  const navbar = document.getElementById("navbar") as HTMLElement;
+  const headerMenu = document.getElementById("header-menu") as HTMLElement;
+  const menuToggle = document.getElementById("menu-toggle") as HTMLInputElement;
+
+  // Toggle menu visibility
+  menuToggle?.addEventListener("change", () => {
+    if (headerMenu) {
+      if (menuToggle.checked) {
+        headerMenu.classList.add("show");
+      } else {
+        headerMenu.classList.remove("show");
+      }
+    }
+  });
 
   const handleScroll = () => {
     if (navbar) {
-      // Add smooth class transitions
       if (window.scrollY > lastScrollY && window.scrollY > 50) {
         navbar.classList.add("-translate-y-full", "duration-500");
         navbar.classList.remove("translate-y-0");
-        const dropdown = document.getElementById("dropdown");
-        if (dropdown) {
-          dropdown.removeAttribute("open");
+
+        // Close menu when hiding navbar
+        if (menuToggle) {
+          menuToggle.checked = false;
+        }
+        if (headerMenu) {
+          headerMenu.classList.remove("show");
         }
       } else if (window.scrollY < lastScrollY) {
         navbar.classList.remove("-translate-y-full");
@@ -80,35 +96,21 @@ import { SITE_TITLE } from "../consts";
     }
   });
 
-  // Click outside to close dropdown
+  // Close menu when clicking outside
   document.addEventListener("click", (event) => {
-    const dropdown = document.getElementById("dropdown");
-    if (dropdown) {
-      const isClickInside = dropdown.contains(event.target as Node);
-      if (!isClickInside && dropdown.hasAttribute("open")) {
-        dropdown.removeAttribute("open");
-      }
+    const target = event.target as Node;
+    if (!navbar?.contains(target) && headerMenu?.classList.contains("show")) {
+      menuToggle.checked = false;
+      headerMenu.classList.remove("show");
     }
   });
 
-  // Touch events
-  document.addEventListener("touchmove", (event) => {
-    const dropdown = document.getElementById("dropdown");
-    if (dropdown?.hasAttribute("open")) {
-      dropdown.removeAttribute("open");
-    }
-  });
-
-  // Close dropdown on menu item click
-  const closeDropdownOnClick = (selector: string) => {
-    document.querySelectorAll(selector).forEach((item) => {
-      item.addEventListener("click", () => {
-        const dropdown = document.getElementById("dropdown");
-        dropdown?.removeAttribute("open");
-      });
+  // Close menu when clicking menu items
+  const menuItems = document.querySelectorAll("#header-menu a");
+  menuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      menuToggle.checked = false;
+      headerMenu?.classList.remove("show");
     });
-  };
-
-  closeDropdownOnClick("#dropdown > ul > li > a");
-  closeDropdownOnClick("#dropdown > ul > li > details > ul > li > a");
+  });
 </script>

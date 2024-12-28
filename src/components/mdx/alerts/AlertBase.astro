@@ -1,5 +1,5 @@
 ---
-import IconBase from "../icons/IconBase.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   type: "info" | "success" | "warning" | "error";
@@ -11,7 +11,7 @@ const { type, icon } = Astro.props;
 
 <div role="alert" class={`alert alert-${type} fade-in-up`}>
   <slot name="icon">
-    <IconBase name={icon} />
+    <Icon name={icon} class="shrink-0 w-6 h-6" />
   </slot>
   <span><slot /></span>
 </div>

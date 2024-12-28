@@ -19,6 +19,7 @@ import { transformers } from './src/config/transformers.js';
 import { rehypeFadeInUp } from './src/plugins/rehype-fade-in-up.mjs';
 import { remarkAddAnchor } from './src/plugins/remark-add-anchor.mjs';
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
+import { remarkHeadingExtractor } from './src/plugins/remark-heading-extractor.mjs';
 
 
 const { USER_SITE } = await import('./src/consts.ts');
@@ -61,7 +62,7 @@ export default defineConfig({
       },
       transformers: transformers
     },
-    remarkPlugins: [remarkMath, remarkAddAnchor, remarkReadingTime],
+    remarkPlugins: [remarkMath, remarkAddAnchor, remarkReadingTime, remarkHeadingExtractor],
     rehypePlugins: [rehypeKatex, rehypeFadeInUp,
       [
         rehypeExternalLinks,

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BaseCard from "../../components/BaseCard.astro";
+import TocCollapse from "../../components/mdx/TocCollapse.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -18,7 +19,7 @@ const { post } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await post.render();
 ---
 
-<BaseLayout title={post.data.title}>
+<BaseLayout title={post.data.title} image={post.data.image}>
   <BaseCard
     title={post.data.title}
     image={post.data.image}
@@ -30,6 +31,7 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     time={remarkPluginFrontmatter.readingTime}
     isBlog="true"
   >
+    <TocCollapse headings={remarkPluginFrontmatter.headings} />
     <Content />
   </BaseCard>
 </BaseLayout>

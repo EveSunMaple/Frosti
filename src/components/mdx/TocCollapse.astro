@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+interface Props {
+  headings: { id: string; text: string; level: number }[];
+  title?: string;
+}
+
+const { headings, title = "Table of Contents" } = Astro.props;
+---
+
+<details
+  id="toc-phone"
+  class="group w-full shadow-xl rounded-xl bg-base-100 overflow-hidden transition-transform duration-300 static md:hidden"
+  open={false}
+>
+  <summary
+    class="flex items-center justify-between p-4 cursor-pointer hover:bg-base-200/50 transition-colors"
+  >
+    <div class="flex items-center gap-2 text-xl font-medium">
+      <Icon name="lucide:list" class="w-5 h-5" />
+      {title}
+    </div>
+    <Icon
+      name="lucide:chevron-down"
+      class="shrink-0 w-5 h-5 transform transition-transform duration-300 group-open:rotate-180"
+    />
+  </summary>
+
+  <div class="overflow-hidden">
+    <div
+      class="w-full max-h-[65vh] bg-base-100 p-4 menu overflow-y-auto border-t border-base-200"
+    >
+      <ul class="menu gap-1">
+        {
+          headings.map((heading) => (
+            <li class="m-0 ">
+              <a
+                href={heading.id.replace(/.*?(#.*)/, "$1")}
+                class:list={[
+                  "flex items-center gap-2 hover:text-primary hover:bg-base-200/50 rounded-lg transition-colors duration-200",
+                  {
+                    "pl-0": heading.level === 1,
+                    "pl-2": heading.level === 2,
+                    "pl-4": heading.level === 3,
+                    "pl-6": heading.level === 4,
+                    "pl-8": heading.level === 5,
+                    "pl-10": heading.level === 6,
+                  },
+                ]}
+              >
+                {heading.level === 1 && (
+                  <Icon name="mdi:format-header-1" class="w-4 h-4 shrink-0" />
+                )}
+                {heading.level === 2 && (
+                  <Icon name="mdi:format-header-2" class="w-4 h-4 shrink-0" />
+                )}
+                {heading.level === 3 && (
+                  <Icon name="mdi:format-header-3" class="w-4 h-4 shrink-0" />
+                )}
+                {heading.level === 4 && (
+                  <Icon name="mdi:format-header-4" class="w-4 h-4 shrink-0" />
+                )}
+                {heading.level === 5 && (
+                  <Icon name="mdi:format-header-5" class="w-4 h-4 shrink-0" />
+                )}
+                {heading.level === 6 && (
+                  <Icon name="mdi:format-header-6" class="w-4 h-4 shrink-0" />
+                )}
+                <span class="line-clamp-1">{heading.text}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</details>
+
+<style>
+  details[open] summary ~ * {
+    animation: slide-in 0.3s ease-in-out;
+  }
+
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

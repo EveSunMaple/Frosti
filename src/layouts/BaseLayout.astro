@@ -8,6 +8,7 @@ import Footer from "../components/Footer.astro";
 import TagCard from "../components/TagCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
 import ToolCard from "../components/ToolCard.astro";
+import TocCard from "../components/TocCard.astro";
 import {
   SITE_LANG,
   SITE_TAB,
@@ -74,13 +75,16 @@ const { title, image } = Astro.props;
           <Profile />
           <CategoryCard />
           <TagCard />
-          <ToolCard />
+          <div class="grid gap-8 w-full sticky top-8">
+            <ToolCard />
+            <TocCard />
+          </div>
         </aside>
 
         {/* Main Content */}
         <main
           id="swup"
-          class="col-span-3 md:col-span-4 lg:col-span-3 p-2 order-1 md:order-2 detail transition-main"
+          class="col-span-3 md:col-span-4 lg:col-span-3 p-2 order-1 md:order-2"
         >
           <div class="grid gap-8 fade-in-up">
             <slot />
