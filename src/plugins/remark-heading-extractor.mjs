@@ -8,7 +8,7 @@ export function remarkHeadingExtractor() {
     visit(tree, 'heading', (node) => {
       const rawText = toString(node);
 
-      const text = rawText.split('\n')[0].replace(/<[^>]*?>/g, '').trim();
+      const text = rawText.split('\n')[0].replace(/<[^>]+>/g, '').trim();
       const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') + rawText.split('\n')[0].match(/href="([^"]+)"/, '')[1].trim();;
 
       const level = node.depth;
