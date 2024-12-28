@@ -594,3 +594,65 @@
 ### Chore
 
 - 使用 `iconify` 代替了本地存储 svg 的方式
+
+## [2.9.0] - 2024-12-28
+
+### Features
+
+- 新增 `mdx/TocCopllapse.astro` 组件用于在文章中添加折叠的目录(小屏幕侧边栏无法显示时才出现)
+  - 新增 `remark-heading-extractor.mjs` 在服务端提取标题并存贮在 `frontmatter` 中
+  > [!NOTE]
+  > 原本想通过此组件实现在服务端生成所有目录, 但发现侧边栏并不在 `Swup` 的按需渲染范围之中, 所以只能保留在客户端生成目录的形式
+- 新增 `TocCard.astro` (拆分 `Tool.astro`)
+
+### Refactored
+
+- 取消了昼夜颜色的切换动画
+- 修改侧边栏结构, 删除了多余的组件合并为 `ProfileCard.astro` 并优化了样式
+  - 鼠标放在图标上新增小动画
+  - 微调了菜单与子菜单的间距
+- 完全重写 `License.astro` 组件的样式与构建逻辑
+  - 文末添加 'Thanks for reading!' (平衡页面)
+  - CC 图标移动至左上方
+  - 在 License 中添加文章信息如: 作者\发布日期\字数\阅读时长\永久链接\分类\标签
+  - 重写原本的分享组件
+- 针对所有 `MDX` 组件进行了样式优化
+  - 对所有 `alert` 使用统一格式
+  - 修改 `Kbd.astro` 新增大小 `size` 选项
+  - 重写 `Collapse.astro` 组件使用自定义格式而非由 DaisyUI 提供
+  - 针对 `Diff.astro` 组件添加了 `rightAlt` 等选项
+  - 修改 `TimeLine.astro` 组件的样式并添加了动效
+  - 修改 `LinkCard.astro` 组件的结构与样式
+  - 新增 `TocCopllapse.astro` 组件
+- 文字排版:行间距修改
+- 重写 `badge` 的样式而不是使用 DaisyUI 提供的默认样式
+  - 在 `TagCard.astro` 与 `CategoryCard.astro` 中使用全新的 `badge` 样式
+- 重写 `EnvelopeCard.astro` 组件的样式
+  - 文章信息展示修改
+    - 去除原本堆砌的 DaisyUI 样式
+    - 文章发表日期与字数统计等内容收纳至上方
+    - 文章分类与标签信息使用全新的 `badge` 样式
+    - 取消原本指针覆盖在图片上出现的小箭头样式
+  - 同理修改 `BaseCard.astro` 组件中文章信息的样式
+- 修改 `ProjectCard.astro` 组件的样式与逻辑
+  - 收纳逻辑至 `utils/github.ts` 等文件中
+  - 添加针对获取数据的格式化处理
+  - 代码语言改至左侧, 仓库信息放在右侧
+  - 删除针对 `Watch` 的数据统计
+- 修改 `Navbar.astro` 组件的样式与逻辑
+  - 使用调换重做顶部菜单按钮
+  - 添加顶部菜单滑入\滑出动画
+- 将分页制作为全新的可重用组件 `Pagination.astro`
+- 隐藏了 `TocCard` 的滑动条
+- 修改了 `code` 的样式
+- 布局文件微调
+
+### Fix
+
+- 修复了原 `CategoryCard.astro` 组件中错误的变量命名
+- 修复了图片放大导致的页面触摸失效问题
+
+### Chore
+
+- 基本上的变量都有了 `interface` 的定义
+- 基本上的图标都使用了 `iconify` 提供的图标
