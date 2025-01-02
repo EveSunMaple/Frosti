@@ -49,6 +49,16 @@ A simple, elegant, and fast static blog template! 🚀 Built with Astro
 > [!TIP]
 > You can pin your article by setting the `badge` attribute to `Pin`
 
+## 📝 Note on Node.js Compatibility
+
+Frosti is currently compatible with Node.js versions **18.x** and **20.x**. If you are using Node.js v22.x, you may encounter unexpected issues. 
+
+To ensure proper functionality:
+1. Use Node.js version 18.x or 20.x.
+2. If needed, switch your Node.js version using tools like [nvm](https://github.com/nvm-sh/nvm).
+
+Future updates will include support for Node.js v22.x.
+
 ## ⬇️ Usage
 
 > [!IMPORTANT]
