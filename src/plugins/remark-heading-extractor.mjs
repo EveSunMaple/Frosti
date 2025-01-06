@@ -1,15 +1,15 @@
-import { visit } from 'unist-util-visit';
-import { toString } from 'mdast-util-to-string';
+import { toString } from "mdast-util-to-string";
+import { visit } from "unist-util-visit";
 
 export function remarkHeadingExtractor() {
   return function (tree, { data }) {
     const headings = [];
 
-    visit(tree, 'heading', (node) => {
+    visit(tree, "heading", (node) => {
       const rawText = toString(node);
 
-      const text = rawText.split('\n')[0].replace(/<[^>]*>/g, '').trim();
-      const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') + rawText.split('\n')[0].match(/href="([^"]+)"/, '')[1].trim();;
+      const text = rawText.split("\n")[0].replace(/<[^>]*>/g, "").trim();
+      const id = text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "") + rawText.split("\n")[0].match(/href="([^"]+)"/, "")[1].trim();
 
       const level = node.depth;
 

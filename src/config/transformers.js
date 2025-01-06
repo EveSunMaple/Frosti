@@ -11,7 +11,6 @@ export const transformers = [
       }
     },
     pre(node) {
-
       const uniqueId = crypto.randomUUID();
       // 复制按钮 HTML
       const copyButtonHTML = {
@@ -23,7 +22,7 @@ export const transformers = [
             type: "element",
             tagName: "label",
             properties: {
-              className: [
+              "className": [
                 "swap",
                 "swap-flip",
                 "btn",
@@ -31,14 +30,14 @@ export const transformers = [
                 "btn-sm",
                 "copy-btn",
               ],
-              for: uniqueId, // 关联控件
+              "for": uniqueId, // 关联控件
               "aria-label": "Copy to clipboard",
             },
             children: [
               {
                 type: "element",
                 tagName: "span",
-                properties: { className: ["sr-only"], },
+                properties: { className: ["sr-only"] },
                 children: [
                   {
                     type: "text",

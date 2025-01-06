@@ -29,19 +29,11 @@ import { Icon } from "astro-icon/components";
       <div class="flex-1 space-y-2 w-full">
         <div class="flex items-center gap-2 flex-wrap">
           <h2 class="card-title text-xl md:text-2xl">{title}</h2>
-          {
-            badge && (
-              <div class="badge badge-secondary badge-lg font-medium">
-                {badge}
-              </div>
-            )
-          }
+          {badge && <div class="badge badge-secondary badge-lg font-medium">{badge}</div>}
         </div>
         <p class="text-base-content/80 line-clamp-3">{desc}</p>
         <div class="card-actions justify-end">
-          <div
-            class="flex items-center gap-1 text-primary hover:text-primary-focus transition-colors"
-          >
+          <div class="flex items-center gap-1 text-primary hover:text-primary-focus transition-colors">
             <span class="text-sm font-medium">Learn more</span>
             <Icon name="lucide:arrow-right" class="w-4 h-4" />
           </div>

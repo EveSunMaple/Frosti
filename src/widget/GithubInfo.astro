@@ -43,12 +43,8 @@ const { url } = Astro.props;
         })
         .then((data) => {
           this.querySelector(".repo-user span")!.textContent = data.owner.login;
-          this.querySelector(".repo-fork span")!.textContent = formatNumber(
-            data.forks_count,
-          );
-          this.querySelector(".repo-star span")!.textContent = formatNumber(
-            data.stargazers_count,
-          );
+          this.querySelector(".repo-fork span")!.textContent = formatNumber(data.forks_count);
+          this.querySelector(".repo-star span")!.textContent = formatNumber(data.stargazers_count);
         })
         .catch((error) => {
           console.error("Error fetching repository info:", error);
