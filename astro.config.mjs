@@ -15,9 +15,11 @@ import { transformers } from "./src/config/transformers.js";
 
 import { CODE_THEME } from "./src/consts.ts";
 
+import { initI18n } from "./src/locales";
 import { rehypeFadeInUp } from "./src/plugins/rehype-fade-in-up.mjs";
 import { remarkAddAnchor } from "./src/plugins/remark-add-anchor.mjs";
 import { remarkHeadingExtractor } from "./src/plugins/remark-heading-extractor.mjs";
+
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 const { USER_SITE } = await import("./src/consts.ts");
@@ -49,7 +51,7 @@ export default defineConfig({
   }), terser({
     compress: true,
     mangle: true,
-  }), sitemap(), tailwind(), pagefind(), playformCompress()],
+  }), sitemap(), tailwind(), pagefind(), playformCompress(), initI18n()],
   markdown: {
     shikiConfig: {
       themes: {

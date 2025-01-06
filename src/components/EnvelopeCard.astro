@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 import CardHorizontal from "../layouts/CardHorizontal.astro";
 import type { EnvelopeInfo } from "../types";
 import { DATE_FORMAT } from "../consts";
-import { t } from "@/locales";
+import { t } from "i18next";
 
 const { title, desc, image, pubDate, badge, categories = [], tags = [], word, time, url } = Astro.props as EnvelopeInfo;
 
