@@ -26,30 +26,28 @@ a {
 .main-card p,
 .main-card li,
 .main-card blockquote {
-  :not(#toc-phone) {
-    a {
-      @apply px-0.5 rounded-md font-medium;
-      color: oklch(var(--p));
-      transition:
-        background-color 0.3s,
-        background-size 0.3s,
-        background-position 0.3s ease;
-      box-decoration-break: clone;
-      background-image: linear-gradient(oklch(var(--p)), oklch(var(--p)));
-      background-size: 100% 2px;
-      background-position: left bottom;
-      background-repeat: no-repeat;
-    }
+  a {
+    @apply px-0.5 rounded-md font-medium;
+    color: oklch(var(--p));
+    transition:
+      background-color 0.3s,
+      background-size 0.3s,
+      background-position 0.3s ease;
+    box-decoration-break: clone;
+    background-image: linear-gradient(oklch(var(--p)), oklch(var(--p)));
+    background-size: 100% 2px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+  }
 
-    a:hover {
-      background-color: oklch(var(--p) / 0.3);
-      background-size: 0% 2px;
-    }
+  a:hover {
+    background-color: oklch(var(--p) / 0.3);
+    background-size: 0% 2px;
+  }
 
-    a:active {
-      background-color: oklch(var(--p) / 0.2);
-      background-size: 0% 2px;
-    }
+  a:active {
+    background-color: oklch(var(--p) / 0.2);
+    background-size: 0% 2px;
   }
 }
 
