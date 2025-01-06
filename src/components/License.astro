@@ -14,16 +14,7 @@ interface Props {
   time?: string;
 }
 
-const {
-  title,
-  url,
-  pubDate,
-  badge,
-  categories = [],
-  tags = [],
-  word,
-  time,
-} = Astro.props;
+const { title, url, pubDate, badge, categories = [], tags = [], word, time } = Astro.props;
 
 const socialLinks = [
   {
@@ -61,23 +52,15 @@ const socialLinks = [
 
 <div class="container p-0">
   <div class="text-right text-sm text-base-content/60 italic mb-2">
-    <Icon
-      name="ri:heart-line"
-      class="w-4 h-4 inline-block align-text-bottom text-error"
-    /> Thanks for reading!
+    <Icon name="ri:heart-line" class="w-4 h-4 inline-block align-text-bottom text-error" /> Thanks for reading!
   </div>
 
   <div class="card bg-base-200 shadow-xl mt-8 overflow-visible">
     <div class="card-body relative p-4 sm:p-6 lg:p-8">
       <!-- License Icon -->
       <div class="absolute -top-8 left-8">
-        <div
-          class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg"
-        >
-          <Icon
-            name="ri:creative-commons-line"
-            class="w-10 h-10 text-primary-content"
-          />
+        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg">
+          <Icon name="ri:creative-commons-line" class="w-10 h-10 text-primary-content" />
         </div>
       </div>
 
@@ -86,9 +69,7 @@ const socialLinks = [
         <h3 class="card-title text-lg sm:text-xl lg:text-2xl">{title}</h3>
 
         <!-- Stats Row -->
-        <div
-          class="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm opacity-75"
-        >
+        <div class="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm opacity-75">
           {
             pubDate && (
               <span class="flex items-center gap-1">
@@ -117,10 +98,7 @@ const socialLinks = [
               </div>
             )
           }
-          <a
-            href={url}
-            class="flex items-center gap-1 hover:text-primary transition-colors"
-          >
+          <a href={url} class="flex items-center gap-1 hover:text-primary transition-colors">
             <Icon name="ri:links-line" class="w-4 h-4" />
           </a>
         </div>
@@ -130,10 +108,7 @@ const socialLinks = [
           <div class="flex flex-wrap items-center gap-2">
             {
               categories.map((category) => (
-                <a
-                  href={`/blog/categories/${category}`}
-                  class="btn btn-xs btn-category"
-                >
+                <a href={`/blog/categories/${category}`} class="btn btn-xs btn-category">
                   {category}
                 </a>
               ))
@@ -145,20 +120,8 @@ const socialLinks = [
                 </a>
               ))
             }
-            {
-              categories.length === 0 && (
-                <span class="btn btn-xs btn-disabled opacity-50">
-                  {t("label.noCategory")}
-                </span>
-              )
-            }
-            {
-              tags.length === 0 && (
-                <span class="btn btn-xs btn-disabled opacity-50">
-                  {t("label.noTag")}
-                </span>
-              )
-            }
+            {categories.length === 0 && <span class="btn btn-xs btn-disabled opacity-50">{t("label.noCategory")}</span>}
+            {tags.length === 0 && <span class="btn btn-xs btn-disabled opacity-50">{t("label.noTag")}</span>}
           </div>
 
           <!-- License Info -->
@@ -177,10 +140,7 @@ const socialLinks = [
 
         <!-- Share Button -->
         <div class="card-actions justify-end mt-4">
-          <button
-            class="btn btn-primary btn-outline"
-            onclick="share_modal.showModal()"
-          >
+          <button class="btn btn-primary btn-outline" onclick="share_modal.showModal()">
             {t("label.share")}
             <Icon name="ri:share-line" class="w-5 h-5" />
           </button>

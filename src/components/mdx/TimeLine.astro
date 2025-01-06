@@ -13,9 +13,7 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul
-  class="timeline timeline-vertical timeline-snap-icon max-w-4xl mx-auto my-8 px-4"
->
+<ul class="timeline timeline-vertical timeline-snap-icon max-w-4xl mx-auto my-8 px-4">
   {
     items.map((item, index) => (
       <li class="relative mb-12 last:mb-0">
@@ -23,16 +21,11 @@ const { items } = Astro.props;
         {index % 2 === 0 ? (
           <>
             <div class="timeline-start mb-4">
-              <time class="font-mono text-lg font-semibold text-primary">
-                {item.year}
-              </time>
+              <time class="font-mono text-lg font-semibold text-primary">{item.year}</time>
             </div>
             <div class="timeline-middle">
               <div class="bg-primary rounded-full p-1.5 shadow-lg shadow-primary/50">
-                <Icon
-                  name="lucide:check"
-                  class="w-5 h-5 text-primary-content"
-                />
+                <Icon name="lucide:check" class="w-5 h-5 text-primary-content" />
               </div>
             </div>
             <div class="timeline-end timeline-box bg-base-200 shadow-md hover:shadow-xl ease-in-out hover:-translate-y-1 transition-all duration-300">
@@ -46,16 +39,11 @@ const { items } = Astro.props;
             </div>
             <div class="timeline-middle">
               <div class="bg-secondary rounded-full p-1.5 shadow-lg shadow-secondary/50">
-                <Icon
-                  name="lucide:check"
-                  class="w-5 h-5 text-secondary-content"
-                />
+                <Icon name="lucide:check" class="w-5 h-5 text-secondary-content" />
               </div>
             </div>
             <div class="timeline-end mb-4">
-              <time class="font-mono text-lg font-semibold text-secondary">
-                {item.year}
-              </time>
+              <time class="font-mono text-lg font-semibold text-secondary">{item.year}</time>
             </div>
           </>
         )}

@@ -19,11 +19,7 @@ const { page, totalPages, pageLinks, baseUrl } = Astro.props;
 ---
 
 <div class="flex justify-between items-center gap-2 fade-in-up">
-  <PaginationArrow
-    direction="prev"
-    href={page.url.prev}
-    label={t("label.prevPage")}
-  />
+  <PaginationArrow direction="prev" href={page.url.prev} label={t("label.prevPage")} />
 
   <div class:list={["flex gap-1", totalPages > 3 && "join"]}>
     {
@@ -31,35 +27,17 @@ const { page, totalPages, pageLinks, baseUrl } = Astro.props;
         <>
           {pageLinks.active.map((link) =>
             link === "..." ? (
-              <PaginationDropdown
-                hiddenPages={pageLinks.hidden}
-                current={page.current}
-                baseUrl={baseUrl}
-              />
+              <PaginationDropdown hiddenPages={pageLinks.hidden} current={page.current} baseUrl={baseUrl} />
             ) : (
-              <PaginationNumber
-                number={link}
-                current={page.current}
-                baseUrl={baseUrl}
-              />
+              <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} />
             ),
           )}
         </>
       ) : (
-        pageLinks.active.map((link) => (
-          <PaginationNumber
-            number={link}
-            current={page.current}
-            baseUrl={baseUrl}
-          />
-        ))
+        pageLinks.active.map((link) => <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} />)
       )
     }
   </div>
 
-  <PaginationArrow
-    direction="next"
-    href={page.url.next}
-    label={t("label.nextPage")}
-  />
+  <PaginationArrow direction="next" href={page.url.next} label={t("label.nextPage")} />
 </div>

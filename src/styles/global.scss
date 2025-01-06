@@ -30,7 +30,10 @@ a {
     a {
       @apply px-0.5 rounded-md font-medium;
       color: oklch(var(--p));
-      transition: background-color 0.3s, background-size 0.3s, background-position 0.3s ease;
+      transition:
+        background-color 0.3s,
+        background-size 0.3s,
+        background-position 0.3s ease;
       box-decoration-break: clone;
       background-image: linear-gradient(oklch(var(--p)), oklch(var(--p)));
       background-size: 100% 2px;
@@ -144,7 +147,11 @@ input {
   width: 1.25em;
   height: 1.25em;
   opacity: 0;
-  transition: opacity 0.3s, background-color 0.3s, color 0.3s, text-decoration 0.3s ease;
+  transition:
+    opacity 0.3s,
+    background-color 0.3s,
+    color 0.3s,
+    text-decoration 0.3s ease;
 
   svg {
     @apply inline-block;
@@ -225,7 +232,15 @@ table tr {
 
 code {
   color: oklch(var(--bc));
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
   white-space: nowrap;
   @apply bg-base-300 border border-solid rounded-md px-1 py-0.5 text-base shadow;
   border-color: rgba(0, 0, 0, 0.2);
@@ -233,7 +248,15 @@ code {
 }
 
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
   padding: 10px;
 }
 
@@ -241,7 +264,7 @@ blockquote {
   @apply alert px-6;
 }
 
-pre>code {
+pre > code {
   all: unset;
 }
 
@@ -301,7 +324,15 @@ thead th {
 }
 
 .highlight .code-lang {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
   user-select: none;
 }
 
@@ -322,7 +353,9 @@ thead th {
 }
 
 .image-link img {
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .image-link:hover img {
@@ -336,7 +369,7 @@ thead th {
 }
 
 .image-link::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -345,9 +378,11 @@ thead th {
   opacity: 0;
   width: 100px;
   height: 100px;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 width%3D%2224%22 height%3D%2224%22 viewBox%3D%220 0 24 24%22 fill%3D%22%23ffffff%22%3E%3Cpath d%3D%22M8.59%2C16.58L13.17%2C12L8.59%2C7.41L10%2C6L16%2C12L10%2C18L8.59%2C16.58Z%22%3E%3C/path%3E%3C/svg%3E');
+  background-image: url("data:image/svg+xml,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 width%3D%2224%22 height%3D%2224%22 viewBox%3D%220 0 24 24%22 fill%3D%22%23ffffff%22%3E%3Cpath d%3D%22M8.59%2C16.58L13.17%2C12L8.59%2C7.41L10%2C6L16%2C12L10%2C18L8.59%2C16.58Z%22%3E%3C/path%3E%3C/svg%3E");
   background-size: cover;
-  transition: opacity 0.3s, transform 0.3s ease;
+  transition:
+    opacity 0.3s,
+    transform 0.3s ease;
   pointer-events: none;
 }
 

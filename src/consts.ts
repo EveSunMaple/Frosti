@@ -10,7 +10,7 @@ export const DATE_FORMAT = "ddd MMM DD YYYY";
 
 // User profile information
 export const USER_NAME = "EveSunMaple";
-export const USER_SITE = "https://frosti.saroprock.com"
+export const USER_SITE = "https://frosti.saroprock.com"; // At the same time, this is also the site retrieved by the i18n configuration.
 export const USER_AVATAR = "/profile.webp";
 
 // Server and transition settings
@@ -20,11 +20,11 @@ export const SERVER_URL = "https://demo.saroprock.com";
 export const DAISYUI_THEME = {
   light: "winter",
   dark: "dracula",
-}
+};
 export const CODE_THEME = {
   light: "github-light",
   dark: "github-dark",
-}
+};
 
 // Menu items for navigation
 export const menuItems = [

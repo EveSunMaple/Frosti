@@ -9,13 +9,7 @@ import TagCard from "../components/TagCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
 import ToolCard from "../components/ToolCard.astro";
 import TocCard from "../components/TocCard.astro";
-import {
-  SITE_LANG,
-  SITE_TAB,
-  SITE_TITLE,
-  SITE_DESCRIPTION,
-  DAISYUI_THEME,
-} from "../consts";
+import { SITE_LANG, SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, DAISYUI_THEME } from "../consts";
 import i18next, { changeLanguage } from "i18next";
 
 changeLanguage(SITE_LANG);
@@ -29,12 +23,7 @@ const { title, image } = Astro.props;
 ---
 
 <!doctype html>
-<html
-  lang={i18next.language}
-  class="bg-base-300"
-  data-theme="winter"
-  data-theme-type="light"
->
+<html lang={i18next.language} class="bg-base-300" data-theme="winter" data-theme-type="light">
   <head>
     <meta charset="UTF-8" />
     <title>{`${title} - ${SITE_TAB}`}</title>
@@ -43,11 +32,8 @@ const { title, image } = Astro.props;
       function initTheme() {
         const storedTheme =
           localStorage.getItem("theme") ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "light"
-            : "dark");
-        const theme =
-          storedTheme === "light" ? DAISYUI_THEME.light : DAISYUI_THEME.dark;
+          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+        const theme = storedTheme === "light" ? DAISYUI_THEME.light : DAISYUI_THEME.dark;
 
         if (!["light", "dark"].includes(storedTheme)) {
           localStorage.setItem("theme", "light");
@@ -65,13 +51,9 @@ const { title, image } = Astro.props;
     <Navbar title={SITE_TITLE} />
 
     <div class="max-w-6xl mx-auto">
-      <div
-        class="relative grid gap-4 p-0 lg:p-4 md:grid-cols-5 lg:grid-cols-4 top-20 md:top-0 text-base lg:text-lg"
-      >
+      <div class="relative grid gap-4 p-0 lg:p-4 md:grid-cols-5 lg:grid-cols-4 top-20 md:top-0 text-base lg:text-lg">
         {/* Sidebar */}
-        <aside
-          class="md:col-span-1 top-4 p-2 hidden md:block order-2 md:order-1 space-y-4"
-        >
+        <aside class="md:col-span-1 top-4 p-2 hidden md:block order-2 md:order-1 space-y-4">
           <Profile />
           <CategoryCard />
           <TagCard />
@@ -82,10 +64,7 @@ const { title, image } = Astro.props;
         </aside>
 
         {/* Main Content */}
-        <main
-          id="swup"
-          class="col-span-3 md:col-span-4 lg:col-span-3 p-2 order-1 md:order-2"
-        >
+        <main id="swup" class="col-span-3 md:col-span-4 lg:col-span-3 p-2 order-1 md:order-2">
           <div class="grid gap-8 fade-in-up">
             <slot />
             <Footer />
@@ -100,12 +79,8 @@ const { title, image } = Astro.props;
   class PageManager {
     static initCopyButtons() {
       document.querySelectorAll(".copy-btn").forEach((button) => {
-        const copyCheckbox = button.querySelector(
-          ".copy-checkbox",
-        ) as HTMLInputElement;
-        const codeBlock = button
-          .closest(".highlight")
-          ?.querySelector(".code") as HTMLElement;
+        const copyCheckbox = button.querySelector(".copy-checkbox") as HTMLInputElement;
+        const codeBlock = button.closest(".highlight")?.querySelector(".code") as HTMLElement;
 
         if (!copyCheckbox || !codeBlock) return;
 

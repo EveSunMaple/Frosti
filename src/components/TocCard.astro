@@ -3,10 +3,7 @@
 ---
 
 <div class="w-full shadow-xl rounded-xl">
-  <div
-    class="mb-b w-full max-h-[65vh] top-8 bg-base-100 p-4 menu rounded-xl"
-    id="content-box"
-  >
+  <div class="mb-b w-full max-h-[65vh] top-8 bg-base-100 p-4 menu rounded-xl" id="content-box">
     <div class="skeleton h-4 w-28"></div>
     <br />
     <div class="skeleton h-4 w-full"></div>
@@ -23,10 +20,7 @@
     element.childNodes.forEach((node: ChildNode) => {
       if (node.nodeType === Node.TEXT_NODE) {
         text += node.textContent;
-      } else if (
-        node.nodeType === Node.ELEMENT_NODE &&
-        !(node as HTMLElement).classList.contains("sr-only")
-      ) {
+      } else if (node.nodeType === Node.ELEMENT_NODE && !(node as HTMLElement).classList.contains("sr-only")) {
         text += getCleanText(node as HTMLElement);
       }
     });
@@ -35,24 +29,21 @@
 
   function addContent() {
     const tocBox = document.getElementById("content-box") || null;
-    const headings = Array.from(
-      document.querySelectorAll("h1, h2, h3, h4, h5, h6"),
-    );
+    const headings = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"));
 
     const generateTocContent = () => {
-      let tocContent =
-        "<ul class='overflow-auto w-full list-none m-0 p-0' id='catalogs'>";
-      let levelCounters = [0, 0, 0, 0, 0, 0];
+      let tocContent = "<ul class='overflow-auto w-full list-none m-0 p-0' id='catalogs'>";
+      const levelCounters = [0, 0, 0, 0, 0, 0];
       headings.forEach((heading) => {
-        let headingText = getCleanText(heading as HTMLElement);
+        const headingText = getCleanText(heading as HTMLElement);
         const headingId = heading.id;
-        const headingLevel = parseInt(heading.tagName.charAt(1), 10);
+        const headingLevel = Number.parseInt(heading.tagName.charAt(1), 10);
 
         if (headingId && headingText && headingLevel) {
           const level = headingLevel - 1;
           levelCounters[level]++;
           levelCounters.fill(0, level + 1);
-          var numbering = levelCounters.slice(1, level + 1).join(".");
+          let numbering = levelCounters.slice(1, level + 1).join(".");
           if (numbering == "") numbering = "⚝";
           tocContent += `
             <li class="list-none m-0 p-0">
@@ -74,9 +65,7 @@
       let totalHeight = 0;
       if (currentIndex > 0) currentIndex--;
       for (let i = 0; i < currentIndex; i++) {
-        const currentHeading = document.querySelector(
-          `a[href="#${headings[i].id}"]`,
-        ) as HTMLElement;
+        const currentHeading = document.querySelector(`a[href="#${headings[i].id}"]`) as HTMLElement;
         if (currentHeading) {
           totalHeight += currentHeading.offsetHeight;
         }
@@ -93,9 +82,7 @@
       } else if (currentIndex > 0) {
         currentIndex -= 1;
       }
-      const currentHeading = document.querySelector(
-        `a[href="#${headings[currentIndex].id}"]`,
-      ) as HTMLElement;
+      const currentHeading = document.querySelector(`a[href="#${headings[currentIndex].id}"]`) as HTMLElement;
       if (currentHeading) {
         document.querySelector(".active")?.classList.remove("active");
         currentHeading.classList.add("active");

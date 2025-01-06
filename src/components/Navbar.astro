@@ -18,10 +18,7 @@ import { SITE_TITLE } from "../consts";
   </div>
 
   <div class="navbar-center">
-    <a
-      class="btn btn-ghost text-xl hover:scale-105 transition-transform duration-300"
-      href="/"
-    >
+    <a class="btn btn-ghost text-xl hover:scale-105 transition-transform duration-300" href="/">
       {SITE_TITLE}
     </a>
   </div>
@@ -62,7 +59,7 @@ import { SITE_TITLE } from "../consts";
     }
   });
 
-  const handleScroll = () => {
+  function handleScroll() {
     if (navbar) {
       if (window.scrollY > lastScrollY && window.scrollY > 50) {
         navbar.classList.add("-translate-y-full", "duration-500");
@@ -82,7 +79,7 @@ import { SITE_TITLE } from "../consts";
 
       lastScrollY = window.scrollY;
     }
-  };
+  }
 
   // Throttle scroll event for better performance
   let ticking = false;

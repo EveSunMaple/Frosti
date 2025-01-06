@@ -30,12 +30,7 @@ const tagsWithCounts = await getTagsWithCounts();
   <div class="flex flex-wrap gap-2 w-full max-h-[300px] p-1 overflow-auto">
     {
       tagsWithCounts.map(({ tag, count }) => (
-        <TagButton
-          text={tag}
-          count={count}
-          href={`/blog/tags/${tag}`}
-          type="tag"
-        />
+        <TagButton text={tag} count={count} href={`/blog/tags/${tag}`} type="tag" />
       ))
     }
   </div>

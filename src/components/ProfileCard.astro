@@ -5,9 +5,7 @@ import { Icon } from "astro-icon/components";
 import type { MenuItem } from "../types";
 ---
 
-<div
-  class="flex-col gap-4 mb-8 w-full sticky md:sticky lg:relative bg-base-100 p-4 shadow-xl rounded-xl"
->
+<div class="flex-col gap-4 mb-8 w-full sticky md:sticky lg:relative bg-base-100 p-4 shadow-xl rounded-xl">
   <div class="avatar p-4 hover:scale-105 transition-transform">
     <Image
       class="mask mask-circle"
@@ -20,19 +18,14 @@ import type { MenuItem } from "../types";
     />
   </div>
 
-  <ul
-    class="menu bg-base-100 w-full m-0 flex flex-col items-center lg:items-start"
-  >
+  <ul class="menu bg-base-100 w-full m-0 flex flex-col items-center lg:items-start">
     {
       menuItems.map((item: MenuItem) => (
         <li class="w-full relative group">
           {item.subItems ? (
             <details class="menu-item w-full">
               <summary class="justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4 hover:bg-base-200 rounded-lg transition-scale transition-color">
-                <Icon
-                  name={item.svg}
-                  class="transition-transform duration-200 group-hover:scale-110"
-                />
+                <Icon name={item.svg} class="transition-transform duration-200 group-hover:scale-110" />
                 <span class="hidden lg:inline ml-2 transition-transform duration-200 group-hover:translate-x-1">
                   {item.text}
                 </span>
@@ -48,10 +41,7 @@ import type { MenuItem } from "../types";
                       target={subItem.target || "_self"}
                       aria-label={subItem.text}
                     >
-                      <Icon
-                        name={subItem.svg}
-                        class="transition-transform duration-200 group-hover:scale-110"
-                      />
+                      <Icon name={subItem.svg} class="transition-transform duration-200 group-hover:scale-110" />
                       <span class="hidden lg:inline ml-2 transition-transform duration-200 group-hover:translate-x-1">
                         {subItem.text}
                       </span>
@@ -70,10 +60,7 @@ import type { MenuItem } from "../types";
               target={item.target || "_self"}
               aria-label={item.text}
             >
-              <Icon
-                name={item.svg}
-                class="transition-transform duration-200 group-hover:scale-110"
-              />
+              <Icon name={item.svg} class="transition-transform duration-200 group-hover:scale-110" />
               <span class="hidden lg:inline ml-2 transition-transform duration-200 group-hover:translate-x-1">
                 {item.text}
               </span>

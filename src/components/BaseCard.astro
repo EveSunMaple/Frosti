@@ -70,10 +70,7 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
             </div>
           </div>
 
-          <a
-            href={url}
-            class="block hover:-translate-y-0.5 transition-transform duration-300"
-          >
+          <a href={url} class="block hover:-translate-y-0.5 transition-transform duration-300">
             <h1
               id={title}
               class="pt-0 font-bold text-base-content bg-clip-text bg-gradient-to-r from-primary to-secondary transition-colors duration-300 hover:text-transparent"
@@ -85,10 +82,7 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
           <div class="mt-4">
             <div class="flex flex-wrap items-center gap-2">
               {categories.map((category) => (
-                <a
-                  href={`/blog/categories/${category}`}
-                  class="btn btn-xs btn-category"
-                >
+                <a href={`/blog/categories/${category}`} class="btn btn-xs btn-category">
                   {category}
                 </a>
               ))}
@@ -98,15 +92,9 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
                 </a>
               ))}
               {categories.length === 0 && (
-                <span class="btn btn-xs btn-disabled opacity-50">
-                  {t("label.noCategory")}
-                </span>
+                <span class="btn btn-xs btn-disabled opacity-50">{t("label.noCategory")}</span>
               )}
-              {tags.length === 0 && (
-                <span class="btn btn-xs btn-disabled opacity-50">
-                  {t("label.noTag")}
-                </span>
-              )}
+              {tags.length === 0 && <span class="btn btn-xs btn-disabled opacity-50">{t("label.noTag")}</span>}
             </div>
           </div>
         </div>

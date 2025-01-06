@@ -3,22 +3,17 @@ import { SERVER_URL } from "../consts";
 ---
 
 <br />
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" />
 <div class="comment">
   <div id="waline-comment-system" data-server-url={SERVER_URL}></div>
 </div>
 <script type="module" is:inline>
   import { init } from "https://unpkg.com/@waline/client@v3/dist/waline.js";
 
-  const serverURL = document
-    .getElementById("waline-comment-system")
-    .getAttribute("data-server-url");
+  const serverURL = document.getElementById("waline-comment-system").getAttribute("data-server-url");
   init({
     el: "#waline-comment-system",
-    serverURL: serverURL,
+    serverURL,
     dark: 'html[data-theme="dracula"]',
     reaction: [
       "/reaction/good.png",
