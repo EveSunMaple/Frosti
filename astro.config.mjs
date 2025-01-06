@@ -13,7 +13,7 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { transformers } from "./src/config/transformers.js";
 
-import { CODE_THEME } from "./src/consts.ts";
+import { CODE_THEME, USER_SITE } from "./src/consts.ts";
 
 import { initI18n } from "./src/locales";
 import { rehypeFadeInUp } from "./src/plugins/rehype-fade-in-up.mjs";
@@ -21,8 +21,6 @@ import { remarkAddAnchor } from "./src/plugins/remark-add-anchor.mjs";
 import { remarkHeadingExtractor } from "./src/plugins/remark-heading-extractor.mjs";
 
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
-
-const { USER_SITE } = await import("./src/consts.ts");
 
 // https://astro.build/config
 export default defineConfig({
