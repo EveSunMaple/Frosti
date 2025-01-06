@@ -6,7 +6,7 @@ interface Props {
   isActive?: boolean;
 }
 
-const { number, current, baseUrl, isActive = false } = Astro.props;
+const { number, current, baseUrl } = Astro.props;
 const href = number == 1 ? baseUrl : `${baseUrl}/${number}`;
 ---
 
