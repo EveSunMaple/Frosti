@@ -35,7 +35,7 @@ First you need to create an `mdx` file, which is as simple as changing the exten
 
 The components provided by Frosti are placed in the `/mdx` folders. Write something under the document properties (frontmatter):
 
-```astro
+```mdx
 import Collapse from "../../components/mdx/Collapse.astro";
 import Diff from "../../components/mdx/Diff.astro";
 import Error from "../../components/mdx/Error.astro";
@@ -55,7 +55,7 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
   This is the hidden content!
 </Collapse>
 
-```astro
+```mdx
 <Collapse title="This is an example text.">
   This is the hidden content!
 </Collapse>
@@ -65,15 +65,15 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
 
 <Diff r="/image/r.png" l="/image/l.png"></Diff>
 
-```astro
+```mdx
 <Diff r="/image/r.png" l="/image/l.png" />
 ```
 
 #### Error
 
-<Error>Maybe something went wrong? [www.baidu.com](https://www.baidu.com)</Error>
+<Error>Maybe something went wrong?</Error>
 
-```astro
+```mdx
 <Error>Maybe something went wrong? </Error>
 ```
 
@@ -81,7 +81,7 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
 
 <Warning>Hey! Watch out for potholes! </Warning>
 
-```astro
+```mdx
 <Warning>Hey! Watch out for potholes! </Warning>
 ```
 
@@ -89,7 +89,7 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
 
 <Info>It's just a message. </Info>
 
-```astro
+```mdx
 <Info>It's just a message. </Info>
 ```
 
@@ -97,7 +97,7 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
 
 <Success>Congratulations on your successful deployment! </Success>
 
-```astro
+```mdx
 <Success>Congratulations on your successful deployment! </Success>
 ```
 
@@ -105,7 +105,7 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
 
 <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> to copy the text.
 
-```astro
+```mdx
 <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> to copy the text.
 ```
 
@@ -121,7 +121,7 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
   ]}
 />
 
-```astro
+```mdx
 <TimeLine
   items={[
     { year: "1984", event: "First Macintosh computer" },
@@ -142,7 +142,7 @@ import LinkCard from "../../components/mdx/LinkCard.astro";
   img="/view.png"
 />
 
-```astro
+```mdx
 <LinkCard
   title="Frosti"
   desc="My blog project!"
