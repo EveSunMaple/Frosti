@@ -7,7 +7,11 @@ export const theme = {
   extend: {},
 };
 export const safelist = [
-  'alert', 'alert-info', 'alert-success', 'alert-warning', 'alert-error',
+  "alert",
+  "alert-info",
+  "alert-success",
+  "alert-warning",
+  "alert-error",
 ];
 export const plugins = [daisyUI, addDynamicIconSelectors];
 export const daisyui = {
