@@ -1,0 +1,26 @@
+---
+import type { PostData } from "../../interface/data";
+const { detail } = Astro.props as PostData;
+---
+
+<style>
+  .image-container {
+    overflow: hidden;
+    transition: max-height 1.5s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .image-container {
+      transition: none;
+    }
+  }
+</style>
+
+<div class="bg-opacity-0 overflow-hidden rounded-xl">
+  <div class="join-item image-container" id="imageContainer" style="max-height: 200px;">
+    <slot name="image" />
+  </div>
+  <div class="join-item w-full h-full p-6 lg:p-8 bg-base-100 transition">
+    <slot />
+  </div>
+</div>

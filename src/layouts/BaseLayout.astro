@@ -1,71 +1,57 @@
 ---
 import "medium-zoom/dist/style.css";
-import "/node_modules/katex/dist/katex.min.css";
-import Profile from "../components/ProfileCard.astro";
-import BaseHead from "../components/BaseHead.astro";
-import Navbar from "../components/Navbar.astro";
-import Footer from "../components/Footer.astro";
-import TagCard from "../components/TagCard.astro";
-import CategoryCard from "../components/CategoryCard.astro";
-import ToolCard from "../components/ToolCard.astro";
-import TocCard from "../components/TocCard.astro";
-import { SITE_LANG, SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, DAISYUI_THEME } from "../consts";
+import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "../config";
+import { ClientRouter } from "astro:transitions";
 import i18next, { changeLanguage } from "i18next";
+import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar.astro";
+import Sidebar from "../components/Sidebar.astro";
+import Footer from "../components/Footer.astro";
 
-changeLanguage(SITE_LANG);
-
-interface Props {
-  title: string;
-  image?: string;
-}
-
+changeLanguage(SITE_LANGUAGE);
 const { title, image } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={i18next.language} class="bg-base-300" data-theme="winter" data-theme-type="light">
+<html lang={i18next.language} class="transition bg-base-300" data-theme={SITE_THEME.light}>
   <head>
-    <meta charset="UTF-8" />
-    <title>{`${title} - ${SITE_TAB}`}</title>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={image} />
-    <script define:vars={{ DAISYUI_THEME }} is:inline>
-      function initTheme() {
-        const storedTheme =
-          localStorage.getItem("theme") ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
-        const theme = storedTheme === "light" ? DAISYUI_THEME.light : DAISYUI_THEME.dark;
+    <ClientRouter>
+      <script is:inline>
+        // 视图过渡配置
+        document.documentElement.style.viewTransitionName = "none";
+        const transition = () => {
+          document.documentElement.style.viewTransitionName = "slide";
+          return new Promise((resolve) => requestAnimationFrame(resolve));
+        };
 
-        if (!["light", "dark"].includes(storedTheme)) {
-          localStorage.setItem("theme", "light");
-        }
-
-        document.documentElement.setAttribute("data-theme-type", storedTheme);
+        addEventListener("astro:before-preparation", transition);
+        addEventListener("astro:after-swap", () => {
+          document.documentElement.style.viewTransitionName = "none";
+        });
+      </script>
+    </ClientRouter>
+    <Header title={SITE_TITLE} description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
+    <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
+    <script define:vars={{ SITE_THEME }} is:inline>
+      (function () {
+        const storedTheme = localStorage.getItem("theme");
+        const userPreferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? SITE_THEME.light
+          : SITE_THEME.dark;
+        const theme = userPreferredTheme || storedTheme;
         document.documentElement.setAttribute("data-theme", theme);
-      }
-
-      initTheme();
+      })();
     </script>
   </head>
-
   <body>
-    <Navbar title={SITE_TITLE} />
-
     <div class="max-w-6xl mx-auto">
-      <div class="relative grid gap-4 p-0 lg:p-4 md:grid-cols-5 lg:grid-cols-4 top-20 md:top-0 text-base lg:text-lg">
-        {/* Sidebar */}
-        <aside class="md:col-span-1 top-4 p-2 hidden md:block order-2 md:order-1 space-y-4">
-          <Profile />
-          <CategoryCard />
-          <TagCard />
-          <div class="grid gap-8 w-full sticky top-8">
-            <ToolCard />
-            <TocCard />
-          </div>
-        </aside>
-
-        {/* Main Content */}
-        <main id="swup" class="col-span-3 md:col-span-4 lg:col-span-3 p-2 order-1 md:order-2">
-          <div class="grid gap-8 fade-in-up">
+      <div class="relative grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4">
+        <section class="col-span-1 top-4 bg-opacity-0 order-1">
+          <Sidebar />
+          <slot name="sidebar" />
+        </section>
+        <main class="col-span-3 md:col-span-4 lg:col-span-3 bg-opacity-0 order-2">
+          <div class="flex flex-col gap-4">
             <slot />
             <Footer />
           </div>
@@ -74,55 +60,3 @@ const { title, image } = Astro.props;
     </div>
   </body>
 </html>
-
-<script>
-  class PageManager {
-    static initCopyButtons() {
-      document.querySelectorAll(".copy-btn").forEach((button) => {
-        const copyCheckbox = button.querySelector(".copy-checkbox") as HTMLInputElement;
-        const codeBlock = button.closest(".highlight")?.querySelector(".code") as HTMLElement;
-
-        if (!copyCheckbox || !codeBlock) return;
-
-        copyCheckbox.addEventListener("change", async () => {
-          if (!copyCheckbox.checked) return;
-
-          try {
-            await navigator.clipboard.writeText(codeBlock.innerText);
-            copyCheckbox.disabled = true;
-            button.setAttribute("title", "Copied!");
-
-            setTimeout(() => {
-              copyCheckbox.disabled = false;
-              button.removeAttribute("title");
-              copyCheckbox.checked = false;
-            }, 1500);
-          } catch (err) {
-            console.error("Copy failed:", err);
-          }
-        });
-      });
-    }
-
-    static initImageZoom() {
-      import("medium-zoom/dist/pure").then(({ default: mediumZoom }) => {
-        mediumZoom(".main-card img:not(.link-card img):not(.comment img)", {
-          margin: 24,
-          background: "#00000080",
-        });
-      });
-    }
-
-    static init() {
-      this.initCopyButtons();
-      this.initImageZoom();
-      document.dispatchEvent(new Event("astro:page-load"));
-    }
-  }
-
-  // 初始化页面功能
-  document.addEventListener("swup:page:view", () => PageManager.init());
-  document.addEventListener("DOMContentLoaded", () => {
-    document.dispatchEvent(new Event("swup:page:view"));
-  });
-</script>

@@ -1,113 +1,90 @@
 ---
 import { Icon } from "astro-icon/components";
-import Menu from "../components/NavbarMenu.astro";
-import ThemeButton from "../widget/ThemeButton.astro";
-import { SITE_TITLE } from "../consts";
+import { SITE_THEME, SITE_TITLE, SITE_MENU } from "../config";
 ---
 
-<navbar
-  class="navbar fixed px-2 w-full transform transition-transform delay-300 duration-500 ease-in-out text-center z-50 bg-base-100 shadow-lg md:hidden"
-  id="navbar"
->
-  <div class="navbar-start">
-    <label class="btn btn-ghost swap swap-rotate">
-      <input type="checkbox" id="menu-toggle" />
-      <Icon name="mdi:menu" class="swap-off w-8 h-8" />
-      <Icon name="mdi:close" class="swap-on w-8 h-8" />
-    </label>
-  </div>
-
-  <div class="navbar-center">
-    <a class="btn btn-ghost text-xl hover:scale-105 transition-transform duration-300" href="/">
-      {SITE_TITLE}
-    </a>
-  </div>
-
-  <div class="navbar-end">
-    <ThemeButton id="navbar-theme" className="w-auto" />
-  </div>
-
-  <div
-    id="header-menu"
-    class="absolute top-full left-0 w-full transform -translate-x-full transition-transform duration-300 ease-in-out"
-  >
-    <Menu />
-  </div>
-</navbar>
-
-<style>
-  #header-menu.show {
-    opacity: 1;
-    transform: scale(1);
-  }
-</style>
-
-<script>
-  let lastScrollY = window.scrollY;
-  const navbar = document.getElementById("navbar") as HTMLElement;
-  const headerMenu = document.getElementById("header-menu") as HTMLElement;
-  const menuToggle = document.getElementById("menu-toggle") as HTMLInputElement;
-
-  // Toggle menu visibility
-  menuToggle?.addEventListener("change", () => {
-    if (headerMenu) {
-      if (menuToggle.checked) {
-        headerMenu.classList.add("show");
-      } else {
-        headerMenu.classList.remove("show");
+<div class="col-span-1 md:col-span-5 bg-opacity-0 order-1">
+  <div class="navbar transition bg-base-100 rounded-xl">
+    <div class="navbar-start">
+      <a class="btn btn-ghost text-xl">{SITE_TITLE}</a>
+    </div>
+    <div class="navbar-center flex items-center gap-2">
+      {
+        SITE_MENU.map((icon) => (
+          <div>
+            {icon.subItems ? (
+              <div class="dropdown dropdown-hover">
+                <div tabindex="0" role="button" class="btn btn-ghost text-xl">
+                  <Icon name={icon.svg} />
+                  <div class="hidden md:block">{icon.text}</div>
+                </div>
+                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box lg:w-52 z-[1] p-2 shadow">
+                  {icon.subItems.map((icon) => (
+                    <li>
+                      <a
+                        tabindex="0"
+                        class="btn btn-ghost text-xl"
+                        id={icon.id}
+                        href={icon.href}
+                        target={icon.target}
+                        aria-label={icon.text}
+                      >
+                        <Icon name={icon.svg} />
+                        <div class="hidden md:block">{icon.text}</div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <a
+                tabindex="0"
+                class="btn btn-ghost text-xl"
+                id={icon.id}
+                href={icon.href}
+                target={icon.target}
+                aria-label={icon.text}
+              >
+                <Icon name={icon.svg} />
+                <div class="hidden md:block">{icon.text}</div>
+              </a>
+            )}
+          </div>
+        ))
       }
-    }
-  });
-
-  function handleScroll() {
-    if (navbar) {
-      if (window.scrollY > lastScrollY && window.scrollY > 50) {
-        navbar.classList.add("-translate-y-full", "duration-500");
-        navbar.classList.remove("translate-y-0");
-
-        // Close menu when hiding navbar
-        if (menuToggle) {
-          menuToggle.checked = false;
-        }
-        if (headerMenu) {
-          headerMenu.classList.remove("show");
-        }
-      } else if (window.scrollY < lastScrollY) {
-        navbar.classList.remove("-translate-y-full");
-        navbar.classList.add("translate-y-0", "duration-300");
-      }
-
-      lastScrollY = window.scrollY;
-    }
-  }
-
-  // Throttle scroll event for better performance
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        handleScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (event) => {
-    const target = event.target as Node;
-    if (!navbar?.contains(target) && headerMenu?.classList.contains("show")) {
-      menuToggle.checked = false;
-      headerMenu.classList.remove("show");
-    }
-  });
-
-  // Close menu when clicking menu items
-  const menuItems = document.querySelectorAll("#header-menu a");
-  menuItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuToggle.checked = false;
-      headerMenu?.classList.remove("show");
-    });
-  });
-</script>
+    </div>
+    <div class="navbar-end">
+      <label class="flex cursor-pointer gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="5"></circle>
+          <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
+          ></path>
+        </svg>
+        <input type="checkbox" value={SITE_THEME.dark} class="toggle theme-controller" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </label>
+    </div>
+  </div>
+</div>

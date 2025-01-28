@@ -1,10 +1,10 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { marked } from "marked";
-import { SITE_DESCRIPTION, SITE_LANG, SITE_TAB, SITE_TITLE } from "../consts";
+import { SITE_DESCRIPTION, SITE_LANGUAGE, SITE_TAB, SITE_TITLE } from "../config";
 
 export async function GET(context: any) {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("post");
   const sortedPosts = posts.sort((a: any, b: any) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
   function replacePath(content: string, siteUrl: string): string {
@@ -44,7 +44,7 @@ export async function GET(context: any) {
     site: context.site,
     items,
     customData: `
-      <language>${SITE_LANG}</language>
+      <language>${SITE_LANGUAGE}</language>
     `,
     xmlns: {
       dc: "http://purl.org/dc/elements/1.1/",

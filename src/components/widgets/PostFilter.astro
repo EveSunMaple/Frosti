@@ -1,0 +1,30 @@
+---
+import { t } from "i18next";
+import type { PostData } from "../../interface/data";
+const { categories = [], tags = [] } = Astro.props as PostData;
+---
+
+<div class="flex flex-wrap items-center gap-2">
+  {
+    categories.map((category) => (
+      <a
+        href={`/post/category/${category}`}
+        class="btn btn-xs bg-primary/10 hover:bg-primary text-primary hover:text-primary-content border-none hover:scale-110 transition-all duration-300"
+      >
+        {category}
+      </a>
+    ))
+  }
+  {
+    tags.map((tag) => (
+      <a
+        href={`/post/tag/${tag}`}
+        class="btn btn-xs bg-secondary/10 hover:bg-secondary text-secondary hover:text-secondary-content border-none hover:scale-110 transition-all duration-300"
+      >
+        {tag}
+      </a>
+    ))
+  }
+  {categories.length === 0 && <span class="btn btn-xs btn-disabled opacity-50">{t("label.noCategory")}</span>}
+  {tags.length === 0 && <span class="btn btn-xs btn-disabled opacity-50">{t("label.noTag")}</span>}
+</div>

@@ -1,13 +1,10 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "module": "ESNext",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "strictNullChecks": true
+  "compilerOptions": { // 或 "module": "ES6"
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true, // 或 "target": "ES6"
+    "esModuleInterop": true
   }
 }

@@ -5,7 +5,7 @@ interface Props {
   title?: string;
 }
 
-const { headings, title = "Table of Contents" } = Astro.props;
+const { headings = [], title = "Table of Contents" } = Astro.props;
 ---
 
 <details

@@ -1,0 +1,41 @@
+---
+import type { Page } from "../../interface/data";
+import PaginationArrow from "./PaginationArrow.astro";
+import PaginationNumber from "./PaginationNumber.astro";
+import PaginationDropdown from "./PaginationDropdown.astro";
+import { t } from "i18next";
+
+interface Props {
+  page: Page;
+  totalPages: number;
+  pageLinks: {
+    active: (string | number)[];
+    hidden: (string | number)[];
+  };
+  baseUrl: string;
+}
+
+const { page, totalPages, pageLinks, baseUrl } = Astro.props;
+---
+
+<div class="flex justify-between items-center col-span-1 md:col-span-5 w-full gap-2 order-4">
+  <PaginationArrow direction="prev" href={page.url.prev} label={t("label.prevPage")} />
+  <div class:list={["flex gap-1", totalPages > 3 && "join"]}>
+    {
+      totalPages > 3 ? (
+        <>
+          {pageLinks.active.map((link) =>
+            link === "..." ? (
+              <PaginationDropdown hiddenPages={pageLinks.hidden} current={page.current} baseUrl={baseUrl} />
+            ) : (
+              <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} />
+            ),
+          )}
+        </>
+      ) : (
+        pageLinks.active.map((link) => <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} />)
+      )
+    }
+  </div>
+  <PaginationArrow direction="next" href={page.url.next} label={t("label.nextPage")} />
+</div>
