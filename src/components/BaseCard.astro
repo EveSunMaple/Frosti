@@ -1,12 +1,71 @@
 ---
 import { Image } from "astro:assets";
 import type { PostData } from "../interface/data";
-import CardVertical from "./temple/CardVertical.astro";
-
-const { title, image, detail } = Astro.props as PostData;
+const { title, image, word, time } = Astro.props as PostData;
 ---
 
-<CardVertical detail={detail}>
-  {image && <Image src={image} width="1920" height="1080" alt={title} loading="eager" slot="image" />}
-  <slot />
-</CardVertical>
+<style>
+  .image-container {
+    overflow: hidden;
+    transition: max-height 1.5s ease;
+  }
+  .post-container {
+    overflow: hidden;
+    transition: width 1.5s ease;
+  }
+  @keyframes expand {
+    from {
+      width: 75%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  .open {
+    animation: expand 0.5s ease forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .image-container,
+    .post-container {
+      transition: none;
+    }
+  }
+</style>
+
+<div class="relative bg-opacity-0 overflow-hidden rounded-xl">
+  {
+    word && time ? (
+      <>
+        <div class="join-item image-container" id="imageContainer" style="max-height: 0px;">
+          {image && <Image src={image} width="1920" height="1080" alt={title} loading="eager" />}
+        </div>
+        <div
+          class="relative join-item post-container w-3/4 h-full p-6 lg:p-8 bg-base-100 z-10 transition"
+          id="postContainer"
+        >
+          <slot />
+        </div>
+        {image && (
+          <Image
+            id="bgImage"
+            src={image}
+            width="1920"
+            height="1080"
+            alt={title}
+            loading="eager"
+            class="absolute top-0 right-0 object-cover h-full w-1/4 z-0"
+          />
+        )}
+      </>
+    ) : (
+      <>
+        <div class="join-item">
+          {image && <Image src={image} width="1920" height="1080" alt={title} loading="eager" />}
+        </div>
+        <div class="join-item w-full h-full p-6 lg:p-8 bg-base-100 transition">
+          <slot />
+        </div>
+      </>
+    )
+  }
+</div>

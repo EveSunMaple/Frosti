@@ -15,21 +15,7 @@ const { title, image } = Astro.props;
 <!doctype html>
 <html lang={i18next.language} class="transition bg-base-300" data-theme={SITE_THEME.light}>
   <head>
-    <ClientRouter>
-      <script is:inline>
-        // 视图过渡配置
-        document.documentElement.style.viewTransitionName = "none";
-        const transition = () => {
-          document.documentElement.style.viewTransitionName = "slide";
-          return new Promise((resolve) => requestAnimationFrame(resolve));
-        };
-
-        addEventListener("astro:before-preparation", transition);
-        addEventListener("astro:after-swap", () => {
-          document.documentElement.style.viewTransitionName = "none";
-        });
-      </script>
-    </ClientRouter>
+    <ClientRouter />
     <Header title={SITE_TITLE} description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
     <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
     <script define:vars={{ SITE_THEME }} is:inline>

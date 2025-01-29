@@ -21,6 +21,7 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 
 <BaseLayout title={post.data.title} image={post.data.image}>
   <PostCard
+    transition:name={`post-${post.slug}`}
     title={post.data.title}
     image={post.data.image}
     pubDate={post.data.pubDate}
@@ -32,7 +33,7 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     detail="true"
   >
     <!-- 加载指示器 -->
-    <div id="loading" class="loading-container text-center text-primary">
+    <div id="loading" class="loading-container text-center text-primary" style="max-height: 50px;">
       <span class="loading loading-dots loading-lg"></span>
     </div>
     <!-- 原文内容 -->
@@ -53,6 +54,10 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 </BaseLayout>
 
 <style>
+  .loading-container {
+    overflow: hidden;
+    transition: max-height 1.5s ease;
+  }
   .content-container {
     overflow: hidden;
     transition: max-height 1.5s ease;
@@ -93,23 +98,27 @@ const { Content, remarkPluginFrontmatter } = await post.render();
   document.addEventListener("astro:page-load", () => {
     const loading = document.getElementById("loading");
     const content = document.getElementById("content");
-    const container = document.getElementById("imageContainer");
-    if (container) {
+    const bgImage = document.getElementById("bgImage");
+    const image = document.getElementById("imageContainer");
+    const post = document.getElementById("postContainer");
+    if (post && loading && content) {
       setTimeout(() => {
-        container.style.maxHeight = container.scrollHeight + "px";
-      }, 250);
-    }
-
-    if (loading && content) {
-      // 渐隐加载指示器并显示内容
-      setTimeout(() => {
-        loading.classList.add("fade-out");
+        console.log(post);
+        post.classList.remove("w-3/4");
+        post.classList.add("w-full", "open");
         setTimeout(() => {
-          loading.classList.add("hidden"); // 完全移除加载指示器
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("fade-in"); // 添加浮现动画
-        }, 500); // 与 fadeOut 动画持续时间同步
-      }, 500); // 延时以确保加载效果可见
+          if (image && bgImage) {
+            bgImage.classList.add("hidden");
+            image.style.maxHeight = image.scrollHeight + "px";
+          }
+          loading.classList.add("fade-out");
+          setTimeout(() => {
+            loading.style.maxHeight = "0px";
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("fade-in"); // 添加浮现动画
+          }, 800); // 与 fadeOut 动画持续时间同步
+        }, 500); // 延时以确保加载效果可见
+      }, 200);
     }
   });
 </script>

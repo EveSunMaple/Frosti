@@ -18,23 +18,14 @@ const {
   tags = [],
   word = "0",
   time = "0",
-  detail = false,
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props as PostData;
 
 const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
 ---
 
-<div
-  data-transition-card
-  data-slug={url.split("/").pop()}
-  style={{
-    "--vt-name": `post-card-${url.split("/").pop()}`,
-    "view-transition-name": `post-card-${url.split("/").pop()}`,
-  }}
-  class="transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]"
->
-  <BaseCard image={image} title={title} detail={detail}>
+<div transition:name=`post-card-${url.split("/").pop()}`>
+  <BaseCard image={image} title={title} word={word} time={time}>
     <PostInfo pubDate={displayDate} badge={badge} word={word} time={time} />
     <Heading url={url} title={title}>{title}</Heading>
     <PostFilter categories={categories} tags={tags} />

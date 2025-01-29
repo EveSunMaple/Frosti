@@ -5,9 +5,9 @@ import Image from "astro/components/Image.astro";
 import Card from "../temple/Card.astro";
 ---
 
-<Card>
-  <aside>
-    <div class="relative p-2 md:p-4 flex flex-row md:flex-col">
+<div transition:name="profile-bar">
+  <Card>
+    <div class="relative p-4 hidden md:flex flex-col">
       <div class="basis-1/2 md:mb-4 p-4 md:p-0">
         <div class="avatar online">
           <Image
@@ -26,7 +26,7 @@ import Card from "../temple/Card.astro";
           SITE_MENU.map((item) => (
             <li class="w-full relative group">
               {item.subItems ? (
-                <details class="menu-item w-full">
+                <details class="menu-item w-full" transition:name={item.id} transition:persist>
                   <summary class="justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4 hover:bg-base-200 rounded-lg">
                     <Icon name={item.svg} class="transition-transform group-hover:scale-110" />
                     <span class="hidden lg:inline ml-2 transition-transform group-hover:translate-x-1">
@@ -83,5 +83,5 @@ import Card from "../temple/Card.astro";
         }
       </div>
     </div>
-  </aside>
-</Card>
+  </Card>
+</div>

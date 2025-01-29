@@ -29,9 +29,8 @@ export interface Page {
 }
 
 export interface PostData {
-  detail: boolean;
   title: string;
-  description: string;
+  description?: string;
   image?: string;
   pubDate?: Date;
   badge?: string;
@@ -39,5 +38,5 @@ export interface PostData {
   tags?: string[];
   word?: string;
   time?: string;
-  url: string;
+  url?: string;
 }
