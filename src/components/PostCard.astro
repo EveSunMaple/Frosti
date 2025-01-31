@@ -1,0 +1,37 @@
+---
+import dayjs from "dayjs";
+import { DATE_FORMAT } from "../config";
+import type { PostData } from "../interface/data";
+import { Icon } from "astro-icon/components";
+import Heading from "./widgets/Heading.astro";
+import PostInfo from "./widgets/PostInfo.astro";
+import PostFilter from "./widgets/PostFilter.astro";
+import BaseCard from "./BaseCard.astro";
+import { t } from "i18next";
+import { fade } from "astro:transitions";
+
+const {
+  title,
+  image,
+  pubDate,
+  badge,
+  categories = [],
+  tags = [],
+  word = "0",
+  time = "0",
+  url = decodeURIComponent(Astro.url.toString()),
+} = Astro.props as PostData;
+
+const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
+---
+
+<div transition:animate={fade({ duration: "0.5s" })} transition:name=`post-card-${url.split("/").pop()}`>
+  <BaseCard image={image} title={title} word={word} time={time}>
+    <PostInfo pubDate={displayDate} badge={badge} word={word} time={time} />
+    <Heading url={url} title={title}>{title}</Heading>
+    <PostFilter categories={categories} tags={tags} />
+    <article class="prose w-full max-w-none">
+      <slot />
+    </article>
+  </BaseCard>
+</div>

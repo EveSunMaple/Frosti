@@ -1,0 +1,91 @@
+---
+import type { Post, Page } from "../../../../interface/data";
+import PostCard from "../../../../components/PostCard.astro";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import BaseCard from "../../../../components/BaseCard.astro";
+import Pagination from "../../../../components/widgets/Pagination.astro";
+import { getCollection } from "astro:content";
+import { t } from "i18next";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const all_posts = await getCollection("post");
+
+  const all_tags = [...new Set(all_posts.flatMap((post: any) => post.data.tags || []))];
+
+  all_posts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  const postsWithStats = await Promise.all(
+    all_posts.map(async (post: any) => {
+      const { remarkPluginFrontmatter } = await post.render();
+      return {
+        ...post,
+        remarkPluginFrontmatter: {
+          readingTime: remarkPluginFrontmatter.readingTime,
+          totalCharCount: remarkPluginFrontmatter.totalCharCount,
+        },
+      };
+    }),
+  );
+
+  return all_tags.flatMap((tag) => {
+    const filtered_posts = postsWithStats.filter((post) => post.data.tags?.includes(tag));
+    return paginate(filtered_posts, {
+      params: { tag },
+      pageSize: 8,
+    });
+  });
+}
+
+const { page } = Astro.props as { page: Page };
+const params = Astro.params as { tag: string; page: string };
+
+function generatePageLinks(totalPages: number): {
+  active: string[];
+  hidden: string[];
+} {
+  const pages = {
+    active: [] as string[],
+    hidden: [] as string[],
+  };
+
+  if (totalPages > 3) {
+    pages.active.push("1");
+    pages.active.push("...");
+    pages.active.push(totalPages.toString());
+    for (let i = 2; i <= totalPages - 1; i++) {
+      pages.hidden.push(i.toString());
+    }
+  } else {
+    for (let i = 1; i <= totalPages; i++) {
+      pages.active.push(i.toString());
+    }
+  }
+  return pages;
+}
+
+const totalPages = Math.ceil(page.total / page.size);
+const pageLinks = generatePageLinks(totalPages);
+---
+
+<BaseLayout title="Tag">
+  <BaseCard title="Tag">
+    <h1 id="h1">{`${t("label.tagPage")} - ${params.tag}`}</h1>
+  </BaseCard>
+  {
+    page.data.map((post: Post) => (
+      <PostCard
+        title={post.data.title}
+        image={post.data.image}
+        desc={post.data.description}
+        url={"/post/" + post.slug}
+        pubDate={post.data.pubDate}
+        badge={post.data.badge}
+        categories={post.data.categories}
+        tags={post.data.tags}
+        word={post.remarkPluginFrontmatter.totalCharCount}
+        time={post.remarkPluginFrontmatter.readingTime}
+      />
+    ))
+  }
+  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/post/tag/${params.tag}`} />
+</BaseLayout>

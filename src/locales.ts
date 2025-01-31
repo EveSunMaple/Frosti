@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
-import { USER_SITE } from "./consts";
+import { USER_SITE } from "./config";
 
 export function initI18n() {
   if (i18next.isInitialized) {

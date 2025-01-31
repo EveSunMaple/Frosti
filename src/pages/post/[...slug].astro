@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import License from "../../components/widgets/License.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("post");
+  return posts.map((post: { slug: any }) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+interface Props {
+  post: CollectionEntry<"post">;
+}
+
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await post.render();
+---
+
+<BaseLayout title={post.data.title} image={post.data.image}>
+  <PostCard
+    transition:name={`post-${post.slug}`}
+    title={post.data.title}
+    image={post.data.image}
+    pubDate={post.data.pubDate}
+    badge={post.data.badge}
+    categories={post.data.categories}
+    tags={post.data.tags}
+    word={remarkPluginFrontmatter.totalCharCount}
+    time={remarkPluginFrontmatter.readingTime}
+    detail="true"
+  >
+    <div id="content" class="content-container" style="max-height: 0px;">
+      <Content />
+      <License
+        title={post.data.title}
+        image={post.data.image}
+        pubDate={post.data.pubDate}
+        badge={post.data.badge}
+        categories={post.data.categories}
+        tags={post.data.tags}
+        word={remarkPluginFrontmatter.totalCharCount}
+        time={remarkPluginFrontmatter.readingTime}
+      />
+    </div>
+  </PostCard>
+</BaseLayout>
+
+<style>
+  .content-container {
+    overflow: hidden;
+    transition: max-height 1.5s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .content-container {
+      transition: none;
+    }
+  }
+  .fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const content = document.getElementById("content");
+    const bgImage = document.getElementById("bgImage");
+    const image = document.getElementById("imageContainer");
+    const post = document.getElementById("postContainer");
+    if (post && content) {
+      setTimeout(() => {
+        post.classList.remove("w-3/4");
+        post.classList.add("w-full", "open");
+        setTimeout(() => {
+          if (image && bgImage) {
+            bgImage.classList.add("hidden");
+            image.style.maxHeight = image.scrollHeight + "px";
+          }
+          setTimeout(() => {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("fade-in"); // 添加浮现动画
+          }, 800); // 与 fadeOut 动画持续时间同步
+        }, 500); // 延时以确保加载效果可见
+      }, 200);
+    }
+  });
+</script>
