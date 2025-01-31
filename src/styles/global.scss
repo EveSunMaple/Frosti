@@ -6,6 +6,10 @@ html {
   @apply scroll-smooth;
 }
 
+:active-view-transition {
+  cursor: pointer;
+}
+
 .frosti-heading {
   @apply text-2xl leading-normal pt-0 font-bold text-base-content bg-clip-text bg-gradient-to-r from-primary to-secondary transition-colors duration-300 hover:text-transparent;
 }
@@ -16,4 +20,31 @@ html {
 
 .btn-tag {
   @apply bg-secondary/10 hover:bg-secondary text-secondary hover:text-secondary-content border-none hover:scale-110 transition-all duration-300;
+}
+
+.btn-copy {
+  @apply btn btn-xs btn-ghost text-base-content/70 hover:text-primary;
+}
+
+.frosti-code {
+  @apply relative my-6 rounded-lg border border-base-300 bg-transparent shadow-lg overflow-hidden;
+
+  &-toolbar {
+    @apply sticky top-0 z-10 flex justify-between items-center px-4 py-2 bg-base-200 border-b border-base-300;
+    &-language {
+      @apply text-sm font-semibold text-base-content/70;
+    }
+  }
+
+  &-content {
+    @apply overflow-x-auto p-4 bg-transparent;
+
+    pre {
+      @apply bg-transparent;
+    }
+
+    .line::before {
+      @apply text-current mr-4 inline-block w-4 text-right;
+    }
+  }
 }

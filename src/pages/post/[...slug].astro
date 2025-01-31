@@ -32,11 +32,6 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     time={remarkPluginFrontmatter.readingTime}
     detail="true"
   >
-    <!-- 加载指示器 -->
-    <div id="loading" class="loading-container text-center text-primary" style="max-height: 50px;">
-      <span class="loading loading-dots loading-lg"></span>
-    </div>
-    <!-- 原文内容 -->
     <div id="content" class="content-container" style="max-height: 0px;">
       <Content />
       <License
@@ -54,29 +49,13 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 </BaseLayout>
 
 <style>
-  .loading-container {
-    overflow: hidden;
-    transition: max-height 1.5s ease;
-  }
   .content-container {
     overflow: hidden;
     transition: max-height 1.5s ease;
   }
-
   @media (prefers-reduced-motion: reduce) {
     .content-container {
       transition: none;
-    }
-  }
-  .fade-out {
-    animation: fadeOut 0.5s forwards;
-  }
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
     }
   }
   .fade-in {
@@ -96,14 +75,12 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 
 <script is:inline>
   document.addEventListener("astro:page-load", () => {
-    const loading = document.getElementById("loading");
     const content = document.getElementById("content");
     const bgImage = document.getElementById("bgImage");
     const image = document.getElementById("imageContainer");
     const post = document.getElementById("postContainer");
-    if (post && loading && content) {
+    if (post && content) {
       setTimeout(() => {
-        console.log(post);
         post.classList.remove("w-3/4");
         post.classList.add("w-full", "open");
         setTimeout(() => {
@@ -111,9 +88,7 @@ const { Content, remarkPluginFrontmatter } = await post.render();
             bgImage.classList.add("hidden");
             image.style.maxHeight = image.scrollHeight + "px";
           }
-          loading.classList.add("fade-out");
           setTimeout(() => {
-            loading.style.maxHeight = "0px";
             content.style.maxHeight = content.scrollHeight + "px";
             content.classList.add("fade-in"); // 添加浮现动画
           }, 800); // 与 fadeOut 动画持续时间同步

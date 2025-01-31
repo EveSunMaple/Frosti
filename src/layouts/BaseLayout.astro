@@ -2,6 +2,8 @@
 import "medium-zoom/dist/style.css";
 import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "../config";
 import { ClientRouter } from "astro:transitions";
+import ElementCrossing from "astro-vtbot/components/ElementCrossing.astro";
+import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astro";
 import i18next, { changeLanguage } from "i18next";
 import Header from "../components/Header.astro";
 import Navbar from "../components/Navbar.astro";
@@ -16,6 +18,8 @@ const { title, image } = Astro.props;
 <html lang={i18next.language} class="transition bg-base-300" data-theme={SITE_THEME.light}>
   <head>
     <ClientRouter />
+    <ElementCrossing />
+    <PointerOnNavigation />
     <Header title={SITE_TITLE} description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
     <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
     <script define:vars={{ SITE_THEME }} is:inline>
@@ -25,18 +29,20 @@ const { title, image } = Astro.props;
           ? SITE_THEME.light
           : SITE_THEME.dark;
         const theme = userPreferredTheme || storedTheme;
+        localStorage.setItem("theme", theme);
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
   </head>
   <body>
+    <Navbar />
     <div class="max-w-6xl mx-auto">
       <div class="relative grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4">
-        <section class="col-span-1 top-4 bg-opacity-0 order-1">
+        <section class="col-span-1 top-4 bg-transparent order-1">
           <Sidebar />
           <slot name="sidebar" />
         </section>
-        <main class="col-span-3 md:col-span-4 lg:col-span-3 bg-opacity-0 order-2">
+        <main class="col-span-3 md:col-span-4 lg:col-span-3 bg-transparent order-2">
           <div class="flex flex-col gap-4">
             <slot />
             <Footer />
@@ -44,5 +50,28 @@ const { title, image } = Astro.props;
         </main>
       </div>
     </div>
+    <script is:inline>
+      document.addEventListener("astro:page-load", () => {
+        document.querySelectorAll(".btn-copy").forEach((button) => {
+          button.addEventListener("click", async () => {
+            const codeBlock = button.closest(".frosti-code");
+            const code = codeBlock.querySelector("code").textContent;
+
+            try {
+              await navigator.clipboard.writeText(code);
+              const originalText = button.textContent;
+              button.textContent = "Copied!";
+
+              setTimeout(() => {
+                button.textContent = originalText;
+              }, 2000);
+            } catch (err) {
+              button.textContent = "Error!";
+              console.error("Failed to copy:", err);
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

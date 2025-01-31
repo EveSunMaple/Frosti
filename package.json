@@ -26,6 +26,7 @@
     "astro-icon": "^1.1.5",
     "astro-iconify": "^1.2.0",
     "astro-pagefind": "^1.8.0",
+    "astro-vtbot": "^2.0.5",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
     "i18next": "^23.16.8",

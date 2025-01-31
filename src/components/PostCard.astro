@@ -8,6 +8,7 @@ import PostInfo from "./widgets/PostInfo.astro";
 import PostFilter from "./widgets/PostFilter.astro";
 import BaseCard from "./BaseCard.astro";
 import { t } from "i18next";
+import { fade } from "astro:transitions";
 
 const {
   title,
@@ -24,7 +25,7 @@ const {
 const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
 ---
 
-<div transition:name=`post-card-${url.split("/").pop()}`>
+<div transition:animate={fade({ duration: "0.5s" })} transition:name=`post-card-${url.split("/").pop()}`>
   <BaseCard image={image} title={title} word={word} time={time}>
     <PostInfo pubDate={displayDate} badge={badge} word={word} time={time} />
     <Heading url={url} title={title}>{title}</Heading>

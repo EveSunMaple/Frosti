@@ -35,6 +35,94 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: CODE_THEME,
+      transformers: [{
+        preprocess(code, options) {
+          // 保存语言信息
+          this.meta = { lang: options.lang || "plaintext" };
+          return code;
+        },
+        pre(node) {
+          const language = this.meta?.lang.toUpperCase() || "plaintext";
+
+          return {
+            type: "element",
+            tagName: "div",
+            properties: {
+              class: "frosti-code",
+            },
+            children: [
+              // 工具栏（sticky 布局）
+              {
+                type: "element",
+                tagName: "div",
+                properties: {
+                  class: "frosti-code-toolbar",
+                },
+                children: [
+                  {
+                    type: "element",
+                    tagName: "span",
+                    properties: { class: "frosti-code-toolbar-language" },
+                    children: [{ type: "text", value: language }],
+                  },
+                  {
+                    type: "element",
+                    tagName: "button",
+                    properties: {
+                      "class": "btn-copy",
+                      "aria-label": "Copy code",
+                      "type": "button",
+                    },
+                    children: [
+                      {
+                        type: "element",
+                        tagName: "span",
+                        properties: { class: "frosti-code-toolbar-copy" },
+                        children: [{ type: "text", value: "Copy" }],
+                      },
+                    ],
+                  },
+                ],
+              },
+              // 代码内容
+              {
+                ...node,
+                properties: {
+                  ...node.properties,
+                  class: "frosti-code-content",
+                },
+                children: [
+                  {
+                    type: "element",
+                    tagName: "code",
+                    properties: {
+                      class: "grid [&>.line]:px-4",
+                      style: "counter-reset: line",
+                    },
+                    children: node.children,
+                  },
+                ],
+              },
+            ],
+          };
+        },
+        line(node) {
+          return {
+            ...node,
+            properties: {
+              ...node.properties,
+              class: "line before:content-[counter(line)]",
+              style: "counter-increment: line",
+            },
+          };
+        },
+        code(node) {
+          // 移除默认背景色
+          delete node.properties.style;
+          return node;
+        },
+      },
+      ],
     },
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [rehypeKatex, [
