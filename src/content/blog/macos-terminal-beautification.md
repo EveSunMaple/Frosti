@@ -1,14 +1,11 @@
 ---
-title: Using mdx in Frosti
-description: Using MDX in Frosti to enrich article content with more components
-pubDate: 26 02 2025
-image: /image/image2.jpg
+title: "MacOS终端美化教程"
+description: "Lorem ipsum dolor sit amet"
+pubDate: "2022年7月02日"
+image: /image/image1.jpg
 categories:
   - tech
-tags:
-  - Frosti
-  - 博客
-  - Project
+badge: Pin
 ---
 
 ## MacOS 终端美化教程
