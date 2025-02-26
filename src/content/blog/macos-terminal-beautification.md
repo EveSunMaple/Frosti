@@ -1,3 +1,16 @@
+---
+title: Using mdx in Frosti
+description: Using MDX in Frosti to enrich article content with more components
+pubDate: 26 02 2025
+image: /image/image2.jpg
+categories:
+  - tech
+tags:
+  - Frosti
+  - 博客
+  - Project
+---
+
 ## MacOS 终端美化教程
 
 本教程将指导你如何使用开源工具和主题美化你的 Mac 终端，使其更加美观实用，并为你提供黑客帝国式的视觉体验。
