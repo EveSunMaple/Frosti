@@ -4,7 +4,7 @@
 // Site title and description
 export const SITE_LANG = "en";
 export const SITE_TAB = "MCIART";
-export const SITE_TITLE = "MCIART's blog";
+export const SITE_TITLE = "MCIART 🧊";
 export const SITE_DESCRIPTION = "MCIART's blog";
 export const DATE_FORMAT = "ddd MMM DD YYYY";
 
