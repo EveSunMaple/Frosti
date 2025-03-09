@@ -4,7 +4,7 @@ import { marked } from "marked";
 import { SITE_DESCRIPTION, SITE_LANGUAGE, SITE_TAB, SITE_TITLE } from "../config";
 
 export async function GET(context: any) {
-  const posts = await getCollection("post");
+  const posts = await getCollection("blog");
   const sortedPosts = posts.sort((a: any, b: any) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
   function replacePath(content: string, siteUrl: string): string {
@@ -16,8 +16,8 @@ export async function GET(context: any) {
     });
   }
 
-  const items = await Promise.all(sortedPosts.map(async (post: any) => {
-    const { data: { title, description, pubDate }, body, slug } = post;
+  const items = await Promise.all(sortedPosts.map(async (blog: any) => {
+    const { data: { title, description, pubDate }, body, slug } = blog;
 
     const content = body
       ? replacePath(await marked(body), context.site)

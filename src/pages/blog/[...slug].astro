@@ -5,29 +5,29 @@ import License from "../../components/widgets/License.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("post");
-  return posts.map((post: { slug: any }) => ({
-    params: { slug: post.slug },
-    props: { post },
+  const posts = await getCollection("blog");
+  return posts.map((blog: { slug: any }) => ({
+    params: { slug: blog.slug },
+    props: { blog },
   }));
 }
 interface Props {
-  post: CollectionEntry<"post">;
+  blog: CollectionEntry<"blog">;
 }
 
-const { post } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await post.render();
+const { blog } = Astro.props;
+const { Content, remarkPluginFrontmatter, headings } = await blog.render();
 ---
 
-<BaseLayout title={post.data.title} image={post.data.image}>
+<BaseLayout title={blog.data.title} image={blog.data.image} headings={headings} showTOC={true}>
   <PostCard
-    transition:name={`post-${post.slug}`}
-    title={post.data.title}
-    image={post.data.image}
-    pubDate={post.data.pubDate}
-    badge={post.data.badge}
-    categories={post.data.categories}
-    tags={post.data.tags}
+    transition:name={`blog-${blog.slug}`}
+    title={blog.data.title}
+    image={blog.data.image}
+    pubDate={blog.data.pubDate}
+    badge={blog.data.badge}
+    categories={blog.data.categories}
+    tags={blog.data.tags}
     word={remarkPluginFrontmatter.totalCharCount}
     time={remarkPluginFrontmatter.readingTime}
     detail="true"
@@ -35,12 +35,12 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     <div id="content" class="content-container" style="max-height: 0px;">
       <Content />
       <License
-        title={post.data.title}
-        image={post.data.image}
-        pubDate={post.data.pubDate}
-        badge={post.data.badge}
-        categories={post.data.categories}
-        tags={post.data.tags}
+        title={blog.data.title}
+        image={blog.data.image}
+        pubDate={blog.data.pubDate}
+        badge={blog.data.badge}
+        categories={blog.data.categories}
+        tags={blog.data.tags}
         word={remarkPluginFrontmatter.totalCharCount}
         time={remarkPluginFrontmatter.readingTime}
       />
@@ -50,7 +50,6 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 
 <style>
   .content-container {
-    overflow: hidden;
     transition: max-height 1.5s ease;
   }
   @media (prefers-reduced-motion: reduce) {
@@ -78,11 +77,11 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     const content = document.getElementById("content");
     const bgImage = document.getElementById("bgImage");
     const image = document.getElementById("imageContainer");
-    const post = document.getElementById("postContainer");
-    if (post && content) {
+    const blog = document.getElementById("postContainer");
+    if (blog && content) {
       setTimeout(() => {
-        post.classList.remove("w-3/4");
-        post.classList.add("w-full", "open");
+        blog.classList.remove("w-3/4");
+        blog.classList.add("w-full", "open");
         setTimeout(() => {
           if (image && bgImage) {
             bgImage.classList.add("hidden");
@@ -90,9 +89,8 @@ const { Content, remarkPluginFrontmatter } = await post.render();
           }
           setTimeout(() => {
             content.style.maxHeight = content.scrollHeight + "px";
-            content.classList.add("fade-in"); // 添加浮现动画
-          }, 800); // 与 fadeOut 动画持续时间同步
-        }, 500); // 延时以确保加载效果可见
+          }, 800);
+        }, 500);
       }, 200);
     }
   });

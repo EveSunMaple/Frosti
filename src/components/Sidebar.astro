@@ -1,10 +1,21 @@
 ---
 import ProfileBar from "./sidebar/ProfileBar.astro";
+import TOCBar from "./sidebar/TOCBar.astro";
+
+interface Props {
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+  showTOC?: boolean;
+}
+
+// Get headings from parent component or page
+const { headings = [], showTOC = true } = Astro.props as Props;
 ---
 
-<div class="relative grid grid-cols-1 gap-8">
-  <div class="relative">
-    <ProfileBar />
-  </div>
-  <div class="sticky top-0"></div>
+<div class="relative mb-4">
+  <ProfileBar />
 </div>
+<TOCBar headings={headings} showTOC={showTOC} />

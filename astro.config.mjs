@@ -24,11 +24,7 @@ export default defineConfig({
       includePaths: ["./src/styles"],
     },
   },
-  integrations: [mdx(), icon({
-    include: {
-      mdi: ["*"], // (Default) Loads entire Material Design Icon set
-    },
-  }), terser({
+  integrations: [mdx(), icon(), terser({
     compress: true,
     mangle: true,
   }), sitemap(), tailwind(), pagefind(), playformCompress(), initI18n()],
@@ -48,7 +44,7 @@ export default defineConfig({
             type: "element",
             tagName: "div",
             properties: {
-              class: "frosti-code",
+              class: "not-prose frosti-code",
             },
             children: [
               // 工具栏（sticky 布局）

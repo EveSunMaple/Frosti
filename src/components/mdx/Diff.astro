@@ -9,7 +9,7 @@ interface Props {
 const { r, l, rightAlt = "Right image", leftAlt = "Left image" } = Astro.props;
 ---
 
-<div class="diff aspect-[16/9] rounded-lg overflow-hidden fade-in-up">
+<div class="not-prose diff aspect-[16/9] rounded-lg overflow-hidden fade-in-up">
   <div class="diff-item-1">
     <img alt={leftAlt} src={l} loading="lazy" />
   </div>

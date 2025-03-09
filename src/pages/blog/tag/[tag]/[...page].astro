@@ -8,17 +8,17 @@ import { getCollection } from "astro:content";
 import { t } from "i18next";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const all_posts = await getCollection("post");
+  const all_posts = await getCollection("blog");
 
-  const all_categories = [...new Set(all_posts.flatMap((post: any) => post.data.categories || []))];
+  const all_tags = [...new Set(all_posts.flatMap((blog: any) => blog.data.tags || []))];
 
   all_posts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   const postsWithStats = await Promise.all(
-    all_posts.map(async (post: any) => {
-      const { remarkPluginFrontmatter } = await post.render();
+    all_posts.map(async (blog: any) => {
+      const { remarkPluginFrontmatter } = await blog.render();
       return {
-        ...post,
+        ...blog,
         remarkPluginFrontmatter: {
           readingTime: remarkPluginFrontmatter.readingTime,
           totalCharCount: remarkPluginFrontmatter.totalCharCount,
@@ -27,17 +27,17 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
     }),
   );
 
-  return all_categories.flatMap((category) => {
-    const filtered_posts = postsWithStats.filter((post) => post.data.categories?.includes(category));
+  return all_tags.flatMap((tag) => {
+    const filtered_posts = postsWithStats.filter((blog) => blog.data.tags?.includes(tag));
     return paginate(filtered_posts, {
-      params: { category },
+      params: { tag },
       pageSize: 8,
     });
   });
 }
 
 const { page } = Astro.props as { page: Page };
-const params = Astro.params as { category: string; page: string };
+const params = Astro.params as { tag: string; page: string };
 
 function generatePageLinks(totalPages: number): {
   active: string[];
@@ -67,25 +67,25 @@ const totalPages = Math.ceil(page.total / page.size);
 const pageLinks = generatePageLinks(totalPages);
 ---
 
-<BaseLayout title="Category">
-  <BaseCard title="Category">
-    <h1 id="h1">{`${t("label.categoryPage")} - ${params.category}`}</h1>
+<BaseLayout title="Tag">
+  <BaseCard title="Tag">
+    <h1 id="h1">{`${t("label.tagPage")} - ${params.tag}`}</h1>
   </BaseCard>
   {
-    page.data.map((post: Post) => (
+    page.data.map((blog: Post) => (
       <PostCard
-        title={post.data.title}
-        image={post.data.image}
-        desc={post.data.description}
-        url={"/post/" + post.slug}
-        pubDate={post.data.pubDate}
-        badge={post.data.badge}
-        categories={post.data.categories}
-        tags={post.data.tags}
-        word={post.remarkPluginFrontmatter.totalCharCount}
-        time={post.remarkPluginFrontmatter.readingTime}
+        title={blog.data.title}
+        image={blog.data.image}
+        desc={blog.data.description}
+        url={"/blog/" + blog.slug}
+        pubDate={blog.data.pubDate}
+        badge={blog.data.badge}
+        categories={blog.data.categories}
+        tags={blog.data.tags}
+        word={blog.remarkPluginFrontmatter.totalCharCount}
+        time={blog.remarkPluginFrontmatter.readingTime}
       />
     ))
   }
-  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/post/category/${params.category}`} />
+  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog/tag/${params.tag}`} />
 </BaseLayout>

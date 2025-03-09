@@ -1,9 +1,126 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Icon } from "astro-icon/components";
 import Card from "../temple/Card.astro";
+
+// Define type for headings
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings?: Heading[];
+  showTOC?: boolean;
+}
+
+// This prop indicates whether to render the TOC
+// (useful to conditionally show on certain pages)
+const { headings = [], showTOC = true } = Astro.props as Props;
 ---
 
-<Card>
-  <h2 class="card-title">Astro</h2>
-  <p>Astro is a static site generator for building fast, content-focused websites.</p>
-</Card>
+{
+  showTOC && headings.length > 0 && (
+    <div id="toc-container" class="sticky top-4 z-10 max-h-[calc(100vh-2rem)] flex flex-col">
+      <Card>
+        <div class="p-4">
+          <nav class="toc-nav max-h-[calc(100vh-200px)] overflow-y-auto scrollbar-none pr-1">
+            <ul class="space-y-1.5">
+              {headings.map((heading: Heading, index: number) => (
+                <li
+                  class={`transition-all ${heading.depth === 1 ? "font-medium" : ""}
+                  ${heading.depth === 2 ? "ml-1" : ""}
+                  ${heading.depth === 3 ? "ml-3" : ""}
+                  ${heading.depth === 4 ? "ml-5" : ""}
+                  ${heading.depth === 5 ? "ml-7" : ""}
+                  ${heading.depth === 6 ? "ml-9" : ""}`}
+                >
+                  <a
+                    href={`#heading-${index}`}
+                    data-heading-slug={heading.slug}
+                    class="flex items-center gap-2 py-1.5 px-2 rounded-lg hover:bg-base-200 transition-colors group"
+                  >
+                    <Icon
+                      name={heading.depth <= 2 ? "tabler:point-filled" : "tabler:point"}
+                      class="text-xs opacity-70 group-hover:text-primary"
+                    />
+                    <span class="group-hover:translate-x-0.5 transition-transform text-lg">{heading.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </Card>
+    </div>
+  )
+}
+
+<style>
+  .scrollbar-none {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+</style>
+
+<script>
+  // Highlight active heading in TOC based on scroll position
+  document.addEventListener("astro:page-load", () => {
+    // First update all heading IDs to use the numbered format
+    const headings = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
+    headings.forEach((heading, index) => {
+      const oldId = heading.getAttribute("id");
+      const newId = `heading-${index}`;
+      heading.setAttribute("id", newId);
+
+      // Update any existing links to this heading
+      document.querySelectorAll(`a[href="#${oldId}"]`).forEach((link) => {
+        if (!link.closest(".toc-nav")) {
+          // Don't update the TOC links we're about to handle
+          link.setAttribute("href", `#${newId}`);
+        }
+      });
+    });
+
+    // 获取TOC导航容器
+    const tocNav = document.querySelector(".toc-nav");
+
+    // Setup the intersection observer for highlighting active sections
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute("id");
+          const tocLink = document.querySelector(`.toc-nav a[href="#${id}"]`);
+
+          if (tocLink && entry.isIntersecting) {
+            document.querySelectorAll(".toc-nav a").forEach((link) => {
+              link.classList.remove("text-primary", "bg-base-200", "font-bold");
+            });
+
+            tocLink.classList.add("text-primary", "bg-base-200", "font-bold");
+
+            if (tocNav) {
+              const tocLinkTop = (tocLink as HTMLElement).offsetTop;
+              const navHeight = tocNav.clientHeight;
+              const scrollOffset = tocLinkTop - navHeight / 2;
+
+              tocNav.scrollTo({
+                top: scrollOffset,
+                behavior: "smooth",
+              });
+            }
+          }
+        });
+      },
+      { rootMargin: "-80px 0px -70% 0px" },
+    );
+
+    // Observe all headings
+    headings.forEach((heading) => {
+      observer.observe(heading);
+    });
+  });
+</script>

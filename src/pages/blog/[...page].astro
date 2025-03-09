@@ -7,9 +7,9 @@ import { getCollection } from "astro:content";
 import { t } from "i18next";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const posts = await getCollection("post");
-  const topPosts = posts.filter((post: any) => post.data.badge === "Pin");
-  const otherPosts = posts.filter((post: any) => post.data.badge !== "Pin");
+  const posts = await getCollection("blog");
+  const topPosts = posts.filter((blog: any) => blog.data.badge === "Pin");
+  const otherPosts = posts.filter((blog: any) => blog.data.badge !== "Pin");
 
   topPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   otherPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -17,11 +17,11 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   const sortedPosts = [...topPosts, ...otherPosts];
 
   const postsWithStats = await Promise.all(
-    sortedPosts.map(async (post) => {
-      const { remarkPluginFrontmatter } = await post.render();
+    sortedPosts.map(async (blog) => {
+      const { remarkPluginFrontmatter } = await blog.render();
 
       return {
-        ...post,
+        ...blog,
         remarkPluginFrontmatter: {
           readingTime: remarkPluginFrontmatter.readingTime,
           totalCharCount: remarkPluginFrontmatter.totalCharCount,
@@ -65,20 +65,20 @@ const pageLinks = generatePageLinks(totalPages);
 
 <BaseLayout title="Blog">
   {
-    page.data.map((post: Post) => (
+    page.data.map((blog: Post) => (
       <PostCard
-        title={post.data.title}
-        image={post.data.image}
-        desc={post.data.description}
-        url={"/post/" + post.slug}
-        pubDate={post.data.pubDate}
-        badge={post.data.badge}
-        categories={post.data.categories}
-        tags={post.data.tags}
-        word={post.remarkPluginFrontmatter.totalCharCount}
-        time={post.remarkPluginFrontmatter.readingTime}
+        title={blog.data.title}
+        image={blog.data.image}
+        desc={blog.data.description}
+        url={"/blog/" + blog.slug}
+        pubDate={blog.data.pubDate}
+        badge={blog.data.badge}
+        categories={blog.data.categories}
+        tags={blog.data.tags}
+        word={blog.remarkPluginFrontmatter.totalCharCount}
+        time={blog.remarkPluginFrontmatter.readingTime}
       />
     ))
   }
-  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/post`} />
+  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog`} />
 </BaseLayout>

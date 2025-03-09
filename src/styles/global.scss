@@ -27,7 +27,7 @@ html {
 }
 
 .frosti-code {
-  @apply relative my-6 rounded-lg border border-base-300 bg-transparent shadow-lg overflow-hidden;
+  @apply relative my-6 rounded-xl border border-base-300 bg-transparent overflow-hidden;
 
   &-toolbar {
     @apply sticky top-0 z-10 flex justify-between items-center px-4 py-2 bg-base-200 border-b border-base-300;

@@ -9,8 +9,7 @@ const { title, image, word, time } = Astro.props as PostData;
     overflow: hidden;
     transition: max-height 1.5s ease;
   }
-  .post-container {
-    overflow: hidden;
+  .blog-container {
     transition: width 1.5s ease;
   }
   @keyframes expand {
@@ -26,7 +25,7 @@ const { title, image, word, time } = Astro.props as PostData;
   }
   @media (prefers-reduced-motion: reduce) {
     .image-container,
-    .post-container {
+    .blog-container {
       transition: none;
     }
   }
@@ -40,7 +39,7 @@ const { title, image, word, time } = Astro.props as PostData;
           {image && <Image src={image} width="1920" height="1080" alt={title} loading="eager" />}
         </div>
         <div
-          class="relative join-item post-container w-3/4 h-full p-6 lg:p-8 bg-base-100 z-10 transition"
+          class="relative join-item blog-container w-3/4 h-full p-6 lg:p-8 bg-base-100 z-10 transition"
           id="postContainer"
         >
           <slot />

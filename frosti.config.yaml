@@ -34,12 +34,12 @@ site:
           target: _self
         - id: tech
           text: Tech blogs
-          href: /blog/categories/tech
+          href: /blog/category/tech
           svg: "material-symbols:deployed-code-outline"
           target: _self
         - id: life
           text: Life blogs
-          href: /blog/categories/life
+          href: /blog/category/life
           svg: "material-symbols:earthquake-rounded"
           target: _self
         # 子菜单项配置
