@@ -6,10 +6,6 @@ html {
   @apply scroll-smooth;
 }
 
-:active-view-transition {
-  cursor: pointer;
-}
-
 .frosti-heading {
   @apply text-2xl leading-normal pt-0 font-bold text-base-content bg-clip-text bg-gradient-to-r from-primary to-secondary transition-colors duration-300 hover:text-transparent;
 }
