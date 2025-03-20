@@ -49,7 +49,33 @@ export interface UserConfig {
   };
 }
 
+export interface TranslationLabel {
+  noTag: string;
+  tagCard: string;
+  tagPage: string;
+  noCategory: string;
+  categoryCard: string;
+  categoryPage: string;
+  link: string;
+  prevPage: string;
+  nextPage: string;
+  wordCount: string;
+  readTime: string;
+  share: string;
+  shareCard: string;
+  close: string;
+}
+
+export interface LanguageTranslation {
+  label: TranslationLabel;
+}
+
+export interface Translations {
+  [language: string]: LanguageTranslation;
+}
+
 export interface Config {
   site: SiteConfig;
   user: UserConfig;
+  translations: Translations;
 }

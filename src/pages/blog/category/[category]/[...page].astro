@@ -5,7 +5,7 @@ import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import BaseCard from "../../../../components/BaseCard.astro";
 import Pagination from "../../../../components/widgets/Pagination.astro";
 import { getCollection } from "astro:content";
-import { t } from "i18next";
+import { t } from "../../../../config";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const all_posts = await getCollection("blog");

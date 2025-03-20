@@ -1,9 +1,8 @@
 ---
 import dayjs from "dayjs";
-import { USER_NAME, DATE_FORMAT } from "../../config";
+import { USER_NAME, DATE_FORMAT, t } from "../../config";
 import type { PostData } from "../../interface/data";
 import { Icon } from "astro-icon/components";
-import { t } from "i18next";
 import PostFilter from "./PostFilter.astro";
 
 const { title, url, pubDate, badge, categories = [], tags = [], word, time } = Astro.props as PostData;

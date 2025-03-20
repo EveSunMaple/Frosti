@@ -4,17 +4,15 @@ import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SI
 import { ClientRouter } from "astro:transitions";
 import ElementCrossing from "astro-vtbot/components/ElementCrossing.astro";
 import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astro";
-import i18next, { changeLanguage } from "i18next";
 import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Footer from "../components/Footer.astro";
 
-changeLanguage(SITE_LANGUAGE);
 const { title, image, headings = [], showTOC = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={i18next.language} class="transition bg-base-300" data-theme={SITE_THEME.light}>
+<html lang={SITE_LANGUAGE} class="transition bg-base-300" data-theme={SITE_THEME.light}>
   <head>
     <ClientRouter />
     <ElementCrossing />

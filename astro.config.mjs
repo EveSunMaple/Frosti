@@ -12,7 +12,6 @@ import remarkMath from "remark-math";
 
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
 
-import { initI18n } from "./src/locales";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
@@ -27,7 +26,7 @@ export default defineConfig({
   integrations: [mdx(), icon(), terser({
     compress: true,
     mangle: true,
-  }), sitemap(), tailwind(), pagefind(), playformCompress(), initI18n()],
+  }), sitemap(), tailwind(), pagefind(), playformCompress()],
   markdown: {
     shikiConfig: {
       theme: CODE_THEME,

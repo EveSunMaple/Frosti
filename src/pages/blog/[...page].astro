@@ -4,7 +4,7 @@ import PostCard from "../../components/PostCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Pagination from "../../components/widgets/Pagination.astro";
 import { getCollection } from "astro:content";
-import { t } from "i18next";
+import { t } from "../../config";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const posts = await getCollection("blog");

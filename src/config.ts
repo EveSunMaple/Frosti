@@ -31,3 +31,21 @@ export const USER_FOOTER_SOCIAL_ICONS = config.user.footer.social;
 
 // 网站菜单项配置
 export const SITE_MENU = config.site.menu;
+
+// 多语言文本配置
+export const TRANSLATIONS = config.translations;
+
+// 获取当前语言的翻译文本的函数
+export function t(key: string): string {
+  const keyParts = key.split(".");
+  let currentObj: any = TRANSLATIONS[SITE_LANGUAGE];
+
+  for (const part of keyParts) {
+    if (!currentObj || typeof currentObj !== "object") {
+      return key;
+    }
+    currentObj = currentObj[part];
+  }
+
+  return typeof currentObj === "string" ? currentObj : key;
+}

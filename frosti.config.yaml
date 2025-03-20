@@ -92,3 +92,38 @@ user:
         ariaLabel: X(twitter)
         title: X(twitter)
         svg: "ri:twitter-line"
+
+# 多语言文本配置
+translations:
+  en:
+    label:
+      noTag: No tags assigned
+      tagCard: Tags
+      tagPage: Tag
+      noCategory: No categories assigned
+      categoryCard: Categories
+      categoryPage: Category
+      link: "Link: "
+      prevPage: Recent posts
+      nextPage: Older posts
+      wordCount: words
+      readTime: minutes
+      share: Share
+      shareCard: Share this article
+      close: Close
+  zh:
+    label:
+      noTag: 未分配标签
+      tagCard: 标签
+      tagPage: 标签
+      noCategory: 未分配分类
+      categoryCard: 分类
+      categoryPage: 分类
+      link: "链接: "
+      prevPage: 上一页
+      nextPage: 下一页
+      wordCount: 字
+      readTime: 分钟
+      share: 分享
+      shareCard: 分享这篇博客
+      close: 关闭
