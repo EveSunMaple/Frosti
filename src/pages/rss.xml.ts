@@ -1,7 +1,7 @@
 import rss from "@astrojs/rss";
+import { SITE_DESCRIPTION, SITE_LANGUAGE, SITE_TAB, SITE_TITLE } from "@config";
 import { getCollection } from "astro:content";
 import { marked } from "marked";
-import { SITE_DESCRIPTION, SITE_LANGUAGE, SITE_TAB, SITE_TITLE } from "../config";
 
 export async function GET(context: any) {
   const posts = await getCollection("blog");

@@ -1,11 +1,11 @@
 ---
-import type { Post, Page } from "../../../../interface/data";
-import PostCard from "../../../../components/PostCard.astro";
-import BaseLayout from "../../../../layouts/BaseLayout.astro";
-import BaseCard from "../../../../components/BaseCard.astro";
-import Pagination from "../../../../components/widgets/Pagination.astro";
+import type { Post, Page } from "@interfaces/data";
+import PostCard from "@components/PostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseCard from "@components/BaseCard.astro";
+import Pagination from "@components/widgets/Pagination.astro";
 import { getCollection } from "astro:content";
-import { t } from "../../../../config";
+import { t } from "@config";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const all_posts = await getCollection("blog");

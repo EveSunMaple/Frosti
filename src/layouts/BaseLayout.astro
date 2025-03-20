@@ -1,12 +1,12 @@
 ---
 import "medium-zoom/dist/style.css";
-import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "../config";
+import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "@config";
 import { ClientRouter } from "astro:transitions";
 import ElementCrossing from "astro-vtbot/components/ElementCrossing.astro";
 import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astro";
-import Header from "../components/Header.astro";
-import Sidebar from "../components/Sidebar.astro";
-import Footer from "../components/Footer.astro";
+import Header from "@components/Header.astro";
+import Sidebar from "@components/Sidebar.astro";
+import Footer from "@components/Footer.astro";
 
 const { title, image, headings = [], showTOC = false } = Astro.props;
 ---
