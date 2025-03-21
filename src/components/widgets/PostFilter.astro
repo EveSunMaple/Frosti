@@ -1,30 +1,41 @@
 ---
 import { t } from "@config";
 import type { PostData } from "@interfaces/data";
+import { Icon } from "astro-icon/components";
 const { categories = [], tags = [] } = Astro.props as PostData;
 ---
 
 <div class="flex flex-wrap items-center gap-2">
   {
     categories.map((category) => (
-      <a
-        href={`/blog/category/${category}`}
-        class="btn btn-xs bg-primary/10 hover:bg-primary text-primary hover:text-primary-content border-none hover:scale-110 transition-all duration-300"
-      >
-        {category}
+      <a href={`/blog/category/${category}`} class="btn btn-xs btn-category">
+        <Icon name="ri:folder-line" class="w-4 h-4" />
+        <span>{category}</span>
       </a>
     ))
   }
   {
     tags.map((tag) => (
-      <a
-        href={`/blog/tag/${tag}`}
-        class="btn btn-xs bg-secondary/10 hover:bg-secondary text-secondary hover:text-secondary-content border-none hover:scale-110 transition-all duration-300"
-      >
-        {tag}
+      <a href={`/blog/tag/${tag}`} class="btn btn-xs btn-tag">
+        <Icon name="ri:price-tag-3-line" class="w-4 h-4" />
+        <span>{tag}</span>
       </a>
     ))
   }
-  {categories.length === 0 && <span class="btn btn-xs btn-disabled opacity-50">{t("label.noCategory")}</span>}
-  {tags.length === 0 && <span class="btn btn-xs btn-disabled opacity-50">{t("label.noTag")}</span>}
+  {
+    categories.length === 0 && (
+      <span class="btn btn-xs btn-ghost opacity-60 gap-1">
+        <Icon name="ri:folder-line" class="w-4 h-4" />
+        <span>{t("label.noCategory")}</span>
+      </span>
+    )
+  }
+  {
+    tags.length === 0 && (
+      <span class="btn btn-xs btn-ghost opacity-60 gap-1">
+        <Icon name="ri:price-tag-3-line" class="w-4 h-4" />
+        <span>{t("label.noTag")}</span>
+      </span>
+    )
+  }
 </div>

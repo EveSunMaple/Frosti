@@ -59,7 +59,7 @@ const socialLinks = [
 
       <!-- Article Metadata -->
       <div class="space-y-4">
-        <h3 class="card-title text-lg sm:text-xl lg:text-2xl">{title}</h3>
+        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold">{title}</h3>
 
         <!-- Stats Row -->
         <div class="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm opacity-75">
@@ -114,7 +114,7 @@ const socialLinks = [
         </div>
 
         <!-- Share Button -->
-        <div class="card-actions justify-end mt-4">
+        <div class="flex justify-end mt-4">
           <button class="btn btn-primary btn-outline" onclick="share_modal.showModal()">
             {t("label.share")}
             <Icon name="ri:share-line" class="w-5 h-5" />

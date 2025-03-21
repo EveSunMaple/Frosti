@@ -3,6 +3,7 @@ import type { Post, Page } from "@interfaces/data";
 import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Pagination from "@components/widgets/Pagination.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
 import { getCollection } from "astro:content";
 import { t } from "@config";
 
@@ -64,21 +65,23 @@ const pageLinks = generatePageLinks(totalPages);
 ---
 
 <BaseLayout title="Blog">
-  {
-    page.data.map((blog: Post) => (
-      <PostCard
-        title={blog.data.title}
-        image={blog.data.image}
-        desc={blog.data.description}
-        url={"/blog/" + blog.slug}
-        pubDate={blog.data.pubDate}
-        badge={blog.data.badge}
-        categories={blog.data.categories}
-        tags={blog.data.tags}
-        word={blog.remarkPluginFrontmatter.totalCharCount}
-        time={blog.remarkPluginFrontmatter.readingTime}
-      />
-    ))
-  }
+  <CardGroup cols="1" gap="6">
+    {
+      page.data.map((blog: Post) => (
+        <PostCard
+          title={blog.data.title}
+          image={blog.data.image}
+          description={blog.data.description}
+          url={"/blog/" + blog.slug}
+          pubDate={blog.data.pubDate}
+          badge={blog.data.badge}
+          categories={blog.data.categories}
+          tags={blog.data.tags}
+          word={blog.remarkPluginFrontmatter.totalCharCount}
+          time={blog.remarkPluginFrontmatter.readingTime}
+        />
+      ))
+    }
+  </CardGroup>
   <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog`} />
 </BaseLayout>

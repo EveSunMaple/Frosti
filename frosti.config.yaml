@@ -111,6 +111,7 @@ translations:
       share: Share
       shareCard: Share this article
       close: Close
+      learnMore: Learn more
   zh:
     label:
       noTag: 未分配标签
@@ -127,3 +128,4 @@ translations:
       share: 分享
       shareCard: 分享这篇博客
       close: 关闭
+      learnMore: 了解更多

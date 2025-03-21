@@ -5,27 +5,27 @@ import type { PostData } from "@interfaces/data";
 const { pubDate, badge, word, time } = Astro.props as PostData;
 ---
 
-<div class="flex justify-between items-center mb-4 text-xs sm:text-sm opacity-75">
-  <div class="flex flex-wrap items-center gap-2">
+<div class="flex flex-col sm:flex-row sm:justify-between gap-y-2 mb-4 text-xs sm:text-sm opacity-75">
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
     {
       pubDate && (
         <span class="flex items-center gap-1">
-          <Icon name="ri:calendar-line" class="h-4 w-4" />
-          {pubDate}
+          <Icon name="ri:calendar-line" class="h-4 w-4 flex-shrink-0" />
+          <span class="truncate">{pubDate}</span>
         </span>
       )
     }
     {
       badge && (
         <span class="flex flex-wrap items-center gap-1">
-          <Icon name="ri:bookmark-2-line" class="h-4 w-4" />
-          {badge}
+          <Icon name="ri:bookmark-2-line" class="h-4 w-4 flex-shrink-0" />
+          <span class="truncate">{badge}</span>
         </span>
       )
     }
   </div>
   <div class="flex flex-wrap items-center gap-1">
-    <Icon name="ri:book-open-line" class="h-4 w-4" />
-    <span>{word} {t("label.wordCount")} · {time} {t("label.readTime")}</span>
+    <Icon name="ri:book-open-line" class="h-4 w-4 flex-shrink-0" />
+    <span class="truncate">{word} {t("label.wordCount")} · {time} {t("label.readTime")}</span>
   </div>
 </div>
