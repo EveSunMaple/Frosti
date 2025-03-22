@@ -4,7 +4,6 @@ import tailwind from "@astrojs/tailwind";
 import playformCompress from "@playform/compress";
 import terser from "@rollup/plugin-terser";
 import icon from "astro-icon";
-import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
@@ -23,10 +22,19 @@ export default defineConfig({
       includePaths: ["./src/styles"],
     },
   },
-  integrations: [mdx(), icon(), terser({
-    compress: true,
-    mangle: true,
-  }), sitemap(), tailwind(), pagefind(), playformCompress()],
+  integrations: [
+    mdx(),
+    icon(),
+    terser({
+      compress: true,
+      mangle: true,
+    }),
+    sitemap(),
+    tailwind({
+      configFile: "./tailwind.config.mjs",
+    }),
+    playformCompress(),
+  ],
   markdown: {
     shikiConfig: {
       theme: CODE_THEME,

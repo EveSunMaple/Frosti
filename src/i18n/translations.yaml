@@ -30,6 +30,10 @@ en:
     categoriesPageDescription: Explore all categories available on the blog
     archivesPageDescription: Browse articles organized by date
     backToBlog: Back to Blog
+    searchPage: Search
+    searchPageDescription: Search for articles across the blog
+    search: Search
+    searchPlaceholder: Type to search...
 zh:
   label:
     noTag: 未分配标签
@@ -62,3 +66,7 @@ zh:
     categoriesPageDescription: 探索博客中可用的所有分类
     archivesPageDescription: 按日期浏览文章
     backToBlog: 返回博客
+    searchPage: 搜索
+    searchPageDescription: 搜索博客中的所有文章
+    search: 搜索
+    searchPlaceholder: 输入关键词搜索...

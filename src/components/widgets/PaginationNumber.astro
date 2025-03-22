@@ -14,10 +14,7 @@ const href = number == 1 ? baseUrl : `${baseUrl}/${number}`;
   href={href}
   title={`Page ${number}`}
   aria-label={`Page ${number}`}
-  class:list={[
-    "join-item btn bg-base-100 hover:scale-105 transition-transform duration-300",
-    number === current && "btn-active",
-  ]}
+  class:list={["join-item btn bg-base-100", number === current && "btn-active"]}
 >
   {number}
 </a>

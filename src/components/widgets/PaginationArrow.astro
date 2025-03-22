@@ -10,10 +10,7 @@ interface Props {
 const { direction, href, label } = Astro.props;
 ---
 
-<a
-  href={href || "#"}
-  class:list={["btn bg-base-100 shadow-xl hover:scale-105 transition-transform duration-300", !href && "btn-disabled"]}
->
+<a href={href || "#"} class:list={["btn bg-base-100 shadow-xl", !href && "btn-disabled"]}>
   {direction === "prev" && <Icon name="ri:arrow-left-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
   <span class="hidden lg:inline">{label}</span>
   {direction === "next" && <Icon name="ri:arrow-right-s-line" class="h-6 w-6 md:h-8 md:w-8" />}

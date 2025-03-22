@@ -8,24 +8,15 @@ interface Props {
 const { hiddenPages, current, baseUrl } = Astro.props;
 ---
 
-<div class="dropdown dropdown-top join-item rounded-none">
-  <div
-    tabindex="0"
-    role="button"
-    class="btn bg-base-100 rounded-none w-[55px] hover:bg-base-200 transition-colors duration-300"
-  >
-    ...
-  </div>
-  <ul class="menu dropdown-content bg-base-100 rounded-box z-[100] p-2 shadow-xl">
+<div class="dropdown dropdown-top join-item">
+  <div tabindex="0" role="button" class="btn join-item bg-base-100">...</div>
+  <ul class="dropdown-content z-[100] menu p-2 shadow-xl bg-base-100 rounded-box w-auto mx-auto mt-1">
     {
       hiddenPages.map((page) => (
-        <li>
+        <li class="w-full">
           <a
             href={page === 1 ? baseUrl : `${baseUrl}/${page}`}
-            class:list={[
-              "menu-item bg-base-100 hover:bg-base-200 transition-colors duration-300",
-              page === current && "btn-active",
-            ]}
+            class:list={["text-center py-1 px-3", page === current && "bg-primary text-primary-content"]}
           >
             {page}
           </a>

@@ -1,7 +1,9 @@
+/* Use postcss-nesting */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Global styles with nesting support */
 html {
   @apply scroll-smooth;
 }
@@ -9,9 +11,9 @@ html {
 .scrollbar-none {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-}
-.scrollbar-none::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
 }
 
 .frosti-heading {
@@ -576,5 +578,59 @@ html {
 
   .month-title {
     @apply text-lg;
+  }
+}
+
+/* Pagefind UI customization with oklch colors */
+#pagefind-search {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: oklch(var(--a));
+  --pagefind-ui-text: oklch(var(--bc));
+  --pagefind-ui-background: oklch(var(--b1));
+  --pagefind-ui-border: oklch(var(--b3));
+  --pagefind-ui-tag: oklch(var(--b2));
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 0.5rem;
+  --pagefind-ui-image-border-radius: 0.5rem;
+  --pagefind-ui-image-box-ratio: 3/2;
+  --pagefind-ui-font: var(--font-sans, system-ui, sans-serif);
+
+  .pagefind-ui__search-input {
+    @apply input input-bordered w-full;
+    border: 1px solid oklch(var(--bc) / 0.2);
+  }
+
+  .pagefind-ui__search-clear {
+    @apply hidden;
+  }
+
+  .pagefind-ui__result {
+    @apply p-4 border border-base-300 rounded-lg mb-4;
+    border-bottom: 1px solid var(--pagefind-ui-border);
+  }
+
+  .pagefind-ui__result-title {
+    @apply text-lg font-bold mb-2;
+  }
+
+  .pagefind-ui__result-link {
+    @apply text-primary hover:underline;
+  }
+
+  .pagefind-ui__result-excerpt {
+    @apply text-sm text-base-content opacity-75;
+  }
+
+  .pagefind-ui__result-excerpt mark {
+    @apply bg-accent text-accent-content px-1 rounded;
+  }
+
+  .pagefind-ui__message {
+    @apply text-sm text-base-content opacity-75 my-4;
+  }
+
+  .pagefind-ui__message:empty::before {
+    content: "No results found. Try a different search term.";
+    @apply block text-center py-8 text-base-content opacity-50;
   }
 }
