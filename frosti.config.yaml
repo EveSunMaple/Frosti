@@ -78,6 +78,10 @@ user:
         ariaLabel: BiliBili
         title: BiliBili
         svg: "ri:bilibili-line"
+      - href: "https://x.com/EveSunMaple"
+        ariaLabel: X(twitter)
+        title: X(twitter)
+        svg: "ri:twitter-line"
   footer:
     social:
       - href: "https://afdian.com/a/saroprock" # 链接
@@ -89,43 +93,10 @@ user:
         title: Github
         svg: "ri:github-line"
       - href: "https://space.bilibili.com/438392347"
+        ariaLabel: BiliBili
+        title: BiliBili
+        svg: "ri:bilibili-line"
+      - href: "https://x.com/EveSunMaple"
         ariaLabel: X(twitter)
         title: X(twitter)
         svg: "ri:twitter-line"
-
-# 多语言文本配置
-translations:
-  en:
-    label:
-      noTag: No tags assigned
-      tagCard: Tags
-      tagPage: Tag
-      noCategory: No categories assigned
-      categoryCard: Categories
-      categoryPage: Category
-      link: "Link: "
-      prevPage: Recent posts
-      nextPage: Older posts
-      wordCount: words
-      readTime: minutes
-      share: Share
-      shareCard: Share this article
-      close: Close
-      learnMore: Learn more
-  zh:
-    label:
-      noTag: 未分配标签
-      tagCard: 标签
-      tagPage: 标签
-      noCategory: 未分配分类
-      categoryCard: 分类
-      categoryPage: 分类
-      link: "链接: "
-      prevPage: 上一页
-      nextPage: 下一页
-      wordCount: 字
-      readTime: 分钟
-      share: 分享
-      shareCard: 分享这篇博客
-      close: 关闭
-      learnMore: 了解更多

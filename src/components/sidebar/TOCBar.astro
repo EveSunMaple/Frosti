@@ -21,14 +21,14 @@ const { headings = [], showTOC = true } = Astro.props as Props;
 
 {
   showTOC && headings.length > 0 && (
-    <div id="toc-container" class="mt-4 z-10 max-h-[calc(100vh-2rem)] flex flex-col">
+    <div id="toc-container" class="mt-4 z-10 md:max-h-[calc(100vh-2rem)]">
       <Card>
         <div class="p-4">
-          <nav class="toc-nav max-h-[calc(100vh-200px)] overflow-y-auto scrollbar-none pr-1 relative">
+          <nav class="toc-nav max-h-[calc(100vh-200px)] overflow-y-auto scrollbar-none relative">
             {/* Animated active indicator - now moved outside the ul structure */}
             <div
               id="active-indicator"
-              class="absolute bg-primary/10 rounded-lg opacity-0 border-l-3 border-primary/80 shadow-sm transition-all duration-300 ease-in-out pointer-events-none z-0"
+              class="absolute bg-primary/10 rounded-lg opacity-0 shadow-sm pointer-events-none z-0"
             />
             <ul class="space-y-0 relative z-10">
               {headings.map((heading, index) => (
@@ -38,14 +38,14 @@ const { headings = [], showTOC = true } = Astro.props as Props;
                     data-heading-slug={heading.slug}
                     data-heading-depth={heading.depth}
                     data-index={index}
-                    class={`toc-link relative flex items-center py-2 px-2 rounded-lg transition-colors ${heading.depth === 1 ? "font-medium" : ""}`}
+                    class={`toc-link relative flex items-center py-2 px-2 rounded-lg ${heading.depth === 1 ? "font-medium" : ""}`}
                     style={`padding-left: ${12 + (heading.depth - 1) * 16}px;`}
                   >
                     <Icon
                       name="tabler:chevron-right"
                       class="icon-indicator absolute left-1 opacity-0 transition-all duration-200 w-4 h-4 text-primary"
                     />
-                    <span class="link-text transition-all duration-200">{heading.text}</span>
+                    <span class="link-text transition-transform duration-200">{heading.text}</span>
                   </a>
                 </li>
               ))}
@@ -58,14 +58,6 @@ const { headings = [], showTOC = true } = Astro.props as Props;
 }
 
 <style>
-  .scrollbar-none {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  .scrollbar-none::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-  }
-
   .toc-link:hover .link-text {
     transform: translateX(2px);
   }
@@ -136,8 +128,8 @@ const { headings = [], showTOC = true } = Astro.props as Props;
         activeIndicator.style.top = `${link.offsetTop}px`;
         activeIndicator.style.height = `${link.offsetHeight}px`;
         activeIndicator.style.opacity = "1";
-        activeIndicator.style.left = `${(headingDepth - 1) * 12}px`;
-        activeIndicator.style.width = `calc(100% - ${(headingDepth - 1) * 12}px)`;
+        activeIndicator.style.left = `${(headingDepth - 1) * 16}px`;
+        activeIndicator.style.width = `calc(100% - ${(headingDepth - 1) * 16}px)`;
       });
     }
 

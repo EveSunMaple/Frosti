@@ -10,7 +10,7 @@ const { pubDate, badge, word, time } = Astro.props as PostData;
     {
       pubDate && (
         <span class="flex items-center gap-1">
-          <Icon name="ri:calendar-line" class="h-4 w-4 flex-shrink-0" />
+          <Icon name="lucide:calendar" class="h-4 w-4 flex-shrink-0" />
           <span class="truncate">{pubDate}</span>
         </span>
       )
@@ -18,14 +18,14 @@ const { pubDate, badge, word, time } = Astro.props as PostData;
     {
       badge && (
         <span class="flex flex-wrap items-center gap-1">
-          <Icon name="ri:bookmark-2-line" class="h-4 w-4 flex-shrink-0" />
+          <Icon name="lucide:bookmark" class="h-4 w-4 flex-shrink-0" />
           <span class="truncate">{badge}</span>
         </span>
       )
     }
   </div>
   <div class="flex flex-wrap items-center gap-1">
-    <Icon name="ri:book-open-line" class="h-4 w-4 flex-shrink-0" />
+    <Icon name="lucide:book-open" class="h-4 w-4 flex-shrink-0" />
     <span class="truncate">{word} {t("label.wordCount")} · {time} {t("label.readTime")}</span>
   </div>
 </div>

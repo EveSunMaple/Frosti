@@ -9,7 +9,7 @@ const { categories = [], tags = [] } = Astro.props as PostData;
   {
     categories.map((category) => (
       <a href={`/blog/category/${category}`} class="btn btn-xs btn-category">
-        <Icon name="ri:folder-line" class="w-4 h-4" />
+        <Icon name="lucide:folder" class="w-4 h-4" />
         <span>{category}</span>
       </a>
     ))
@@ -17,7 +17,7 @@ const { categories = [], tags = [] } = Astro.props as PostData;
   {
     tags.map((tag) => (
       <a href={`/blog/tag/${tag}`} class="btn btn-xs btn-tag">
-        <Icon name="ri:price-tag-3-line" class="w-4 h-4" />
+        <Icon name="lucide:tag" class="w-4 h-4" />
         <span>{tag}</span>
       </a>
     ))
@@ -25,7 +25,7 @@ const { categories = [], tags = [] } = Astro.props as PostData;
   {
     categories.length === 0 && (
       <span class="btn btn-xs btn-ghost opacity-60 gap-1">
-        <Icon name="ri:folder-line" class="w-4 h-4" />
+        <Icon name="lucide:folder" class="w-4 h-4" />
         <span>{t("label.noCategory")}</span>
       </span>
     )
@@ -33,7 +33,7 @@ const { categories = [], tags = [] } = Astro.props as PostData;
   {
     tags.length === 0 && (
       <span class="btn btn-xs btn-ghost opacity-60 gap-1">
-        <Icon name="ri:price-tag-3-line" class="w-4 h-4" />
+        <Icon name="lucide:tag" class="w-4 h-4" />
         <span>{t("label.noTag")}</span>
       </span>
     )

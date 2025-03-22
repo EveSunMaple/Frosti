@@ -28,7 +28,7 @@ const displayDate = blog.data.pubDate ? dayjs(blog.data.pubDate).format(DATE_FOR
 
 <BaseLayout title={blog.data.title} image={blog.data.image} headings={headings} showTOC={true}>
   <!-- Unified Article Card -->
-  <Card class="overflow-hidden mb-8">
+  <Card class="overflow-hidden">
     {
       blog.data.image ? (
         <div class="relative">
@@ -57,7 +57,7 @@ const displayDate = blog.data.pubDate ? dayjs(blog.data.pubDate).format(DATE_FOR
                   tabindex="0"
                   class="group btn btn-sm px-2 bg-black/60 backdrop-blur-md hover:bg-black/80 border border-white/40 text-white shadow-lg rounded-full flex items-center gap-0 transition-all duration-300 ease-in-out"
                 >
-                  <Icon name="ri:information-line" class="w-4 h-4 flex-shrink-0" />
+                  <Icon name="lucide:info" class="w-4 h-4 flex-shrink-0" />
                   <span class="w-0 overflow-hidden group-hover:w-20 transition-all duration-300 text-xs whitespace-nowrap">
                     {t("label.learnMore")}
                   </span>

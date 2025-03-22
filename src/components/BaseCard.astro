@@ -1,70 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import type { PostData } from "@interfaces/data";
-const { title, image, word, time } = Astro.props as PostData;
+import Card from "@components/temple/Card.astro";
+const { title, image } = Astro.props as PostData;
 ---
 
-<style>
-  .image-container {
-    overflow: hidden;
-    transition: max-height 1.5s ease;
-  }
-  .blog-container {
-    transition: width 1.5s ease;
-  }
-  @keyframes expand {
-    from {
-      width: 75%;
-    }
-    to {
-      width: 100%;
-    }
-  }
-  .open {
-    animation: expand 0.5s ease forwards;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .image-container,
-    .blog-container {
-      transition: none;
-    }
-  }
-</style>
-
-<div class="relative bg-transparent overflow-hidden rounded-xl">
-  {
-    word && time ? (
-      <>
-        <div class="join-item image-container" id="imageContainer" style="max-height: 0px;">
-          {image && <Image src={image} width="1920" height="1080" alt={title} loading="eager" />}
-        </div>
-        <div
-          class="relative join-item blog-container w-3/4 h-full p-6 lg:p-8 bg-base-100 z-10 transition"
-          id="postContainer"
-        >
-          <slot />
-        </div>
-        {image && (
-          <Image
-            id="bgImage"
-            src={image}
-            width="1920"
-            height="1080"
-            alt={title}
-            loading="eager"
-            class="absolute top-0 right-0 object-cover h-full w-1/4 z-0"
-          />
-        )}
-      </>
-    ) : (
-      <>
-        <div class="join-item">
-          {image && <Image src={image} width="1920" height="1080" alt={title} loading="eager" />}
-        </div>
-        <div class="join-item w-full h-full p-6 lg:p-8 bg-base-100 transition">
-          <slot />
-        </div>
-      </>
-    )
-  }
-</div>
+<Card>
+  <div id="image-container">
+    {image && <Image src={image} width="1920" height="1080" alt={title} loading="eager" />}
+  </div>
+  <div class="p-4 sm:p-6">
+    <slot />
+  </div>
+</Card>

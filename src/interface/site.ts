@@ -53,9 +53,14 @@ export interface TranslationLabel {
   noTag: string;
   tagCard: string;
   tagPage: string;
+  totalTags: string;
   noCategory: string;
   categoryCard: string;
   categoryPage: string;
+  totalCategories: string;
+  noPosts: string;
+  archivePage: string;
+  totalPosts: string;
   link: string;
   prevPage: string;
   nextPage: string;
@@ -64,6 +69,17 @@ export interface TranslationLabel {
   share: string;
   shareCard: string;
   close: string;
+  learnMore: string;
+  allTags: string;
+  allCategories: string;
+  post: string;
+  posts: string;
+  tagDescription: string;
+  categoryDescription: string;
+  tagsPageDescription: string;
+  categoriesPageDescription: string;
+  archivesPageDescription: string;
+  backToBlog: string;
 }
 
 export interface LanguageTranslation {
@@ -77,5 +93,4 @@ export interface Translations {
 export interface Config {
   site: SiteConfig;
   user: UserConfig;
-  translations: Translations;
 }

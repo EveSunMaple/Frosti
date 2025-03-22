@@ -1,12 +1,16 @@
-import type { Config } from "./interface/site";
+import type { Config } from "@interfaces/site";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import yaml from "js-yaml";
 
 // 配置文件路径
 const configPath = path.resolve("frosti.config.yaml");
+// 翻译文件路径
+const translationsPath = path.resolve("src/i18n/translations.yaml");
 // 读取并解析 YAML 文件
 const config = yaml.load(fs.readFileSync(configPath, "utf8")) as Config;
+// 读取并解析翻译文件
+const translationsConfig = yaml.load(fs.readFileSync(translationsPath, "utf8")) as Record<string, any>;
 
 // 网站基本信息
 export const SITE_TAB = config.site.tab;
@@ -33,7 +37,7 @@ export const USER_FOOTER_SOCIAL_ICONS = config.user.footer.social;
 export const SITE_MENU = config.site.menu;
 
 // 多语言文本配置
-export const TRANSLATIONS = config.translations;
+export const TRANSLATIONS = translationsConfig;
 
 // 获取当前语言的翻译文本的函数
 export function t(key: string): string {
