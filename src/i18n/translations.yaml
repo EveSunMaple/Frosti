@@ -34,6 +34,14 @@ en:
     searchPageDescription: Search for articles across the blog
     search: Search
     searchPlaceholder: Type to search...
+    404title: Page Not Found
+    404description: "Looks like you've ventured into the unknown. The page you're looking for doesn't exist or has been moved to another dimension."
+    404backHome: Back to Home
+    404goBack: Go Back
+    404youMightLike: You might be interested in
+    404exploreBlog: Explore our blog
+    404browseArchives: Browse archives
+    404searchContent: Search content
 zh:
   label:
     noTag: 未分配标签
@@ -70,3 +78,11 @@ zh:
     searchPageDescription: 搜索博客中的所有文章
     search: 搜索
     searchPlaceholder: 输入关键词搜索...
+    404title: 页面未找到
+    404description: 看起来您已经进入了未知领域。您查找的页面不存在或已被转移到另一个维度。
+    404backHome: 返回首页
+    404goBack: 返回上页
+    404youMightLike: 您可能对以下内容感兴趣
+    404exploreBlog: 浏览我们的博客
+    404browseArchives: 浏览归档
+    404searchContent: 搜索内容

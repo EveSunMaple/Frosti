@@ -133,7 +133,7 @@ html {
   }
 
   &-inner {
-    @apply rounded-2xl overflow-hidden bg-base-100 shadow-md border border-base-300/80;
+    @apply rounded-2xl overflow-hidden bg-base-100 shadow-md border border-base-300/80 transition-transform duration-300 ease-in-out;
 
     &:hover {
       @apply -translate-y-1 shadow-lg;

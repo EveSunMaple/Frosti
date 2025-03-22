@@ -1,0 +1,83 @@
+---
+export interface FriendCardProps {
+  name: string;
+  avatar: string;
+  description: string;
+  url: string;
+  type?: "friend" | "tech" | "contributor";
+}
+
+const { name, avatar, description, url, type = "friend" } = Astro.props as FriendCardProps;
+
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+// Define type-based styling
+const typeConfig = {
+  friend: {
+    bgClass: "bg-gradient-to-br from-primary/20 to-base-100",
+    iconName: "lucide:users",
+    borderClass: "border-primary/30",
+  },
+  tech: {
+    bgClass: "bg-gradient-to-br from-secondary/20 to-base-100",
+    iconName: "lucide:code-2",
+    borderClass: "border-secondary/30",
+  },
+  contributor: {
+    bgClass: "bg-gradient-to-br from-accent/20 to-base-100",
+    iconName: "lucide:git-pull-request",
+    borderClass: "border-accent/30",
+  },
+};
+
+const { bgClass, iconName, borderClass } = typeConfig[type];
+---
+
+<div
+  class={`card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1.5 border ${borderClass} overflow-hidden animate-fade-in-up`}
+>
+  <a href={url} target="_blank" rel="noopener noreferrer">
+    <div class={`${bgClass} p-4 flex flex-col items-center`}>
+      <div class="avatar mb-3">
+        <div class="w-16 h-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden">
+          {
+            avatar ? (
+              <Image src={avatar} width={64} height={64} format="webp" alt={name} loading="lazy" class="object-cover" />
+            ) : (
+              <div class="flex items-center justify-center w-full h-full bg-primary">
+                <span class="text-xl font-bold text-primary-content">{name.charAt(0)}</span>
+              </div>
+            )
+          }
+        </div>
+      </div>
+      <h3 class="font-bold text-center">{name}</h3>
+      <div class="divider my-1"></div>
+      <p class="text-sm text-center text-base-content/70 line-clamp-2">{description}</p>
+    </div>
+    <div class="card-footer p-2 flex justify-center border-t border-base-200">
+      <div class="flex items-center gap-1 text-primary text-xs">
+        <Icon name={iconName} class="w-3.5 h-3.5" />
+        <span>Visit</span>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out forwards;
+  }
+</style>

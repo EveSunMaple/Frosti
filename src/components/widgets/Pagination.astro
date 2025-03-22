@@ -33,7 +33,9 @@ const { page, totalPages, pageLinks, baseUrl } = Astro.props;
           )}
         </>
       ) : (
-        pageLinks.active.map((link) => <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} />)
+        pageLinks.active.map((link) => (
+          <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} isOnly={totalPages === 1} />
+        ))
       )
     }
   </div>

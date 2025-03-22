@@ -4,9 +4,10 @@ interface Props {
   current: number;
   baseUrl: string;
   isActive?: boolean;
+  isOnly?: boolean;
 }
 
-const { number, current, baseUrl } = Astro.props;
+const { number, current, baseUrl, isOnly = false } = Astro.props;
 const href = number == 1 ? baseUrl : `${baseUrl}/${number}`;
 ---
 
@@ -14,7 +15,7 @@ const href = number == 1 ? baseUrl : `${baseUrl}/${number}`;
   href={href}
   title={`Page ${number}`}
   aria-label={`Page ${number}`}
-  class:list={["join-item btn bg-base-100", number === current && "btn-active"]}
+  class:list={["join-item btn bg-base-100", number === current && "btn-active", isOnly && "rounded-btn"]}
 >
   {number}
 </a>

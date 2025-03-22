@@ -1,0 +1,107 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import MainCard from "@/components/MainCard.astro";
+import GitHubStats from "@/components/mdx/GitHubStats.astro";
+import RepositoryCard from "@/components/mdx/RepositoryCard.astro";
+---
+
+<BaseLayout title="Projects - GitHub Repositories">
+  <MainCard
+    title="Projects"
+    description="A showcase of my open-source projects and contributions on GitHub."
+    textOverlay="PROJECTS"
+    infoIcon="lucide:code-2"
+  >
+    <!-- Featured Projects -->
+    <section class="py-4">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <Icon name="lucide:star" class="w-6 h-6 text-primary" />
+        <span>Featured Projects</span>
+      </h2>
+
+      <GitHubStats username="EveSunMaple" repositoryName="Frosti" showLanguages={true} showContributors={true} />
+    </section>
+
+    <!-- My Repositories -->
+    <section class="py-4">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <Icon name="lucide:folder" class="w-6 h-6 text-primary" />
+        <span>My Repositories</span>
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <RepositoryCard repo="EveSunMaple/Frosti" isPinned={true} />
+        <RepositoryCard repo="EveSunMaple/astion-static" />
+        <RepositoryCard repo="EveSunMaple/astro-update-theme" />
+        <RepositoryCard repo="EveSunMaple/Word-testing-application" />
+        <RepositoryCard repo="EveSunMaple/Smooth-Snake-Game" />
+        <RepositoryCard repo="EveSunMaple/InfinitySky" />
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <a
+          href="https://github.com/EveSunMaple?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-outline gap-2"
+        >
+          <Icon name="lucide:github" class="w-5 h-5" />
+          <span>View More on GitHub</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Open Source Contributions -->
+    <section class="py-4">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <Icon name="lucide:git-pull-request" class="w-6 h-6 text-primary" />
+        <span>Open Source Contributions</span>
+      </h2>
+
+      <div class="card bg-base-200 p-6">
+        <ul class="space-y-6">
+          {
+            [
+              {
+                project: "Astro",
+                description: "Contributed to performance improvements and bug fixes",
+                url: "https://github.com/withastro/astro",
+              },
+              {
+                project: "TailwindCSS",
+                description: "Added new utility classes and documentation improvements",
+                url: "https://github.com/tailwindlabs/tailwindcss",
+              },
+              {
+                project: "DaisyUI",
+                description: "Contributed component enhancements and theme improvements",
+                url: "https://github.com/saadeghi/daisyui",
+              },
+            ].map((contrib) => (
+              <li class="flex items-start gap-4">
+                <div class="flex-shrink-0 bg-base-300 p-2 rounded-full">
+                  <Icon name="lucide:git-commit" class="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold">
+                    <a
+                      href={contrib.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="hover:text-primary transition-colors flex items-center gap-1"
+                    >
+                      {contrib.project}
+                      <Icon name="lucide:external-link" class="w-4 h-4" />
+                    </a>
+                  </h3>
+                  <p class="text-base-content/80">{contrib.description}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  </MainCard>
+</BaseLayout>
