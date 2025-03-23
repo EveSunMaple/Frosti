@@ -101,47 +101,53 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
           <h3 class="text-xl font-bold mb-4">Get started in three simple steps:</h3>
 
           <ol class="space-y-6 mb-6">
-            <li class="flex gap-4 items-start">
-              <div
-                class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
-              >
-                1
-              </div>
-              <div class="w-full">
+            <li class="relative flex flex-col gap-4 items-start">
+              <div class="flex gap-4 items-center">
+                <div
+                  class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
+                >
+                  1
+                </div>
                 <h4 class="font-bold">Clone the repository</h4>
+              </div>
+              <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Use Git to clone the Frosti repository to your local machine:</p>
                 <div class="mockup-code text-sm mb-2">
-                  <pre><code>git clone https://github.com/EveSunMaple/Frosti.git my-blog</code></pre>
+                  <pre><code>git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti</code></pre>
                 </div>
               </div>
             </li>
 
-            <li class="flex gap-4 items-start">
-              <div
-                class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
-              >
-                2
-              </div>
-              <div class="w-full">
+            <li class="relative flex flex-col gap-4 items-start">
+              <div class="flex gap-4 items-center">
+                <div
+                  class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
+                >
+                  2
+                </div>
                 <h4 class="font-bold">Install dependencies</h4>
+              </div>
+              <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Navigate to the project directory and install dependencies:</p>
                 <div class="mockup-code text-sm mb-2">
-                  <pre><code>cd my-blog && npm install</code></pre>
+                  <pre><code>cd Frosti && npm install</code></pre>
                 </div>
               </div>
             </li>
 
-            <li class="flex gap-4 items-start">
-              <div
-                class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
-              >
-                3
-              </div>
-              <div class="w-full">
+            <li class="relative flex flex-col gap-4 items-start">
+              <div class="flex gap-4 items-center">
+                <div
+                  class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
+                >
+                  3
+                </div>
                 <h4 class="font-bold">Start the development server</h4>
+              </div>
+              <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Launch the local development server to see your blog:</p>
                 <div class="mockup-code text-sm mb-2">
-                  <pre><code>npm run dev</code></pre>
+                  <pre><code>npm run build && npm run dev</code></pre>
                 </div>
                 <p class="text-base-content/70">
                   Open your browser and navigate to <code class="bg-base-300 px-2 py-1 rounded"

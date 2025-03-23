@@ -63,7 +63,7 @@ site:
 user:
   name: EveSunMaple # 用户名
   site: "https://frosti.saroprock.com" # 用户的网站链接
-  avatar: /profile.webp # 用户头像路径
+  avatar: /profile.png # 用户头像路径
   sidebar: # 侧边栏配置
     social:
       - href: "https://afdian.com/a/saroprock" # 链接
