@@ -8,7 +8,10 @@ import Card from "@components/temple/Card.astro";
 import CardGroup from "@components/temple/CardGroup.astro";
 
 // Get all blog posts
-const allPosts = await getCollection("blog");
+const allBlogPosts = await getCollection("blog");
+
+// Filter out draft posts in production mode
+const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
 
 // Extract all tags and count their occurrences
 const tagMap = new Map();

@@ -11,7 +11,10 @@ import { DATE_FORMAT } from "@config";
 import type { CollectionEntry } from "astro:content";
 
 // Get all blog posts
-const allPosts = await getCollection("blog");
+const allBlogPosts = await getCollection("blog");
+
+// Filter out draft posts in production mode
+const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
 
 // Extract all categories and group posts by category
 const categoryMap = new Map<string, CollectionEntry<"blog">[]>();
