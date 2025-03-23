@@ -7,6 +7,7 @@ import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astr
 import Header from "@components/Header.astro";
 import Sidebar from "@components/Sidebar.astro";
 import Footer from "@components/Footer.astro";
+import Navbar from "@components/Navbar.astro";
 
 const { title, image, headings = [], showTOC = false } = Astro.props;
 ---
@@ -51,9 +52,12 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
     </script>
   </head>
   <body>
+    <!-- Mobile Navbar - Hidden on desktop -->
+    <Navbar />
+
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4">
-        <main class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2">
+        <main class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2 mt-16 md:mt-0">
           <div class="flex flex-col gap-4">
             <slot />
             <Footer />

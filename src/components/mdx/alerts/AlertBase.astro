@@ -1,10 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-
-interface Props {
-  type: "info" | "success" | "warning" | "error";
-  icon: string;
-}
+import type { AlertBaseProps } from "@interfaces/data";
 
 const { type, icon } = Astro.props;
 ---

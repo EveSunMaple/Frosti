@@ -25,6 +25,9 @@ const {
   headerClass = "",
   extraClasses = "",
 } = Astro.props as MainCardProps;
+
+// Create a more descriptive label for the button
+const accessibleHelpText = `${helpText}: ${title}`;
 ---
 
 <Card class={`overflow-hidden ${extraClasses}`}>
@@ -70,6 +73,7 @@ const {
           <div class="dropdown dropdown-top dropdown-end dropdown-hover">
             <label
               tabindex="0"
+              aria-label={accessibleHelpText}
               class="group btn btn-sm px-2 bg-black/60 backdrop-blur-md hover:bg-black/80 border border-white/40 text-white shadow-lg rounded-full flex items-center gap-0 transition-all duration-300 ease-in-out"
             >
               <Icon name={infoIcon} class="w-4 h-4 flex-shrink-0" />

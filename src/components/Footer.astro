@@ -27,7 +27,7 @@ import { USER_NAME, USER_SITE, USER_FOOTER_SOCIAL_ICONS } from "@config";
       </p>
     </aside>
     <nav>
-      <h6 class="footer-title">Social</h6>
+      <span class="footer-title">Social</span>
       <div class="grid grid-flow-col gap-4">
         {
           USER_FOOTER_SOCIAL_ICONS.map((icon) => (
@@ -38,6 +38,11 @@ import { USER_NAME, USER_SITE, USER_FOOTER_SOCIAL_ICONS } from "@config";
             </div>
           ))
         }
+        <div class="tooltip" data-tip="RSS Feed">
+          <a tabindex="0" href="/rss.xml" aria-label="RSS Feed">
+            <Icon name="ri:rss-line" class="text-2xl md:text-xl" />
+          </a>
+        </div>
       </div>
     </nav>
   </footer>

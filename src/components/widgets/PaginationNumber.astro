@@ -1,13 +1,7 @@
 ---
-interface Props {
-  number: string | number;
-  current: number;
-  baseUrl: string;
-  isActive?: boolean;
-  isOnly?: boolean;
-}
+import type { PaginationNumberProps } from "@interfaces/data";
 
-const { number, current, baseUrl, isOnly = false } = Astro.props;
+const { number, current, baseUrl, isOnly = false } = Astro.props as PaginationNumberProps;
 const href = number == 1 ? baseUrl : `${baseUrl}/${number}`;
 ---
 

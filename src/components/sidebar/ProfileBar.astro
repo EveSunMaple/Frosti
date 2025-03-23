@@ -1,5 +1,5 @@
 ---
-import { SITE_MENU, USER_AVATAR, USER_SIDEBAR_SOCIAL_ICONS, USER_NAME, USER_SITE } from "../../config";
+import { SITE_MENU, USER_AVATAR, USER_SIDEBAR_SOCIAL_ICONS } from "../../config";
 import { Icon } from "astro-icon/components";
 import Card from "../temple/Card.astro";
 import { Image } from "astro:assets";
@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
         loading="eager"
       />
     </div>
-    <ul class="menu bg-transparent w-full m-0 p-0 flex flex-col items-center lg:items-start">
+    <ul class="menu bg-transparent w-full m-0 p-0 hidden md:flex flex-col items-center lg:items-start">
       {
         SITE_MENU.map((item) => (
           <li class="w-full relative group">
