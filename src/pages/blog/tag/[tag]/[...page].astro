@@ -10,7 +10,10 @@ import { t } from "@config";
 import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const all_posts = await getCollection("blog");
+  const all_blog_posts = await getCollection("blog");
+
+  // Filter out draft posts in production mode
+  const all_posts = import.meta.env.PROD ? all_blog_posts.filter((post) => !post.data.draft) : all_blog_posts;
 
   const all_tags = [...new Set(all_posts.flatMap((blog: any) => blog.data.tags || []))];
 
