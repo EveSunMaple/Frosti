@@ -1,28 +1,34 @@
 ---
-import type { Post, Page } from "../../types";
-import EnvelopeCard from "../../components/EnvelopeCard.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import BaseCard from "../../components/BaseCard.astro";
-import Pagination from "../../widget/Pagination.astro";
+import type { Post, Page } from "@interfaces/data";
+import PostCard from "@components/PostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Pagination from "@components/widgets/Pagination.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
 import { getCollection } from "astro:content";
-import Search from "astro-pagefind/components/Search";
+import { Icon } from "astro-icon/components";
+import { t } from "@config";
+import BaseCard from "@components/BaseCard.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const posts = await getCollection("blog");
-  const topPosts = posts.filter((post) => post.data.badge === "Pin");
-  const otherPosts = posts.filter((post) => post.data.badge !== "Pin");
+  const allPosts = await getCollection("blog");
 
-  topPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  otherPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  // Filter out draft posts in production mode
+  const posts = import.meta.env.PROD ? allPosts.filter((post) => !post.data.draft) : allPosts;
+
+  const topPosts = posts.filter((blog: any) => blog.data.badge === "Pin");
+  const otherPosts = posts.filter((blog: any) => blog.data.badge !== "Pin");
+
+  topPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  otherPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   const sortedPosts = [...topPosts, ...otherPosts];
 
   const postsWithStats = await Promise.all(
-    sortedPosts.map(async (post) => {
-      const { remarkPluginFrontmatter } = await post.render();
+    sortedPosts.map(async (blog) => {
+      const { remarkPluginFrontmatter } = await blog.render();
 
       return {
-        ...post,
+        ...blog,
         remarkPluginFrontmatter: {
           readingTime: remarkPluginFrontmatter.readingTime,
           totalCharCount: remarkPluginFrontmatter.totalCharCount,
@@ -65,25 +71,99 @@ const pageLinks = generatePageLinks(totalPages);
 ---
 
 <BaseLayout title="Blog">
-  <BaseCard title="search">
-    <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
-  </BaseCard>
-  {
-    page.data.map((post: Post) => (
-      <EnvelopeCard
-        title={post.data.title}
-        image={post.data.image}
-        desc={post.data.description}
-        url={"/blog/" + post.slug}
-        pubDate={post.data.pubDate}
-        badge={post.data.badge}
-        categories={post.data.categories}
-        tags={post.data.tags}
-        word={post.remarkPluginFrontmatter.totalCharCount}
-        time={post.remarkPluginFrontmatter.readingTime}
-        target="_self"
-      />
-    ))
-  }
+  <!-- Blog Navigation Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Archives Card -->
+    <a
+      href="/blog/archives"
+      class="card bg-base-100 shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-1"
+    >
+      <div class="card-body p-4">
+        <div class="flex items-center gap-3">
+          <div class="rounded-full bg-accent/10 p-3">
+            <Icon name="lucide:archive" class="w-6 h-6 text-accent" />
+          </div>
+          <div>
+            <h2 class="card-title text-lg">{t("label.archivePage")}</h2>
+            <p class="text-sm opacity-75">{t("label.archivesPageDescription")}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Categories Card -->
+    <a
+      href="/blog/categories"
+      class="card bg-base-100 shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-1"
+    >
+      <div class="card-body p-4">
+        <div class="flex items-center gap-3">
+          <div class="rounded-full bg-primary/10 p-3">
+            <Icon name="lucide:folder" class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h2 class="card-title text-lg">{t("label.categoryPage")}</h2>
+            <p class="text-sm opacity-75">{t("label.categoriesPageDescription")}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Tags Card -->
+    <a
+      href="/blog/tags"
+      class="card bg-base-100 shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-1"
+    >
+      <div class="card-body p-4">
+        <div class="flex items-center gap-3">
+          <div class="rounded-full bg-secondary/10 p-3">
+            <Icon name="lucide:tag" class="w-6 h-6 text-secondary" />
+          </div>
+          <div>
+            <h2 class="card-title text-lg">{t("label.tagPage")}</h2>
+            <p class="text-sm opacity-75">{t("label.tagsPageDescription")}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Search Card -->
+    <a
+      href="/blog/search"
+      class="card bg-base-100 shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-1"
+    >
+      <div class="card-body p-4">
+        <div class="flex items-center gap-3">
+          <div class="rounded-full bg-info/10 p-3">
+            <Icon name="lucide:search" class="w-6 h-6 text-info" />
+          </div>
+          <div>
+            <h2 class="card-title text-lg">{t("label.searchPage")}</h2>
+            <p class="text-sm opacity-75">{t("label.searchPageDescription")}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Blog Post List -->
+  <CardGroup cols="1" gap="6">
+    {
+      page.data.map((blog: Post) => (
+        <PostCard
+          title={blog.data.title}
+          image={blog.data.image}
+          description={blog.data.description}
+          url={"/blog/" + blog.slug}
+          pubDate={blog.data.pubDate}
+          badge={blog.data.badge}
+          categories={blog.data.categories}
+          tags={blog.data.tags}
+          word={blog.remarkPluginFrontmatter.totalCharCount}
+          time={blog.remarkPluginFrontmatter.readingTime}
+        />
+      ))
+    }
+  </CardGroup>
   <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog`} />
 </BaseLayout>

@@ -8,8 +8,8 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<details class="group collapse bg-base-200 rounded-2xl border border-base-300 fade-in-up overflow-hidden">
-  <summary class="collapse-title text-xl font-medium cursor-pointer hover:bg-base-300/50 transition-colors">
+<details class="not-prose group collapse bg-base-200 rounded-2xl border border-base-300 overflow-hidden">
+  <summary class="collapse-title text-xl font-medium cursor-pointer hover:bg-base-200 transition-colors">
     <div class="flex items-center justify-between">
       {title}
       <Icon name="lucide:chevron-down" class="shrink-0 w-5 h-5 transform transition-transform group-open:rotate-180" />

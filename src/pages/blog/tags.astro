@@ -1,0 +1,107 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseCard from "@components/BaseCard.astro";
+import { getCollection } from "astro:content";
+import { t } from "@config";
+import { Icon } from "astro-icon/components";
+import Card from "@components/temple/Card.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
+
+// Get all blog posts
+const allBlogPosts = await getCollection("blog");
+
+// Filter out draft posts in production mode
+const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
+
+// Extract all tags and count their occurrences
+const tagMap = new Map();
+allPosts.forEach((post) => {
+  if (post.data.tags) {
+    post.data.tags.forEach((tag) => {
+      if (tagMap.has(tag)) {
+        tagMap.set(tag, tagMap.get(tag) + 1);
+      } else {
+        tagMap.set(tag, 1);
+      }
+    });
+  }
+});
+
+// Convert map to array and sort by count (descending)
+const tagEntries = Array.from(tagMap.entries());
+tagEntries.sort((a, b) => b[1] - a[1]);
+
+// Function to determine font size based on count
+const getFontSize = (count: number, max: number, min: number): number => {
+  // Normalize count to a value between 0 and 1
+  const normalized = (count - min) / (max - min || 1);
+  // Map to font sizes between 0.8rem and 2rem
+  return 0.9 + normalized * 1.1;
+};
+
+// Function to get tag color class based on count
+const getColorClass = (count: number, max: number): string => {
+  // Create color classes based on frequency
+  const ratio = count / max;
+  if (ratio > 0.8) return "tag-high";
+  if (ratio > 0.6) return "tag-medium-high";
+  if (ratio > 0.4) return "tag-medium";
+  if (ratio > 0.2) return "tag-medium-low";
+  return "tag-low";
+};
+
+// Find max and min counts for scaling
+const maxCount = Math.max(...tagMap.values());
+const minCount = Math.min(...tagMap.values());
+
+// Calculate total tags
+const totalTags = tagMap.size;
+---
+
+<BaseLayout title={t("label.tagPage")}>
+  <BaseCard title={t("label.tagPage")}>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="flex items-center gap-2">
+        <Icon name="lucide:tag" class="w-6 h-6 text-secondary" />
+        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{t("label.tagPage")}</h1>
+        <div class="badge badge-secondary">{totalTags} {t("label.totalTags")}</div>
+      </div>
+      <a href="/blog" class="btn btn-outline btn-sm gap-2">
+        <Icon name="lucide:book-open" class="w-4 h-4" />
+        <span>{t("label.backToBlog")}</span>
+      </a>
+    </div>
+    <div class="divider my-2"></div>
+    <p class="text-sm opacity-75">{t("label.tagsPageDescription")}</p>
+  </BaseCard>
+  <BaseCard title={t("label.tagPage")}>
+    <div class="tags-container">
+      {
+        tagEntries.length > 0 ? (
+          <div class="tags-cloud">
+            {tagEntries.map(([tag, count], index) => (
+              <a
+                href={`/blog/tag/${tag}`}
+                class={`tags-item ${getColorClass(count, maxCount)}`}
+                style={`font-size: ${getFontSize(count, maxCount, minCount)}rem;`}
+                data-count={count}
+                data-index={index}
+              >
+                <span class="tags-content">
+                  <Icon name="lucide:tag" />
+                  <span class="tags-text">{tag}</span>
+                  <span class="tags-count">{count}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <Icon name="ri:emotion-sad-line" class="empty-icon" />
+            <p class="empty-text">{t("label.noTag")}</p>
+          </div>
+        )
+      }
+    </div>
+  </BaseCard>
+</BaseLayout>

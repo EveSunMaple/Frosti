@@ -1,0 +1,12 @@
+---
+import { Icon } from "astro-icon/components";
+import type { PaginationArrowProps } from "@interfaces/data";
+
+const { url, direction, label } = Astro.props as PaginationArrowProps;
+---
+
+<a href={url || "#"} class:list={["btn bg-base-100 shadow-xl", !url && "btn-disabled"]}>
+  {direction === "prev" && <Icon name="ri:arrow-left-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
+  <span class="hidden lg:inline">{label}</span>
+  {direction === "next" && <Icon name="ri:arrow-right-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
+</a>

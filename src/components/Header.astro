@@ -1,0 +1,18 @@
+---
+import "../styles/global.scss";
+import type { HeaderProps } from "@interfaces/data";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, favicon, image } = Astro.props as HeaderProps;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image" href={favicon} />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{image && <meta property="og:image" content={image} />}
+<link rel="canonical" href={canonicalURL.toString()} />

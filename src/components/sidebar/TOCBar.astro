@@ -1,0 +1,296 @@
+---
+import { Icon } from "astro-icon/components";
+import Card from "../temple/Card.astro";
+import type { TOCBarProps, Heading } from "@interfaces/data";
+
+// This prop indicates whether to render the TOC
+// (useful to conditionally show on certain pages)
+const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
+---
+
+{
+  showTOC && headings.length > 0 && (
+    <div id="toc-container" class="mt-4 z-10 md:max-h-[calc(100vh-2rem)]">
+      <Card>
+        <div class="p-4">
+          <nav class="toc-nav max-h-[calc(100vh-200px)] overflow-y-auto scrollbar-none relative">
+            {/* Animated active indicator - now moved outside the ul structure */}
+            <div
+              id="active-indicator"
+              class="absolute bg-primary/10 rounded-lg opacity-0 shadow-sm pointer-events-none z-0"
+            />
+            <ul class="space-y-0 relative z-10">
+              {headings.map((heading, index) => (
+                <li>
+                  <a
+                    href={`#heading-${index}`}
+                    data-heading-slug={heading.slug}
+                    data-heading-depth={heading.depth}
+                    data-index={index}
+                    class={`toc-link relative flex items-center py-2 px-2 rounded-lg ${heading.depth === 1 ? "font-medium" : ""}`}
+                    style={`padding-left: ${12 + (heading.depth - 1) * 16}px;`}
+                  >
+                    <Icon
+                      name="tabler:chevron-right"
+                      class="icon-indicator absolute left-1 opacity-0 transition-all duration-200 w-4 h-4 text-primary"
+                    />
+                    <span class="link-text transition-transform duration-200">{heading.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </Card>
+    </div>
+  )
+}
+
+<style>
+  .toc-link:hover .link-text {
+    transform: translateX(2px);
+  }
+
+  .toc-link.active {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .toc-link.active .icon-indicator {
+    opacity: 1;
+    transform: translateX(1px);
+  }
+
+  .toc-link:hover .icon-indicator {
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  // Highlight active heading in TOC and manage the active indicator
+  document.addEventListener("astro:page-load", () => {
+    // Cache DOM elements and reduce DOM queries
+    const tocNav = document.querySelector(".toc-nav") as HTMLElement;
+    const activeIndicator = document.getElementById("active-indicator") as HTMLElement;
+    const tocLinks = Array.from(document.querySelectorAll(".toc-nav a")) as HTMLAnchorElement[];
+
+    if (!tocNav || !activeIndicator || tocLinks.length === 0) return;
+
+    // Prepare headings once
+    const headings = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
+    if (headings.length === 0) return;
+
+    let activeLink: HTMLAnchorElement | null = null;
+    let disableObserverUpdates = false;
+    let resizeTimer: number | null = null;
+
+    // Update IDs only once at initialization
+    const headingIds = new Map<string, string>();
+    headings.forEach((heading, index) => {
+      const oldId = heading.getAttribute("id");
+      const newId = `heading-${index}`;
+
+      if (oldId && oldId !== newId) {
+        heading.setAttribute("id", newId);
+        headingIds.set(oldId, newId);
+
+        // Only update non-TOC links that point to this heading
+        document
+          .querySelectorAll(`a[href="#${oldId}"]:not(.toc-nav a)`)
+          .forEach((link) => link.setAttribute("href", `#${newId}`));
+      }
+    });
+
+    // Position the active indicator - optimized
+    function updateActiveIndicator(link: HTMLAnchorElement, animate = true): void {
+      if (!link) return;
+
+      const headingDepth = parseInt(link.getAttribute("data-heading-depth") || "1");
+
+      // Set the transition once
+      activeIndicator.style.transition = animate
+        ? "all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)"
+        : "opacity 0.3s ease-in-out";
+
+      // Batch style updates in a single frame
+      requestAnimationFrame(() => {
+        activeIndicator.style.top = `${link.offsetTop}px`;
+        activeIndicator.style.height = `${link.offsetHeight}px`;
+        activeIndicator.style.opacity = "1";
+        activeIndicator.style.left = `${(headingDepth - 1) * 16}px`;
+        activeIndicator.style.width = `calc(100% - ${(headingDepth - 1) * 16}px)`;
+      });
+    }
+
+    // Check if element is in viewport - optimized
+    function isElementInViewport(el: HTMLElement, container: HTMLElement): boolean {
+      const rect = el.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+
+      return rect.top >= containerRect.top && rect.bottom <= containerRect.bottom;
+    }
+
+    // Handle TOC scrolling - optimized
+    function scrollTOCToActiveItem(link: HTMLElement): void {
+      // Skip if link is already visible
+      if (isElementInViewport(link, tocNav)) return;
+
+      const tocLinkTop = link.offsetTop;
+      const navHeight = tocNav.clientHeight;
+      const scrollOffset = Math.max(0, tocLinkTop - navHeight / 2 + link.offsetHeight / 2);
+
+      tocNav.scrollTo({
+        top: scrollOffset,
+        behavior: "smooth",
+      });
+    }
+
+    // Update active state - consolidated function
+    function setActiveLink(link: HTMLAnchorElement): void {
+      if (activeLink === link) return;
+
+      // Remove active class from previous link
+      if (activeLink) {
+        activeLink.classList.remove("active");
+      }
+
+      // Set new active link
+      link.classList.add("active");
+      activeLink = link;
+      updateActiveIndicator(link);
+
+      // Only scroll if needed
+      if (!isElementInViewport(link, tocNav)) {
+        scrollTOCToActiveItem(link);
+      }
+    }
+
+    // Optimize click handler with event delegation
+    tocNav.addEventListener("click", (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest("a") as HTMLAnchorElement | null;
+      if (!link) return;
+
+      e.preventDefault();
+
+      const href = link.getAttribute("href") || "";
+      if (!href || !href.startsWith("#")) return;
+
+      const headingId = href.substring(1);
+      const targetHeading = document.getElementById(headingId);
+
+      if (targetHeading) {
+        // Disable observer updates temporarily
+        disableObserverUpdates = true;
+
+        // Update UI immediately
+        setActiveLink(link);
+
+        // Scroll to the heading
+        targetHeading.scrollIntoView({ behavior: "smooth" });
+
+        // Update URL hash without triggering scroll
+        history.pushState(null, "", href);
+
+        // Re-enable observer after navigation completes
+        setTimeout(() => {
+          disableObserverUpdates = false;
+        }, 1000);
+      }
+    });
+
+    // Throttled resize handler
+    window.addEventListener(
+      "resize",
+      () => {
+        if (resizeTimer) clearTimeout(resizeTimer);
+
+        resizeTimer = window.setTimeout(() => {
+          if (activeLink) {
+            updateActiveIndicator(activeLink, false);
+          }
+        }, 100);
+      },
+      { passive: true },
+    );
+
+    // Optimized intersection observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (disableObserverUpdates) return;
+
+        // Get visible headings
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+        if (visibleEntries.length === 0) return;
+
+        // Find the heading closest to top of viewport
+        let bestEntry = visibleEntries[0];
+        let minDistance = Infinity;
+
+        for (const entry of visibleEntries) {
+          const distance = Math.abs(entry.boundingClientRect.top);
+          if (distance < minDistance) {
+            minDistance = distance;
+            bestEntry = entry;
+          }
+        }
+
+        const id = bestEntry.target.getAttribute("id");
+        if (!id) return;
+
+        const tocLink = document.querySelector(`.toc-nav a[href="#${id}"]`) as HTMLAnchorElement | null;
+
+        if (tocLink && tocLink !== activeLink) {
+          setActiveLink(tocLink);
+        }
+      },
+      {
+        rootMargin: "-50px 0px -75% 0px",
+        threshold: [0, 0.25], // Reduced number of thresholds
+      },
+    );
+
+    // Observe headings
+    headings.forEach((heading) => observer.observe(heading));
+
+    // Initial setup
+    setTimeout(() => {
+      // Use hash if available, otherwise first heading
+      const hash = window.location.hash.substring(1);
+      const initialHeading = hash ? document.getElementById(hash) : headings[0];
+
+      if (initialHeading) {
+        const id = initialHeading.getAttribute("id");
+        if (!id) return;
+
+        const tocLink = document.querySelector(`.toc-nav a[href="#${id}"]`) as HTMLAnchorElement | null;
+
+        if (tocLink) {
+          setActiveLink(tocLink);
+        }
+      }
+    }, 200);
+
+    // Hash change handler - simplified
+    window.addEventListener("hashchange", () => {
+      if (disableObserverUpdates) return;
+
+      const hash = window.location.hash.substring(1);
+      if (!hash) return;
+
+      disableObserverUpdates = true;
+
+      const heading = document.getElementById(hash);
+      if (heading) {
+        const tocLink = document.querySelector(`.toc-nav a[href="#${hash}"]`) as HTMLAnchorElement | null;
+        if (tocLink) {
+          setActiveLink(tocLink);
+        }
+      }
+
+      setTimeout(() => {
+        disableObserverUpdates = false;
+      }, 1000);
+    });
+  });
+</script>

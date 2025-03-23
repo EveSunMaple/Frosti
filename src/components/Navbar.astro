@@ -1,19 +1,42 @@
 ---
 import { Icon } from "astro-icon/components";
-import Menu from "../components/NavbarMenu.astro";
-import ThemeButton from "../widget/ThemeButton.astro";
-import { SITE_TITLE } from "../consts";
+import ThemeToggle from "./widgets/ThemeToggle.astro";
+import { SITE_TITLE, SITE_MENU } from "../config";
+
+// Get current path to determine active link
+const currentPath = Astro.url.pathname;
+
+// Type safely process SITE_MENU before rendering
+type SubMenuItem = {
+  id: string;
+  text: string;
+  href: string;
+  svg: string;
+  target?: string;
+};
+
+type MenuItem = {
+  id: string;
+  text: string;
+  href: string;
+  svg: string;
+  target?: string;
+  subItems?: SubMenuItem[];
+};
+
+// Ensure the menu is properly typed
+const typedMenu = SITE_MENU as MenuItem[];
 ---
 
-<navbar
+<nav
   class="navbar fixed px-2 w-full transform transition-transform delay-300 duration-500 ease-in-out text-center z-50 bg-base-100 shadow-lg md:hidden"
   id="navbar"
 >
   <div class="navbar-start">
-    <label class="btn btn-ghost swap swap-rotate">
+    <label class="btn btn-circle btn-sm md:btn-md bg-base-100 swap swap-rotate">
       <input type="checkbox" id="menu-toggle" />
-      <Icon name="mdi:menu" class="swap-off w-8 h-8" />
-      <Icon name="mdi:close" class="swap-on w-8 h-8" />
+      <Icon name="lucide:menu" class="swap-off h-5 w-5" />
+      <Icon name="lucide:x" class="swap-on h-5 w-5" />
     </label>
   </div>
 
@@ -24,53 +47,93 @@ import { SITE_TITLE } from "../consts";
   </div>
 
   <div class="navbar-end">
-    <ThemeButton id="navbar-theme" className="w-auto" />
+    <ThemeToggle className="navbar-theme" />
   </div>
 
   <div
     id="header-menu"
-    class="absolute top-full left-0 w-full transform -translate-x-full transition-transform duration-300 ease-in-out"
+    class="absolute top-full left-0 w-full transform -translate-x-full transition-transform duration-300 ease-in-out bg-base-100 shadow-lg"
   >
-    <Menu />
+    <ul class="menu bg-transparent w-full p-2">
+      {
+        typedMenu.map((item) => (
+          <li class="w-full relative group">
+            {item.subItems ? (
+              <details open={currentPath.startsWith(item.href)}>
+                <summary class="flex items-center text-lg font-bold p-3 hover:bg-base-200 rounded-lg">
+                  <Icon name={item.svg} class="w-5 h-5 mr-2" />
+                  <span>{item.text}</span>
+                </summary>
+                <ul class="pl-4">
+                  {item.subItems.map((subItem) => (
+                    <li>
+                      <a
+                        class:list={[
+                          "flex items-center p-2 hover:bg-base-200 rounded-lg",
+                          currentPath === subItem.href && "bg-base-200",
+                        ]}
+                        href={subItem.href}
+                        target={subItem.target || "_self"}
+                      >
+                        <Icon name={subItem.svg} class="w-4 h-4 mr-2" />
+                        <span>{subItem.text}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ) : (
+              <a
+                class:list={[
+                  "flex items-center text-lg font-bold p-3 hover:bg-base-200 rounded-lg",
+                  currentPath === item.href && "bg-base-200",
+                ]}
+                href={item.href}
+                target={item.target || "_self"}
+              >
+                <Icon name={item.svg} class="w-5 h-5 mr-2" />
+                <span>{item.text}</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
   </div>
-</navbar>
-
-<style>
-  #header-menu.show {
-    opacity: 1;
-    transform: scale(1);
-  }
-</style>
+</nav>
 
 <script>
-  let lastScrollY = window.scrollY;
-  const navbar = document.getElementById("navbar") as HTMLElement;
-  const headerMenu = document.getElementById("header-menu") as HTMLElement;
-  const menuToggle = document.getElementById("menu-toggle") as HTMLInputElement;
+  document.addEventListener("astro:page-load", () => {
+    let lastScrollY = window.scrollY;
+    const navbar = document.getElementById("navbar");
+    const headerMenu = document.getElementById("header-menu");
+    const menuToggle = document.getElementById("menu-toggle") as HTMLInputElement | null;
 
-  // Toggle menu visibility
-  menuToggle?.addEventListener("change", () => {
-    if (headerMenu) {
+    if (!navbar || !headerMenu || !menuToggle) return;
+
+    // Toggle menu visibility
+    menuToggle.addEventListener("change", () => {
       if (menuToggle.checked) {
-        headerMenu.classList.add("show");
+        headerMenu.classList.remove("-translate-x-full");
+        headerMenu.classList.add("translate-x-0");
       } else {
-        headerMenu.classList.remove("show");
+        headerMenu.classList.add("-translate-x-full");
+        headerMenu.classList.remove("translate-x-0");
       }
-    }
-  });
+    });
 
-  function handleScroll() {
-    if (navbar) {
+    function handleScroll() {
+      if (!navbar || !headerMenu || !menuToggle) return;
+
       if (window.scrollY > lastScrollY && window.scrollY > 50) {
         navbar.classList.add("-translate-y-full", "duration-500");
         navbar.classList.remove("translate-y-0");
 
         // Close menu when hiding navbar
-        if (menuToggle) {
+        if (menuToggle.checked) {
           menuToggle.checked = false;
-        }
-        if (headerMenu) {
-          headerMenu.classList.remove("show");
+          headerMenu.classList.add("-translate-x-full");
+          headerMenu.classList.remove("translate-x-0");
         }
       } else if (window.scrollY < lastScrollY) {
         navbar.classList.remove("-translate-y-full");
@@ -79,35 +142,43 @@ import { SITE_TITLE } from "../consts";
 
       lastScrollY = window.scrollY;
     }
-  }
 
-  // Throttle scroll event for better performance
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        handleScroll();
-        ticking = false;
+    // Throttle scroll event for better performance
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (event) => {
+      if (!navbar || !headerMenu || !menuToggle) return;
+
+      const target = event.target as Node;
+      if (!navbar.contains(target) && headerMenu.classList.contains("translate-x-0")) {
+        menuToggle.checked = false;
+        headerMenu.classList.add("-translate-x-full");
+        headerMenu.classList.remove("translate-x-0");
+      }
+    });
+
+    // Close menu when clicking menu items
+    const menuItems = document.querySelectorAll("#header-menu a");
+    menuItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        if (!headerMenu || !menuToggle) return;
+
+        if (menuToggle.checked) {
+          menuToggle.checked = false;
+          headerMenu.classList.add("-translate-x-full");
+          headerMenu.classList.remove("translate-x-0");
+        }
       });
-      ticking = true;
-    }
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (event) => {
-    const target = event.target as Node;
-    if (!navbar?.contains(target) && headerMenu?.classList.contains("show")) {
-      menuToggle.checked = false;
-      headerMenu.classList.remove("show");
-    }
-  });
-
-  // Close menu when clicking menu items
-  const menuItems = document.querySelectorAll("#header-menu a");
-  menuItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuToggle.checked = false;
-      headerMenu?.classList.remove("show");
     });
   });
 </script>

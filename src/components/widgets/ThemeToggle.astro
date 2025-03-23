@@ -1,0 +1,100 @@
+---
+import { SITE_THEME } from "@config";
+import { Icon } from "astro-icon/components";
+import type { ThemeToggleProps } from "@interfaces/data";
+
+// Generate a unique ID for each component instance
+const uniqueId = `theme-toggle-${Math.random().toString(36).substring(2, 11)}`;
+
+const { className = "" } = Astro.props as ThemeToggleProps;
+---
+
+<button
+  id={uniqueId}
+  class:list={["btn btn-circle btn-sm md:btn-md bg-base-100 shadow-sm hover:scale-110", className]}
+  aria-label="Toggle theme"
+  data-theme-toggle
+>
+  <!-- Sun icon for dark mode (shown when dark theme is active) -->
+  <Icon name="lucide:sun" class="theme-toggle-icon h-5 w-5 sun-icon" />
+
+  <!-- Moon icon for light mode (shown when light theme is active) -->
+  <Icon name="lucide:moon" class="theme-toggle-icon h-5 w-5 moon-icon hidden" />
+</button>
+
+<script define:vars={{ SITE_THEME, uniqueId }}>
+  // Function to update icons based on current theme for a specific toggle button
+  const updateThemeIcons = (toggleButton, isDark) => {
+    if (!toggleButton) return;
+
+    const sunIcon = toggleButton.querySelector(".sun-icon");
+    const moonIcon = toggleButton.querySelector(".moon-icon");
+
+    if (sunIcon && moonIcon) {
+      if (isDark) {
+        sunIcon.classList.remove("hidden");
+        moonIcon.classList.add("hidden");
+      } else {
+        sunIcon.classList.add("hidden");
+        moonIcon.classList.remove("hidden");
+      }
+    }
+  };
+
+  // Apply correct icons on page load and navigation
+  document.addEventListener("astro:page-load", () => {
+    // Use the unique ID to get this specific toggle button
+    const themeToggle = document.getElementById(uniqueId);
+    if (!themeToggle) return;
+
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+
+    // Initialize icon state based on current theme
+    updateThemeIcons(themeToggle, currentTheme === SITE_THEME.dark);
+
+    // Toggle theme on click
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === SITE_THEME.light ? SITE_THEME.dark : SITE_THEME.light;
+
+      // Add animation class
+      themeToggle.classList.add("animate-spin-once");
+
+      // Set new theme
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+
+      // Update icons for all theme toggles on the page
+      const allToggles = document.querySelectorAll("[data-theme-toggle]");
+      allToggles.forEach((toggle) => {
+        updateThemeIcons(toggle, newTheme === SITE_THEME.dark);
+      });
+
+      // Remove animation class after animation completes
+      setTimeout(() => {
+        themeToggle.classList.remove("animate-spin-once");
+      }, 300);
+    });
+  });
+</script>
+
+<style>
+  @keyframes spin-once {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-once {
+    animation: spin-once 0.3s ease-in-out;
+  }
+
+  .theme-toggle-icon {
+    transition:
+      opacity 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+  }
+</style>

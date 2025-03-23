@@ -1,0 +1,15 @@
+---
+import type { PaginationNumberProps } from "@interfaces/data";
+
+const { number, current, baseUrl, isOnly = false } = Astro.props as PaginationNumberProps;
+const href = number == 1 ? baseUrl : `${baseUrl}/${number}`;
+---
+
+<a
+  href={href}
+  title={`Page ${number}`}
+  aria-label={`Page ${number}`}
+  class:list={["join-item btn bg-base-100", number === current && "btn-active", isOnly && "rounded-btn"]}
+>
+  {number}
+</a>

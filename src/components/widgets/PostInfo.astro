@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+import { t } from "@config";
+import type { PostData } from "@interfaces/data";
+const { pubDate, badge, word, time } = Astro.props as PostData;
+---
+
+<div class="flex flex-col sm:flex-row sm:justify-between gap-y-2 mb-4 text-xs sm:text-sm opacity-75">
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+    {
+      pubDate && (
+        <span class="flex items-center gap-1">
+          <Icon name="lucide:calendar" class="h-4 w-4 flex-shrink-0" />
+          <span class="truncate">{pubDate}</span>
+        </span>
+      )
+    }
+    {
+      badge && (
+        <span class="flex flex-wrap items-center gap-1">
+          <Icon name="lucide:bookmark" class="h-4 w-4 flex-shrink-0" />
+          <span class="truncate">{badge}</span>
+        </span>
+      )
+    }
+  </div>
+  <div class="flex flex-wrap items-center gap-1">
+    <Icon name="lucide:book-open" class="h-4 w-4 flex-shrink-0" />
+    <span class="truncate">{word} {t("label.wordCount")} · {time} {t("label.readTime")}</span>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import dayjs from "dayjs";
+import { DATE_FORMAT } from "@config";
+import type { PostData } from "@interfaces/data";
+import Heading from "./widgets/Heading.astro";
+import PostInfo from "./widgets/PostInfo.astro";
+import PostFilter from "./widgets/PostFilter.astro";
+import Card from "./temple/Card.astro";
+import { Icon } from "astro-icon/components";
+
+const {
+  title,
+  image,
+  pubDate,
+  description,
+  badge,
+  categories = [],
+  tags = [],
+  word = "0",
+  time = "0",
+  url = decodeURIComponent(Astro.url.toString()),
+} = Astro.props as PostData;
+
+const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
+---
+
+<Card class="overflow-hidden">
+  <div class="flex flex-col lg:flex-row">
+    <!-- Content Section -->
+    <div class="flex-1 p-6 overflow-hidden bg-base-100 lg:order-1 order-2 flex flex-col justify-between">
+      <div>
+        <PostInfo pubDate={displayDate} badge={badge} word={word} time={time} />
+        <Heading url={url} title={title}>{title}</Heading>
+        <p class="text-sm text-base-content/70 mb-4">{description}</p>
+      </div>
+      <PostFilter categories={categories} tags={tags} />
+    </div>
+
+    <!-- Image Section -->
+    {
+      image && (
+        <a href={url} class="relative lg:w-2/5 aspect-video lg:aspect-auto overflow-hidden lg:order-2 order-1 group">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 z-10 transition-all duration-300 flex items-center justify-center">
+            <Icon
+              name="lucide:arrow-right"
+              class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-2"
+            />
+          </div>
+          <Image
+            src={image}
+            alt={title}
+            width={800}
+            height={400}
+            format="webp"
+            loading="eager"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+        </a>
+      )
+    }
+  </div>
+</Card>

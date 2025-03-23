@@ -5,12 +5,12 @@ interface Props {
   title?: string;
 }
 
-const { headings, title = "Table of Contents" } = Astro.props;
+const { headings = [], title = "Table of Contents" } = Astro.props;
 ---
 
 <details
   id="toc-phone"
-  class="group w-full shadow-xl rounded-xl bg-base-100 overflow-hidden transition-transform duration-300 static md:hidden"
+  class="not-prose group w-full shadow-xl rounded-xl bg-base-100 overflow-hidden transition-transform duration-300 static md:hidden"
   open={false}
 >
   <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-base-200/50 transition-colors">

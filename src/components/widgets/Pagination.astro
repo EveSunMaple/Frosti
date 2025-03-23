@@ -1,0 +1,33 @@
+---
+import type { PaginationProps } from "@interfaces/data";
+import PaginationArrow from "./PaginationArrow.astro";
+import PaginationNumber from "./PaginationNumber.astro";
+import PaginationDropdown from "./PaginationDropdown.astro";
+import { t } from "@config";
+
+const { page, totalPages, pageLinks, baseUrl } = Astro.props as PaginationProps;
+---
+
+<div class="flex justify-between items-center w-full gap-2 order-4" transition:name="pagination">
+  <PaginationArrow direction="prev" url={page.url.prev} label={t("label.prevPage")} />
+  <div class="join">
+    {
+      totalPages > 3 ? (
+        <>
+          {pageLinks.active.map((link: string | number) =>
+            link === "..." ? (
+              <PaginationDropdown hiddenPages={pageLinks.hidden} current={page.current} baseUrl={baseUrl} />
+            ) : (
+              <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} />
+            ),
+          )}
+        </>
+      ) : (
+        pageLinks.active.map((link: string | number) => (
+          <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} isOnly={totalPages === 1} />
+        ))
+      )
+    }
+  </div>
+  <PaginationArrow direction="next" url={page.url.next} label={t("label.nextPage")} />
+</div>

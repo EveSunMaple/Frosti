@@ -1,0 +1,88 @@
+en:
+  label:
+    noTag: No tags assigned
+    tagCard: Tags
+    tagPage: Tag
+    totalTags: Total Tags
+    noCategory: No categories assigned
+    categoryCard: Categories
+    categoryPage: Category
+    totalCategories: Total Categories
+    noPosts: No posts available
+    archivePage: Archives
+    totalPosts: Total Posts
+    link: "Link: "
+    prevPage: Recent posts
+    nextPage: Older posts
+    wordCount: words
+    readTime: minutes
+    share: Share
+    shareCard: Share this article
+    close: Close
+    learnMore: Learn more
+    allTags: All Tags
+    allCategories: All Categories
+    post: post
+    posts: posts
+    tagDescription: Browse all articles with this tag
+    categoryDescription: Browse all articles in this category
+    tagsPageDescription: Explore all tags used across the blog
+    categoriesPageDescription: Explore all categories available on the blog
+    archivesPageDescription: Browse articles organized by date
+    backToBlog: Back to Blog
+    searchPage: Search
+    searchPageDescription: Search for articles across the blog
+    search: Search
+    searchPlaceholder: Type to search...
+    404title: Page Not Found
+    404description: "Looks like you've ventured into the unknown. The page you're looking for doesn't exist or has been moved to another dimension."
+    404backHome: Back to Home
+    404goBack: Go Back
+    404youMightLike: You might be interested in
+    404exploreBlog: Explore our blog
+    404browseArchives: Browse archives
+    404searchContent: Search content
+zh:
+  label:
+    noTag: 未分配标签
+    tagCard: 标签
+    tagPage: 标签
+    totalTags: 标签总数
+    noCategory: 未分配分类
+    categoryCard: 分类
+    categoryPage: 分类
+    totalCategories: 分类总数
+    noPosts: 暂无文章
+    archivePage: 文章归档
+    totalPosts: 文章总数
+    link: "链接: "
+    prevPage: 上一页
+    nextPage: 下一页
+    wordCount: 字
+    readTime: 分钟
+    share: 分享
+    shareCard: 分享这篇博客
+    close: 关闭
+    learnMore: 了解更多
+    allTags: 所有标签
+    allCategories: 所有分类
+    post: 篇文章
+    posts: 篇文章
+    tagDescription: 浏览此标签下的所有文章
+    categoryDescription: 浏览此分类下的所有文章
+    tagsPageDescription: 探索博客中使用的所有标签
+    categoriesPageDescription: 探索博客中可用的所有分类
+    archivesPageDescription: 按日期浏览文章
+    backToBlog: 返回博客
+    searchPage: 搜索
+    searchPageDescription: 搜索博客中的所有文章
+    search: 搜索
+    searchPlaceholder: 输入关键词搜索...
+    404title: 页面未找到
+    404description: 看起来您已经进入了未知领域。您查找的页面不存在或已被转移到另一个维度。
+    404backHome: 返回首页
+    404goBack: 返回上页
+    404youMightLike: 您可能对以下内容感兴趣
+    404exploreBlog: 浏览我们的博客
+    404browseArchives: 浏览归档
+    404searchContent: 搜索内容

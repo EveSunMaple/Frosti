@@ -1,0 +1,345 @@
+---
+// Interface for repository data
+export interface RepositoryCardProps {
+  repo: string; // 格式: 'username/repo'
+  image?: string;
+  isPinned?: boolean; // To mark as pinned project
+}
+
+const { repo, image, isPinned = false } = Astro.props as RepositoryCardProps;
+
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+// Extract username and repository name
+const [username, repoName] = repo.split("/");
+---
+
+<repository-card
+  class="card bg-base-100 shadow-md hover:shadow-xl overflow-hidden border border-base-200 transition-transform duration-300 ease-in-out"
+  data-repo={repo}
+  data-pinned={isPinned ? "true" : "false"}
+>
+  <div class="relative">
+    {
+      image ? (
+        <div class="aspect-video w-full overflow-hidden">
+          <Image
+            src={image}
+            alt={repoName || repo}
+            width={600}
+            height={315}
+            format="webp"
+            loading="lazy"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div class="aspect-video w-full overflow-hidden bg-gradient-to-br from-base-300 to-base-100 flex items-center justify-center repo-placeholder">
+          <div class="text-4xl font-bold text-primary opacity-30">
+            {(repoName || repo).substring(0, 2).toUpperCase()}
+          </div>
+        </div>
+      )
+    }
+    {
+      isPinned && (
+        <div class="absolute top-3 right-3">
+          <div class="badge badge-primary gap-1">
+            <Icon name="lucide:pin" class="w-3 h-3" />
+            Pinned
+          </div>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="card-body p-4">
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <h2 class="card-title text-lg font-bold line-clamp-1 repo-title">
+          <span class="loading loading-dots loading-xs"></span>
+        </h2>
+        <p class="text-base-content/70 text-sm my-2 line-clamp-2 repo-description">
+          <span class="loading loading-dots loading-xs"></span> Loading repository information...
+        </p>
+      </div>
+
+      <div class="mt-4 pt-2 border-t border-base-200">
+        <div class="flex flex-wrap gap-3 justify-between items-center text-sm">
+          <div class="flex items-center gap-1 repo-language">
+            <span class="w-3 h-3 rounded-full bg-base-300"></span>
+            <span class="text-base-content/70">
+              <span class="loading loading-dots loading-xs"></span>
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1 text-base-content/70 repo-stars">
+              <Icon name="lucide:star" class="w-4 h-4" />
+              <span><span class="loading loading-spinner loading-xs"></span></span>
+            </div>
+
+            <div class="flex items-center gap-1 text-base-content/70 repo-forks">
+              <Icon name="lucide:git-fork" class="w-4 h-4" />
+              <span><span class="loading loading-spinner loading-xs"></span></span>
+            </div>
+
+            <div class="flex items-center gap-1 text-base-content/70 repo-issues">
+              <Icon name="lucide:circle-dot" class="w-4 h-4" />
+              <span><span class="loading loading-spinner loading-xs"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</repository-card>
+
+<script>
+  // 定义语言颜色映射
+  const languageColors: Record<string, string> = {
+    JavaScript: "oklch(0.8 0.2 80)",
+    TypeScript: "oklch(0.7 0.2 250)",
+    HTML: "oklch(0.7 0.2 30)",
+    CSS: "oklch(0.7 0.2 180)",
+    Python: "oklch(0.7 0.2 140)",
+    Rust: "oklch(0.65 0.2 40)",
+    Go: "oklch(0.65 0.2 200)",
+    Java: "oklch(0.65 0.2 20)",
+    Swift: "oklch(0.65 0.2 60)",
+    Kotlin: "oklch(0.7 0.2 320)",
+    "C#": "oklch(0.65 0.2 150)",
+    C: "oklch(0.65 0.2 190)",
+    "C++": "oklch(0.65 0.2 210)",
+    Ruby: "oklch(0.65 0.2 10)",
+    PHP: "oklch(0.65 0.2 280)",
+    Shell: "oklch(0.65 0.2 100)",
+    Vue: "oklch(0.8 0.2 140)",
+    Astro: "oklch(0.6 0.2 320)",
+    Dart: "oklch(0.7 0.2 170)",
+    Scala: "oklch(0.65 0.2 0)",
+    Elixir: "oklch(0.7 0.2 320)",
+    // 默认颜色
+    default: "oklch(0.6 0.2 250)",
+  };
+
+  class RepositoryCard extends HTMLElement {
+    private abortController: AbortController | null = null;
+    private readonly githubToken = import.meta.env.PUBLIC_GITHUB_TOKEN || "";
+    private repoFullName: string = "";
+    private isOfficial: boolean = false;
+
+    connectedCallback() {
+      this.abortController = new AbortController();
+
+      // 获取仓库信息
+      this.repoFullName = this.getAttribute("data-repo") || "";
+      this.isOfficial = this.getAttribute("data-official") === "true";
+
+      if (!this.repoFullName || !this.repoFullName.includes("/")) {
+        this.showError("Invalid repository format. Expected 'username/repo'");
+        return;
+      }
+
+      // 添加点击事件
+      this.addEventListener("click", this.handleClick);
+
+      // 设置卡片悬停效果
+      this.classList.add("hover:-translate-y-1");
+
+      // 获取数据
+      this.fetchRepositoryData();
+    }
+
+    disconnectedCallback() {
+      // 清理资源
+      if (this.abortController) {
+        this.abortController.abort();
+        this.abortController = null;
+      }
+
+      // 移除事件监听器
+      this.removeEventListener("click", this.handleClick);
+    }
+
+    // 处理卡片点击
+    handleClick() {
+      const repoUrl = `https://github.com/${this.repoFullName}`;
+      window.open(repoUrl, "_blank", "noopener");
+    }
+
+    // 创建带有认证的请求头
+    private getRequestOptions(signal: AbortSignal): RequestInit {
+      const headers: HeadersInit = {
+        Accept: "application/vnd.github.v3+json",
+      };
+
+      if (this.githubToken) {
+        headers["Authorization"] = `token ${this.githubToken}`;
+      }
+
+      return {
+        method: "GET",
+        headers,
+        signal,
+      };
+    }
+
+    // 从本地存储获取缓存的数据
+    private getCachedData(key: string): any {
+      try {
+        const cachedData = localStorage.getItem(`repo-card:${key}`);
+        if (cachedData) {
+          const { data, timestamp } = JSON.parse(cachedData);
+          // 检查缓存是否在24小时内
+          if (Date.now() - timestamp < 24 * 60 * 60 * 1000) {
+            return data;
+          }
+        }
+      } catch (e) {
+        console.warn("Error reading from cache:", e);
+      }
+      return null;
+    }
+
+    // 缓存数据到本地存储
+    private cacheData(key: string, data: any): void {
+      try {
+        localStorage.setItem(
+          `repo-card:${key}`,
+          JSON.stringify({
+            data,
+            timestamp: Date.now(),
+          }),
+        );
+      } catch (e) {
+        console.warn("Error writing to cache:", e);
+      }
+    }
+
+    // 获取仓库数据
+    async fetchRepositoryData() {
+      // 检查缓存
+      const cachedData = this.getCachedData(this.repoFullName);
+      if (cachedData) {
+        console.log("Using cached repository data");
+        this.updateUI(cachedData);
+        return;
+      }
+
+      if (!this.abortController) return;
+
+      try {
+        const url = `https://api.github.com/repos/${this.repoFullName}`;
+        const response = await fetch(url, this.getRequestOptions(this.abortController.signal));
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch repository data: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // 缓存数据
+        this.cacheData(this.repoFullName, data);
+
+        // 更新UI
+        this.updateUI(data);
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          console.error("Error fetching repository data:", error);
+          this.showError("Failed to load repository data");
+        }
+      }
+    }
+
+    // 更新UI
+    updateUI(data: any) {
+      // 设置仓库名称和描述
+      this.updateTextContent(".repo-title", data.name || this.repoFullName.split("/")[1]);
+      this.updateTextContent(".repo-description", data.description || "No description provided");
+
+      // 设置统计数据
+      this.updateTextContent(".repo-stars span", this.formatNumber(data.stargazers_count));
+      this.updateTextContent(".repo-forks span", this.formatNumber(data.forks_count));
+      this.updateTextContent(".repo-issues span", this.formatNumber(data.open_issues_count));
+
+      // 设置语言和颜色
+      if (data.language) {
+        const languageColor = languageColors[data.language] || languageColors.default;
+        const langDot = this.querySelector(".repo-language span:first-child") as HTMLElement;
+        if (langDot) {
+          langDot.style.backgroundColor = languageColor;
+        }
+        this.updateTextContent(".repo-language span:last-child", data.language);
+      } else {
+        this.updateTextContent(".repo-language span:last-child", "Not specified");
+      }
+
+      // 设置卡片链接
+      this.style.cursor = "pointer";
+
+      // 如果有更多需要设置的内容，可以在这里添加
+      if (data.topics && data.topics.length > 0) {
+        // 可以选择显示仓库的主题标签
+      }
+    }
+
+    // 显示错误信息
+    showError(message: string) {
+      this.updateTextContent(".repo-title", "Error");
+      this.updateTextContent(".repo-description", message);
+      this.updateTextContent(".repo-stars span", "-");
+      this.updateTextContent(".repo-forks span", "-");
+      this.updateTextContent(".repo-issues span", "-");
+      this.updateTextContent(".repo-language span:last-child", "Unknown");
+    }
+
+    // 更新元素的文本内容
+    updateTextContent(selector: string, text: string) {
+      const el = this.querySelector(selector);
+      if (el) el.textContent = text;
+    }
+
+    // 格式化数字（大数字显示为K或M）
+    formatNumber(num: number): string {
+      if (!num) return "0";
+      if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + "M";
+      } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + "K";
+      }
+      return num.toString();
+    }
+  }
+
+  // 注册自定义元素
+  if (!customElements.get("repository-card")) {
+    customElements.define("repository-card", RepositoryCard);
+  }
+</script>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out forwards;
+  }
+
+  /* 确保鼠标悬停时的指针样式正确 */
+  repository-card {
+    cursor: pointer;
+    display: block;
+  }
+</style>

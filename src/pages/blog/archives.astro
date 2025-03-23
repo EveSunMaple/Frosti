@@ -1,0 +1,133 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseCard from "@components/BaseCard.astro";
+import { getCollection } from "astro:content";
+import { t } from "@config";
+import { Icon } from "astro-icon/components";
+import Card from "@components/temple/Card.astro";
+import dayjs from "dayjs";
+import { DATE_FORMAT } from "@config";
+import type { CollectionEntry } from "astro:content";
+
+// Get all blog posts
+const allBlogPosts = await getCollection("blog");
+
+// Filter out draft posts in production mode
+const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
+
+// Sort posts by date (newest first)
+allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+// Group posts by year and month
+const postsByDate = new Map<string, Map<string, CollectionEntry<"blog">[]>>();
+
+allPosts.forEach((post) => {
+  const date = new Date(post.data.pubDate);
+  const year = date.getFullYear().toString();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+
+  if (!postsByDate.has(year)) {
+    postsByDate.set(year, new Map<string, CollectionEntry<"blog">[]>());
+  }
+
+  const yearMap = postsByDate.get(year)!;
+  if (!yearMap.has(month)) {
+    yearMap.set(month, []);
+  }
+
+  yearMap.get(month)!.push(post);
+});
+
+// Convert to array and sort by year (desc) and month (desc)
+const years = Array.from(postsByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
+
+// Get month names
+const getMonthName = (month: string): string => {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  return monthNames[parseInt(month) - 1];
+};
+
+// Count total posts
+const totalPosts = allPosts.length;
+---
+
+<BaseLayout title={t("label.archivePage")}>
+  <BaseCard title={t("label.archivePage")}>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="flex items-center gap-2">
+        <Icon name="lucide:archive" class="w-6 h-6 text-accent" />
+        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{t("label.archivePage")}</h1>
+        <div class="badge badge-accent">{totalPosts} {totalPosts === 1 ? t("label.post") : t("label.posts")}</div>
+      </div>
+      <a href="/blog" class="btn btn-outline btn-sm gap-2">
+        <Icon name="lucide:book-open" class="w-4 h-4" />
+        <span>{t("label.backToBlog")}</span>
+      </a>
+    </div>
+    <div class="divider my-2"></div>
+    <p class="text-sm opacity-75">{t("label.archivesPageDescription")}</p>
+  </BaseCard>
+  <BaseCard title={t("label.archivePage")}>
+    <div class="archives-container">
+      {
+        years.length > 0 ? (
+          <div class="archives-timeline">
+            {years.map((year) => (
+              <div class="timeline-year">
+                <div class="year-header">
+                  <div class="year-badge">{year}</div>
+                </div>
+
+                <div class="year-content">
+                  {Array.from(postsByDate.get(year)!.entries())
+                    .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+                    .map(([month, posts]) => (
+                      <div class="timeline-month">
+                        <h3 class="month-title">
+                          <Icon name="lucide:calendar" class="month-icon" />
+                          <span>
+                            {getMonthName(month)} {year}
+                          </span>
+                          <span class="month-count">{posts.length}</span>
+                        </h3>
+
+                        <ul class="archive-posts">
+                          {posts.map((post) => (
+                            <li class="archive-item">
+                              <a href={`/blog/${post.slug}`} class="archive-card">
+                                <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
+                                <h4 class="archive-title">{post.data.title}</h4>
+                                {post.data.description && <p class="archive-description">{post.data.description}</p>}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <Icon name="ri:emotion-sad-line" class="empty-icon" />
+            <p class="empty-text">{t("label.noPosts")}</p>
+          </div>
+        )
+      }
+    </div>
+  </BaseCard>
+</BaseLayout>

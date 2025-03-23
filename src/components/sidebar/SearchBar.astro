@@ -1,0 +1,41 @@
+---
+import Card from "../temple/Card.astro";
+import { Icon } from "astro-icon/components";
+import { t } from "@config";
+---
+
+<Card>
+  <div class="p-4">
+    <form action="/blog/search" method="get" class="join items-center relative w-full">
+      <div class="relative w-full">
+        <input
+          type="text"
+          name="q"
+          placeholder={t("label.search") || "Search..."}
+          class="input input-bordered join-item w-full pl-10 pr-4 py-2"
+          aria-label={t("label.search") || "Search"}
+        />
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <Icon name="lucide:search" class="w-5 h-5 opacity-60" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary join-item ml-2" aria-label={t("label.search") || "Search"}>
+        <Icon name="lucide:arrow-right" class="w-4 h-4" />
+      </button>
+    </form>
+  </div>
+</Card>
+
+<script>
+  // Focus search input when pressing '/' key
+  document.addEventListener("keydown", (e) => {
+    const target = e.target as HTMLElement;
+    if (e.key === "/" && target && target.tagName !== "INPUT" && target.tagName !== "TEXTAREA") {
+      e.preventDefault();
+      const searchInput = document.querySelector('input[name="q"]');
+      if (searchInput) {
+        (searchInput as HTMLInputElement).focus();
+      }
+    }
+  });
+</script>

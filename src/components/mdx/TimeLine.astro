@@ -13,7 +13,7 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="timeline timeline-vertical timeline-snap-icon max-w-4xl mx-auto my-8 px-4">
+<ul class="not-prose timeline timeline-vertical timeline-snap-icon max-w-4xl mx-auto my-8 px-4">
   {
     items.map((item, index) => (
       <li class="relative mb-12 last:mb-0">
@@ -53,4 +53,8 @@ const { items } = Astro.props;
   }
 </ul>
 
-<style></style>
+<style>
+  li {
+    margin-bottom: 0;
+  }
+</style>

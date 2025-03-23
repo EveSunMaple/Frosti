@@ -19,4 +19,9 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
-.vercel
+
+# jetbrains setting folder
+.idea/
+
+# pagefind
+public/pagefind/

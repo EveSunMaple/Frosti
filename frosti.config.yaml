@@ -1,0 +1,102 @@
+# 网站的基本信息
+site:
+  tab: Frosti # 浏览器标签栏上显示的文本
+  title: Frosti # 网站的标题
+  description: A clean, elegant, and fast static blog template! 🚀 Developed with Astro # 网站的描述，用于SEO等
+  language: en # 网站的语言，例如 "en" 是英文
+  favicon: /favicon.ico # 网站的图标，用于浏览器标签栏和其他地方显示
+  theme: # 更多主题 https://daisyui.com/docs/themes/
+    light: winter # 主题的浅色模式
+    dark: dracula # 主题的深色模式
+    code: github-dark # 代码块的主题 https://shiki.style/themes
+  date_format: ddd MMM DD YYYY # 日期格式设置，支持自定义格式
+  menu: # 菜单配置
+    - id: home # 菜单项的唯一标识符
+      text: Home # 菜单项显示的文本
+      href: / # 菜单项链接的地址
+      svg: "material-symbols:home-outline-rounded"
+      target: _self
+    - id: about
+      text: About
+      href: /about
+      svg: "material-symbols:info-outline-rounded"
+      target: _self
+    - id: blog
+      text: Blogs
+      href: /blog
+      svg: "material-symbols:book-2-outline-rounded"
+      target: _self
+      subItems:
+        - id: all
+          text: All blogs
+          href: /blog
+          svg: "material-symbols:ink-pen-outline-rounded"
+          target: _self
+        - id: tech
+          text: Tech blogs
+          href: /blog/category/tech
+          svg: "material-symbols:deployed-code-outline"
+          target: _self
+        - id: life
+          text: Life blogs
+          href: /blog/category/life
+          svg: "material-symbols:earthquake-rounded"
+          target: _self
+        # 子菜单项配置
+    - id: project
+      text: Project
+      href: /project
+      svg: "material-symbols:code-blocks-outline"
+      target: _self
+    - id: friend
+      text: Friend
+      href: /friend
+      svg: "material-symbols:supervisor-account-outline-rounded"
+      target: _self
+    - id: contact
+      text: Contact
+      href: "mailto:contact.evesunmaple@outlook.com"
+      target: _blank # 在新标签页打开
+      svg: "material-symbols:attach-email-outline-rounded"
+
+# 用户的个人信息
+user:
+  name: EveSunMaple # 用户名
+  site: "https://frosti.saroprock.com" # 用户的网站链接
+  avatar: /profile.png # 用户头像路径
+  sidebar: # 侧边栏配置
+    social:
+      - href: "https://afdian.com/a/saroprock" # 链接
+        ariaLabel: Support my work # 图标的可访问性标签
+        title: Support my work # 图标的悬浮标题
+        svg: "ri:cup-line"
+      - href: "https://github.com/EveSunMaple"
+        ariaLabel: Github
+        title: Github
+        svg: "ri:github-line"
+      - href: "https://space.bilibili.com/438392347"
+        ariaLabel: BiliBili
+        title: BiliBili
+        svg: "ri:bilibili-line"
+      - href: "https://x.com/EveSunMaple"
+        ariaLabel: X(twitter)
+        title: X(twitter)
+        svg: "ri:twitter-line"
+  footer:
+    social:
+      - href: "https://afdian.com/a/saroprock" # 链接
+        ariaLabel: Support my work # 图标的可访问性标签
+        title: Support my work # 图标的悬浮标题
+        svg: "ri:cup-line"
+      - href: "https://github.com/EveSunMaple"
+        ariaLabel: Github
+        title: Github
+        svg: "ri:github-line"
+      - href: "https://space.bilibili.com/438392347"
+        ariaLabel: BiliBili
+        title: BiliBili
+        svg: "ri:bilibili-line"
+      - href: "https://x.com/EveSunMaple"
+        ariaLabel: X(twitter)
+        title: X(twitter)
+        svg: "ri:twitter-line"

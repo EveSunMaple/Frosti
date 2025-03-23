@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button
+  id="scroll-to-top"
+  aria-label="Scroll to top"
+  class="btn btn-circle btn-sm md:btn-md fixed bottom-6 right-6 z-50 bg-base-100 shadow-lg opacity-0 invisible transition-all hover:scale-110"
+>
+  <Icon name="material-symbols:arrow-upward-rounded" class="h-5 w-5" />
+</button>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const scrollButton = document.getElementById("scroll-to-top");
+
+    if (scrollButton) {
+      // Show button when user scrolls down 300px
+      const toggleVisibility = () => {
+        if (window.scrollY > 300) {
+          scrollButton.classList.remove("opacity-0", "invisible");
+          scrollButton.classList.add("opacity-100", "visible");
+        } else {
+          scrollButton.classList.remove("opacity-100", "visible");
+          scrollButton.classList.add("opacity-0", "invisible");
+        }
+      };
+
+      // Initial check
+      toggleVisibility();
+
+      // Add scroll event listener
+      window.addEventListener("scroll", toggleVisibility);
+
+      // Scroll to top with smooth animation
+      scrollButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseCard from "@components/BaseCard.astro";
+import { t } from "@config";
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout title={t("label.searchPage")}>
+  <BaseCard title={t("label.searchPage")}>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="flex items-center gap-2">
+        <Icon name="lucide:search" class="w-6 h-6 text-info" />
+        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{t("label.searchPage")}</h1>
+      </div>
+      <a href="/blog" class="btn btn-outline btn-sm gap-2">
+        <Icon name="lucide:book-open" class="w-4 h-4" />
+        <span>{t("label.backToBlog")}</span>
+      </a>
+    </div>
+    <div class="divider my-2"></div>
+    <p class="text-sm opacity-75">{t("label.searchPageDescription")}</p>
+  </BaseCard>
+
+  <BaseCard>
+    <div id="search-container" class="w-full">
+      <div id="pagefind-search" transition:persist></div>
+    </div>
+  </BaseCard>
+</BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", initSearch);
+
+  function initSearch() {
+    const pageFindSearch = document.querySelector("#pagefind-search");
+    if (!pageFindSearch) return;
+
+    const params = new URLSearchParams(window.location.search);
+
+    // Polyfill for requestIdleCallback
+    const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+
+    onIdle(async () => {
+      try {
+        // @ts-ignore - Pagefind UI types
+        const { PagefindUI } = await import("@pagefind/default-ui");
+
+        // Initialize pagefind UI
+        const search = new PagefindUI({
+          element: "#pagefind-search",
+          showImages: false,
+          processTerm: function (term: string): string {
+            params.set("q", term);
+            history.replaceState(history.state, "", "?" + params.toString());
+            return term;
+          },
+        });
+
+        // If search param exists (e.g., search?q=astro), trigger search
+        const query = params.get("q");
+        if (query) {
+          search.triggerSearch(query);
+        }
+
+        // Reset search param if search input is cleared
+        const searchInput = document.querySelector(".pagefind-ui__search-input");
+        const clearButton = document.querySelector(".pagefind-ui__search-clear");
+
+        searchInput?.addEventListener("input", resetSearchParam);
+        clearButton?.addEventListener("click", resetSearchParam);
+
+        function resetSearchParam(e: Event): void {
+          if ((e.target as HTMLInputElement).value === "") {
+            history.replaceState(history.state, "", window.location.pathname);
+          }
+        }
+      } catch (error) {
+        console.error("Error initializing search:", error);
+        const searchContainer = document.querySelector("#search-container");
+        if (searchContainer) {
+          searchContainer.innerHTML = `
+            <div class="alert alert-error shadow-lg">
+              <div>
+                <Icon name="lucide:alert-triangle" class="w-6 h-6" />
+                <span>Error loading search functionality. Please try again later.</span>
+              </div>
+            </div>
+          `;
+        }
+      }
+    });
+  }
+</script>

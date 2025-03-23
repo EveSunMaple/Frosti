@@ -1,0 +1,23 @@
+---
+import type { PaginationDropdownProps } from "@interfaces/data";
+
+const { hiddenPages, current, baseUrl } = Astro.props as PaginationDropdownProps;
+---
+
+<div class="dropdown dropdown-top join-item">
+  <div tabindex="0" role="button" class="btn join-item bg-base-100">...</div>
+  <ul class="dropdown-content z-[100] menu p-2 shadow-xl bg-base-100 rounded-box w-auto mx-auto mt-1">
+    {
+      hiddenPages.map((page) => (
+        <li class="w-full">
+          <a
+            href={page === 1 ? baseUrl : `${baseUrl}/${page}`}
+            class:list={["text-center py-1 px-3", page === current && "bg-primary text-primary-content"]}
+          >
+            {page}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

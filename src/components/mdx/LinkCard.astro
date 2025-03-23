@@ -1,41 +1,81 @@
 ---
-const { title, img, desc, url, badge, target = "_blank" } = Astro.props;
+export interface LinkCardProps {
+  title: string;
+  desc: string;
+  url: string;
+  img?: string;
+  badge?: string;
+  target?: string;
+  icon?: string;
+  categories?: string[];
+}
+
+const {
+  title,
+  img,
+  desc,
+  url,
+  badge,
+  target = "_blank",
+  icon = "lucide:link",
+  categories = [],
+} = Astro.props as LinkCardProps;
+
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 ---
 
 <div
-  class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 animate-fade-in-up"
+  class="not-prose card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 animate-fade-in-up border border-base-200"
 >
-  <a href={url} target={target} class="card-body p-4 md:p-6">
+  <a
+    href={url}
+    target={target}
+    class="card-body p-4 md:p-6"
+    aria-label={`Visit ${title}: ${desc}`}
+    rel={target === "_blank" ? "noopener noreferrer" : undefined}
+  >
     <div class="flex flex-col md:flex-row gap-4 items-center">
-      {
-        img ? (
-          <Image
-            src={img}
-            width={150}
-            height={150}
-            format="webp"
-            alt={title}
-            loading="eager"
-            class="rounded-lg object-cover w-full md:w-[150px] h-[150px]"
-          />
-        ) : (
-          <div class="flex items-center justify-center w-[150px] h-[150px] bg-base-200 rounded-lg">
-            <Icon name="lucide:image" class="w-12 h-12 text-base-content/50" />
-          </div>
-        )
-      }
+      <div class="w-full md:w-[120px] h-[120px] flex-shrink-0 bg-base-200 rounded-lg overflow-hidden">
+        {
+          img ? (
+            <Image
+              src={img}
+              width={120}
+              height={120}
+              format="webp"
+              alt={title}
+              loading="lazy"
+              class="w-full h-full object-cover"
+            />
+          ) : (
+            <div class="flex items-center justify-center w-full h-full bg-gradient-to-br from-base-300 to-base-100">
+              <Icon name={icon} class="w-8 h-8 text-primary opacity-80" aria-hidden="true" />
+            </div>
+          )
+        }
+      </div>
       <div class="flex-1 space-y-2 w-full">
         <div class="flex items-center gap-2 flex-wrap">
-          <h2 class="card-title text-xl md:text-2xl">{title}</h2>
-          {badge && <div class="badge badge-secondary badge-lg font-medium">{badge}</div>}
+          <h2 class="card-title text-xl">{title}</h2>
+          {badge && <div class="badge badge-secondary badge-md font-medium">{badge}</div>}
         </div>
-        <p class="text-base-content/80 line-clamp-3">{desc}</p>
-        <div class="card-actions justify-end">
+
+        {
+          categories.length > 0 && (
+            <div class="flex flex-wrap gap-1 my-1">
+              {categories.map((category) => (
+                <span class="badge badge-outline badge-sm">{category}</span>
+              ))}
+            </div>
+          )
+        }
+
+        <p class="text-base-content/80 line-clamp-2 text-sm">{desc}</p>
+        <div class="card-actions justify-end mt-2">
           <div class="flex items-center gap-1 text-primary hover:text-primary-focus transition-colors">
-            <span class="text-sm font-medium">Learn more</span>
-            <Icon name="lucide:arrow-right" class="w-4 h-4" />
+            <span class="text-sm font-medium">Visit {title}</span>
+            <Icon name="lucide:external-link" class="w-3.5 h-3.5" aria-hidden="true" />
           </div>
         </div>
       </div>
@@ -47,5 +87,20 @@ import { Icon } from "astro-icon/components";
   .card {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(var(--color-border), 0.1);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out forwards;
   }
 </style>

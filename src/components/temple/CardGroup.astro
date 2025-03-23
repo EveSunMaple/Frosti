@@ -1,0 +1,54 @@
+---
+import type { CardGroupProps } from "@interfaces/data";
+
+const {
+  class: className = "",
+  gap = "4", // Default gap of 4 (1rem)
+  cols = "2", // Default 2 columns
+} = Astro.props as CardGroupProps;
+---
+
+<div class={`card-group ${className}`}>
+  <slot />
+</div>
+
+<style define:vars={{ gap, cols }}>
+  .card-group {
+    width: 100%;
+    position: relative;
+  }
+
+  /* Desktop layout shows grid with gaps */
+  @media (min-width: 768px) {
+    .card-group {
+      display: grid;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      gap: calc(var(--gap) * 0.25rem);
+    }
+  }
+
+  /* Mobile layout shows stacked cards with dividers */
+  @media (max-width: 767px) {
+    .card-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Add dividers between cards except the last one */
+    :global(.card-group > :not(:last-child)) {
+      border-bottom: 1px dashed oklch(var(--bc) / 0.2);
+      margin-bottom: 0;
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+    :global(.card-group > :not(:first-child)) {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+
+    :global(.card-group > *) {
+      margin: 0;
+    }
+  }
+</style>

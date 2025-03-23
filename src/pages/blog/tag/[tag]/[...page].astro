@@ -1,0 +1,110 @@
+---
+import type { Post, Page } from "@interfaces/data";
+import PostCard from "@components/PostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseCard from "@components/BaseCard.astro";
+import Pagination from "@components/widgets/Pagination.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
+import { getCollection } from "astro:content";
+import { t } from "@config";
+import { Icon } from "astro-icon/components";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const all_blog_posts = await getCollection("blog");
+
+  // Filter out draft posts in production mode
+  const all_posts = import.meta.env.PROD ? all_blog_posts.filter((post) => !post.data.draft) : all_blog_posts;
+
+  const all_tags = [...new Set(all_posts.flatMap((blog: any) => blog.data.tags || []))];
+
+  all_posts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  const postsWithStats = await Promise.all(
+    all_posts.map(async (blog: any) => {
+      const { remarkPluginFrontmatter } = await blog.render();
+      return {
+        ...blog,
+        remarkPluginFrontmatter: {
+          readingTime: remarkPluginFrontmatter.readingTime,
+          totalCharCount: remarkPluginFrontmatter.totalCharCount,
+        },
+      };
+    }),
+  );
+
+  return all_tags.flatMap((tag) => {
+    const filtered_posts = postsWithStats.filter((blog) => blog.data.tags?.includes(tag));
+    return paginate(filtered_posts, {
+      params: { tag },
+      pageSize: 8,
+    });
+  });
+}
+
+const { page } = Astro.props as { page: Page };
+const params = Astro.params as { tag: string; page: string };
+
+function generatePageLinks(totalPages: number): {
+  active: string[];
+  hidden: string[];
+} {
+  const pages = {
+    active: [] as string[],
+    hidden: [] as string[],
+  };
+
+  if (totalPages > 3) {
+    pages.active.push("1");
+    pages.active.push("...");
+    pages.active.push(totalPages.toString());
+    for (let i = 2; i <= totalPages - 1; i++) {
+      pages.hidden.push(i.toString());
+    }
+  } else {
+    for (let i = 1; i <= totalPages; i++) {
+      pages.active.push(i.toString());
+    }
+  }
+  return pages;
+}
+
+const totalPages = Math.ceil(page.total / page.size);
+const pageLinks = generatePageLinks(totalPages);
+---
+
+<BaseLayout title={`${t("label.tagPage")} - ${params.tag}`}>
+  <BaseCard title={t("label.tagPage")}>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="flex items-center gap-2">
+        <Icon name="lucide:tag" class="w-6 h-6 text-secondary" />
+        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{params.tag}</h1>
+        <div class="badge badge-secondary">{page.total} {page.total === 1 ? t("label.post") : t("label.posts")}</div>
+      </div>
+      <a href="/blog/tags" class="btn btn-outline btn-sm gap-2">
+        <Icon name="lucide:tag" class="w-4 h-4" />
+        <span>{t("label.allTags")}</span>
+      </a>
+    </div>
+    <div class="divider my-2"></div>
+    <p class="text-sm opacity-75">{t("label.tagDescription")}</p>
+  </BaseCard>
+  <CardGroup cols="1" gap="6">
+    {
+      page.data.map((blog: Post) => (
+        <PostCard
+          title={blog.data.title}
+          image={blog.data.image}
+          description={blog.data.description}
+          url={"/blog/" + blog.slug}
+          pubDate={blog.data.pubDate}
+          badge={blog.data.badge}
+          categories={blog.data.categories}
+          tags={blog.data.tags}
+          word={blog.remarkPluginFrontmatter.totalCharCount}
+          time={blog.remarkPluginFrontmatter.readingTime}
+        />
+      ))
+    }
+  </CardGroup>
+  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog/tag/${params.tag}`} />
+</BaseLayout>

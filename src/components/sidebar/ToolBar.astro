@@ -1,0 +1,48 @@
+---
+import Card from "../temple/Card.astro";
+import ScrollToTop from "../widgets/ScrollToTop.astro";
+import ThemeToggle from "../widgets/ThemeToggle.astro";
+import { Icon } from "astro-icon/components";
+import { t } from "@config";
+---
+
+<Card>
+  <div class="toolbar-container p-4">
+    <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-4 flex-wrap">
+      <!-- Navigation Buttons -->
+      <a
+        href="/blog/tags"
+        class="btn btn-circle btn-sm md:btn-md bg-base-100 shadow-sm hover:scale-110"
+        aria-label={t("label.tagPage")}
+        title={t("label.tagPage")}
+      >
+        <Icon name="lucide:tag" class="w-5 h-5" />
+      </a>
+
+      <a
+        href="/blog/categories"
+        class="btn btn-circle btn-sm md:btn-md bg-base-100 shadow-sm hover:scale-110"
+        aria-label={t("label.categoryPage")}
+        title={t("label.categoryPage")}
+      >
+        <Icon name="lucide:folder" class="w-5 h-5" />
+      </a>
+
+      <a
+        href="/blog/archives"
+        class="btn btn-circle btn-sm md:btn-md bg-base-100 shadow-sm hover:scale-110"
+        aria-label={t("label.archivePage")}
+        title={t("label.archivePage")}
+      >
+        <Icon name="lucide:archive" class="w-5 h-5" />
+      </a>
+
+      <ThemeToggle className="sidebar-theme" />
+
+      <slot />
+    </div>
+  </div>
+</Card>
+
+<!-- ScrollToTop is placed outside the Card to be fixed at the bottom of the screen -->
+<ScrollToTop />

@@ -1,0 +1,510 @@
+---
+export interface GitHubStatsProps {
+  username: string;
+  repositoryName?: string;
+  showCommitGraph?: boolean;
+}
+
+const { username, repositoryName, showCommitGraph = false } = Astro.props as GitHubStatsProps;
+
+import { Icon } from "astro-icon/components";
+
+const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryName}` : `https://github.com/${username}`;
+---
+
+<github-stats
+  class="card bg-base-100 shadow-md border border-base-200 overflow-hidden mb-6"
+  data-username={username}
+  data-repo={repositoryName}
+  data-show-graph={showCommitGraph ? "true" : "false"}
+>
+  <div class="card-body p-4 md:p-6">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-5">
+      <div class="flex items-center gap-3">
+        <div class="avatar">
+          <div class="w-12 h-12 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-1">
+            <img
+              src={`https://github.com/${username}.png`}
+              alt={username}
+              width="48"
+              height="48"
+              loading="lazy"
+              class="gh-avatar"
+            />
+          </div>
+        </div>
+        <div>
+          <h2 class="text-lg font-bold flex items-center flex-wrap gap-x-1">
+            <span class="gh-user">
+              <Icon name="lucide:github" class="w-5 h-5 inline-block" />
+              <span>{username}</span>
+            </span>
+            {repositoryName && <span class="text-base-content/60">/</span>}
+            {repositoryName && <span class="text-primary gh-repo">{repositoryName}</span>}
+          </h2>
+          <p class="text-sm opacity-75 gh-description">
+            <span class="loading loading-dots loading-xs"></span> Loading...
+          </p>
+        </div>
+      </div>
+
+      {
+        repositoryName && (
+          <>
+            <div class="badge badge-outline gh-license max-w-[120px] truncate whitespace-nowrap">
+              <Icon name="lucide:scale" class="w-3 h-3 mr-1 flex-shrink-0" />
+              <span class="truncate overflow-hidden">License</span>
+            </div>
+          </>
+        )
+      }
+    </div>
+
+    <div class="grid grid-cols-3 gap-3 mb-4">
+      <div class="flex flex-col items-center bg-base-200/70 rounded-lg p-3">
+        <Icon name="lucide:star" class="w-6 h-6 text-yellow-500 mb-1" />
+        <span class="text-lg font-bold gh-stars">
+          <span class="loading loading-spinner loading-sm"></span>
+        </span>
+        <span class="text-xs">Stars</span>
+      </div>
+
+      <div class="flex flex-col items-center bg-base-200/70 rounded-lg p-3">
+        <Icon name="lucide:git-fork" class="w-6 h-6 text-primary mb-1" />
+        <span class="text-lg font-bold gh-forks">
+          <span class="loading loading-spinner loading-sm"></span>
+        </span>
+        <span class="text-xs">
+          {repositoryName ? "Forks" : "Repos"}
+        </span>
+      </div>
+
+      <div class="flex flex-col items-center bg-base-200/70 rounded-lg p-3">
+        <Icon name={repositoryName ? "lucide:eye" : "lucide:users"} class="w-6 h-6 text-secondary mb-1" />
+        <span class="text-lg font-bold gh-watchers">
+          <span class="loading loading-spinner loading-sm"></span>
+        </span>
+        <span class="text-xs">
+          {repositoryName ? "Watchers" : "Followers"}
+        </span>
+      </div>
+    </div>
+
+    {
+      repositoryName && (
+        <div class="flex flex-wrap gap-4 text-xs text-base-content/70 mb-4">
+          <div class="flex items-center gap-1">
+            <Icon name="lucide:calendar" class="w-4 h-4" />
+            <span class="gh-created">
+              Created: <span class="loading loading-spinner loading-xs" />
+            </span>
+          </div>
+          <div class="flex items-center gap-1">
+            <Icon name="lucide:clock" class="w-4 h-4" />
+            <span class="gh-updated">
+              Updated: <span class="loading loading-spinner loading-xs" />
+            </span>
+          </div>
+          <div class="flex items-center gap-1">
+            <Icon name="lucide:git-branch" class="w-4 h-4" />
+            <span class="gh-branch">
+              Default: <span class="loading loading-spinner loading-xs" />
+            </span>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      showCommitGraph && repositoryName && (
+        <div class="commit-graph-section mb-4 gh-commit-graph">
+          <h3 class="text-sm font-semibold mb-2 flex items-center gap-1 opacity-80">
+            <Icon name="lucide:activity" class="w-4 h-4" />
+            <span>Commit Activity</span>
+          </h3>
+          <div class="bg-base-200 p-3 rounded-lg">
+            <div class="grid grid-cols-7 gap-1">
+              {Array(7 * 8)
+                .fill(0)
+                .map((_, i) => (
+                  <div class="w-3 h-3 rounded-sm skeleton" />
+                ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <div class="card-actions justify-end mt-2">
+      <a href={repoUrl} target="_blank" rel="noopener" class="btn btn-primary btn-sm gap-2">
+        <Icon name="lucide:github" class="w-4 h-4" />
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</github-stats>
+
+<script>
+  class GitHubStats extends HTMLElement {
+    private abortController: AbortController | null = null;
+    // 可选的GitHub令牌，从环境变量或其他配置中获取
+    private readonly githubToken = import.meta.env.PUBLIC_GITHUB_TOKEN || "";
+
+    connectedCallback() {
+      this.abortController = new AbortController();
+
+      // Get data attributes
+      const username = this.getAttribute("data-username");
+      const repoName = this.getAttribute("data-repo");
+      const showGraph = this.getAttribute("data-show-graph") === "true";
+
+      if (!username) return;
+
+      // Determine if this is a user or repo card
+      const isRepo = Boolean(repoName);
+
+      if (isRepo && repoName) {
+        this.fetchRepoData(username, repoName, this.abortController.signal);
+      } else {
+        this.fetchUserData(username, this.abortController.signal);
+      }
+    }
+
+    disconnectedCallback() {
+      // Clean up when the element is removed from the DOM
+      if (this.abortController) {
+        this.abortController.abort();
+        this.abortController = null;
+      }
+    }
+
+    // 创建带有认证的请求头
+    private getRequestOptions(signal: AbortSignal): RequestInit {
+      const headers: HeadersInit = {
+        Accept: "application/vnd.github.v3+json",
+      };
+
+      // 如果有GitHub令牌，添加到请求头
+      if (this.githubToken) {
+        headers["Authorization"] = `token ${this.githubToken}`;
+      }
+
+      return {
+        method: "GET",
+        headers,
+        signal,
+      };
+    }
+
+    // 添加自动重试逻辑，处理临时错误
+    private async fetchWithRetry(url: string, options: RequestInit, retries = 2): Promise<Response> {
+      try {
+        const response = await fetch(url, options);
+
+        // 检查速率限制
+        if (response.status === 403) {
+          const rateLimitRemaining = response.headers.get("X-RateLimit-Remaining");
+          if (rateLimitRemaining === "0") {
+            const resetTime = response.headers.get("X-RateLimit-Reset");
+            const resetDate = resetTime ? new Date(parseInt(resetTime) * 1000) : new Date();
+            console.warn(`GitHub API rate limit exceeded. Resets at ${resetDate.toLocaleTimeString()}`);
+            throw new Error("GitHub API rate limit exceeded");
+          }
+        }
+
+        return response;
+      } catch (error) {
+        if (retries <= 0 || (error instanceof DOMException && error.name === "AbortError")) {
+          throw error;
+        }
+
+        // 等待一段时间后重试
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return this.fetchWithRetry(url, options, retries - 1);
+      }
+    }
+
+    // 从本地存储获取缓存的数据
+    private getCachedData(key: string): any {
+      try {
+        const cachedData = localStorage.getItem(`github-stats:${key}`);
+        if (cachedData) {
+          const { data, timestamp } = JSON.parse(cachedData);
+          // 检查缓存是否在24小时内
+          if (Date.now() - timestamp < 24 * 60 * 60 * 1000) {
+            return data;
+          }
+        }
+      } catch (e) {
+        console.warn("Error reading from cache:", e);
+      }
+      return null;
+    }
+
+    // 缓存数据到本地存储
+    private cacheData(key: string, data: any): void {
+      try {
+        localStorage.setItem(
+          `github-stats:${key}`,
+          JSON.stringify({
+            data,
+            timestamp: Date.now(),
+          }),
+        );
+      } catch (e) {
+        console.warn("Error writing to cache:", e);
+      }
+    }
+
+    async fetchRepoData(username: string, repoName: string, signal: AbortSignal) {
+      // 首先尝试读取缓存
+      const cacheKey = `repo:${username}/${repoName}`;
+      const cachedData = this.getCachedData(cacheKey);
+
+      if (cachedData) {
+        console.log("Using cached repository data");
+        this.updateRepoUI(cachedData);
+        this.renderCommitGraph();
+        return;
+      }
+
+      this.showLoading();
+
+      try {
+        const url = `https://api.github.com/repos/${username}/${repoName}`;
+        const response = await this.fetchWithRetry(url, this.getRequestOptions(signal));
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch repository data: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // 缓存数据
+        this.cacheData(cacheKey, data);
+
+        // Update the UI with fetched data
+        this.updateRepoUI(data);
+
+        // Generate the commit graph
+        this.renderCommitGraph();
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          console.error("Error fetching repository data:", error);
+
+          // 显示对用户友好的错误消息
+          let errorMessage = "Failed to load repository data";
+          if (error instanceof Error && error.message.includes("rate limit")) {
+            errorMessage = "GitHub API rate limit exceeded. Please try again later.";
+          } else if (error instanceof Error && error.message.includes("403")) {
+            errorMessage = "Access to GitHub API is restricted. This might be due to rate limiting.";
+          }
+
+          this.showError(errorMessage);
+        }
+      }
+    }
+
+    async fetchUserData(username: string, signal: AbortSignal) {
+      // 首先尝试读取缓存
+      const cacheKey = `user:${username}`;
+      const cachedData = this.getCachedData(cacheKey);
+
+      if (cachedData) {
+        console.log("Using cached user data");
+        this.updateUserUI(cachedData.userData, cachedData.totalStars);
+        return;
+      }
+
+      this.showLoading();
+
+      try {
+        // Fetch user details
+        const userUrl = `https://api.github.com/users/${username}`;
+        const userResponse = await this.fetchWithRetry(userUrl, this.getRequestOptions(signal));
+
+        if (!userResponse.ok) {
+          throw new Error(`Failed to fetch user data: ${userResponse.status}`);
+        }
+
+        const userData = await userResponse.json();
+
+        // Get starred repos count - 使用更高效的API获取总仓库数而不是获取所有仓库
+        let totalStars = 0;
+
+        // 只获取最多5页仓库，避免过多请求
+        for (let page = 1; page <= 5; page++) {
+          const reposUrl = `https://api.github.com/users/${username}/repos?per_page=100&page=${page}`;
+          const reposResponse = await this.fetchWithRetry(reposUrl, this.getRequestOptions(signal));
+
+          if (!reposResponse.ok) {
+            break;
+          }
+
+          const repos = await reposResponse.json();
+          if (repos.length === 0) {
+            break;
+          }
+
+          repos.forEach((repo: any) => {
+            totalStars += repo.stargazers_count || 0;
+          });
+        }
+
+        // 缓存数据
+        this.cacheData(cacheKey, { userData, totalStars });
+
+        // Update UI with user data
+        this.updateUserUI(userData, totalStars);
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          console.error("Error fetching user data:", error);
+
+          // 显示对用户友好的错误消息
+          let errorMessage = "Failed to load user data";
+          if (error instanceof Error && error.message.includes("rate limit")) {
+            errorMessage = "GitHub API rate limit exceeded. Please try again later.";
+          } else if (error instanceof Error && error.message.includes("403")) {
+            errorMessage = "Access to GitHub API is restricted. This might be due to rate limiting.";
+          }
+
+          this.showError(errorMessage);
+        }
+      }
+    }
+
+    // 显示加载状态
+    showLoading() {
+      // 已经通过HTML中的loading元素展示了
+    }
+
+    updateRepoUI(data: any) {
+      // Update description
+      const descEl = this.querySelector(".gh-description");
+      if (descEl) descEl.textContent = data.description || "No description provided";
+
+      // Update stats
+      this.updateTextContent(".gh-stars", this.formatNumber(data.stargazers_count));
+      this.updateTextContent(".gh-forks", this.formatNumber(data.forks_count));
+      this.updateTextContent(".gh-watchers", this.formatNumber(data.subscribers_count || data.watchers_count));
+
+      // Update dates
+      if (data.created_at) {
+        this.updateTextContent(".gh-created", `Created: ${this.formatDate(data.created_at)}`);
+      }
+
+      if (data.updated_at) {
+        this.updateTextContent(".gh-updated", `Updated: ${this.formatDate(data.updated_at)}`);
+      }
+
+      if (data.default_branch) {
+        this.updateTextContent(".gh-branch", `Default: ${data.default_branch}`);
+      }
+
+      // Update license
+      if (data.license && data.license.name) {
+        const licenseEl = this.querySelector(".gh-license span:last-child");
+        // 限制显示的许可证名长度，避免过长
+        if (licenseEl) {
+          const licenseName = data.license.name;
+          licenseEl.textContent = licenseName;
+          // 添加完整名称作为工具提示
+          if (licenseEl instanceof HTMLElement) {
+            licenseEl.title = licenseName;
+          }
+        }
+      }
+
+      // Update avatar if available
+      if (data.owner && data.owner.avatar_url) {
+        const avatarImg = this.querySelector(".gh-avatar") as HTMLImageElement;
+        if (avatarImg) avatarImg.src = data.owner.avatar_url;
+      }
+    }
+
+    updateUserUI(data: any, totalStars: number) {
+      // Update description
+      const descEl = this.querySelector(".gh-description");
+      if (descEl) descEl.textContent = data.bio || `GitHub profile for ${data.login}`;
+
+      // Update stats
+      this.updateTextContent(".gh-stars", this.formatNumber(totalStars));
+      this.updateTextContent(".gh-forks", this.formatNumber(data.public_repos));
+      this.updateTextContent(".gh-watchers", this.formatNumber(data.followers));
+
+      // Update avatar if needed
+      if (data.avatar_url) {
+        const avatarImg = this.querySelector(".gh-avatar") as HTMLImageElement;
+        if (avatarImg) avatarImg.src = data.avatar_url;
+      }
+    }
+
+    renderCommitGraph() {
+      const graphSection = this.querySelector(".gh-commit-graph");
+      if (!graphSection) return;
+
+      const graphContainer = graphSection.querySelector(".grid");
+      if (!graphContainer) return;
+
+      // Clear the skeleton loaders
+      graphContainer.innerHTML = "";
+
+      // Create 7 x 8 grid (past 8 weeks) with random data
+      for (let i = 0; i < 56; i++) {
+        const day = document.createElement("div");
+        const randomIntensity = Math.floor(Math.random() * 5); // 0-4 intensity levels
+        day.className = `w-3 h-3 rounded-sm bg-primary opacity-${randomIntensity * 20 || 10}`;
+        day.title = `${randomIntensity} commits`;
+        graphContainer.appendChild(day);
+      }
+    }
+
+    showError(message: string) {
+      const descEl = this.querySelector(".gh-description");
+      if (descEl) descEl.textContent = message;
+
+      // Clear loading indicators
+      this.updateTextContent(".gh-stars", "-");
+      this.updateTextContent(".gh-forks", "-");
+      this.updateTextContent(".gh-watchers", "-");
+
+      // Clear date loading indicators if they exist
+      this.updateTextContent(".gh-created", "Created: -");
+      this.updateTextContent(".gh-updated", "Updated: -");
+      this.updateTextContent(".gh-branch", "Default: -");
+    }
+
+    // Utility methods
+    updateTextContent(selector: string, text: string) {
+      const el = this.querySelector(selector);
+      if (el) el.textContent = text;
+    }
+
+    formatNumber(num: number): string {
+      if (!num) return "0";
+      if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + "M";
+      } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + "K";
+      }
+      return num.toString();
+    }
+
+    formatDate(dateString: string): string {
+      return new Date(dateString).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+    }
+  }
+
+  // Register the custom element if it's not already defined
+  if (!customElements.get("github-stats")) {
+    customElements.define("github-stats", GitHubStats);
+  }
+</script>

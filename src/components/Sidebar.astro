@@ -1,0 +1,29 @@
+---
+import ProfileBar from "./sidebar/ProfileBar.astro";
+import ToolBar from "./sidebar/ToolBar.astro";
+import TOCBar from "./sidebar/TOCBar.astro";
+import SearchBar from "./sidebar/SearchBar.astro";
+
+interface Props {
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+  showTOC?: boolean;
+}
+
+// Get headings from parent component or page
+const { headings = [], showTOC = true } = Astro.props as Props;
+---
+
+<div class="relative mb-4">
+  <ProfileBar />
+</div>
+<div class="relative mb-4">
+  <SearchBar />
+</div>
+<div class="md:sticky md:top-4">
+  <ToolBar />
+  <TOCBar headings={headings} showTOC={showTOC} />
+</div>

@@ -38,7 +38,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 #### Syntax
 
-```markdown mockup-code
+```markdown
 ![Alt text](./full/or/relative/path/of/image)
 ```
 

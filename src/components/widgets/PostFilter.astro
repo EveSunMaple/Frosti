@@ -1,0 +1,41 @@
+---
+import { t } from "@config";
+import type { PostData } from "@interfaces/data";
+import { Icon } from "astro-icon/components";
+const { categories = [], tags = [] } = Astro.props as PostData;
+---
+
+<div class="flex flex-wrap items-center gap-2">
+  {
+    categories.map((category) => (
+      <a href={`/blog/category/${category}`} class="btn btn-xs btn-category">
+        <Icon name="lucide:folder" class="w-4 h-4" />
+        <span>{category}</span>
+      </a>
+    ))
+  }
+  {
+    tags.map((tag) => (
+      <a href={`/blog/tag/${tag}`} class="btn btn-xs btn-tag">
+        <Icon name="lucide:tag" class="w-4 h-4" />
+        <span>{tag}</span>
+      </a>
+    ))
+  }
+  {
+    categories.length === 0 && (
+      <span class="btn btn-xs btn-ghost opacity-60 gap-1">
+        <Icon name="lucide:folder" class="w-4 h-4" />
+        <span>{t("label.noCategory")}</span>
+      </span>
+    )
+  }
+  {
+    tags.length === 0 && (
+      <span class="btn btn-xs btn-ghost opacity-60 gap-1">
+        <Icon name="lucide:tag" class="w-4 h-4" />
+        <span>{t("label.noTag")}</span>
+      </span>
+    )
+  }
+</div>

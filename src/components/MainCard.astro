@@ -1,0 +1,147 @@
+---
+import { t } from "@config";
+import { Icon } from "astro-icon/components";
+import Card from "@/components/temple/Card.astro";
+import { Image } from "astro:assets";
+import type { PostData } from "@interfaces/data";
+
+export interface MainCardProps extends PostData {
+  infoIcon?: string; // Icon for the info button
+  helpText?: string; // Custom help text (defaults to "Learn More")
+  textOverlay?: string; // Text to overlay on background when no image
+  showTextBackground?: boolean; // Show text background when no image
+  headerClass?: string; // Additional classes for the header
+  extraClasses?: string; // Additional classes for the whole card
+}
+
+const {
+  title,
+  description,
+  image,
+  infoIcon = "lucide:help-circle",
+  helpText = t("label.learnMore"),
+  textOverlay,
+  showTextBackground = true,
+  headerClass = "",
+  extraClasses = "",
+} = Astro.props as MainCardProps;
+
+// Create a more descriptive label for the button
+const accessibleHelpText = `${helpText}: ${title}`;
+---
+
+<Card class={`overflow-hidden ${extraClasses}`}>
+  <!-- Top card section with header -->
+  <div class="relative">
+    {
+      image ? (
+        <div class="aspect-video w-full overflow-hidden">
+          <Image
+            src={image}
+            alt={title}
+            width={1200}
+            height={630}
+            format="webp"
+            loading="eager"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div class={`aspect-video w-full overflow-hidden bg-gradient-to-br from-base-300 to-base-100 ${headerClass}`}>
+          {showTextBackground && textOverlay && (
+            <div class="absolute inset-0 w-full h-full error-animation-container">
+              <div class="text-9xl md:text-[12rem] font-bold text-primary opacity-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                {textOverlay}
+              </div>
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    <div class="absolute bottom-4 left-4 lg:bottom-6 lg:left-6">
+      <div class="inline-block bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/40 shadow-lg">
+        <h1 class="text-xl sm:text-2xl lg:text-4xl font-bold text-white">
+          {title}
+        </h1>
+      </div>
+    </div>
+
+    {
+      description && (
+        <div class="absolute bottom-4 right-4 lg:bottom-6 lg:right-6">
+          <div class="dropdown dropdown-top dropdown-end dropdown-hover">
+            <label
+              tabindex="0"
+              aria-label={accessibleHelpText}
+              class="group btn btn-sm px-2 bg-black/60 backdrop-blur-md hover:bg-black/80 border border-white/40 text-white shadow-lg rounded-full flex items-center gap-0 transition-all duration-300 ease-in-out"
+            >
+              <Icon name={infoIcon} class="w-4 h-4 flex-shrink-0" />
+              <span class="w-0 overflow-hidden group-hover:w-20 transition-all duration-300 text-xs whitespace-nowrap">
+                {helpText}
+              </span>
+            </label>
+            <div
+              tabindex="0"
+              class="dropdown-content z-[1] card w-64 sm:w-80 p-2 shadow-lg bg-black/70 backdrop-blur-md text-white border border-white/20 mb-4"
+              data-state="closed"
+            >
+              <div class="card-body p-3">
+                <p class="text-sm">{description}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+
+  <!-- Content section -->
+  <div class="p-4 sm:p-6">
+    <slot />
+  </div>
+</Card>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // Get all info buttons and dropdown contents
+    const infoButtons = document.querySelectorAll(".dropdown label");
+    const dropdownContents = document.querySelectorAll(".dropdown-content");
+
+    // Add click event listeners
+    infoButtons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        const content = dropdownContents[index];
+        const currentState = content.getAttribute("data-state");
+
+        // Toggle state
+        if (currentState === "closed") {
+          content.setAttribute("data-state", "open");
+          // Add animation classes when opening
+          content.classList.add("scale-100", "opacity-100");
+          content.classList.remove("scale-90", "opacity-0");
+        } else {
+          content.setAttribute("data-state", "closed");
+          // Remove animation classes when closing
+          content.classList.add("scale-90", "opacity-0");
+          content.classList.remove("scale-100", "opacity-100");
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Animation for dropdown */
+  .dropdown-content {
+    transition: all 0.2s ease-out;
+    transform-origin: bottom right;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .dropdown-content[data-state="open"] {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+import { SITE_MENU, USER_AVATAR, USER_SIDEBAR_SOCIAL_ICONS } from "../../config";
+import { Icon } from "astro-icon/components";
+import Card from "../temple/Card.astro";
+import { Image } from "astro:assets";
+
+// Get current path to determine active link
+const currentPath = Astro.url.pathname;
+---
+
+<Card>
+  <div class="relative p-4 flex flex-col">
+    <div class="avatar p-2 flex justify-center">
+      <Image
+        class="mask mask-circle"
+        format="webp"
+        width={150}
+        height={150}
+        src={USER_AVATAR}
+        alt="Profile"
+        loading="eager"
+      />
+    </div>
+    <ul class="menu bg-transparent w-full m-0 p-0 hidden md:flex flex-col items-center lg:items-start">
+      {
+        SITE_MENU.map((item) => (
+          <li class="w-full relative group">
+            {item.subItems ? (
+              <details class="menu-item w-full" data-submenu-id={item.id} open={currentPath.startsWith(item.href)}>
+                <summary class="justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4 hover:bg-base-200 rounded-lg">
+                  <Icon name={item.svg} />
+                  <span class="hidden lg:inline ml-2">{item.text}</span>
+                </summary>
+                <ul class="rounded-lg">
+                  {item.subItems.map((subItem) => (
+                    <li class="relative">
+                      <a
+                        tabindex="0"
+                        class="menu-item text-base md:text-2xl lg:text-base font-bold p-2 hover:bg-base-200 rounded-lg"
+                        id={`header-${subItem.id}`}
+                        href={subItem.href}
+                        target={subItem.target || "_self"}
+                        aria-label={subItem.text}
+                      >
+                        <Icon name={subItem.svg} />
+                        <span class="hidden lg:inline ml-2">{subItem.text}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ) : (
+              <a
+                tabindex="0"
+                class="flex justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4 hover:bg-base-200 rounded-lg"
+                id={item.id}
+                title={item.id}
+                href={item.href}
+                target={item.target || "_self"}
+                aria-label={item.text}
+              >
+                <Icon name={item.svg} />
+                <span class="hidden lg:inline ml-2">{item.text}</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="mt-4 pt-3 border-t border-base-300">
+      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-items-center">
+        {
+          USER_SIDEBAR_SOCIAL_ICONS.map((icon) => (
+            <div class="tooltip tooltip-bottom" data-tip={icon.title}>
+              <a
+                tabindex="0"
+                href={icon.href}
+                aria-label={icon.ariaLabel}
+                title={icon.title}
+                target="_blank"
+                class="btn btn-circle btn-ghost"
+              >
+                <Icon name={icon.svg} class="text-xl" />
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Card>

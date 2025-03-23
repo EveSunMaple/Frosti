@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseCard from "@components/BaseCard.astro";
+import { getCollection } from "astro:content";
+import { t } from "@config";
+import { Icon } from "astro-icon/components";
+import Card from "@components/temple/Card.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
+import dayjs from "dayjs";
+import { DATE_FORMAT } from "@config";
+import type { CollectionEntry } from "astro:content";
+
+// Get all blog posts
+const allBlogPosts = await getCollection("blog");
+
+// Filter out draft posts in production mode
+const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
+
+// Extract all categories and group posts by category
+const categoryMap = new Map<string, CollectionEntry<"blog">[]>();
+allPosts.forEach((post) => {
+  if (post.data.categories) {
+    post.data.categories.forEach((category) => {
+      if (!categoryMap.has(category)) {
+        categoryMap.set(category, []);
+      }
+      categoryMap.get(category)!.push(post);
+    });
+  }
+});
+
+// Convert map to array and sort alphabetically
+const categoryEntries = Array.from(categoryMap.entries());
+categoryEntries.sort((a, b) => a[0].localeCompare(b[0]));
+
+// Sort posts in each category by date (newest first)
+categoryEntries.forEach(([_, posts]) => {
+  posts.sort(
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+  );
+});
+
+// Count total categories and total posts
+const totalCategories = categoryMap.size;
+
+// Generate a unique color for each category (based on index)
+const getCategoryColor = (index: number): string => {
+  const colorClasses = [
+    "category-primary",
+    "category-secondary",
+    "category-accent",
+    "category-info",
+    "category-success",
+    "category-warning",
+    "category-error",
+  ];
+  return colorClasses[index % colorClasses.length];
+};
+---
+
+<BaseLayout title={t("label.categoryPage")}>
+  <BaseCard title={t("label.categoryPage")}>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="flex items-center gap-2">
+        <Icon name="lucide:folder" class="w-6 h-6 text-primary" />
+        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{t("label.categoryPage")}</h1>
+        <div class="badge badge-primary">{totalCategories} {t("label.totalCategories")}</div>
+      </div>
+      <a href="/blog" class="btn btn-outline btn-sm gap-2">
+        <Icon name="lucide:book-open" class="w-4 h-4" />
+        <span>{t("label.backToBlog")}</span>
+      </a>
+    </div>
+    <div class="divider my-2"></div>
+    <p class="text-sm opacity-75">{t("label.categoriesPageDescription")}</p>
+  </BaseCard>
+  <BaseCard title={t("label.categoryPage")}>
+    <div class="categories-container">
+      {
+        categoryEntries.length > 0 ? (
+          <div class="categories-grid">
+            {categoryEntries.map(([category, posts], index) => (
+              <div class="category-card" data-index={index}>
+                <div class={`category-inner ${getCategoryColor(index)}`}>
+                  <div class="category-header" data-category={category}>
+                    <div class="category-title">
+                      <div class="category-icon">
+                        <Icon name="lucide:folder" />
+                      </div>
+                      <h2>{category}</h2>
+                      <span class="category-count">{posts.length}</span>
+                    </div>
+                    <button class="toggle-btn" aria-label="Toggle category content">
+                      <Icon name="ri:arrow-down-s-line" class="toggle-icon" />
+                    </button>
+                  </div>
+                  <div class="category-content scrollbar-none">
+                    <div class="category-divider" />
+                    <ul class="post-list">
+                      {posts.map((post) => (
+                        <li class="post-item">
+                          <a href={`/blog/${post.slug}`} class="post-link">
+                            <span class="post-title">{post.data.title}</span>
+                            <span class="post-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <Icon name="ri:emotion-sad-line" class="empty-icon" />
+            <p class="empty-text">{t("label.noCategory")}</p>
+          </div>
+        )
+      }
+    </div>
+  </BaseCard>
+</BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const categoryHeaders = document.querySelectorAll(".category-header");
+
+    categoryHeaders.forEach((header) => {
+      header.addEventListener("click", () => {
+        const card = header.closest(".category-card");
+        if (!card) return;
+
+        const content = card.querySelector(".category-content");
+        const toggleIcon = header.querySelector(".toggle-icon");
+        const inner = card.querySelector(".category-inner");
+
+        if (content && toggleIcon && inner) {
+          if (content.classList.contains("expanded")) {
+            // Collapse
+            content.classList.remove("expanded");
+            toggleIcon.classList.remove("rotate-180");
+            inner.classList.remove("expanded");
+          } else {
+            // Expand
+            content.classList.add("expanded");
+            toggleIcon.classList.add("rotate-180");
+            inner.classList.add("expanded");
+
+            // Auto-collapse other cards (accordion behavior)
+            document.querySelectorAll(".category-content.expanded").forEach((openContent) => {
+              if (openContent !== content) {
+                openContent.classList.remove("expanded");
+                const otherCard = openContent.closest(".category-card");
+                if (otherCard) {
+                  const otherToggleIcon = otherCard.querySelector(".toggle-icon");
+                  const otherInner = otherCard.querySelector(".category-inner");
+                  if (otherToggleIcon) {
+                    otherToggleIcon.classList.remove("rotate-180");
+                  }
+                  if (otherInner) {
+                    otherInner.classList.remove("expanded");
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
