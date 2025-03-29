@@ -5,8 +5,7 @@ import PostInfo from "@components/widgets/PostInfo.astro";
 import PostFilter from "@components/widgets/PostFilter.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import dayjs from "dayjs";
-import { DATE_FORMAT, t } from "@config";
-import { Icon } from "astro-icon/components";
+import { DATE_FORMAT } from "@config";
 import MainCard from "@/components/MainCard.astro";
 
 export async function getStaticPaths() {

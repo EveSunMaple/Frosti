@@ -22,7 +22,7 @@ const { className = "" } = Astro.props as ThemeToggleProps;
   <Icon name="lucide:moon" class="theme-toggle-icon h-5 w-5 moon-icon hidden" />
 </button>
 
-<script define:vars={{ SITE_THEME, uniqueId }}>
+<script is:inline define:vars={{ SITE_THEME, uniqueId }}>
   // Function to update icons based on current theme for a specific toggle button
   const updateThemeIcons = (toggleButton, isDark) => {
     if (!toggleButton) return;
