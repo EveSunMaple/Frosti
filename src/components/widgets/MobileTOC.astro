@@ -20,7 +20,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
     <div class="flex justify-between items-center border-b border-base-200 pb-4">
       <h3 class="font-medium">{t("label.tableOfContents")}</h3>
       <form method="dialog">
-        <button class="btn btn-sm btn-ghost">
+        <button class="btn btn-circle btn-ghost">
           <Icon name="lucide:x" class="h-5 w-5" />
         </button>
       </form>
@@ -33,9 +33,9 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
               <li class="my-1">
                 <a
                   href={`#${heading.slug}`}
-                  class="toc-link flex items-center rounded-lg transition-all hover:bg-base-200"
+                  class="mobile-toc-link flex items-center rounded-lg transition-color hover:bg-base-200"
                   style={`margin-left: ${(heading.depth - 1) * 12}px`}
-                  data-heading-id={heading.slug}
+                  data-mobile-heading-id={heading.slug}
                 >
                   <span class="text-sm truncate">{heading.text}</span>
                 </a>
@@ -61,7 +61,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
     if (!tocButton) return;
 
     // Cache DOM elements and reduce queries
-    const tocLinks = document.querySelectorAll(".toc-link");
+    const tocLinks = document.querySelectorAll(".mobile-toc-link");
     const headings = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
 
     // Use a throttled scroll handler for better performance
@@ -109,7 +109,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
 
       // Update active link state
       tocLinks.forEach((link) => {
-        const headingId = link.getAttribute("data-heading-id");
+        const headingId = link.getAttribute("data-mobile-heading-id");
         if (headingId === activeHeadingId) {
           link.classList.add("bg-primary/10", "font-medium");
         } else {
