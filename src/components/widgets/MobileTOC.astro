@@ -1,0 +1,135 @@
+---
+import { Icon } from "astro-icon/components";
+import type { TOCBarProps } from "@interfaces/data";
+import { t } from "@config";
+
+const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
+---
+
+<button
+  id="mobile-toc-button"
+  aria-label={t("label.tableOfContents")}
+  class="btn btn-circle btn-md fixed bottom-20 right-6 z-50 bg-base-100 shadow-lg md:hidden opacity-0 invisible transition-all hover:scale-110"
+  onclick="mobile_toc_modal.showModal()"
+>
+  <Icon name="lucide:list" class="h-5 w-5" />
+</button>
+
+<dialog id="mobile_toc_modal" class="modal md:hidden">
+  <div class="modal-box w-10/12 max-w-md bg-base-100 rounded-lg shadow-xl">
+    <div class="flex justify-between items-center border-b border-base-200 pb-4">
+      <h3 class="font-medium">{t("label.tableOfContents")}</h3>
+      <form method="dialog">
+        <button class="btn btn-sm btn-ghost">
+          <Icon name="lucide:x" class="h-5 w-5" />
+        </button>
+      </form>
+    </div>
+    <div class="pt-4 max-h-[70vh] overflow-auto">
+      {
+        showTOC && headings.length > 0 ? (
+          <ul class="menu menu-sm">
+            {headings.map((heading) => (
+              <li class="my-1">
+                <a
+                  href={`#${heading.slug}`}
+                  class="toc-link flex items-center rounded-lg transition-all hover:bg-base-200"
+                  style={`margin-left: ${(heading.depth - 1) * 12}px`}
+                  data-heading-id={heading.slug}
+                >
+                  <span class="text-sm truncate">{heading.text}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div class="py-4 text-center text-base-content/70">
+            <p>{t("label.noContents")}</p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const tocButton = document.getElementById("mobile-toc-button");
+    if (!tocButton) return;
+
+    // Cache DOM elements and reduce queries
+    const tocLinks = document.querySelectorAll(".toc-link");
+    const headings = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
+
+    // Use a throttled scroll handler for better performance
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const handleScroll = () => {
+      if (scrollTimeout) return;
+
+      scrollTimeout = setTimeout(() => {
+        const currentScrollY = window.scrollY;
+
+        // Toggle button visibility
+        if (currentScrollY > 300) {
+          tocButton.classList.remove("opacity-0", "invisible");
+          tocButton.classList.add("opacity-100", "visible");
+        } else {
+          tocButton.classList.remove("opacity-100", "visible");
+          tocButton.classList.add("opacity-0", "invisible");
+        }
+
+        // Update active TOC link if we have content
+        if (tocLinks.length > 0 && headings.length > 0) {
+          updateActiveHeading();
+        }
+
+        scrollTimeout = null;
+      }, 100); // Throttle to 10 updates per second maximum
+    };
+
+    // More efficient active heading detection
+    const updateActiveHeading = () => {
+      let activeHeadingId = null;
+      const offset = 100; // Offset from top of viewport
+
+      // Use a reverse loop for efficiency when scrolling down (most common case)
+      for (let i = headings.length - 1; i >= 0; i--) {
+        const heading = headings[i];
+        const rect = heading.getBoundingClientRect();
+
+        if (rect.top <= offset) {
+          activeHeadingId = heading.id;
+          break;
+        }
+      }
+
+      // Update active link state
+      tocLinks.forEach((link) => {
+        const headingId = link.getAttribute("data-heading-id");
+        if (headingId === activeHeadingId) {
+          link.classList.add("bg-primary/10", "font-medium");
+        } else {
+          link.classList.remove("bg-primary/10", "font-medium");
+        }
+      });
+    };
+
+    // Add passive scroll listener for better performance
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Initial check
+    handleScroll();
+
+    // Clean up on page unload
+    document.addEventListener("astro:before-swap", () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    });
+  });
+</script>

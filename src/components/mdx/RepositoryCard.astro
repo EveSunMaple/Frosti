@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
 // Extract username and repository name
-const [username, repoName] = repo.split("/");
+const [_, repoName] = repo.split("/");
 ---
 
 <repository-card
@@ -126,16 +126,14 @@ const [username, repoName] = repo.split("/");
 
   class RepositoryCard extends HTMLElement {
     private abortController: AbortController | null = null;
-    private readonly githubToken = import.meta.env.PUBLIC_GITHUB_TOKEN || "";
+    private readonly githubToken = import.meta.env.GITHUB_TOKEN || "";
     private repoFullName: string = "";
-    private isOfficial: boolean = false;
 
     connectedCallback() {
       this.abortController = new AbortController();
 
       // 获取仓库信息
       this.repoFullName = this.getAttribute("data-repo") || "";
-      this.isOfficial = this.getAttribute("data-official") === "true";
 
       if (!this.repoFullName || !this.repoFullName.includes("/")) {
         this.showError("Invalid repository format. Expected 'username/repo'");

@@ -1,6 +1,6 @@
 ---
 import "medium-zoom/dist/style.css";
-import { SITE_TAB, SITE_TITLE, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "@config";
+import { SITE_TAB, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "@config";
 import { ClientRouter } from "astro:transitions";
 import ElementCrossing from "astro-vtbot/components/ElementCrossing.astro";
 import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astro";
@@ -8,6 +8,7 @@ import Header from "@components/Header.astro";
 import Sidebar from "@components/Sidebar.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
+import MobileTOC from "@components/widgets/MobileTOC.astro";
 
 const { title, image, headings = [], showTOC = false } = Astro.props;
 ---
@@ -18,8 +19,8 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
     <ClientRouter />
     <ElementCrossing />
     <PointerOnNavigation />
-    <Header title={SITE_TITLE} description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
-    <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
+    <Header description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
+    <title>{`${title} - ${SITE_TAB}`}</title>
 
     <!-- Initial theme setup on first load -->
     <script define:vars={{ SITE_THEME }} is:inline>
@@ -69,6 +70,9 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
         </aside>
       </div>
     </div>
+
+    <!-- Mobile TOC Button (only visible on mobile) -->
+    <MobileTOC headings={headings} showTOC={showTOC} />
 
     <!-- Theme persistence during client-side navigation -->
     <script define:vars={{ SITE_THEME }} is:inline>

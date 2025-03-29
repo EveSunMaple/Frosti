@@ -4,8 +4,6 @@ import BaseCard from "@components/BaseCard.astro";
 import { getCollection } from "astro:content";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
-import Card from "@components/temple/Card.astro";
-import CardGroup from "@components/temple/CardGroup.astro";
 
 // Get all blog posts
 const allBlogPosts = await getCollection("blog");

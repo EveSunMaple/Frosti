@@ -7,7 +7,6 @@ import CardGroup from "@components/temple/CardGroup.astro";
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import { t } from "@config";
-import BaseCard from "@components/BaseCard.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const allPosts = await getCollection("blog");

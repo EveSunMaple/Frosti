@@ -6,22 +6,26 @@ import { t } from "@config";
 
 <Card>
   <div class="p-4">
-    <form action="/blog/search" method="get" class="join items-center relative w-full">
-      <div class="relative w-full">
+    <form action="/blog/search" method="get" class="relative w-full">
+      <div class="search-container w-full relative">
         <input
           type="text"
           name="q"
           placeholder={t("label.search") || "Search..."}
-          class="input input-bordered join-item w-full pl-10 pr-4 py-2"
+          class="input input-bordered w-full pl-10 pr-16 py-2"
           aria-label={t("label.search") || "Search"}
         />
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <Icon name="lucide:search" class="w-5 h-5 opacity-60" />
+          <Icon name="lucide:search" class="w-5 h-5" />
         </div>
+        <button
+          type="submit"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2"
+          aria-label={t("label.search") || "Search"}
+        >
+          <Icon name="lucide:arrow-right" class="w-4 h-4" />
+        </button>
       </div>
-      <button type="submit" class="btn btn-primary join-item ml-2" aria-label={t("label.search") || "Search"}>
-        <Icon name="lucide:arrow-right" class="w-4 h-4" />
-      </button>
     </form>
   </div>
 </Card>

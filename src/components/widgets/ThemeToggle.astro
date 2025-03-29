@@ -11,7 +11,7 @@ const { className = "" } = Astro.props as ThemeToggleProps;
 
 <button
   id={uniqueId}
-  class:list={["btn btn-circle btn-sm md:btn-md bg-base-100 shadow-sm hover:scale-110", className]}
+  class:list={["btn btn-circle btn-md bg-base-100 shadow-sm hover:scale-110", className]}
   aria-label="Toggle theme"
   data-theme-toggle
 >
@@ -22,7 +22,7 @@ const { className = "" } = Astro.props as ThemeToggleProps;
   <Icon name="lucide:moon" class="theme-toggle-icon h-5 w-5 moon-icon hidden" />
 </button>
 
-<script define:vars={{ SITE_THEME, uniqueId }}>
+<script is:inline define:vars={{ SITE_THEME, uniqueId }}>
   // Function to update icons based on current theme for a specific toggle button
   const updateThemeIcons = (toggleButton, isDark) => {
     if (!toggleButton) return;

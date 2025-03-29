@@ -100,77 +100,77 @@ const socialLinks = [
         <div class="mt-4">
           <PostFilter categories={categories} tags={tags} />
           <!-- License Info -->
-          <p class="text-sm opacity-75 mt-4 pt-4 border-t">
-            © {USER_NAME} |
-            <a
-              href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:text-primary transition-colors"
-            >
-              CC BY-NC-SA 4.0
-            </a>
-          </p>
+          <hr class="my-4" />
+          <p class="text-sm opacity-75"></p>
+          © {USER_NAME} |
+          <a
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-primary transition-colors"
+          >
+            CC BY-NC-SA 4.0
+          </a>
         </div>
+      </div>
 
-        <!-- Share Button -->
-        <div class="flex justify-end mt-4">
-          <button class="btn btn-primary btn-outline" onclick="share_modal.showModal()">
-            {t("label.share")}
-            <Icon name="ri:share-line" class="w-5 h-5" />
-          </button>
-        </div>
+      <!-- Share Button -->
+      <div class="flex justify-end mt-4">
+        <button class="btn btn-primary btn-outline" onclick="share_modal.showModal()">
+          {t("label.share")}
+          <Icon name="ri:share-line" class="w-5 h-5" />
+        </button>
       </div>
     </div>
-
-    <!-- Share Modal -->
-    <dialog id="share_modal" class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box max-w-2xl rounded-none sm:rounded-xl">
-        <h3 class="font-bold text-lg sm:text-xl mb-6 text-center">
-          {t("label.shareCard")}
-        </h3>
-        <div class="flex flex-wrap gap-4 justify-center">
-          {
-            socialLinks.map(({ name, icon, class: bgClass, url }) => (
-              <a
-                href={url}
-                class={`btn btn-circle btn-lg transition-transform hover:scale-110 ${bgClass}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={name}
-              >
-                <span class="sr-only">{name}</span>
-                <Icon name={icon} class="w-6 h-6 text-white" />
-              </a>
-            ))
-          }
-        </div>
-        <div class="modal-action">
-          <form method="dialog">
-            <button class="btn btn-ghost hover:scale-105 transition-transform">
-              {t("label.close")}
-            </button>
-          </form>
-        </div>
-      </div>
-      <form method="dialog" class="modal-backdrop">
-        <button>{t("label.close")}</button>
-      </form>
-    </dialog>
   </div>
 
-  <style>
-    .modal-backdrop button {
-      cursor: default;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-    }
-
-    /* Remove underlines from PostFilter buttons */
-    :global(.card-body .btn-category),
-    :global(.card-body .btn-tag) {
-      text-decoration: none;
-    }
-  </style>
+  <!-- Share Modal -->
+  <dialog id="share_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box max-w-2xl rounded-none sm:rounded-xl">
+      <h3 class="font-bold text-lg sm:text-xl mb-6 text-center">
+        {t("label.shareCard")}
+      </h3>
+      <div class="flex flex-wrap gap-4 justify-center">
+        {
+          socialLinks.map(({ name, icon, class: bgClass, url }) => (
+            <a
+              href={url}
+              class={`btn btn-circle btn-lg transition-transform hover:scale-110 ${bgClass}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={name}
+            >
+              <span class="sr-only">{name}</span>
+              <Icon name={icon} class="w-6 h-6 text-white" />
+            </a>
+          ))
+        }
+      </div>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn btn-ghost hover:scale-105 transition-transform">
+            {t("label.close")}
+          </button>
+        </form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>{t("label.close")}</button>
+    </form>
+  </dialog>
 </div>
+
+<style>
+  .modal-backdrop button {
+    cursor: default;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  /* Remove underlines from PostFilter buttons */
+  :global(.card-body .btn-category),
+  :global(.card-body .btn-tag) {
+    text-decoration: none;
+  }
+</style>

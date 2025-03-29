@@ -126,7 +126,7 @@ const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryNam
             <div class="grid grid-cols-7 gap-1">
               {Array(7 * 8)
                 .fill(0)
-                .map((_, i) => (
+                .map((_) => (
                   <div class="w-3 h-3 rounded-sm skeleton" />
                 ))}
             </div>
@@ -147,8 +147,7 @@ const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryNam
 <script>
   class GitHubStats extends HTMLElement {
     private abortController: AbortController | null = null;
-    // 可选的GitHub令牌，从环境变量或其他配置中获取
-    private readonly githubToken = import.meta.env.PUBLIC_GITHUB_TOKEN || "";
+    private readonly githubToken = import.meta.env.GITHUB_TOKEN || "";
 
     connectedCallback() {
       this.abortController = new AbortController();
@@ -156,7 +155,6 @@ const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryNam
       // Get data attributes
       const username = this.getAttribute("data-username");
       const repoName = this.getAttribute("data-repo");
-      const showGraph = this.getAttribute("data-show-graph") === "true";
 
       if (!username) return;
 

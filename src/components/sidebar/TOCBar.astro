@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Card from "../temple/Card.astro";
-import type { TOCBarProps, Heading } from "@interfaces/data";
+import type { TOCBarProps } from "@interfaces/data";
 
 // This prop indicates whether to render the TOC
 // (useful to conditionally show on certain pages)
@@ -10,7 +10,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
 
 {
   showTOC && headings.length > 0 && (
-    <div id="toc-container" class="mt-4 z-10 md:max-h-[calc(100vh-2rem)]">
+    <div id="toc-container" class="mt-4 z-10 md:max-h-[calc(100vh-2rem)] hidden md:visible">
       <Card>
         <div class="p-4">
           <nav class="toc-nav max-h-[calc(100vh-200px)] overflow-y-auto scrollbar-none relative">
