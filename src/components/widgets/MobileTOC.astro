@@ -66,7 +66,6 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
 
     // Use a throttled scroll handler for better performance
     let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
-    let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
       if (scrollTimeout) return;
@@ -88,7 +87,6 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
           updateActiveHeading();
         }
 
-        lastScrollY = currentScrollY;
         scrollTimeout = null;
       }, 100); // Throttle to 10 updates per second maximum
     };
