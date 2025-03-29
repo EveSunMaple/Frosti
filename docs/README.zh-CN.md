@@ -51,7 +51,7 @@ npm i -g pnpm
 2. 克隆项目
 
 ```sh
-git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti
+git clone https://github.com/EveSunMaple/Frosti.git Frosti
 ```
 
 3. 进入项目文件夹
