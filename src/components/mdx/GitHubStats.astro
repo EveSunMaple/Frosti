@@ -147,7 +147,6 @@ const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryNam
 <script>
   class GitHubStats extends HTMLElement {
     private abortController: AbortController | null = null;
-    // 可选的GitHub令牌，从环境变量或其他配置中获取
     private readonly githubToken = import.meta.env.GITHUB_TOKEN || "";
 
     connectedCallback() {
@@ -156,7 +155,6 @@ const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryNam
       // Get data attributes
       const username = this.getAttribute("data-username");
       const repoName = this.getAttribute("data-repo");
-      const showGraph = this.getAttribute("data-show-graph") === "true";
 
       if (!username) return;
 

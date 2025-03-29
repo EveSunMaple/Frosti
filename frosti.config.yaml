@@ -1,7 +1,7 @@
 # 网站的基本信息
 site:
   tab: Frosti # 浏览器标签栏上显示的文本
-  title: Frosti # 网站的标题
+  title: 💠 Frosti # 网站的标题
   description: A clean, elegant, and fast static blog template! 🚀 Developed with Astro # 网站的描述，用于SEO等
   language: en # 网站的语言，例如 "en" 是英文
   favicon: /favicon.ico # 网站的图标，用于浏览器标签栏和其他地方显示

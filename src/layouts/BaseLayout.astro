@@ -19,8 +19,8 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
     <ClientRouter />
     <ElementCrossing />
     <PointerOnNavigation />
-    <Header title={SITE_TITLE} description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
-    <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
+    <Header description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
+    <title>{`${title} - ${SITE_TAB}`}</title>
 
     <!-- Initial theme setup on first load -->
     <script define:vars={{ SITE_THEME }} is:inline>
