@@ -10,7 +10,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
 
 {
   showTOC && headings.length > 0 && (
-    <div id="toc-container" class="mt-4 z-10 md:max-h-[calc(100vh-2rem)]">
+    <div id="toc-container" class="mt-4 z-10 md:max-h-[calc(100vh-2rem)] hidden md:visible">
       <Card>
         <div class="p-4">
           <nav class="toc-nav max-h-[calc(100vh-200px)] overflow-y-auto scrollbar-none relative">

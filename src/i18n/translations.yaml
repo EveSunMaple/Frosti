@@ -34,6 +34,8 @@ en:
     searchPageDescription: Search for articles across the blog
     search: Search
     searchPlaceholder: Type to search...
+    tableOfContents: Table of Contents
+    noContents: No headings available
     404title: Page Not Found
     404description: "Looks like you've ventured into the unknown. The page you're looking for doesn't exist or has been moved to another dimension."
     404backHome: Back to Home
@@ -78,6 +80,8 @@ zh:
     searchPageDescription: 搜索博客中的所有文章
     search: 搜索
     searchPlaceholder: 输入关键词搜索...
+    tableOfContents: 目录
+    noContents: 无可用标题
     404title: 页面未找到
     404description: 看起来您已经进入了未知领域。您查找的页面不存在或已被转移到另一个维度。
     404backHome: 返回首页

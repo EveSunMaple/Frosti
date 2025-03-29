@@ -8,6 +8,10 @@ html {
   @apply scroll-smooth;
 }
 
+kbd {
+  @apply kbd;
+}
+
 .scrollbar-none {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -47,16 +51,33 @@ html {
 
     pre {
       @apply bg-transparent;
+      counter-reset: line;
     }
 
-    .line::before {
-      @apply text-current mr-4 inline-block w-4 text-right;
+    .line {
+      counter-increment: line;
+
+      &::before {
+        content: counter(line);
+        @apply text-current mr-4 inline-block w-4 text-right;
+      }
     }
   }
 }
 
 // Shared components and styles for blog pages
 // ===================================================
+
+// Footnotes styles
+// ---------------------------------------------------
+.footnotes {
+  @apply mt-12 p-6 rounded-xl bg-base-200/50 backdrop-blur-sm border border-base-300/80 shadow-sm;
+
+  // Footnote list item
+  li {
+    @apply text-sm text-base-content/80 relative;
+  }
+}
 
 // Animation keyframes
 @keyframes fadeIn {

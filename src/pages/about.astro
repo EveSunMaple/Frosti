@@ -112,8 +112,8 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
           <span>Recent Activity</span>
         </h2>
 
-        <div class="bg-base-200 rounded-xl p-6 overflow-x-scroll">
-          <div class="timeline timeline-vertical md:timeline-horizontal">
+        <div class="bg-base-200 rounded-xl p-6 overflow-x-auto">
+          <div class="flex flex-col md:flex-row gap-8 md:gap-4 md:overflow-x-auto md:pb-2">
             {
               [
                 {
@@ -137,19 +137,17 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
                   desc: "Launched version 3 of the Frosti blog theme with enhanced performance and new customization options.",
                 },
               ].map((item, i) => (
-                <div class="timeline-item mb-8 last:mb-0">
-                  <div class="flex items-start gap-4">
-                    <div class="flex flex-col items-center">
-                      <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-content text-xl">
-                        {i + 1}
-                      </div>
-                      {i < 3 && <div class="w-0.5 h-16 bg-base-300 mt-2" />}
+                <div class="relative flex gap-4 pb-2 md:pb-0 md:min-w-[250px]">
+                  <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-content text-xl">
+                      {i + 1}
                     </div>
-                    <div>
-                      <div class="text-sm text-base-content/60 mb-1">{item.date}</div>
-                      <h3 class="text-lg font-bold">{item.title}</h3>
-                      <p class="text-base-content/80 mt-1">{item.desc}</p>
-                    </div>
+                    <div class="w-0.5 h-16 bg-base-300 mt-2 md:hidden" />
+                  </div>
+                  <div>
+                    <div class="text-sm text-base-content/60 mb-1">{item.date}</div>
+                    <h3 class="text-lg font-bold">{item.title}</h3>
+                    <p class="text-base-content/80 mt-1">{item.desc}</p>
                   </div>
                 </div>
               ))

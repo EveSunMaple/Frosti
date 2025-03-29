@@ -8,6 +8,7 @@ import Header from "@components/Header.astro";
 import Sidebar from "@components/Sidebar.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
+import MobileTOC from "@components/widgets/MobileTOC.astro";
 
 const { title, image, headings = [], showTOC = false } = Astro.props;
 ---
@@ -69,6 +70,9 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
         </aside>
       </div>
     </div>
+
+    <!-- Mobile TOC Button (only visible on mobile) -->
+    <MobileTOC headings={headings} showTOC={showTOC} />
 
     <!-- Theme persistence during client-side navigation -->
     <script define:vars={{ SITE_THEME }} is:inline>
