@@ -12,6 +12,10 @@ kbd {
   @apply kbd;
 }
 
+code {
+  font-size: 0.875em;
+}
+
 .scrollbar-none {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

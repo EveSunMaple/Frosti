@@ -1,58 +1,25 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
-import { getCollection } from "astro:content";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
+import { getAllPosts, getTagsWithCount, getTagColorClass, getTagFontSize } from "@utils/blogUtils";
 
-// Get all blog posts
-const allBlogPosts = await getCollection("blog");
+// 获取所有博客文章
+const allPosts = await getAllPosts();
 
-// Filter out draft posts in production mode
-const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
+// 提取所有标签并统计其出现次数
+const tagMap = getTagsWithCount(allPosts);
 
-// Extract all tags and count their occurrences
-const tagMap = new Map();
-allPosts.forEach((post) => {
-  if (post.data.tags) {
-    post.data.tags.forEach((tag) => {
-      if (tagMap.has(tag)) {
-        tagMap.set(tag, tagMap.get(tag) + 1);
-      } else {
-        tagMap.set(tag, 1);
-      }
-    });
-  }
-});
-
-// Convert map to array and sort by count (descending)
+// 转换为数组并按计数排序（降序）
 const tagEntries = Array.from(tagMap.entries());
 tagEntries.sort((a, b) => b[1] - a[1]);
 
-// Function to determine font size based on count
-const getFontSize = (count: number, max: number, min: number): number => {
-  // Normalize count to a value between 0 and 1
-  const normalized = (count - min) / (max - min || 1);
-  // Map to font sizes between 0.8rem and 2rem
-  return 0.9 + normalized * 1.1;
-};
-
-// Function to get tag color class based on count
-const getColorClass = (count: number, max: number): string => {
-  // Create color classes based on frequency
-  const ratio = count / max;
-  if (ratio > 0.8) return "tag-high";
-  if (ratio > 0.6) return "tag-medium-high";
-  if (ratio > 0.4) return "tag-medium";
-  if (ratio > 0.2) return "tag-medium-low";
-  return "tag-low";
-};
-
-// Find max and min counts for scaling
+// 找到最大和最小计数，用于缩放
 const maxCount = Math.max(...tagMap.values());
 const minCount = Math.min(...tagMap.values());
 
-// Calculate total tags
+// 计算总标签数
 const totalTags = tagMap.size;
 ---
 
@@ -80,8 +47,8 @@ const totalTags = tagMap.size;
             {tagEntries.map(([tag, count], index) => (
               <a
                 href={`/blog/tag/${tag}`}
-                class={`tags-item ${getColorClass(count, maxCount)}`}
-                style={`font-size: ${getFontSize(count, maxCount, minCount)}rem;`}
+                class={`tags-item ${getTagColorClass(count, maxCount)}`}
+                style={`font-size: ${getTagFontSize(count, maxCount, minCount)}rem;`}
                 data-count={count}
                 data-index={index}
               >

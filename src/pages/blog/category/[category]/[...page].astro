@@ -5,68 +5,17 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
 import Pagination from "@components/widgets/Pagination.astro";
 import CardGroup from "@components/temple/CardGroup.astro";
-import { getCollection } from "astro:content";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
+import { generatePageLinks } from "@utils/blogUtils";
+import { getCategoryPaginationPaths } from "@utils/paginationUtils";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const all_blog_posts = await getCollection("blog");
-
-  // Filter out draft posts in production mode
-  const all_posts = import.meta.env.PROD ? all_blog_posts.filter((post) => !post.data.draft) : all_blog_posts;
-
-  const all_categories = [...new Set(all_posts.flatMap((blog: any) => blog.data.categories || []))];
-
-  all_posts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-  const postsWithStats = await Promise.all(
-    all_posts.map(async (blog: any) => {
-      const { remarkPluginFrontmatter } = await blog.render();
-      return {
-        ...blog,
-        remarkPluginFrontmatter: {
-          readingTime: remarkPluginFrontmatter.readingTime,
-          totalCharCount: remarkPluginFrontmatter.totalCharCount,
-        },
-      };
-    }),
-  );
-
-  return all_categories.flatMap((category) => {
-    const filtered_posts = postsWithStats.filter((blog) => blog.data.categories?.includes(category));
-    return paginate(filtered_posts, {
-      params: { category },
-      pageSize: 8,
-    });
-  });
+  return getCategoryPaginationPaths({ paginate });
 }
 
 const { page } = Astro.props as { page: Page };
 const params = Astro.params as { category: string; page: string };
-
-function generatePageLinks(totalPages: number): {
-  active: string[];
-  hidden: string[];
-} {
-  const pages = {
-    active: [] as string[],
-    hidden: [] as string[],
-  };
-
-  if (totalPages > 3) {
-    pages.active.push("1");
-    pages.active.push("...");
-    pages.active.push(totalPages.toString());
-    for (let i = 2; i <= totalPages - 1; i++) {
-      pages.hidden.push(i.toString());
-    }
-  } else {
-    for (let i = 1; i <= totalPages; i++) {
-      pages.active.push(i.toString());
-    }
-  }
-  return pages;
-}
 
 const totalPages = Math.ceil(page.total / page.size);
 const pageLinks = generatePageLinks(totalPages);

@@ -1,37 +1,24 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
-import { getCollection } from "astro:content";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
-import dayjs from "dayjs";
+import dayjs from "@utils/dayjs";
 import { DATE_FORMAT } from "@config";
 import type { CollectionEntry } from "astro:content";
+import { getAllPosts, getCategoriesWithPosts, getCategoryColorClass } from "@utils/blogUtils";
 
-// Get all blog posts
-const allBlogPosts = await getCollection("blog");
+// 获取所有博客文章
+const allPosts = await getAllPosts();
 
-// Filter out draft posts in production mode
-const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
+// 提取所有分类并按分类对文章进行分组
+const categoryMap = getCategoriesWithPosts(allPosts);
 
-// Extract all categories and group posts by category
-const categoryMap = new Map<string, CollectionEntry<"blog">[]>();
-allPosts.forEach((post) => {
-  if (post.data.categories) {
-    post.data.categories.forEach((category) => {
-      if (!categoryMap.has(category)) {
-        categoryMap.set(category, []);
-      }
-      categoryMap.get(category)!.push(post);
-    });
-  }
-});
-
-// Convert map to array and sort alphabetically
+// 转换为数组并按字母顺序排序
 const categoryEntries = Array.from(categoryMap.entries());
 categoryEntries.sort((a, b) => a[0].localeCompare(b[0]));
 
-// Sort posts in each category by date (newest first)
+// 对每个分类中的文章按日期排序（最新的排在前面）
 categoryEntries.forEach(([_, posts]) => {
   posts.sort(
     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
@@ -39,22 +26,8 @@ categoryEntries.forEach(([_, posts]) => {
   );
 });
 
-// Count total categories and total posts
+// 统计总分类数
 const totalCategories = categoryMap.size;
-
-// Generate a unique color for each category (based on index)
-const getCategoryColor = (index: number): string => {
-  const colorClasses = [
-    "category-primary",
-    "category-secondary",
-    "category-accent",
-    "category-info",
-    "category-success",
-    "category-warning",
-    "category-error",
-  ];
-  return colorClasses[index % colorClasses.length];
-};
 ---
 
 <BaseLayout title={t("label.categoryPage")}>
@@ -80,7 +53,7 @@ const getCategoryColor = (index: number): string => {
           <div class="categories-grid">
             {categoryEntries.map(([category, posts], index) => (
               <div class="category-card" data-index={index}>
-                <div class={`category-inner ${getCategoryColor(index)}`}>
+                <div class={`category-inner ${getCategoryColorClass(index)}`}>
                   <div class="category-header" data-category={category}>
                     <div class="category-title">
                       <div class="category-icon">
