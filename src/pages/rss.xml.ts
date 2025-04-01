@@ -4,7 +4,9 @@ import { getCollection } from "astro:content";
 import { marked } from "marked";
 
 export async function GET(context: any) {
-  const posts = await getCollection("blog");
+  const allPosts = await getCollection("blog");
+  // Filter out draft posts in production mode
+  const posts = import.meta.env.PROD ? allPosts.filter((post) => !post.data.draft) : allPosts;
   const sortedPosts = posts.sort((a: any, b: any) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
   function replacePath(content: string, siteUrl: string): string {
