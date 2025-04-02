@@ -19,13 +19,13 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
           <div
             class="w-32 h-32 md:w-40 md:h-40 rounded-xl ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden"
           >
-            <img src="https://github.com/EveSunMaple.png" alt="SunMaple" width="160" height="160" loading="eager" />
+            <img src="https://github.com/youngestar.png" alt="SunMaple" width="160" height="160" loading="eager" />
           </div>
         </div>
 
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-3xl md:text-4xl font-bold mb-2">SunMaple</h1>
-          <p class="text-xl text-base-content/80 mb-4">Developer & Open-Source Enthusiast</p>
+          <h1 class="text-3xl md:text-4xl font-bold mb-2">Youngestar</h1>
+          <p class="text-xl text-base-content/80 mb-4">Developer & Learner</p>
 
           <div class="flex flex-wrap gap-3 justify-center md:justify-start mb-6">
             <a
@@ -52,12 +52,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
             </a>
           </div>
 
-          <p class="text-base-content/80">
-            Hello! I'm SunMaple, a passionate developer focused on creating elegant, responsive, and efficient web
-            applications. I'm the creator of the Frosti blog theme, a modern Astro-based theme for content creators. I
-            love contributing to open-source projects and building tools that help others create beautiful digital
-            experiences.
-          </p>
+          <p class="text-base-content/80">妄图寻求未来</p>
         </div>
       </section>
 
@@ -68,7 +63,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
           <span>GitHub Statistics</span>
         </h2>
 
-        <GitHubStats username="EveSunMaple" showLanguages={false} showCommitGraph={true} />
+        <GitHubStats username="youngestar" showLanguages={false} showCommitGraph={true} />
       </section>
 
       <!-- Tech Stack -->
@@ -81,18 +76,16 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {
             [
-              { name: "Astro", icon: "simple-icons:astro", color: "oklch(0.5 0.2 300)" },
+              // { name: "Astro", icon: "simple-icons:astro", color: "oklch(0.5 0.2 300)" },
               { name: "JavaScript", icon: "simple-icons:javascript", color: "oklch(0.8 0.2 80)" },
               { name: "TypeScript", icon: "simple-icons:typescript", color: "oklch(0.6 0.2 250)" },
               { name: "React", icon: "simple-icons:react", color: "oklch(0.7 0.2 200)" },
-              { name: "Node.js", icon: "simple-icons:nodedotjs", color: "oklch(0.7 0.2 140)" },
+              { name: "Vue", icon: "simple-icons:vuedotjs", color: "oklch(0.7 0.1 160)" },
+              // { name: "Node.js", icon: "simple-icons:nodedotjs", color: "oklch(0.7 0.2 140)" },
               { name: "TailwindCSS", icon: "simple-icons:tailwindcss", color: "oklch(0.6 0.2 220)" },
               { name: "HTML5", icon: "simple-icons:html5", color: "oklch(0.7 0.2 30)" },
               { name: "CSS3", icon: "simple-icons:css3", color: "oklch(0.7 0.2 220)" },
               { name: "Git", icon: "simple-icons:git", color: "oklch(0.7 0.2 30)" },
-              { name: "C++", icon: "simple-icons:cplusplus", color: "oklch(0.6 0.2 240)" },
-              { name: "C#", icon: "simple-icons:csharp", color: "oklch(0.6 0.2 160)" },
-              { name: "Python", icon: "simple-icons:python", color: "oklch(0.7 0.2 250)" },
             ].map((tech) => (
               <div class="flex flex-col items-center justify-center p-4 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
                 <div class="text-3xl mb-2" style={`color: ${tech.color}`}>
@@ -109,7 +102,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
       <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:activity" class="w-6 h-6 text-primary" />
-          <span>Recent Activity</span>
+          <span>最近活动</span>
         </h2>
 
         <div class="bg-base-200 rounded-xl p-6 overflow-x-auto">
