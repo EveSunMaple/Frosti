@@ -49,7 +49,7 @@ site:
       svg: "material-symbols:code-blocks-outline"
       target: _self
     - id: friend
-      text: 朋友
+      text: 友链
       href: /friend
       svg: "material-symbols:supervisor-account-outline-rounded"
       target: _self
