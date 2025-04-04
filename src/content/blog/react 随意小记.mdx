@@ -1,29 +1,24 @@
-/** eslint-disable no-irregular-whitespace \*/
-/** eslint-disable no-irregular-whitespace \*/
-
 ---
-
-title: Using mdx in Frosti
-description: Using MDX in Frosti to enrich article content with more components
-pubDate: 07 12 2024
+title: React 随意小记
+description: 前段时间阅读 React 官方文档时, 顺手记录了一些个人认为比较重要的知识点作为笔记
+pubDate: 04 3 2025
 image: /image/image2.jpg
 categories:
-
-- tech
-  tags:
-- Frosti
-- Blog
-- Project
-
+  - tech
+tags:
+  - React
+  - 笔记
 ---
-
 # React 随意小记
 
-1.  style 写法: {{  }}
+前段时间阅读 React 官方文档时, 顺手记录了一些个人认为比较重要的知识点作为笔记, 都是比较基础的知识<br/>
+(如果发现有误, 请联系我)
+
+1.  style 写法: `{{  }}`
 
 2.  tailwind 与 组件库容易冲突, 支持 tailwind 的组件库: heroui(最好使用 next.js 在搭建项目时直接一起搭建)
 
-3.  \export default 默认导出 export 具名导出, 很多区别, 自己想
+3.  \export default 默认导出, export 具名导出, 有很多区别, 可以自己思考一下
 
 4.  建议将 props 解构使用并提供默认值(默认值只会对 undefined 生效)
 
@@ -31,17 +26,17 @@ categories:
 
 6.  列表渲染组件 map 返回 tsx(同样记得加 key) 或者 fliter 返回 过滤后数组 (=> 直接少量数据返回 或者 => \{return ...})
 
-7.  <> </> 不可添加 key, 此时替换为 \<Fragment> 或 \</ Fragment>
+7.  `<>` 及 `</>` 不可添加 key, 此时替换为 `<Fragment>` 或 `</ Fragment>`
 
 8.  组件不应当更改任何值, 只负责进行渲染
 
-9.  命名惯例: 按照惯例，通常将事件处理程序命名为 \`handle`，后接事件名
+9.  命名惯例: 按照惯例，通常将事件处理程序命名为 `handle`，后接事件名
 
-10. 某些浏览器事件具有与事件相关联的默认行为, 例:点击 \`<form>` 表单内部的按钮会触发表单提交事件，默认情况下将重新加载整个页面, 应当使用 e.preventDefault() 进行阻止
+10. 某些浏览器事件具有与事件相关联的默认行为, 例:点击 `<form>` 表单内部的按钮会触发表单提交事件，默认情况下将重新加载整个页面, 应当使用 e.preventDefault() 进行阻止
 
-11. 使用 e.stopPropagation() 阻止冒泡
+11. 使用 `e.stopPropagation()` 阻止冒泡
 
-12. { } 内部应当传递事件而非函数调用, 实际上, 传递函数调用的话将在每次渲染时被运行
+12. `{ }` 内部应当传递事件而非函数调用, 实际上, 传递函数调用的话将在每次渲染时被运行
 
 13. [`useState`](https://zh-hans.react.dev/reference/react/useState) 最终提供功能: **State 变量** 用于保存渲染间的数据, **State setter 函数** 更新变量并触发 React 再次渲染组件
 
@@ -53,8 +48,7 @@ categories:
 
 17. 使用函数式更新可以在末尾集中运行时, 每次运行后及时更新 state 的值(但是还是可以被后面的赋值给覆盖)
 
-18. ```
-    JSX
+18. ```JSX
     import { useState } from 'react';
 
     export default function Counter() {
@@ -73,8 +67,6 @@ categories:
     }
     ```
 
-````
-
     结果:
 
 | 更新步骤                | 队列中的值变化 | 说明                       |
@@ -85,20 +77,20 @@ categories:
 | `setNumber(42)`         | 覆盖为 `42`    | 直接赋值，忽略前序计算结果 |
 | **最终结果**            | **`42`**       | 最后一次更新覆盖所有前序值 |
 
-19. 使用展开语法 [...a, b] 或 {...a, b:’b’} 可以进行数组或对象的快速合并, 在对象中使用 [ ] 可以做到动态命名
+19. 使用展开语法 `[...a, b]` 或 `{ ...a, b:'b'}` 可以进行数组或对象的快速合并, 在对象中使用 [ ] 可以做到动态命名
 
-20. 使用 useImmer 代替 useState 可以更快和更直接地更新对象
+20. 使用 `useImmer` 代替 `useState` 可以更快和更直接地更新对象
 
-21. react  中推荐与不推荐使用的数组方法
+21. react 中推荐与不推荐使用的数组方法
 
-    | 避免使用 (会改变原始数组) | 推荐使用 (会返回一个新数组）  |                                                              |
-    | ------------------------- | ----------------------------- | ------------------------------------------------------------ |
-    | 添加元素                  | `push`，`unshift`             | `concat`，`[...arr]` 展开语法（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#adding-to-an-array)） |
-    | 删除元素                  | `pop`，`shift`，`splice`      | `filter`，`slice`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#removing-from-an-array)） |
-    | 替换元素                  | `splice`，`arr[i] = ...` 赋值 | `map`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array)） |
+    | 避免使用 (会改变原始数组) | 推荐使用 (会返回一个新数组）  |                                                                                                                       |
+    | ------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+    | 添加元素                  | `push`，`unshift`             | `concat`，`[...arr]` 展开语法（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#adding-to-an-array)）  |
+    | 删除元素                  | `pop`，`shift`，`splice`      | `filter`，`slice`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#removing-from-an-array)）          |
+    | 替换元素                  | `splice`，`arr[i] = ...` 赋值 | `map`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array)）                 |
     | 排序                      | `reverse`，`sort`             | 先将数组复制一份（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#making-other-changes-to-an-array)） |
 
-22. 对象并不是 *真的* 位于数组“内部”, 可能他们在代码中看起来像是在数组“内部”. 同样 对象并不是真的嵌套, 只是看起来像嵌套
+22. 对象并不是 _真的_ 位于数组“内部”, 可能他们在代码中看起来像是在数组“内部”. 同样 对象并不是真的嵌套, 只是看起来像嵌套
 
 23. state 设置原则: **使 state 易于更新而不引入错误** , 例: 少使用 Boolean 类型的 state, 而将其直接命名为各种状态
 
@@ -114,9 +106,9 @@ categories:
 
 29. 复杂情况下 useState 的代替: useReducer, reducer 可以整合状态逻辑, 增加代码的可理解性和易维护性
 
-     const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+    `const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);`
 
-给予初始值: initailTasks, 集中处理函数: tasksReducer, 初始值及后续更改后的值将被封装在 tasks 中, 使用 dispatch 将触发 tasksReducer 函数
+    给予初始值: initailTasks, 集中处理函数: tasksReducer, 初始值及后续更改后的值将被封装在 tasks 中, 使用 dispatch 将触发 tasksReducer 函数
 
 ```JSX
 function tasksReducer(tasks, action) {
@@ -134,29 +126,29 @@ function tasksReducer(tasks, action) {
             }
           }
         }
-````
+```
 
 tasksReducer 函数中集中处理 tasks 变化, 通过 switch 来对应 action 中传递的各种情况并 return 处理后的 tasks(使用 action 中的参数对 tasks 进行修改), 还可以使用 default 进行意外的错误处理
 
-在对应情况的函数中, 使用 dispatch(action) 分发 action 触发 tasksReducer 函数, 便会根据 dispatch 中 type 的值使用对应的 switch 进行 tasks 的对应处理
+在对应情况的函数中, 使用 `dispatch(action)` 分发 action 触发 tasksReducer 函数, 便会根据 dispatch 中 type 的值使用对应的 switch 进行 tasks 的对应处理
 
 30. 使用 context 代替 props 层层透传
 
-首先, 创建一个 context (一般在新的文件中),
+    首先, 创建一个 context (一般在新的文件中),
 
-例: export const LevelContext = createContext(1);
+    例: `export const LevelContext = createContext(1);`
 
-其中 creatContext() 中的为初始值, LevelContext 为创建后的 context 名
+    其中 `creatContext()` 中的为初始值, LevelContext 为创建后的 context 名
 
-然后, 在需要应用的组件(注意: 指最终接收和应用 context 的子组件)中导入 LevelContext ,
+    然后, 在需要应用的组件(注意: 指最终接收和应用 context 的子组件)中导入 LevelContext ,
 
-使用 useContext 将它赋值给一个变量以便投入使用,
+    使用 useContext 将它赋值给一个变量以便投入使用,
 
-例: const level = useContext(LevelContext);
+    例: `const level = useContext(LevelContext);`
 
-此后, 可以在该组件中使用 level 作为正常变量进行对应的操作
+    此后, 可以在该组件中使用 level 作为正常变量进行对应的操作
 
-最后, 在需要进行透传的组件中(上文子组件的父组件)中使用 level 作为 props, 并在定义组件时, 引入 LevelContext 并用其包裹子组件
+    最后, 在需要进行透传的组件中(上文子组件的父组件)中使用 level 作为 props, 并在定义组件时, 引入 LevelContext 并用其包裹子组件
 
 例:
 
@@ -176,15 +168,15 @@ export default function Section({ level, children }) {
 
 此后, context 便会在组件间进行透传(可以传到上文的两种组件中), 并会穿过中间层级的组件
 
-31. ts 中, 可以使用 :React.FC<{}> 快捷地为传入的 props 中的各项数据进行类型声明
-32. Object.keys(obj) 方法可以快速地得到 obj 的键名组成的数组
+31. ts 中, 可以使用 `:React.FC<{}>` 快捷地为传入的 props 中的各项数据进行类型声明
+32. `Object.keys(obj)` 方法可以快速地得到 obj 的键名组成的数组
 33. context 及 reducer 函数在多数时候可以使用 store 库进行代替, store 库中的状态更改时也会触发重新渲染
 34. 每次组件触发重新渲染时, 常规变量的值都会被重置, 想要保存变量的值, 应当使用 useState 或者 useRef
 35. 函数: useRef
 
-使用 const ref = useRef(0); 创建一个 ref, 括号中为提供的初始值
+    使用 `const ref = useRef(0);` 创建一个 ref, 括号中为提供的初始值
 
-然而, ref 返回的是一个对象 { current: 0 // 你向 useRef 传入的值 } 在组件中应当使用 ref.current 访问储存的值
+    然而, ref 返回的是一个对象 `{ current: 0  // 你向 useRef 传入的值 }` 在组件中应当使用 ref.current 访问储存的值
 
 36. ref 与 state 异同
 
@@ -201,10 +193,10 @@ export default function Section({ level, children }) {
 
     ref **不会**触发浏览器的重新渲染, 所以它不应当被使用在与 DOM 相关的变化中, 相反, 在一些频繁触发的操作中, 使用 ref 可以极大地优化性能: 例如: 制作秒表, 制作防抖函数中
 
-37. 使用 element.scrollIntoView() 方法将元素滚动到视野中, 可传入参数对象:
+37. 使用 `element.scrollIntoView()` 方法将元素滚动到视野中, 可传入参数对象:
 
 ```
-    {
+        {
           behavior: '...',
           block: '...',
           inline: '...'
@@ -213,19 +205,19 @@ export default function Section({ level, children }) {
 
 38. ref 在很多时候被用来控制 DOM , 处理一些 react 无法处理的 DOM 事件, 常见示例包括管理焦点、滚动位置或调用 React 未暴露的浏览器 API, 但是，如果尝试手动**修改** DOM，则可能会与 React 所做的更改发生冲突, **尽量不要这么做**
 
-要实现功能, 首先: const myRef = useRef(null); 将 ref 设置为null
+    要实现功能, 首先: `const myRef = useRef(null);` 将 ref 设置为null
 
-​之后, 将 DOM 绑定在 JSX 上: \<div ref={myRef}>
+    之后, 将 DOM 绑定在 JSX 上: `<div ref={myRef}>`
 
-​在 DOM 节点被创建时, React 会把对该节点的引用放入 `myRef.current` , 然后便可以访问这个 DOM 元素
+    在 DOM 节点被创建时, React 会把对该节点的引用放入 `myRef.current` , 然后便可以访问这个 DOM 元素
 
 39. 可以使用 ref 回调更精确地控制 ref: 即**将函数传递给 `ref` 属性**以控制 ref 在不同情况下的各种状态
 
 40. 如同其他 props , ref 也可以被传给子元素, 便可以透过父元素控制子元素状态
 
-    可以使用 useImperativeHandle 控制父元素可以访问的子元素特性的范围
+    可以使用 `useImperativeHandle` 控制父元素可以访问的子元素特性的范围
 
-    配置: useImperativeHandle(ref, createHandle, [deps])
+    配置: `useImperativeHandle(ref, createHandle, [deps])`
 
     - `ref`：传递给组件的 `ref`。
     - `createHandle`：返回一个对象，该对象就是暴露给父组件的实例值。
@@ -233,9 +225,9 @@ export default function Section({ level, children }) {
 
 41. 使用 flushSync 可以使 set state 函数不等待更新队列立刻更新 DOM
 
-​ 配置: flushSync(callback)
+    配置: `flushSync(callback)`
 
-​ `callback`：一个回调函数，在该函数中进行状态更新操作。
+    `callback`：一个回调函数，在该函数中进行状态更新操作。
 
 42. **Effect** 是 React 范式中的一种脱围机制, 它**允许你指定由渲染自身，而不是特定事件引起的副作用**。
 
@@ -243,20 +235,16 @@ export default function Section({ level, children }) {
 
 43. Effect 的使用:
 
-    导入 Effect 后**( import { useEffect } from 'react')** , 在组件顶部进行调用
+    导入 Effect 后 **`( import { useEffect } from 'react')`** , 在组件顶部进行调用
 
-    ```jsx
+    ```JSX
     function MyComponent() {
-
-      useEffect(() => {
-
-    ​    // 每次渲染后都会执行此处的代码
+     useEffect(() => {
+        // 每次渲染后都会执行此处的代码
 
       });
 
-      return \<div />;
-
-    }
+      return <div />;
     ```
 
     简单来讲, **`useEffect` 会“延迟”一段代码的运行，直到渲染结果反映在页面上**
@@ -273,4 +261,4 @@ export default function Section({ level, children }) {
 
 45. 按需添加清理（cleanup）函数: 因为在每次渲染后都会调用 Effect , 所以 Effect 产生的副作用应当被及时进行清理
 
-​ 可以在 Effect 中返回一个 **清理（cleanup）函数**, React 会在每次 Effect 重新运行之前调用清理函数，并在组件卸载（被移除）时最后一次调用清理函数
+    可以在 Effect 中返回一个 **清理（cleanup）函数**, React 会在每次 Effect 重新运行之前调用清理函数，并在组件卸载（被移除）时最后一次调用清理函数
