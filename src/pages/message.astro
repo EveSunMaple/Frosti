@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import MainCard from "@/components/MainCard.astro";
+import LinkCard from "@/components/mdx/LinkCard.astro";
+import FriendCard from "@/components/mdx/FriendCard.astro";
+---
+
+<BaseLayout title="Friends">
+  <MainCard
+    image="/bg6.jpg"
+    title="留言"
+    description="Youngest 的留言板: 留下你想说的话或者提一点建议🔖"
+    textOverlay="FRIENDS"
+    infoIcon="lucide:mails"
+  >
+    <div class="space-y-10">
+      <section>
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <Icon name="lucide:message-square-text" class="w-6 h-6 text-primary" />
+          <span>留言板</span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <FriendCard
+            name="SunMaple"
+            avatar="https://github.com/EveSunMaple.png"
+            description=""
+            url="https://github.com/EveSunMaple"
+            type="contributor"
+          />
+          <FriendCard
+            name="Loping151"
+            avatar="https://github.com/Loping151.png"
+            description=""
+            url="https://github.com/Loping151"
+            type="contributor"
+          />
+          <FriendCard
+            name="Tianxiang Roxiyater"
+            avatar="https://github.com/TNXG.png"
+            description="明日尚未到来，希望凝于心上"
+            url="https://github.com/TNXG"
+            type="contributor"
+          />
+          <FriendCard
+            name="Yaoqx"
+            avatar="https://github.com/YaoqxCN.png"
+            description="A lazy junior high school student who likes coding!"
+            url="https://github.com/YaoqxCN"
+            type="contributor"
+          />
+          <FriendCard
+            name="Yao Tutu"
+            avatar="https://github.com/yaotutu.png"
+            description="Graduated student of SHMTU, CS major."
+            url="https://github.com/yaotutu"
+            type="contributor"
+          />
+          <FriendCard
+            name="WRXinYue"
+            avatar="https://github.com/WRXinYue.png"
+            description="Technology is not just a tool; it is a joy and an art."
+            url="https://github.com/WRXinYue"
+            type="contributor"
+          />
+        </div>
+      </section>
+
+      <div class="divider my-8">
+        <Icon name="lucide:heart" class="w-10 h-10 text-primary" />
+      </div>
+
+      <div class="text-center">
+        <p class="text-base-content/80 mb-4">
+          Want to be featured on this page? Feel free to reach out or contribute to the project!
+        </p>
+        <a
+          href="https://github.com/EveSunMaple/Frosti"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary gap-2"
+        >
+          <Icon name="lucide:github" class="w-5 h-5" />
+          <span>Contribute on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </MainCard>
+</BaseLayout>
