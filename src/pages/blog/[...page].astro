@@ -1,4 +1,5 @@
 ---
+// 静态内容构建, 优化加载速度
 import type { Post, Page } from "@interfaces/data";
 import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -7,6 +8,8 @@ import CardGroup from "@components/temple/CardGroup.astro";
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import { t } from "@config";
+
+// 博客 主页面
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const allPosts = await getCollection("blog");

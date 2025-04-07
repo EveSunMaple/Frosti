@@ -17,11 +17,20 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 
   const all_categories = [...new Set(all_posts.flatMap((blog: any) => blog.data.categories || []))];
 
-  all_posts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const posts = import.meta.env.PROD ? all_blog_posts.filter((post) => !post.data.draft) : all_blog_posts;
+
+  const topPosts = posts.filter((blog: any) => blog.data.badge === "Pin");
+  const otherPosts = posts.filter((blog: any) => blog.data.badge !== "Pin");
+
+  topPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  otherPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  const sortedPosts = [...topPosts, ...otherPosts];
 
   const postsWithStats = await Promise.all(
-    all_posts.map(async (blog: any) => {
+    sortedPosts.map(async (blog) => {
       const { remarkPluginFrontmatter } = await blog.render();
+
       return {
         ...blog,
         remarkPluginFrontmatter: {

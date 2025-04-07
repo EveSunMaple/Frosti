@@ -1,5 +1,5 @@
 ---
-title: React 随意小记
+title: React 文档笔记
 description: 前段时间阅读 React 官方文档时, 顺手记录了一些个人认为比较重要的知识点作为笔记
 pubDate: 04 3 2025
 image: /image/image2.jpg
@@ -9,7 +9,7 @@ tags:
   - React
   - 笔记
 ---
-# React 随意小记
+## React 文档笔记
 
 前段时间阅读 React 官方文档时, 顺手记录了一些个人认为比较重要的知识点作为笔记, 都是比较基础的知识<br/>
 (如果发现有误, 请联系我)
@@ -83,13 +83,14 @@ tags:
 
 21. react 中推荐与不推荐使用的数组方法
 
-    | 避免使用 (会改变原始数组) | 推荐使用 (会返回一个新数组）  |                                                                                                                       |
-    | ------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-    | 添加元素                  | `push`，`unshift`             | `concat`，`[...arr]` 展开语法（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#adding-to-an-array)）  |
-    | 删除元素                  | `pop`，`shift`，`splice`      | `filter`，`slice`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#removing-from-an-array)）          |
-    | 替换元素                  | `splice`，`arr[i] = ...` 赋值 | `map`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array)）                 |
-    | 排序                      | `reverse`，`sort`             | 先将数组复制一份（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#making-other-changes-to-an-array)） |
+   
 
+|          | 避免使用 (会改变原始数组)     | 推荐使用 (会返回一个新数组） )                               |
+| -------- | ----------------------------- | ------------------------------------------------------------ |
+| 添加元素 | `push`，`unshift`             | `concat`，`[...arr]` 展开语法（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#adding-to-an-array)） |
+| 删除元素 | `pop`，`shift`，`splice`      | `filter`，`slice`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#removing-from-an-array)） |
+| 替换元素 | `splice`，`arr[i] = ...` 赋值 | `map`（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array)） |
+| 排序     | `reverse`，`sort`             | 先将数组复制一份（[例子](https://zh-hans.react.dev/learn/updating-arrays-in-state#making-other-changes-to-an-array)） |
 22. 对象并不是 _真的_ 位于数组“内部”, 可能他们在代码中看起来像是在数组“内部”. 同样 对象并不是真的嵌套, 只是看起来像嵌套
 
 23. state 设置原则: **使 state 易于更新而不引入错误** , 例: 少使用 Boolean 类型的 state, 而将其直接命名为各种状态
@@ -203,7 +204,7 @@ export default function Section({ level, children }) {
         }
 ```
 
-38. ref 在很多时候被用来控制 DOM , 处理一些 react 无法处理的 DOM 事件, 常见示例包括管理焦点、滚动位置或调用 React 未暴露的浏览器 API, 但是，如果尝试手动**修改** DOM，则可能会与 React 所做的更改发生冲突, **尽量不要这么做**
+38. ref 在很多时候被用来控制 DOM , 处理一些 react 无法处理的 DOM 事件, 常见示例包括管理焦点、滚动位置或调用 React 未暴露的浏览器 API, 但是，如果尝试手动 **修改** DOM，则可能会与 React 所做的更改发生冲突, **尽量不要这么做**
 
     要实现功能, 首先: `const myRef = useRef(null);` 将 ref 设置为null
 
