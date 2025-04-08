@@ -4,8 +4,31 @@ import { Icon } from "astro-icon/components";
 import MainCard from "@/components/MainCard.astro";
 import GitHubStats from "@/components/mdx/GitHubStats.astro";
 import RepositoryCard from "@/components/mdx/RepositoryCard.astro";
+declare const Waline: typeof import("@waline/client");
 ---
 
+<head>
+  <!-- 引入 Waline 样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/@waline/client@latest/dist/waline.css" />
+
+  <!-- 客户端配置 -->
+  <script define:vars={{ walineServerURL: import.meta.env.PUBLIC_WALINE_SERVER }}>
+    // 动态加载 Waline 客户端
+    Promise.all([
+      import("https://unpkg.com/@waline/client/dist/waline.js"),
+      new Promise((resolve) => window.addEventListener("load", resolve)),
+    ]).then(([Waline]) => {
+      Waline.init({
+        el: "#waline",
+        serverURL: walineServerURL,
+        // 其他配置项
+        path: location.pathname,
+        dark: "auto",
+        login: "enable",
+      });
+    });
+  </script>
+</head>
 <BaseLayout title="Projects">
   <MainCard
     title="Projects"

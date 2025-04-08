@@ -2,89 +2,151 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 import MainCard from "@/components/MainCard.astro";
-import LinkCard from "@/components/mdx/LinkCard.astro";
-import FriendCard from "@/components/mdx/FriendCard.astro";
 ---
 
-<BaseLayout title="Friends">
+<BaseLayout title="Message">
   <MainCard
     image="/bg6.jpg"
     title="留言"
-    description="Youngest 的留言板: 留下你想说的话或者提一点建议🔖"
+    description="Youngestar 的留言板:留下想说的话或者给出一些些建议🔖"
     textOverlay="FRIENDS"
     infoIcon="lucide:mails"
   >
+    <head>
+      <link rel="stylesheet" href="https://unpkg.com/@waline/client@latest/dist/waline.css" />
+    </head>
     <div class="space-y-10">
+      <!-- Friends Section -->
       <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:message-square-text" class="w-6 h-6 text-primary" />
           <span>留言板</span>
         </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <FriendCard
-            name="SunMaple"
-            avatar="https://github.com/EveSunMaple.png"
-            description=""
-            url="https://github.com/EveSunMaple"
-            type="contributor"
-          />
-          <FriendCard
-            name="Loping151"
-            avatar="https://github.com/Loping151.png"
-            description=""
-            url="https://github.com/Loping151"
-            type="contributor"
-          />
-          <FriendCard
-            name="Tianxiang Roxiyater"
-            avatar="https://github.com/TNXG.png"
-            description="明日尚未到来，希望凝于心上"
-            url="https://github.com/TNXG"
-            type="contributor"
-          />
-          <FriendCard
-            name="Yaoqx"
-            avatar="https://github.com/YaoqxCN.png"
-            description="A lazy junior high school student who likes coding!"
-            url="https://github.com/YaoqxCN"
-            type="contributor"
-          />
-          <FriendCard
-            name="Yao Tutu"
-            avatar="https://github.com/yaotutu.png"
-            description="Graduated student of SHMTU, CS major."
-            url="https://github.com/yaotutu"
-            type="contributor"
-          />
-          <FriendCard
-            name="WRXinYue"
-            avatar="https://github.com/WRXinYue.png"
-            description="Technology is not just a tool; it is a joy and an art."
-            url="https://github.com/WRXinYue"
-            type="contributor"
-          />
+        <div class="space-y-10">
+          <!-- 加载状态提示 -->
+          <div id="waline-loading" class="text-center py-8">
+            <div class="loading loading-spinner text-primary"></div>
+            <p class="mt-2 text-sm">评论加载中...</p>
+          </div>
+
+          <section>
+            <!-- 确保容器元素存在 -->
+            <div id="waline" style="display: none;"></div>
+          </section>
+
+          <script is:inline define:vars={{ walineServerURL: import.meta.env.PUBLIC_WALINE_SERVER }}>
+            let walineInstance = null;
+            const MAX_RETRY = 3;
+            let retryCount = 0;
+
+            const initWaline = async () => {
+              try {
+                // 确保容器存在
+                const container = document.querySelector("#waline");
+                if (!container) {
+                  throw new Error("Waline container not found");
+                }
+
+                // 显示加载状态
+                document.getElementById("waline-loading").style.display = "block";
+                container.style.display = "none";
+
+                // 清理旧实例
+                if (walineInstance) {
+                  walineInstance.destroy();
+                  container.innerHTML = "";
+                }
+
+                // 动态加载 Waline
+                const { init } = await import("https://unpkg.com/@waline/client/dist/waline.js");
+
+                walineInstance = init({
+                  el: "#waline",
+                  serverURL: walineServerURL,
+                  // 其他配置...
+                });
+
+                // 隐藏加载状态
+                document.getElementById("waline-loading").style.display = "none";
+                container.style.display = "block";
+              } catch (error) {
+                console.error("Waline 初始化失败:", error);
+
+                if (retryCount < MAX_RETRY) {
+                  retryCount++;
+                  setTimeout(initWaline, 2000 * retryCount);
+                } else {
+                  document.getElementById("waline-loading").innerHTML = `
+              <div class="alert alert-error mt-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>评论加载失败，请刷新页面或稍后再试</span>
+              </div>
+            `;
+                }
+              }
+            };
+
+            // 启动初始化
+            const startInit = () => {
+              if (document.getElementById("waline")) {
+                initWaline();
+              } else {
+                setTimeout(startInit, 100);
+              }
+            };
+
+            // 多种触发方式
+            if (document.readyState === "complete") {
+              startInit();
+            } else {
+              window.addEventListener("DOMContentLoaded", startInit);
+            }
+
+            document.addEventListener("astro:after-swap", startInit);
+            window.addEventListener("popstate", startInit);
+          </script>
+        </div>
+
+        <div class="divider my-8">
+          <Icon name="lucide:heart" class="w-10 h-10 text-primary" />
+        </div>
+
+        <div class="text-center">
+          <p class="text-base-content/80 mb-4">为博客模板的作者做贡献!</p>
+          <a
+            href="https://github.com/EveSunMaple/Frosti"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary gap-2"
+          >
+            <Icon name="lucide:github" class="w-5 h-5" />
+            <span>Contribute on GitHub</span>
+          </a>
         </div>
       </section>
-
-      <div class="divider my-8">
-        <Icon name="lucide:heart" class="w-10 h-10 text-primary" />
-      </div>
-
-      <div class="text-center">
-        <p class="text-base-content/80 mb-4">
-          Want to be featured on this page? Feel free to reach out or contribute to the project!
-        </p>
-        <a
-          href="https://github.com/EveSunMaple/Frosti"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary gap-2"
-        >
-          <Icon name="lucide:github" class="w-5 h-5" />
-          <span>Contribute on GitHub</span>
-        </a>
-      </div>
     </div>
   </MainCard>
+
+  <style>
+    /* 全局 CSS */
+    :root {
+      --waline-theme-color: #27ae60; /* 主题色 */
+      --waline-active-color: #2ecc71; /* 激活色 */
+      --waline-text-color: #34495e; /* 文字色 */
+      --waline-bgcolor: #f8f9fa; /* 背景色 */
+      --waline-border: 1px solid #e3e8f7; /* 边框 */
+      --waline-info-bgcolor: #f8f9fa; /* 信息栏背景 */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --waline-text-color: rgba(255, 255, 255, 0.8);
+        --waline-bgcolor: #1a1a1a;
+        --waline-border-color: #333;
+      }
+    }
+  </style>
 </BaseLayout>
