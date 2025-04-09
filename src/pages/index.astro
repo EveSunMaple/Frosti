@@ -2,9 +2,8 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 import MainCard from "@/components/MainCard.astro";
-import FeatureCard from "@/components/mdx/FeatureCard.astro";
 import GitHubStats from "@/components/mdx/GitHubStats.astro";
-import type { Post, Page } from "@interfaces/data";
+import type { Post } from "@interfaces/data";
 import PostCard from "@components/PostCard.astro";
 import CardGroup from "@components/temple/CardGroup.astro";
 import { getCollection } from "astro:content";
@@ -171,9 +170,9 @@ const postsWithStats = await Promise.all(
     <section class="py-6">
       <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
         <Icon name="lucide:github" class="w-6 h-6 text-primary" />
-        <span>博客链接</span>
+        <span>github 主页</span>
       </h2>
-      <GitHubStats username="Youngestar" repositoryName="Frosti" showLanguages={true} showContributors={true} />
+      <GitHubStats username="Youngestar" showLanguages={true} showContributors={true} />
     </section>
   </MainCard>
 </BaseLayout>

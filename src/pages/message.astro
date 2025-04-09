@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 import MainCard from "@/components/MainCard.astro";
+import { SITE_THEME } from "@config";
 ---
 
 <BaseLayout title="Message">
@@ -12,9 +13,6 @@ import MainCard from "@/components/MainCard.astro";
     textOverlay="FRIENDS"
     infoIcon="lucide:mails"
   >
-    <head>
-      <link rel="stylesheet" href="https://unpkg.com/@waline/client@latest/dist/waline.css" />
-    </head>
     <div class="space-y-10">
       <!-- Friends Section -->
       <section>
@@ -35,7 +33,7 @@ import MainCard from "@/components/MainCard.astro";
             <div id="waline" style="display: none;"></div>
           </section>
 
-          <script is:inline define:vars={{ walineServerURL: import.meta.env.PUBLIC_WALINE_SERVER }}>
+          <script is:inline define:vars={{ walineServerURL: import.meta.env.PUBLIC_WALINE_SERVER, SITE_THEME }}>
             let walineInstance = null;
             const MAX_RETRY = 3;
             let retryCount = 0;
@@ -62,9 +60,51 @@ import MainCard from "@/components/MainCard.astro";
                 const { init } = await import("https://unpkg.com/@waline/client/dist/waline.js");
 
                 walineInstance = init({
+                  // 核心配置
                   el: "#waline",
                   serverURL: walineServerURL,
-                  // 其他配置...
+
+                  // 其余配置
+                  emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq"],
+                  reaction: [
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_unavailble_doge.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_wa.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_hem.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_cool.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_hmm.png",
+                  ],
+                  avatar: "retro",
+                  locale: {
+                    reactionTitle: "留下你的足迹吧😽",
+
+                    link: "个人网址",
+                    anonymous: "匿名(为啥不写名字😡)",
+
+                    placeholder: "想要说点什么吗",
+                    sofa: "~\(≧▽≦)/~ 你是第一个哦~",
+
+                    dark: 'html[data-theme="dark"]',
+                  },
+                });
+
+                // 页面加载时，根据 localStorage 中的主题信息初始化 Waline 主题
+                const initialTheme = localStorage.getItem("theme") || SITE_THEME.light;
+                if (initialTheme === SITE_THEME.dark) {
+                  walineInstance.dark = "fuck";
+                } else {
+                  walineInstance.dark = "fuck";
+                }
+
+                // 监听 storage 事件
+                window.addEventListener("message", function (e) {
+                  if (e.data.type === "themeChange") {
+                    const newTheme = event.data.theme;
+                    if (newTheme === "dark") {
+                      walineInstance.dark = "dark";
+                    } else {
+                      walineInstance.dark = "light";
+                    }
+                  }
                 });
 
                 // 隐藏加载状态
@@ -129,24 +169,4 @@ import MainCard from "@/components/MainCard.astro";
       </section>
     </div>
   </MainCard>
-
-  <style>
-    /* 全局 CSS */
-    :root {
-      --waline-theme-color: #27ae60; /* 主题色 */
-      --waline-active-color: #2ecc71; /* 激活色 */
-      --waline-text-color: #34495e; /* 文字色 */
-      --waline-bgcolor: #f8f9fa; /* 背景色 */
-      --waline-border: 1px solid #e3e8f7; /* 边框 */
-      --waline-info-bgcolor: #f8f9fa; /* 信息栏背景 */
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --waline-text-color: rgba(255, 255, 255, 0.8);
-        --waline-bgcolor: #1a1a1a;
-        --waline-border-color: #333;
-      }
-    }
-  </style>
 </BaseLayout>

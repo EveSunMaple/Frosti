@@ -63,6 +63,7 @@ const { className = "" } = Astro.props as ThemeToggleProps;
       // Set new theme
       document.documentElement.setAttribute("data-theme", newTheme);
       localStorage.setItem("theme", newTheme);
+      window.parent.postMessage({ type: "themeChange", theme: newTheme }, "*");
 
       // Update icons for all theme toggles on the page
       const allToggles = document.querySelectorAll("[data-theme-toggle]");
