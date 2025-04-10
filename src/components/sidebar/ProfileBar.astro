@@ -72,7 +72,8 @@ const currentPath = Astro.url.pathname;
 
     <!-- Social Icons -->
     <div class="mt-4 pt-3 border-t border-base-300">
-      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-items-center">
+      <!-- 根据填写社交媒体数量调整 -->
+      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-2 gap-2 justify-items-center">
         {
           USER_SIDEBAR_SOCIAL_ICONS.map((icon) => (
             <div class="tooltip tooltip-bottom" data-tip={icon.title}>
@@ -80,7 +81,6 @@ const currentPath = Astro.url.pathname;
                 tabindex="0"
                 href={icon.href}
                 aria-label={icon.ariaLabel}
-                title={icon.title}
                 target="_blank"
                 class="btn btn-circle btn-ghost"
               >

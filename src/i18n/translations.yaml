@@ -10,6 +10,7 @@ en:
     totalCategories: Total Categories
     noPosts: No posts available
     archivePage: Archives
+    themeToggle: Theme Toggle
     totalPosts: Total Posts
     link: "Link: "
     prevPage: Recent posts
@@ -56,6 +57,7 @@ zh:
     totalCategories: 分类总数
     noPosts: 暂无文章
     archivePage: 文章归档
+    themeToggle: 主题切换
     totalPosts: 文章总数
     link: "链接: "
     prevPage: 上一页

@@ -22,15 +22,15 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
           <span>朋友们</span>
         </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <FriendCard
-            name="Lyme Blurred"
-            avatar="https://github.com/lymeblurred.png"
-            description="Building, breaking, and learning daily | A copy of EveSunMaple"
-            url="https://github.com/lymeblurred"
+            name="TanChengChuan"
+            avatar="https://avatars.githubusercontent.com/u/182097664?v=4"
+            description="I LOVE ACG"
+            url="https://github.com/TanChengChuan"
             type="friend"
           />
-          <FriendCard
+          <!-- <FriendCard
             name="梦凌汐"
             avatar="https://github.com/MeowLynxSea.png"
             description="来自星辰边缘的猫猫~爱好是睡觉awa"
@@ -43,12 +43,12 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
             description="你好，我是雪狐~"
             url="https://github.com/SnowFoxqwq"
             type="friend"
-          />
-        </div>
+          /> -->
+        </section>
       </section>
 
       <!-- Contributors Section -->
-      <section>
+      <!-- <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:git-pull-request" class="w-6 h-6 text-primary" />
           <span>Contributors</span>
@@ -98,7 +98,7 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
             type="contributor"
           />
         </div>
-      </section>
+      </section> -->
 
       <!-- Useful Resources Section -->
       <section>
@@ -147,15 +147,10 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
       </div>
 
       <div class="text-center">
-        <p class="text-base-content/80 mb-4">为博客模板的作者做贡献!</p>
-        <a
-          href="https://github.com/EveSunMaple/Frosti"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary gap-2"
-        >
-          <Icon name="lucide:github" class="w-5 h-5" />
-          <span>Contribute on GitHub</span>
+        <p class="text-base-content/80 mb-4">留言或者私信与我互换友链吧!</p>
+        <a href="/message" target="_blank" rel="noopener noreferrer" class="btn btn-primary gap-2">
+          <Icon name="lucide:flower" class="w-5 h-5" />
+          <span>写点留言</span>
         </a>
       </div>
     </div>

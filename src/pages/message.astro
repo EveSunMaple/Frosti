@@ -25,7 +25,7 @@ import { SITE_THEME } from "@config";
           <!-- 加载状态提示 -->
           <div id="waline-loading" class="text-center py-8">
             <div class="loading loading-spinner text-primary"></div>
-            <p class="mt-2 text-sm">评论加载中...</p>
+            <p class="mt-2 text-sm">留言加载中...</p>
           </div>
 
           <section>
@@ -65,6 +65,8 @@ import { SITE_THEME } from "@config";
                   serverURL: walineServerURL,
 
                   // 其余配置
+                  dark: "auto",
+                  lang: "zh",
                   emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq"],
                   reaction: [
                     "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_unavailble_doge.png",
@@ -82,27 +84,25 @@ import { SITE_THEME } from "@config";
 
                     placeholder: "想要说点什么吗",
                     sofa: "~\(≧▽≦)/~ 你是第一个哦~",
-
-                    dark: 'html[data-theme="dark"]',
                   },
                 });
 
                 // 页面加载时，根据 localStorage 中的主题信息初始化 Waline 主题
                 const initialTheme = localStorage.getItem("theme") || SITE_THEME.light;
                 if (initialTheme === SITE_THEME.dark) {
-                  walineInstance.dark = "fuck";
+                  walineInstance.update({ dark: true });
                 } else {
-                  walineInstance.dark = "fuck";
+                  walineInstance.update({ dark: false });
                 }
 
                 // 监听 storage 事件
                 window.addEventListener("message", function (e) {
                   if (e.data.type === "themeChange") {
-                    const newTheme = event.data.theme;
-                    if (newTheme === "dark") {
-                      walineInstance.dark = "dark";
+                    const newTheme = e.data.theme;
+                    if (newTheme === SITE_THEME.dark) {
+                      walineInstance.update({ dark: true });
                     } else {
-                      walineInstance.dark = "light";
+                      walineInstance.update({ dark: false });
                     }
                   }
                 });
