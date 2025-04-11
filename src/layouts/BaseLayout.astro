@@ -9,6 +9,7 @@ import Sidebar from "@components/Sidebar.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 const { title, image, headings = [], showTOC = false } = Astro.props;
 ---
@@ -19,7 +20,9 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
     <ClientRouter />
     <ElementCrossing />
     <PointerOnNavigation />
+    <SpeedInsights />
     <Header description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
+
     <title>{`${title} - ${SITE_TAB}`}</title>
 
     <!-- Initial theme setup on first load -->
