@@ -3,14 +3,15 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import playformCompress from "@playform/compress";
 import terser from "@rollup/plugin-terser";
+import vercel from "@vercel/astro";
 import icon from "astro-icon";
+
 import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
+
 import remarkMath from "remark-math";
-
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
-
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
@@ -23,6 +24,9 @@ export default defineConfig({
     },
   },
   integrations: [
+    vercel({
+      speedInsights: true, // 启用Speed Insights
+    }),
     mdx(),
     icon(),
     terser({
