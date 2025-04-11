@@ -20,6 +20,7 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
     <ElementCrossing />
     <PointerOnNavigation />
     <Header description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
+
     <title>{`${title} - ${SITE_TAB}`}</title>
 
     <!-- Initial theme setup on first load -->
