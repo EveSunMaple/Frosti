@@ -18,22 +18,18 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 export default defineConfig({
   site: USER_SITE,
   output: "static",
-  adapter: vercel(),
+  adapter: vercel({
+    speedInsights: true, // 启用Speed Insights
+  }),
   style: {
     scss: {
       includePaths: ["./src/styles"],
     },
   },
   integrations: [
-    vercel({
-      speedInsights: true, // 启用Speed Insights
-    }),
     mdx(),
     icon(),
-    terser({
-      compress: true,
-      mangle: true,
-    }),
+
     sitemap(),
     tailwind({
       configFile: "./tailwind.config.mjs",
@@ -216,6 +212,12 @@ export default defineConfig({
     ]],
   },
   vite: {
+    plugins: [
+      terser({
+        compress: true,
+        mangle: true,
+      }),
+    ],
     css: {
       preprocessorOptions: {
         scss: {
