@@ -1,12 +1,12 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import vercel from "@astrojs/vercel";
 import playformCompress from "@playform/compress";
 import terser from "@rollup/plugin-terser";
-import vercel from "@vercel/astro";
 import icon from "astro-icon";
-
 import { defineConfig } from "astro/config";
+
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 
@@ -18,6 +18,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 export default defineConfig({
   site: USER_SITE,
   output: "static",
+  adapter: vercel(),
   style: {
     scss: {
       includePaths: ["./src/styles"],

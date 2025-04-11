@@ -5,8 +5,7 @@
   "packageManager": "pnpm@10.1.0+sha1.ab7948c89104fdd3fc88b5b391fa4b73fd800631",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist && shx cp -r dist/pagefind public/",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -16,6 +15,7 @@
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.3.0",
     "@astrojs/tailwind": "^6.0.1",
+    "@astrojs/vercel": "^8.1.3",
     "@notionhq/client": "^2.3.0",
     "@playform/compress": "^0.1.7",
     "@rollup/plugin-terser": "^0.4.4",
