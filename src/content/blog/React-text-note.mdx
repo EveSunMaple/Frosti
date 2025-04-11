@@ -48,7 +48,7 @@ tags:
 
 17. 使用函数式更新可以在末尾集中运行时, 每次运行后及时更新 state 的值(但是还是可以被后面的赋值给覆盖)
 
-18. ```JSX
+18. ```jsx
     import { useState } from 'react';
 
     export default function Counter() {
@@ -111,7 +111,7 @@ tags:
 
     给予初始值: initailTasks, 集中处理函数: tasksReducer, 初始值及后续更改后的值将被封装在 tasks 中, 使用 dispatch 将触发 tasksReducer 函数
 
-```JSX
+```jsx
 function tasksReducer(tasks, action) {
           switch (action.type) {
             case 'added': {
@@ -153,7 +153,7 @@ tasksReducer 函数中集中处理 tasks 变化, 通过 switch 来对应 action 
 
 例:
 
-```JSX
+```jsx
 import { LevelContext } from './LevelContext.js';
 
 export default function Section({ level, children }) {
@@ -238,7 +238,7 @@ export default function Section({ level, children }) {
 
     导入 Effect 后 **`( import { useEffect } from 'react')`** , 在组件顶部进行调用
 
-    ```JSX
+    ```jsx
     function MyComponent() {
      useEffect(() => {
         // 每次渲染后都会执行此处的代码
