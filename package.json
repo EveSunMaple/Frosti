@@ -2,10 +2,11 @@
   "name": "frosti",
   "type": "module",
   "version": "3.0.0",
+  "packageManager": "pnpm@10.1.0+sha1.ab7948c89104fdd3fc88b5b391fa4b73fd800631",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "build": "astro check && astro build && pagefind --site dist && shx cp -r dist/pagefind public/",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -64,6 +65,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "sass-embedded": "^1.86.1",
     "shiki": "^1.29.2",
+    "shx": "^0.4.0",
     "ts-jest": "^29.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
