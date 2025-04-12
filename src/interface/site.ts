@@ -22,6 +22,10 @@ export interface SocialIcon {
   svg: string;
 }
 
+export interface BlogConfig {
+  pageSize: number;
+}
+
 export interface SiteConfig {
   tab: string;
   title: string;
@@ -34,6 +38,7 @@ export interface SiteConfig {
     code: string;
   };
   date_format: string;
+  blog: BlogConfig;
   menu: MenuItem[];
 }
 

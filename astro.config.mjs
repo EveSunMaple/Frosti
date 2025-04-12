@@ -1,26 +1,22 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel";
 import playformCompress from "@playform/compress";
 import terser from "@rollup/plugin-terser";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
-
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
-
 import remarkMath from "remark-math";
+
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
+
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
   site: USER_SITE,
-  output: "server",
-  adapter: vercel({
-    speedInsights: true, // 启用Speed Insights
-  }),
+  output: "static",
   style: {
     scss: {
       includePaths: ["./src/styles"],
@@ -29,7 +25,10 @@ export default defineConfig({
   integrations: [
     mdx(),
     icon(),
-
+    terser({
+      compress: true,
+      mangle: true,
+    }),
     sitemap(),
     tailwind({
       configFile: "./tailwind.config.mjs",
@@ -212,12 +211,6 @@ export default defineConfig({
     ]],
   },
   vite: {
-    plugins: [
-      terser({
-        compress: true,
-        mangle: true,
-      }),
-    ],
     css: {
       preprocessorOptions: {
         scss: {

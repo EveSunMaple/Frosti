@@ -1,65 +1,31 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
-import { getCollection } from "astro:content";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
-import dayjs from "dayjs";
+import dayjs from "@utils/dayjs";
 import { DATE_FORMAT } from "@config";
-import type { CollectionEntry } from "astro:content";
+import { getAllPosts, sortPostsByDate, getPostsByYearAndMonth } from "@utils/blogUtils";
 
-// Get all blog posts
-const allBlogPosts = await getCollection("blog");
+// 获取所有博客文章
+const allPosts = await getAllPosts();
 
-// Filter out draft posts in production mode
-const allPosts = import.meta.env.PROD ? allBlogPosts.filter((post) => !post.data.draft) : allBlogPosts;
+// 按日期排序
+const sortedPosts = sortPostsByDate(allPosts);
 
-// Sort posts by date (newest first)
-allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+// 按年份和月份分组
+const postsByDate = getPostsByYearAndMonth(sortedPosts);
 
-// Group posts by year and month
-const postsByDate = new Map<string, Map<string, CollectionEntry<"blog">[]>>();
-
-allPosts.forEach((post) => {
-  const date = new Date(post.data.pubDate);
-  const year = date.getFullYear().toString();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-
-  if (!postsByDate.has(year)) {
-    postsByDate.set(year, new Map<string, CollectionEntry<"blog">[]>());
-  }
-
-  const yearMap = postsByDate.get(year)!;
-  if (!yearMap.has(month)) {
-    yearMap.set(month, []);
-  }
-
-  yearMap.get(month)!.push(post);
-});
-
-// Convert to array and sort by year (desc) and month (desc)
+// 转换为数组并按年份排序（降序）和月份（降序）
 const years = Array.from(postsByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
 
-// Get month names
+// 从翻译获取月份名称
 const getMonthName = (month: string): string => {
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  return monthNames[parseInt(month) - 1];
+  const monthIndex = parseInt(month);
+  return t(`months.${monthIndex}`);
 };
 
-// Count total posts
+// 统计总文章数
 const totalPosts = allPosts.length;
 ---
 

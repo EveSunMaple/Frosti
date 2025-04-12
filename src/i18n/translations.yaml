@@ -45,6 +45,19 @@ en:
     404exploreBlog: Explore our blog
     404browseArchives: Browse archives
     404searchContent: Search content
+  months:
+    1: January
+    2: February
+    3: March
+    4: April
+    5: May
+    6: June
+    7: July
+    8: August
+    9: September
+    10: October
+    11: November
+    12: December
 zh:
   label:
     noTag: 未分配标签
@@ -92,3 +105,488 @@ zh:
     404exploreBlog: 浏览我们的博客
     404browseArchives: 浏览归档
     404searchContent: 搜索内容
+  months:
+    1: 一月
+    2: 二月
+    3: 三月
+    4: 四月
+    5: 五月
+    6: 六月
+    7: 七月
+    8: 八月
+    9: 九月
+    10: 十月
+    11: 十一月
+    12: 十二月
+fr:
+  label:
+    noTag: Aucun tag attribué
+    tagCard: Tags
+    tagPage: Tag
+    totalTags: Nombre total de tags
+    noCategory: Aucune catégorie attribuée
+    categoryCard: Catégories
+    categoryPage: Catégorie
+    totalCategories: Nombre total de catégories
+    noPosts: Aucun article disponible
+    archivePage: Archives
+    totalPosts: Nombre total d'articles
+    link: "Lien : "
+    prevPage: Articles récents
+    nextPage: Articles plus anciens
+    wordCount: mots
+    readTime: minutes
+    share: Partager
+    shareCard: Partager cet article
+    close: Fermer
+    learnMore: En savoir plus
+    allTags: Tous les tags
+    allCategories: Toutes les catégories
+    post: article
+    posts: articles
+    tagDescription: Parcourir tous les articles avec ce tag
+    categoryDescription: Parcourir tous les articles dans cette catégorie
+    tagsPageDescription: Explorer tous les tags utilisés sur le blog
+    categoriesPageDescription: Explorer toutes les catégories disponibles sur le blog
+    archivesPageDescription: Parcourir les articles organisés par date
+    backToBlog: Retour au blog
+    searchPage: Recherche
+    searchPageDescription: Rechercher des articles sur le blog
+    search: Rechercher
+    searchPlaceholder: Tapez pour rechercher...
+    tableOfContents: Table des matières
+    noContents: Aucun titre disponible
+    404title: Page introuvable
+    404description: "Il semble que vous vous soyez aventuré dans l'inconnu. La page que vous cherchez n'existe pas ou a été déplacée dans une autre dimension."
+    404backHome: Retour à l'accueil
+    404goBack: Retour en arrière
+    404youMightLike: Vous pourriez être intéressé par
+    404exploreBlog: Explorer notre blog
+    404browseArchives: Parcourir les archives
+    404searchContent: Rechercher du contenu
+  months:
+    1: Janvier
+    2: Février
+    3: Mars
+    4: Avril
+    5: Mai
+    6: Juin
+    7: Juillet
+    8: Août
+    9: Septembre
+    10: Octobre
+    11: Novembre
+    12: Décembre
+ja:
+  label:
+    noTag: タグが割り当てられていません
+    tagCard: タグ
+    tagPage: タグ
+    totalTags: タグの合計
+    noCategory: カテゴリが割り当てられていません
+    categoryCard: カテゴリ
+    categoryPage: カテゴリ
+    totalCategories: カテゴリの合計
+    noPosts: 記事がありません
+    archivePage: アーカイブ
+    totalPosts: 記事の合計
+    link: "リンク: "
+    prevPage: 最近の投稿
+    nextPage: 古い投稿
+    wordCount: 語
+    readTime: 分
+    share: 共有
+    shareCard: この記事を共有
+    close: 閉じる
+    learnMore: 詳細を見る
+    allTags: すべてのタグ
+    allCategories: すべてのカテゴリ
+    post: 投稿
+    posts: 投稿
+    tagDescription: このタグが付いたすべての記事を閲覧
+    categoryDescription: このカテゴリ内のすべての記事を閲覧
+    tagsPageDescription: ブログ全体で使用されているすべてのタグを探る
+    categoriesPageDescription: ブログで利用可能なすべてのカテゴリを探る
+    archivesPageDescription: 日付別に整理された記事を閲覧
+    backToBlog: ブログに戻る
+    searchPage: 検索
+    searchPageDescription: ブログ全体で記事を検索
+    search: 検索
+    searchPlaceholder: 検索する文字を入力...
+    tableOfContents: 目次
+    noContents: 利用可能な見出しがありません
+    404title: ページが見つかりません
+    404description: 知られざる領域に踏み込んでしまったようです。お探しのページは存在しないか、別の次元に移されてしまいました。
+    404backHome: ホームに戻る
+    404goBack: 戻る
+    404youMightLike: 興味があるかもしれないコンテンツ
+    404exploreBlog: ブログを探る
+    404browseArchives: アーカイブを閲覧
+    404searchContent: コンテンツを検索
+  months:
+    1: 1月
+    2: 2月
+    3: 3月
+    4: 4月
+    5: 5月
+    6: 6月
+    7: 7月
+    8: 8月
+    9: 9月
+    10: 10月
+    11: 11月
+    12: 12月
+ko:
+  label:
+    noTag: 태그가 지정되지 않음
+    tagCard: 태그
+    tagPage: 태그
+    totalTags: 총 태그 수
+    noCategory: 카테고리가 지정되지 않음
+    categoryCard: 카테고리
+    categoryPage: 카테고리
+    totalCategories: 총 카테고리 수
+    noPosts: 게시물이 없음
+    archivePage: 아카이브
+    totalPosts: 총 게시물 수
+    link: "링크: "
+    prevPage: 최근 게시물
+    nextPage: 이전 게시물
+    wordCount: 단어
+    readTime: 분
+    share: 공유
+    shareCard: 이 글 공유하기
+    close: 닫기
+    learnMore: 더 알아보기
+    allTags: 모든 태그
+    allCategories: 모든 카테고리
+    post: 게시물
+    posts: 게시물
+    tagDescription: 이 태그가 붙은 모든 글 보기
+    categoryDescription: 이 카테고리의 모든 글 보기
+    tagsPageDescription: 블로그 전체에 사용된 모든 태그 탐색
+    categoriesPageDescription: 블로그에서 사용 가능한 모든 카테고리 탐색
+    archivesPageDescription: 날짜별로 정리된 글 보기
+    backToBlog: 블로그로 돌아가기
+    searchPage: 검색
+    searchPageDescription: 블로그 전체에서 글 검색
+    search: 검색
+    searchPlaceholder: 검색어 입력...
+    tableOfContents: 목차
+    noContents: 사용 가능한 제목 없음
+    404title: 페이지를 찾을 수 없음
+    404description: 미지의 영역에 들어선 것 같습니다. 찾으시는 페이지는 존재하지 않거나 다른 차원으로 이동되었습니다.
+    404backHome: 홈으로 돌아가기
+    404goBack: 뒤로 가기
+    404youMightLike: 관심 있을 만한 콘텐츠
+    404exploreBlog: 블로그 탐색
+    404browseArchives: 아카이브 둘러보기
+    404searchContent: 콘텐츠 검색
+  months:
+    1: 1월
+    2: 2월
+    3: 3월
+    4: 4월
+    5: 5월
+    6: 6월
+    7: 7월
+    8: 8월
+    9: 9월
+    10: 10월
+    11: 11월
+    12: 12월
+es:
+  label:
+    noTag: No hay etiquetas asignadas
+    tagCard: Etiquetas
+    tagPage: Etiqueta
+    totalTags: Total de etiquetas
+    noCategory: No hay categorías asignadas
+    categoryCard: Categorías
+    categoryPage: Categoría
+    totalCategories: Total de categorías
+    noPosts: No hay publicaciones disponibles
+    archivePage: Archivos
+    totalPosts: Total de publicaciones
+    link: "Enlace: "
+    prevPage: Publicaciones recientes
+    nextPage: Publicaciones antiguas
+    wordCount: palabras
+    readTime: minutos
+    share: Compartir
+    shareCard: Compartir este artículo
+    close: Cerrar
+    learnMore: Saber más
+    allTags: Todas las etiquetas
+    allCategories: Todas las categorías
+    post: publicación
+    posts: publicaciones
+    tagDescription: Explorar todos los artículos con esta etiqueta
+    categoryDescription: Explorar todos los artículos en esta categoría
+    tagsPageDescription: Explora todas las etiquetas usadas en el blog
+    categoriesPageDescription: Explora todas las categorías disponibles en el blog
+    archivesPageDescription: Explora artículos organizados por fecha
+    backToBlog: Volver al blog
+    searchPage: Búsqueda
+    searchPageDescription: Buscar artículos en el blog
+    search: Buscar
+    searchPlaceholder: Escribe para buscar...
+    tableOfContents: Tabla de contenidos
+    noContents: No hay encabezados disponibles
+    404title: Página no encontrada
+    404description: Parece que te has aventurado en lo desconocido. La página que buscas no existe o ha sido movida a otra dimensión.
+    404backHome: Volver al inicio
+    404goBack: Regresar
+    404youMightLike: Podría interesarte
+    404exploreBlog: Explora nuestro blog
+    404browseArchives: Explorar archivos
+    404searchContent: Buscar contenido
+  months:
+    1: Enero
+    2: Febrero
+    3: Marzo
+    4: Abril
+    5: Mayo
+    6: Junio
+    7: Julio
+    8: Agosto
+    9: Septiembre
+    10: Octubre
+    11: Noviembre
+    12: Diciembre
+de:
+  label:
+    noTag: Keine Tags zugewiesen
+    tagCard: Tags
+    tagPage: Tag
+    totalTags: Gesamtzahl der Tags
+    noCategory: Keine Kategorien zugewiesen
+    categoryCard: Kategorien
+    categoryPage: Kategorie
+    totalCategories: Gesamtzahl der Kategorien
+    noPosts: Keine Beiträge verfügbar
+    archivePage: Archive
+    totalPosts: Gesamtzahl der Beiträge
+    link: "Link: "
+    prevPage: Neuere Beiträge
+    nextPage: Ältere Beiträge
+    wordCount: Wörter
+    readTime: Minuten
+    share: Teilen
+    shareCard: Diesen Artikel teilen
+    close: Schließen
+    learnMore: Mehr erfahren
+    allTags: Alle Tags
+    allCategories: Alle Kategorien
+    post: Beitrag
+    posts: Beiträge
+    tagDescription: Alle Artikel mit diesem Tag durchsuchen
+    categoryDescription: Alle Artikel in dieser Kategorie durchsuchen
+    tagsPageDescription: Entdecke alle im Blog verwendeten Tags
+    categoriesPageDescription: Entdecke alle im Blog verfügbaren Kategorien
+    archivesPageDescription: Artikel nach Datum durchsuchen
+    backToBlog: Zurück zum Blog
+    searchPage: Suche
+    searchPageDescription: Nach Artikeln im Blog suchen
+    search: Suchen
+    searchPlaceholder: Zum Suchen tippen...
+    tableOfContents: Inhaltsverzeichnis
+    noContents: Keine Überschriften verfügbar
+    404title: Seite nicht gefunden
+    404description: "Es scheint, als hättest du dich ins Unbekannte gewagt. Die Seite, die du suchst, existiert nicht oder wurde in eine andere Dimension verschoben."
+    404backHome: Zurück zur Startseite
+    404goBack: Zurück
+    404youMightLike: Vielleicht interessiert dich
+    404exploreBlog: Unser Blog erkunden
+    404browseArchives: Archive durchstöbern
+    404searchContent: Inhalte suchen
+  months:
+    1: Januar
+    2: Februar
+    3: März
+    4: April
+    5: Mai
+    6: Juni
+    7: Juli
+    8: August
+    9: September
+    10: Oktober
+    11: November
+    12: Dezember
+ru:
+  label:
+    noTag: Теги не назначены
+    tagCard: Теги
+    tagPage: Тег
+    totalTags: Всего тегов
+    noCategory: Категории не назначены
+    categoryCard: Категории
+    categoryPage: Категория
+    totalCategories: Всего категорий
+    noPosts: Нет доступных записей
+    archivePage: Архивы
+    totalPosts: Всего записей
+    link: "Ссылка: "
+    prevPage: Недавние записи
+    nextPage: Старые записи
+    wordCount: слов
+    readTime: минут
+    share: Поделиться
+    shareCard: Поделиться этой статьей
+    close: Закрыть
+    learnMore: Узнать больше
+    allTags: Все теги
+    allCategories: Все категории
+    post: запись
+    posts: записи
+    tagDescription: Просмотреть все статьи с этим тегом
+    categoryDescription: Просмотреть все статьи в этой категории
+    tagsPageDescription: Изучить все теги, используемые в блоге
+    categoriesPageDescription: Изучить все категории, доступные в блоге
+    archivesPageDescription: Просмотреть статьи, отсортированные по дате
+    backToBlog: Вернуться в блог
+    searchPage: Поиск
+    searchPageDescription: Искать статьи по всему блогу
+    search: Поиск
+    searchPlaceholder: Введите для поиска...
+    tableOfContents: Оглавление
+    noContents: Нет доступных заголовков
+    404title: Страница не найдена
+    404description: "Кажется, вы забрели в неизведанное. Страница, которую вы ищете, не существует или была перенесена в другое измерение."
+    404backHome: Вернуться на главную
+    404goBack: Назад
+    404youMightLike: Вам может быть интересно
+    404exploreBlog: Исследуйте наш блог
+    404browseArchives: Просмотреть архивы
+    404searchContent: Поиск контента
+  months:
+    1: Январь
+    2: Февраль
+    3: Март
+    4: Апрель
+    5: Май
+    6: Июнь
+    7: Июль
+    8: Август
+    9: Сентябрь
+    10: Октябрь
+    11: Ноябрь
+    12: Декабрь
+pt:
+  label:
+    noTag: Nenhuma tag atribuída
+    tagCard: Tags
+    tagPage: Tag
+    totalTags: Total de tags
+    noCategory: Nenhuma categoria atribuída
+    categoryCard: Categorias
+    categoryPage: Categoria
+    totalCategories: Total de categorias
+    noPosts: Nenhum post disponível
+    archivePage: Arquivos
+    totalPosts: Total de posts
+    link: "Link: "
+    prevPage: Posts recentes
+    nextPage: Posts mais antigos
+    wordCount: palavras
+    readTime: minutos
+    share: Compartilhar
+    shareCard: Compartilhar este artigo
+    close: Fechar
+    learnMore: Saiba mais
+    allTags: Todas as tags
+    allCategories: Todas as categorias
+    post: post
+    posts: posts
+    tagDescription: Navegar por todos os artigos com esta tag
+    categoryDescription: Navegar por todos os artigos nesta categoria
+    tagsPageDescription: Explorar todas as tags usadas no blog
+    categoriesPageDescription: Explorar todas as categorias disponíveis no blog
+    archivesPageDescription: Navegar por artigos organizados por data
+    backToBlog: Voltar ao blog
+    searchPage: Pesquisa
+    searchPageDescription: Pesquisar artigos no blog
+    search: Pesquisar
+    searchPlaceholder: Digite para pesquisar...
+    tableOfContents: Sumário
+    noContents: Nenhum título disponível
+    404title: Página não encontrada
+    404description: Parece que você se aventurou no desconhecido. A página que você procura não existe ou foi movida para outra dimensão.
+    404backHome: Voltar para o início
+    404goBack: Voltar
+    404youMightLike: Você pode se interessar por
+    404exploreBlog: Explore nosso blog
+    404browseArchives: Navegar pelos arquivos
+    404searchContent: Pesquisar conteúdo
+  months:
+    1: Janeiro
+    2: Fevereiro
+    3: Março
+    4: Abril
+    5: Maio
+    6: Junho
+    7: Julho
+    8: Agosto
+    9: Setembro
+    10: Outubro
+    11: Novembro
+    12: Dezembro
+it:
+  label:
+    noTag: Nessun tag assegnato
+    tagCard: Tag
+    tagPage: Tag
+    totalTags: Totale tag
+    noCategory: Nessuna categoria assegnata
+    categoryCard: Categorie
+    categoryPage: Categoria
+    totalCategories: Totale categorie
+    noPosts: Nessun post disponibile
+    archivePage: Archivi
+    totalPosts: Totale post
+    link: "Link: "
+    prevPage: Post recenti
+    nextPage: Post più vecchi
+    wordCount: parole
+    readTime: minuti
+    share: Condividi
+    shareCard: Condividi questo articolo
+    close: Chiudi
+    learnMore: Scopri di più
+    allTags: Tutti i tag
+    allCategories: Tutte le categorie
+    post: post
+    posts: post
+    tagDescription: Sfoglia tutti gli articoli con questo tag
+    categoryDescription: Sfoglia tutti gli articoli in questa categoria
+    tagsPageDescription: Esplora tutti i tag usati nel blog
+    categoriesPageDescription: Esplora tutte le categorie disponibili nel blog
+    archivesPageDescription: Sfoglia gli articoli organizzati per data
+    backToBlog: Torna al blog
+    searchPage: Ricerca
+    searchPageDescription: Cerca articoli nel blog
+    search: Cerca
+    searchPlaceholder: Digita per cercare...
+    tableOfContents: Sommario
+    noContents: Nessun titolo disponibile
+    404title: Pagina non trovata
+    404description: "Sembra che ti sia avventurato nell'ignoto. La pagina che cerchi non esiste o è stata spostata in un'altra dimensione."
+    404backHome: Torna alla home
+    404goBack: Indietro
+    404youMightLike: Potresti essere interessato a
+    404exploreBlog: Esplora il nostro blog
+    404browseArchives: Sfoglia gli archivi
+    404searchContent: Cerca contenuti
+  months:
+    1: Gennaio
+    2: Febbraio
+    3: Marzo
+    4: Aprile
+    5: Maggio
+    6: Giugno
+    7: Luglio
+    8: Agosto
+    9: Settembre
+    10: Ottobre
+    11: Novembre
+    12: Dicembre

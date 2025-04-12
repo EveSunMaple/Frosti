@@ -21,6 +21,10 @@ export const SITE_FAVICON = config.site.favicon;
 export const SITE_THEME = config.site.theme;
 export const DATE_FORMAT = config.site.date_format;
 
+// 博客配置
+export const BLOG_CONFIG = config.site.blog;
+export const BLOG_PAGE_SIZE = config.site.blog.pageSize;
+
 // 代码块的主题
 export const CODE_THEME = config.site.theme.code;
 
@@ -39,17 +43,38 @@ export const SITE_MENU = config.site.menu;
 // 多语言文本配置
 export const TRANSLATIONS = translationsConfig;
 
-// 获取当前语言的翻译文本的函数
-export function t(key: string): string {
-  const keyParts = key.split(".");
-  let currentObj: any = TRANSLATIONS[SITE_LANGUAGE];
+// 创建翻译缓存
+const translationCache: Record<string, string> = {};
 
-  for (const part of keyParts) {
-    if (!currentObj || typeof currentObj !== "object") {
-      return key;
-    }
-    currentObj = currentObj[part];
+export function t(key: string): string {
+  // 检查缓存中是否已存在此翻译
+  if (translationCache[key] !== undefined) {
+    return translationCache[key];
   }
 
-  return typeof currentObj === "string" ? currentObj : key;
+  // 获取当前语言的翻译
+  const currentLangTranslations = TRANSLATIONS[SITE_LANGUAGE];
+  if (!currentLangTranslations) {
+    translationCache[key] = key; // 缓存结果
+    return key;
+  }
+
+  // 查找嵌套翻译
+  const keyParts = key.split(".");
+  let result = currentLangTranslations;
+
+  for (let i = 0; i < keyParts.length; i++) {
+    const part = keyParts[i];
+
+    if (!result || typeof result !== "object") {
+      translationCache[key] = key; // 缓存结果
+      return key;
+    }
+
+    result = result[part];
+  }
+
+  // 保存结果到缓存
+  translationCache[key] = typeof result === "string" ? result : key;
+  return translationCache[key];
 }

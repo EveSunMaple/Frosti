@@ -5,68 +5,18 @@ import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Pagination from "@components/widgets/Pagination.astro";
 import CardGroup from "@components/temple/CardGroup.astro";
-import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import { t } from "@config";
+import { generatePageLinks } from "@utils/blogUtils";
+import { getMainBlogPaginationPaths } from "@utils/paginationUtils";
 
 // 博客 主页面
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const allPosts = await getCollection("blog");
-
-  // Filter out draft posts in production mode
-  const posts = import.meta.env.PROD ? allPosts.filter((post) => !post.data.draft) : allPosts;
-
-  const topPosts = posts.filter((blog: any) => blog.data.badge === "Pin");
-  const otherPosts = posts.filter((blog: any) => blog.data.badge !== "Pin");
-
-  topPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  otherPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-  const sortedPosts = [...topPosts, ...otherPosts];
-
-  const postsWithStats = await Promise.all(
-    sortedPosts.map(async (blog) => {
-      const { remarkPluginFrontmatter } = await blog.render();
-
-      return {
-        ...blog,
-        remarkPluginFrontmatter: {
-          readingTime: remarkPluginFrontmatter.readingTime,
-          totalCharCount: remarkPluginFrontmatter.totalCharCount,
-        },
-      };
-    }),
-  );
-
-  return paginate(postsWithStats, { pageSize: 8 });
+  return getMainBlogPaginationPaths({ paginate });
 }
 
 const { page }: { page: Page } = Astro.props;
-
-function generatePageLinks(totalPages: number): {
-  active: string[];
-  hidden: string[];
-} {
-  const pages = {
-    active: [] as string[],
-    hidden: [] as string[],
-  };
-
-  if (totalPages > 3) {
-    pages.active.push("1");
-    pages.active.push("...");
-    pages.active.push(totalPages.toString());
-    for (let i = 2; i <= totalPages - 1; i++) {
-      pages.hidden.push(i.toString());
-    }
-  } else {
-    for (let i = 1; i <= totalPages; i++) {
-      pages.active.push(i.toString());
-    }
-  }
-  return pages;
-}
 
 const totalPages = Math.ceil(page.total / page.size);
 const pageLinks = generatePageLinks(totalPages);

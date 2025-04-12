@@ -4,7 +4,7 @@ import License from "@components/widgets/License.astro";
 import PostInfo from "@components/widgets/PostInfo.astro";
 import PostFilter from "@components/widgets/PostFilter.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import dayjs from "dayjs";
+import dayjs from "@utils/dayjs";
 import { DATE_FORMAT } from "@config";
 import MainCard from "@/components/MainCard.astro";
 
@@ -57,10 +57,3 @@ const displayDate = blog.data.pubDate ? dayjs(blog.data.pubDate).format(DATE_FOR
     </div>
   </MainCard>
 </BaseLayout>
-
-<style is:global>
-  /* Content styling for code */
-  code {
-    font-size: 0.875em;
-  }
-</style>
