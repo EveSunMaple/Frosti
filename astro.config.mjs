@@ -13,15 +13,19 @@ import { CODE_THEME, USER_SITE } from "./src/config.ts";
 
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   site: USER_SITE,
   output: "static",
+
   style: {
     scss: {
       includePaths: ["./src/styles"],
     },
   },
+
   integrations: [
     mdx(),
     icon(),
@@ -35,6 +39,7 @@ export default defineConfig({
     }),
     playformCompress(),
   ],
+
   markdown: {
     shikiConfig: {
       theme: CODE_THEME,
@@ -210,6 +215,7 @@ export default defineConfig({
       },
     ]],
   },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -219,4 +225,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: vercel(),
 });
