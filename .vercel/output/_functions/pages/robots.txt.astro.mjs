@@ -1,0 +1,1 @@
+export{renderers}from"../renderers.mjs";const e=Object.freeze(Object.defineProperty({__proto__:null,GET:({site:e})=>{const n=new URL("sitemap-index.xml",e);return new Response(function(e){return`\nUser-agent: *\nAllow: /\nSitemap: ${e.href}\n`}(n))}},Symbol.toStringTag,{value:"Module"})),n=()=>e;export{n as page};

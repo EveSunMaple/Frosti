@@ -17,7 +17,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 // https://astro.build/config
 export default defineConfig({
   site: USER_SITE,
-  output: "static",
+  output: "server",
   adapter: vercel({
     speedInsights: true, // 启用Speed Insights
   }),

@@ -1,0 +1,1 @@
+const i=["jpeg","jpg","png","tiff","webp","gif","svg","avif"],g=["jpeg","jpg","png","tiff","webp","gif","svg","avif"],p="webp",f=["src","width","height","format","quality","fit","position"];export{p as D,i as V,g as a,f as b};
