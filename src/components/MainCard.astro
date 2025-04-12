@@ -37,6 +37,7 @@ const accessibleHelpText = `${helpText}: ${title}`;
       <div class="relative">
         <div class="aspect-video w-full overflow-hidden">
           <Image
+            id={"main-image"}
             src={image}
             alt={title}
             width={1200}
@@ -54,7 +55,7 @@ const accessibleHelpText = `${helpText}: ${title}`;
         </div>
 
         {description && (
-          <div class="absolute bottom-4 right-4 lg:bottom-6 lg:right-6">
+          <div class="absolute bottom-4 right-4 lg:bottom-6 lg:right-6" id="detail">
             <div class="dropdown dropdown-top dropdown-end dropdown-hover">
               <label
                 tabindex="0"
@@ -164,6 +165,14 @@ const accessibleHelpText = `${helpText}: ${title}`;
           content.classList.remove("scale-100", "opacity-100");
         }
       });
+    });
+
+    // 自己加的函数: 点击 "了解更多" 进行滚动
+    document.getElementById("detail")?.addEventListener("click", () => {
+      const image = document.getElementById("main-image");
+      const height = image?.offsetHeight;
+      // paddingTop 目前为固定: 16px, 若后续更新请更改
+      if (height) window.scrollTo(0, height + 16);
     });
   });
 </script>

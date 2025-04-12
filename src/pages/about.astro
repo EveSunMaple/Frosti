@@ -7,8 +7,9 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
 
 <BaseLayout title="About">
   <MainCard
-    title="About SunMaple"
-    description="Developer, open-source enthusiast, and creator of the Frosti blog theme."
+    image="/bg2.jpg"
+    title="关于"
+    description="Youngest 的个人介绍: 一名前端开发者和学习者✍️"
     textOverlay="ABOUT"
     infoIcon="lucide:user"
   >
@@ -19,17 +20,17 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
           <div
             class="w-32 h-32 md:w-40 md:h-40 rounded-xl ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden"
           >
-            <img src="https://github.com/EveSunMaple.png" alt="SunMaple" width="160" height="160" loading="eager" />
+            <img src="https://github.com/youngestar.png" alt="Youngestar" width="160" height="160" loading="eager" />
           </div>
         </div>
 
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-3xl md:text-4xl font-bold mb-2">SunMaple</h1>
-          <p class="text-xl text-base-content/80 mb-4">Developer & Open-Source Enthusiast</p>
+          <h1 class="text-3xl md:text-4xl font-bold mb-2">Youngestar</h1>
+          <p class="text-xl text-base-content/80 mb-4">Developer & Learner</p>
 
           <div class="flex flex-wrap gap-3 justify-center md:justify-start mb-6">
             <a
-              href="https://github.com/EveSunMaple"
+              href="https://github.com/Youngestar"
               target="_blank"
               rel="noopener noreferrer"
               class="btn btn-sm btn-outline gap-2"
@@ -38,7 +39,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
               <span>GitHub</span>
             </a>
             <a
-              href="https://twitter.com/EveSunMaple"
+              href="https://x.com/sing_a_giao"
               target="_blank"
               rel="noopener noreferrer"
               class="btn btn-sm btn-outline gap-2"
@@ -46,53 +47,46 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
               <Icon name="lucide:twitter" class="w-4 h-4" />
               <span>Twitter</span>
             </a>
-            <a href="mailto:evesunmaple@outlook.com" class="btn btn-sm btn-outline gap-2">
-              <Icon name="lucide:mail" class="w-4 h-4" />
-              <span>Email</span>
-            </a>
           </div>
 
-          <p class="text-base-content/80">
-            Hello! I'm SunMaple, a passionate developer focused on creating elegant, responsive, and efficient web
-            applications. I'm the creator of the Frosti blog theme, a modern Astro-based theme for content creators. I
-            love contributing to open-source projects and building tools that help others create beautiful digital
-            experiences.
-          </p>
+          <p class="text-base-content/80">Always keep advancing</p>
         </div>
       </section>
 
       <!-- GitHub Stats -->
       <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:github" class="w-6 h-6 text-primary" />
-          <span>GitHub Statistics</span>
+          <Icon name="lucide:palette" class="w-6 h-6 text-primary" />
+          <span>关于我</span>
         </h2>
-
-        <GitHubStats username="EveSunMaple" showLanguages={false} showCommitGraph={true} />
+        <p class="text-xl font-semibold text-primary">Hi, I'm Youngestar!</p>
+        <br />
+        <p>是一名前端的开发者和学习者, 目前还是技术小白</p>
+        <p>希望能做一个很有趣的人, 希望能一直向前进</p>
+        <p>与君共勉✌️</p>
+        <!-- <GitHubStats username="youngestar" showLanguages={false} showCommitGraph={true} /> -->
       </section>
 
       <!-- Tech Stack -->
       <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:code-2" class="w-6 h-6 text-primary" />
-          <span>Tech Stack</span>
+          <span>技术栈</span>
         </h2>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {
             [
-              { name: "Astro", icon: "simple-icons:astro", color: "oklch(0.5 0.2 300)" },
+              // { name: "Astro", icon: "simple-icons:astro", color: "oklch(0.5 0.2 300)" },
               { name: "JavaScript", icon: "simple-icons:javascript", color: "oklch(0.8 0.2 80)" },
               { name: "TypeScript", icon: "simple-icons:typescript", color: "oklch(0.6 0.2 250)" },
               { name: "React", icon: "simple-icons:react", color: "oklch(0.7 0.2 200)" },
-              { name: "Node.js", icon: "simple-icons:nodedotjs", color: "oklch(0.7 0.2 140)" },
+              { name: "Vue", icon: "simple-icons:vuedotjs", color: "oklch(0.7 0.1 160)" },
+              // { name: "Node.js", icon: "simple-icons:nodedotjs", color: "oklch(0.7 0.2 140)" },
               { name: "TailwindCSS", icon: "simple-icons:tailwindcss", color: "oklch(0.6 0.2 220)" },
               { name: "HTML5", icon: "simple-icons:html5", color: "oklch(0.7 0.2 30)" },
               { name: "CSS3", icon: "simple-icons:css3", color: "oklch(0.7 0.2 220)" },
               { name: "Git", icon: "simple-icons:git", color: "oklch(0.7 0.2 30)" },
-              { name: "C++", icon: "simple-icons:cplusplus", color: "oklch(0.6 0.2 240)" },
-              { name: "C#", icon: "simple-icons:csharp", color: "oklch(0.6 0.2 160)" },
-              { name: "Python", icon: "simple-icons:python", color: "oklch(0.7 0.2 250)" },
             ].map((tech) => (
               <div class="flex flex-col items-center justify-center p-4 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
                 <div class="text-3xl mb-2" style={`color: ${tech.color}`}>
@@ -106,10 +100,10 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
       </section>
 
       <!-- Contribution Activity -->
-      <section>
+      <!-- <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:activity" class="w-6 h-6 text-primary" />
-          <span>Recent Activity</span>
+          <span>最近活动</span>
         </h2>
 
         <div class="bg-base-200 rounded-xl p-6 overflow-x-auto">
@@ -154,7 +148,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
             }
           </div>
         </div>
-      </section>
+      </section> -->
     </div>
   </MainCard>
 </BaseLayout>
