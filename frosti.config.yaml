@@ -59,7 +59,7 @@ site:
 user:
   name: Youngestar # 用户名
   site: "https://frosti.saroprock.com" # 用户的网站链接
-  avatar: /avatar.png # 用户头像路径
+  avatar: /avatar.jpg # 用户头像路径
   sidebar: # 侧边栏配置
     social:
       - href: "https://github.com/youngestar"
