@@ -8,8 +8,9 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
 
 <BaseLayout title="Friends">
   <MainCard
-    title="Friends & Resources"
-    description="A collection of links to friends, technologies, and contributors to the Frosti project."
+    image="/bg1.jpg"
+    title="友链"
+    description="Youngestar 的友链:看看我的朋友们, 或者找找有用的资源💖"
     textOverlay="FRIENDS"
     infoIcon="lucide:link"
   >
@@ -18,18 +19,18 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
       <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:users" class="w-6 h-6 text-primary" />
-          <span>Friends</span>
+          <span>朋友们</span>
         </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <FriendCard
-            name="Lyme Blurred"
-            avatar="https://github.com/lymeblurred.png"
-            description="Building, breaking, and learning daily | A copy of EveSunMaple"
-            url="https://github.com/lymeblurred"
+            name="TanChengChuan"
+            avatar="https://avatars.githubusercontent.com/u/182097664?v=4"
+            description="I LOVE ACG"
+            url="https://github.com/TanChengChuan"
             type="friend"
           />
-          <FriendCard
+          <!-- <FriendCard
             name="梦凌汐"
             avatar="https://github.com/MeowLynxSea.png"
             description="来自星辰边缘的猫猫~爱好是睡觉awa"
@@ -42,12 +43,12 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
             description="你好，我是雪狐~"
             url="https://github.com/SnowFoxqwq"
             type="friend"
-          />
-        </div>
+          /> -->
+        </section>
       </section>
 
       <!-- Contributors Section -->
-      <section>
+      <!-- <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:git-pull-request" class="w-6 h-6 text-primary" />
           <span>Contributors</span>
@@ -97,19 +98,19 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
             type="contributor"
           />
         </div>
-      </section>
+      </section> -->
 
       <!-- Useful Resources Section -->
       <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:bookmark" class="w-6 h-6 text-primary" />
-          <span>Useful Resources</span>
+          <span>技术支持</span>
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <LinkCard
             title="Astro Documentation"
-            desc="The official documentation for Astro, covering everything from getting started to advanced techniques."
+            desc="Astro 的官方文档，涵盖从入门到高级技巧的全面内容"
             url="https://docs.astro.build"
             icon="simple-icons:astro"
             categories={["Docs", "Learning", "Reference"]}
@@ -117,7 +118,7 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
 
           <LinkCard
             title="Tailwind CSS Documentation"
-            desc="Learn how to use Tailwind's utility classes to style your website without writing CSS."
+            desc="学习如何使用 Tailwind 的实用工具类为网站添加样式，无需编写 CSS 代码"
             url="https://tailwindcss.com/docs"
             icon="simple-icons:tailwindcss"
             categories={["Docs", "CSS", "Reference"]}
@@ -125,7 +126,7 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
 
           <LinkCard
             title="DaisyUI Components"
-            desc="Browse DaisyUI's component library and learn how to use them in your project."
+            desc="浏览 DaisyUI 的组件库，并学习如何将其应用到你的项目中"
             url="https://daisyui.com/components/"
             icon="simple-icons:daisyui"
             categories={["Components", "UI", "Reference"]}
@@ -133,7 +134,7 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
 
           <LinkCard
             title="TypeScript Handbook"
-            desc="The TypeScript Handbook is a comprehensive guide to the TypeScript language."
+            desc="TypeScript 手册是 TypeScript 语言的全面指南"
             url="https://www.typescriptlang.org/docs/handbook/intro.html"
             icon="simple-icons:typescript"
             categories={["Docs", "TypeScript", "Reference"]}
@@ -146,17 +147,10 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
       </div>
 
       <div class="text-center">
-        <p class="text-base-content/80 mb-4">
-          Want to be featured on this page? Feel free to reach out or contribute to the project!
-        </p>
-        <a
-          href="https://github.com/EveSunMaple/Frosti"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary gap-2"
-        >
-          <Icon name="lucide:github" class="w-5 h-5" />
-          <span>Contribute on GitHub</span>
+        <p class="text-base-content/80 mb-4">留言或者私信与我互换友链吧!</p>
+        <a href="/message" target="_blank" rel="noopener noreferrer" class="btn btn-primary gap-2">
+          <Icon name="lucide:flower" class="w-5 h-5" />
+          <span>写点留言</span>
         </a>
       </div>
     </div>

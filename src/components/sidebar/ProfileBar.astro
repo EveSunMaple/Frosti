@@ -10,17 +10,19 @@ const currentPath = Astro.url.pathname;
 
 <Card>
   <div class="relative p-4 flex flex-col">
-    <div class="avatar p-2 flex justify-center">
+    <div class="p-4 flex justify-center">
       <Image
         class="mask mask-circle"
         format="webp"
-        width={150}
-        height={150}
+        width={200}
+        height={200}
         src={USER_AVATAR}
         alt="Profile"
         loading="eager"
       />
     </div>
+    <p class="text-center font-semibold text-xl">Youngestar</p>
+    <p class="text-center text-base-content/80">Always keep advancing</p>
     <ul class="menu bg-transparent w-full m-0 p-0 hidden md:flex flex-col items-center lg:items-start">
       {
         SITE_MENU.map((item) => (
@@ -70,7 +72,8 @@ const currentPath = Astro.url.pathname;
 
     <!-- Social Icons -->
     <div class="mt-4 pt-3 border-t border-base-300">
-      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-items-center">
+      <!-- 根据填写社交媒体数量调整 -->
+      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-2 gap-2 justify-items-center">
         {
           USER_SIDEBAR_SOCIAL_ICONS.map((icon) => (
             <div class="tooltip tooltip-bottom" data-tip={icon.title}>
@@ -78,7 +81,6 @@ const currentPath = Astro.url.pathname;
                 tabindex="0"
                 href={icon.href}
                 aria-label={icon.ariaLabel}
-                title={icon.title}
                 target="_blank"
                 class="btn btn-circle btn-ghost"
               >

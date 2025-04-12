@@ -2,14 +2,48 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 import MainCard from "@/components/MainCard.astro";
-import FeatureCard from "@/components/mdx/FeatureCard.astro";
 import GitHubStats from "@/components/mdx/GitHubStats.astro";
+import type { Post } from "@interfaces/data";
+import PostCard from "@components/PostCard.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+
+// 如果为生产环境排除草稿
+const posts = import.meta.env.PROD ? allPosts.filter((post) => !post.data.draft) : allPosts;
+
+const topPosts = posts.filter((blog: any) => blog.data.badge === "Pin");
+const otherPosts = posts.filter((blog: any) => blog.data.badge !== "Pin");
+
+topPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+otherPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const sortedPosts = [...topPosts, ...otherPosts];
+
+// 最大展示数目
+const maxLength: number = 3;
+const showingBlogs: number = sortedPosts.length < maxLength ? sortedPosts.length : maxLength;
+
+const postsWithStats = await Promise.all(
+  sortedPosts.map(async (blog: any) => {
+    const { remarkPluginFrontmatter } = await blog.render();
+    return {
+      ...blog,
+      remarkPluginFrontmatter: {
+        readingTime: remarkPluginFrontmatter.readingTime,
+        totalCharCount: remarkPluginFrontmatter.totalCharCount,
+      },
+    };
+  }),
+);
 ---
 
 <BaseLayout title="Home">
   <MainCard
-    title="Welcome to Frosti"
-    description="A modern, responsive, feature-rich blog theme for Astro with dark/light mode and customizable options."
+    image="/bg3.jpg"
+    title="主页"
+    description="Youngestar 的后院: 希望是一个静悄悄但有意思的地方🌻"
     textOverlay="HOME"
     infoIcon="lucide:info"
   >
@@ -17,27 +51,69 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
       <!-- Hero Section -->
       <section class="py-6">
         <div class="flex flex-col items-center text-center">
-          <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            🌟 Frosti Blog Theme
+          <h1
+            class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mt-1"
+          >
+            🏕️ 后院
           </h1>
-          <p class="text-xl text-base-content/80 max-w-3xl mb-8">
-            A minimal, responsive, and feature-rich Astro blog theme designed for creators who value beautiful content
-            presentation and exceptional performance.
+          <p class="text-md text-base-content/80 max-w-3xl mb-8">
+            Youngestar 的个人博客, 用于记录一些技术见解和日常琐事<br />
+            (如果看到我很久没更新请踢我🎈)
           </p>
           <div class="flex flex-wrap gap-4 justify-center">
             <a href="/blog" class="btn btn-primary gap-2 btn-shine-effect">
               <Icon name="lucide:book-open" class="w-5 h-5" />
-              <span>Explore Blog</span>
+              <span>探索一下</span>
             </a>
-            <a href="https://github.com/EveSunMaple/Frosti" target="_blank" class="btn btn-outline gap-2">
+            <!-- 后续更新请替换为博客链接 -->
+            <a href="https://github.com/youngestar" target="_blank" class="btn btn-outline gap-2">
               <Icon name="lucide:github" class="w-5 h-5" />
-              <span>Star on GitHub</span>
+              <span>看看 GitHub</span>
             </a>
           </div>
         </div>
       </section>
+      <!-- Quick Start -->
+      <section class="py-2">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <Icon name="lucide:rocket" class="w-6 h-6 text-primary" />
+          <span>文章推荐</span>
+        </h2>
 
-      <!-- Features Section -->
+        <CardGroup cols="1" gap="6">
+          {
+            postsWithStats
+              .slice(0, showingBlogs)
+              .map((blog: Post) => (
+                <PostCard
+                  title={blog.data.title}
+                  image={blog.data.image}
+                  description={blog.data.description}
+                  url={"/blog/" + blog.slug}
+                  pubDate={blog.data.pubDate}
+                  badge={blog.data.badge}
+                  categories={blog.data.categories}
+                  tags={blog.data.tags}
+                  word={blog.remarkPluginFrontmatter.totalCharCount}
+                  time={blog.remarkPluginFrontmatter.readingTime}
+                />
+              ))
+          }
+        </CardGroup>
+        {
+          showingBlogs === maxLength ? (
+            <div class="flex gap-4 justify-center mt-10">
+              <a href="/blog" class="btn btn-primary gap-2 btn-shine-effect">
+                <Icon name="lucide:book-open" class="w-5 h-5" />
+                <span>更多文章</span>
+              </a>
+            </div>
+          ) : (
+            <section />
+          )
+        }
+      </section>
+      <!-- Features Section
       <section class="py-6">
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
@@ -87,94 +163,16 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
             color="oklch(0.7 0.2 10)"
           />
         </div>
-      </section>
-
-      <!-- Quick Start -->
-      <section class="py-6">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:rocket" class="w-6 h-6 text-primary" />
-          <span>Quick Start</span>
-        </h2>
-
-        <div class="card bg-base-200 p-6">
-          <h3 class="text-xl font-bold mb-4">Get started in three simple steps:</h3>
-
-          <ol class="space-y-6 mb-6">
-            <li class="relative flex flex-col gap-4 items-start">
-              <div class="flex gap-4 items-center">
-                <div
-                  class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
-                >
-                  1
-                </div>
-                <h4 class="font-bold">Clone the repository</h4>
-              </div>
-              <div class="relative w-full">
-                <p class="text-base-content/70 mb-2">Use Git to clone the Frosti repository to your local machine:</p>
-                <div class="mockup-code text-sm mb-2">
-                  <pre><code>git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti</code></pre>
-                </div>
-              </div>
-            </li>
-
-            <li class="relative flex flex-col gap-4 items-start">
-              <div class="flex gap-4 items-center">
-                <div
-                  class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
-                >
-                  2
-                </div>
-                <h4 class="font-bold">Install dependencies</h4>
-              </div>
-              <div class="relative w-full">
-                <p class="text-base-content/70 mb-2">Navigate to the project directory and install dependencies:</p>
-                <div class="mockup-code text-sm mb-2">
-                  <pre><code>cd Frosti && npm install</code></pre>
-                </div>
-              </div>
-            </li>
-
-            <li class="relative flex flex-col gap-4 items-start">
-              <div class="flex gap-4 items-center">
-                <div
-                  class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content flex-shrink-0"
-                >
-                  3
-                </div>
-                <h4 class="font-bold">Start the development server</h4>
-              </div>
-              <div class="relative w-full">
-                <p class="text-base-content/70 mb-2">Launch the local development server to see your blog:</p>
-                <div class="mockup-code text-sm mb-2">
-                  <pre><code>npm run build && npm run dev</code></pre>
-                </div>
-                <p class="text-base-content/70">
-                  Open your browser and navigate to <code class="bg-base-300 px-2 py-1 rounded"
-                    >http://localhost:4321</code
-                  > to see your blog in action!
-                </p>
-              </div>
-            </li>
-          </ol>
-
-          <div class="alert bg-primary/10 text-primary mb-0">
-            <Icon name="lucide:lightbulb" class="w-6 h-6" />
-            <span
-              >Check out the <a href="/blog" class="underline">blog section</a> for detailed guides and documentation.</span
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- GitHub Stats -->
-      <section class="py-6">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:github" class="w-6 h-6 text-primary" />
-          <span>Repository Stats</span>
-        </h2>
-
-        <GitHubStats username="EveSunMaple" repositoryName="Frosti" showLanguages={true} showContributors={true} />
-      </section>
+      </section> -->
     </div>
+
+    <!-- GitHub Stats -->
+    <section class="py-6">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <Icon name="lucide:github" class="w-6 h-6 text-primary" />
+        <span>github 主页</span>
+      </h2>
+      <GitHubStats username="Youngestar" showLanguages={true} showContributors={true} />
+    </section>
   </MainCard>
 </BaseLayout>

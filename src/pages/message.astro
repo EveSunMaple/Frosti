@@ -1,0 +1,172 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import MainCard from "@/components/MainCard.astro";
+import { SITE_THEME } from "@config";
+---
+
+<BaseLayout title="Message">
+  <MainCard
+    image="/bg6.jpg"
+    title="留言"
+    description="Youngestar 的留言板:留下想说的话或者给出一些些建议🔖"
+    textOverlay="FRIENDS"
+    infoIcon="lucide:mails"
+  >
+    <div class="space-y-10">
+      <!-- Friends Section -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <Icon name="lucide:message-square-text" class="w-6 h-6 text-primary" />
+          <span>留言板</span>
+        </h2>
+
+        <div class="space-y-10">
+          <!-- 加载状态提示 -->
+          <div id="waline-loading" class="text-center py-8">
+            <div class="loading loading-spinner text-primary"></div>
+            <p class="mt-2 text-sm">留言加载中...</p>
+          </div>
+
+          <section>
+            <!-- 确保容器元素存在 -->
+            <div id="waline" style="display: none;"></div>
+          </section>
+
+          <script is:inline define:vars={{ walineServerURL: import.meta.env.PUBLIC_WALINE_SERVER, SITE_THEME }}>
+            let walineInstance = null;
+            const MAX_RETRY = 3;
+            let retryCount = 0;
+
+            const initWaline = async () => {
+              try {
+                // 确保容器存在
+                const container = document.querySelector("#waline");
+                if (!container) {
+                  throw new Error("Waline container not found");
+                }
+
+                // 显示加载状态
+                document.getElementById("waline-loading").style.display = "block";
+                container.style.display = "none";
+
+                // 清理旧实例
+                if (walineInstance) {
+                  walineInstance.destroy();
+                  container.innerHTML = "";
+                }
+
+                // 动态加载 Waline
+                const { init } = await import("https://unpkg.com/@waline/client/dist/waline.js");
+
+                walineInstance = init({
+                  // 核心配置
+                  el: "#waline",
+                  serverURL: walineServerURL,
+
+                  // 其余配置
+                  dark: "auto",
+                  lang: "zh",
+                  emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq"],
+                  reaction: [
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_unavailble_doge.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_wa.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_hem.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_cool.png",
+                    "https://unpkg.com/@waline/emojis@1.2.0/bmoji/bmoji_hmm.png",
+                  ],
+                  avatar: "retro",
+                  locale: {
+                    reactionTitle: "留下你的足迹吧😽",
+
+                    link: "个人网址",
+                    anonymous: "匿名(为啥不写名字😡)",
+
+                    placeholder: "想要说点什么吗",
+                    sofa: "~\(≧▽≦)/~ 你是第一个哦~",
+                  },
+                });
+
+                // 页面加载时，根据 localStorage 中的主题信息初始化 Waline 主题
+                const initialTheme = localStorage.getItem("theme") || SITE_THEME.light;
+                if (initialTheme === SITE_THEME.dark) {
+                  walineInstance.update({ dark: true });
+                } else {
+                  walineInstance.update({ dark: false });
+                }
+
+                // 监听 storage 事件
+                window.addEventListener("message", function (e) {
+                  if (e.data.type === "themeChange") {
+                    const newTheme = e.data.theme;
+                    if (newTheme === SITE_THEME.dark) {
+                      walineInstance.update({ dark: true });
+                    } else {
+                      walineInstance.update({ dark: false });
+                    }
+                  }
+                });
+
+                // 隐藏加载状态
+                document.getElementById("waline-loading").style.display = "none";
+                container.style.display = "block";
+              } catch (error) {
+                console.error("Waline 初始化失败:", error);
+
+                if (retryCount < MAX_RETRY) {
+                  retryCount++;
+                  setTimeout(initWaline, 2000 * retryCount);
+                } else {
+                  document.getElementById("waline-loading").innerHTML = `
+              <div class="alert alert-error mt-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>评论加载失败，请刷新页面或稍后再试</span>
+              </div>
+            `;
+                }
+              }
+            };
+
+            // 启动初始化
+            const startInit = () => {
+              if (document.getElementById("waline")) {
+                initWaline();
+              } else {
+                setTimeout(startInit, 100);
+              }
+            };
+
+            // 多种触发方式
+            if (document.readyState === "complete") {
+              startInit();
+            } else {
+              window.addEventListener("DOMContentLoaded", startInit);
+            }
+
+            document.addEventListener("astro:after-swap", startInit);
+            window.addEventListener("popstate", startInit);
+          </script>
+        </div>
+
+        <div class="divider my-8">
+          <Icon name="lucide:heart" class="w-10 h-10 text-primary" />
+        </div>
+
+        <div class="text-center">
+          <p class="text-base-content/80 mb-4">为博客模板的作者做贡献!</p>
+          <a
+            href="https://github.com/EveSunMaple/Frosti"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary gap-2"
+          >
+            <Icon name="lucide:github" class="w-5 h-5" />
+            <span>Contribute on GitHub</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </MainCard>
+</BaseLayout>
