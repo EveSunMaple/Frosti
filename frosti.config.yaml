@@ -58,7 +58,7 @@ site:
 # 用户的个人信息
 user:
   name: Youngestar # 用户名
-  site: "https://youngestar.vercel.app/"" # 用户的网站链接
+  site: "https://youngestar.vercel.app/" # 用户的网站链接
   avatar: /avatar.jpg # 用户头像路径
   sidebar: # 侧边栏配置
     social:
