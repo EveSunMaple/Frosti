@@ -62,6 +62,11 @@ const { className = "" } = Astro.props as ThemeToggleProps;
 
       // Set new theme
       document.documentElement.setAttribute("data-theme", newTheme);
+
+      // Set theme type based on which theme is active
+      const themeType = newTheme === SITE_THEME.dark ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme-type", themeType);
+
       localStorage.setItem("theme", newTheme);
 
       // Update icons for all theme toggles on the page
