@@ -64,6 +64,11 @@ const { className = "" } = Astro.props as ThemeToggleProps;
 
       // Set new theme
       document.documentElement.setAttribute("data-theme", newTheme);
+
+      // Set theme type based on which theme is active
+      const themeType = newTheme === SITE_THEME.dark ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme-type", themeType);
+
       localStorage.setItem("theme", newTheme);
       // 跨域安全通信, 切换 waline 样式
       window.parent.postMessage({ type: "themeChange", theme: newTheme }, "*");

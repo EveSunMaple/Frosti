@@ -2,6 +2,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+<<<<<<< HEAD
+=======
+
+/* Color scheme configuration to prevent Chrome's auto dark theme */
+:root,
+[data-theme-type="light"] {
+  color-scheme: light dark; /* This prevents Chrome's auto dark theme from taking effect */
+}
+
+[data-theme-type="dark"] {
+  color-scheme: dark;
+}
+
+>>>>>>> c2d1776882a9067219e08f2e99c5a839a09f62d3
 /* Global styles with nesting support */
 html {
   @apply scroll-smooth;
