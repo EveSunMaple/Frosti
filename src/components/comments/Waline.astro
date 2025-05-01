@@ -1,0 +1,78 @@
+---
+interface Props {
+  serverURL: string;
+  lang?: string;
+  dark?: string;
+  emoji?: string[];
+  meta?: string[];
+  requiredMeta?: string[];
+  reaction?: boolean;
+  pageview?: boolean;
+}
+
+const {
+  serverURL,
+  lang = "en",
+  dark = "html[data-theme-type='dark']",
+  emoji = ["https://unpkg.com/@waline/emojis@1.1.0/weibo", "https://unpkg.com/@waline/emojis@1.1.0/bilibili"],
+  meta = ["nick", "mail", "link"],
+  requiredMeta = [],
+  reaction = false,
+  pageview = false,
+} = Astro.props;
+---
+
+<div id="waline-container"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+
+<script
+  type="module"
+  define:vars={{
+    serverURL,
+    lang,
+    dark,
+    emoji,
+    meta,
+    requiredMeta,
+    reaction,
+    pageview,
+  }}
+>
+  import { init } from "https://unpkg.com/@waline/client@v3/dist/waline.js";
+
+  let walineInstance;
+
+  async function mountWaline() {
+    if (walineInstance) {
+      await walineInstance.destroy();
+    }
+    walineInstance = init({
+      el: "#waline-container",
+      serverURL,
+      path: location.pathname,
+      lang,
+      dark,
+      emoji,
+      meta,
+      requiredMeta,
+      reaction,
+      pageview,
+    });
+  }
+
+  document.addEventListener("astro:after-swap", () => {
+    mountWaline();
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    mountWaline();
+  });
+</script>
+
+<style>
+  #waline-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+</style>
