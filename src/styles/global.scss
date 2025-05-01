@@ -23,7 +23,17 @@ kbd {
 }
 
 code {
-  font-size: 0.875em;
+  font-size: 0.95em !important;
+}
+
+p {
+  margin-top: 0.95em !important;
+  margin-bottom: 0.95em !important;
+}
+
+img {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
 }
 
 .scrollbar-none {
