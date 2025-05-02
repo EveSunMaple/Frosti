@@ -19,7 +19,6 @@ const {
   requiredMeta = [],
   reaction = true,
   pageview = true,
-  search = false,
 } = Astro.props;
 ---
 
@@ -38,7 +37,6 @@ const {
     requiredMeta,
     reaction,
     pageview,
-    search,
   }}
 >
   import { init } from "https://unpkg.com/@waline/client@v3/dist/waline.js";
@@ -60,7 +58,7 @@ const {
       requiredMeta,
       reaction,
       pageview,
-      search,
+      search : false,
     });
   }
 
