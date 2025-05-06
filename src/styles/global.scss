@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'FiraCode Nerd Mono';
+  src: url('/public/font/FiraCodeNerdMono.woff2') format('woff2');
+  font-weight: 400; // normal
+  font-style: normal;
+  font-display: swap; // 可选，控制字体加载时的显示行为
+}
+
 /* Global styles with nesting support */
 html {
   @apply scroll-smooth;
@@ -14,6 +22,7 @@ kbd {
 
 code {
   font-size: 0.875em;
+  font-family: 'FiraCode Nerd Mono';
 }
 
 .scrollbar-none {
@@ -658,4 +667,14 @@ code {
     content: "No results found. Try a different search term.";
     @apply block text-center py-8 text-base-content opacity-50;
   }
+}
+
+hr {
+  margin-top: 1.8em !important;
+  margin-bottom: 1.8em !important;
+}
+
+p {
+  margin-top: 0.8em !important;
+  margin-bottom: 0.8em !important;
 }
