@@ -2,6 +2,7 @@
 import { SITE_THEME } from "@config";
 import { Icon } from "astro-icon/components";
 import type { ThemeToggleProps } from "@interfaces/data";
+import { t } from "@config";
 
 // Generate a unique ID for each component instance
 const uniqueId = `theme-toggle-${Math.random().toString(36).substring(2, 11)}`;
@@ -14,6 +15,7 @@ const { className = "" } = Astro.props as ThemeToggleProps;
   class:list={["btn btn-circle btn-md bg-base-100 shadow-sm hover:scale-110", className]}
   aria-label="Toggle theme"
   data-theme-toggle
+  title={t("label.themeToggle")}
 >
   <!-- Sun icon for dark mode (shown when dark theme is active) -->
   <Icon name="lucide:sun" class="theme-toggle-icon h-5 w-5 sun-icon" />
@@ -62,6 +64,11 @@ const { className = "" } = Astro.props as ThemeToggleProps;
 
       // Set new theme
       document.documentElement.setAttribute("data-theme", newTheme);
+
+      // Set theme type based on which theme is active
+      const themeType = newTheme === SITE_THEME.dark ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme-type", themeType);
+
       localStorage.setItem("theme", newTheme);
 
       // Update icons for all theme toggles on the page

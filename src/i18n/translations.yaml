@@ -30,6 +30,7 @@ en:
     categoriesPageDescription: Explore all categories available on the blog
     archivesPageDescription: Browse articles organized by date
     backToBlog: Back to Blog
+    themeToggle: Theme Toggle
     searchPage: Search
     searchPageDescription: Search for articles across the blog
     search: Search
@@ -89,6 +90,7 @@ zh:
     categoriesPageDescription: 探索博客中可用的所有分类
     archivesPageDescription: 按日期浏览文章
     backToBlog: 返回博客
+    themeToggle: 主题切换
     searchPage: 搜索
     searchPageDescription: 搜索博客中的所有文章
     search: 搜索
@@ -148,6 +150,7 @@ fr:
     categoriesPageDescription: Explorer toutes les catégories disponibles sur le blog
     archivesPageDescription: Parcourir les articles organisés par date
     backToBlog: Retour au blog
+    themeToggle: Basculer le thème
     searchPage: Recherche
     searchPageDescription: Rechercher des articles sur le blog
     search: Rechercher
@@ -207,6 +210,7 @@ ja:
     categoriesPageDescription: ブログで利用可能なすべてのカテゴリを探る
     archivesPageDescription: 日付別に整理された記事を閲覧
     backToBlog: ブログに戻る
+    themeToggle: テーマ切り替え
     searchPage: 検索
     searchPageDescription: ブログ全体で記事を検索
     search: 検索
@@ -266,6 +270,7 @@ ko:
     categoriesPageDescription: 블로그에서 사용 가능한 모든 카테고리 탐색
     archivesPageDescription: 날짜별로 정리된 글 보기
     backToBlog: 블로그로 돌아가기
+    themeToggle: 테마 전환
     searchPage: 검색
     searchPageDescription: 블로그 전체에서 글 검색
     search: 검색
@@ -325,6 +330,7 @@ es:
     categoriesPageDescription: Explora todas las categorías disponibles en el blog
     archivesPageDescription: Explora artículos organizados por fecha
     backToBlog: Volver al blog
+    themeToggle: Alternar tema
     searchPage: Búsqueda
     searchPageDescription: Buscar artículos en el blog
     search: Buscar
@@ -384,6 +390,7 @@ de:
     categoriesPageDescription: Entdecke alle im Blog verfügbaren Kategorien
     archivesPageDescription: Artikel nach Datum durchsuchen
     backToBlog: Zurück zum Blog
+    themeToggle: Theme wechseln
     searchPage: Suche
     searchPageDescription: Nach Artikeln im Blog suchen
     search: Suchen
@@ -443,6 +450,7 @@ ru:
     categoriesPageDescription: Изучить все категории, доступные в блоге
     archivesPageDescription: Просмотреть статьи, отсортированные по дате
     backToBlog: Вернуться в блог
+    themeToggle: Переключить тему
     searchPage: Поиск
     searchPageDescription: Искать статьи по всему блогу
     search: Поиск
@@ -502,6 +510,7 @@ pt:
     categoriesPageDescription: Explorar todas as categorias disponíveis no blog
     archivesPageDescription: Navegar por artigos organizados por data
     backToBlog: Voltar ao blog
+    themeToggle: Alternar tema
     searchPage: Pesquisa
     searchPageDescription: Pesquisar artigos no blog
     search: Pesquisar
@@ -561,6 +570,7 @@ it:
     categoriesPageDescription: Esplora tutte le categorie disponibili nel blog
     archivesPageDescription: Sfoglia gli articoli organizzati per data
     backToBlog: Torna al blog
+    themeToggle: Cambia tema
     searchPage: Ricerca
     searchPageDescription: Cerca articoli nel blog
     search: Cerca

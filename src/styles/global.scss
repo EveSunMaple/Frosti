@@ -11,6 +11,16 @@
   font-display: swap; // 可选，控制字体加载时的显示行为
 }
 
+/* Color scheme configuration to prevent Chrome's auto dark theme */
+:root,
+[data-theme-type="light"] {
+  color-scheme: light dark; /* This prevents Chrome's auto dark theme from taking effect */
+}
+
+[data-theme-type="dark"] {
+  color-scheme: dark;
+}
+
 /* Global styles with nesting support */
 html {
   @apply scroll-smooth;
@@ -21,8 +31,17 @@ kbd {
 }
 
 code {
-  font-size: 0.875em;
-  font-family: 'FiraCode Nerd Mono';
+  font-size: 0.95em !important;
+}
+
+p {
+  margin-top: 0.95em !important;
+  margin-bottom: 0.95em !important;
+}
+
+img {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
 }
 
 .scrollbar-none {

@@ -14,7 +14,7 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={SITE_LANGUAGE} class="bg-base-300" data-theme={SITE_THEME.light}>
+<html lang={SITE_LANGUAGE} class="bg-base-300" data-theme={SITE_THEME.light} data-theme-type="light">
   <head>
     <ClientRouter />
     <ElementCrossing />
@@ -40,12 +40,21 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
         // Apply theme to document
         document.documentElement.setAttribute("data-theme", theme);
 
+        // Set theme type based on which theme is active
+        const themeType = theme === SITE_THEME.dark ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme-type", themeType);
+
         // Listen for system preference changes
         window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
           // Only update if user hasn't explicitly set a theme preference
           if (!localStorage.getItem("theme")) {
             const newTheme = e.matches ? SITE_THEME.dark : SITE_THEME.light;
             document.documentElement.setAttribute("data-theme", newTheme);
+
+            // Update theme type attribute when system preference changes
+            const newThemeType = e.matches ? "dark" : "light";
+            document.documentElement.setAttribute("data-theme-type", newThemeType);
+
             localStorage.setItem("theme", newTheme);
           }
         });
@@ -83,6 +92,10 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
         if (storedTheme) {
           // Apply the stored theme to ensure it persists during navigation
           document.documentElement.setAttribute("data-theme", storedTheme);
+
+          // Set theme type based on which theme is active
+          const themeType = storedTheme === SITE_THEME.dark ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme-type", themeType);
         }
       });
     </script>

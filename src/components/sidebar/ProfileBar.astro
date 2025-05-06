@@ -10,12 +10,12 @@ const currentPath = Astro.url.pathname;
 
 <Card>
   <div class="relative p-4 flex flex-col">
-    <div class="avatar p-2 flex justify-center">
+    <div class="p-2 flex justify-center">
       <Image
         class="mask mask-circle"
         format="webp"
-        width={150}
-        height={150}
+        width={250}
+        height={250}
         src={USER_AVATAR}
         alt="Profile"
         loading="eager"
@@ -54,7 +54,6 @@ const currentPath = Astro.url.pathname;
                 tabindex="0"
                 class="flex justify-center lg:justify-start items-center text-center text-xl md:text-3xl lg:text-xl font-bold p-4 hover:bg-base-200 rounded-lg"
                 id={item.id}
-                title={item.id}
                 href={item.href}
                 target={item.target || "_self"}
                 aria-label={item.text}
@@ -78,7 +77,6 @@ const currentPath = Astro.url.pathname;
                 tabindex="0"
                 href={icon.href}
                 aria-label={icon.ariaLabel}
-                title={icon.title}
                 target="_blank"
                 class="btn btn-circle btn-ghost"
               >
