@@ -93,50 +93,77 @@ const totalCategories = categoryMap.size;
     </div>
   </BaseCard>
 </BaseLayout>
-
 <script>
   document.addEventListener("astro:page-load", () => {
+    const MAX_HEIGHT_PX = 500;
+
+    const collapseCategory = (contentEl: HTMLElement, iconEl: HTMLElement | null, innerEl: HTMLElement | null) => {
+      if (contentEl) {
+        contentEl.style.maxHeight = "0px";
+        contentEl.classList.remove("expanded");
+      }
+      if (iconEl) {
+        iconEl.classList.remove("rotate-180");
+      }
+      if (innerEl) {
+        innerEl.classList.remove("expanded");
+      }
+    };
+
+    const expandCategory = (contentEl: HTMLElement, iconEl: HTMLElement, innerEl: HTMLElement) => {
+      if (contentEl) {
+        const scrollHeight = contentEl.scrollHeight;
+        contentEl.style.maxHeight = Math.min(scrollHeight, MAX_HEIGHT_PX) + "px";
+        contentEl.classList.add("expanded");
+      }
+      if (iconEl) {
+        iconEl.classList.add("rotate-180");
+      }
+      if (innerEl) {
+        innerEl.classList.add("expanded");
+      }
+    };
+
     const categoryHeaders = document.querySelectorAll(".category-header");
 
     categoryHeaders.forEach((header) => {
+      const card = header.closest(".category-card");
+      if (!card) return;
+
+      const content = card.querySelector(".category-content") as HTMLElement;
+      const toggleIcon = header.querySelector(".toggle-icon") as HTMLElement;
+      const inner = card.querySelector(".category-inner") as HTMLElement;
+
+      // Initialize maxHeight for all content HTMLElements
+      if (content) {
+        if (content.classList.contains("expanded")) {
+          // If initially expanded by class, set maxHeight appropriately
+          const scrollHeight = content.scrollHeight;
+          content.style.maxHeight = Math.min(scrollHeight, MAX_HEIGHT_PX) + "px";
+        } else {
+          content.style.maxHeight = "0px"; // Start collapsed
+        }
+      }
+
       header.addEventListener("click", () => {
-        const card = header.closest(".category-card");
-        if (!card) return;
+        if (!content || !toggleIcon || !inner) return;
 
-        const content = card.querySelector(".category-content");
-        const toggleIcon = header.querySelector(".toggle-icon");
-        const inner = card.querySelector(".category-inner");
+        const isCurrentlyExpanded = content.classList.contains("expanded") && content.style.maxHeight !== "0px";
 
-        if (content && toggleIcon && inner) {
-          if (content.classList.contains("expanded")) {
-            // Collapse
-            content.classList.remove("expanded");
-            toggleIcon.classList.remove("rotate-180");
-            inner.classList.remove("expanded");
-          } else {
-            // Expand
-            content.classList.add("expanded");
-            toggleIcon.classList.add("rotate-180");
-            inner.classList.add("expanded");
-
-            // Auto-collapse other cards (accordion behavior)
-            document.querySelectorAll(".category-content.expanded").forEach((openContent) => {
-              if (openContent !== content) {
-                openContent.classList.remove("expanded");
-                const otherCard = openContent.closest(".category-card");
-                if (otherCard) {
-                  const otherToggleIcon = otherCard.querySelector(".toggle-icon");
-                  const otherInner = otherCard.querySelector(".category-inner");
-                  if (otherToggleIcon) {
-                    otherToggleIcon.classList.remove("rotate-180");
-                  }
-                  if (otherInner) {
-                    otherInner.classList.remove("expanded");
-                  }
-                }
+        if (isCurrentlyExpanded) {
+          collapseCategory(content, toggleIcon, inner);
+        } else {
+          document.querySelectorAll(".category-content.expanded").forEach((openContent) => {
+            if (openContent !== content) {
+              const otherCard = openContent.closest(".category-card");
+              if (otherCard) {
+                const otherToggleIcon = otherCard.querySelector(".toggle-icon") as HTMLElement;
+                const otherInner = otherCard.querySelector(".category-inner") as HTMLElement;
+                collapseCategory(openContent as HTMLElement, otherToggleIcon, otherInner);
               }
-            });
-          }
+            }
+          });
+          expandCategory(content, toggleIcon, inner);
         }
       });
     });
