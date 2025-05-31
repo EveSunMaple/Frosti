@@ -4,7 +4,7 @@ description: A comprehensive guide on how to integrate the Waline comment system
 pubDate: 04 15 2025
 image: /image/image4.jpg
 categories:
-  - tech
+  - Documentation
 tags:
   - Frosti
   - Comments

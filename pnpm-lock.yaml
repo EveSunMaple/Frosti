@@ -59,6 +59,9 @@ importers:
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
+      katex:
+        specifier: ^0.16.22
+        version: 0.16.22
       marked:
         specifier: ^14.1.4
         version: 14.1.4

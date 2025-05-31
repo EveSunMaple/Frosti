@@ -28,6 +28,7 @@
     "dayjs": "^1.11.13",
     "dotenv": "^16.5.0",
     "js-yaml": "^4.1.0",
+    "katex": "^0.16.22",
     "marked": "^14.1.4",
     "mdast": "^3.0.0",
     "mdast-util-to-string": "^4.0.0",
