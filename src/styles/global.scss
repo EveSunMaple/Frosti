@@ -51,7 +51,7 @@ code {
 }
 
 .frosti-code {
-  @apply relative my-6 rounded-xl border border-base-content/20 bg-transparent overflow-hidden;
+  @apply relative my-6 rounded-xl border border-base-300/20 bg-transparent overflow-hidden;
 
   &-toolbar {
     @apply sticky top-0 z-10 flex justify-between items-center px-4 py-2 bg-base-200 border-b border-base-content/20;
@@ -103,7 +103,7 @@ code {
 
 // Common container for blog pages
 .blog-container {
-  @apply p-4 rounded-2xl bg-base-200/30 backdrop-blur-md border border-base-content/20;
+  @apply p-4 rounded-2xl bg-base-200/30 backdrop-blur-md border border-base-300/20;
 }
 
 // Common stats box
@@ -126,7 +126,7 @@ code {
 // Empty state component
 .empty {
   &-state {
-    @apply flex flex-col items-center justify-center min-h-[200px] p-8 text-center text-base-content/60 bg-base-100/50 rounded-xl border border-dashed border-base-content/20;
+    @apply flex flex-col items-center justify-center min-h-[200px] p-8 text-center text-base-content/60 bg-base-100/50 rounded-xl border border-dashed border-base-300/20;
   }
 
   &-icon {
@@ -168,7 +168,7 @@ code {
   }
 
   &-inner {
-    @apply rounded-2xl overflow-hidden bg-base-100 shadow-md border border-base-content/20 transition-transform duration-300 ease-in-out;
+    @apply rounded-2xl overflow-hidden bg-base-100 shadow-md border border-base-300/20 transition-transform duration-300 ease-in-out;
 
     &:hover {
       @apply -translate-y-1 shadow-lg;
@@ -394,7 +394,7 @@ code {
 
   &-low {
     .tags-content {
-      @apply border-base-content/20 bg-base-100;
+      @apply border-base-300/20 bg-base-100;
     }
     .tags-icon {
       @apply text-base-content/60;

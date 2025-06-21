@@ -7,7 +7,7 @@ const {
 } = Astro.props as CardGroupProps;
 ---
 
-<div class={`card-group gap-4 ${className}`}>
+<div class={`card-group ${className}`}>
   <slot />
 </div>
 
@@ -21,6 +21,7 @@ const {
   @media (min-width: 768px) {
     .card-group {
       display: grid;
+      gap: 1rem; /* Adjust gap as needed */
       grid-template-columns: repeat(var(--cols), 1fr);
     }
   }

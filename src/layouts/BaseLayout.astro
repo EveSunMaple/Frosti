@@ -25,8 +25,6 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
       (function () {
         const storedTheme = localStorage.getItem("theme");
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-        // Use stored theme if available, otherwise use system preference
         let theme;
         if (storedTheme) {
           theme = storedTheme;
@@ -34,25 +32,15 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
           theme = prefersDark ? SITE_THEME.dark : SITE_THEME.light;
           localStorage.setItem("theme", theme);
         }
-
-        // Apply theme to document
         document.documentElement.setAttribute("data-theme", theme);
-
-        // Set theme type based on which theme is active
         const themeType = theme === SITE_THEME.dark ? "dark" : "light";
         document.documentElement.setAttribute("data-theme-type", themeType);
-
-        // Listen for system preference changes
         window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-          // Only update if user hasn't explicitly set a theme preference
           if (!localStorage.getItem("theme")) {
             const newTheme = e.matches ? SITE_THEME.dark : SITE_THEME.light;
             document.documentElement.setAttribute("data-theme", newTheme);
-
-            // Update theme type attribute when system preference changes
             const newThemeType = e.matches ? "dark" : "light";
             document.documentElement.setAttribute("data-theme-type", newThemeType);
-
             localStorage.setItem("theme", newTheme);
           }
         });
@@ -60,16 +48,19 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
     </script>
   </head>
 
-  <body {...isIndexed ? { "data-pagefind-body": true } : {}}>
+  <body class="flex flex-col min-h-screen" {...isIndexed ? { "data-pagefind-body": true } : {}}>
     <Navbar />
 
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4">
-        <main class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2 mt-16 md:mt-0">
-          <div class="flex flex-col gap-4">
+    <div class="max-w-6xl mx-auto w-full flex-grow">
+      <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4 h-full">
+        {/* 修复: 在这里添加 'gap-4' 来恢复内容和页脚之间的间距 */}
+        <main
+          class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2 mt-16 md:mt-0 flex flex-col gap-4"
+        >
+          <div class="flex-grow flex flex-col gap-4">
             <slot />
-            <Footer />
           </div>
+          <Footer />
         </main>
         <aside class="col-span-1 bg-transparent order-2 md:order-1 md:top-4">
           <Sidebar headings={headings} showTOC={showTOC} />
@@ -82,14 +73,9 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
 
     <script define:vars={{ SITE_THEME }} is:inline>
       document.addEventListener("astro:after-swap", () => {
-        // Get stored theme from localStorage
         const storedTheme = localStorage.getItem("theme");
-
         if (storedTheme) {
-          // Apply the stored theme to ensure it persists during navigation
           document.documentElement.setAttribute("data-theme", storedTheme);
-
-          // Set theme type based on which theme is active
           const themeType = storedTheme === SITE_THEME.dark ? "dark" : "light";
           document.documentElement.setAttribute("data-theme-type", themeType);
         }
@@ -104,18 +90,11 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
             const code = codeBlock.querySelector("code").textContent;
             const copyIcon = button.querySelector(".frosti-code-toolbar-copy-icon");
             const successIcon = button.querySelector(".frosti-code-toolbar-copy-success");
-
             try {
               await navigator.clipboard.writeText(code);
-
-              // Show success icon
               copyIcon.classList.add("hidden");
               successIcon.classList.remove("hidden");
-
-              // Add success animation
               button.classList.add("copy-success");
-
-              // Reset after animation
               setTimeout(() => {
                 copyIcon.classList.remove("hidden");
                 successIcon.classList.add("hidden");
@@ -134,15 +113,12 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
         position: relative;
         overflow: hidden;
       }
-
       .copy-success {
         animation: pulse 0.5s ease-in-out;
       }
-
       .frosti-code-toolbar-copy-success svg {
-        color: #10b981; /* Success green color */
+        color: #10b981;
       }
-
       @keyframes pulse {
         0% {
           transform: scale(1);
