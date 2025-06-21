@@ -9,7 +9,7 @@ import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
 
-const { title, image, headings = [], showTOC = false } = Astro.props;
+const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +21,6 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
     <Header description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
     <title>{`${title} - ${SITE_TAB}`}</title>
 
-    <!-- Initial theme setup on first load -->
     <script define:vars={{ SITE_THEME }} is:inline>
       (function () {
         const storedTheme = localStorage.getItem("theme");
@@ -60,8 +59,8 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
       })();
     </script>
   </head>
-  <body>
-    <!-- Mobile Navbar - Hidden on desktop -->
+
+  <body {...isIndexed ? { "data-pagefind-body": true } : {}}>
     <Navbar />
 
     <div class="max-w-6xl mx-auto">
@@ -79,10 +78,8 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
       </div>
     </div>
 
-    <!-- Mobile TOC Button (only visible on mobile) -->
     <MobileTOC headings={headings} showTOC={showTOC} />
 
-    <!-- Theme persistence during client-side navigation -->
     <script define:vars={{ SITE_THEME }} is:inline>
       document.addEventListener("astro:after-swap", () => {
         // Get stored theme from localStorage
@@ -99,7 +96,6 @@ const { title, image, headings = [], showTOC = false } = Astro.props;
       });
     </script>
 
-    <!-- Code copy functionality -->
     <script is:inline>
       document.addEventListener("astro:page-load", () => {
         document.querySelectorAll(".btn-copy").forEach((button) => {
