@@ -70,10 +70,10 @@ img {
 }
 
 .frosti-code {
-  @apply relative my-6 rounded-xl border border-base-300 bg-transparent overflow-hidden;
+  @apply relative my-6 rounded-xl border border-base-300/20 bg-transparent overflow-hidden;
 
   &-toolbar {
-    @apply sticky top-0 z-10 flex justify-between items-center px-4 py-2 bg-base-200 border-b border-base-300;
+    @apply sticky top-0 z-10 flex justify-between items-center px-4 py-2 bg-base-200 border-b border-base-content/20;
     &-language {
       @apply text-sm font-semibold text-base-content/80;
     }
@@ -104,7 +104,7 @@ img {
 // Footnotes styles
 // ---------------------------------------------------
 .footnotes {
-  @apply mt-12 p-6 rounded-xl bg-base-200/50 backdrop-blur-sm border border-base-300/80 shadow-sm;
+  @apply mt-12 p-6 rounded-xl bg-base-200/50 backdrop-blur-sm border border-base-content/20 shadow-sm;
 
   // Footnote list item
   li {
@@ -122,12 +122,12 @@ img {
 
 // Common container for blog pages
 .blog-container {
-  @apply p-4 rounded-2xl bg-base-200/30 backdrop-blur-md border border-base-300/50;
+  @apply p-4 rounded-2xl bg-base-200/30 backdrop-blur-md border border-base-300/20;
 }
 
 // Common stats box
 .stats-box {
-  @apply stats shadow mb-8 w-full bg-base-200/50 backdrop-blur-sm border border-base-300;
+  @apply stats shadow mb-8 w-full bg-base-200/50 backdrop-blur-sm border border-base-content/20;
 
   .stat-figure {
     @apply text-primary;
@@ -145,7 +145,7 @@ img {
 // Empty state component
 .empty {
   &-state {
-    @apply flex flex-col items-center justify-center min-h-[200px] p-8 text-center text-base-content/60 bg-base-100/50 rounded-xl border border-dashed border-base-300;
+    @apply flex flex-col items-center justify-center min-h-[200px] p-8 text-center text-base-content/60 bg-base-100/50 rounded-xl border border-dashed border-base-300/20;
   }
 
   &-icon {
@@ -187,7 +187,7 @@ img {
   }
 
   &-inner {
-    @apply rounded-2xl overflow-hidden bg-base-100 shadow-md border border-base-300/80 transition-transform duration-300 ease-in-out;
+    @apply rounded-2xl overflow-hidden bg-base-100 shadow-md border border-base-300/20 transition-transform duration-300 ease-in-out;
 
     &:hover {
       @apply -translate-y-1 shadow-lg;
@@ -228,11 +228,7 @@ img {
 
   &-content {
     @apply max-h-0 overflow-y-auto;
-    transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-
-    &.expanded {
-      @apply max-h-[500px];
-    }
+    transition: max-height 0.8s;
   }
 }
 
@@ -262,7 +258,7 @@ img {
   }
 
   &-link {
-    @apply flex justify-between items-center p-3 rounded-lg bg-base-200/50;
+    @apply flex justify-between items-center p-3 rounded-lg bg-base-200/50 transition-transform;
 
     &:hover {
       @apply bg-base-200 translate-x-1;
@@ -408,7 +404,7 @@ img {
 
   &-medium-low {
     .tags-content {
-      @apply border-base-300 bg-base-100;
+      @apply border-base-content/20 bg-base-100;
     }
     .tags-icon {
       @apply text-base-content/80;
@@ -417,7 +413,7 @@ img {
 
   &-low {
     .tags-content {
-      @apply border-base-300/50 bg-base-100;
+      @apply border-base-300/20 bg-base-100;
     }
     .tags-icon {
       @apply text-base-content/60;
@@ -477,7 +473,7 @@ img {
 
 .month {
   &-title {
-    @apply flex items-center gap-2 text-xl font-semibold mb-5 text-secondary pb-2 border-b border-base-300;
+    @apply flex items-center gap-2 text-xl font-semibold mb-5 text-secondary pb-2 border-b border-base-content/20;
   }
 
   &-icon {
@@ -511,7 +507,7 @@ img {
   }
 
   &-card {
-    @apply block p-5 bg-base-100 border border-base-300 rounded-xl shadow-sm transition-transform duration-300;
+    @apply block p-5 bg-base-100 border border-base-content/20 rounded-xl shadow-sm transition-transform duration-300;
 
     &:hover {
       @apply -translate-y-1 shadow-md border-primary/50 bg-base-200;
@@ -641,7 +637,7 @@ img {
   --pagefind-ui-primary: oklch(var(--a));
   --pagefind-ui-text: oklch(var(--bc));
   --pagefind-ui-background: oklch(var(--b1));
-  --pagefind-ui-border: oklch(var(--b3));
+  --pagefind-ui-border: oklch(var(--bc) / 0.2);
   --pagefind-ui-tag: oklch(var(--b2));
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 0.5rem;
@@ -659,8 +655,8 @@ img {
   }
 
   .pagefind-ui__result {
-    @apply p-4 border border-base-300 rounded-lg mb-4;
-    border-bottom: 1px solid var(--pagefind-ui-border);
+    @apply p-4 border rounded-lg mb-4;
+    border: 1px solid var(--pagefind-ui-border);
   }
 
   .pagefind-ui__result-title {
@@ -677,6 +673,10 @@ img {
 
   .pagefind-ui__result-excerpt mark {
     @apply bg-accent text-accent-content px-1 rounded;
+  }
+
+  .pagefind-ui__button {
+    @apply btn btn-primary;
   }
 
   .pagefind-ui__message {

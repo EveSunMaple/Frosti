@@ -20,7 +20,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
     <div class="flex justify-between items-center border-b border-base-200 pb-4">
       <h3 class="font-medium">{t("label.tableOfContents")}</h3>
       <form method="dialog">
-        <button class="btn btn-circle btn-ghost">
+        <button class="btn btn-circle btn-ghost" aria-label={t("label.tableOfContents")}>
           <Icon name="lucide:x" class="h-5 w-5" />
         </button>
       </form>

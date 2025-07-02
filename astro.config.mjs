@@ -8,6 +8,7 @@ import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import updateConfig from "./src/integration/updateConfig.ts";
 
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
 
@@ -23,6 +24,7 @@ export default defineConfig({
     },
   },
   integrations: [
+    updateConfig(),
     mdx(),
     icon(),
     terser({
