@@ -4,8 +4,11 @@ title: "[数据结构] 最复杂的链表结构？不, 是最方便的链表结�
 pubDate: "2022-05-04"
 description: "本篇文章的的具体内容是 带 头结点的双向循环链表 接口的实现"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Blog_SXDTXHLB_cover.webp
-categories: ['tech']
-tags: ["数据结构", "链表"]
+categories:
+    - Blogs
+tags:
+    - 数据结构
+    - 链表
 ---
 
 # 引言

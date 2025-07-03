@@ -4,8 +4,11 @@ title: "[数据结构] 顺序表千字破解~"
 pubDate: "2022-04-15"
 description: "本篇文章将详细介绍 顺序表 的 结构 增 删 查 改 插入 等操作"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/DS_Cover_qesList.webp
-categories: ['tech']
-tags: ["数据结构", "顺序表"]
+categories:
+    - Blogs
+tags:
+    - 数据结构
+    - 顺序表
 ---
 
 # 顺序表引言

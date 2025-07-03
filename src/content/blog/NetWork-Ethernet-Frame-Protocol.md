@@ -4,8 +4,13 @@ title: "[TCP/IP] 数据链路层协议: 以太网帧协议格式、局域网内�
 pubDate: "2024-11-29"
 description: ""
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411291357452.webp
-categories: ['tech']
-tags: ["Linux网络", "TCP-IP", "数据链路层", "协议"]
+categories:
+    - Blogs
+tags: 
+    - Linux网络
+    - TCP-IP
+    - 数据链路层
+    - 协议
 ---
 
 `TCP/IP`协议栈 四层模型, 应用层、传输层、网络层 以及**数据链路层**, 分别在网络通信中担任不同的角色

@@ -4,8 +4,12 @@ title: "[Linux] 详解 System V: 共享内存原理、创建及使用、结合�
 pubDate: "2023-04-03"
 description: "System V 给进程间通信指定的标准有三种 1. System V 消息队列 2. System V 共享内存 3. System V 信号量 本篇文章主要分析介绍 共享内存"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251801269.webp
-categories: ['tech']
-tags: ["Linux系统", "进程", "通信"]
+categories:
+    - Blogs
+tags: 
+    - Linux系统
+    - 进程
+    - 通信
 ---
 
 `System V` 是一种操作系统进程间通信的标准. 

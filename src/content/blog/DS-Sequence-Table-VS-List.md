@@ -4,8 +4,12 @@ title: "[数据结构] 顺序表 VS 链表: 详细对比两者优缺点~"
 pubDate: "2022-05-05"
 description: "顺序表(数组) 和 链表 哪一种结构 更优秀 一点呢？都具有什么 优缺点 呢？"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/cache_cover.webp
-categories: ['tech']
-tags: ["数据结构", "顺序表", "链表"]
+categories:
+    - Blogs
+tags: 
+    - 数据结构
+    - 顺序表
+    - 链表
 ---
 
 # 引言

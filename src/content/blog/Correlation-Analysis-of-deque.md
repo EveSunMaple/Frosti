@@ -4,8 +4,11 @@ title: "[C++-STL] deque的分析"
 pubDate: "2022-07-15"
 description: "STL源码, 实现 stack 和 queue 都使用了 deque 作为适配器. deque 是什么？它的结构是什么？为什么 Stack和 Queue要用它来作为适配器实现？"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251815703.webp
-categories: ['tech']
-tags: ["STL", "容器"]
+categories:
+    - Blogs
+tags:
+    - STL
+    - 容器
 ---
 
 STL源码实现 `Stack` 和 `Queue` 都使用了 `deque` 作为适配器

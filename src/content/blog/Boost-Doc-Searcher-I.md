@@ -4,8 +4,12 @@ title: "[C++项目] Boost文档 站内搜索引擎(1): 项目背景介绍、相�
 pubDate: "2023-08-02"
 description: "虽然Boost库现在实现了站内搜索功能. 但那是全局的搜索, 还是非常的杂乱. 本项目实现对Boost库文档的搜索."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308020959740.webp
-categories: ['tech']
-tags: ["项目", "搜索引擎", "Boost"]
+categories:
+    - Blogs
+tags: 
+    - 项目
+    - 搜索引擎
+    - Boost
 ---
 
 # 项目背景

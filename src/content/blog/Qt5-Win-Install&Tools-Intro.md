@@ -4,8 +4,12 @@ title: "[QT5] 掌握QT, 从安装QT Creator开始"
 pubDate: "2024-8-15"
 description: "简单介绍一下什么是QT, 怎么安装QT Creator, 怎么使用QT Creator创建项目..."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408280930338.webp
-categories: ['tech']
-tags: ["QT", "Windows", "GUI"]
+categories:
+    - Blogs
+tags: 
+    - QT
+    - Windows
+    - GUI
 ---
 
 # 什么是QT

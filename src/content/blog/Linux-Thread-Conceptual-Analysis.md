@@ -5,8 +5,11 @@ pubDate: "2023-04-11"
 description: '线程可以说是实际区别于进程的一个概念, 但也可以说是实际没有区别于进程的一个概念.
 而实际区别与否, 其实与平台有关'
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251801032.webp
-categories: ['tech']
-tags: ["Linux系统", "多线程"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
+    - 多线程
 ---
 
 已经了解了Linux操作系统进程部分相关知识: 

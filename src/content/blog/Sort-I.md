@@ -4,8 +4,12 @@ title: "[算法] 八大排序I: 冒泡、选择、插入、希尔排序 的逻�
 pubDate: "2024-8-1"
 description: ""
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408281114640.webp
-categories: ['tech']
-tags: ["算法", "排序", "C++"]
+categories:
+    - Blogs
+tags: 
+    - 算法
+    - 排序
+    - C++
 ---
 
 # 前情提要

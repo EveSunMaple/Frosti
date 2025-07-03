@@ -4,8 +4,11 @@ title: "[数据结构] 栈 详解"
 pubDate: "2022-05-07"
 description: "本篇文章来介绍一下 栈 这种数据结构"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Stack_Cover.webp
-categories: ['tech']
-tags: ["数据结构", "栈"]
+categories:
+    - Blogs
+tags:
+    - 数据结构
+    - 栈
 ---
 
 # 引言

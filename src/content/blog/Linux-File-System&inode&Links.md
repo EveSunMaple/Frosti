@@ -4,8 +4,11 @@ title: "[Linux] 详析 Linux磁盘文件管理系统、文件inode以及 软硬�
 pubDate: "2023-03-29"
 description: "本篇文章的主要内容就是介绍Linux的文件系统是怎么管理磁盘文件"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251755489.webp
-categories: ['tech']
-tags: ["Linux系统", "文件系统"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
+    - 文件系统
 ---
 
 Linux的文件操作, 都是从内存文件进行操作, 即都是对打开的文件进行操作的.

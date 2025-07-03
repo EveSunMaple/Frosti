@@ -4,8 +4,12 @@ title: "[C++项目] Boost文档 站内搜索引擎(2): 文档文本解析模块p
 pubDate: "2023-08-03"
 description: "从本篇文章开始, Boost文档 站内搜索引擎项目, 就正式开始编写代码了. 本篇文章所写的内容是 parser 文档文本解析器模块"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021640006.webp
-categories: ['tech']
-tags: ["项目", "搜索引擎", "Boost"]
+categories:
+    - Blogs
+tags: 
+    - 项目
+    - 搜索引擎
+    - Boost
 ---
 
 # 项目开始的准备工作

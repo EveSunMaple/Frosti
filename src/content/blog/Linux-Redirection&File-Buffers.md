@@ -4,8 +4,11 @@ title: "[Linux] 详析 Linux下的 文件重定向 以及 文件缓冲区"
 pubDate: "2023-03-17"
 description: "Linux中, 使用系统接口打开文件时, 系统会为打开的文件在此进程中分配fd, 而且是按照数组下标的顺序进行分配的. 那么如果在打开新的文件之前, 有文件关闭了呢？再打开新的文件, 此文件的fd会分配什么呢？"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251800381.webp
-categories: ['tech']
-tags: ["Linux系统", "文件"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
+    - 文件
 ---
 
 Linux中, 使用系统接口打开文件时, 系统会为打开的文件在此进程中分配fd, 而且是按照数组下标的顺序进行分配的

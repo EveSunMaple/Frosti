@@ -4,8 +4,11 @@ title: "[QT5] 信号与槽: 认识信号与槽, 认识connect, 自定义信号�
 pubDate: "2024-12-13"
 description: "QT中, 什么信号和槽? connect()有什么作用? 如何自定义槽? 如何自定义信号?"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131420615.webp
-categories: ['tech']
-tags: ["QT", "信号与槽"]
+categories:
+    - Blogs
+tags:
+    - QT
+    - 信号与槽
 ---
 
  

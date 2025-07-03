@@ -4,8 +4,10 @@ title: "[Linux] make与makefile用法简单介绍"
 pubDate: "2023-02-27"
 description: "make其实只是一个指令, 需要在当前目录下存在makefile文件时才可以正确执行"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251803222.webp
-categories: ['tech']
-tags: ["Linux使用问题"]
+categories:
+    - Blogs
+tags:
+    - Linux使用问题
 ---
 
 在Windows平台上编写C/C++代码, 一般使用的都是配置完成的集成的开发环境, 比如Dev-C++、VS或VS Code等。

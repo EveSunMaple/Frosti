@@ -4,8 +4,11 @@ title: "[C++] 模板的特化相关介绍: 非类型模板参数、模板的全�
 pubDate: "2022-07-18"
 description: "之前关于模板 还有一些问题没有解决, 本篇文章就是对模板 提出问题和解决问题的"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251810793.webp
-categories: ['tech']
-tags: ["C++", "泛型编程"]
+categories:
+    - Blogs
+tags:
+    - C++
+    - 泛型编程
 ---
 
 本篇文章是 C++ 模板的第二篇文章, 第一篇文章简单介绍了模板的函数模板、类模板的相关定义及调用等

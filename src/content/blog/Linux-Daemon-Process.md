@@ -6,8 +6,11 @@ description: '我们使用的系统中, 一般以服务器的方式工作 对外
 比如, 我们使用Linux服务器时, 大多都会使用一些终端软件通过ssh远程连接服务器使用
 守护进程, 一旦启动之后. 除非用户手动关闭, 否则不会被关闭 会一直运行'
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307172256122.webp
-categories: ['tech']
-tags: ["Linux网络", "服务器"]
+categories:
+    - Blogs
+tags:
+    - Linux网络
+    - 服务器
 ---
 
 # 守护进程

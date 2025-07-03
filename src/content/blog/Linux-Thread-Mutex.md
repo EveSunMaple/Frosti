@@ -5,8 +5,12 @@ pubDate: "2023-04-16"
 description: '多线程可以提高程序的并发性和运行效率, 充分利用计算机的多核资源. 
 但是, 多线程也可能会导致输出混乱、访问共享资源混乱、竞争等问题. 接下来我们就尝试解决这些问题'
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251802036.webp
-categories: ['tech']
-tags: ["Linux系统", "多线程", "锁"]
+categories:
+    - Blogs
+tags: 
+    - Linux系统
+    - 多线程
+    - 锁
 ---
 
 多线程可以提高程序的并发性和运行效率, 充分利用计算机的多核资源. 前面的几篇文章已经介绍了, Linux线程的基本概念、基本控制等内容

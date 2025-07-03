@@ -5,8 +5,12 @@ pubDate: "2023-04-19"
 description: '在线程只使用互斥的方式去访问临界资源时, 就有可能造成线程饥饿的情况.
 那么 有没有一种可能, 可以让所有线程像排队一样, 一个一个地访问临界资源. 当一个线程访问完临界资源后, 再重新去队尾排队呢？.'
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251802921.webp
-categories: ['tech']
-tags: ["多线程", "POSIX信号量", "生产者消费者模型"]
+categories:
+    - Blogs
+tags: 
+    - 多线程
+    - POSIX信号量
+    - 生产者消费者模型
 ---
 
 线程互斥就是多线程在争抢使用临界资源, 谁抢到了谁就用, 抢不到的就等

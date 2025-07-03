@@ -14,44 +14,44 @@ site:
   blog: # 博客相关配置
     pageSize: 6 # 每页显示的文章数量
   menu: # 菜单配置
-    - id: home # 菜单项的唯一标识符
+    - id: Home # 菜单项的唯一标识符
       text: 主页 # 菜单项显示的文本
       href: / # 菜单项链接的地址
       svg: "material-symbols:home-outline-rounded"
       target: _self
-    - id: about
+    - id: About
       text: 关于 
       href: /about
       svg: "material-symbols:info-outline-rounded"
       target: _self
-    - id: blog
+    - id: Blog
       text: 博客 
       href: /blog
       svg: "material-symbols:book-2-outline-rounded"
       target: _self
       subItems:
-        - id: all
+        - id: All
           text: 所有博客
           href: /blog
           svg: "material-symbols:ink-pen-outline-rounded"
           target: _self
-        - id: documentation
-          text: Documentation
-          href: /blog/category/Documentation
+        - id: Blogs
+          text: 博客
+          href: /blog/category/Blogs
           svg: "material-symbols:unknown-document-outline-rounded"
           target: _self
-        - id: examples
-          text: Examples
-          href: /blog/category/Examples
+        - id: Essay
+          text: 随笔
+          href: /blog/category/Essay
           svg: "material-symbols:deployed-code-outline"
           target: _self
         # 子菜单项配置
-    - id: project
+    - id: Project
       text: 项目
       href: /project
       svg: "material-symbols:code-blocks-outline"
       target: _self
-    - id: friend
+    - id: Friend
       text: 友链
       href: /friend
       svg: "material-symbols:supervisor-account-outline-rounded"

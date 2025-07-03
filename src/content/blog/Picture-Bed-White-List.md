@@ -4,8 +4,11 @@ title: "怎么防止云服务图床被爬虫爬？给自己的图床添加白名
 pubDate: "2022-04-18"
 description: ""
 # image:
-categories: ['tech']
-tags: ["技巧分享", "图床"]
+categories:
+    - Blogs
+tags:
+    - 技巧分享
+    - 图床
 ---
 
 # 原由

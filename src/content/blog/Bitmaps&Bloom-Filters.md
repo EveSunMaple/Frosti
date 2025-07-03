@@ -4,8 +4,11 @@ title: "[C++] 位图与布隆过滤器的相关介绍"
 pubDate: "2023-02-20"
 description: "哈希是一种思想, 位图 和 布隆过滤器是哈希思想的实现的一种"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251805666.webp
-categories: ['tech']
-tags: ['算法', '哈希']
+categories:
+    - Blogs
+tags:
+    - 算法
+    - 哈希
 ---
 
 哈希是一种思想, 除了之前文章中介绍的一些使用哈希思想实现的哈希表之外, 哈希思想的应用还有其他的方面. 也就是本篇文章所介绍的 位图 和 布隆过滤器

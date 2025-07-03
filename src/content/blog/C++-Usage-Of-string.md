@@ -4,8 +4,11 @@ title: "[C++-STL之前] 剖析string类~ 介绍C++-STL"
 pubDate: "2022-07-02"
 description: "C++ 为了更方便的管理、操作、使用字符串, 设计了一个类模板 —— basic_string"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251810988.webp
-categories: ['tech']
-tags: ["C++", "容器"]
+categories:
+    - Blogs
+tags:
+    - C++
+    - 容器
 ---
 
 # 什么是 string

@@ -4,8 +4,11 @@ title: "[C语言] 文件读取结束的判定"
 pubDate: "2022-03-28"
 description: "当我们对一个文件的数据进行读取, 输入到内存中的时候, 无论是读取文件数据正常结束, 还是读取文件数据失败了, 函数都会返回一个值"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251812483.webp
-categories: ['tech']
-tags: ["C语言", "文件"]
+categories:
+    - Blogs
+tags:
+    - C语言
+    - 文件
 ---
 
 # 文件读取结束的判定

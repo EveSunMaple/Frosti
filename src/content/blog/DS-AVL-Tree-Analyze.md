@@ -4,8 +4,11 @@ title: "[数据结构] AVL-Tree平衡二叉搜索树的相关分析及实现"
 pubDate: "2022-10-11"
 description: "AVL树 是最早被设计出来的平衡二叉搜索树"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251813180.webp
-categories: ['tech']
-tags: ["数据结构", "二叉平衡搜索树"]
+categories:
+    - Blogs
+tags:
+    - 数据结构
+    - 二叉平衡搜索树
 ---
 
 上一篇文章介绍了`map` `multimap` `set` `multiset`, 并且提到过 这些容器的 底层都是**红黑树**实现的

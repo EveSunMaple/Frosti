@@ -4,8 +4,11 @@ title: "[Linux] 详析进程控制: fork子进程运行规则？怎么回收子�
 pubDate: "2023-03-07"
 description: "这次, 是第三次正式的对fork()系统调用进行介绍、补充"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251759370.webp
-categories: ['tech']
-tags: ["Linux系统", "进程"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
+    - 进程
 ---
 
 # 再识fork()

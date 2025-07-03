@@ -4,8 +4,12 @@ title: "[数据结构] 结合题目-手把手带你剖析 “带环链表”"
 pubDate: "2022-05-01"
 description: "本篇内容是对单链表的一个 非常重要 的补充:  带环单链表 。它, 是大厂面试时可能会提问的内容, 非常的重要！"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501153114604.webp
-categories: ['tech']
-tags: ["数据结构", "算法", "链表"]
+categories:
+    - Blogs
+tags: 
+    - 数据结构
+    - 算法
+    - 链表
 ---
 
 # 引言

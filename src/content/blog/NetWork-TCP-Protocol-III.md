@@ -4,8 +4,13 @@ title: "[TCP/IP] 传输层代表协议--TCP协议介绍(3): TCP协议的'四次�
 pubDate: "2024-01-15"
 description: "TCP协议是面向连接的, 面向字节流的, 可靠的 传输层协议..."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202403200105048.webp
-categories: ['tech']
-tags: ["Linux网络", "TCP-IP", "传输层", "协议", "TCP"]
+categories:
+    - Blogs
+tags: 
+    - Linux网络
+    - TCP-IP
+    - 传输层
+    - TCP
 ---
 
 `TCP`协议是面向连接的

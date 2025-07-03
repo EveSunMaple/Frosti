@@ -4,8 +4,13 @@ title: "[C++] C++11新特性--右值引用的深入分析: 右值引用、万能
 pubDate: "2023-04-26"
 description: "本篇文章是关于C++11右值引用相关内容的深入分析介绍"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201708973.webp
-categories: ['tech']
-tags: ["C++", "C++11", "引用", "右值引用", "移动语义"]
+categories:
+    - Blogs
+tags: 
+    - C++
+    - C++11
+    - 引用
+    - 移动语义
 ---
 
 # 右值引用

@@ -4,8 +4,11 @@ title: "[C++] 初接触-泛型编程 - C++模板分析: 函数模板结构、原
 pubDate: "2022-06-30"
 description: "C++中的的模板, 分为两部分: 1. 函数模板 2. 类模板 本篇文章就从函数模板开始讲起"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251810662.webp
-categories: ['tech']
-tags: ["C++", "泛型编程"]
+categories:
+    - Blogs
+tags:
+    - C++
+    - 泛型编程
 
 ---
 

@@ -4,8 +4,12 @@ title: "[QT5] 遇见QT5, 初识对象树"
 pubDate: "2024-8-19"
 description: "简单介绍一下QT5中的一些基本的特性, Form是什么? QWidget有什么用?"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408280929461.webp
-categories: ['tech']
-tags: ["QT", "Windows", "GUI"]
+categories:
+    - Blogs
+tags: 
+    - QT
+    - Windows
+    - GUI
 ---
 
 # `QWidget`默认项目结构

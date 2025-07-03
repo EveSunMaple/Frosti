@@ -4,8 +4,13 @@ title: "[TCP/IP] 应用层代表协议--HTTP协议分析: 什么是url、http协
 pubDate: "2023-07-27"
 description: "应用层协议实际是规定应用层在传输数据时需要遵循的一系列规则和标准. 如果都需要每个程序员都自己制定自己的协议 是非常麻烦的. 所以其他程序猿所写的非常好用的协议, 就会形成一个应用层特定的协议的标准, 本文的内容就是介绍一个非常重要的应用层协议HTTP协议"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307311030910.webp
-categories: ['tech']
-tags: ["Linux网络", "TCP-IP", "应用层", "协议", "HTTP"]
+categories:
+    - Blogs
+tags: 
+    - Linux网络
+    - TCP-IP
+    - 应用层
+    - HTTP
 ---
 
 应用层协议实际是规定应用层在传输数据时需要遵循的一系列规则和标准

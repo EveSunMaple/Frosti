@@ -4,8 +4,12 @@ title: "[Linux-IO] 五种IO模型介绍(1): 理解IO、五种IO模型的概念�
 pubDate: "2024-12-03"
 description: ""
 # image: 
-categories: ['tech']
-tags: ["Linux系统", "Linux网络", "IO"]
+categories:
+    - Blogs
+tags: 
+    - Linux系统
+    - Linux网络
+    - IO
 ---
 
 # 重新理解`IO`

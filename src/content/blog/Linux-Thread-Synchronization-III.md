@@ -4,8 +4,13 @@ title: "[Linux] 线程同步分析III: 什么是信号量? POSIX信号量如何�
 pubDate: "2023-04-25"
 description: "信号量怎么实现线程同步?"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412191906792.webp
-categories: ['tech']
-tags: ["Linux系统", "多线程", "同步", "生产者消费者模型"]
+categories:
+    - Blogs
+tags: 
+    - Linux系统
+    - 多线程
+    - 同步
+    - 生产者消费者模型
 ---
 
 # POSIX信号量

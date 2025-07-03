@@ -4,8 +4,11 @@ title: "[C语言] C语言能对文件进行哪些操作？"
 pubDate: "2022-03-02"
 description: "文件按照功能, 区分为两类: 程序文件、数据文件"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251812049.webp
-categories: ['tech']
-tags: ["C语言", "文件"]
+categories:
+    - Blogs
+tags:
+    - C语言
+    - 文件
 ---
 
 # 文件操作

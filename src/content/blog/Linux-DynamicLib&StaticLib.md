@@ -4,8 +4,10 @@ title: "[Linux] 详析动、静态库原理、创建与使用"
 pubDate: "2023-04-01"
 description: "在Linux环境下, 我们使用gcc编译链接代码文件时, 可以统分为 静态链接和动态链接"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251756107.webp
-categories: ['tech']
-tags: ["Linux系统"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
 ---
 
 在Linux环境下, 我们使用gcc编译链接代码文件时, 可以统分为`静态链接和动态链接`

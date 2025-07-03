@@ -4,8 +4,11 @@ title: "[C++-STL] 哈希表以及unordered_set和unordered_set的介绍"
 pubDate: "2022-11-11"
 description: "unordered_set 和 unordered_map 的底层是由 哈希表 实现的, 那么 什么是哈希表？"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251815879.webp
-categories: ['tech']
-tags: ["STL", "哈希表"]
+categories:
+    - Blogs
+tags:
+    - STL
+    - 哈希表
 ---
 
 在分析实现了`set`和`map`之后, STL 之中还有两个名字与之非常相似的容器, `unordered_set`和`unordered_map`

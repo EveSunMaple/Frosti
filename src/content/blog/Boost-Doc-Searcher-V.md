@@ -4,8 +4,13 @@ title: "[C++项目] Boost文档 站内搜索引擎(5): cpphttplib实现网络服
 pubDate: "2023-08-07"
 description: "本篇文章 介绍如何使用cpphttplib 将已经完成的后端工作, 部署到网络中. 并实现页面的制作以及 Boost库文档搜索引擎服务器的部署."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081258103.webp
-categories: ['tech']
-tags: ["项目", "搜索引擎", "Boost", "http", "服务器"]
+categories:
+    - Blogs
+tags: 
+    - 项目
+    - 搜索引擎
+    - Boost
+    - 服务器
 ---
 
 在前四篇文章中, 我们实现了从文档文件的清理 到 搜索的所有内容:

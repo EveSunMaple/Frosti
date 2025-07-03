@@ -4,8 +4,13 @@ title: "[TCP/IP] 传输层代表协议--TCP协议介绍(2): TCP协议的'三次�
 pubDate: "2024-01-11"
 description: "TCP协议是面向连接的, 面向字节流的, 可靠的 传输层协议..."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202403200104917.webp
-categories: ['tech']
-tags: ["Linux网络", "TCP-IP", "传输层", "协议", "TCP"]
+categories:
+    - Blogs
+tags: 
+    - Linux网络
+    - TCP-IP
+    - 传输层
+    - TCP
 ---
 
 上一篇文章中, 已经介绍了`TCP`协议的数据格式, 简单分析了其与`UDP`协议 关于可靠性方面的差异

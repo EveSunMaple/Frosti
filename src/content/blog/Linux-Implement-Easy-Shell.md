@@ -4,8 +4,11 @@ title: "[Linux] 教你实现一个简单的、属于自己的Shell"
 pubDate: "2023-03-11"
 description: "我们可以通过shell, 执行各种命令. 而本篇文章的主要内容, 就是实现一个简易的shell"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251757712.webp
-categories: ['tech']
-tags: ["Linux系统", "shell"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
+    - shell
 ---
 
 # 简易Shell实现

@@ -4,8 +4,10 @@ title: "编译器的预处理是什么情况？"
 pubDate: "2022-03-12"
 description: "在C语言的代码编写中, 经常会见到的 #include #define #pragma 等写在整个代码文件开头的位置, 这些 拥有 # 且一般写在 代码开头的语句, 就是代码的 预处理指令"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251811483.webp
-categories: ['tech']
-tags: ["C语言"]
+categories:
+    - Blogs
+tags:
+    - C语言
 ---
 
 # 预处理详解

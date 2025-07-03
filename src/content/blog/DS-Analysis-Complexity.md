@@ -4,8 +4,11 @@ title: "[数据结构] 数据结构与算法初探: 复杂度详解分析"
 pubDate: "2022-04-14"
 description: "本篇文章是 数据结构与算法 正式内容的第一篇文章。要介绍的也是数据结构与算法中最重要的概念之一: 复杂度"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/DS_Cover_Com.webp
-categories: ['tech']
-tags: ["算法", "复杂度"]
+categories:
+    - Blogs
+tags:
+    - 算法
+    - 复杂度
 ---
 
 # 复杂度 引言

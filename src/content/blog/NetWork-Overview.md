@@ -4,8 +4,12 @@ title: "[Linux] 网络及其原理简单概述: 协议、协议分层、网络�
 pubDate: "2023-04-23"
 description: "本篇文章首次接触网络, 将简单介绍一下网络的概念以及网络通信原理的简单理解"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251818539.webp
-categories: ['tech']
-tags: ["Linux网络", "TCP-IP", "OSI协议模型"]
+categories:
+    - Blogs
+tags: 
+    - Linux网络
+    - TCP-IP
+    - OSI协议模型
 ---
 
 `Linux`的相关介绍, 从本篇文章开始 就要进入网络部分了

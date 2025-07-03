@@ -4,8 +4,12 @@ title: "[QT5] 通过使用按钮, 初见信号与槽, 简单了解坐标位置"
 pubDate: "2024-8-27"
 description: "简单使用QPushButton, 以及 首次使用信号与槽, 介绍一下坐标"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408280928426.webp
-categories: ['tech']
-tags: ["QT", "信号与槽", "Windows"]
+categories:
+    - Blogs
+tags: 
+    - QT
+    - 信号与槽
+    - Windows
 ---
 
 # 按钮控件

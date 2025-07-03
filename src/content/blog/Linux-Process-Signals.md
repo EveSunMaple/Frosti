@@ -4,8 +4,11 @@ title: "[Linux] 一篇文章, 掌握Linux进程信号: 信号的产生、深入�
 pubDate: "2023-04-08"
 description: "进程信号, 在Linux系统的学习中, 是一个非常重要的概念. 我们可以通过向进程发送信号来让进程执行某些指定的动作."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251800986.webp
-categories: ['tech']
-tags: ["Linux系统", "进程"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
+    - 进程
 theme: 'light'
 featured: true
 ---

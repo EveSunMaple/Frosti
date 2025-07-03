@@ -4,8 +4,10 @@ title: "[C++] 带你理解 using namespace std;"
 pubDate: "2022-05-19"
 description: "本篇文章要涉及的内容, 就是理解 C++ 中 using namespace std; 的含义"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251809044.webp
-categories: ['tech']
-tags: ["C++"]
+categories:
+    - Blogs
+tags:
+    - C++
 ---
 
 # 引言

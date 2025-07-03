@@ -4,8 +4,13 @@ title: "[TCP/IP] 传输层代表协议--TCP协议介绍(4): 滑动窗口、快�
 pubDate: "2024-01-20"
 description: "TCP协议是面向连接的, 面向字节流的, 可靠的 传输层协议..."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202403200107915.webp
-categories: ['tech']
-tags: ["Linux网络", "TCP-IP", "传输层", "协议", "TCP"]
+categories:
+    - Blogs
+tags: 
+    - Linux网络
+    - TCP-IP
+    - 传输层
+    - TCP
 ---
 
 # 滑动窗口**

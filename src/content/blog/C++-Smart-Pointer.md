@@ -4,8 +4,11 @@ title: "[C++11] C++智能指针原理分析 介绍: RAII思想、智能指针原
 pubDate: "2023-07-09"
 description: "C++引入了异常处理的概念之后, 内存泄露的问题就变得更加防不胜防了. 而 智能指针的出现 大大缓解了内存泄漏出现的频率..."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307090019836.webp
-categories: ['tech']
-tags: ["C++", "C++11"]
+categories:
+    - Blogs
+tags:
+    - C++
+    - C++11
 ---
 
 一直以来, C++一直最令人诟病的问题之一是什么?

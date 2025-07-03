@@ -4,8 +4,12 @@ title: "[C++] C++11新特性介绍 分析(2): lambda表达式、function包装�
 pubDate: "2023-07-06"
 description: "本篇文章继续介绍 分析C++11常用的新特性, 本篇介绍的内容有: lambda表达式、function包装器等"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307061930908.webp
-categories: ['tech']
-tags: ["C++", "C++11", "lambda"]
+categories:
+    - Blogs
+tags: 
+    - C++
+    - C++11
+    - lambda
 ---
 
 # C++11

@@ -4,8 +4,10 @@ title: "[Linux] 环境变量介绍: 什么是环境变量？C/C++如何获取环
 pubDate: "2023-03-04"
 description: "什么是环境变量？认识 环境 这两个字, 也知道 变量 是什么, 把这两个词结合起来的环境变量是什么东西？"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251757454.webp
-categories: ['tech']
-tags: ["Linux系统"]
+categories:
+    - Blogs
+tags:
+    - Linux系统
 ---
 
 # 环境变量

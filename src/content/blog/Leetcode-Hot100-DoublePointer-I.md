@@ -4,8 +4,11 @@ title: "[Leetcode] 力扣 热题100道--双指针1: 283. 移动零(简单)"
 pubDate: "2024-07-27"
 description: "给定一个数组 nums, 编写一个函数将所有 0 移动到数组的末尾, 同时保持非零元素的相对顺序"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729095253735.webp
-categories: ['tech']
-tags: ["Leetcode", "算法题"]
+categories:
+    - Blogs
+tags:
+    - Leetcode
+    - 算法题
 ---
 
 # 283. 移动零

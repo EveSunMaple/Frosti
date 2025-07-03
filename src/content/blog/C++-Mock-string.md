@@ -4,8 +4,11 @@ title: "[C++] string类的模拟实现"
 pubDate: "2022-07-04"
 description: "本篇文章着重 模拟实现 string类 及其各接口"
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251814025.webp
-categories: ['tech']
-tags: ["STL", "容器"]
+categories:
+    - Blogs
+tags:
+    - STL
+    - 容器
 ---
 
 # string类 模拟实现

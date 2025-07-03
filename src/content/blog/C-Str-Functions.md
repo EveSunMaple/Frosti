@@ -4,8 +4,10 @@ title: '[C语言] 字符串函数的相关介绍与模拟实现'
 pubDate: '2022-02-09'
 description: 'C语言中使用最频繁的字符串操作函数'
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251811474.webp
-categories: ['tech']
-tags: ['C语言']
+categories:
+    - Blogs
+tags:
+    - C语言
 ---
 
 # 字符串函数

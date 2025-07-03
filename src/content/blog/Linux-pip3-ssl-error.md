@@ -4,8 +4,10 @@ title: "[Linux] CentOS7 中 pip3 install 可能出现的 ssl 问题"
 pubDate: "2023-07-20"
 description: "执行pip3 install, 可能会警告 WARNING: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307210054736.webp
-categories: ['tech']
-tags: ["Linux使用问题"]
+categories:
+    - Blogs
+tags:
+    - Linux使用问题
 ---
 
 > 由于解决问题之后, 才写的博客, 所以没有图片记录.

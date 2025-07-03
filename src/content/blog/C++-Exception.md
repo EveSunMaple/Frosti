@@ -4,8 +4,11 @@ title: "[C++] C++异常处理介绍 分析: 异常概念、异常抛出与捕获
 pubDate: "2023-07-07"
 description: "C语言程序发生错误, 很可能会直接导致程序退出. 而C++引进了 异常的概念, 可以更灵活更快速的 排查处理错误..."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071821830.webp
-categories: ['tech']
-tags: ["C++", "异常"]
+categories:
+    - Blogs
+tags:
+    - C++
+    - 异常
 ---
 
 # C语言 错误处理方式

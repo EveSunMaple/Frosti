@@ -5,8 +5,11 @@ pubDate: "2022-03-27"
 description: '文件按照功能分类, 可以分为 程序文件、数据文件 两类。
 此外, 文件的分类还有其他的分类方法, 比如 按照文件数据的组织形式 来分为 二进制文件 和 文本文件。'
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251813684.webp
-categories: ['tech']
-tags: ["C语言", "文件"]
+categories:
+    - Blogs
+tags:
+    - C语言
+    - 文件
 ---
 
 # 文本文件、二进制文件及其存储

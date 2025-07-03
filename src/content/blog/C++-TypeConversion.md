@@ -4,8 +4,11 @@ title: "[C++] C++新的类型转换方式介绍: C语言类型转换介绍、sta
 pubDate: "2023-07-10"
 description: "C语言中 的类型转换可视性比较差, 所有的转换形式都是以一种相同形式书写, 难以跟踪错误的转换. C++则针对不同场景实现了4种不同的类型转换..."
 image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101801517.webp
-categories: ['tech']
-tags: ["C++", "C++11"]
+categories:
+    - Blogs
+tags:
+    - C++
+    - C++11
 ---
 
 # C语言中的类型转换

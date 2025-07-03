@@ -4,8 +4,11 @@ title: "Hex文件与Bin文件"
 pubDate: "1001-01-01"
 description: "嵌入式中的Hex文件与Bin文件"
 # image: 
-categories: ['tech']
-tags: ["嵌入式", "919"]
+categories:
+    - Blogs
+tags:
+    - 嵌入式
+    - 919
 ---
 
 # `.hex`
