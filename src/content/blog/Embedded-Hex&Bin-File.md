@@ -8,7 +8,6 @@ categories:
     - Blogs
 tags:
     - 嵌入式
-    - 919
 ---
 
 # `.hex`
