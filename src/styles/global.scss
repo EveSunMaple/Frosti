@@ -11,6 +11,14 @@
   font-display: swap; // 可选，控制字体加载时的显示行为
 }
 
+@font-face {
+  font-family: 'FiraCode Nerd Mono Thin';
+  src: url('/public/font/FiraCodeNerdMono.woff2') format('woff2');
+  font-weight: 100; // normal
+  font-style: normal;
+  font-display: swap; // 可选，控制字体加载时的显示行为
+}
+
 /* Color scheme configuration to prevent Chrome's auto dark theme */
 :root,
 [data-theme-type="light"] {
@@ -23,6 +31,7 @@
 
 /* Global styles with nesting support */
 html {
+  font-family: 'FiraCode Nerd Mono Thin';
   @apply scroll-smooth;
 }
 
@@ -32,6 +41,9 @@ kbd {
 
 code {
   font-family: 'FiraCode Nerd Mono';
+  border-radius: 1.9rem;
+  background-color: rgba(0,0,0,0.16);
+  padding: 1px 8px;
   font-size: 0.95em !important;
 }
 
@@ -43,6 +55,18 @@ p {
 img {
   margin-top: 1em !important;
   margin-bottom: 1em !important;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a:hover {
+  transform: translateY(-1px) translateX(1px);
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.16);
+  background-color: rgba(0,0,0,0.05);
 }
 
 .scrollbar-none {

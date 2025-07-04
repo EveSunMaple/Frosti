@@ -38,12 +38,12 @@ site:
         - id: Blogs
           text: 博客
           href: /blog/category/Blogs
-          svg: "material-symbols:unknown-document-outline-rounded"
+          svg: "material-symbols:book-5-outline-rounded"
           target: _self
         - id: Essay
           text: 随笔
           href: /blog/category/Essay
-          svg: "material-symbols:deployed-code-outline"
+          svg: "material-symbols:cards-star-outline-rounded"
           target: _self
         # 子菜单项配置
     - id: Project
