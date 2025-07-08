@@ -21,7 +21,7 @@ const totalPages = Math.ceil(page.total / page.size);
 const pageLinks = generatePageLinks(totalPages);
 ---
 
-<BaseLayout title={`${t("label.categoryPage")} - ${params.category}`}>
+<BaseLayout title={`${t("label.categoryPage")} - ${params.category}`} isIndexed={false}>
   <BaseCard title={t("label.categoryPage")}>
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div class="flex items-center gap-2">
