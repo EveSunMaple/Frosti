@@ -39,7 +39,78 @@ kbd {
   @apply kbd;
 }
 
-code {
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: 0.95em !important;
+}
+
+main hr {
+  margin-top: 1.8em !important;
+  margin-bottom: 1.8em !important;
+}
+
+main p {
+  margin-top: 0.8em !important;
+  margin-bottom: 0.8em !important;
+}
+
+main table {
+  border-collapse: collapse;
+  width: 40%;
+  margin: 1em auto;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+main thead {
+  background-color: rgba(0,0,0,0.15);
+}
+
+main th,
+main td {
+  padding-top: 0.5714286em !important;
+  padding-inline-end: 0.5714286em !important;
+  padding-bottom: 0.5714286em !important;
+  padding-inline-start: 0.5714286em !important;
+  background-color: rgba(255,255,255,0.5);
+  border: 1px solid #ddd;
+}
+
+main ol {
+  margin-left: 1.25em !important;
+}
+
+main ul ul,
+main ul ol,
+main ol ul,
+main ol ol {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+main li {
+  margin-top: 0.3em !important;
+  margin-bottom: 0.3em !important;
+}
+
+main li * {
+  margin-top: 0.3em !important;
+  margin-bottom: 0.3em !important;
+}
+
+main pre {
+  line-height: 1.318em !important;
+}
+
+main p code,
+main tr code {
   font-family: 'FiraCode Nerd Mono';
   border-radius: 1.9rem;
   background-color: rgba(0,0,0,0.16);
@@ -47,14 +118,20 @@ code {
   font-size: 0.95em !important;
 }
 
-p {
-  margin-top: 0.95em !important;
-  margin-bottom: 0.95em !important;
+main code span {
+  font-family: 'FiraCode Nerd Mono';
+  font-size: 0.95em !important;
 }
 
-img {
+main img {
   margin-top: 1em !important;
   margin-bottom: 1em !important;
+  cursor: pointer;
+}
+
+main em {
+  margin-left: 0.1em;
+  margin-right: 0.25em;
 }
 
 a {
@@ -120,6 +197,9 @@ a:hover {
       }
     }
   }
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 // Shared components and styles for blog pages
@@ -713,12 +793,14 @@ a:hover {
   }
 }
 
-hr {
-  margin-top: 1.8em !important;
-  margin-bottom: 1.8em !important;
+main .alert {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 
-p {
-  margin-top: 0.8em !important;
-  margin-bottom: 0.8em !important;
+main .alert p {
+  margin-top: 0.7em;
+  margin-bottom: 0.7em;
 }
