@@ -40,7 +40,7 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
     <!-- Image Section -->
     {
       image && (
-        <a href={url} class="relative lg:w-2/5 aspect-video lg:aspect-auto overflow-hidden lg:order-2 order-1 group">
+        <a href={url} class="relative lg:w-2/5 aspect-video lg:aspect-auto overflow-hidden will-change: transform lg:order-2 order-1 group">
           <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 z-10 transition-all duration-300 flex items-center justify-center">
             <Icon
               name="lucide:arrow-right"

@@ -11,7 +11,9 @@ import MainCard from "@/components/MainCard.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((blog: { slug: any }) => ({
+  // 过滤掉草稿文章
+  const publishedPosts = posts.filter((post) => !post.data.draft);
+  return publishedPosts.map((blog: { slug: any }) => ({
     params: { slug: blog.slug },
     props: { blog },
   }));

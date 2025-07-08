@@ -123,7 +123,7 @@ main code span {
   font-size: 0.95em !important;
 }
 
-main img {
+main img:not(main a img) {
   margin-top: 1em !important;
   margin-bottom: 1em !important;
   cursor: pointer;
@@ -134,13 +134,13 @@ main em {
   margin-right: 0.25em;
 }
 
-a {
+a:not(:has(img)){
   display: inline-block;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-a:hover {
+a:not(:has(img)):hover {
   transform: translateY(-1px) translateX(1px);
   box-shadow: 3px 3px 10px rgba(0,0,0,0.16);
   background-color: rgba(0,0,0,0.05);
