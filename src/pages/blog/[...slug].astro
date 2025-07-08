@@ -13,20 +13,20 @@ export async function getStaticPaths() {
   const posts = await getCollection("blog");
   // 过滤掉草稿文章
   // const publishedPosts = posts.filter((post) => !post.data.draft);
-const publishedPosts = posts.filter((post) => {
-    const slug = post.slug;
-
-    // 排除 draft
-    if (post.data.draft) return false;
-
-    // 排除 slug 为 blog 或 archives 的
-    if (slug === "blog" || slug === "archives") return false;
-
-    // 排除包含 blog/category 或 blog/tag 的
-    if (slug.includes("blog/category") || slug.includes("blog/tag")) return false;
-
-    return true;
-  });
+  const publishedPosts = posts.filter((post) => {
+      const slug = post.slug;
+  
+      // 排除 draft
+      if (post.data.draft) return false;
+  
+      // 排除 slug 为 blog 或 archives 的
+      if (slug === "blog" || slug === "archives") return false;
+  
+      // 排除包含 blog/category 或 blog/tag 的
+      if (slug.includes("blog/category") || slug.includes("blog/tag")) return false;
+  
+      return true;
+    });
   return publishedPosts.map((blog: { slug: any }) => ({
     params: { slug: blog.slug },
     props: { blog },
