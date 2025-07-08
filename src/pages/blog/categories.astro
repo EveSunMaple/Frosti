@@ -30,7 +30,7 @@ categoryEntries.forEach(([_, posts]) => {
 const totalCategories = categoryMap.size;
 ---
 
-<BaseLayout title={t("label.categoryPage")}>
+<BaseLayout title={t("label.categoryPage")} pagefindIgnore={true}>
   <BaseCard title={t("label.categoryPage")}>
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div class="flex items-center gap-2">
