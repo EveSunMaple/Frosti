@@ -29,7 +29,7 @@ const getMonthName = (month: string): string => {
 const totalPosts = allPosts.length;
 ---
 
-<BaseLayout title={t("label.archivePage")} pagefindIgnore={true}>
+<BaseLayout title={t("label.archivePage")} isIndexed={false}>
   <BaseCard title={t("label.archivePage")}>
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ">
       <div class="flex items-center gap-2">

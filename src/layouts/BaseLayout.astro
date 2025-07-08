@@ -9,7 +9,7 @@ import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
 
-const { title, image, headings = [], showTOC = false, isIndexed = true, pagefindIgnore = false } = Astro.props;
+const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -56,7 +56,6 @@ const { title, image, headings = [], showTOC = false, isIndexed = true, pagefind
         {/* 修复: 在这里添加 'gap-4' 来恢复内容和页脚之间的间距 */}
         <main
           class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2 mt-16 md:mt-0 flex flex-col gap-4"
-          {...(pagefindIgnore ? { "data-pagefind-ignore": true } : {})}
         >
           <div class="flex-grow flex flex-col gap-4">
             <slot />

@@ -23,7 +23,7 @@ const minCount = Math.min(...tagMap.values());
 const totalTags = tagMap.size;
 ---
 
-<BaseLayout title={t("label.tagPage")} pagefindIgnore={true}>
+<BaseLayout title={t("label.tagPage")} isIndexed={false}>
   <BaseCard title={t("label.tagPage")}>
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div class="flex items-center gap-2">
