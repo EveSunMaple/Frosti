@@ -1,4 +1,5 @@
 ---
+draft: true
 title: '从零接触C语言: 字符 和 字符串'
 description: ''
 pubDate: '2025-07-08'
@@ -24,4 +25,34 @@ import Warning from "../../components/mdx/Warning.astro";
 
 ## C语言的字符和字符串
 
-C语言中, 常用`char`来存储字符数据
+```c
+#include <stdio.h>
+
+int main() {
+	printf("Hello World");
+
+	return 0;
+}
+```
+
+在这个例子中, 程序运行可以打印出`Hello World`:
+
+![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250708183212782.webp)
+
+但是, 你会看到一个奇怪的现象
+
+输出的实际并不是`Hello World`, 而是`Hello World⏎`
+
+难道C语言就是这样设计的吗? 通过`printf()`打印字符串, 打印结果要在末尾加一个特殊符号`⏎`? 很明显并不是这样的
+
+实际上, 末尾的这个特殊符号, 是终端`shell`做的一个提醒字符: **上一个输出的结尾没有换行**
+
+如果这样调用`printf("Hello World\n");`, 结果就会不一样:
+
+![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250708211037423.webp)
+
+两者之间的差别就只有一个`\n`
+
+`\n`具体是什么, 详情请看下面这张表:
+
+![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/QQ%E6%88%AA%E5%9B%BE20250708233118.webp)

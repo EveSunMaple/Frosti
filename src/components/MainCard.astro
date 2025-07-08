@@ -137,6 +137,544 @@ const accessibleHelpText = `${helpText}: ${title}`;
   <div class="p-4 sm:p-6">
     <slot />
   </div>
+
+  <style>
+      /* 查看器样式 */
+  .image-viewer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 10000;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+  }
+
+  .image-viewer.active {
+      display: flex;
+      opacity: 1;
+  }
+
+  .viewer-content {
+      display: block;
+      overflow: auto;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+  }
+
+  .image-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 100%;
+      min-height: 100%;
+  }
+
+  .viewer-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+      cursor: grab;
+      user-select: none;
+  }
+
+  .viewer-image:active {
+      cursor: grabbing;
+  }
+
+  .image-viewer.active .viewer-image {
+      transform: scale(1);
+  }
+
+  .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+      z-index: 10001;
+  }
+
+  .close-btn:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .zoom-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10001;
+  }
+
+  .zoom-btn {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+  }
+
+  .zoom-btn:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .zoom-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+  }
+
+  .zoom-info {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 14px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 4px;
+      z-index: 10001;
+  }
+
+  .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 18px;
+  }
+
+  .spinner {
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+      .viewer-image {
+          max-width: 95%;
+          max-height: 95%;
+      }
+      
+      .close-btn {
+          top: 10px;
+          right: 10px;
+          width: 35px;
+          height: 35px;
+          font-size: 18px;
+      }
+
+      .zoom-btn {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+      }
+
+      .zoom-controls {
+          bottom: 10px;
+      }
+
+      .zoom-info {
+          bottom: 60px;
+          font-size: 12px;
+      }
+  }
+
+  /* 滚动条样式 */
+  .viewer-content::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+  }
+
+  .viewer-content::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+  }
+
+  .viewer-content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+  }
+
+  .viewer-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+  }
+  </style>
+<!-- 图片查看器 -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="viewer-content" id="viewerContent">
+            <div class="image-container">
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    加载中...
+                </div>
+                <img class="viewer-image" id="viewerImage" style="display: none;">
+            </div>
+        </div>
+        <button class="close-btn" id="closeBtn">×</button>
+        <div class="zoom-controls">
+            <button class="zoom-btn" id="zoomOutBtn">-</button>
+            <button class="zoom-btn" id="zoomInBtn">+</button>
+            <button class="zoom-btn" id="resetBtn">⌂</button>
+        </div>
+        <div class="zoom-info" id="zoomInfo">100%</div>
+    </div>
+
+    <script>
+        class ImageViewer {
+            constructor() {
+                this.viewer = document.getElementById('imageViewer');
+                this.viewerContent = document.getElementById('viewerContent');
+                this.viewerImage = document.getElementById('viewerImage');
+                this.loading = document.getElementById('loading');
+                this.closeBtn = document.getElementById('closeBtn');
+                this.zoomInBtn = document.getElementById('zoomInBtn');
+                this.zoomOutBtn = document.getElementById('zoomOutBtn');
+                this.resetBtn = document.getElementById('resetBtn');
+                this.zoomInfo = document.getElementById('zoomInfo');
+                
+                this.isOpen = false;
+                this.currentImage = null;
+                this.currentZoom = 1;
+                this.minZoom = 0.1;
+                this.maxZoom = 5;
+                this.zoomStep = 0.2;
+                
+                // 拖拽相关
+                this.isDragging = false;
+                this.dragStart = { x: 0, y: 0 };
+                this.scrollStart = { x: 0, y: 0 };
+                
+                this.init();
+            }
+
+            init() {
+                // 事件委托 - 高性能的事件监听
+                document.addEventListener('click', this.handleImageClick.bind(this));
+                
+                // 关闭事件
+                this.closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.close();
+                });
+                
+                // 缩放控制
+                this.zoomInBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.zoomIn();
+                });
+                
+                this.zoomOutBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.zoomOut();
+                });
+                
+                this.resetBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.resetZoom();
+                });
+                
+                // 鼠标滚轮缩放
+                // this.viewerContent.addEventListener('wheel', this.handleWheel.bind(this));
+                
+                // 拖拽功能
+                this.viewerImage.addEventListener('mousedown', this.startDrag.bind(this));
+                document.addEventListener('mousemove', this.drag.bind(this));
+                document.addEventListener('mouseup', this.endDrag.bind(this));
+                
+                // 触摸事件（移动端）
+                this.viewerImage.addEventListener('touchstart', this.startTouchDrag.bind(this));
+                document.addEventListener('touchmove', this.touchDrag.bind(this));
+                document.addEventListener('touchend', this.endDrag.bind(this));
+                
+                // 双击重置
+                this.viewerImage.addEventListener('dblclick', (e) => {
+                    e.stopPropagation();
+                    this.resetZoom();
+                });
+                
+                // 点击背景关闭
+                this.viewer.addEventListener('click', (e) => {
+                    if (e.target === this.viewer) {
+                        this.close();
+                    }
+                });
+                
+                // 键盘事件
+                document.addEventListener('keydown', (e) => {
+                    if (!this.isOpen) return;
+                    
+                    switch(e.key) {
+                        case 'Escape':
+                            this.close();
+                            break;
+                        case '+':
+                        case '=':
+                            e.preventDefault();
+                            this.zoomIn();
+                            break;
+                        case '-':
+                            e.preventDefault();
+                            this.zoomOut();
+                            break;
+                        case '0':
+                            e.preventDefault();
+                            this.resetZoom();
+                            break;
+                    }
+                });
+                
+                // 防止图片拖拽
+                this.viewerImage.addEventListener('dragstart', (e) => {
+                    e.preventDefault();
+                });
+            }
+
+            handleImageClick(e) {
+                // 只处理img标签的点击
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    this.open(e.target);
+                }
+            }
+
+            open(imgElement) {
+                if (this.isOpen) return;
+                
+                this.isOpen = true;
+                this.currentImage = imgElement;
+                this.currentZoom = 1;
+                
+                // 显示查看器
+                this.viewer.style.display = 'flex';
+                
+                // 显示加载状态
+                this.loading.style.display = 'block';
+                this.viewerImage.style.display = 'none';
+                
+                // 重置滚动位置
+                this.viewerContent.scrollTop = 0;
+                this.viewerContent.scrollLeft = 0;
+                
+                // 预加载图片
+                this.loadImage(imgElement.src);
+                
+                // 禁用页面滚动
+                document.body.style.overflow = 'hidden';
+                
+                // 延迟添加active类以触发动画
+                requestAnimationFrame(() => {
+                    this.viewer.classList.add('active');
+                });
+                
+                this.updateZoomInfo();
+                this.updateZoomButtons();
+            }
+
+            loadImage(src) {
+                const img = new Image();
+                
+                img.onload = () => {
+                    this.viewerImage.src = src;
+                    this.loading.style.display = 'none';
+                    this.viewerImage.style.display = 'block';
+                    this.resetZoom();
+                };
+                
+                img.onerror = () => {
+                    this.loading.innerHTML = '<div style="color: #ff6b6b;">图片加载失败</div>';
+                };
+                
+                img.src = src;
+            }
+
+            close() {
+                if (!this.isOpen) return;
+                
+                this.isOpen = false;
+                this.viewer.classList.remove('active');
+                
+                // 恢复页面滚动
+                document.body.style.overflow = '';
+                
+                // 动画结束后隐藏
+                setTimeout(() => {
+                    if (!this.isOpen) {
+                        this.viewer.style.display = 'none';
+                        this.viewerImage.src = '';
+                        this.currentImage = null;
+                        this.currentZoom = 1;
+                    }
+                }, 300);
+            }
+
+            zoomIn() {
+                if (this.currentZoom < this.maxZoom) {
+                    this.setZoom(this.currentZoom + this.zoomStep);
+                }
+            }
+
+            zoomOut() {
+                if (this.currentZoom > this.minZoom) {
+                    this.setZoom(this.currentZoom - this.zoomStep);
+                }
+            }
+
+            resetZoom() {
+                this.setZoom(1);
+                // 重置滚动位置到中心
+                this.centerImage();
+            }
+
+            setZoom(zoom) {
+                this.currentZoom = Math.max(this.minZoom, Math.min(this.maxZoom, zoom));
+                this.viewerImage.style.transform = `scale(${this.currentZoom})`;
+                this.updateZoomInfo();
+                this.updateZoomButtons();
+            }
+
+            centerImage() {
+                const container = this.viewerContent;
+                const image = this.viewerImage;
+                
+                // 计算居中位置
+                const containerRect = container.getBoundingClientRect();
+                const imageRect = image.getBoundingClientRect();
+                
+                const scrollLeft = (image.scrollWidth * this.currentZoom - containerRect.width) / 2;
+                const scrollTop = (image.scrollHeight * this.currentZoom - containerRect.height) / 2;
+                
+                container.scrollLeft = Math.max(0, scrollLeft);
+                container.scrollTop = Math.max(0, scrollTop);
+            }
+
+            updateZoomInfo() {
+                this.zoomInfo.textContent = `${Math.round(this.currentZoom * 100)}%`;
+            }
+
+            updateZoomButtons() {
+                this.zoomInBtn.disabled = this.currentZoom >= this.maxZoom;
+                this.zoomOutBtn.disabled = this.currentZoom <= this.minZoom;
+            }
+
+            handleWheel(e) {
+                if (!this.isOpen || this.viewerImage.style.display === 'none') return;
+                
+                e.preventDefault();
+                
+                const delta = e.deltaY > 0 ? -this.zoomStep : this.zoomStep;
+                const newZoom = this.currentZoom + delta;
+                
+                if (newZoom >= this.minZoom && newZoom <= this.maxZoom) {
+                    this.setZoom(newZoom);
+                }
+            }
+
+            startDrag(e) {
+                if (this.currentZoom <= 1) return;
+                
+                this.isDragging = true;
+                this.dragStart.x = e.clientX;
+                this.dragStart.y = e.clientY;
+                this.scrollStart.x = this.viewerContent.scrollLeft;
+                this.scrollStart.y = this.viewerContent.scrollTop;
+                
+                e.preventDefault();
+            }
+
+            startTouchDrag(e) {
+                if (this.currentZoom <= 1 || e.touches.length !== 1) return;
+                
+                this.isDragging = true;
+                this.dragStart.x = e.touches[0].clientX;
+                this.dragStart.y = e.touches[0].clientY;
+                this.scrollStart.x = this.viewerContent.scrollLeft;
+                this.scrollStart.y = this.viewerContent.scrollTop;
+                
+                e.preventDefault();
+            }
+
+            drag(e) {
+                if (!this.isDragging) return;
+                
+                const currentX = e.clientX;
+                const currentY = e.clientY;
+                
+                const deltaX = this.dragStart.x - currentX;
+                const deltaY = this.dragStart.y - currentY;
+                
+                this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
+                this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
+                
+                e.preventDefault();
+            }
+
+            touchDrag(e) {
+                if (!this.isDragging || e.touches.length !== 1) return;
+                
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                
+                const deltaX = this.dragStart.x - currentX;
+                const deltaY = this.dragStart.y - currentY;
+                
+                this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
+                this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
+                
+                e.preventDefault();
+            }
+
+            endDrag() {
+                this.isDragging = false;
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            new ImageViewer();
+        });
+    </script>
 </Card>
 
 <script>

@@ -198,8 +198,10 @@ a:not(:has(img)):hover {
     }
   }
 
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  & {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 // Shared components and styles for blog pages
