@@ -124,9 +124,12 @@ main code span {
 }
 
 main img:not(main a img) {
+  cursor: pointer;
+}
+
+main p img:not(main a img) {
   margin-top: 1em !important;
   margin-bottom: 1em !important;
-  cursor: pointer;
 }
 
 main em {
