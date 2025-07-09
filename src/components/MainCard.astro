@@ -171,7 +171,7 @@ const accessibleHelpText = `${helpText}: ${title}`;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(8px); /* 添加模糊效果 */
         -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
         z-index: 10000;
@@ -370,21 +370,43 @@ const accessibleHelpText = `${helpText}: ${title}`;
   </style>
   <script>
     class ImageViewer {
+      viewer;
+      viewerContent;
+      viewerImage;
+      loading;
+      closeBtn;
+      zoomControls;
+      zoomInBtn;
+      zoomOutBtn;
+      resetBtn;
+      zoomInfo;
+
+      isOpen;
+      currentImage: HTMLImageElement | null;
+      currentZoom;
+      minZoom;
+      maxZoom;
+      zoomStep;
+
+      isDragging;
+      dragStart;
+      scrollStart ;
+
       constructor() {
         this.viewer = document.getElementById('imageViewer');
         this.viewerContent = document.getElementById('viewerContent');
-        this.viewerImage = document.getElementById('viewerImage');
+        this.viewerImage = document.getElementById('viewerImage') as HTMLImageElement;
         this.loading = document.getElementById('loading');
         this.closeBtn = document.getElementById('closeBtn');
         this.zoomControls = document.getElementById('zoomControls');
-        this.zoomInBtn = document.getElementById('zoomInBtn');
-        this.zoomOutBtn = document.getElementById('zoomOutBtn');
+        this.zoomInBtn = document.getElementById('zoomInBtn') as HTMLButtonElement;
+        this.zoomOutBtn = document.getElementById('zoomOutBtn') as HTMLButtonElement;
         this.resetBtn = document.getElementById('resetBtn');
         this.zoomInfo = document.getElementById('zoomInfo');
         
         this.isOpen = false;
-        this.currentImage = null;
         this.currentZoom = 1;
+        this.currentImage = null;
         this.minZoom = 0.1;
         this.maxZoom = 5;
         this.zoomStep = 0.1;
@@ -402,23 +424,23 @@ const accessibleHelpText = `${helpText}: ${title}`;
         document.addEventListener('click', this.handleImageClick.bind(this));
         
         // 关闭事件
-        this.closeBtn.addEventListener('click', (e) => {
+        this.closeBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             this.close();
         });
         
         // 缩放控制
-        this.zoomInBtn.addEventListener('click', (e) => {
+        this.zoomInBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             this.zoomIn();
         });
         
-        this.zoomOutBtn.addEventListener('click', (e) => {
+        this.zoomOutBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             this.zoomOut();
         });
         
-        this.resetBtn.addEventListener('click', (e) => {
+        this.resetBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             this.resetZoom();
         });
@@ -427,23 +449,23 @@ const accessibleHelpText = `${helpText}: ${title}`;
         // this.viewerContent.addEventListener('wheel', this.handleWheel.bind(this));
         
         // 拖拽功能
-        this.viewerImage.addEventListener('mousedown', this.startDrag.bind(this));
+        this.viewerImage?.addEventListener('mousedown', this.startDrag.bind(this));
         document.addEventListener('mousemove', this.drag.bind(this));
         document.addEventListener('mouseup', this.endDrag.bind(this));
         
         // 触摸事件（移动端）
-        this.viewerImage.addEventListener('touchstart', this.startTouchDrag.bind(this));
+        this.viewerImage?.addEventListener('touchstart', this.startTouchDrag.bind(this));
         document.addEventListener('touchmove', this.touchDrag.bind(this));
         document.addEventListener('touchend', this.endDrag.bind(this));
         
         // 双击重置
-        this.viewerImage.addEventListener('dblclick', (e) => {
+        this.viewerImage?.addEventListener('dblclick', (e) => {
             e.stopPropagation();
             this.resetZoom();
         });
         
         // 点击背景关闭
-        this.viewer.addEventListener('click', (e) => {
+        this.viewer?.addEventListener('click', (e) => {
             if (e.target != this.viewerImage) {
                 this.close();
             }
@@ -474,20 +496,20 @@ const accessibleHelpText = `${helpText}: ${title}`;
         });
         
         // 防止图片拖拽
-        this.viewerImage.addEventListener('dragstart', (e) => {
+        this.viewerImage?.addEventListener('dragstart', (e) => {
             e.preventDefault();
         });
       }
 
-      handleImageClick(e) {
-        // 只处理img标签的点击
-        if (e.target.tagName === 'IMG') {
-            e.preventDefault();
-            this.open(e.target);
+      handleImageClick(e: MouseEvent) {
+        // 只处理 img 标签点击 
+        if ((e.target as HTMLElement).tagName === 'IMG') {
+          e.preventDefault();
+          this.open(e.target as HTMLImageElement);
         }
       }
 
-      open(imgElement) {
+      open(imgElement: HTMLImageElement) {
         if (this.isOpen) return;
         
         this.isOpen = true;
@@ -495,19 +517,26 @@ const accessibleHelpText = `${helpText}: ${title}`;
         this.currentZoom = 1;
         
         // 显示查看器
-        this.viewer.style.display = 'flex';
+        if (this.viewer)
+          this.viewer.style.display = 'flex';
         
         // 显示缩放控制
-        this.zoomControls.style.display = 'flex';
-        this.zoomInfo.style.display = 'block';
+        if (this.zoomControls) 
+          this.zoomControls.style.display = 'flex';
+        if (this.zoomInfo) 
+          this.zoomInfo.style.display = 'block';
         
         // 显示加载状态
-        this.loading.style.display = 'block';
-        this.viewerImage.style.display = 'none';
+        if (this.loading)
+          this.loading.style.display = 'block';
+        if (this.viewerImage)
+          this.viewerImage.style.display = 'none';
         
         // 重置滚动位置
-        this.viewerContent.scrollTop = 0;
-        this.viewerContent.scrollLeft = 0;
+        if (this.viewerContent) {
+          this.viewerContent.scrollTop = 0;
+          this.viewerContent.scrollLeft = 0;
+        }
         
         // 预加载图片
         this.loadImage(imgElement.src);
@@ -517,26 +546,32 @@ const accessibleHelpText = `${helpText}: ${title}`;
         
         // 延迟添加active类以触发动画
         requestAnimationFrame(() => {
-            this.viewer.classList.add('active');
+            this.viewer?.classList.add('active');
         });
         
         this.updateZoomInfo();
         this.updateZoomButtons();
       }
 
-      loadImage(src) {
+      loadImage(src: string) {
         const img = new Image();
         
         img.onload = () => {
+          if (this.viewerImage)
             this.viewerImage.src = src;
+          if (this.loading)
             this.loading.style.display = 'none';
+          if (this.viewerImage)
             this.viewerImage.style.display = 'block';
-            this.resetZoom();
+
+          this.resetZoom();
+          if (this.viewerImage)
             // 初始化鼠标样式
             this.viewerImage.style.cursor = 'default';
         };
         
         img.onerror = () => {
+          if (this.loading)
             this.loading.innerHTML = '<div style="color: #ff6b6b;">图片加载失败</div>';
         };
         
@@ -547,11 +582,13 @@ const accessibleHelpText = `${helpText}: ${title}`;
         if (!this.isOpen) return;
         
         this.isOpen = false;
-        this.viewer.classList.remove('active');
+        this.viewer?.classList.remove('active');
         
         // 隐藏缩放控制
-        this.zoomControls.style.display = 'none';
-        this.zoomInfo.style.display = 'none';
+        if (this.zoomControls)
+          this.zoomControls.style.display = 'none';
+        if (this.zoomInfo)
+          this.zoomInfo.style.display = 'none';
         
         // 恢复页面滚动
         document.body.style.overflow = '';
@@ -559,10 +596,12 @@ const accessibleHelpText = `${helpText}: ${title}`;
         // 动画结束后隐藏
         setTimeout(() => {
             if (!this.isOpen) {
+              if (this.viewer)
                 this.viewer.style.display = 'none';
-                this.viewerImage.src = '';
-                this.currentImage = null;
-                this.currentZoom = 1;
+
+              this.viewerImage.src = '';
+              this.currentImage = null;
+              this.currentZoom = 1;
             }
         }, 300);
       }
@@ -585,7 +624,7 @@ const accessibleHelpText = `${helpText}: ${title}`;
           this.centerImage();
       }
 
-      setZoom(zoom) {
+      setZoom(zoom: number) {
           // this.currentZoom = Math.max(this.minZoom, Math.min(this.maxZoom, zoom));
           // this.viewerImage.style.transform = `scale(${this.currentZoom})`;
           this.currentZoom = Math.max(this.minZoom, Math.min(this.maxZoom, zoom));
@@ -598,11 +637,13 @@ const accessibleHelpText = `${helpText}: ${title}`;
           
           // 更新鼠标样式
           const container = this.viewerContent;
-          setTimeout(() => {
-              const canScrollX = container.scrollWidth > container.clientWidth;
-              const canScrollY = container.scrollHeight > container.clientHeight;
-              this.viewerImage.style.cursor = (canScrollX || canScrollY) ? 'grab' : 'default';
-          }, 50);
+          if (container) {
+            setTimeout(() => {
+                const canScrollX = container.scrollWidth > container.clientWidth;
+                const canScrollY = container.scrollHeight > container.clientHeight;
+                this.viewerImage.style.cursor = (canScrollX || canScrollY) ? 'grab' : 'default';
+            }, 50);
+          }
           
           this.updateZoomInfo();
           this.updateZoomButtons();
@@ -612,84 +653,83 @@ const accessibleHelpText = `${helpText}: ${title}`;
         const container = this.viewerContent;
         const image = this.viewerImage;
         
-        // 计算居中位置
-        const containerRect = container.getBoundingClientRect();
-        const imageRect = image.getBoundingClientRect();
+        if (container) {
+          // 计算居中位置
+          const containerRect = container.getBoundingClientRect();
+          const imageRect = image.getBoundingClientRect();
         
-        const scrollLeft = (image.scrollWidth * this.currentZoom - containerRect.width) / 2;
-        const scrollTop = (image.scrollHeight * this.currentZoom - containerRect.height) / 2;
+          const scrollLeft = (image.scrollWidth * this.currentZoom - containerRect.width) / 2;
+          const scrollTop = (image.scrollHeight * this.currentZoom - containerRect.height) / 2;
         
-        container.scrollLeft = Math.max(0, scrollLeft);
-        container.scrollTop = Math.max(0, scrollTop);
-      }
-
-      updateZoomInfo() {
-        this.zoomInfo.textContent = `${Math.round(this.currentZoom * 100)}%`;
-
-        this.zoomInfo.style.display = 'block';
-
-        // 动画结束后隐藏
-        setTimeout(() => {
-          this.zoomInfo.style.display = 'none';
-        }, 2000);
-      }
-
-      updateZoomButtons() {
-        this.zoomInBtn.disabled = this.currentZoom >= this.maxZoom;
-        this.zoomOutBtn.disabled = this.currentZoom <= this.minZoom;
-      }
-
-      handleWheel(e) {
-        if (!this.isOpen || this.viewerImage.style.display === 'none') return;
-        
-        e.preventDefault();
-        
-        const delta = e.deltaY > 0 ? -this.zoomStep : this.zoomStep;
-        const newZoom = this.currentZoom + delta;
-        
-        if (newZoom >= this.minZoom && newZoom <= this.maxZoom) {
-            this.setZoom(newZoom);
+          container.scrollLeft = Math.max(0, scrollLeft);
+          container.scrollTop = Math.max(0, scrollTop);
         }
       }
 
-      startDrag(e) {
-        // 只有当图片可以滚动时才启用拖拽
-        const container = this.viewerContent;
-        const canScrollX = container.scrollWidth > container.clientWidth;
-        const canScrollY = container.scrollHeight > container.clientHeight;
-        
-        if (!canScrollX && !canScrollY) return;
-        
-        this.isDragging = true;
-        this.dragStart.x = e.clientX;
-        this.dragStart.y = e.clientY;
-        this.scrollStart.x = container.scrollLeft;
-        this.scrollStart.y = container.scrollTop;
-        
-        this.viewerImage.style.cursor = 'grabbing';
-        e.preventDefault();
+      updateZoomInfo() {
+        if (this.zoomInfo) {
+          this.zoomInfo.textContent = `${Math.round(this.currentZoom * 100)}%`;
+
+          this.zoomInfo.style.display = 'block';
+
+          // 动画结束后隐藏
+          setTimeout(() => {
+            if (this.zoomInfo) 
+              this.zoomInfo.style.display = 'none';
+          }, 2000);
+        }
       }
 
-      startTouchDrag(e) {
+      updateZoomButtons() {
+        if (this.zoomInBtn)
+          this.zoomInBtn.disabled = this.currentZoom >= this.maxZoom;
+
+        if (this.zoomOutBtn)
+          this.zoomOutBtn.disabled = this.currentZoom <= this.minZoom;
+      }
+
+      startDrag(e: MouseEvent) {
+        // 只有当图片可以滚动时才启用拖拽
+        const container = this.viewerContent;
+        if (container) {
+          const canScrollX = container.scrollWidth > container.clientWidth;
+          const canScrollY = container.scrollHeight > container.clientHeight;
+        
+          if (!canScrollX && !canScrollY) return;
+        
+          this.isDragging = true;
+          this.dragStart.x = e.clientX;
+          this.dragStart.y = e.clientY;
+          this.scrollStart.x = container.scrollLeft;
+          this.scrollStart.y = container.scrollTop;
+        
+          this.viewerImage.style.cursor = 'grabbing';
+          e.preventDefault();
+        }
+      }
+
+      startTouchDrag(e: TouchEvent) {
         if (e.touches.length !== 1) return;
         
         // 只有当图片可以滚动时才启用拖拽
         const container = this.viewerContent;
-        const canScrollX = container.scrollWidth > container.clientWidth;
-        const canScrollY = container.scrollHeight > container.clientHeight;
+        if (container) {
+          const canScrollX = container.scrollWidth > container.clientWidth;
+          const canScrollY = container.scrollHeight > container.clientHeight;
         
-        if (!canScrollX && !canScrollY) return;
+          if (!canScrollX && !canScrollY) return;
         
-        this.isDragging = true;
-        this.dragStart.x = e.touches[0].clientX;
-        this.dragStart.y = e.touches[0].clientY;
-        this.scrollStart.x = container.scrollLeft;
-        this.scrollStart.y = container.scrollTop;
+          this.isDragging = true;
+          this.dragStart.x = e.touches[0].clientX;
+          this.dragStart.y = e.touches[0].clientY;
+          this.scrollStart.x = container.scrollLeft;
+          this.scrollStart.y = container.scrollTop;
         
-        e.preventDefault();
+          e.preventDefault();
+        }
       }
 
-      drag(e) {
+      drag(e: MouseEvent) {
         if (!this.isDragging) return;
         
         const currentX = e.clientX;
@@ -698,13 +738,15 @@ const accessibleHelpText = `${helpText}: ${title}`;
         const deltaX = this.dragStart.x - currentX;
         const deltaY = this.dragStart.y - currentY;
         
-        this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
-        this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
+        if (this.viewerContent) {
+          this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
+          this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
+        }
         
         e.preventDefault();
       }
 
-      touchDrag(e) {
+      touchDrag(e: TouchEvent) {
         if (!this.isDragging || e.touches.length !== 1) return;
         
         const currentX = e.touches[0].clientX;
@@ -713,8 +755,10 @@ const accessibleHelpText = `${helpText}: ${title}`;
         const deltaX = this.dragStart.x - currentX;
         const deltaY = this.dragStart.y - currentY;
         
-        this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
-        this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
+        if (this.viewerContent) {
+          this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
+          this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
+        }
         
         e.preventDefault();
       }
