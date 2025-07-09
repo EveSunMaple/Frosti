@@ -503,7 +503,7 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
     
         handleImageClick(e: MouseEvent) {
           // 只处理 img 标签点击 
-          if ((e.target as HTMLElement).tagName === 'IMG') {
+          if ((e.target as HTMLElement).tagName === 'IMG' && !(e.target as HTMLElement).closest('aside')) {
             e.preventDefault();
             this.open(e.target as HTMLImageElement);
           }
