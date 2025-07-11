@@ -8,9 +8,9 @@ import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import updateConfig from "./src/integration/updateConfig.ts";
-
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
+
+import updateConfig from "./src/integration/updateConfig.ts";
 
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
