@@ -936,7 +936,7 @@
 
 ### Features
 
-- 现在运行开发服务器是，更新 `frosti.config.yaml` 也会重新启动开发服务器应用更改
+- 现在运行开发服务器时，更新 `frosti.config.yaml` 也会重新启动开发服务器应用更改
 - 现在您可以使用 `frosti.update.sh` 快速更新项目
 - 现在您可以在 `friend` 页面中添加自己的网站
 

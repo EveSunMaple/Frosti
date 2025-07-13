@@ -25,7 +25,7 @@ const domain = new URL(url).hostname;
 </a>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     document.querySelectorAll(".website-badge").forEach((badge) => {
       const url = badge.getAttribute("href");
       if (!url) return;
