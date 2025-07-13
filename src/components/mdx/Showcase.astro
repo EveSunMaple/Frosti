@@ -1,0 +1,57 @@
+---
+// src/components/mdx/Showcase.astro
+export interface Props {
+  name: string;
+  url: string;
+}
+
+const { name, url } = Astro.props;
+
+const domain = new URL(url).hostname;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="website-badge btn btn-sm btn-outline gap-2"
+  title={`Website: ${name} (${domain})`}
+>
+  <div class="status-dot flex h-3 w-3 items-center justify-center rounded-full bg-gray-200" title="Checking status...">
+    <div class="h-2 w-2 rounded-full"></div>
+  </div>
+
+  <span class="font-medium">{name}</span>
+</a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".website-badge").forEach((badge) => {
+      const url = badge.getAttribute("href");
+      if (!url) return;
+
+      const dotContainer = badge.querySelector(".status-dot");
+      if (!dotContainer) return;
+      const dot = dotContainer.querySelector("div");
+      if (!dot) return;
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+      fetch(url, { method: "HEAD", mode: "no-cors", signal: controller.signal })
+        .then(() => {
+          dot.classList.remove("bg-gray-400");
+          dot.classList.add("bg-green-500");
+          dotContainer.setAttribute("title", "Online");
+        })
+        .catch(() => {
+          dot.classList.remove("bg-gray-400");
+          dot.classList.add("bg-red-500");
+          dotContainer.setAttribute("title", "Offline or unreachable");
+        })
+        .finally(() => {
+          clearTimeout(timeoutId);
+        });
+    });
+  });
+</script>

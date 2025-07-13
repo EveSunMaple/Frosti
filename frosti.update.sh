@@ -1,96 +1,126 @@
 #!/bin/bash
 
+# --- Configuration ---
 UPSTREAM_REPO="https://github.com/EveSunMaple/Frosti.git"
 TEMP_DIR="frosti_temp_update"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+I18N_DIR="$SCRIPT_DIR/src/i18n"
 
+# --- Colors ---
 C_RED='\033[0;31m'
 C_GREEN='\033[0;32m'
 C_YELLOW='\033[0;33m'
 C_BLUE='\033[0;34m'
-C_NC='\033[0m'
+C_NC='\033[0m' # No Color
 
+# --- Language Setup ---
+# Default to English
+lang="en" 
+# Detect language from system settings (e.g., zh_CN.UTF-8 -> zh)
+if [[ "$LANG" == "zh"* ]]; then
+  lang="zh"
+fi
+# Allow user to override language with a command-line argument (e.g., ./frosti.update.sh en)
+if [ -n "$1" ]; then
+  # Check if the language file exists for the given argument
+  if [ -f "$I18N_DIR/$1.sh" ]; then
+    lang="$1"
+  else
+    echo -e "${C_YELLOW}Warning: Language '$1' not found. Falling back to '$lang'.${C_NC}"
+  fi
+fi
+
+# Source the language file
+if [ -f "$I18N_DIR/$lang.sh" ]; then
+  source "$I18N_DIR/$lang.sh"
+else
+  echo -e "${C_RED}Error: Language file '$I18N_DIR/$lang.sh' not found. Exiting.${C_NC}"
+  exit 1
+fi
+
+# --- Main Script ---
 echo -e "${C_BLUE}=========================================${C_NC}"
-echo -e "${C_BLUE}      Frosti 项目更新辅助脚本      ${C_NC}"
+echo -e "${C_BLUE}      ${MSG_HEADER_TITLE}      ${C_NC}"
 echo -e "${C_BLUE}=========================================${C_NC}"
 
-echo -e "${C_YELLOW}⚠️  警告: 此脚本将从官方仓库拉取最新文件并覆盖您的本地文件。${C_NC}"
-echo "我们推荐您在更新前备份项目，或确保所有修改都已提交到 Git。"
-echo "此脚本会根据 \`.updateignore\` 文件来保护您的核心内容。"
+echo -e "${C_YELLOW}${MSG_WARNING_TITLE}${C_NC}"
+echo "${MSG_WARNING_RECOMMENDATION}"
+echo "${MSG_WARNING_IGNORE}"
 echo ""
-read -p "您是否理解风险并希望继续？(y/N): " -n 1 -r
+read -p "$(echo -e "${PROMPT_CONTINUE}")" -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "操作已取消。"
+    echo -e "${MSG_CANCELLED}"
     exit 1
 fi
 
 if ! git diff --quiet || ! git diff --cached --quiet; then
-  echo -e "${C_RED}❌ 错误: 您有未提交的本地修改。${C_NC}"
-  echo "为了安全起见，请先提交您的修改，然后再运行此脚本。"
+  echo -e "${C_RED}${ERR_GIT_DIRTY}${C_NC}"
+  echo "${ERR_GIT_DIRTY_ADVICE}"
   exit 1
 fi
-echo -e "${C_GREEN}✅ 本地Git状态干净，准备开始更新。${C_NC}"
+echo -e "${C_GREEN}${MSG_GIT_CLEAN}${C_NC}"
 
-echo -e "\n${C_BLUE}第一步: 正在从 GitHub 克隆最新的 Frosti 仓库...${C_NC}"
+echo -e "${MSG_STEP1_CLONE}"
 rm -rf "$TEMP_DIR"
 git clone --depth 1 "$UPSTREAM_REPO" "$TEMP_DIR"
 if [ $? -ne 0 ]; then
-  echo -e "${C_RED}❌ 克隆失败，请检查您的网络连接或 Git 配置。${C_NC}"
+  echo -e "${C_RED}${ERR_STEP1_CLONE_FAILED}${C_NC}"
   exit 1
 fi
-echo -e "${C_GREEN}✅ 最新代码克隆成功！${C_NC}"
+echo -e "${C_GREEN}${MSG_STEP1_CLONE_SUCCESS}${C_NC}"
 
-echo -e "\n${C_BLUE}第二步: 正在安全地更新您的项目文件 (仅添加和覆盖)...${C_NC}"
+echo -e "${MSG_STEP2_RSYNC}"
 rsync -av --exclude-from='.updateignore' "$TEMP_DIR/" .
 if [ $? -ne 0 ]; then
-  echo -e "${C_RED}❌ 文件更新失败。${C_NC}"
+  echo -e "${C_RED}${ERR_STEP2_RSYNC_FAILED}${C_NC}"
   rm -rf "$TEMP_DIR"
   exit 1
 fi
-echo -e "${C_GREEN}✅ 文件更新完成！${C_NC}"
+echo -e "${C_GREEN}${MSG_STEP2_RSYNC_SUCCESS}${C_NC}"
 
-echo -e "\n${C_BLUE}第三步: 正在智能删除官方已移除的文件 (不会影响您忽略的文件)...${C_NC}"
-DELETE_IGNORE_FILE=".deleteignore.tmp"
-cp .updateignore "$DELETE_IGNORE_FILE"
-echo "正在进行干预式删除..."
+echo -e "${MSG_STEP3_DELETE}"
+echo "${MSG_STEP3_DELETING_DRY_RUN}"
+# Use rsync's dry-run output to find files that would be deleted
 rsync -avn --delete --exclude-from='.updateignore' "$TEMP_DIR/" . | grep 'deleting ' | while read -r line ; do
     file_to_delete=$(echo "$line" | sed 's/deleting //')
     if [ -d "$file_to_delete" ]; then
+        # Check if directory is empty
         if [ -z "$(ls -A "$file_to_delete")" ]; then
-            echo "删除空目录: $file_to_delete"
+            echo "${MSG_STEP3_DELETING_EMPTY_DIR} $file_to_delete"
             rm -r "$file_to_delete"
         else
-            echo "跳过非空目录: $file_to_delete"
+            echo "${MSG_STEP3_SKIPPING_NON_EMPTY_DIR} $file_to_delete"
         fi
     else
-        echo "删除文件: $file_to_delete"
+        echo "${MSG_STEP3_DELETING_FILE} $file_to_delete"
         rm -f "$file_to_delete"
     fi
 done
-echo -e "${C_GREEN}✅ 已废弃文件清理完成。${C_NC}"
+echo -e "${C_GREEN}${MSG_STEP3_DELETE_SUCCESS}${C_NC}"
 
-echo -e "\n${C_BLUE}第四步: 正在清理所有残留的空文件夹...${C_NC}"
+echo -e "${MSG_STEP4_CLEAN_EMPTY}"
 find . -type d -empty -delete
-echo -e "${C_GREEN}✅ 空文件夹清理完毕！${C_NC}"
+echo -e "${C_GREEN}${MSG_STEP4_CLEAN_EMPTY_SUCCESS}${C_NC}"
 
-echo -e "\n${C_BLUE}第五步: 正在清理临时文件...${C_NC}"
+echo -e "${MSG_STEP5_CLEAN_TEMP}"
 rm -rf "$TEMP_DIR"
-echo -e "${C_GREEN}✅ 清理完毕！${C_NC}"
+echo -e "${C_GREEN}${MSG_STEP5_CLEAN_TEMP_SUCCESS}${C_NC}"
 
-echo -e "\n${C_BLUE}第六步: 正在使用 pnpm 安装/更新依赖...${C_NC}"
+echo -e "${MSG_STEP6_PNPM}"
 if ! command -v pnpm &> /dev/null; then
-    echo -e "${C_YELLOW}⚠️  警告: 未找到 pnpm 命令，请手动安装依赖。${C_NC}"
-    echo "您可以运行: npm install -g pnpm && pnpm install"
+    echo -e "${C_YELLOW}${WARN_PNPM_NOT_FOUND}${C_NC}"
+    echo "${WARN_PNPM_GUIDE}"
 else
     pnpm install
     if [ $? -ne 0 ]; then
-      echo -e "${C_RED}❌ 依赖安装失败，请手动运行 'pnpm install' 检查问题。${C_NC}"
+      echo -e "${C_RED}${ERR_PNPM_INSTALL_FAILED}${C_NC}"
       exit 1
     fi
-    echo -e "${C_GREEN}✅ 依赖安装完成！${C_NC}"
+    echo -e "${C_GREEN}${MSG_PNPM_INSTALL_SUCCESS}${C_NC}"
 fi
 
-echo -e "\n${C_GREEN}🎉 更新流程全部完成！${C_NC}"
-echo "现在您可以启动项目，检查更新后的效果了。"
+echo -e "${MSG_FINAL_SUCCESS}"
+echo "${MSG_FINAL_ADVICE}"
 
 exit 0
