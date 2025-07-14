@@ -22,6 +22,7 @@ interface Props {
 const { blog } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await blog.render();
 const displayDate = blog.data.pubDate ? dayjs(blog.data.pubDate).format(DATE_FORMAT) : "";
+const url = new URL(`/${blog.slug}`, Astro.url.origin);
 ---
 
 <BaseLayout title={blog.data.title} image={blog.data.image} headings={headings} showTOC={true}>
@@ -44,6 +45,7 @@ const displayDate = blog.data.pubDate ? dayjs(blog.data.pubDate).format(DATE_FOR
       <div id="content" class="prose max-w-none prose-headings:scroll-mt-20 prose-img:rounded-xl prose-img:mx-auto">
         <Content />
         <License
+          url={url}
           title={blog.data.title}
           image={blog.data.image}
           pubDate={blog.data.pubDate}
