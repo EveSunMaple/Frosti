@@ -48,9 +48,9 @@ int main()
 ```
 代码执行效果: 
 
-![预定义符号 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/PRE-Symbols.webp)
+![预定义符号 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182118517.webp)
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/PRE-Symbols-Show.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182120068.webp)
 
 ## #define
 
@@ -67,7 +67,7 @@ The time now is %s.\n", \
 ```
 这些被定义的 **宏** 在使用的时候, 是不需要输入参数的, 可以直接在代码编写中使用: 
 
-![define-symbol-show |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/PRE-define-symbol-show.webp)
+![define-symbol-show |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182122423.webp)
 
 截图, 使用 `uchar` 定义了 无符号字符类型变量 `c`
 `c < 10`,  所以 `c` 被赋予 `Max`
@@ -124,7 +124,7 @@ int main()
 	return 0;
 }
 ```
-![define_function-pk |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/define_function-pk.webp)
+![define_function-pk |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182125798.webp)
 
 结果是, `#define` 定义的 有参宏 与 自定义的函数, 都实现了两数相加的功能。
 

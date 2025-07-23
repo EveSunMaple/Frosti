@@ -55,39 +55,39 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 > 使用 `string` 类时, 需要包含 `#include <iostream>` 头文件
 > 为使用方便, 可将 `namespace std` 全部展开
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701144546185.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182857922.webp)
 
 一个一个看: 
 
 1. `string s1;` 无参调用构造函数, 即实例化一个空对象`s1`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701145114542.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182859835.webp)
 
 2. `string s2(s);` `string s3("hello world");` 
 
     使用 C字符串 实例化 对象`s2` 和 `s3`
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701145702297.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182901324.webp)
 
 3. `string s4(s2);` `string s5 = s4;` 调用拷贝构造函数, 实例化对象`s4` 和 `s5`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701150151309.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182902941.webp)
 
 4. `string s6(10, 'S');` 将前 10 个字节, 初始化为 `'S'`, 实例化对象`s6`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701150355501.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182904579.webp)
 
 5. `string s7(s, 4);` `string s8("hello world", 5);`
 
     以 C字符串的前`n`个字符 实例化对象 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701150904242.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182906496.webp)
 
 6. `string s9(s2, 2, 5);`
 
     以 字符串对象 `s2`, 从 `pos`位置(从0开始)向后延伸`n`位, 实例化对象
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701151527272.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182908026.webp)
 
     > 此构造函数声明为: `string (const string& str, size_t pos, size_t len = npos);`
     >
@@ -95,13 +95,13 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
     >
     > `npos` 是 `string`类中的静态无符号常整型值为 -1: 
     >
-    > ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701151854518.webp)
+    > ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182909879.webp)
     >
     > 
     >
     > 无符号的 -1, 即为`int`类型中最大值: 4294967295
     >
-    > ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701152205743.webp)
+    > ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182911344.webp)
     >
     > 参数`len` 有缺省值`npos`就意味着, 如果`len`不传参, 就是从 `pos` 位置延伸到字符串最后
     > 因为实际上不会有字符串的长度 可以达到 4294967295 独占4G的内存
@@ -117,13 +117,13 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     此方法类似于 字符数组的下标访问
 
-    ![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701154525074.webp)
+    ![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182913583.webp)
 
     
 
     `operator[]`是重载函数:
 
-    ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701154617222.webp)
+    ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182915810.webp)
 
     它的返回值是, 指定位置字符的引用
 
@@ -142,7 +142,7 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
     >
     > 但, 在其他 `STL` 类中, 不可将其简单的看作指针
 
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701160106425.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182917430.webp)
 
     > 迭代器的比较, 最好不要用 `<` `>` `<=` `>=`, 因为在其他 类中的数据地址可能不是连续的
 
@@ -152,13 +152,13 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     2. `const_iterator`: 正向 可读 迭代器
 
-        ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701161139146.webp)
+        ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182920022.webp)
 
         取 `string`对象中字符串首字符位置, 返回给正向迭代器
 
         
 
-        ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701161202943.webp)
+        ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182921677.webp)
 
         取 `string`对象中字符串末字符的下一位置, 返回给正向迭代器
 
@@ -169,23 +169,23 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     4. `const_reverse_iterator` : 反向 可读 迭代器
 
-        ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701161822237.webp)
+        ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182923400.webp)
 
         取`string`对象字符串的末字符下一位置, 返回给`反向迭代器`
 
-        ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701162114527.webp)
+        ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182925314.webp)
 
         取 `string`对象中字符串首字符位置, 返回给`反向迭代器`
 
         反向, 代表 此迭代器`从右向左`为正向, 即 自增移动方向为从右向左
 
-        ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701162537076.webp)
+        ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182927310.webp)
 
 3. **范围`for `**
 
     范围`for`方法, C++11 提出的 调用迭代器的、编写更为简洁的方法
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701162904284.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182928843.webp)
 
 ## 3. string类对象的容量操作
 
@@ -202,15 +202,15 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
 1. `size()` 返回字符串 有效字符长度, 即返回 对象的`size`
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014459482.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182931207.webp)
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701163922731.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182932484.webp)
 
 2. `length()` 返回字符串 有效字符长度, 即返回 对象的`size`
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014528535.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182934212.webp)
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701164101742.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182935535.webp)
 
     两函数返回值相同, 即其实都返回 对象的 `size`, 但是为什么有两个函数呢？
 
@@ -222,25 +222,25 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     `string` 管理字符串, 空间是动态开辟的, 所以会存在有效字符大小和总空间大小, 这也就意味着 总空间满了之后, 是需要扩容的
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014555100.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182937699.webp)
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701164843926.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182939113.webp)
 
 4. `empty()` 检测字符串是否为空串
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014614957.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182941247.webp)
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701165208407.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182942522.webp)
 
 5. `clear() ` 清空有效字符, 即`size清零`
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014631260.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182944410.webp)
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701165549254.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182945932.webp)
 
 6. `reserve(size_t n = 0)` 为字符串预留空间, `扩容量`
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014651467.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182948173.webp)
 
     `string` 中, 字符串的维护空间是动态开辟的, 当容量满时, 是需要扩容的
 
@@ -248,33 +248,33 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     `reserve` 就是 防止频繁扩容降低效率时 用的, 它的作用是, 为字符串预开辟空间, `可一次性开辟指定大小的空间`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701170453946.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182949566.webp)
 
     `reserve` 只能扩容, 不能缩容: 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701170757104.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182951515.webp)
 
 7. `resize(size_t n, char c)`将有效字符的个数改为`n`个, 多出的空间用字符`c`填充
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014714679.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182953792.webp)
 
     `resize` 存在重载函数 `resize(size_t n)` 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701172227266.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182955053.webp)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701172209163.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182956711.webp)
 
     > 当使用 `resize(size_t n)` 不传指定字符时, 多出的位置会被初始化为 `0`
 
     `resize` 也无法缩容, 但是, 可以指定有效字符大小: 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701173023479.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182958610.webp)
 
 8. `max_size` 返回字符串最大长度
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014734988.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183001850.webp)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220701173729524.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183003452.webp)
 
 ## 4. string类对象的修改操作 
 
@@ -292,33 +292,33 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
 1. **`push_back(char c)`** 在字符串后尾插字符`c`
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014755287.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183006464.webp)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702010928686.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183007827.webp)
 
 2. **`append `** 在字符串后追加一个字符串
 
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014810995.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183009819.webp)
 
     `append`函数有多种重载, 即 它有多种用法: 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702012826368.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183011265.webp)
 
 3. **`operator+=`** 在字符串后追加字符串`str`
 
-    ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014830480.webp)
+    ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183013177.webp)
 
     这个运算符重载函数, 在`string`中 尾插用的最多, 比前面两个多得多, 因为它非常的方便
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702013319195.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183014536.webp)
 
 4. **`c_str`** 返回 C格式字符串, 即C语言中的指针指向的字符串
 
     `c_str` 非常的重要, 因为编写程序时, 可能会经常用到C语言标准库中的接口, 需要使用指针, 此时就需要`c_str` 发挥作用
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702013910083.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183016423.webp)
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702014202756.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183017751.webp)
 
     不过要注意, `c_str` 的返回值是 被`const`修饰的
 
@@ -326,11 +326,11 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     从字符串`pos`位置开始往后找字符`c`, 返回该字符在字符串中的位置
 
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702015015800.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183019508.webp)
 
     `find`并不仅限于找字符, 还可以找字符串: 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702020617945.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183021032.webp)
 
 6. **`rfind`**
 
@@ -338,31 +338,31 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     使用与 `find` 一致
 
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702020733453.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183023003.webp)
 
 7. **`substr `**
 
     在`str`中从`pos`位置开始, 截取`n`个字符, 然后将其返回
 
-    ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702020819889.webp)
+    ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183025128.webp)
 
     `substr` 将截取的字符串以`string对象`的形式返回
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702021321823.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183026456.webp)
 
 9. **`insert`**  `pos`位置插入字符串
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702021841372.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183028291.webp)
 
     由于 `insert` 很可能需要挪动数据, 所以不常用
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702022958193.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183029834.webp)
 
 10. **`erase`** 指定范围删除字符
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702022009777.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183031984.webp)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702022215069.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183035188.webp)
 
 ## 5. string类非成员函数
 
@@ -379,23 +379,23 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
 1. **`operator+`**
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702103205687.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183037112.webp)
 
     可以在官方文档中看到, `operator+` 的返回值都是传值返回, 所以一般不会使用, 还要深拷贝效率太低
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702104343443.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183038656.webp)
 
 2. **`operator>>`** 
 
-    ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702104609922.webp)
+    ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183040727.webp)
 
     `operator>>` 主要是为了输入数据, 所以操作非常的简单
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702105543038.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183041990.webp)
 
     但是 还有一个问题是: 
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702104921446.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183044323.webp)
 
     当然还有其他解决办法
 
@@ -403,27 +403,27 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
     **`getline`** 与 `>>` 和 `scanf` 都不同, **`getline` **只以`'\n'` , 以及`指定的符号`来判断接受字符结束的标志
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702110223514.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183046290.webp)
 
     所以使用 `getline` 可以用来接收带空格的字符串数据
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702110056046.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183047753.webp)
 
     甚至可以控制 `获取某个指定字符之前的字符串`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702110610225.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183049780.webp)
 
 4. **`operator<<`**
 
     `operator<<` 的作用就是直接输出 对象中字符串的内容了
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702110818395.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183051553.webp)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702110744645.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183052832.webp)
 
 5. **`relational operators`**
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702110914325.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183054763.webp)
 
     比较大小, 即为`>` `<` `==` `!=` 等逻辑判断运算符的重载
 
@@ -431,9 +431,9 @@ C语言中, 字符串是以`'\0'`结尾的一些字符的集合, 并且C标准�
 
 6. **`swap`** 交换 两`string`对象 内容
 
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702021549614.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183056867.webp)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220702021735666.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183057983.webp)
 
 > 这部分内容, 都是`string类`的非成员函数
 >

@@ -71,13 +71,13 @@ tags:
 > }
 > ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322091636437.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160403661.webp)
 
 ### 介绍静态链接
 
 除了上面可以直接编译链接一步生成可执行文件之外, 还可以通过添加选项将编译链接的过程分离开, 可以使用 `-c` 选项将代码文件先编译成目标文件而先不做链接: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322085615053.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160406087.webp)
 
 生成`.o` 的下一步就是链接了, 那么而我们知道, 我们所谓的链接, 其实就是把这些生成的`.o`目标文件连接起来生成可执行程序
 
@@ -87,7 +87,7 @@ tags:
 
 我们创建另一个目录, 并只将两个`.o`文件移动过去 而不移动`.c`文件, 并再main函数中使用两个函数: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322093852419.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160408075.webp)
 
 可以发现, 即使没有指定编译`.c`文件, 只将`.o`文件链接起来, 就可以成功生成一个可执行文件
 
@@ -109,11 +109,11 @@ tags:
 
 那么对于我们实现的两个简单的累加和print时间的函数来说, 我们就可以这样创建静态库: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322111304476.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160410611.webp)
 
 并且可以通过 `ar -tv` 查看静态库的信息: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322114733492.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160412800.webp)
 
 #### 打包静态库
 
@@ -128,7 +128,7 @@ cp *.a lib-static/lib
 cp *.h lib-static/include
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322213910529.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160414799.webp)
 
 ### 创建动态库
 
@@ -140,7 +140,7 @@ cp *.h lib-static/include
 
 创建动态库所用的`.o`文件, 是通过 `gcc -fPIC -c` 编译生成的
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322214155688.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160417357.webp)
 
 这样生成的目标文件也是可以直接链接生成可执行文件的.
 
@@ -152,7 +152,7 @@ cp *.h lib-static/include
 
 而动态库的命名也有严格的格式: `libxxxx.so`, 以`lib为开头, 以.so后缀结尾`
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322220024492.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160419407.webp)
 
 > 与创建静态库不同的是, 创建动态库使用的工具只有`gcc`
 >
@@ -185,7 +185,7 @@ cp *.so lib-dynamic/lib
 cp *.h lib-dynamic/include
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322220234075.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160422302.webp)
 
 ## 动、静态库的使用
 
@@ -206,7 +206,7 @@ cp *.h lib-dynamic/include
 
 在编写c语言时使用静态库: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322221356453.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160424808.webp)
 
 >  **在包含头文件时, 直接指定了头文件的相对位置**
 
@@ -236,11 +236,11 @@ cp *.h lib-dynamic/include
 	
 	我们需要将静态库文件添加到此路径下: 
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322223924103.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160427990.webp)
 	
 	然后再编译链接: 
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322223955105.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160429911.webp)
 	
 	会发现, 还是错误.
 	
@@ -248,7 +248,7 @@ cp *.h lib-dynamic/include
 	
 	以往我们使用C语言时, 我们使用的都是c语言提供的库. 而`gcc默认是认识c语言的库的, 但是它并不认识其他的第三方库`, 比如我们的库. 它不认识我们的库, 那么`即使我们的库就在系统库目录下、就在他眼前, 它也认不出来`
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322224841491.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160432140.webp)
 	
 	系统的库文件目录下, 已经存在了我们的库文件, 但是gcc不认识
 	
@@ -256,7 +256,7 @@ cp *.h lib-dynamic/include
 	
 	这是, 就需要使用 `-l` 选项, 来指定我们需要的库: 
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322224353720.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160434509.webp)
 	
 	> gcc使用-l, 可以告诉gcc需要使用哪个库. 就是让gcc认识我们使用的库
 	>
@@ -272,7 +272,7 @@ cp *.h lib-dynamic/include
 	
 	删除之后, 再执行gcc语句: 
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322225401054.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160436813.webp)
 
 2. #### 指定头文件路径和库文件路径
 
@@ -295,7 +295,7 @@ cp *.h lib-dynamic/include
 	
 	再直接进行编译链接: 
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322230823048.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160439464.webp)
 	
 	头文件也找不到了, 而且库文件也肯定找不到, 使用的第三方库函数肯定也无法找到
 	
@@ -310,23 +310,23 @@ cp *.h lib-dynamic/include
 	
 	`gcc test.c -I ./include -L ./lib -lMyfunc`
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322231507473.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160441361.webp)
 
 ### 动态库的使用
 
 按照上面使用静态库的经验, 我们可以直接使用`gcc -I -L -l` 来对使用动态库的代码, 进行编译链接: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322233946223.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160443472.webp)
 
 执行命令不会报错, 但是当我们运行生成的可执行程序的时候: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322234149963.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160445423.webp)
 
 我们会发现, 进程无法找到相对应的动态库.
 
 发生这种找不到库的错误的时候, 可以使用ldd命令来查看程序依赖的库: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230322234749548.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160447086.webp)
 
 系统表示, 程序依赖的一个 libMyfun.so 库找不到.
 
@@ -371,7 +371,7 @@ cp *.h lib-dynamic/include
 
     然后再执行可执行程序:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323002052643.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160450945.webp)
 
     可以看到, 程序已经可以正常执行
 
@@ -383,7 +383,7 @@ cp *.h lib-dynamic/include
 
     Linux操作系统中 `/etc/ld.so.conf.d` 路径下, 保存的是搜索动态库的配置文件:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323002503616.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160452991.webp)
 
     我们可以添加一个类似的文件, 来让进程知道向哪里查询动态库
 
@@ -391,19 +391,19 @@ cp *.h lib-dynamic/include
 
     可以先查看一下已经存在的文件:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323002639608.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160454848.webp)
 
     可以看到, 其实这些配置文件的内容, 就是一个动态库所在的路径
 
     那么我们也可以比葫芦画瓢, 添加一个指定动态库路径的配置文件, 文件名可以随便写:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323003334543.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160457887.webp)
 
     添加了配置文件之后, 可执行程序还是不能正常运行.
 
     因为我们添加的配置文件还没有被加载到系统内存中, 所需需要使用命令: `ldconfig 配置文件`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323003609394.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160459631.webp)
 
     > 可以删除配置文件后, 执行`ldconfig` 来取消配置文件的加载
 
@@ -413,13 +413,13 @@ cp *.h lib-dynamic/include
 
     不过此时添加的是动态库的软连接, 而不是原本的动态库文件:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323005804169.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160502723.webp)
 
     添加之后, 可以正常执行程序
 
     并且, 此时再编译, 也不需要指定库的目录了!
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323010241075.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160504463.webp)
 
 #### 为什么使用静态库的可执行程序没有查找不到库的情况？
 
@@ -435,7 +435,7 @@ cp *.h lib-dynamic/include
 
 操作系统会为其创建: PCB、进程地址空间、页表
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323011553678.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160506695.webp)
 
 我们知道, 动态库在链接时是不会将代码加载到程序中的, 只会将代码以一个相对地址的形式加载到程序中
 
@@ -443,7 +443,7 @@ cp *.h lib-dynamic/include
 
 而动态库是一个可执行文件, 它拥有`x执行权限`: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230323011931508.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160510967.webp)
 
 **`如果程序不知道其所使用的动态库的路径, 那么进程在运行时, 操作系统就不能根据程序把动态库加载到内存中`**
 

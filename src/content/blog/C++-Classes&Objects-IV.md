@@ -19,7 +19,7 @@ tags:
 
 而对象的定义其实是`对对象整体的定义`, 构造函数的内容是`对象成员变量的赋值`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220626214449795.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180024215.webp)
 
 这就出现了一个问题: `对象的成员变量是在哪里定义的？`
 
@@ -30,12 +30,12 @@ tags:
 `初始化列表`, 是位于构造函数 `()`之下,`{}`之上, 定义对象成员变量的一个列表.
 具体的位置是在这里: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220626215814360.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180026174.webp)
 
 初始化列表 以一个`冒号:`开始, 以`逗号,`分割成员变量, 成员变量以此形式位列其中: `成员变量名(初始化内容)`
 当调用默认构造函数, 但`不进入默认构造函数内容时, 成员变量就已经定义好了`
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220626221101976.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180028118.webp)
 
 根据调试时对象的监视, `成员变量在初始化列表中未显式定义时, 编译器也是会自动经过初始化列表定义的, 但是未作初始化`
 
@@ -57,7 +57,7 @@ tags:
 
 比如这样的变量,  还能不通过初始化列表, 而是在构造函数内部赋初值吗？
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220626230214658.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180030092.webp)
 
 这三种类型的成员变量中
 `const修饰的`和`&引用类型的`很显然`定义与赋值是不能分离的`, 定义时必须初始化
@@ -67,23 +67,23 @@ tags:
 
 即: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220626231708005.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180032238.webp)
 
 而在成员变量声明中的这个东西: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627135448835.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180035485.webp)
 
 类的成员变量在声明处给了缺省值, 而这个`缺省值就是给初始化列表使用的`: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627135908514.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180037247.webp)
 
 ### 1.1.3 初始化列表执行顺序
 
 判断一下以下代码的`输出结果`是什么？
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627140435108.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180039196.webp)
 
-![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627140634031.webp)
+![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180041169.webp)
 
 是 `1` 和 `随机值`
 
@@ -98,11 +98,11 @@ tags:
 以只有一个成员变量的类为例
 在对象实例化时, 不仅可以这样实例化: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627143207678.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180043218.webp)
 
 还可以这样实例化: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627143345962.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180045074.webp)
 
 第一种方式是正常调用了构造函数
 
@@ -113,7 +113,7 @@ tags:
 直接使用数值对象实例化是可以的, 不过如果想要禁止这种方法 可以将构造函数用 `explicit` 修饰
 可以禁止隐式类型转换: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627145718768.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180046988.webp)
 
 ### 1.2.1 构造函数中隐式类型转换的意义
 
@@ -121,11 +121,11 @@ tags:
 
 答案也是可以的, 不过需要用 `const` 关键词修饰: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627144408734.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180049092.webp)
 
 如果不加 `const` 修饰就会报错: 
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627144459207.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180050732.webp)
 
 因为 `直接使用数值进行对象实例化, 数值会先构造成一个临时对象, 临时对象其实是具有常性的`
 如果不用`const`修饰就加以引用, 其实是一种权限放大的操作, 是错误的 
@@ -138,7 +138,7 @@ tags:
 >
 > PS: 直接使用常量传参在 `string` 中, 非常有意义: 
 >
-> ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627150359000.webp)
+> ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180053017.webp)
 
 # 二、static 修饰类成员
 
@@ -153,7 +153,7 @@ tags:
 
 随便举个例子: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627164834652.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180055198.webp)
 
 `static` 修饰成员变量时, 需要在类外手动定义(不用加`static`)之后才能使用
 
@@ -172,11 +172,11 @@ tags:
 
 以此类为例: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627170703703.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180057296.webp)
 
 此类, 每调用一次 `默认构造函数` , `静态成员变量_x`自增1
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627171625667.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180059633.webp)
 
 实例化四个对象, `_x`自增四次, 所以四个对象访问的`_x`都是 `4`
 
@@ -190,33 +190,33 @@ tags:
 
 而静态成员变量又不属于任何一个对象, 所以`静态成员变量设置为私有的话, 是无法通过某个对象或类来直接访问的`: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627172422033.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180101599.webp)
 
 所以, 对于`静态成员变量`通常会通过函数来专门操作
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627172803331.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180103698.webp)
 
 但是, 对于 `静态成员变量`, 它`是可以在没有对象的情况下通过类来访问的`
 而一般的成员函数只能通过对象来调用
 为了可以 直接通过类调用成员函数, 可以在成员函数前加上 `static` 进行修饰, 被称为 `静态成员函数`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627173726050.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180105678.webp)
 
 ### 静态成员函数 可以通过类直接调用
 
 非静态成员函数不能通过类直接调用
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627174018279.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180107730.webp)
 
 静态成员变量可以通过类直接调用
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627174207871.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180109241.webp)
 
 ### 静态成员函数 只能操作静态成员变量
 
 `静态成员函数, 只能访问静态成员变量, 不能访问非静态成员变量`, 因为静态成员函数没有 `this指针`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627175149215.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180111127.webp)
 
 # 三、友元
 
@@ -241,23 +241,23 @@ tags:
 
 对内置类型使用的 `cout <<` 和 `cin >>`, 其中的 `<<` 和 `>>` 也是重载, 因为其原本的意义应该是`<< 按位左移`、`>> 按位右移`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627233819574.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180113832.webp)
 
 既然是重载, 那么 `cout` 和 `cin` 就属于操作数, `cout` 和 `cin` 是什么类型的操作数呢？
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220627234601546.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180115868.webp)
 
 在上图中可以看出, `cout` 属于 `ostream类`, `cin` 属于 `istream类`
 
 所以对于`流插入<<` 和 `流提取>>` 应该这样定义重载函数: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628000515269.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180117576.webp)
 
 `ostream&` 和 `istream&` 作为类型, 分别取 `_cout`、`_cin` 作 `cout`、`cin`的别名
 
 定义完之后会发现, 无法正常使用: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628003034692.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180119823.webp)
 
 原因很清楚: 
 因为`运算符重载默认, 第一个参数为左操作数, 第二个参数为右操作数`
@@ -271,21 +271,21 @@ tags:
 
 所以, 在类外应该这样定义: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628004249949.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180121551.webp)
 
 但是, 在编译器中无法编译通过: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628003854057.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180123957.webp)
 
 函数定义在类外, 无法访问类内私有成员
 
 如果想要正常使用, 只需要将函数添加为`友元函数`就可以了！
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628003647141.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180125537.webp)
 
 然后:
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628004424890.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180127919.webp)
 
 这样就可以正常的使用了
 
@@ -293,7 +293,7 @@ tags:
 
 在上面对日期类中 `>>` 和 `<<` 的重载, 想要正常使用两个运算符, 就必须使用友元: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628004819766.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180129914.webp)
 
 像这样的函数, 就被称为`友元函数`
 
@@ -315,7 +315,7 @@ tags:
 
 还是以日期类为例, `将日期类作为时间类的友元类`
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628010522764.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180131692.webp)
 
 友元类的所有成员函数, 都可以作为另一个类的友元函数使用
 
@@ -327,13 +327,13 @@ tags:
 
 `内部类`, 顾名思义就是 `定义在类内部的类`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628012339023.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180133934.webp)
 
 > 内部类是一个独立的类, 它`不属于外部类`, 所以 `外部类的成员函数无法访问内部类的成员`
 >
 > 并且, `内部类就是外部类的友元类`, 但 外部类不是内部类的友元类
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628012549678.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180135827.webp)
 
 类B的对象, 可访问 类A对象的成员
 
@@ -346,6 +346,6 @@ tags:
 > 3. 对右内部类的类使用 `sizeof()`, 结果是`只有外部类的大小, 不算内部类`。
 >     因为内部类是独立的, 并不属于外部类
 >
->     ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220628013446903.webp)
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180138136.webp)
 >
 >     `sizeof(A)` 不计算 类B的大小

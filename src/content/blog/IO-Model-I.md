@@ -131,7 +131,7 @@ int main() {
 
 这段代码演示了简单的命名管道通信通信, 并在阻塞前后输出了标识:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412031439077.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160123214.gif)
 
 可以看到, 当客户端未发送数据时, 服务端尝试读取`pipeFd`数据 处于阻塞状态
 
@@ -165,7 +165,7 @@ int main() {
 
 **在内核将数据准备好之前, 系统调用会一直阻塞等待数据, 使整个执行流陷入等待, 直到数据准备好, 拷贝完毕 系统调用再返回, 即为 阻塞`IO`**
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412031637776.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160128768.webp)
 
 ### 非阻塞`IO`
 
@@ -183,7 +183,7 @@ int main() {
 
 所以, **非阻塞`IO`操作, 往往需要反复执行尝试从文件描述符中拷贝数据**, 即 **轮询操作**, 这其实是一种对`CPU`资源的浪费
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412031710760.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160131013.webp)
 
 > 阻塞`IO`不会浪费`CPU`资源, 因为阻塞时执行流不占用`CPU`资源
 
@@ -199,7 +199,7 @@ int main() {
 
 **对于信号驱动`IO`, 不主动调用 系统调用, 而是捕捉`SIGIO`信号, 并在`SIGIO`信号处理函数中调用 系统调用, 实现`IO`由信号驱动**
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412031902830.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160133670.webp)
 
 ### 多路转接`IO` **
 
@@ -217,7 +217,7 @@ int main() {
 
 以`select()`系统调用为例:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412090957143.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160136319.webp)
 
 正常情况下的`IO`操作, 只能等待一个文件描述符, 而多路复用, 能够实现同时对多个文件描述符的等待
 
@@ -233,7 +233,7 @@ int main() {
 
 即, **对于异步`IO`, 需要对指定文件描述符设置异步`IO`请求(读/写、信号、信号处理、数据存储位置等), 然后等待数据和拷贝数据的工作不由进程执行, 全权交给内核, 内核完成数据拷贝之后会向进程发送信号, 进程处理信号 完成异步`IO`**
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412031949925.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160138543.webp)
 
 ## 相关名词概念
 
@@ -267,7 +267,7 @@ int main() {
 int fcntl(int fd, int cmd, ... /* arg */ );
 ```
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412041822666.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160141275.webp)
 
 `fnctl()`系统调用拥有两个显式参数和可变参数, 返回值类型是`int`:
 
@@ -423,7 +423,7 @@ int main() {
 
 而在对标准输入设置了非阻塞模式之后, 会是什么现象呢?
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412041901159.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160145578.gif)
 
 能够发现很神奇的一幕
 
@@ -465,7 +465,7 @@ int select(int nfds,
            struct timeval *restrict timeout);
 ```
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412091006853.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160148724.webp)
 
 `select()`存在4个参数:
 
@@ -511,7 +511,7 @@ int select(int nfds,
 
 1. `struct timeval`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412091024764.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160152195.webp)
 
     这个结构体比较简单, 只有两个成员
 
@@ -523,7 +523,7 @@ int select(int nfds,
 
     `fd_set`是一个位图结构, 表示文件描述符集
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412101008189.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160153760.webp)
     
     `struct fd_set`存在一个成员变量`__fd_mask fds_bits[__FD_SETSIZE / __NFDBITS]`
     

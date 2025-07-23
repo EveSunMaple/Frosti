@@ -15,7 +15,7 @@ tags:
 
 # 167. 两数之和
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729115215043.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160227760.webp)
 
 ## 题意分析
 
@@ -126,13 +126,13 @@ public:
 };
 ```
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729141941218.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160232249.webp)
 
 理解了两数之和之后, 下面看一下三数之和
 
 # 15. 三数之和
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729142412578.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160233780.webp)
 
 ## 题意分析
 
@@ -190,7 +190,7 @@ public:
 
 以一个简单的数组举例, 数组元素位置会发生变化:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729153619507.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160236831.webp)
 
 对于有序的、有重复元素的数组, 有一个很明显的现象: **存在一些 相同元素的连续序列**
 
@@ -265,4 +265,4 @@ public:
 };
 ```
 
-![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729155400592.webp)
+![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160239706.webp)

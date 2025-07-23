@@ -3,7 +3,7 @@ draft: true
 title: "[C++项目] Boost文档 站内搜索引擎(1): 项目背景介绍、相关技术栈、相关概念介绍..."
 pubDate: "2023-08-02"
 description: "虽然Boost库现在实现了站内搜索功能. 但那是全局的搜索, 还是非常的杂乱. 本项目实现对Boost库文档的搜索."
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308020959740.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225318691.webp
 categories:
     - Blogs
 tags: 
@@ -20,13 +20,13 @@ tags:
 
 为方便开发者学习使用, `Boost`库官网(boost.org)也提供了不同版本库组件的相关介绍文档, 但是Boost库的官网在相当长一段时间都是没有站内搜索的. 应该是近两个月左右才**实现了站内搜索**的功能:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021047907.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225216670.webp)
 
 但是, `Boost`库官网实现的站内搜索是全局的搜索, 很多时候大部分开发者只需要查看某个组件的文档用以学习.
 
 此时 使用`Boost`官方提供的站内搜索也是很不方便的, 而且也不支持选择版本来获取相关文档:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021052031.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225218660.webp)
 
 所以就有了本项目的出现, **为`Boost`库指定版本提供文档的站内搜索**
 
@@ -36,17 +36,17 @@ tags:
 
 使用搜索引擎搜索一定的内容, 出现的页面一般是这样的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021114218.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225220617.webp)
 
 其中最主要的部分是这样的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021115595.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225222334.webp)
 
 搜索引擎通常会将搜索到的内容, 以: **网页的标题`(title)`**、**网页的简单摘要`(Content)`**、**即将跳转到的网页的网址`(url)`**为一个单元的形式展现出来. 并且, 包含的搜索的**关键字会被高亮显示**
 
 其他搜索引擎也是大同小异:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021123639.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225224021.webp)
 
 那么, 搜索引擎是如何做这整个过程的呢?
 
@@ -75,7 +75,7 @@ tags:
 
 这一整个流程, 即为**搜索引擎的相关宏观原理**
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021447360.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225226268.webp)
 
 大致的流程 以及 宏观原理图, 可以根据这一张图来理解
 
@@ -97,11 +97,11 @@ wget https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82
 
 然后就获取了`Boost`库源码:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021459828.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225234088.webp)
 
 其中, 所有的文档`html`文件都在 `doc//html/`目录下:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021501939.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225235476.webp)
 
 统计了一下, 此目录下(包括子目录) 一共有`8563`个`html`文件, 这些都是`Boost`库提供的文档
 
@@ -138,7 +138,7 @@ wget https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82
 <img>
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308021524177.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225238599.webp)
 
 标签中, `<`和`>`之间的内容都是对搜索来说无效的内容. 而对于成对的标签来说 `>`和`<`之间的内容则是有效的内容.
 

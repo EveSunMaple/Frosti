@@ -43,7 +43,7 @@ tags:
 
 网络协议栈与主机之间的关系是什么?
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306252053653.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161301966.webp)
 
 网络层和传输层是属于操作系统的
 
@@ -182,7 +182,7 @@ TCP协议的基本特点:
 
     小端字节序存储, **不是将数据倒序存储**, 而是**以字节为单位**, 从低位数据到高位数据 存储到内存的 低地址到高地址
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306261642103.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161305529.webp)
 
 既然存储方式不同, 想要正确的读取到数据, 读取的顺序也需要不同.
 
@@ -219,7 +219,7 @@ TCP协议的基本特点:
 
 > C语言提供了相应的数据转换字节序的接口:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306261749665.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161307991.webp)
 >
 > 这些接口名很好记, `h` 表示 host, `n` 表示 network, `l` 表示 32位长整型, `s` 表示 16位短整型, `to` 表示 转换为
 >
@@ -295,7 +295,7 @@ ssize_t recvfrom(int socket, void* restrict buffer, size_t length, int flags, st
 1. 使用网络套接字实现网络通信, 需要`IP`地址、端口号等资源, 所以设计了`struct sockaddr_in`等结构体, 来描述网络通信所需资源
 2. 使用域间套接字实现域间通信, 需要 路径名 等资源, 所以设计了`struct sockaddr_un`结构体, 来描述域间通信所需资源
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306281619679.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161311372.webp)
 
 > `struct sockaddr_in`的前16位是一个宏, **`AF_INET`**
 >
@@ -313,11 +313,11 @@ ssize_t recvfrom(int socket, void* restrict buffer, size_t length, int flags, st
 
 此结构体的内容是这样的:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306281633081.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161313631.webp)
 
 单独看好像没有什么特殊的. 当 此结构体和 另外的结构体对比的时候:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306281644752.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161315663.webp)
 
 可以发现, 这三个结构体的首16位, 都指**地址类型**
 
@@ -359,7 +359,7 @@ int socket(int domain, int type, int protocol);
 
 man 手册中是这样介绍的:
 
-![man For socket](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306301607179.webp)
+![man For socket](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161318495.webp)
 
 使用一个接口, 肯定要先了解它的参数, `socket()`有三个参数:
 
@@ -371,7 +371,7 @@ man 手册中是这样介绍的:
 
     被称作`socket`的域
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306301613672.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161320045.webp)
 
     其中, **`AF_UNIX`**和**`AF_LOCAL`** 相同
 
@@ -385,7 +385,7 @@ man 手册中是这样介绍的:
 
     此参数是用来选择**套接字类型**的, 决定了通信时候对应的 **报文类型**
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306301656128.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161322302.webp)
 
     其中, 前四个**`SOCK_STREAM`** **`SOCK_DGRAM`** **`SOCK_SEQPACKET`** **`SOCK_RAW`**是最常用的
 
@@ -419,7 +419,7 @@ man 手册中是这样介绍的:
 
 了解了`socket()`的参数之后, 还需要了解一下它的返回值
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306301754510.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161325271.webp)
 
 如果成功了, 就返回**新套接字的文件描述符**, 如果错误, 就返回`-1`, 并设置`errno`
 
@@ -512,7 +512,7 @@ void logMessage(int level, const char* format, ...) {
 >
 > 而 `vsnprintf()`这个名字很长的接口, 则是 通过`va_list` 类型的变量, 格式化向字符数组中写入内容的
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306302058207.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161328675.webp)
 >
 > 在上面代码中的作用就是
 >
@@ -533,7 +533,7 @@ void logMessage(int level, const char* format, ...) {
 
 1. `socket()、recvfrom()、bind()...`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307010939075.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161331036.webp)
 
     ```cpp
     #include <sys/types.h>
@@ -546,7 +546,7 @@ void logMessage(int level, const char* format, ...) {
 
     `inet_addr()`接口的作用是转换`IP`地址的格式
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307010947730.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161332806.webp)
 
     ```cpp
     #include <sys/socket.h>
@@ -729,13 +729,13 @@ int main(int argc, char* argv[]) {
 
 上面这段代码执行之后, 是这样的效果:
 
-![udpServer_8080 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211611645.gif)
+![udpServer_8080 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161337395.gif)
 
 运行时, 当选项使用错误 会输出 `Usage`. 选项输入正确, 则执行代码, 并输出 `logMessage`
 
 当程序运行起来之后, 使用 `netstat -lnup` 可以查看操作系统中的UDP相关网络连接等信息:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307011608973.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161339178.webp)
 
 代码中需要注意的地方, 基本都在注释中介绍了.
 
@@ -852,7 +852,7 @@ int main(int argc, char* argv[]) {
 
 上面这段代码的执行效果是这样的:
 
-![udpClient |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211611306.gif)
+![udpClient |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161343962.gif)
 
 在 最简单的`udpClient`的实现中, 最重要的一个点是:
 
@@ -868,7 +868,7 @@ int main(int argc, char* argv[]) {
 
 分别实现了最简单的`udpServer`和`udpClient`之后, 运行程序演示一下效果
 
-![udpClient_2_udpServer](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211611800.gif)
+![udpClient_2_udpServer](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161346047.gif)
 
 #### **`UDP` 实现最简单的公共聊天**
 
@@ -1242,7 +1242,7 @@ clean:
 
 演示:
 
-![udp_chat](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211611104.gif)
+![udp_chat](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161353751.gif)
 
 从演示中可以看到, 当服务器打开 客户端打开之后, 客户端就可以向服务器发送消息了. 
 > 演示中 Windows的客户端 我取消了接收服务器消息的功能. 
@@ -1250,7 +1250,7 @@ clean:
 相比最简单的 udp网络通信的实现. **`udpServer`** 和 **`udpClient`** 变化的地方在这些部分:
 1. `udpServer`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307021434724.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161356460.webp)
 
     在 udpServer 代码中, 首先是在类中添加了一个 成员变量 `_users`, 是一个哈希表 用来存储用户网络进程信息
 
@@ -1262,7 +1262,7 @@ clean:
 
 2. `udpClient`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307021443300.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161359544.webp)
 
     客户端代码的最大的不同, 就是多了一个多线程执行的函数 `recverAndPrint()`
 
@@ -1276,7 +1276,7 @@ clean:
 
     如果 `recverAndPrint()` 也在主线程内执行. 那么就会出现 只有用户输入完毕之后, 来自服务器的消息才能输出在客户端中 的现象. 就像这样:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211612254.gif)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161402287.gif)
 
     这样显然是不正确的. 所以使用多线程执行 `recverAndPrint()`. 主线程不干扰此线程.
 
@@ -1286,7 +1286,7 @@ clean:
 
     并且, 为了将来自服务器的信息重定向到其中 并且不出现扰乱信息, 我们将 `udpClient` 中其他 部分输出 由 `std::cout 标准输出` 换成了 `std::cerr 标准错误`. 比如, 输入提示的部分:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307021518644.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161405141.webp)
 
     这样 可以避免将 输入提示符 也重定向到管道文件中. 因为 命令行中 `>` 是标准输出重定向
 
@@ -1320,7 +1320,7 @@ clean:
 
 但是, 与之同系列的另一个接口 是存在着一些问题的, 接口: **`inet_ntoa()`**
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307021535705.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161409503.webp)
 
 这个接口的功能也很简单, 就是将`struct in_addr`里存储的 4字节`IP`, 转换成我们可以看懂的点分十进制IP字符串, 然后以`char*`的类型返回
 
@@ -1342,7 +1342,7 @@ clean:
 >
 > **`inet_ntop()`**
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307021549074.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161411859.webp)
 >
 > 这个接口, 可以将网络字节序的`IPv4`或`IPv6`地址转换为点分十进制字符串表示
 >

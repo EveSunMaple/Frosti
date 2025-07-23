@@ -35,7 +35,7 @@ AVL树 是最早被设计出来的平衡二叉搜索树
 >
 > 首先要明白 什么是节点的子树的高度差: 
 >
-> ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202209052035064.webp)
+> ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154103991.webp)
 >
 > 以上面这棵二叉树为例: 
 >
@@ -88,7 +88,7 @@ AVL树的是一种三叉链结构, 即 每个节点除左右孩子、数据之�
 
 所以, **`AVL树`的节点结构**可以设计为: 
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202209052153361.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154106282.webp)
 
 > 当然 在节点内存储平衡因子并不是必须的, 也可以通过其他方法记录
 
@@ -173,21 +173,21 @@ bool insert(const T& data) {
 
 **7节点平衡因子, 从 1或-1 到0**:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313201737882.webp) 
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154109335.webp) 
 
 **7节点平衡因子 从 0 到 1或-1**:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313201850541.webp) 
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154110977.webp) 
 
 当然也有 使树失去平衡的情况: 
 
 **21节点 平衡因子从 1 到 2**:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313202304687.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154112690.webp)
 
 **21节点 平衡因子从 -1 到 -2**: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313202340833.webp) 
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154114690.webp) 
 
 AVL树插入新节点之后, 一些节点的平衡因子一定会发生变化, 进而可能会对整棵树产生一定的影响
 
@@ -204,7 +204,7 @@ AVL树插入新节点之后, 一些节点的平衡因子一定会发生变化, �
 
 对下面 这个稍微复杂的 刚插入一个新节点的 AVL树进行分析: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313202436441.webp) 
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154116542.webp) 
 
 黑色为未插入新节点的 AVL树, **绿、综、红表示在不同位置插入新节点**
 
@@ -290,7 +290,7 @@ while (parent) {
 
 左单旋 处理的情况一般是这样的: 
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313202638297.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154119861.webp)
 
 **某AVL树的根节点平衡因子为1(即此树右子树高度), 且又在此树的右子树中 插入新节点导致右子树高度再增加, 进而导致此树失衡**
 
@@ -306,7 +306,7 @@ while (parent) {
 
     此时 在C树中插入新节点, 其实就是在 N节点的右孩子处 插入新节点
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313202758090.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154121477.webp)
 
     此时 树失衡, 需要 将树调平
 
@@ -316,7 +316,7 @@ while (parent) {
 
     在此树中 很简单, 只需要将树的结构这样变化: 
 
-    ![三个节点都在, 且树平衡  |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313202857274.webp) 
+    ![三个节点都在, 且树平衡  |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154123246.webp) 
 
      好像只是**将N(20)节点的父亲节点M(10)节点 变成了, N节点的左孩子**
 
@@ -324,7 +324,7 @@ while (parent) {
 
     A、B、C树的高度为 1, 在 C 树中插入新节点: 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313203119573.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154124931.webp)
 
     树失衡, 需要调平
 
@@ -332,7 +332,7 @@ while (parent) {
 
     其实也很简单, 将60节点的左孩子 变成40节点的右孩子, 再将40节点 作为60节点的左子树, 让60节点变为树的根, 将树变为这样: 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313203159437.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154126718.webp)
 
     将**60的左孩子变为其父亲节点的右孩子, 再将 60节点的父亲节点 变为 60节点的左孩子**
 
@@ -342,7 +342,7 @@ while (parent) {
 
     在分析`h = 1`时, 可以看到 新节点插入的位置 可以有两个, 那么`h = 2`时, 只会更多
 
-    ![(虚线, 表示其他可插入位置)  |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313203747704.webp)
+    ![(虚线, 表示其他可插入位置)  |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154128372.webp)
 
     A、B 树各3种情况, C树只能是第3种高度为2的二叉树, 则新节点存在 4 个可插入位置
 
@@ -360,7 +360,7 @@ while (parent) {
 
     将**40节点的左子树 变为 其父亲节点的右子树, 再将 40节点的父亲节点 变为 40节点的左子树**:
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313203600258.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154130421.webp)
 
     树结构平衡
 
@@ -374,17 +374,17 @@ while (parent) {
 
 对比一下, h不同时 插入新节点 导致树失衡 再到 平衡的过程: 
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313202857274.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154132276.webp)
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313203159437.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154133857.webp)
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313203600258.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154135588.webp)
 
 可以发现, 如果**将平衡因子为2的节点 为`parent`, 其右孩子节点 为`subR`**, 则此类情况的调整平衡的具体操作 其实是: 
 
 **将`subR`的左孩子 变为`parent`的右孩子, 再将`parent`变为`subR`的左孩子**
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313204053412.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154137142.webp)
 
 执行此操作之后, 树的结构就平衡了, **此操作也就是左单旋操作**
 
@@ -481,7 +481,7 @@ void RotateL(Node* parent) {
 
 **右单旋**处理的情况一般是这样的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313204538026.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154140479.webp)
 
 **某 AVL树的根节点平衡因子为-1(即此树左子树高), 且又在此树的左子树中 插入新节点导致左子树高度再增加, 进而导致此树失衡**
 
@@ -493,7 +493,7 @@ void RotateL(Node* parent) {
 
 **将`subL`的右孩子变为`parent`的左孩子, 再将`parent`变为`subL`的右孩子**
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313204452542.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154142388.webp)
 
 此种方法 就是 `右单旋`, 对应的实现代码即为: 
 
@@ -560,7 +560,7 @@ void RotateR(Node* parent) {
 
 左右双旋 处理的情况是这样的: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313204823511.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154145296.webp)
 
 这种情况 是: 
 
@@ -575,29 +575,29 @@ void RotateR(Node* parent) {
 >
 >     所以 h = 0 时的实例图 应该为: 
 >
-> ![60节点 就是新插入的节点  |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313204910566.webp) 
+> ![60节点 就是新插入的节点  |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154147781.webp) 
 >
 > 	此时应该怎么调整呢？
-> 	
+> 			
 > 	最终要调节的是 80节点, 80节点是因为左子树高而失衡的, 所以 `最终需要右单旋来调节`
-> 	
+> 			
 > 	但是 右单旋处理的是 `左左` 的情况
-> 	
+> 			
 > 	所以 需要将 此树调整为 `左左`
-> 	
+> 			
 > 	而 左单旋就是将 `parent` 旋转到 `subR` 的左孩子, 并将`subR`连接到`parent`的父亲节点下
-> 	
+> 			
 > 	那么 就以 40节点为`parent`进行左单旋
-> 	
+> 			
 > 	即 
 >
->   ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313205051406.webp)
+>   ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154149928.webp)
 >
 > 	这样 就把树的结构调整为了 `左左` 的情况
-> 	
+> 			
 > 	然后 以 80节点 为 `parent` 进行 `右单旋`: 
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313205202716.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154151958.webp)
 >
 > 	树平衡
 >
@@ -605,27 +605,27 @@ void RotateR(Node* parent) {
 >
 >     h = 1, A、D树 高度为 1, B、C树 高度为 0, 在 60节点左、右孩子插入新节点
 >
-> ![(虚线, 表示其他可插入位置)  |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313205509787.webp)
+> ![(虚线, 表示其他可插入位置)  |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154153945.webp)
 >
 > 	以80节点为根的树 失衡的情况是 `左右`
-> 	
+> 			
 > 	80节点因为左子树高 而失衡, 最终需要 `右单旋`调节
-> 	
+> 			
 > 	所以 需要先将此树调整为 `左左`
-> 	
+> 			
 > 	以 40节点为 `parent` 进行左单旋, 可以将 `subR`(60节点)调整为左子树高, 且将 `subR` 连接在 `parent` 的父亲节点下
-> 	
+> 			
 > 	即可以将 此树调整为 `左左`
-> 	
+> 			
 > 	所以, 以 40节点为 `parent` 进行左单旋: 
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313205650265.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154156148.webp)
 >
 > 	此时 以80节点为根的树 失衡的情况就变成了 `左左`
-> 	
+> 			
 > 	就可以 以 80节点为 `parent` 进行`右单旋`
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313205713734.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154158334.webp)
 >
 > 	树平衡
 >
@@ -633,27 +633,27 @@ void RotateR(Node* parent) {
 >
 >     A、D树 高度为2, B、C树 高度为1, 在B、C树插入新节点
 >
-> ![(虚线, 表示其他可插入位置)  |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313205806979.webp)
+> ![(虚线, 表示其他可插入位置)  |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154200057.webp)
 >
 > 	A、D树各 3 种情况, 新节点可能插入位置有 4 个, 所以此情况的结构一共有 `36` 种
-> 	
+> 			
 > 	但是还是可以用相同的思路分析: 
-> 	
+> 			
 > 	80节点平衡因子是 -2, 最终需要 `右单旋`进行平衡
-> 	
+> 			
 > 	而 `右单旋`解决的是 `“左左”` 的情况, 而现在是 `“左右”`
-> 	
+> 			
 > 	根绝 左单旋的结果的特点 可以知道, 以 40节点为parent 执行左单旋操作
-> 	
+> 			
 > 	会将 `subR`(60节点)的左子树增高, 并将 `subR` 连接在 `parent` 的父亲节点之下
-> 	
+> 			
 > 	进而 可以使 以 80节点为根的树的失衡情况变为 `“左左”`
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313205956389.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154202208.webp)
 >
 > 	然后就可以, 以 80节点为`parent` 执行`右单旋`操作
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313210019865.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154204759.webp)
 >
 > 	树平衡
 >
@@ -665,11 +665,11 @@ void RotateR(Node* parent) {
 
 对比 h 不同时, 此种失衡情况, 从失衡到平衡的调节 过程: 
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313210101534.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154206745.webp)
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313210115081.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154208378.webp)
 
-![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313210151607.webp)
+![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154210248.webp)
 
 可以看到, 插入新结点之后, 调节平衡的过程是: 
 
@@ -738,7 +738,7 @@ a
 >
 > `右左双旋` 处理的失衡情况 是这样的: 
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313210221665.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154213542.webp)
 >
 > 对比 `左右双旋` 可以看出, `右左双旋` 解决的失衡情况是: 
 >

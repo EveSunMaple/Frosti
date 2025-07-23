@@ -15,7 +15,7 @@ tags:
 
 `TCP/IP`网络模型, 将网络分为了四层:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401102244792.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181929270.webp)
 
 之前的文章中以`HTTP`和`HTTPS`这两个协议为代表, 简单介绍了应用层协议
 
@@ -65,7 +65,7 @@ tags:
 
 6. 知名端口号在`/etc/services`文件中存储着, 可以进行查看
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401131702637.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181931736.webp)
 
 这些知名端口号一般是不允许分配给其他服务的
 
@@ -77,7 +77,7 @@ tags:
 
 即之前我们使用`sendto()`等一系列系统调用时, 并不是直接将数据发送到了另一套主机上, 而是由操作系统给网络的下一层, 添加对应的协议报头:
 
-![PC1 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401131736324.gif)
+![PC1 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181934825.gif)
 
 不同协议会添加自己的报头, 下面就介绍一下`UDP`协议的格式
 
@@ -86,7 +86,7 @@ tags:
 `UDP`协议的格式可以用一张图来表示
 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240114173654325.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181936936.webp)
 
 从图中可以看到出, `UDP`协议报头部分是固定的**`8`个字节**, 剩下的则是应用层传输过来的原始数据, 即有效载荷
 
@@ -168,7 +168,7 @@ tags:
 
 而`Linux`内核中, `UDP`报头的实现就是一个结构体:
 
-![Linux_2.6.38_Kernel |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240114211901285.webp)
+![Linux_2.6.38_Kernel |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181939986.webp)
 
 这就意味着, 操作系统使用`UDP`协议封装数据时, 是以结构体的形式添加的`UDP`协议报头, 因为`UDP`协议报头的格式在`Linux`内核中的实现方式就是一个结构体
 

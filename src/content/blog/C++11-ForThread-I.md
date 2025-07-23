@@ -2,7 +2,7 @@
 draft: true
 title: "[C++] C++标准中的线程: C++标准线程、锁、条件变量、原子操作的使用, "
 pubDate: "2024-12-09"
-description: ""
+description: "xx"
 # image: 
 categories:
     - Blogs
@@ -24,7 +24,7 @@ C++在`C++11`标准中, 新增了线程相关的类等: `std::thread` `std::mute
 
 `std::thread`是`C++11`实现的线程类, 头文件为`<thread>`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412191946968.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175354649.webp)
 
 `std::thread`类的成员很少, 涉及到线程的`id`、创建、等待、分离、交换、销毁等
 
@@ -36,7 +36,7 @@ C++在`C++11`标准中, 新增了线程相关的类等: `std::thread` `std::mute
 
 C++标准的线程标识类型是`std::thread::id`, 不是基础类型, 而是C++封装的一个类:
 
-![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201021854.webp)
+![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175357138.webp)
 
 从相关的源码中可以看到, `thread::id`是`thread`的一个内部类
 
@@ -50,11 +50,11 @@ C++标准的线程标识类型是`std::thread::id`, 不是基础类型, 而是C+
 
 `thread`的构造函数, 就能创建线程:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201040580.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175359119.webp)
 
 首先, 为防止线程被拷贝破坏线程的唯一性, `thread`类禁用了**拷贝构造函数**和**普通赋值重载函数**:
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201043756.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175401238.webp)
 
 但保留了**移动构造函数**和**移动赋值重载函数**, 为必要时线程所有权的转移提供了方法
 
@@ -91,7 +91,7 @@ int main() {
 >
 >     这是`C++11`的一个命名空间, 内部提供了一些可以直接在线程内使用的接口
 >
->     ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201126131.webp)
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175403320.webp)
 >
 >     `sleep_for()`: 可以让线程`sleep`一段时间
 >
@@ -111,7 +111,7 @@ int main() {
 >
 >     `<chrono>`是C++标准的时间库, 实现了一些有关时间的类和接口:
 >
->     ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201126773.webp)
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175405385.webp)
 >
 >     上面使用`std::chrono::milliseconds(500)`, 就是实例化一个表示`500ms`的时间段对象
 >
@@ -119,13 +119,13 @@ int main() {
 
 执行结果:
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201104426.gif)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175407406.gif)
 
 实例化`thread`对象调用构造函数时, **参数传入需要让线程执行的函数**, 就能创建一个执行传入函数的线程
 
 此时, 调用的构造函数是:
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201108845.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175409914.webp)
 
 是一个模板化的构造函数:
 
@@ -145,7 +145,7 @@ int main() {
 
 因为`std::thread`的无参默认构造函数是编译器自动生成的, 基本什么都不会做:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201134600.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175412107.webp)
 
 所以, **使用`std::thread`创建线程时, 必定要传参指定线程的执行代码**
 
@@ -186,7 +186,7 @@ int main() {
 
 这段代码的执行结果为:
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201147835.gif)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175414934.gif)
 
 `cnt`成功传入到`loopPrint()`函数中, 而且是传值传参, 所以主线程内的数据不会被修改
 
@@ -203,7 +203,7 @@ void loopPrint(int& cnt) {
 
 尝试编译运行:
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201152237.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175417192.webp)
 
 发现报错!
 
@@ -233,7 +233,7 @@ int main() {
 }
 ```
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201732204.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175419252.webp)
 
 发现又可以了!
 
@@ -360,6 +360,4 @@ __make_invoker(_Callable&& __callable, _Args&&... __args) {
 
 即, `tuple`中的数据都是没有任何引用属性的原始类型的数据, 只不过数据值与传入值相同
 
-
-
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201718712.gif)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175423627.gif)

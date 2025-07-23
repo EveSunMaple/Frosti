@@ -3,7 +3,7 @@ draft: true
 title: "[Linux] 从零开始配置openEuler/EulerOS下的 C/C++开发环境: zsh安装、nvim的LSP-C/C++补全、MySQL57安装配置"
 pubDate: "2024-8-8"
 description: "一切, 都源于一场意外"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408091358719.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182527864.webp
 categories:
     - Blogs
 tags: 
@@ -169,7 +169,7 @@ source ~/.zshrc
 
 我个人配置完之后, 是这样的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240809125029682.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182034681.webp)
 
 然后安装`oh-my-zsh`, 我个人认为最重要的两个插件:
 
@@ -182,7 +182,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 
 两个插件都`git clone`之后, 可以在`~/.oh-my-zsh/custom/plugins`路径下查看他们
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408091253714.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182036780.webp)
 
 然后`nvim ~/.zshrc`, 找到`plugins=(git)`的一行
 
@@ -245,7 +245,7 @@ alias setpig="export https_proxy=http://127.0.0.1:15777 http_proxy=http://127.0.
 
 之后再用`man`就可以看到彩色的了, 虽然也并不是很彩, 但至少是有重点了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240809124502717.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182039498.webp)
 
 ## `neovim`
 
@@ -282,11 +282,11 @@ git clone https://github.com/humid1ch/nvim.git
 
 如果某些插件安装失败了, 可以打开`nvim`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408091330673.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182041870.webp)
 
 `command`模式下输入`:Lazy`回车, 就会打开插件的配置界面:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408091331549.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182043725.webp)
 
 你可以按`S`对所有插件重新刷新, 安装
 
@@ -298,7 +298,7 @@ git clone https://github.com/humid1ch/nvim.git
 
 依旧是在`command`模式下:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408091336869.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182045671.webp)
 
 博主只需要使用`C/C++`的相关功能, 所以就安装`clangd`和`clang-format`了
 
@@ -306,9 +306,9 @@ git clone https://github.com/humid1ch/nvim.git
 
 等待安装完成之后, `nvim`就可以实现`C/C++`的补全了:
 
-![这里边都是各种语言的LSP](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408091336654.webp)
+![这里边都是各种语言的LSP](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182047564.webp)
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408091338628.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182049445.webp)
 
 愉快 愉快~
 

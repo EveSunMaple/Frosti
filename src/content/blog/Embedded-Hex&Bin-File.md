@@ -53,7 +53,7 @@ tags:
 
 这是一个`Keil`编译`C51`工程生成的`.hex`文件的内容:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202409192300800.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155209943.webp)
 
 以首行`HEX`记录为例:
 
@@ -99,7 +99,7 @@ tags:
 
 用 `HexView`, 打开 `Keil`对同一工程生成的`.hex`和`.bin`文件, 可以看到两个文件的二进制数据是相同的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202409192251147.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155212639.webp)
 
 > `Keil`编译`C51`工程, 由`.hex`生成`.bin`的方法, 请阅读`Arm`开发者文档:
 >

@@ -65,7 +65,7 @@ tags:
 
 以太网帧格式比较简单:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411291653587.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181236930.webp)
 
 > 实际, 前边(左边)还存在两个字段**7字节的前导码**和**1字节的帧开始界定符**
 >
@@ -87,15 +87,15 @@ tags:
 
     `0x0800`表示 `IPv4`数据类型
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021600330.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181239790.webp)
 
     `0x0806`表示 `ARP`数据类型
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021602760.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181241608.webp)
 
     `0x8035`表示 `RARP`数据类型
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021603894.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181243546.webp)
 
 4. `46~1500`字节 数据
 
@@ -123,11 +123,11 @@ tags:
 
 假设存在8台主机, 通过一根总线连接成一个局域网
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411291956163.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181245553.webp)
 
 此时`MAC1`要向`MAC7`发任意数据, 则`MAC1`会填充以太网帧:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411292001089.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181248332.webp)
 
 `MAC1`主机 将封装完成的`MAC`帧发送到总线上, 就相当于发送到了局域网中
 
@@ -177,7 +177,7 @@ tags:
 
 ### `ARP`协议格式
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021424250.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181250801.webp)
 
 红色部分, 是以太网帧报头部分, 不用再多说
 
@@ -239,7 +239,7 @@ tags:
 
 当主机`A`需要获取主机`B`的`MAC`地址时, 主机`A`就会向局域网中发送`ARP`请求, 一般可能会将数据填充为:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021456817.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181253644.webp)
 
 目的`MAC`地址是未知的, 需要获取的
 
@@ -256,7 +256,7 @@ tags:
 
 当主机`B`收到此`APR`请求帧之后, 就会进行应答, 一般可能会将数据填充为:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021508388.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181255495.webp)
 
 `ARP`应答帧填充的比较完整
 
@@ -283,7 +283,7 @@ tags:
 
 以**以太网帧**为例:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411291653587.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181258879.webp)
 
 数据字段的大小范围是: `[46, 1500]`
 
@@ -301,11 +301,11 @@ tags:
 
 `Windows`平台, 可以在`Powershell`执行`Get-NetIPInterface`查看设备的`MTU`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021819299.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181300447.webp)
 
 `Linux`平台, 则可以通过`ifconfig`查看网络设备的`MTU`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412021821292.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181302618.webp)
 
 ### `MTU`对`IP`协议的影响
 

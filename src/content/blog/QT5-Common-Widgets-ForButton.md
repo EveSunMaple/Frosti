@@ -3,7 +3,7 @@ draft: true
 title: "[QT5] 常用控件-按钮控件: PushButton、RadoiButton、CheckButton..."
 pubDate: "2024-12-17"
 description: "QT是一种GUI开发框架, 它内置有许多各种各样的控件, 接下来就对常用控件做一些介绍"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241545562.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182542279.webp
 categories:
     - Blogs
 tags:
@@ -21,7 +21,7 @@ tags:
 
 这四个控件均继承于`QAbstractButton`类:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412231556020.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182130337.webp)
 
 此类是一个抽象类, 所以无法实例化出对象
 
@@ -51,11 +51,11 @@ tags:
 
 先将需要使用的图标使用`qrc`机制管理起来, 然后在进行使用:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412231621557.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182132665.webp)
 
 然后通过`QT Designer`创建5个`QPushButton`:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412231633287.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182134414.webp)
 
 `QAbstractButton`图标相关的接口:
 
@@ -128,7 +128,7 @@ void Widget::on_pushBtn_right_clicked() {
 
 执行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412231931754.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182137484.gif)
 
 ### `autoRepeat`
 
@@ -144,7 +144,7 @@ void Widget::on_pushBtn_right_clicked() {
 
 长按鼠标左键的结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412231954153.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182139535.gif)
 
 `autoRepeat`属性, 是设置鼠标长按时, **是否重复产生点击信号**, 而不是仅有按下
 
@@ -183,7 +183,7 @@ Widget::Widget(QWidget* parent)
 }
 ```
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412231958387.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182142117.gif)
 
 ### `shortCut`
 
@@ -224,7 +224,7 @@ Widget::Widget(QWidget* parent)
 
 运行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412231946693.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182144460.gif)
 
 通过设置的`w` `a` `s` `d`就能点击按钮
 
@@ -240,7 +240,7 @@ Widget::Widget(QWidget* parent)
 
 `QT`内置有按键名的枚举, 可以直接在实例化`QKeySequence`对象时使用
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412232011689.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182147405.webp)
 
 所以, 快捷键的设置可以改为:
 
@@ -270,7 +270,7 @@ Widget::Widget(QWidget* parent)
 
 运行结果:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412240859323.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182149759.gif)
 
 > `QT`提供的按键枚举, 不仅有这些, 基本上包括了所有的按键
 >
@@ -287,7 +287,7 @@ ui->pushBtn_right->setShortcut(QKeySequence(Qt::SHFIT + Qt::Key_D));
 
 运行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412240903075.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182152391.gif)
 
 ---
 
@@ -374,7 +374,7 @@ Widget::~Widget() {
 
 运行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241120758.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182155649.gif)
 
 从结果来看, 默认情况下, 不做任何属性设置
 
@@ -408,7 +408,7 @@ Widget::Widget(QWidget* parent)
 
 这段代码可以让**未知**选项设置为, 不可选中状态:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241128425.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182157890.gif)
 
 `checkable`属性可以设置按钮为不可选中或可选中
 
@@ -432,7 +432,7 @@ Widget::Widget(QWidget* parent)
 
 设置**男**为选中状态:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241155972.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182200133.gif)
 
 可以看到的, 此时窗口打开选项**男**即为选中
 
@@ -464,7 +464,7 @@ Widget::Widget(QWidget* parent)
 
 执行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241349825.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182202393.gif)
 
 从结果来看, 未知和其他两个选项可以同时存在
 
@@ -578,7 +578,7 @@ void Widget::on_radioButton_male_released() {
 
 这段代码的执行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241417836.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182206897.gif)
 
 可以看到, 按钮被按下, 会发送`pressed()`信号, 抬起时, 会发送`released()`信号
 
@@ -623,7 +623,7 @@ void Widget::on_radioButton_female_toggled(bool checked) {
 
 这段代码的运行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241423268.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182209492.gif)
 
 ### `QButtonGroup` **
 
@@ -647,7 +647,7 @@ void Widget::on_radioButton_female_toggled(bool checked) {
 
 `QT Designer`:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241445131.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182211924.webp)
 
 代码:
 
@@ -694,7 +694,7 @@ Widget::~Widget() {
 
 执行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241500876.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182214399.gif)
 
 ## `QCheckBox`
 
@@ -702,13 +702,13 @@ Widget::~Widget() {
 
 `QCheckBox`与`QRadioButton`的用法基本一致, 最常用的同样是继承于`QAbstractButton`的`checkable`和`checked`
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241548646.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182216734.webp)
 
 所以, 属性方面就不在过多介绍, 简单的用一下`QCheckBox`
 
 `QT Designer`:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241600952.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182218443.webp)
 
 `widget.cc`:
 
@@ -750,4 +750,4 @@ void Widget::on_pushButton_clicked() {
 
 运行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241605544.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182221590.gif)

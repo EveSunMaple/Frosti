@@ -1,8 +1,8 @@
 ---
-title: '从零接触C语言: 理解编程 和 C语言'
+title: '从零接触C语言-I: 理解编程 和 C语言'
 description: 'C是一门伟大的语言, 如果你真的想要认真了解、学习编程, 我真诚地建议你从了解C 语言开始'
 pubDate: '2025-03-18'
-image: 'https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318002323925.png'
+image: 'https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710215328038.webp'
 categories:
     - Blogs
 tags:
@@ -87,8 +87,8 @@ import Warning from "../../components/mdx/Warning.astro";
 
 你想让计算机算 `1+1`: 
 
-- **二进制**: 可能要写一长串`101010...` (晕) 
-- **C语言**: 直接写 `1 + 1`, 编译器 (翻译官) 会帮你转成二进制
+- **使用二进制**: 可能要写一长串`101010...` (晕) 
+- **使用C语言**: 直接写 `1 + 1`, 编译器 (翻译官) 会帮你把`1 + 1`转成二进制
 
 <Warning>
 
@@ -104,7 +104,7 @@ import Warning from "../../components/mdx/Warning.astro";
 
 打开终端, 运行`WSL`, 使用`vim`创建`main.c`文件, 在文件中输入内容:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250703233026765.webp)
+![image-20250723115859201](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723115859324.webp)
 
 ```c
 #include <stdio.h>
@@ -122,7 +122,7 @@ int main() {
 gcc main.c
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250704174724065.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723134137762.webp)
 
 你可以发现, 当前的路径下多出来一个文件`a.out`
 
@@ -138,7 +138,7 @@ gcc main.c
 
 在命令行输入`./a.out`, 并按下回车:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250704174802567.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723134243692.webp)
 
 可以看到命令行中出现了`Hello World⏎`的字样
 
@@ -184,11 +184,11 @@ int main() {
 
 但, 这个可执行程序并没有实现任何实际功能, 至少没有像上例中打印一些东西:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250704180618374.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723134423338.webp)
 
-那么, 再尝试一下, 如果`main.c`文件一行代码都没有, 还能编译出一个可执行程序吗?
+那么, 再尝试一下, 如果`main.c`文件一行代码都没有, 是一个空文件, 还能编译出一个可执行程序吗?
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250704182649993.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723134634564.webp)
 
 答案是, 不行
 

@@ -3,7 +3,7 @@ draft: true
 title: "[QT5] 遇见QT5, 初识对象树"
 pubDate: "2024-8-19"
 description: "简单介绍一下QT5中的一些基本的特性, Form是什么? QWidget有什么用?"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408280929461.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182633399.webp
 categories:
     - Blogs
 tags: 
@@ -16,7 +16,7 @@ tags:
 
 使用`QT Creator`创建一个`QWidget`的默认项目之后, 可以看到整个项目的结构
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408200830383.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182647687.webp)
 
 > 博主在`QT Creator`中修改了C++源文件的后缀, 默认应该是`.cpp`
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
 
 重点看`Widget`类, 打开`widget.h`:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408221555667.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182650568.webp)
 
 首先, 因为`Widget`是`QWidget`的派生类, 所以需要先`#include <QWidget>`
 
@@ -142,7 +142,7 @@ private:
 
 可以在`widget.cc`中 看到`Widget`成员函数的定义:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408231420869.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182654095.webp)
 
 析构函数, 没什么内容, 只`delete`了成员变量`ui`
 
@@ -170,7 +170,7 @@ Widget::Widget(QWidget* parent)
 >
 > 如果不运行, 就找不到`Ui::Widget`的相关定义
 
-![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408231441423.webp)
+![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182656283.webp)
 
 从本文件开头的注释可以得到一个信息:
 
@@ -190,11 +190,11 @@ Widget::Widget(QWidget* parent)
 
 修改了`.ui`文件, `ui_widget.h`会发生变动:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408231451104.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182658653.webp)
 
 再编译运行程序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408231454166.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182700526.webp)
 
 可以看出来, `Ui_Widget`类是实际生成窗口界面所需要的一个类, 此类的内容会根据`widget.ui`这个`UI`文件自动生成
 
@@ -212,15 +212,15 @@ Widget::Widget(QWidget* parent)
 
 使用`QT Creator`对项目 编译运行之后, 会在系统的项目目录的同级路径下额外生成一个目录:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261054013.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182702820.webp)
 
 这个新目录下, 就是`QT Creator`自动生成的编译前所需文件 和 编译后的结果文件:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261055401.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182704870.webp)
 
 在`debug`或`release`中(编译版本不同), 会生成项目对应的可执行程序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261056066.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182706682.webp)
 
 ## `Form`
 
@@ -228,7 +228,7 @@ Widget::Widget(QWidget* parent)
 
 这个文件本质上是一个`XML`语言的文件:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408231608474.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182708704.webp)
 
 不过, `QT Creator`限制了对此文件的直接编辑: `This file can only be edited in Design mode`
 
@@ -236,21 +236,21 @@ Widget::Widget(QWidget* parent)
 
 **双击`.ui`文件** 就能直接进入设计页面:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408260946513.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182710776.webp)
 
 进入设计页面之后, 中间部分 就是窗口的预览, 并且可以在这部分进行编辑
 
 左边部分, 就是设计窗口可能用到的一些控件, 右边则是用到的控件的对象名以及控件对象的一些属性设置:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408260950890.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182712491.webp)
 
 可以直接拖动左边的控件到窗口中, 就能够实现在窗口中添加控件:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408260952500.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182714580.webp)
 
 此时, 编译运行, 就能看到窗口中出现了`Hello QT5`的文本:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408260954433.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182716686.webp)
 
 ## `.pro`文件
 
@@ -258,7 +258,7 @@ Widget::Widget(QWidget* parent)
 
 打开这个文件, 可以看到一些很熟悉的内容:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261004522.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182718614.webp)
 
 从内容就可以分辨出来, `.pro`文件类似与`makefile`
 
@@ -268,7 +268,7 @@ Widget::Widget(QWidget* parent)
 
 `.pro`文件的作用与`makefile`差不多, 不过内容也要介绍一下:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261035995.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182720670.webp)
 
 ## 代码实现`Hello QT5`文本
 
@@ -294,11 +294,11 @@ Widget::Widget(QWidget* parent)
 
 可以在`widget.cc`中, 创建控件对象:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261107252.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182723198.webp)
 
 可以尝试创建一个`QLabel`对象, 在窗口中显示`Hello QT5`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261350318.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182724991.webp)
 
 可以看到, 控件是可以直接通过代码进行创建并展示的
 
@@ -357,7 +357,7 @@ QObject*;
 
 而在栈上实例化对象, 如果不在关注对象的生命周期, 用户是看不到控件的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261458164.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182727983.webp)
 
 原因就是, **在栈上实例化的控件对象, 当对象出了其所在作用域就直接被销毁了**, 被销毁的对象很明显是不可能被展示出来的
 
@@ -371,7 +371,7 @@ QObject*;
 
 我们可以在项目中创建一个新的继承于`QLabel`的类, 然后编写一下派生类的析构函数, 让其在析构的时候打印数据:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261626286.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182730110.webp)
 
 然后编写`mylabel.h` `mylabel.cc` 以及 `widget.cc`:
 
@@ -454,13 +454,13 @@ Widget::~Widget() {
 
 然后程序运行:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261721609.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182733791.webp)
 
 > 可以看到字体很厚, 像是加粗了, 因为创建了三个`MyLabel`都显示在了同一个位置, 重叠了
 
 然后将窗口关闭:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408261721083.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182735962.webp)
 
 从结果上来看, `hq1`和`hq2`指定了父节点, 即创建项目时自动生成的`Widget w`, 所以`hq1`和`hq2`挂在一个被管理的对象树上
 
@@ -474,13 +474,13 @@ Widget::~Widget() {
 
 在Windows平台下, 当你在`QT`中尝试用`std::cout`或`printf()`打印中文, 你会发现他打印的是乱码:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408270859215.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182738171.webp)
 
 原因是 **代码文件的编码格式 与 控制台的编码格式不同**
 
 一般来说, 使用`QT Creator`创建的文件默认应该是`UTF-8`编码格式的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408270911364.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182740150.webp)
 
 而控制台中一般会与平台的编码格式保持一致, 如果使用的是中文的`Windows`, 那么默认的编码格式应该会是`GBK`, 至少不会是`UTF-8`
 
@@ -494,7 +494,7 @@ Widget::~Widget() {
 2. `QT`实现了`QString`容器, 可以实现编码的转换
 3. `QT`实现了专用打印日志的工具`qDebug`, 会自动管理字符串的编码
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408270948177.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182742231.webp)
 
 `QString::toLocal8Bit()`可以将`QString`编码格式转换为本地编码格式, 不过还是不建议用`std::cout`, 因为有`qDebug`
 

@@ -30,11 +30,11 @@ tags:
 
 什么是构造函数？
 
-![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90.webp)
+![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175703683.webp)
 
 以一个简单的日期类为例: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220618190104510.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175705577.webp)
 
 `void SetDate`: 是给 对象 设置日期内容的成员函数。
 
@@ -54,18 +54,18 @@ tags:
 
     以 日期类 为例, `class Date` 的构造函数名, 就为 `Date()`
     
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619111724057.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175708431.webp)
     
 3. #### 对象实例化时, `由编译器自动调用`
 
     给构造函数添加内容: 
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/carbon%20(5).webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175710264.webp)
 
     
     创建对象, 并查看对象: 
 
-    ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619114415149.webp)
+    ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175712547.webp)
 
     `对象d1`已经按照构造函数初始化
 
@@ -73,7 +73,7 @@ tags:
 
     如果构造函数无内容(无显式构造函数), 那么: 
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619133748010.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175713995.webp)
 
     `对象d1` 将是随机值
 
@@ -85,7 +85,7 @@ tags:
 
     同样以日期类为例: 
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619140021015.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175715889.webp)
 
     对于重载的构造函数, 传参使用是这样使用的: 
 
@@ -99,7 +99,7 @@ tags:
     d2.Display();
     ```
 
-    ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619140341215.webp)
+    ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175718262.webp)
 
     既然可以传参使用, 那么就涉及另一个运用: `缺省参数`
 
@@ -125,9 +125,9 @@ tags:
 
     而无参构造函数 和 全缺省构造函数 是默认构造函数, 这两种写法是不能同时存在的
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619142238895.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175720513.webp)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619142846977.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175723526.webp)
 
 7. #### 构造函数的数据处理特性
 
@@ -135,15 +135,15 @@ tags:
 
     以下面的 日期类包含时间类 为例: 
     
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/carbon%20(10).webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175725427.webp)
     
     使用以上日期类定义对象, 并且输出日期类 对象内容: 
     
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619155322301.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175727885.webp)
     
     `内置类型成员数据没有处理, 自定义类型成员数据 调用其类的默认构造函数处理`。但是, 如果 自定义类型成员没有默认构造函数, 则会发生报错: 
     
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619160054107.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175729499.webp)
     
     
     
@@ -173,7 +173,7 @@ tags:
 
 以下面 顺序表类为例: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/carbon%20(13).webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175731914.webp)
 
 `~SeqList` 即为此类的析构函数。析构函数到底有什么作用呢？什么是资源清理？
 
@@ -188,7 +188,7 @@ int main()
 }
 ```
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220620164857856.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175734244.webp)
 
 从上图可以清晰的看到, 析构函数 `在程序还未结束, 但是对象的生命周期快要结束时, 对 对象的数据进行了清理, 并且没有销毁对象`
 
@@ -196,15 +196,13 @@ int main()
 
 ## 3.1 析构函数的特性
 
-
-
 1. #### 函数名为: ~类名
 
 2. #### 无参数且无返回值
 
     以顺序表类为例, 其析构函数需写为: 
     
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220619225219081.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175742557.webp)
     
 3. #### 一个类, 有且只有一个析构函数
 
@@ -216,7 +214,7 @@ int main()
 
     > 以下动图是创建对象、调用构造函数、调用析构函数、对象生命周期结束的过程
     >
-    > ![class |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/class_202206192330.gif)
+    > ![class |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175744878.gif)
     >
     > 当 `对象slt1` 声明周期即将结束时, 指令光标继续移动就会自动调用析构函数, 清理对象数据、资源
 
@@ -252,7 +250,7 @@ int main()
 
 一张动图就可以分析出来`（注意右方监视对象的变化）`: 
 
-![构造与析构过程 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/%E6%9E%84%E9%80%A0%E4%B8%8E%E6%9E%90%E6%9E%84%E8%BF%87%E7%A8%8B.gif)
+![构造与析构过程 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175747775.gif)
 
 可以看到, `main` 函数内部的局部对象`(slt2 和 d1)`: 
 
@@ -297,11 +295,11 @@ int main()
 
 以日期类为例, 展示一下功能
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/carbon%20(14).webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175750946.webp)
 
 调用拷贝构造, 使 `对象d1` 拷贝至 `对象d2`
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220620191812996.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175753294.webp)
 
 ## 4.1 拷贝构造的特性
 
@@ -326,14 +324,14 @@ int main()
     >
     > 使用了指针传参, 就不是拷贝构造函数了, 拷贝构造函数的功能是: `对象的内容拷贝到另一个对象；而不是指针指向的内容拷贝到另一个对象`
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220620211803081.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175755314.webp)
 
 3. #### 无显式定义拷贝构造函数时, 编译器自动生成拷贝构造函数
 
     默认拷贝构造函数, 按内存存储、按字节序实现拷贝。即, 依照内存存储中, 一字节一字节的直接拷贝。
     这种拷贝方式被称为: `浅拷贝`、`值拷贝`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220620212744198.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175757599.webp)
 
     `浅拷贝`是可以在在一定程度上完成一些拷贝构造的
 
@@ -345,21 +343,21 @@ int main()
 
     比如, 一个简单的 顺序表类
 
-    ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220620213637751.webp)
+    ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175759378.webp)
 
     用这样的 对象实例化时, 需要对成员进行`malloc`申请内存的, 使用`浅拷贝`会引发很严重的问题
     
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220620214255055.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175801837.webp)
     
     两个对象实例化完成, 程序并没有出现问题, 但是如果光标继续移动, `即将调用 析构函数`
     
-    ![指针浅拷贝 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/%E6%8C%87%E9%92%88%E6%B5%85%E6%8B%B7%E8%B4%9D.gif)
+    ![指针浅拷贝 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175803346.gif)
     
     当 `对象slt1` 调用析构函数时, 程序崩溃了. 为什么会崩溃呢？
     
     原因很简单: 当浅拷贝完成时, 仔细看会发现 两个对象中的 `_data指针成员` 指向了同一个地址, 同一块空间
     
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220620215359917.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175808693.webp)
     
     而 对象调用 `析构函数` 时, 是需要 `free` 掉 `malloc`出来的空间的, 而两个指针指向同一块空间, 就意味着要对同一块空间`free` 两次.
     这显然是无法实现的, 所以程序崩溃了

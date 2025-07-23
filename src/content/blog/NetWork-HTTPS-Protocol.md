@@ -35,11 +35,11 @@ tags:
 
 按照`TPC/IP`四层协议模型来看:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308091558537.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181515244.webp)
 
 `HTTP`和`HTTPS`不同的是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308091606992.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181517080.webp)
 
 使用`HTTPS`协议传输数据, 数据会经过加密之后再进行传输, 这一层加密层就是`SSL/TLS`两个加密协议
 
@@ -49,7 +49,7 @@ tags:
 
 即, 使用`HTTPS`传输数据, 在应用层和传输层之间时:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308091630425.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181518967.webp)
 
 ## 什么是加密
 
@@ -99,7 +99,7 @@ tags:
 
 那运营商可能就会劫持此响应, 然后把响应数据设置为另外一个软件的下载链接, 然后用户下载的就是其他软件
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308091726698.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181521343.webp)
 
 像这样 信息在传输过程中被劫持, 传输的内容完全暴露, 劫持者还可以篡改传输的信息且不被双方察觉
 
@@ -220,7 +220,7 @@ tags:
 
 因为, 即使有中间人获取到了加密数据, 但不知道密钥是什么, 也是无法获取数据具体的内容的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308092043655.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181525239.webp)
 
 所以看起来, 对称加密是可行的
 
@@ -234,11 +234,11 @@ tags:
 
 比较理想的做法是, **在此次 客户端与服务器建立连接的时候, 双方协定此次通信的密钥**:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308092052499.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181526816.webp)
 
 但是如果这样做, 把中间人放哪里了?
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308092058098.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181528625.webp)
 
 所以, 在协商密钥的时候**密钥也是需要加密传输的**
 
@@ -262,7 +262,7 @@ tags:
 
 **公钥加密需要使用私钥解密**, 所以好像即使中间人获取了公钥, 也没法对客户端加密的数据进行解密:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308092117147.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181530568.webp)
 
 如果中间人只知道公钥, 就没有安全问题吗? 
 
@@ -272,7 +272,7 @@ tags:
 
 也就是说, 如果只用单一的非对称加密, 公钥加密发送的数据无法被中间人解密, 而使用私钥加密发送的数据 是可以被中间人解密获取的
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308100943940.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181532489.webp)
 
 这样数据就又泄露了
 
@@ -290,7 +290,7 @@ tags:
 
 这样, **都是用公钥对向外发送的数据加密**, 中间人即使获取了两个公钥, 也无法获取到数据内容:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308101009632.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181534665.webp)
 
 但是, 这样做还有问题:
 
@@ -316,7 +316,7 @@ tags:
 
 也就是说, **只在协商阶段使用非对称加密, 之后的通信都使用对称加密**, 这样效率就会快很多:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308101049612.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181536841.webp)
 
 这样效率的问题解决了, 好像也不存在安全问题了吧
 
@@ -354,7 +354,7 @@ tags:
 
 整个过程就像这样(假设协商用第四种方式加密):
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308101123753.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181539296.webp)
 
 中间人在第`3`步的时候, 获取到服务器的公钥, 并替换成自己的公钥
 
@@ -414,7 +414,7 @@ CA证书是 由服务器申请、由CA(证书颁发机构)颁发的.
 
 3. CA将证书颁发给服务器
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401070135507.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181541960.webp)
 
 #### 服务器与客户端的证书验证流程
 
@@ -428,7 +428,7 @@ CA证书是 由服务器申请、由CA(证书颁发机构)颁发的.
 
 你可以在浏览器的证书管理中, 查看到相应的内容
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401070146066.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181543835.webp)
 
 那么, 客户端验证的流程就为:
 
@@ -439,7 +439,7 @@ CA证书是 由服务器申请、由CA(证书颁发机构)颁发的.
 5. 对比 数字签名解密后得出的数据指纹 与 直接对证书内容计算得出的数据指纹
 6. 如果一致, 则表示服务器的CA证书没被篡改, 其中记录的服务器公钥正确; 反之则不正确
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401070208522.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181545656.webp)
 
 > 不只客户端需要对CA证书进行验证, 在服务器首次收到颁发的CA证书时, 也是需要对CA证书进行验证的, 防止CA证书已经被篡改
 >
@@ -475,7 +475,7 @@ CA证书是 由服务器申请、由CA(证书颁发机构)颁发的.
 
 此时, 中间人无法获取对称密钥:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401070341739.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181548145.webp)
 
 此时, 也就保证了通信的安全
 

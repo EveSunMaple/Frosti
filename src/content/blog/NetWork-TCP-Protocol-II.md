@@ -15,7 +15,7 @@ tags:
 
 上一篇文章中, 已经介绍了`TCP`协议的数据格式, 简单分析了其与`UDP`协议 关于可靠性方面的差异
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240116205033001.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181832771.webp)
 
 本篇文章, 介绍分析一下 使用`TCP`协议通信, 非常重要的一个过程: **三次握手**
 
@@ -27,7 +27,7 @@ tags:
 
 `TCP`"三次握手"建立连接的过程, 用图片展示是这样的:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401271718575.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181834676.webp)
 
 > 注意, 通信中发送的 `SYN` `SYN+ACK` `ACK`, 并不是发送报文中携带的数据, 而是指发送的报文报头中设置的标记位
 
@@ -125,7 +125,7 @@ tags:
 
 "三次握手"的过程已经简单的分析了一下
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401252027280.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181838085.webp)
 
 从图中可以看到, `Client`率先进入了`ESTABLISHED`状态, 也就是说 **`Client`率先完成了维护`TCP`连接操作**
 
@@ -143,7 +143,7 @@ tags:
 
 "三次握手"过程可以这样展示:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401252033292.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181840264.webp)
 
 > `SYN` `ACK` 大写的, 表示设置的标记位
 >

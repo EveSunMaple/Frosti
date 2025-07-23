@@ -49,7 +49,7 @@ tags:
 
 比如, 直接用一个类传输:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307191717725.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181134277.webp)
 
 可不可以把`msg1`原封不动的从平台1传输到平台2?
 
@@ -79,7 +79,7 @@ C/C++原生数据类型, 在内存中的读写就直接是以二进制的形式�
 
 即, 平台1和平台2约定好 发送的数据分三个区域, 以`'\1'`分割
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307191728627.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181136976.webp)
 
 在这个过程中:
 
@@ -114,7 +114,7 @@ C/C++原生数据类型, 在内存中的读写就直接是以二进制的形式�
 
 即:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307191913326.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181139409.webp)
 
 这样的, 在序列化之后的实际有效内容之前添加有效内容相关属性字段的行为, 叫`encode编码`
 
@@ -150,7 +150,7 @@ C/C++原生数据类型, 在内存中的读写就直接是以二进制的形式�
 
 并且, 由于是应用层传输, 所以两个类中还需要各自实现 序列化和反序列化的接口.
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307200918597.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181142030.webp)
 
 > 此处的序列化与反序列化:
 >
@@ -255,7 +255,7 @@ void netCal(int sock, const std::string& clientIp, uint16_t clientPort) {
 
 如果不完整就进入下次循环继续读取, 如果完整则在进行相应的操作, 对应的代码为:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307201008280.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181145435.webp)
 
 判断以及`decode解码`的操作, 我们都需要在`decode()`函数中实现.
 
@@ -273,7 +273,7 @@ void netCal(int sock, const std::string& clientIp, uint16_t clientPort) {
 
 然后再执行`write()`从而响应请求, 对应的代码为:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307201025755.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181147441.webp)
 
 至此, 接收请求、计算、响应请求 的主逻辑函数就已经实现了. 但是还需要实现一些功能函数:
 
@@ -599,7 +599,7 @@ int main(int argc, char* argv[]) {
 
 其中进入循环后的这一部分, 就是实现 **创建请求、发送请求、接收响应** 的实现:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307231121884.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181153676.webp)
 
 调用`makeRequest()`创建并初始化请求, 然后进行`req.serialize()`序列化, 再`encode()`编码
 
@@ -662,11 +662,11 @@ bool makeRequest(const std::string& message, request* req) {
 
 如何格式化呢? 将表达式字符串的空格消除掉. 如果字符串中存在非数字、非指定操作符且非空格的字符, 直接返回`false`表示非整数运算, 创建请求失败:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307231119383.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181156969.webp)
 
 然后将`tmpMsg`内容存储到一个字符数组中, 并使用`strtok()`将字符串分割, 获取到表达式内容:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307231125052.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181158619.webp)
 
 > `strtok()`可以根据指定一些的分割符, 将指定字符串内容分割并返回.
 >
@@ -676,7 +676,7 @@ bool makeRequest(const std::string& message, request* req) {
 
 获得表达式各内容的字符串之后, 就可以将内容存储到请求对象中了:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307231129446.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181200500.webp)
 
 #### `request::serialize()`
 
@@ -1757,7 +1757,7 @@ clean:
 
 #### 演示
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211611123.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181220059.gif)
 
 ### `jsoncpp库` 序列化与反序列化
 
@@ -1773,11 +1773,11 @@ clean:
 sudo yum install jsoncpp-devel
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307231531795.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181222732.webp)
 
 `yum`安装的第三方库, 都是直接安装在相应的系统路径下了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307231534298.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181224712.webp)
 
 我们对`protocol.hpp`做一些修改:
 
@@ -1967,7 +1967,7 @@ private:
 
 编译代码 生成可执行文件, 然后运行:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211611195.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181229501.gif)
 
 这一次, 是通过`jsoncpp`来实现了数据的序列化和反序列化.
 

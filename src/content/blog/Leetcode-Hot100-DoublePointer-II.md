@@ -13,7 +13,7 @@ tags:
 
 # 11. 盛最多水的容器
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729100307464.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160218138.webp)
 
 ## 题意分析
 
@@ -31,7 +31,7 @@ tags:
 
 思路很简单, 实现方式也很简单, 但很大概率超时:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729101554821.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160220524.webp)
 
 暴力解法不行, 那就要尝试新的解法
 
@@ -54,7 +54,7 @@ tags:
 
 那么, 随便找一组数据思考一下:
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729110244359.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160222410.webp)
 
 考虑一下, 此时应该如何移动指针? 为什么?
 

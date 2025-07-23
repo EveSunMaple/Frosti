@@ -3,7 +3,7 @@ draft: true
 title: "[QT5] 通过使用按钮, 初见信号与槽, 简单了解坐标位置"
 pubDate: "2024-8-27"
 description: "简单使用QPushButton, 以及 首次使用信号与槽, 介绍一下坐标"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408280928426.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182616835.webp
 categories:
     - Blogs
 tags: 
@@ -24,17 +24,17 @@ tags:
 
 找到`Button->Push Button`, 将其拖入到预览窗口中:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408271418657.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182501075.webp)
 
 可以随意拖动这个`Push Button`及其边界, 调整他的位置和大小
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408271421677.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182503491.webp)
 
 当你点击这个控件时, 可以在右下方的属性列表中看到, 第一个属性`objectName`为`pushButton`
 
 并且, 无论你是复制一个相同的按钮, 还是在拖入一个`Push Button`, 这个新的`Push Button`都会自动生成一个唯一的`objectName`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408271422670.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182505331.webp)
 
 > `QT`程序中, 每一个控件对象的`objectName`最好都设置成唯一的, 可以最大程度的避免混淆
 >
@@ -42,7 +42,7 @@ tags:
 
 然后运行程序, 按钮可以点击但是并不会有任何行为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408271425953.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182507559.webp)
 
 要想让按钮的点击事件会触发一定的行为, 那么就要涉及到`QT`的信号与槽的机制了
 
@@ -117,7 +117,7 @@ void Widget::changeText() {
 
 然后, 再次运行程序并点击按钮, 可以看到一些变化:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408271501199.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182510773.gif)
 
 点击第一个按钮, 会出现预想的现象
 
@@ -239,7 +239,7 @@ void Widget::changeText() {
 
 此时, 运行程序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408271655332.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182514234.gif)
 
 不过, 因为没有设置按钮的位置, 所以按钮还是在窗口的最左上角
 
@@ -292,7 +292,7 @@ void Widget::changeText() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408280920747.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182516970.webp)
 
 `move()`操作的单位是物理像素点(`px`), 与你的显示器常见的像素点单位同步(比如, `1920x1080`, `2560x1440`)
 

@@ -23,7 +23,7 @@ featured: true
 
 一个简单的进程在运行着, 我们给此进程发送信号让子进程终止运行
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201558511.gif)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175526465.gif)
 
 这就是信号的作用, 可以影响进程的运行
 
@@ -94,11 +94,11 @@ Linux的进程信号是 给进程发送 给进程用的, 且信号一定具有�
 
 Linux中, 在`bash(shell环境)`下, 可以使用`kill -l`, 查看进程信号列表:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201600060.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175529663.webp)
 
 > 如果是`zsh(shell环境)`, 可能只会输出一小部分:
 >
-> ![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201601633.webp)
+> ![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175531264.webp)
 
 `kill -l`显示出的Linux进程信号的列表
 
@@ -114,11 +114,11 @@ Linux中, 在`bash(shell环境)`下, 可以使用`kill -l`, 查看进程信号�
 
 其实这些信号都是 **宏**, 这些宏定义在**`signum.h`**相关头文件中, 一般都在`/usr/include/bits/.`路径下:
 
-![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230404093506092.webp)
+![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175533555.webp)
 
 除了直接查看头文件里定义的内容, 还可以通过`man 7 signal`来查看man手册中记录的有关信号的内容: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201604723.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175535787.webp)
 
 `man`手册中, 不仅记录了信号的宏定义, 还记录了 **信号的类型 和 含义, 即 默认处理方法**
 
@@ -160,7 +160,7 @@ Linux中, 在`bash(shell环境)`下, 可以使用`kill -l`, 查看进程信号�
 
 `signal()`是一个系统调用接口, 用于捕捉进程信号, 并由用户处理:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201606455.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175538998.webp)
 
 此函数的声明为: `sighandler_t signal(int signum, sighandler_t handler);`
 
@@ -217,13 +217,13 @@ int main() {
 
 `Ctrl+C`快捷键会给当前会话的所有前台进程发送`2信号(SIGINT)`, 此信号的默认处理方式是: **从键盘中断进程**
 
-![no_signal_SIGINT |big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201608101.gif)
+![no_signal_SIGINT |big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175541738.gif)
 
 而上面的代码中, 我们通过使用 `signal()` 将2信号的处理方式设置为一个自定义的回调函数
 
 再使用 `Ctrl+C` 会发生什么呢？
 
-![signal_SIGINT |big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201611290.gif)
+![signal_SIGINT |big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175543612.gif)
 
 可以看到, 尽管使用`Ctrl+C`快捷键 却不能中断进程了, 而是不断回调我们传入的函数 以自定义处理信号
 
@@ -265,7 +265,7 @@ int main() {
 > }
 > ```
 >
-> ![signal_SIGKILL |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201614552.gif)
+> ![signal_SIGKILL |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175546058.gif)
 
 这是处理进程信号的一种方式, 即 用户自定义处理方法来处理信号
 
@@ -289,7 +289,7 @@ int main() {
 
 `kill`除了是一个命令之外, 还存在一个同名系统调用`kill()`:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201620900.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175548091.webp)
 
 `kill()`系统调用的用法其实 与 `kill`命令相同
 
@@ -344,7 +344,7 @@ int main(int argc, char* argv[]) {
 
 执行这段代码的结果是: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201628331.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175550391.gif)
 
 如果不按照要求执行`./mykill`时, 会提示使用方式: `./mykill sig pid`
 
@@ -352,7 +352,7 @@ int main(int argc, char* argv[]) {
 
 `raise()`也是一个系统调用接口: 
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201630846.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175552601.webp)
 
 如果说`kill()`的功能是给指定的进程发送信号, 那么`raise()`就是 **给调用者发送信号**, 即 **给自己发送信号**
 
@@ -388,7 +388,7 @@ int main(int argc, char* argv[]) {
 
 最终的执行结果为: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201639658.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175554812.gif)
 
 从结果可以看出, `raise()`的功能是 **向自己发送信号**
 
@@ -396,7 +396,7 @@ int main(int argc, char* argv[]) {
 
 `abort()` 是一个使用和作用更加简单的系统调用: 
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201642937.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175557344.webp)
 
 此系统调用的作用就是,  **使调用它的进程异常终止**
 
@@ -418,7 +418,7 @@ int main(int argc, char* argv[]) {
 
 `abort()`会向自己发送 **`SIGABRT`** 信号, **`SIGABRT`** 信号的编号是什么呢？
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201712083.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175559305.webp)
 
 那么, 我们可以在代码中使用 `abort()` 函数: 
 
@@ -451,7 +451,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201715958.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175601597.gif)
 
 正常情况下, `abort()`使进程异常退出
 
@@ -487,7 +487,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411201719361.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175603892.gif)
 
 可以看到, 进程最终还是调用`abort()`终止了
 
@@ -505,7 +505,7 @@ int main(int argc, char* argv[]) {
 
 **SIGALRM** 信号的编号是14: 
 
-![ |huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230404184826180.webp)
+![ |huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175607891.webp)
 
 ```cpp
 #include <iostream>
@@ -527,7 +527,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-![alarm  |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/alarm_2023-4-4.gif)
+![alarm  |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175610419.gif)
 
 这段代码的作用, 其实是计算了 1s 内操作系统的I/O次数.
 
@@ -560,7 +560,7 @@ int main(int argc, char* argv[]) {
 > }
 > ```
 >
-> ![cnt_alarm |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/cnt_alarm_2023-4-4.gif)
+> ![cnt_alarm |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175612837.gif)
 >
 > 可以看到, 最终的执行结果就是 亿级的, 而不是万级
 >
@@ -600,19 +600,19 @@ int main() {
 
 除0, 执行结果:
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405164205433.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175615617.webp)
 
 报出 `浮点异常` 的错误
 
 解引用空指针, 执行结果: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405164430588.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175617228.webp)
 
 报出 `段错误`
 
 越界访问, 执行结果: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405164750973.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175619119.webp)
 
 也是报出 `段错误`
 
@@ -662,21 +662,21 @@ int main() {
 
 1. 越界访问:
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405165616328.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175622291.webp)
 
 2. 解引用空指针:
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405165654908.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175623963.webp)
 
 3. 除0: 
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405165733969.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175625827.webp)
 
 可以看到, 当我们将1~31信号自定义处理时, 从代码的执行结果就可以看出来, 其实 进程代码发生异常错误导致进程崩溃退出,  **`本质上是 异常错误产生了相应的信号 并发送给了进程, 进而才导致了进程的退出`**
 
 我们看到, `越界访问和解引用空指针` 会产生信号11, 而 `除0` 会产生信号8. 这两个信号在Linux系统中, 可以看到: 
 
-![ |huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405170438971.webp)
+![ |huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175627419.webp)
 
 这两个信号的默认处理方案都是 使进程终止.
 
@@ -758,7 +758,7 @@ int main() {
 }
 ```
 
-![code_err_noexit  |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/code_err_noexit_2023-4-5.gif)
+![code_err_noexit  |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175631015.gif)
 
 这段代码的执行结果是, 无限的输出 捕捉到了8信号.
 
@@ -776,7 +776,7 @@ core dump 是什么？
 
 status指针指向的是一个整型, 而这个整型只需要关注 `低16位`就可以了, `此低16位中的高8位 用来表示退出码, 低8位 用来表示退出信号`
 
-![ |big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230308163321498.webp)
+![ |big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175633437.webp)
 
 并且, 还提到表示退出信号的8位,  **`暂时只需要关注低7位, 其中最高位是一个单独的 core_dump 标志, 暂时忽略`**
 
@@ -792,7 +792,7 @@ core dump *`可以是一个动作 叫做 内存快照`*.
 
 而 进程只有在接收到特定的信号时, 才可能会执行 core dump 操作:
 
-![ |huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405180115554.webp)
+![ |huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175635306.webp)
 
 我们可以通过在命令行使用 `man 7 signal` 命令, 来查看man手册中记载的有关进程信号的部分详细信息. 其中记录着各信号以及其编号.
 
@@ -830,7 +830,7 @@ int main() {
 
 但实际上, 我们执行上面的代码的结果是: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405181416211.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175638183.webp)
 
 我们在子进程中执行了除0操作, 并且父进程等待子进程接收退出信息. 但是最终 core dump标志位的值并不是1.
 
@@ -838,7 +838,7 @@ int main() {
 
 其实这与系统的设置有关, 我们在命令行使用 `ulimit -a` 可以查看系统的一部分相关设置: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405181640938.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175639473.webp)
 
 其中, 有一个 core file size 的设置, 如果你使用的是云服务器的话, 这个设置应该不是0 就是 unlimited.
 
@@ -846,9 +846,9 @@ int main() {
 
 当, 我们使用 `ulimit -c 20` 将 core file size 设置为 20 之后, 再执行上面的代码程序: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405182006009.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175641348.webp)
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405182254736.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175643391.webp)
 
 其实, `core file size` 设置就是 设置系统可生成的 core文件的数量, 服务器默认会设置为0
 
@@ -864,7 +864,7 @@ core 文件的命名, 其实就是  **`core.进程pid`**
 
 我们查看core文件的内容: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405182851145.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175645096.webp)
 
 可以看到, 都是乱码.
 
@@ -876,21 +876,21 @@ core 文件的命名, 其实就是  **`core.进程pid`**
 
 	`g++ -g mykill.cc -o mykillg`
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405183419680.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175647315.webp)
 
 2. 然后再执行 `./mykillg`, 会生成一个新的 core文件
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405183503574.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175648913.webp)
 
 3. 然后我们使用 gdb 调试进程: 
 
 	`gdb mykillg`
 	
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405183554388.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175650794.webp)
 
 4. 在 gdb 调试界面, 直接输入 `core-file core.2127`
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405183649016.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175652649.webp)
 	
 	可以发现, 我们通过gdb调试进程时使用core文件, 可以  **`直接定位出 进程上次运行的错误位置、信息`**
 
@@ -904,7 +904,7 @@ core 文件的命名, 其实就是  **`core.进程pid`**
 
 在我的服务器中, 我们一段这么简单的代码 生成的core文件有多大？
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405184205019.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175654270.webp)
 
 一个 core文件就是16KB.
 
@@ -940,7 +940,7 @@ core 文件的命名, 其实就是  **`core.进程pid`**
 
 而实际上, 进程PCB中描述的有关进程信号的位图, 其实有三个: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230405225334274.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175656739.webp)
 
 task_strcut 结构体中描述则两个位图和一个指针数组.
 
@@ -976,7 +976,7 @@ block 是阻塞位图, 用来表示对应位置的信号是否阻塞. 当`指定
 
 不过, 在Linux操作系统中, pending 和 block 并不是以整型来表示位图的. 而是以一个结构体的形式: `sigset_t`
 
-![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406090112245.webp)
+![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175659215.webp)
 
 `sigset_t` 是一个 typedef 出来的类型, 实际上是一个结构体`__sigset_t`, 不过这个结构体内部只有一个 `unsigned long int`类型的数组
 
@@ -990,7 +990,7 @@ block 是阻塞位图, 用来表示对应位置的信号是否阻塞. 当`指定
 
 > 为什么 sigset_t 结构体中的数组大小不固定？
 >
-> ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406090824167.webp)
+> ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175701620.webp)
 >
 > 这是 此结构体的实际内容.
 >
@@ -1013,7 +1013,7 @@ int sigismember(const sigset_t *set, int signo);
 
 1. `int sigpending()`:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406094527802.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175703913.webp)
 
     使用此接口, 可以获取进程的未决信号集内容, 传入的 sigset_t 指针是一个输出性参数, 获取的未决信号集内容会存储在传入的变量中
 
@@ -1023,7 +1023,7 @@ int sigismember(const sigset_t *set, int signo);
 
 2. `int sigemptyset()`:
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406094934981.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175705578.webp)
 	
 	调用此函数, 会将传入的信号集初始化为空, 即所有信号、阻塞会被消除, 信号集的所有位设置为0
 	
@@ -1031,7 +1031,7 @@ int sigismember(const sigset_t *set, int signo);
 
 3. `int sigfillset()`:
 
-	![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406095213355.webp)
+	![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175707381.webp)
 	
 	调用此函数, 会将传入的信号集所有位设置为1.
 	
@@ -1039,7 +1039,7 @@ int sigismember(const sigset_t *set, int signo);
 
 4. `int sigaddset()` 和 `int sigdelset()`:
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406095638337.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175708900.webp)
 	
 	`sigaddset()` 的作用是, 给指定信号集中添加指定信号, 即 将指定信号集中的指定位置设置为1
 	
@@ -1049,7 +1049,7 @@ int sigismember(const sigset_t *set, int signo);
 
 5. `int sigismember()`:
 
-	![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406100142578.webp)
+	![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175710510.webp)
 	
 	调用此函数, 可以判断 信号集中是否有某信号. 即 判断信号集的某位是否为1
 	
@@ -1061,7 +1061,7 @@ int sigismember(const sigset_t *set, int signo);
 
 而 `sigprocmask()` 的使用稍微复杂一些: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406142706779.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175712487.webp)
 
 `int sigprocmask(int how, const sigset_t *set, sigset_t *oldset)`, 从参数来看就比上面的接口要复杂的多.
 
@@ -1097,19 +1097,19 @@ int sigismember(const sigset_t *set, int signo);
 
 1. 如果需要为指定位置添加阻塞: 
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406153613173.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175714782.webp)
 	
 	其实就是 将传入的 set 与进程原来的信号屏蔽字 做  **`按位或操作`**, 最终结果 作为进程最新的信号屏蔽字
 
 2. 如果需要为指定信号解除阻塞: 
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406153832047.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175716771.webp)
 	
 	其实就是 将传入的 `set先按位取反`, 再与进程原来的信号屏蔽字 做 `按位与操作`. 最终结果 作为进程的新的信号屏蔽字
 
 3. 如果需要直接设置信号屏蔽字: 
 
-	![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406154100984.webp)
+	![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175718971.webp)
 	
 	其实就是, 直接将传入的 `set 覆盖进程原来的信号屏蔽字`, 即  **`将传入的set 作为进程新的信号屏蔽字`**
 
@@ -1189,7 +1189,7 @@ int main() {
 
 这段代码的演示结果为: 
 
-![blockshow_noUNBLOCK](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/blockshow_noUNBLOCK.gif)
+![blockshow_noUNBLOCK](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175723422.gif)
 
 可以看到, 屏幕左侧一直打印进程当前的未决信号集, 而屏幕右侧则不停向进程发送不同的信号
 
@@ -1201,11 +1201,11 @@ int main() {
 
 我们将循环打印未决信号集的部分代码改为: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406164123322.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175725576.webp)
 
 然后 代码的演示结果为: 
 
-![blockshow_UNBLOCK](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/blockshow_UNBLOCK_2023-4-6.gif)
+![blockshow_UNBLOCK](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175727804.gif)
 
 可以看到, 在解除指定信号阻塞之后, 进程处理了对应的未决信号, 即  **`解除信号阻塞之后, 对应信号递达了`**
 
@@ -1227,7 +1227,7 @@ int main() {
 
 我们知道, 操作系统中 每个进程都有一个进程地址空间, 以32位环境举例大概长这样: 
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406165440060.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175730986.webp)
 
 并且, 进程地址空间 与 物理内存之间是由 页表相互映射的.
 
@@ -1237,7 +1237,7 @@ int main() {
 
 并且,  ****`与用户级的页表不同, 进程地址空间的内核空间 与 物理内存之间的映射页表, 整个操作系统只有一张`****, 也就是说操作系统中  **`所有进程共用一张 内核级页表`**. 即: 
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230406172142849.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175733559.webp)
 
 整个操作系统只有一张内核级页表, 也就意味着 每个进程的 内核空间的内容是相同的, 同样意味着  **`物理内存中 只加载着一份有关进程内核空间内容的数据和代码`**
 
@@ -1253,7 +1253,7 @@ int main() {
 
 如果用图片表示, 可能就是这样的: 
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230407152228275.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175735758.webp)
 
 这样有利于 **`保护 内核级数据和代码`**. 也就是  **`进程在发生从内核态转换为用户态的过程时, 会检测进程的信号并处理`**
 
@@ -1294,7 +1294,7 @@ int main() {
 
 我们以简单的一个进程执行了open系统接口举个例子, 那么大概的流程就是: 
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230407172443777.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175738718.webp)
 
 文字分析:
 
@@ -1343,7 +1343,7 @@ int main() {
 
 所以, 用图片展示大致的流程就是: 
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230407182139316.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175741997.webp)
 
 这个流程有些复杂, 可以认真捋一下: 
 
@@ -1363,7 +1363,7 @@ int main() {
 
 针对 从调用内核代码到返回用户的整个过程, 可以由一个简化图来解释: 
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230407185827730.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175745889.webp)
 
 上面的这个简略图, 可以看作是一个  **`无穷∞画法`**
 
@@ -1387,7 +1387,7 @@ int main() {
 
 `sigaction():`
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408085255453.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175748769.webp)
 
 从man手册中对sigaction()的描述以及参数可以看出, 此函数的使用比 `signal()` 要复杂的多: 
 
@@ -1397,7 +1397,7 @@ int main() {
 
 	这个结构体的内容是什么？
 	
-	![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408085547938.webp)
+	![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175750664.webp)
 	
 	在man手册中, 可以看到 `struct sigaction` 的内容一共有5个: 
 	
@@ -1470,7 +1470,7 @@ int main() {
 
 这段代码的执行结果, 与 使用`signal()`捕捉信号相同, 但是使用要麻烦一些: 
 
-![while_sigaction |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/while_sigaction(2)_2023-4-8.gif)
+![while_sigaction |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175753781.gif)
 
 可以看到, 当进程受到 2信号时, 会执行我们自定义的处理方法. 表示我们使用 `sigaction()` 捕捉2信号成功
 
@@ -1534,7 +1534,7 @@ int main() {
 
 执行结果如下:
 
-![while_sigaction(2)_mask3](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/while_sigaction(2)_mask3_2023-4-8.gif)
+![while_sigaction(2)_mask3](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175756808.gif)
 
 即, `struct sigaction`结构体的`sa_mask` 成员的意义是,  **`添加进程在处理捕捉到的信号时对其他信号的阻塞`**. 如果需要添加对其他信号的阻塞, 那么就可以继续在 `sa_mask` 中添加其他信号.
 
@@ -1554,7 +1554,7 @@ int main() {
 
 不过, 我们还可以通过一种方式使 调用`signal()`或`sigaction()`捕捉信号时, 只传入相同的函数指针就可以实现 对不同信号不同处理: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408102546919.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175759062.webp)
 
 当我们定义完指定信号的处理函数之后, 我们可以再定义一个 `handlerAll(int signo)` 函数, 并使用 switch 语句, 将不同的 signo 分别处理.
 
@@ -1570,7 +1570,7 @@ int main() {
 
 一个进程中, 存在一个 **`全局的单链表`** 结构. 并且此时需要执行一个节点的头插操作: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408104659228.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175801466.webp)
 
 那么此时, 头插的操作就是: 
 
@@ -1585,11 +1585,11 @@ head = node1;
 
 并且, 自定义处理函数中 也存在一个新节点头插操作:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408110708978.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175803337.webp)
 
 那么此时, 就会执行 `node2` 的头插操作, 执行完毕的结果就是: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408110742582.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175805407.webp)
 
 即, `node2 成为了链表的第一个节点 head`
 
@@ -1597,7 +1597,7 @@ head = node1;
 
 所以下面应该执行 `head = node1;`, 结果就成了这样:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408111301819.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175807673.webp)
 
 结果就是, `node2` 无法被找到了.
 
@@ -1652,7 +1652,7 @@ int main() {
 
 此代码, 通过处理2信号, 将全局变量 flags 从0改为1, 使进程正常退出. `正常编译` 运行的结果是:
 
-![novolatile |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/novolatile_2023-4-8.gif)
+![novolatile |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175811975.gif)
 
 此代码的main函数中, 不会对 flags 做出修改. 
 
@@ -1672,7 +1672,7 @@ int main() {
 
 还是相同的代码, 我们可以在`gcc` 编译时, 使用 `-O2` 选项 让编译器做出这样的优化: 
 
-![novolatile_O2 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/novolatile_O2_2023-4-8.gif)
+![novolatile_O2 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175814592.gif)
 
 优化之后, 在运行可执行程序. 可以看到 我们发送 2信号 即使将flags改为了1, 也已经不能让进程正常退出了.
 
@@ -1684,7 +1684,7 @@ int main() {
 volatile int flags = 0; 		// 全局变量
 ```
 
-![volatile_O2  |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/volatile_O2_2023-4-8.gif)
+![volatile_O2  |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175819101.gif)
 
 这就是 `volatile` 关键词的作用, 即  **`保持内存的可见性`**. 告知编译器, 被该关键字修饰的变量, 不允许被优化, 对该变量的任何操作, 都`必须在真实的内存中进行操作` 
 
@@ -1739,13 +1739,13 @@ int main() {
 
 这段代码的执行结果是:
 
-![SIGCHLD](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SIGCHLD_2023-4-8.gif)
+![SIGCHLD](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175822821.gif)
 
 可以看到, 子进程退出时 父进程确实收到了一个信号, 这个信号是 17.
 
 17 是 **SIGCHLD** 吗？可以在man手册中查看: 
 
-![ |huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230408122431671.webp)
+![ |huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175824881.webp)
 
 可以看到, **SIGCHLD** 的值确实是17. 而 默认的处理是 `ignore` 忽略
 
@@ -1753,11 +1753,11 @@ int main() {
 
 man手册中写了, 子进程暂停或终止时会发送 **SIGCHLD** 信号, 我们来测试一下: 
 
-> ![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230404091257203.webp)
+> ![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175827352.webp)
 >
 > 暂停信号是 19, 继续信号是 18
 
-![STOP_SIGCHLD](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/STOP_SIGCHLD_2023-4-8.gif)
+![STOP_SIGCHLD](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175829458.gif)
 
 可以看到, 其实子进程不仅退出时会向父进程发送 **SIGCHLD== 信号, 暂停时 和 恢复时 都会向父进程发送 ==SIGCHLD** 信号
 
@@ -1817,7 +1817,7 @@ int main() {
 
 运行结果是: 
 
-![signal_SIGCHLD](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/signal_SIGCHLD_2023-4-8.gif)
+![signal_SIGCHLD](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175833171.gif)
 
 可以看到, 即使waitpid()设置为阻塞等待, 也还是可以随时回收一个子进程.
 
@@ -1871,7 +1871,7 @@ int main() {
 }    
 ```
 
-![signal_SIGCHLD_BUG1](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/signal_SIGCHLD_BUG1_2023-4-8.gif)
+![signal_SIGCHLD_BUG1](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175836122.gif)
 
 在代码运行起来之后, 监控脚本可以非常清除的看到 `子进程从创建到退出的整个过程`.
 
@@ -1902,7 +1902,7 @@ void freeChild(int signo) {
 
 将信号处理方法内, 回收子进程的部分设置为 `死循环回收`, 没有子进程需要回收的时候跳出循环, 应该就可以把所有子进程都回收掉: 
 
-![signal_SIGCHLD_BUG3](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/signal_SIGCHLD_BUG3_2023-4-8.gif)
+![signal_SIGCHLD_BUG3](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175839180.gif)
 
 这样确实可以将所有的子进程都回收掉, 但是又出现了新的问题: 
 
@@ -1966,7 +1966,7 @@ int main() {
 
 我们将子进程设置为不同时间退出, 观察两个时间差内 进程的运行: 
 
-![signal_SIGCHLD_BUG4](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/signal_SIGCHLD_BUG4_2023-4-8.gif)
+![signal_SIGCHLD_BUG4](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175843423.gif)
 
 可以看到, 5s后退出的子进程被回收之后, 30s后退出的进程退出之前, 父进程的代码一直没有运行.
 
@@ -2045,7 +2045,7 @@ int main() {
 
 此时, 代码运行的结果就是: 
 
-![signal_SIGCHLD_NOBUG](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/signal_SIGCHLD_NOBUG_2023-4-8.gif)
+![signal_SIGCHLD_NOBUG](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175847436.gif)
 
 这才是父进程回收子进程的最终版本~
 
@@ -2099,7 +2099,7 @@ int main() {
 
 这段代码的执行结果是: 
 
-![SIGCHLD_SETIGN](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SIGCHLD_SETIGN.gif)
+![SIGCHLD_SETIGN](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175851779.gif)
 
 可以看到, 我们没有自定义处理子进程, 知识通过`signal()`手动对 SIGCHLD 信号设置了 SIG_IGN 忽略处理, 但是最终子进程却自动被回收了.
 

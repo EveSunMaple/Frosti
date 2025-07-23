@@ -3,7 +3,7 @@ draft: true
 title: "[C++] C++11新特性介绍 分析(2): lambda表达式、function包装器、bind()接口"
 pubDate: "2023-07-06"
 description: "本篇文章继续介绍 分析C++11常用的新特性, 本篇介绍的内容有: lambda表达式、function包装器等"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307061930908.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153340162.webp
 categories:
     - Blogs
 tags: 
@@ -113,7 +113,7 @@ int main() {
 
 上面代码的执行结果是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307061953432.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175147134.webp)
 
 但是, 如果每次想要对不同自定义类型实现按需求排序, 那就 每次都需要定义一个满足需求的仿函数. 这样好像太麻烦了. 
 
@@ -169,13 +169,13 @@ int main() {
 
 这段代码的执行结果是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062006728.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175149942.webp)
 
 我们没有实现仿函数, 但是依旧实现了按需求排序. 这就是因为使用了 `lambda` 表达式
 
 上面的例子中, `std::sort()` 的第三个参数:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062010176.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175152645.webp)
 
 这些都是 `lambda` 表达式. 不过 并不完整, `lambda` 表达式的完整格式为:
 
@@ -272,7 +272,7 @@ int main() {
 
 一定是 `lamSwap2`, 因为 传入函数内的参数 如果是临时变量改变 不会影响到原数据. 而 `lamSwap2` 使用的是 左值引用.
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062249430.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175156463.webp)
 
 直接传参可以实现交换数据.
 
@@ -317,7 +317,7 @@ int main() {
 
 `lamSwap2` 肯定可以, 不过 `lamSwap1` 可以吗?
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062256233.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175159216.webp)
 
 很可惜, 这段代码编译无法通过, 并且 问题出在了 某个 `lambda` 表达式上.
 
@@ -339,7 +339,7 @@ auto lamSwap1 = [a, b]()mutable{
 
 修改之后:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062303621.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175201668.webp)
 
 可以看到, 可以编译通过. 但是 执行之后, 值并没有被交换. 因为, `lamSwap1` 是 `传值捕捉`.
 
@@ -375,11 +375,11 @@ auto lamSwap1 = [a, b]()mutable{
 
 像类似上面的这些操作, 在某些编译器上 是会报错的:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062320544.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175204324.webp)
 
 > GCC不会报错, 只会报出警告:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062321998.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175206270.webp)
 
 还有一点就是, `lambda` 表达式 **`只能捕捉父级作用域中的对象`**. 即 包含此 `lambda` 表达式的作用域
 
@@ -407,7 +407,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062328843.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175220134.webp)
 
 但是, 可以通过 **拷贝构造的形式**, 创建一个 `lambda` 表达式的副本.
 
@@ -428,7 +428,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062332599.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175222212.webp)
 
 这就是 `lambda` 表达式.
 
@@ -440,7 +440,7 @@ int main() {
 
 这一点, 可以在 VS中通过反汇编代码看出来:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307062341565.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175224339.webp)
 
 ## 包装器 `function`
 
@@ -492,7 +492,7 @@ int main() {
 
 当分别传入 `函数名`、`函数对象`、`lambda` 之后, 此模板会被实例化三个不同的函数:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307070917180.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175227293.webp)
 
 可以发现, 在 `useF()` 内定义的 `static` 每次执行都是1, 且不同的地址.
 
@@ -510,7 +510,7 @@ int main() {
 
 C++11 之后, 设计了一个 `std::function类模板`, 也是一个包装器.
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307070954947.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175229425.webp)
 
 `function` 类模板:
 
@@ -562,7 +562,7 @@ int main() {
 
 这段代码的执行结果:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307070949158.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175231757.webp)
 
 不用在意未使用包装器时, 究竟是什么类型. 只需要看到 使用包装器之后, 三种可调用对象的类型被统一了.
 
@@ -600,7 +600,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071005136.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175238213.webp)
 
 在对不同类型的 可调用对象包装之后, 可以将 `function` 对象, 传入给其他模板共其使用:
 
@@ -647,7 +647,7 @@ int main() {
 
 这段代码的执行结果:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071009882.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175240752.webp)
 
 可以看出, 此时 `useF` 函数模板 只实例化出了一个函数. 因为, 同一个 `count` 被 `++`、输出了 3 次
 
@@ -682,7 +682,7 @@ int main() {
 
 这段代码的执行结果是:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071044939.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175243498.webp)
 
 是可以正常执行相应的函数的.
 
@@ -696,7 +696,7 @@ int main() {
 
 什么是 `bind()` ?
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071059024.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175245545.webp)
 
 C++中, `bind()` 是一个函数模板, 它可以 **接受一个可调用对象, 生成一个新的可调用对象来“适应”原对象的参数列表**
 
@@ -724,7 +724,7 @@ int main() {
 
 这段代码的执行结果:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071110387.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175247794.webp)
 
 我们通过 `std::bind()` 绑定了 `Sub1()` 函数, 并将其包装.
 
@@ -742,7 +742,7 @@ int main() {
 
 解释之前, 先来看一张图, 看完图或许可以直接理解:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071130847.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175250051.webp)
 
 看了还是不理解. 那就要 再介绍一下 `bind()` 的作用了.
 
@@ -808,7 +808,7 @@ int main() {
 
 这段代码的执行结果:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307071156432.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175253696.webp)
 
 `std::bind(&Sub::sub, s, placeholders::_1, placeholders::_2)` 通过 在 `this` 指针的位置 直接传入一个对应类对象. 
 

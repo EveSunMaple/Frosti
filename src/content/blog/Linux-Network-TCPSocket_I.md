@@ -299,7 +299,7 @@ int main(int argc, char* argv[]) {
 
 1. `init()` 初始化函数, 初始化服务器信息
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307141958725.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161150625.webp)
 
     初始化函数, 要执行的就是一个服务器再启动之前 需要做的工作.
 
@@ -307,17 +307,17 @@ int main(int argc, char* argv[]) {
 
     由于, TCP面向的是字节流通信, 所以`socket()`第二个参数传入 **`SOCK_STREAM`**, 表示面向字节流:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307142007105.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161152717.webp)
 
     然后就是一系列无论是UDP还是TCP都要实现的:
 
     1. 将服务器网络信息 填充到 在用户栈创建的`sockaddr_in`结构体中, **需要传输到网络中的内容要以网络字节序存储**
 
-        ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307142009618.webp)
+        ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161154448.webp)
 
     2. 将网络信息绑定到系统内核
 
-        ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307142012312.webp)
+        ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161156027.webp)
 
     不过, 下面的一个步骤 UDP就没有了. 
 
@@ -327,7 +327,7 @@ int main(int argc, char* argv[]) {
 
     即, 调用`listen()`接口, 让服务器开启监听状态.
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307142019317.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161157786.webp)
 
     执行`listen()`, 服务器会自动进入监听状态. 之后会一直监听 来自客户端 向服务器 发送的连接请求. 实际上监听的就是服务器的套接字. 监听的过程是非阻塞的. 
 
@@ -339,7 +339,7 @@ int main(int argc, char* argv[]) {
 
 2. `loop()` 服务器启动函数, 我们默认它是一个死循环
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307142031811.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161159624.webp)
 
     如果是UDP服务器, 启动之后 就可以接受客户端发送来的信息然后做处理了.
 
@@ -349,11 +349,11 @@ int main(int argc, char* argv[]) {
 
     所以, 这里 TCP服务器开启的第一件事, 就是接受连接请求:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307142037406.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161201658.webp)
 
     接受连接请求的接口是: `accept()`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307142049383.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161203444.webp)
 
     `accept()`接口会按顺序接受来自客户端的连接请求. 并返回一个新的套接字文件描述符.
 
@@ -395,7 +395,7 @@ int main(int argc, char* argv[]) {
 
 我们可以使用浏览器测试:
 
-![tcpServer](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211608870.gif)
+![tcpServer](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161205908.gif)
 
 当我们使用浏览器访问服务器`(IP:Port)`时, 可以看到服务器`accept()`了连接请求. 但是由于服务器没有实现任何功能, 所以浏览器没有变化.
 
@@ -471,7 +471,7 @@ void low2upService(int sock, const std::string& clientIP, const uint16_t& client
 
 此成员函数实现之后, 就可以直接在`loop()`中调用此函数:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307151137163.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161209190.webp)
 
 至此, 一个简单的可以接收客户端消息 并 将消息中小写字母转换成大写字母的服务器就实现完毕了.
 
@@ -585,7 +585,7 @@ TCP客户端前面的实现 与UDP客户端前面的实现 步骤相同:
 
 连接请求的接口是:`connect()`
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307151149364.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161213166.webp)
 
 没错, `connect()`也会向`sendto()`那样 自动绑定客户端的网络信息.
 
@@ -595,7 +595,7 @@ TCP客户端前面的实现 与UDP客户端前面的实现 步骤相同:
 
 具体的实现是:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307151155026.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161214897.webp)
 
 通过一个`bool`变量标识退出状态, 如果输入了`quit`这个单词 就不进入下一个循环.
 
@@ -605,11 +605,11 @@ TCP客户端前面的实现 与UDP客户端前面的实现 步骤相同:
 
 整个服务器和客户端的执行演示:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211606386.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161216941.gif)
 
 但是, 这个版本的服务器是有缺陷的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211606462.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161218922.gif)
 
 当多客户端尝试连接服务器时, 会发现 服务器只会对第一个连接的客户端进行响应.
 
@@ -685,7 +685,7 @@ void loop() {
 
 只需要使用`fork()`创建子进程, 然后将`low2upService()`放到子进程里执行就可以了.
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307151601587.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161223072.webp)
 
 不过需要注意的问题是:
 
@@ -711,7 +711,7 @@ void loop() {
 
 完成之后, 再打开服务器 和 多客户端:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211606633.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161225659.gif)
 
 可以发现, 已经可以多客户端连接并通信了
 
@@ -782,7 +782,7 @@ void loop() {
 
 主父进程直接回收退出的子进程, 也不会发生一直阻塞等待的情况
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211606793.gif)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161229534.gif)
 
 ### 多线程服务器
 
@@ -942,7 +942,7 @@ private:
 
     结构体对象作为回调函数的参数使用
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307151724012.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161234678.webp)
 
     结构体的成员变量除了客户端网络信息之外, 还有`tcpServer`对象指针.
 
@@ -950,7 +950,7 @@ private:
 
 2. 回调函数的定义, 主要作用就是执行服务
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307151727427.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161236891.webp)
 
     回调函数首先要执行线程分离. 因为主线程不能阻塞式`join`线程, 所以让线程自灭.
 
@@ -960,7 +960,7 @@ private:
 
 3. `loop()`内的线程创建
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307151731723.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161239662.webp)
 
     这里就是常规的创建线程, 让线程执行回调函数
 
@@ -968,7 +968,7 @@ private:
 
 至此, 多线程的版本就结束了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211608861.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161241438.gif)
 
 可以很明显的看出来, 多线程的版本多客户端连接 会让服务器的文件描述符增加. 因为 **多线程共享文件描述符表**
 
@@ -1419,17 +1419,17 @@ int main(int argc, char* argv[]) {
 
 1. 类中添加线程池 成员变量:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307152114816.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161250129.webp)
 
 2. 初始化时 加载线程池:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307152117369.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161251878.webp)
 
 3. 开启服务器时, 开启线程池.
 
     并且, 在原本该创建线程服务客户端时, 创建任务 并添加到线程池中:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307152122514.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161254097.webp)
 
     这里构造任务对象时, 第四个参数使用了`std::bind()`C++标准库函数.
 
@@ -1439,7 +1439,7 @@ int main(int argc, char* argv[]) {
 
 这些内容实现之后, 就可以使用线程池服务客户端了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211613293.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161256268.gif)
 
 ---
 

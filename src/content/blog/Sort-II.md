@@ -70,7 +70,7 @@ C++中`std::sort()`, 在数据量较大但不会超负荷时, 就会采用快速
 
 以此思路的一趟排序, 用动图演示为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/hoareQsort_apart.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183155894.gif)
 
 从演示的结果来看, 这样的一趟排序之后, 有效地将数组分为两部分:
 
@@ -118,7 +118,7 @@ C++中`std::sort()`, 在数据量较大但不会超负荷时, 就会采用快速
 
 以这样的思路作为一趟排序, 动图演示为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/pitQsort_apart.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183158344.gif)
 
 这样一个过程之后, 同样可以将数组分为满足要求的两部分
 
@@ -145,7 +145,7 @@ C++中`std::sort()`, 在数据量较大但不会超负荷时, 就会采用快速
 
 `fast`从`key`的下一位开始, 向右找`<key`的值, `last`只在交换数据之前`++`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/pointerQsort_apart.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183200562.gif)
 
 从演示中可以发现, 在交换数据时`last`会有两种位置: **1. 与`fast`相同的位置; 2. 目前数组中首个`>key`数据的位置**
 
@@ -207,7 +207,7 @@ void quickSort(std::vector<int>& nums) {
 
 使用此版本进行排序:
 
-![总是先处理<key的部分, 所以编号以此为基础](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240806154052052.webp)
+![总是先处理<key的部分, 所以编号以此为基础](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183203418.webp)
 
 可以看到当下次可能需要处理的数据有效长度不`>1`时, 不再递归
 
@@ -249,7 +249,7 @@ void quickSort(std::vector<int>& nums) {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240806155035864.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183205873.webp)
 
 挖坑版的排序过程 与 `Hoare`版有些许不同, 但最终结果是相同的
 
@@ -293,7 +293,7 @@ void quickSort(std::vector<int>& nums) {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240806155812210.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183208551.webp)
 
 ## 快排优化
 
@@ -353,7 +353,7 @@ void _quickSort(std::vector<int>& nums, int begin, int end) {
 
 优化过后:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240806162536721.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183211151.webp)
 
 左右部分的区分更加平均化
 
@@ -411,7 +411,7 @@ void nonRecursiveQuickSort(std::vector<int>& nums) {
 
 重要的地方就是, 区间的入栈和出战数据与时机
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240806170910381.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183213913.webp)
 
 ## 复杂度
 
@@ -443,11 +443,11 @@ void nonRecursiveQuickSort(std::vector<int>& nums) {
 
 划分过程:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408141152382.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183216202.gif)
 
 归并过程:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408141157590.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183218074.gif)
 
 归并的过程本质上, 就是将 同级子序列 按照 序列元素的大小顺序 进行复原排序
 
@@ -465,7 +465,7 @@ void nonRecursiveQuickSort(std::vector<int>& nums) {
 
 可以画一个图来的展示递归的过程:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408141543281.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183220338.webp)
 
 先递归划分左序列, 所以可以从图中看到, 第1、2、3、4次递归发生, 都是在划分左序列
 
@@ -566,7 +566,7 @@ void mergeSort(std::vector<int>& nums) {
 
 使用这段代码进行排序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408141654634.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183224221.webp)
 
 可以完成排序
 
@@ -639,7 +639,7 @@ void nonRecursiveMergeSort(std::vector<int>& nums) {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408141948002.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183227314.webp)
 
 ## 复杂度
 
@@ -685,11 +685,11 @@ void nonRecursiveMergeSort(std::vector<int>& nums) {
 
 具体的映射思路, 大概可以这样演示:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/countSort_count.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183229879.gif)
 
 那么, 实现排序的思路, 大概就可以这样演示:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/countSort_sort.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183231587.gif)
 
 映射计数的过程很容易理解, **如果数值为n, 那么就将 映射数组的n位置数值++**
 
@@ -746,7 +746,7 @@ void countSort(std::vector<int>& nums) {
 
 使用这段代码进行排序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240808093551574.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183234633.webp)
 
 由于计数排序需要开辟的数组空间过大, 所以就不展示过程, 直接展示结果
 
@@ -822,7 +822,7 @@ void countSort(std::vector<int>& nums) {
 
 先看一下建立大根堆的一种方法的过程:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408151007587.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183237810.gif)
 
 上面展示的是 **向下调整** 的方法, 来调整一颗树, 将树调整为一个大根堆
 
@@ -869,7 +869,7 @@ void countSort(std::vector<int>& nums) {
 
 其实很简单, 按照下标顺序排列就可以了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408151149717.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183240854.webp)
 
 即, 将一个数组看作一棵完全二叉树, 只需要将数组数据按照数组的下标顺序排列, 就可以将其看作一棵完全二叉树
 
@@ -953,7 +953,7 @@ void heapSort(std::vector<int>& nums) {
 
 使用堆排序进行排序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408151504548.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183243871.webp)
 
 可以完成排序
 

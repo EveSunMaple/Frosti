@@ -125,6 +125,7 @@ main code span {
 
 main img:not(main a img) {
   cursor: pointer;
+  border-radius: 8px;
 }
 
 main p img:not(main a img) {
@@ -144,9 +145,15 @@ a:not(:has(img)){
 }
 
 a:not(:has(img)):hover {
-  transform: translateY(-1px) translateX(1px);
-  box-shadow: 3px 3px 10px rgba(0,0,0,0.16);
-  background-color: rgba(0,0,0,0.05);
+  transform: translateY(-1px) translateX(0px);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+main a:not(:has(img)) {
+  padding-left: 5px;
+  padding-right: 6px;
+  border-radius: 5px;
 }
 
 .scrollbar-none {

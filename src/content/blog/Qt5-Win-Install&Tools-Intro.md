@@ -3,7 +3,7 @@ draft: true
 title: "[QT5] 掌握QT, 从安装QT Creator开始"
 pubDate: "2024-8-15"
 description: "简单介绍一下什么是QT, 怎么安装QT Creator, 怎么使用QT Creator创建项目..."
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408280930338.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182918080.webp
 categories:
     - Blogs
 tags: 
@@ -48,15 +48,15 @@ QT是一个跨平台的C++图形用户界面应用程序开发框架
 
 https://download.qt.io/archive/qt/
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191352879.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182925919.webp)
 
 然后, 点击进入`5.14`目录下:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191353804.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183255023.webp)
 
 选择`5.14.2`, 点击`qt-opensource-windows-x86-5.14.2.exe`下载对应平台安装程序
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191354382.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183256808.webp)
 
 等待下载完成, 就可以进行安装了
 
@@ -68,7 +68,7 @@ https://download.qt.io/archive/qt/
 >
 > 所以, 如果选择`5.15`就没有打包好的可执行程序, 进行安装
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191403636.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183258620.webp)
 
 ## `QT Creator 5.14.2` 安装
 
@@ -80,31 +80,31 @@ https://download.qt.io/archive/qt/
 
 下载完成后, 双击打开, 会出现此页面:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191444712.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183300343.webp)
 
 点击`Next`:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191444605.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183302250.webp)
 
 点击`下一步`:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191444257.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183303783.webp)
 
 然后按照下面的选项进行勾选:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191444464.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183305176.webp)
 
 `下一步`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191445125.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183306824.webp)
 
 `下一步`:
 
-![image-20240819144519277](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191445443.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183308656.webp)
 
 `下一步`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191445603.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183310402.webp)
 
 `安装`, 就可以了
 
@@ -112,17 +112,17 @@ https://download.qt.io/archive/qt/
 
 安装完成之后, 打开就可以看到`QT Creator`的界面了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191449614.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183312295.webp)
 
 # `QT Creator` 创建项目
 
 打开`QT Creator`之后, 就可以在工具栏->文件->新建项目了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191455687.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183314259.webp)
 
 点击新建项目之后, 会出现一个选择模板的弹窗:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191456516.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183316223.webp)
 
 可以发现, 有许多的模板:
 
@@ -134,7 +134,7 @@ https://download.qt.io/archive/qt/
 
 要用C++开发QT桌面应用就选第一个就可以, 然后就是一系列的项目配置:
 
-![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191509314.webp)
+![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183318125.webp)
 
 1. 项目路径
 
@@ -160,7 +160,7 @@ https://download.qt.io/archive/qt/
 
         使用此类作为基类, 如果不做其他任何的修改, 编译运行 生成的窗口就是这样的:
 
-        ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191539035.webp)
+        ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183320306.webp)
 
         什么都没有
 
@@ -174,13 +174,13 @@ https://download.qt.io/archive/qt/
 
         使用此类作为基类, 如果不做其他任何的修改, 编译运行生成的窗口是这样的:
 
-        ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191549442.webp)
+        ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183321883.webp)
 
         好像与`QWidget`没有什么区别?
 
         其实是有的, 去到`Design`界面进行`UI`设计时:
 
-        ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191557345.webp)
+        ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183323634.webp)
 
         可以清楚的对比出来, `QMainWindow`作为基类的项目, 实际上默认多了:
 
@@ -248,7 +248,7 @@ https://download.qt.io/archive/qt/
 
 选择并创建之后, 项目会自动打开:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191618773.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183326292.webp)
 
 > 博主换了主题和字体
 
@@ -268,7 +268,7 @@ Test
 
 不过, 这只是在`QT Creator`中的显示结构, 实际在文件系统中, 并没有对文件进行分类:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408191626007.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183330823.webp)
 
 ---
 

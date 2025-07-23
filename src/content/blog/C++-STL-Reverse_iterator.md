@@ -57,7 +57,7 @@ tags:
 
 其实 STL 源码中也是这样设计的: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220716005519094.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182404210.webp)
 
 STL源码中的反向迭代器 是通过已经实现了的正向迭代器来实现的
 
@@ -67,7 +67,7 @@ STL源码中的反向迭代器 是通过已经实现了的正向迭代器来实�
 
 下面就可以根据 STL源码大致的框架, 进行模拟实现了: 
 
-![reverse_iterator_fix](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/reverse_iterator_fix.webp)
+![reverse_iterator_fix](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182401106.webp)
 
 ```cpp
 template<class Iterator, class Ref, class Ptr>

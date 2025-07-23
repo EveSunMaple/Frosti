@@ -229,7 +229,7 @@ int main() {
 
 这段代码, 如果发生异常 会是什么结果?
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307100909398.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181114325.webp)
 
 通过传入`new int`调用构造函数, 实例化一个 `SmartPtr`对象.
 
@@ -301,7 +301,7 @@ int main() {
 
 这段代码执行结果为:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307100925529.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181117840.webp)
 
 可以直接通过对象, 来实现指针相关的操作.
 
@@ -313,13 +313,13 @@ int main() {
 
 在普通指针的使用中, 经常会有这样的操作:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307100947291.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181119853.webp)
 
 在指针定义时, 直接用其他指针初始化 或 用指针给指针赋值.
 
 转换为`SmartPtr`, 就大概是这样:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307100950207.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181121383.webp)
 
 对于类来说 `SmartPtr<int> sp2 = sp1` 就是拷贝构造. 所以 智能指针是需要实现 **拷贝构造和赋值重载** 的.
 
@@ -394,7 +394,7 @@ int main() {
 
 这样的代码执行之后:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101031679.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181124479.webp)
 
 会发现, 同一块空间 被释放了两次. 直接报错.
 
@@ -484,7 +484,7 @@ int main() {
 
 使用上面的类, 执行这段代码:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101113101.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181128452.webp)
 
 会报出段错误. 原因是: **通过 `ap1` 拷贝构造 `ap2`, `ap1`的资源会被置空, 所以无法再被访问**.
 
@@ -506,13 +506,13 @@ int main() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101144415.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181130528.webp)
 
 使用库中的`auto_ptr`编译器甚至会报出警告, 提示此类已弃用.
 
 我们把 后面的 `cout << "ap1:: " << *ap1 << endl;` 注释掉, 就可以执行了:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101116002.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181132658.webp)
 
 成功的用`ap1`拷贝构造了`ap2`, 然后成功的解决了同一块空间释放两次的问题, 但是 也成功的添加了一个更离谱的问题.
 
@@ -593,11 +593,11 @@ int main(){
 
 编译时, 编译器会直接报错:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101148046.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181135762.webp)
 
 使用库中的, 也会有相同的效果:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101149263.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181137434.webp)
 
 不过 库中的实现要复杂的多.
 
@@ -813,11 +813,11 @@ int main() {
 
 这段代码的执行结果是:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101438430.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181142448.webp)
 
 将 `shared_ptr` 换成标准库中的(还需要将 调用的`getCount()`改为`use_count()`), 依旧是这样:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101450113.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181144219.webp)
 
 ## **`shared_ptr`的循环引用 与 `weak_ptr`**
 
@@ -859,11 +859,11 @@ int main() {
 
 那么, 上面的这段代码 执行结果是什么?
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101501595.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181147266.webp)
 
 看起来很正常. 首先创建了两个节点. 然后分别指向对方, 就像这样:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101510035.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181149557.webp)
 
 `node1` 维护自己的空间资源, 然后 `node2->_prev` 也维护同一空间, 所以 `node1.getCount()` 变为2.
 
@@ -907,13 +907,13 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101515651.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181152168.webp)
 
 `sp1` 的空间释放了, 但是**`node1`和`node2`的空间并没有释放!**
 
 用VS调试看看:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211610937.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181153836.gif)
 
 可以看到, `main` 函数执行完`return 0;`之后, `sp1`的引用计数从`1->0`, 资源被销毁.
 
@@ -951,7 +951,7 @@ int main() {
 
     变化如下:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101609968.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181155982.webp)
 
     我们将`原node1`标号为1号空间, `原node2`标号为2号空间
 
@@ -1112,7 +1112,7 @@ int main() {
 
 修改了, `ListNode` 之后, 这段代码的运行结果是:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101643863.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181201007.webp)
 
 即使 执行了`node1->_next = node2;` `node2->_prev = node1;` `node1` 和 `node2`的引用计数也不会发生变化. 也就不会影响资源的释放.
 
@@ -1147,7 +1147,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101726304.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181203363.webp)
 
 执行后, 输出的第一行是 `~Date` 说明 `new` 出来的正常释放了.
 
@@ -1157,9 +1157,9 @@ int main() {
 
 这就需要用到 定制删除器的概念了:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101729585.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181205571.webp)
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101730564.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181207348.webp)
 
 查看文档中 `unique_ptr`的模板 和 `shared_ptr`的构造函数
 
@@ -1182,7 +1182,7 @@ int main() {
 
 这段代码的执行结果:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307101740779.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181210150.webp)
 
 很顺利的释放了所有资源
 

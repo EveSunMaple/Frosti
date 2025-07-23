@@ -3,7 +3,7 @@ draft: true
 title: "[QT5] 信号与槽: 认识信号与槽, 认识connect, 自定义信号和槽..."
 pubDate: "2024-12-13"
 description: "QT中, 什么信号和槽? connect()有什么作用? 如何自定义槽? 如何自定义信号?"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131420615.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182752048.webp
 categories:
     - Blogs
 tags:
@@ -71,13 +71,13 @@ Widget::Widget(QWidget* parent)
 
 在界面中添加一个`QPushButton`控件, 将此按钮的`clicked`信号 与 `Widegt`的`close`槽函数连接起来, 可以实现以下效果:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131521474.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182804593.gif)
 
 `connect()`这个函数来自于`QObject`类, 是`QObject`类的成员函数
 
 `QObject`类是非常多`QT`类的祖先基类, 包括`QWidget`:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131511391.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182806538.webp)
 
 `connect()`是它的成员函数, 所以可以在`Widget`构造函数中直接调用
 
@@ -113,7 +113,7 @@ Widget::Widget(QWidget* parent)
 
 而`QPushButton::clicked`和`Widget::close`实际是什么类型呢?
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131603463.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182808812.webp)
 
 `QPushButton::clicked()`和`Widget::close()`实际就是函数
 
@@ -139,7 +139,7 @@ connect(btn, SIGNAL(clicked()), this, SLOT(close()));
 
 `QT5`中, 重载了一个泛型的`connect()`
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131633500.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182810856.webp)
 
 **`QT5`中的`connect()`, 函数原型实际是这样的:**
 
@@ -225,7 +225,7 @@ private:
 };
 ```
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131759672.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182813797.webp)
 
 只有声明在`slots`下的函数, 才是槽
 
@@ -233,7 +233,7 @@ private:
 
 而在`QT5`之后, 自定义槽函数就不需要在`slots`关键字下声明了:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131854548.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182815897.webp)
 
 完成函数的定义之后, 就可以当作一个正常的槽使用了:
 
@@ -300,7 +300,7 @@ private:
 
 运行此程序:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131905530.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182818779.gif)
 
 #### 途径2: 图形化创建槽函数
 
@@ -310,19 +310,19 @@ private:
 
 先通过`Designer`添加`PushButton`控件
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131911816.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182820945.webp)
 
 右键`PushButton`控件, 选择**转到槽**
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131914278.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182822939.webp)
 
 然后**可以选择控件继承树中的所有信号**:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131916598.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182824876.webp)
 
 选择`clicked()`信号之后, `QT Creator`就会自动跳转到`widget.cc`中并创建槽函数定义, 同时`Widget`类中也会声明好相同的槽函数:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131920619.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182826583.webp)
 
 对此槽函数实现与上面相同的功能, 并运行:
 
@@ -333,7 +333,7 @@ void Widget::on_pushButton_clicked() {
 }
 ```
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131925293.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182836535.gif)
 
 从执行结果来看, 可以正常运行
 
@@ -351,7 +351,7 @@ void Widget::on_pushButton_clicked() {
 
 当然, 并不是只定义好槽函数就能实现了, 还需要调用另外一个函数:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412131935852.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182838677.webp)
 
 根据`.ui`文件自动生成的`UI_Widget`类中, 调用了**`QMetaObject::connectSlotsByName(Widget);`**
 
@@ -434,7 +434,7 @@ void Widget::diySignalHandler() {
 
 这段代码的执行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161017270.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182842382.gif)
 
 在`signals:`关键字下定义了`diySignal`信号, 并定义了此信号的槽, 并建立连接
 
@@ -521,15 +521,15 @@ void Widget::diySignalHandler(int num, const QString& title) {
 
 定义了参数为`const QString&`的信号和槽
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161417609.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182845920.webp)
 
 并在发出信号时传参:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161416597.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182848111.webp)
 
 这段代码的执行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161419223.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182849862.gif)
 
 槽函数能够捕捉信号携带的参数
 
@@ -554,7 +554,7 @@ void Widget::diySignalHandler(const QString& title, int num) {
 
 再试图编译运行:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161422280.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182852193.webp)
 
 编译不通过
 
@@ -639,7 +639,7 @@ void Widget::diySignalHandler2(int num) {
 
 这段代码的执行结果是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161446989.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182855408.gif)
 
 可以看到, 两个槽都能够成功接收并处理信号
 
@@ -764,6 +764,6 @@ void Widget::on_pushButton_2_clicked() {
 
 这段代码的执行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161533586.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182900618.gif)
 
 这个例子, 是通过`disconnect()`断开连接, 然后再通过`connect()`建立新的连接

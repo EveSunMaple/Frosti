@@ -284,7 +284,7 @@ class hashTable {
 
 使用`g++`编译, 是会报错的
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240807192429057.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180741231.webp)
 
 不过, 如果使用`MSVC`的编译器, 就不会出错
 

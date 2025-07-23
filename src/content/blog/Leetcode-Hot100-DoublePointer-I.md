@@ -15,7 +15,7 @@ tags:
 
 这是LeetCode 热题100中, 双指针相关的第一道题
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240727154359898.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160159458.webp)
 
 ## 题意分析
 
@@ -31,7 +31,7 @@ tags:
 
 原数组 `nums = {0, 1, 0, 3, 12}`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240727160326086.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160201851.webp)
 
 结果数组 `nums = {1, 3, 12, 0, 0}`, `1, 3, 12`相对位置保持不变, `0`移动至数组末尾
 
@@ -51,15 +51,15 @@ tags:
 
 定义两个指针, 都从数组首元素开始:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240727162658641.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160204102.webp)
 
 两指针向右移动, left指针找0, right指针找非0值, 分别找到对应位置之后, 交换数据:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240727163526538.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160206349.webp)
 
 一次交换完成之后, 继续left指针找0, right指针找非0值:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240727163850618.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160209093.webp)
 
 left和right移动的满足条件的位置, 又可以交换数据了
 
@@ -143,4 +143,4 @@ public:
 
 直到 满足 可以交换数据的条件
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240729093914640.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722160213109.webp)

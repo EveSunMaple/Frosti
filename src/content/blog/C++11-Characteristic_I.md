@@ -3,7 +3,7 @@ draft: true
 title: "[C++] C++11新特性介绍 分析(1): 列表初始化、右值引用、万能引用、移动语义、哈希表、智能指针..."
 pubDate: "2023-04-21"
 description: "本篇文章是关于C++11标准 一些常用的新特性的介绍, 比如: 列表初始化、右值引用、万能引用、完美转发、类的新默认成员函数 和 可变参数列表等"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251811775.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153310131.webp
 categories:
     - Blogs
 tags:
@@ -129,11 +129,11 @@ int main() {
 }
 ```
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041000041.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175042920.webp)
 
 可以看到, `auto` 接收`{}`的类型是: `initializer_list`
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041013969.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175045426.webp)
 
 `{}`本身就是一个容器类型
 
@@ -155,13 +155,13 @@ int main() {
 
 因为, STL容器中其实定义有 使用`{}`对象的构造函数
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041021964.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175048838.webp)
 
 其他STL 容器中 也同样如此: 
 
 `set:`
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041021169.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175050824.webp)
 
 ```cpp
 int main() {
@@ -174,7 +174,7 @@ int main() {
 
 `map:`
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041022546.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175052873.webp)
 
 ```cpp
 int main() {
@@ -215,7 +215,7 @@ int main() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041028181.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175056279.webp)
 
 实际使用时, `auto`一般用于非常长的容器的迭代器的自动推导
 
@@ -234,7 +234,7 @@ int main() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041030249.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175058455.webp)
 
 ### `nullptr`
 
@@ -263,7 +263,7 @@ int main() {
 }
 ```
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230422000634152.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175101146.webp)
 
 ## 智能指针
 
@@ -277,7 +277,7 @@ int main() {
 
 `C++11`为STL添加了六个新容器: 
 
-![|bigger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041035476.webp)
+![|bigger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175102920.webp)
 
 除了哈希表的四个, 另外两个其实没有什么值得介绍的
 
@@ -369,7 +369,7 @@ public:
 
 这两个函数的参数数量是可变的. 即可以根据需要传入不同数量的参数.
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307060942712.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175117530.webp)
 
 `C++11`之后, 不仅函数可以支持可变参数, 模板也可以支持可变参数了:
 
@@ -441,7 +441,7 @@ void ShowList(Args... args) {
 
     这段代码执行结果是:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307061006102.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175121698.webp)
 
 2. 列表初始化 展开参数包
 
@@ -499,7 +499,7 @@ void ShowList(Args... args) {
 
     这种方法的执行结果为:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307061057057.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175125814.webp)
 
 ## `emplace_back()`
 
@@ -507,7 +507,7 @@ void ShowList(Args... args) {
 
 我们都知道, STL容器都是模板类, `emplace_back()`其实使用的就是模板可变参数
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307061101052.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175127970.webp)
 
 这个接口的使用也很简单:
 
@@ -528,7 +528,7 @@ int main() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307061109378.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175129994.webp)
 
 从结果来看好像没有区别
 

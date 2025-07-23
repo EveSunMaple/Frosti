@@ -1,7 +1,7 @@
 ---
 draft: true
 title: "仓颉文档阅读-I: 仓颉词法结构"
-pubDate: "2025-05-18"
+pubDate: "2025-01-18"
 description: "一直对仓颉挺感兴趣的, 但是一直没有时间看一下, 以后要慢慢看一看, 了解一下"
 categories: 
     - Blogs

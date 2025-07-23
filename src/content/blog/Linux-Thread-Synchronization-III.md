@@ -93,19 +93,19 @@ tags:
 
 ### 1. `sem_init()`初始化
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230421141600499.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180919589.webp)
 
 ### 2. `sem_destroy()`销毁
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230421141642143.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180921198.webp)
 
 ### 3. `sem_wait()`等待, 即申请信号量
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230421141814088.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180922742.webp)
 
 ### 4. `sem_post()`释放信号量
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230421141900366.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180924372.webp)
 
 这些接口, 也都是`pthread`库提供的, 需要使用的是`semphore.h`头文件
 
@@ -129,7 +129,7 @@ tags:
 
 用数组实现的普通队列的先进先出一般是固定的队头, 如果以`[0, 7]`来实现, 那么队头恒为`0`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230421153132693.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180926496.webp)
 
 先进先出总是 从`0`位置出, 然后将后面的元素向前移动一位
 
@@ -137,7 +137,7 @@ tags:
 
 环形队列可以看作将数组卷了起来: 
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230421144734700.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180928037.webp)
 
 环形队列 使用两个"指针"来表示队头和队尾
 
@@ -422,7 +422,7 @@ int main() {
 
 实现之后, 编译执行这段代码: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/ringQueue_c1_p1.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180934078.gif)
 
 在代码中设置, `1s`生产一次数据, `3s`消费一次数据
 
@@ -609,7 +609,7 @@ int main() {
 
 代码的执行结果为: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/ringQueue_c3_p3.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180938881.gif)
 
 虽然打印的结果很混乱, 但是还是可以看出**没有出现生产或消费出错**的
 

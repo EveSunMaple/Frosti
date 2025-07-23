@@ -47,7 +47,7 @@ tags:
 
 之间还要通过 进程地址空间和相应的页表, 不过CPU实际只是是通过访问`PCB`来实现对进程的调度的: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230411175200325.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180501674.webp)
 
 `PCB(task_struct)`中描述着进程地址空间, 进程地址空间与物理内存 通过两张页表来相互映射
 
@@ -63,13 +63,13 @@ tags:
 
 那么, 如果下次创建进程, 操作系统并不创建有关进程的所有结构, 而是只创建`PCB`, 并将新的`PCB`指向已经存在的进程:
 
-![不同PCB指向同一个进程地址空间](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230411190606396.webp)
+![不同PCB指向同一个进程地址空间](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180503727.webp)
 
 CPU与PCB之间的虚线表示, 此PCB也被CPU调度, 但当前可能没有被调度
 
 然后, 以子进程划分程序资源类似的手段, 将进程的代码划分为不同的区域, 并将不同的`PCB`设置为分别负责执行不同的区域的代码: 
 
-![PCB与代码区之间连接的红色虚线, 表示PCB实际负责执行的代码区域](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230411191733677.webp)
+![PCB与代码区之间连接的红色虚线, 表示PCB实际负责执行的代码区域](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180505671.webp)
 
 最终, 不同的`PCB`可以访问进程地址空间内代码区的不同区域, 并通过相应的页表来访问到实际的物理内存
 
@@ -153,7 +153,7 @@ CPU调度线程实际上看到的还是`PCB(task_strcut)`
 
 而现在, 进程内部可以存在许多`task_srtuct`, 那么又可以怎样理解进程呢？
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230412093635919.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180509499.webp)
 
 现在, 不能只认为`PCB`+代码和数据就是一个进程, 而是需要理解, 上图中的所有结构加起来才能叫一个进程
 
@@ -193,7 +193,7 @@ CPU调度线程实际上看到的还是`PCB(task_strcut)`
 
 Linux操作系统为我们提供了创建线程的系统调用: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230412100123205.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180512258.webp)
 
 ```cpp
 int pthread_create(pthread_t *thread, 
@@ -206,7 +206,7 @@ int pthread_create(pthread_t *thread,
 
 `pthread_t`就是一个无符号长整型: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230412101716321.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180514986.webp)
 
 1. 第1个参数, 就是`pthread_t`类型的指针
 
@@ -224,7 +224,7 @@ int pthread_create(pthread_t *thread,
 
 处理创建线程之外, 线程与子进程一样, 还需要等待: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230412110550933.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180516587.webp)
 
 ```cpp
 int pthread_join(pthread_t thread, void **retval);
@@ -288,7 +288,7 @@ int main() {
 
 不过, 我们编译时会发现有错误: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230412105448190.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180520450.webp)
 
 是连接错误, 为什么呢？
 
@@ -296,11 +296,11 @@ int main() {
 
 因为, `pthread`是第三方库, 所以需要手动链接: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230412105716705.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180521944.webp)
 
 此时, 编译链接成功, 运行程序: 
 
-![thread_show |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/thread_show.gif)
+![thread_show |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180523648.gif)
 
 可以看到线程在分别运行, 所输出的进程`pid`都是相同的. 
 
@@ -310,7 +310,7 @@ int main() {
 
 进程运行时查看系统的进程表: 
 
-![系统中只有一个有关threadTest的进程 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/thread_onlyone_process.gif)
+![系统中只有一个有关threadTest的进程 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180525605.gif)
 
 可以看到, 有关`threadTest`的进程只有一个. 
 
@@ -320,7 +320,7 @@ int main() {
 
 我们可以在命令行使用`ps -aL`命令 来查看线程(a: all, -L: 轻量级进程): 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230412112247311.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180527403.webp)
 
 可以看到, 线程列表中 存在三个相同命令名的线程
 
@@ -358,7 +358,7 @@ int main() {
 
 也就是说, 其实`PCB(task_struct)`内部其实是有用来表示线程的东西的: 
 
-![task_struct内部, 线程专用的结构体](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230413170958038.webp)
+![task_struct内部, 线程专用的结构体](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180529693.webp)
 
 `thread_struct{}`结构体内部存储的大部分都是寄存器相关信息, 与维护不同线程的上下文数据有关系
 

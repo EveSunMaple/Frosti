@@ -1,8 +1,8 @@
 ---
-title: '从零接触C语言: 数据类型 和 变量'
-description: '数据是程序的基础'
+title: '从零接触C语言-II: 数据类型 和 变量'
+description: '数据是程序的基础, C语言中规定了一些数据类型, 用于存储特定类型的数据'
 pubDate: '2025-07-08'
-image: 'https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318002323925.png'
+image: 'https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710215328038.webp'
 categories:
     - Blogs
 tags:
@@ -123,8 +123,8 @@ C语言中, `=`被称为赋值符号, 意为 为…赋值 或 将值赋给…
 #include <stdio.h>
 
 int main() {
-    int age1 = 18;	// 变量age1, 放入数字18
-    int age2 = 20;	// 变量age2, 放入数字20
+    int age1 = 18; // 变量age1, 放入数字18
+    int age2 = 20; // 变量age2, 放入数字20
     printf("age1 加 age2 和为 %d\n", age1 + age2);
 
     return 0;
@@ -133,7 +133,7 @@ int main() {
 
 这段代码的执行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250707142925182.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723142842038.webp)
 
 <Info>
 
@@ -211,7 +211,7 @@ int main() {
 
 这段代码, 使用`gcc main.c`将其编译为可执行程序并运行的结果是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250707141851237.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723142207207.webp)
 
 可以看到打印结果是符合上面表格中的内容的
 
@@ -350,7 +350,7 @@ int main() {
 
 这段代码定义了很多个变量, 可以先来看一下执行结果:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250707155428929.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723142001360.webp)
 
 我们可以结合现象, 分析一下每一句`printf()`所使用的变量是哪一个:
 
@@ -387,9 +387,9 @@ int main() {
 
     第`17`行打印的`var`值是`50`, 而第`21`行打印的`var`值是`30`
 
-    如果把第`16`行代码的注释解开(删掉`//`), 编译会报错:
+    如果把第`20`行代码的注释解开(删掉`//`), 编译会报错:
 
-    ![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250707164840845.webp)
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723142507078.webp)
 
     报错信息为: **`_var`未声明**
 
@@ -468,7 +468,7 @@ int main() {
 
 这段代码的执行结果很明显:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250708150122654.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723142719249.webp)
 
 但是如果你试图修改`con`:
 
@@ -489,7 +489,7 @@ int main() {
 
 那么, 编译就会发生报错:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250708150344119.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723142956231.webp)
 
 报错信息为: **试图给只读变量`con`赋值**
 
@@ -529,4 +529,3 @@ var = 10;
 ```
 
 </Info>
-

@@ -14,15 +14,15 @@ tags:
 # 单链表引言🐙
 
 ❤️‍🔥
->数据结构中有 `四大基础结构` , 即 `四大线性表`: 顺序表、**`链表👻`** 、栈、队列
->
-> | 线性结构 | 逻辑结构图示:                                                |
-> | :----- | :----------------------------------------------------------- |
-> | 顺序表 | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SeqList_photo.webp" style="zoom:67%;" /> |
-> | **`链表`**  | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/List_photo.webp" style="zoom:62%;" /> |
-> | 栈     | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Stack_photo.webp" style="zoom:67%;" /> |
-> | 队列   | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Queue_photo.webp" style="zoom:67%;" /> |
->
+数据结构中有 `四大基础结构` , 即 `四大线性表`: 顺序表、**`链表👻`** 、栈、队列
+
+| 线性结构 | 逻辑结构图示:                                                |
+| :----- | :----------------------------------------------------------- |
+| 顺序表 | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154431878.webp) |
+| **`链表`** | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154433617.webp) |
+| 栈     | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154435731.webp) |
+| 队列   | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154437808.webp) |
+
 
 上一篇文章的内容是: `顺序表`, 从上一篇文章 可以看出 `顺序表` 存在非常明显的缺点: 
 
@@ -41,36 +41,30 @@ tags:
 上面展示的链表结构是单链表, 其实链表有许多不同的结构: 
 
 > 1. 单链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SList_show1_4_19.webp)
->
-> 2. 双向链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/double_List_show_4_19.webp)
->
-> 3. 带头结点的单链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/head_SList_show1_4_19.webp)
+>    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154730660.webp)
+> 
+>2. 双向链表
+> 
+>    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154732408.webp)
+> 
+>3. 带头结点的单链表
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154753101.webp)
 >
 > 4. 带头结点的双向链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/head_double_List_show_4_19.webp)
->
-> 5. 循环单链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/head_cycle_SList_show1_4_19.webp)
+>    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154801575.webp)
+> 
+>5. 循环单链表
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154811664.webp)
 >
 > 6. 循环双向链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/double_cycle_List_show_4_19.webp)
->
-> 7. 带头结点的单向循环链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/head_cycle_SList_show_4_19.webp)
+>    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154820342.webp)
+> 
+>7. 带头结点的单向循环链表
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154827045.webp)
 >
 > 8. 带头结点的双向循环链表
->
->   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/head_double_cycle_List_show_4_19.webp)
+>    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154833479.webp)
+> 
 
 
 链表的结构有这 `八` 种, 但是大部分都是不常用的。
@@ -88,13 +82,13 @@ tags:
 
 引言的表中, 简单表示了 `单链表的结构` : 
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/List_photo.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154857012.webp)
 
 是有一个一个节点链接在一起形成的, 不过这只是逻辑结构, 逻辑顺序是通过 `链表中的指针链接次序` 实现的, 而实际的链表是一种 物理存储结构上 `非连续、非顺序` 的存储结构, 即 这些 `单个的节点在内存中不一定是连续存放的` 。
 
 详细的实际情况应该是这样的: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SList_show_4_19.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154858471.webp)
 
 即: 单链表在 `逻辑上是连续的` , 一个连着一个, 但是在 `物理结构上是不一定连续的` 。
 而且可以看出, 单链表中 `单个节点的结构` 由一个 `数据单元(存放数据)` 和一个 `指针单元(存放下个节点的地址)` 构成。这样可以保证 链表可以向后链接。
@@ -188,16 +182,16 @@ void SListPushBack(SListNode* phead, SLTDataType x)
 ```
 代码实现完毕, 尾插来验证一下。
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPushBack_returnError.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154902124.webp)
 
 但是发现, 程序非正常结束了。为什么？
 `调试！`
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPushBack_Debug1.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154903531.webp)
 
 但是当我继续 `F10` 希望进入循环时: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPushBack_Debug2.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154905199.webp)
 
 发生了访问冲突。
 
@@ -270,11 +264,11 @@ void SListPushBack(SListNode** pphead, SLTDataType x)
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPushBack_Debug3.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154910827.webp)
 
 多尾插几个数据试验一下: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPushBack_Debug4.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154913242.webp)
 
 这样就没问题了~
 
@@ -301,7 +295,7 @@ void SListPrint(SListNode* phead)
 
 打印刚才实现的单链表: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPrint_Show.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154916037.webp)
 
 ### 单链表尾删🐚
 ❤️‍🔥
@@ -363,7 +357,7 @@ void SListPopBack(SListNode** pphead)
 
 验证一下 `尾删` 有没有出错: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPopBack.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154918903.webp)
 
 即使过多次尾删也能成功
 
@@ -403,13 +397,13 @@ void SListPushFront(SListNode** pphead, SLTDataType x)
 
 头插几个数据测试一下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPushFront_2022420.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154921581.webp)
 
 `没有错误！`
 
 动画过程: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SingleListPushFront_20220420.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154923152.gif)
 
 ### 单链表头删🐚
 ❤️‍🔥
@@ -449,11 +443,11 @@ void SListPopFront(SListNode** pphead)
 
 头删检测: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListPopFront_2022420.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154925684.webp)
 
 动画过程: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SingleListPushFront_20220421.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154927590.gif)
 
 ---
 实现了 `头插` 和 `头删` 之后, 能够发现
@@ -487,7 +481,7 @@ SListNode* SListFind(SListNode* phead, SLTDataType x)
 
 验证一下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SLTFind_SHOW_2022420.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154930295.webp)
 
 ### 单链表指定位置之后插入🐚
 ❤️‍🔥
@@ -513,7 +507,7 @@ void SListInsertAfter(SListNode *pos, SLTDateType x)
 
 验证一下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListInsertAfter_Show_2022420.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154932606.webp)
 
 插入成功
 
@@ -521,7 +515,7 @@ void SListInsertAfter(SListNode *pos, SLTDateType x)
 
 动画过程: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SingleListErase_20220421.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154934513.gif)
 
 ### 单链表指定位置之后删除🐚
 ❤️‍🔥
@@ -553,11 +547,11 @@ void SListEraseAfter(SLTNode* pos)
 
 验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListEraseAfter_Show_2022421.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154936783.webp)
 
 动画过程: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SingleListEraseAfter_20220421.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154938760.gif)
 
 ### 单链表的销毁🐚
 ❤️‍🔥
@@ -587,7 +581,7 @@ void SListDestroy(SListNode** pphead)
 ```
 验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SListDestroy_2022420.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154941168.webp)
 
 单链表成功被销毁。
 

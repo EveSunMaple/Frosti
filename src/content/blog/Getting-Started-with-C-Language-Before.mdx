@@ -2,7 +2,7 @@
 title: '接触C语言之前的准备: 环境搭建'
 description: '如果要学习C语言, 至少需要一个能够使用C语言的环境'
 pubDate: '2025-03-17'
-image: 'https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318013906705.png'
+image: 'https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710215734241.webp'
 categories:
     - Blogs
 tags: 
@@ -48,7 +48,7 @@ import Kbd from "../../components/mdx/Kbd.astro";
 
 <Warning>
 
-博主今后使用的一些工具, 也就是本篇文章搭建的环境, 可能具有一定的学习门槛, 但我个人认为这是有必要的
+博主今后使用的一些工具, 也就是本篇文章搭建的环境, 在今后的使用上可能具有一定的学习门槛, 但我个人认为这是有必要的
 
 如有建议, 敬请在评论提出👌
 
@@ -58,15 +58,15 @@ import Kbd from "../../components/mdx/Kbd.astro";
 
 ## 开启Hyper-V
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318021949191.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213141714.webp)
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318023445770.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213132213.webp)
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318023658300.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213224764.webp)
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318025611275.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213221488.webp)
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318025646430.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213228324.webp)
 
 点击重新启动之前, 最好保存你的所有其他任务
 
@@ -82,13 +82,13 @@ import Kbd from "../../components/mdx/Kbd.astro";
 
 1. 打开文件扩展名:
 
-    ![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318030236858.webp)
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213235890.webp)
 
-    ![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318030429219.webp)
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213237855.webp)
 
 2. 新建文本文档:
 
-    ![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318030631422.webp)
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213239750.webp)
 
 3. 文本文档输入以下内容:
 
@@ -100,11 +100,11 @@ import Kbd from "../../components/mdx/Kbd.astro";
     Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
     ```
 
-    ![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318030903137.webp)
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213241990.webp)
 
 4. 文本文档重命名为`hyperv.bat`, 并右键->管理员身份启动:
 
-    ![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250318031158961.webp)
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213243808.webp)
 
 5. 等待运行结束, 并根据提示输入`'Y'`重启系统
 
@@ -116,25 +116,25 @@ import Kbd from "../../components/mdx/Kbd.astro";
 
 打开`Microsoft Store`, 搜索`openEuler 22.03`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318221426074.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213245859.webp)
 
 点击安装, 下载完成后点击打开, 大概率会弹出这两个窗口:
 
-<Diff r="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318221721650.webp" l="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318221630517.webp" />
+<Diff r="https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213304918.webp" l="https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213256420.webp" />
 
 可以在提示有 **"按下任意键安装适用于 Linux 的 Windows 子系统"** 的窗口中, 按下任意按键, 等待下载完成:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318223006772.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213249190.webp)
 
 !!!重新启动!!!
 
 然后再重新打开`Microsoft Store`, 搜索`openEuler 22.03`, 点击打开, 等待安装成功:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318223749773.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213316552.webp)
 
 然后依次输入`username`和对应的密码:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318223841860.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213318558.webp)
 
 > 注意:
 >
@@ -146,12 +146,12 @@ import Kbd from "../../components/mdx/Kbd.astro";
 
 之后要运行这个环境, 只需要打开终端:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250703183301635.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213321116.webp)
 
 
 然后输入`wsl`就可以启动:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318225052094.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213323254.webp)
 
 <Info>
 
@@ -169,7 +169,7 @@ import Kbd from "../../components/mdx/Kbd.astro";
 sudo dnf -y install g++ gdb git man-pages man-pages-help zsh wget unzip jsoncpp-devel tree
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318230437417.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213326563.webp)
 
 执行之后, 输入密码
 
@@ -177,7 +177,7 @@ sudo dnf -y install g++ gdb git man-pages man-pages-help zsh wget unzip jsoncpp-
 
 实际表示正在执行, 等待执行完毕就好:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318230641703.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213328537.webp)
 
 #### `most`
 
@@ -186,7 +186,7 @@ wget https://rpmfind.net/linux/epel/8/Everything/x86_64/Packages/m/most-5.1.0-6.
 sudo rpm -ivh most-5.1.0-6.el8.x86_64.rpm
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318232006550.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213330973.webp)
 
 #### `nvim`
 
@@ -200,7 +200,7 @@ $ pwd
 # pwd 用于查看当前所在路径
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318233422280.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213333166.webp)
 
 或者, 网络环境良好的情况下, 也可以直接通过命令把文件下载下来:
 
@@ -219,11 +219,11 @@ sudo mv nvim-linux64 /usr/local/nvim
 sudo ln -s /usr/local/nvim/bin/nvim /usr/local/bin/nvim
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318234238872.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213335698.webp)
 
 执行完成之后, 输入`nvim`就能打开软件:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318234439032.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213338053.webp)
 
 输入`:q`, 退出应用
 
@@ -248,11 +248,11 @@ sudo dnf install python3-pip
 sudo pip3 install pynvim
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318234717833.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213340866.webp)
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318234753469.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213342701.webp)
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318235414856.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213344660.webp)
 
 ##### `nvim`配置
 
@@ -265,11 +265,11 @@ $ pwd
 /home/humid1ch/.config
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319223726071.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213346758.webp)
 
 然后输入`nvim`运行`nvim`等待配置完成:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319224810951.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213348402.webp)
 
 > 如果因为网络问题出现错误, 可以尝试多次重新打开
 >
@@ -279,13 +279,13 @@ $ pwd
 
 重新打开`nvim`, 并<mark>手动输入</mark>`:MasonInstall clangd clang-format lua-language-server`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320003014571.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213350683.webp)
 
 ---
 
 从博主在文章开头提供的压缩包中, 获取`win32yank.exe`文件, 放入`Windows`系统的`C:\Windows\System32\`路径下
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319234156544.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213353012.webp)
 
 至此, `neovim`安装、配置完成
 
@@ -305,11 +305,11 @@ $ pwd
 chsh -s /bin/zsh
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319231150554.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213355020.webp)
 
 重新进入`wsl`就可以看到生效了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319231504552.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213357152.webp)
 
 按`0`, 完成`.zshrc`文件的创建
 
@@ -322,7 +322,7 @@ chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319231900408.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213400344.webp)
 
 此时, 使用`nvim`打开`.zshrc`, 可以看到`.zshrc`的内容
 
@@ -330,7 +330,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 nvim ~/.zshrc
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319232432590.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213402264.webp)
 
 <Info>
 
@@ -354,13 +354,13 @@ nvim ~/.zshrc
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250319232842169.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213405103.webp)
 
 使用`nvim`编辑`.zshrc`文件
 
 将`ZSH_THEME="robbyrussell"`修改为`ZSH_THEME="powerlevel10k/powerlevel10k"`
 
-![zsh_theme](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320000629643.gif)
+![zsh_theme](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213407174.gif)
 
 <Info>
 
@@ -414,11 +414,11 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 
 在`plugins=(git)`处, 添加这两个插件, 为`plugins=(git zsh-autosuggestions zsh-syntax-highlighting)`
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320001343023.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213410106.webp)
 
 然后退出到`shell`, 执行`source ~/.zshrc`, 并根据提示和喜好配置`powerlevel10k`主题:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320002106352.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213411932.gif)
 
 ###### `.zshrc`个人配置
 
@@ -494,15 +494,15 @@ int main() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320003955757.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213415469.webp)
 
 然后在`shell`中执行`gcc main.c -g`, 会生成一个可执行程序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320004138892.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213417188.webp)
 
 再执行`gdb a.out`, 之后输入`r`并回车:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320004428483.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213419047.webp)
 
 记录这条指令后面需要使用
 
@@ -512,11 +512,11 @@ int main() {
 
 然后在`shell`中执行: `gcc main.c -g`, 会生成一个可执行程序并覆盖原来的可执行程序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320004631212.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213420925.webp)
 
 同样, 执行`gdb a.out`之后, 输入`r`并回车:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320004859715.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213422781.webp)
 
 记录这两条指令
 
@@ -526,13 +526,13 @@ int main() {
 
 最后在`shell`中, 使用`sudo`执行`dnf debuginfo-install`, 安装这三个缺失的库:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320005402317.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213424776.webp)
 
 输入`y`并回车, 等待安装
 
 可能需要占用`2.0G+`的硬盘空间
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320010431347.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213426687.webp)
 
 耗时八分半
 
@@ -542,7 +542,7 @@ int main() {
 
 这个简单的C语言环境, 使用`nvim`+`clang`+`lsp`实现了最基本的`C/C++`的语法补全功能
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250320224220454.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710213428545.gif)
 
 至此
 

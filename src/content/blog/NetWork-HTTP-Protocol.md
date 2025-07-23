@@ -41,7 +41,7 @@ tags:
 
 但是我们访问网站之后, 再从网址栏复制网址 会发现多了一些东西:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307271036499.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181308665.webp)
 
 除了, `www.baidu.com` 前面还多出了`https://`, 我们看到的多出的一部分, 就是协议的部分
 
@@ -53,7 +53,7 @@ tags:
 
 **`http://user:pass@www.example.jp:80/dir/index.html?uid=1#ch1`**
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307271112101.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181310314.webp)
 
 其中最开始的部分就是表示协议, 不过我们当前的大部分网站使用的都是`HTTPS`了, 而不是`HTTP`
 
@@ -61,7 +61,7 @@ tags:
 
 现在都是以一个单独的网页或窗口的形式 输入账号密码登录, 然后像服务端发送请求, 再转换到`url`中再隐藏起来:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230821152432217.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181312113.webp)
 
 之后就是`域名`和`端口号`
 
@@ -95,11 +95,11 @@ tags:
 
 比如这样:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307281056882.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181314314.webp)
 
 执行`wget www.baidu.com`就可以直接获取到一个`index.html`文件. 文件的内容:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307281056768.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181316311.webp)
 
 这就是百度首页面的`html`文件, 就是这个`html`文件, 呈现出了百度的首页
 
@@ -125,11 +125,11 @@ tags:
 
 而服务器大多都是`Linux`系统, 所以这也是为什么`url`中表示路径的部分使用的是`/`作为分隔符, 因为`Linux`中路径分隔符就是`/`:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307281527070.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181318650.webp)
 
 又比如在CSDN中的一篇文章:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307281530736.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181320445.webp)
 
 就是CSDN的服务器中的某个用户名目录下的层层目录的中的某个编好号文件
 
@@ -137,7 +137,7 @@ tags:
 
 如果没有获取到, 一般会收到另一个文件内容:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307281534665.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181321977.webp)
 
 > 既然获取的是文件资源, C/C++又提供了文件打开读取等功能
 >
@@ -164,7 +164,7 @@ tags:
 
 比如:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307281700316.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181324856.webp)
 
 百度搜索`C++`, 在`url`中就显示为`C%2B%2B` `2B`就是`+`的16进制形式
 
@@ -174,7 +174,7 @@ tags:
 
 或是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307281700927.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181327073.webp)
 
 百度搜索`博客`, 在`url`中好像还是显示`博客`, 不过当复制出来:
 
@@ -192,7 +192,7 @@ tags:
 
     **请求行**, 内容是 **请求方法 `url` `HTTP`协议版本**
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307290959492.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181329306.webp)
 
     这里的`url`可以只是完整`url`中资源的路径, 也可以是一个完整的`url`
 
@@ -200,21 +200,21 @@ tags:
 
     **请求报头**, 内容是请求的各种属性. 每行结构为:`key: value`. 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291017682.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181330943.webp)
 
 3. 第三部分是单独一行的`\r\n`
 
     用来表示报头部分读取完毕:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291018613.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181333325.webp)
 
 4. 第四部分则是需要请求的资源的有效载荷, 也是请求资源的正文部分
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291032951.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181335922.webp)
 
 将这四部分组合起来, 就是一个完整的`http requst`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291033747.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181337380.webp)
 
 按照协议填充字符串之后, 就可以向服务器发送 进行资源请求了
 
@@ -230,7 +230,7 @@ tags:
 
     **响应行**, 内容是 **`HTTP`协议版本 状态码 状态码描述**
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291037391.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181340368.webp)
 
     状态码即为, 请求的状态. 状态码描述即为, 对状态码的解释
 
@@ -238,21 +238,21 @@ tags:
 
     **响应报头**, 内容是响应正文的各种属性, 每行结构为:`key: value`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291038451.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181341740.webp)
 
 3. 第三部分是单独一行的`\r\n`
 
     用来表示报头部分读取完毕:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291018613.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181344203.webp)
 
 4. 第四部分则是需要响应回客户端的资源的有效载荷, 也是资源的正文部分
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291039594.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181345649.webp)
 
 将这四部分组合起来, 就是一个完整的`http requst`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291040189.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181347374.webp)
 
 按照协议填充字符串之后, 就可以响应回客户端了
 
@@ -492,7 +492,7 @@ tags:
 
     在浏览器输入IP地址 和 端口号, 就可以看到服务器进程接收到了请求, 并打印了出来:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291737446.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181353687.webp)
 
     其格式为:
 
@@ -506,13 +506,13 @@ tags:
 
 2. 还可以使用`telnet`连接到服务器之后, 向服务器发送请求, 然后可以看到 响应的内容:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211601900.gif)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181355410.gif)
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291749607.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181357632.webp)
 
     这里相应的有效载荷其实就是百度首页的`html`文件内容
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307291754534.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181359768.webp)
 
 ## 给服务器添加`HTTP`响应
 
@@ -546,7 +546,7 @@ void handlerHttpRequest(int sock) {
 
 然后重新编译启动服务器, 在访问服务器:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211601404.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181402314.gif)
 
 此时就可以看到客户端已经可以接收到服务器相应的资源了.
 
@@ -587,7 +587,7 @@ void handlerHttpRequest(int sock) {
 
 此时, 编译服务器并打开服务器, 再访问服务器:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211601950.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181405755.gif)
 
 可以看到, 浏览器已经可以按照`html`内容渲染网页
 
@@ -618,7 +618,7 @@ void handlerHttpRequest(int sock) {
 
 然后, 可以先使用GET方法获取一下响应内容, 然后再用浏览器访问:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211624338.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181409524.gif)
 
 这里就指定了发送的有效载荷的内容是什么类型的了
 
@@ -652,7 +652,7 @@ void handlerHttpRequest(int sock) {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211602654.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181412893.gif)
 
 ### 响应文件内容
 
@@ -831,7 +831,7 @@ tree
 
 此时, 启动服务器:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211602298.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181419517.gif)
 
 > 这里的图片, 使用的是图床中的图片
 >
@@ -932,7 +932,7 @@ tree
 
 然后运行并访问服务器:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211624456.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181424322.gif)
 
 页面多了几个元素, 并且, 在输入内容并点击提交之后
 
@@ -944,11 +944,11 @@ tree
 
 使用百度网盘加密分享文件时, 一般都需要输入密码:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307311524391.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181428320.webp)
 
 在知道密码的情况下, 可以直接以`pwd=xxxx`的形式将密码拼接在`url`之后, 然后就可以自动填写密码, 直接访问到加密分享的资源:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307311530522.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181430307.webp)
 
 > 所以可以在使用百度网盘加密分享资源时, 直接在`url`后拼接上密码进行分享
 >
@@ -1003,7 +1003,7 @@ tree
 
 但是在填写数据并提交之后, 有所不同:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211624863.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181433587.gif)
 
 使用`POST`方法提交字段, 字段被添加到了请求正文中 而不是`url`中
 
@@ -1114,7 +1114,7 @@ tree
 
 1. `Host: value`, 用于客户端, 告知服务器, 所请求的资源是在哪个主机的哪个端口上
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307312120415.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181439565.webp)
 
 2. `User-Agent: value`, 声明用户的操作系统和浏览器版本信息等
 
@@ -1122,9 +1122,9 @@ tree
 
     使用不同的设备, 访问同一个网页时:
 
-    ![PC访问 QQ音乐下载页 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308010038320.webp)
+    ![PC访问 QQ音乐下载页 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181441498.webp)
 
-    ![Android访问 QQ音乐下载页 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308010042663.webp)
+    ![Android访问 QQ音乐下载页 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181444531.webp)
 
     某些网页, 会根据设备的不同展示不同的内容. 而设备信息, 就是通过`User-Agent`获取的. 
 
@@ -1132,7 +1132,7 @@ tree
 
     什么意思呢?
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308010056816.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181446815.webp)
 
 ### `Location: value` 重定向
 
@@ -1187,7 +1187,7 @@ void handlerHttpRequest(int sock) {
 
 运行服务器之后, 再访问服务器:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211600182.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181450134.gif)
 
 可以看到, 访问服务器时 会自动去跳转到`url/www.baidu.com`, 这是因为我们设置了重定向状态码和`Location: www.baidu.com\r\n`.
 
@@ -1197,7 +1197,7 @@ void handlerHttpRequest(int sock) {
 
 再次访问服务器会出现什么呢?
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211600534.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181452742.gif)
 
 直接跳转到了`https://www.baidu.com`
 
@@ -1205,7 +1205,7 @@ void handlerHttpRequest(int sock) {
 
 重定向究竟是什么呢?
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308011015487.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181455196.webp)
 
 结合上图不难得出结论: 重定向是 **将一个URL地址重定向到另一个URL地址的过程**
 
@@ -1287,7 +1287,7 @@ void handlerHttpRequest(int sock) {
 
 在之后的客户端请求中, 都会携带已经记录的`Cookie`内容一同发送给服务器
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308011114650.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181458276.webp)
 
 我们也可以尝试在服务器的响应中, 使用`Set-Cookie: value`报头字段设置`Cookie`:
 
@@ -1326,15 +1326,15 @@ void handlerHttpRequest(int sock) {
 
 首先是没有设置`Cookie`的时候:
 
-![No Cookie](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308011121103.webp)
+![No Cookie](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181500996.webp)
 
 这是服务器设置了`Cookie`的之后:
 
-![Cookie](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308011123366.webp)
+![Cookie](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181503214.webp)
 
 可以看到, 浏览器已经获取并记录了本网站的`Cookie`.
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308011125710.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181505542.webp)
 
 > 现在`Chrome115之后`好像没有办法查看`Cookie`的具体内容了
 >
@@ -1368,7 +1368,7 @@ void handlerHttpRequest(int sock) {
 
 在之后的请求中, 携带`Cookie`以便于让服务器正确处理网页状态
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308011357892.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181507993.webp)
 
 使用加密的`Session`来维护页面的会话状态 就安全了吗?
 
@@ -1414,7 +1414,7 @@ void handlerHttpRequest(int sock) {
 
 在我们访问某些网站时, 比如像这样的资讯网站:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308011423752.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181510534.webp)
 
 一个页面是存在非常多的资源的: 各种文字、视频、图片等
 

@@ -3,7 +3,7 @@ draft: true
 title: "[C语言] 详解结构体, 详细分析结构体对齐"
 pubDate: "2022-02-15"
 description: "结构体是一些值的集合, 这些值成为成员变量。结构的每个成员可以是不同类型的变量。结构体属于自定义类型。"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409155622571.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230403526.webp
 categories:
     - Blogs
 tags:
@@ -125,7 +125,7 @@ struct S1 {
 
 我们用 `sizeof` 求出此结构体类型的大小是: `12` 字节 
 
-![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160006153.webp)
+![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174907003.webp)
 
 但是 `int`类型大小是 `4` 字节, `char` 类型的大小是 `1` 字节。这个结构体大小不应该是 `6` 字节吗？ 为什么是 `12` 字节呢？
 
@@ -155,7 +155,7 @@ struct S1 {
 >
 > 我们先计算一下上边这段结构体类型, 各成员的偏移量(`%zu是输出 size_t 类型的数据的指定格式`)
 >
-> ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409155912476.webp)
+> ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174909551.webp)
 >
 > 第一个, `c1`的偏移量是 `0`;
 >
@@ -165,7 +165,7 @@ struct S1 {
 >
 > 我们做图明确出来: 
 >
-> ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160055320.webp)
+> ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174911166.webp)
 >
 > 可以非常明显的看出, 结构体成员`c1` 到 `i` 之间, 有三个字节的空间是空的
 >
@@ -173,7 +173,7 @@ struct S1 {
 >
 > 所以, 此结构体的内存空间占用情况, 可能是这样的: 
 >
-> ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160201908.webp)
+> ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174913281.webp)
 >
 > 那么, 为什么呢？为什么会有 开辟了, 但是没有用到 的空间呢？一个结构体类型的大小, 到底如何计算呢？
 
@@ -212,7 +212,7 @@ struct S1 {
 
 先看一下总大小: 
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160320772.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174915748.webp)
 
 然后我们具体来计算一下: 
 
@@ -225,23 +225,23 @@ struct S1 {
 >
 > 1. `c1` 存放在结构体变量 开始地址的 0 偏移处
 >
->     ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160409063.webp)
+>     ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174917602.webp)
 >
 > 2. `i` 的对齐数是 `4`, 所以存放在偏移量是 `4`的整数倍 处
 >
 >    至少是`4` 
 >
->    ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160443593.webp)
+>    ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174919454.webp)
 >
 > 3. `c2` 的对齐数是 `1`, 所以存放在偏移量是 `1`的整数倍 处
 >
->     ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160509167.webp)
+>     ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174920928.webp)
 >
 > 4. 结构体总大小必须为 最大对齐数的整数倍, 在此结构体中即为 `4` 的整数倍。
 >
 >    `c2`所在空间已经是 第 `9` 个字节, 所以此结构体总大小 最小为 `12`
 >
->    ![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160607382.webp)
+>    ![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174922882.webp)
 >
 >    所以, 结构体大小为 `12` 字节
 
@@ -259,7 +259,7 @@ struct S2 {
 
 我们将, 上一个结构体成员中的, `i` 和`c2`换一换位置结果又是什么呢?
 
-![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160744394.webp)
+![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174925038.webp)
 
 我们发现只是换了一下位置, 结构体大小就减少了 `4` 个字节 
 
@@ -272,21 +272,21 @@ struct S2 {
 >
 >1. `c1` 存放在结构体变量 开始地址的 0 偏移处
 >
->    ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160409063.webp)
+>    ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174926839.webp)
 >
 >2. `c2` 的对齐数是 `1`, 所以存放在偏移量是 `1`的整数倍 处, `c2` 下面就可以
 >
->    ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160846070.webp)
+>    ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174928733.webp)
 >
 >3. `i` 的对齐数是 `4`, 所以存放在偏移量是 `4`的整数倍 处, 至少是`4` 
 >
->    ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160914404.webp)
+>    ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174930567.webp)
 >
 >4. 结构体总大小必须为 最大对齐数的整数倍, 在此结构体中即为 `4` 的整数倍
 >    
 >    `i`存放完, 结构体占`8`个字节, 正好是 `4`的倍数, 所以不用再占用其他空间
 >    
->    ![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409160952045.webp)
+>    ![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174932701.webp)
 >
 >此结构体总大小为: `8`字节
 
@@ -311,27 +311,27 @@ struct S3 {
 >
 > 1. `n` 存放在结构体变量 开始地址的 `0` 偏移处
 >
->     ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161007720.webp)
+>     ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174935729.webp)
 >
 > 2. `c2` 的对齐数是 `1`, 所以存放在偏移量是 `1`的整数倍 处
 >
->     ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161023625.webp)
+>     ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174937907.webp)
 >
 > 3. `i` 的对齐数是 `4`, 所以存放在偏移量是 `4`的整数倍处, 至少是`12` 
 >
->    ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161057999.webp)
+>    ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174940002.webp)
 >
 > 4. 结构体总大小必须为 最大对齐数的整数倍, 在此结构体中即为 `8` 的整数倍。
 >
 >    `i`存放完, 结构体占`16`个字节, 正好是 `8`的倍数, 所以不用再占用其他空间
 >
->    ![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161138105.webp)
+>    ![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174941923.webp)
 >
 >    此结构体总大小为: `16`字节
 
 我们来验证一下: 
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161204408.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174943971.webp)
 
 确实跟我们计算的一样, 这个结构体大小为 `16` 字节
 
@@ -368,21 +368,21 @@ struct S4 {
 >
 > 1. `n` （大小为`4`）存放在结构体变量 开始地址的 `0` 偏移处
 >
->     ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161222127.webp)
+>     ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174946375.webp)
 >
 > 2. `s` （大小为`16`）的对齐数是 `8`, 所以存放在偏移量是 `8`的整数倍 处
 >
->     ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161234978.webp)
+>     ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174948178.webp)
 >
 > 3. `c1`（大小为 `1`）的对齐数是 `1`, 所以存放在偏移量是 `1`的倍数 处
 >
->     ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161247181.webp)
+>     ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174950237.webp)
 >
 > 4. 结构体总大小必须为 最大对齐数的整数倍, 在此结构体中即为 `8` 的整数倍。
 >
 >    `c1` 存放完, 已经占用 `25` 字节, 所以此结构体总大小 最小为 `32`
 >
->    ![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161317937.webp)
+>    ![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174952381.webp)
 >
 >    此结构体总大小为: `32` 字节
 
@@ -449,11 +449,11 @@ struct S4 {
    >
    >1. 假设 不对齐内存
    >
-   >    ![内存不对其 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161339649.webp)
+   >    ![内存不对其 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174955688.webp)
    >
    >2. 假设 对齐内存
    >
-   >    ![内存对齐 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161351037.webp)
+   >    ![内存对齐 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174957156.webp)
    >
    >假设, 我们是 32 位环境, 一次可以读取 4 字节
    >
@@ -461,7 +461,7 @@ struct S4 {
    >
    >> 我们要访问完整的 `i` 的数据, 就需要访问两次
    >>
-   >>  ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161403422.webp)
+   >>  ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174958855.webp)
    >>
    >> 因为, 第一次只访问到了 `i`的 前三个字节, 第二次访问了 `i` 的最后一个字节 
    >
@@ -471,7 +471,7 @@ struct S4 {
    >>
    >> 跳过前 4 个字节, 直接访问 `i` 的数据, 效率要更高一些
    >>
-   >>  ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161417134.webp)
+   >>  ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175000886.webp)
    >
    >所以, 内存对齐, 有一定的性能的提升
 
@@ -517,7 +517,7 @@ struct S2 {
 
 这句预处理指令是设置默认对齐数用的, `n` 就是 要设置的默认对齐数的值
 
-> ![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90.webp)
+> ![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175011471.webp)
 >
 > ```cpp
 > #pragma pack(1)		//设置默认对齐数为1
@@ -536,7 +536,7 @@ struct S2 {
 > }
 > ```
 >
-> ![ |medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230409161432807.webp)
+> ![ |medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175014042.webp)
 >
 > 此时, `struct S1`的总大小变成了 `6` 字节, 而我们没有改变的时候是 `12` 字节
 

@@ -38,7 +38,7 @@ tags:
 
 `带头双向循环链表的结构` 示意图是这样的: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503180047664.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154230293.webp)
 
 ## 节点结构
 
@@ -104,7 +104,7 @@ void ListPushBack(ListNode *phead, ListDataType x);
 
 所以可以在此基础上 直接进行尾插: 
 
-![List_Push_Back |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/List_Push_Back.gif)
+![List_Push_Back |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154233321.gif)
 
 代码实现即为: 
 
@@ -195,25 +195,25 @@ ListNode* ListInit()
 
 调试分析: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503220100159.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154237100.webp)
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503224018491.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154238866.webp)
 
 光标进入 `尾插接口`: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503220602287.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154241138.webp)
 
 光标继续移动, 将 `tail` 与 `newNode` 连接起来
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503221543363.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154242624.webp)
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503230829976.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154244430.webp)
 
 再将 `newNode` 与 `phead` 连接起来: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503221910810.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154246477.webp)
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220503231509032.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154248057.webp)
 
 可以看到, 即使是 只有头节点, 尾插函数也可以成功发挥作用
 
@@ -288,7 +288,7 @@ void ListPrint(ListNode *phead)
 
 用打印函数, 将上边的接口都验证一下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504094219559.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154251124.webp)
 
 都可以正常发挥作用
 
@@ -318,7 +318,7 @@ void ListPushFront(ListNode *phead, ListDataType x)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504161039016.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154253509.webp)
 
 ### 链表尾删 `ListPopFront`
 
@@ -336,7 +336,7 @@ void ListPopFront(ListNode *phead)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504161411773.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154256757.webp)
 
 ### 链表查找 `ListFind`
 
@@ -370,7 +370,7 @@ ListNode* ListFind(ListNode *phead, ListDataType x)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504154331160.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154259182.webp)
 
 
 
@@ -402,7 +402,7 @@ void ListInsert(ListNode *pos, ListDataType x)
 
  验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504155105531.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154301493.webp)
 
 
 
@@ -475,7 +475,7 @@ void ListErase(ListNode *pos)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504155752938.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154304546.webp)
 
 `删除`实现之后, `尾删` 和 `头删` 也可以直接复用: 
 
@@ -553,11 +553,11 @@ void ListDestroy(ListNode *phead)
 
 所以, 一般需要在调用 `ListDestroy` 接口之后再将 `链表头节点置空
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504162911544.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154307757.webp)
 
 执行之后: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220504163657580.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154309437.webp)
 
 然后再将 `pList` 置空
 
@@ -575,4 +575,4 @@ void ListDestroy(ListNode *phead)
 
 OK~ 本篇文章到此就结束啦, 介绍了 **`带头双向循环链表`** 这个很复杂 很重要 很简单 的链表结构, 希望大家多多支持！
 
-![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/%E7%BF%BB%E6%BB%9A%E5%B0%8F%E7%8C%AB.gif)
+![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154312649.gif)

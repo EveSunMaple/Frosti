@@ -885,10 +885,10 @@ yarn install
 
 这一系列配置结束之后, 你就会得到一个最基本的、但挺好用的neovim的C/C++ 开发环境.
 
-![Neovim  |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/GIF%202023-3-19%200-24-06.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153622646.gif)
 
 > 博主用的zsh, 所以可能命令行不太一样
 
 感谢阅读！
 
-![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230410181851457.webp)
+![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153626718.webp)

@@ -18,7 +18,7 @@ tags:
 
 其中, **root用户的权限** 在Linux中可以看作是 **不受任何管控** 的, 就像 **Windows中的管理员**: 
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707210706574.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161655108.webp)
 
 而除了 **root 之外的其他的所有用户都只是 普通用户**, 普通用户的权限是 **受到管控** 的
 
@@ -26,15 +26,15 @@ tags:
 
 **`whoami`** 是一句指令, 可以显示的当前用户是谁: 
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707203154013.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161657182.webp)
 
 **`su 用户名`** 可以切换用户, `su -` 和 `su` 默认切换为 `root`, 登录到其他用户之后, 可以使用 `exit` 指令退出 : 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707203745164.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161658616.webp)
 
 **root用户** 的命令提示符是 `#` , 而 **普通用户** 的命令提示符是`$`: 
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707204101500.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161700304.webp)
 
 > 虽然 **普通用户** 的权限是受限制的, 但是其实 普通用户 在执行命令时可以, 可以 **通过 `sudo` 来临时提升权限** 为超级用户权限（需要在信任列表中配置）
 
@@ -59,7 +59,7 @@ tags:
 
     在上一篇Linux文章中介绍 `ls` 指令时, 介绍了 `-l` 选项, 可以将文件详细属性列出来: 
 
-    ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707210225645.webp)
+    ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161702529.webp)
 
     默认情况下, 谁创建的文件谁就是文件的拥有者, 但是**拥有者是可以更改的**
 
@@ -69,7 +69,7 @@ tags:
 
     **Linux 系统中也是如此**, Linux中的 **用户可以进行分组`Group`**, 当前用户所属组的其他用户, 就是`Grouper`
 
-    ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707211121412.webp)
+    ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161704077.webp)
 
 3. 其它用户: **`o---Others`**
 
@@ -95,13 +95,13 @@ tags:
 
 在 `ls -l` 列出文件详细属性时, 有一列由 `d` `-` `r` `w` `x` 等组成的内容, 这些内容都是什么意思呢？
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707213335537.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161706393.webp)
 
 这些东西, 其实表示的是 **文件的类型和访问权限**
 
 **Linux系统 是 不以文件后缀来区分文件类型的, 而是通过详细属性中第一个字符来区分文件类型的**
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707213843826.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161708280.webp)
 
 Linux系统规定: 
 
@@ -122,7 +122,7 @@ Linux系统规定:
 
 > `ll` 和 `ls -l` 作用基本一样, 单位区别
 >
-> ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707214554669.webp)
+> ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161710502.webp)
 
 > 注意: **不以文件后缀来区分文件类型的是 Linux系统, 而不是系统上的其他软件**
 >
@@ -130,7 +130,7 @@ Linux系统规定:
 >
 > 使用**gcc编译一个非`.c`后缀的文件会报错**: 
 >
-> ![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707220304354.webp)
+> ![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161712002.webp)
 >
 > 这就说明了, gcc这个软件是需要检测到文件的后缀是`.c`的
 
@@ -138,11 +138,11 @@ Linux系统规定:
 
 后面的 其实**表示`此文件的访问权限`**: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707214923020.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161713826.webp)
 
 文件详细属性的第一列的后 9位字符, **以 每3位 为一部份, 分别表示 所有者权限、所在组权限、其他成员权限** : 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707223459480.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161715392.webp)
 
 这 9 位字符只由 `r` `w` `x` `-` 组成, 且 3个 为一组, 其中: 
 
@@ -166,7 +166,7 @@ Linux系统规定:
 | **`-c`** | 详细显示指令执行过程, 便于排错或分析程序执行的情形。 |
 | **`-z`** | 尝试去解读压缩文件的内容                             |
 
-![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708141939043.webp)
+![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161717769.webp)
 
 > `file` 没有` .c` 后缀, 也可以识别出它是 *C语言源文件*, 因为 Linux不以文件后缀识别文件类型
 
@@ -186,7 +186,7 @@ Linux系统规定:
 
     其实用法就像这样: 
     
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707232422952.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161720438.webp)
     
     > **`chmod [选项] 身份+/-/=权限 文件: `**
     >
@@ -224,7 +224,7 @@ Linux系统规定:
     >
     > 可以使用 **`chmod a=权限 文件`**, **只赋予** 所有成员相应的权限, 什么是只赋予呢？: 
     >
-    > ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707233338315.webp)
+    > ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161919704.webp)
     >
     > 当然, **`=` 后可跟多个权限**
     
@@ -246,7 +246,7 @@ Linux系统规定:
 
     用法: 
     
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220707234309136.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161921722.webp)
 
 ### 访问用户的修改
 
@@ -262,7 +262,7 @@ Linux系统规定:
 >
 > 如果没有使用 `root用户` 或 `sudo` 就会提示: 
 >
-> ![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708100741021.webp)
+> ![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161923674.webp)
 >
 > PS: 想要将文件给某个用户, 此系统需要有此用户
 
@@ -278,7 +278,7 @@ Linux系统规定:
 
     `chown` 可以将文件的所有者, 改为其他用户: 
 
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708100923223.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161925489.webp)
 
 2. `chgrp`
 
@@ -290,7 +290,7 @@ Linux系统规定:
     | -------- | -------------------------------------- |
     | **`-R`** | 对目录使用, 递归修改目录内所有文件权限 |
 
-    ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708101302537.webp)
+    ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161927466.webp)
 
 ### 相关问题 *
 
@@ -304,15 +304,15 @@ Linux系统规定:
 >
 >     **读权限:**
 >
->     ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708094840323.webp)
+>     ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161929705.webp)
 >
 >     **写权限:** 
 >
->     ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708095019590.webp)
+>     ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161931810.webp)
 >
 >     **执行权限:**
 >
->     ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708095253026.webp)
+>     ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161933380.webp)
 >
 >     可以看到, **想要进入目录, 访问者需要有执行权限**
 >
@@ -320,7 +320,7 @@ Linux系统规定:
 >
 >     之前指令中提到, 查看文本文件可以直接使用 `cat` `more` `less`:
 >
->     ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708095939616.webp)
+>     ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161935233.webp)
 >
 >     那么, **目录文件的内容是怎么查看的呢？文件内容是什么呢？**
 >
@@ -336,15 +336,15 @@ Linux系统规定:
 >
 >     **用户对目录只有执行权限:**
 >
->     ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708105023901.webp)
+>     ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161938299.webp)
 >
 >     **用户对目录只没有读权限:**
 >
->     ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708110218588.webp)
+>     ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161940531.webp)
 >
 >     **用户对目录只没有写权限:**
 >
->     ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708110716983.webp)
+>     ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161942310.webp)
 >
 > > 用户对各个文件的权限是独立的, 目录内文件的内容是否可以查看, 与目录无关 与 文件本身有关
 > >
@@ -356,7 +356,7 @@ Linux系统规定:
 > >
 > > 但是, 实际的测试发现, 即使 用户对目录没有读权限, 也是可以查看目录内文件的内容的: 
 > >
-> > ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708112810920.webp)
+> > ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161944426.webp)
 > >
 > > 这其实是因为 虽然系统不根据文件名识别文件, 但是**文件名与文件的ID 存在一定的映射关系**, 如果这个**关系被系统缓存**了, 也可以通过文件名来找到文件, 就**可以通过文件名查看 没有读权限的目录内的文件**
 
@@ -368,7 +368,7 @@ Linux系统规定:
 
 新创建一个普通文件和目录文件, 查看它们的默认权限: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708124948161.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161946621.webp)
 
 **用户刚创建出文件时的权限被称为 最终权限**, `775` 和`664` 即为不同类型文件的最终权限
 
@@ -380,7 +380,7 @@ Linux系统规定:
 
 `umask` 可以查看、修改权限掩码: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708130110411.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161948572.webp)
 
 **权限掩码是干什么用的？**
 
@@ -397,7 +397,7 @@ Linux系统规定:
 
 *当默认权限 设置为 000*: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708131013963.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161950604.webp)
 
 ### 粘滞位
 
@@ -409,25 +409,25 @@ Linux系统中存在一些, 可供不同用户一起存储文件的公共目录,
 
 **`root`**创建一个公共目录`PublicDir`, 用户July 和 Julyxx 都可以使用: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708134501470.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161952637.webp)
 
 两个用户都可以在 这个目录里存放属于自己的文件, 并加以限制: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708135233024.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162341734.webp)
 
 看似已经非常安全了, 但是, **由于所有用户都可以对此目录内容进行修改、删除, 所以即使设置了其他用户无权限, 其他用户依然可以删除此文件 : **
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708135639211.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162343570.webp)
 
 但又**无法避免多用户需要共同使用一个目录的需求**, 又得**保证公共目录下各自文件的安全**, 所以 **Linux引入了粘滞位**
 
 每个用户可以**对属于自己的目录文件** 使用**`chmod +t 目录文件` 就可以设置粘滞位**: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708140600372.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162345459.webp)
 
 > **任何目录文件都可以设置粘滞位**
 >
-> ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708141338551.webp)
+> ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162347039.webp)
 
 设置了粘滞位的目录, 用户就无法在此目录内随意删除文件, 该目录内的文件只能由: 
 
@@ -435,4 +435,4 @@ Linux系统中存在一些, 可供不同用户一起存储文件的公共目录,
 2. 该目录的所有者删除
 3. 该文件的所有者删除
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220708141549998.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162349672.webp)

@@ -167,7 +167,7 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
           backdrop-filter: blur(8px); /* 添加模糊效果 */
           -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
           z-index: 10000;
-          cursor: pointer;
+          /* cursor: pointer; */
           opacity: 0;
           transition: opacity 0.3s ease;
       }
@@ -184,6 +184,8 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
           height: 100%;
           padding: 20px;
           box-sizing: border-box;
+          border: none;
+          border-radius: 5px;
       }
 
       .image-container {
@@ -193,14 +195,16 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
           justify-content: center;
           min-width: 100%;
           min-height: 100%;
+          border: none;
+          border-radius: 5px;
       }
 
       .viewer-image {
-          max-width: 90%;
-          max-height: 90%;
+          /* max-width: 90%;
+          max-height: 90%; */
           object-fit: contain;
-          border-radius: 4px;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+          /* border-radius: 4px; */
+          /* box-shadow: 0 4px 20px rgba(0,0,0,0.3); */
           /* transform: scale(0.8); */
           transition: transform 0.3s ease;
           cursor: grab;

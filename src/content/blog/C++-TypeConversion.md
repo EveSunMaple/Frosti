@@ -48,7 +48,7 @@ C语言中总共有两种形式的类型转换: **隐式类型转换** 和 **显
 
     但是, 当程序执行之后:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211603499.gif)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182826574.gif)
 
     很神奇, 明明 `i < 0` 了 但是循环还在继续.
 
@@ -80,11 +80,11 @@ C语言中总共有两种形式的类型转换: **隐式类型转换** 和 **显
 
     这段代码, `int* c = a;` 会报错. 因为不允许发生隐式类型转换.
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307102319439.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182829591.webp)
 
     不过, 前面的可以编译通过:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307102320096.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182831290.webp)
 
 这是C语言的隐式类型转换
 
@@ -151,7 +151,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307102347545.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182835140.webp)
 
 ## `reinterpret_cast`
 
@@ -178,7 +178,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307110002360.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182837050.webp)
 
 ## `const_cast`
 
@@ -203,7 +203,7 @@ int main(){
 
 这段代码的执行结果是:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307110927036.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182838999.webp)
 
 通过 对`const int val`取地址 再 将其强制类型转换为`int*`, 然后通过`int*`修改变量的值.
 
@@ -228,7 +228,7 @@ int main(){
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307110940794.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182841629.webp)
 
 ## `dynamic_cast`
 
@@ -315,7 +315,7 @@ int main() {
 
 就像上面这样, 执行结果为:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111013138.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182846062.webp)
 
 但是, 有了`dynamic_cast`之后, 就不需要这样了:
 
@@ -347,7 +347,7 @@ int main() {
 
 这段代码的执行结果是:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111014050.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182849296.webp)
 
 前两个输出是传入父类对象指针时的输出, 后两个输出是传入子类对象指针时的输出.
 
@@ -391,7 +391,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111022230.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182851943.webp)
 
 GCC会报错: 原类型不支持多态
 

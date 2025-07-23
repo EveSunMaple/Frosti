@@ -56,7 +56,7 @@ tags:
     }
     ```
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111102906.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181223331.webp)
 
     > 需要设置为`private`. 因为 如果设置为`public`, 那么函数实现是可以在类外完成的. 如果有人在类外实现了拷贝构造和赋值重载. 那么此类还是可以完成拷贝
 
@@ -79,7 +79,7 @@ tags:
 
     即使设置为`public`也可以
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111109211.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181226836.webp)
 
 ## 2. 只能在堆上创建的类
 
@@ -130,7 +130,7 @@ int main() {
 
 此时, 此类就不能再用传统的方式实例化了:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111134185.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181229679.webp)
 
 而是只能通过调用`static`成员函数`CreateObj()`, 创建在堆上的对象:
 
@@ -148,7 +148,7 @@ int main() {
 
 这段代码 就可以编译通过了:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111137205.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181231908.webp)
 
 ---
 
@@ -191,7 +191,7 @@ int main() {
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111425603.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181832973.webp)
 
 只能调用 创建接口:
 
@@ -204,7 +204,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111450707.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181835154.webp)
 
 ---
 
@@ -233,7 +233,7 @@ int main() {
 
     这样会尝试去调用拷贝构造, 然后发生错误:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111502593.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181837336.webp)
 
     但是, 我们使用的 `CreatObj()` 是这样返回的 `return StackOnly();`
 
@@ -271,7 +271,7 @@ int main() {
 
     也可以算是 不能被继承.
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111522804.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711181839777.webp)
 
 2. C++11
 
@@ -283,7 +283,7 @@ int main() {
 
     只需要一个关键词, 就表示此类是最终的, 无法被继承:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111523011.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182234830.webp)
 
 ## 5. 单例模式 - 只能创建一个实例对象的类
 
@@ -445,7 +445,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307111637649.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711182242019.webp)
 
 饿汉模式的单例对象, 是在进程没有进入到`main`函数时就已经创建了的.
 

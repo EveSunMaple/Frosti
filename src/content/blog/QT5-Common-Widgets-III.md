@@ -76,7 +76,7 @@ Widget::~Widget() {
 
 这段代码的运行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412271657433.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182227451.webp)
 
 > `textFormat`可设置的值, 是`QT`提供的一个枚举常量:
 >

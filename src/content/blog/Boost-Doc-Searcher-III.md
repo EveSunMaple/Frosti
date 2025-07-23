@@ -3,7 +3,7 @@ draft: true
 title: "[C++项目] Boost文档 站内搜索引擎(3): 建立文档及其关键字的正排 倒排索引、jieba库的安装与使用..."
 pubDate: "2023-08-04"
 description: "上一篇文章实现了parser模块 对文档html文件清理. 本篇文章编写根据清理完成的内容 建立索引的相关接口."
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031551859.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225836948.webp
 categories:
     - Blogs
 tags: 
@@ -260,7 +260,7 @@ bool buildIndex(const std::string& input) {
 
 读取到之后, 就对文档建立正排索引 和 倒排索引:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031745873.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225851212.webp)
 
 ### `buildForwardIndex()`接口 实现
 
@@ -296,11 +296,11 @@ docInfo_t* buildForwardIndex(const std::string& file) {
 
 本函数接收到完整的一行文档信息`file`之后, 先通过`boost::split()`接口以`'\3'`为分隔符将`title` `content` `url`分隔开. 并按顺序存储到`fileResult(一个vector)`中
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031744728.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225853637.webp)
 
 然后, 定义`docInfo`结构体 并根据`fileResult`的元素值 填充结构体成员. 填充完毕之后, 将`doc`存储到`forwardIndex`中. 并返回正排索引中的当前文档信息.
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031750217.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225855120.webp)
 
 正排索引的实现相对简单
 
@@ -335,7 +335,7 @@ namespace ns_util {
 
 官方文档中, 关于它的描述是这样的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031816792.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225857483.webp)
 
 官方的演示中, `split( SplitVec, str1, is_any_of("-*"), token_compress_on );` 将 `("hello abc-*-ABC-*-aBc goodbye");` 分割成了 `"hello abc"` `"ABC"` `"aBc goodbye"` 按顺序存储到了`SplitVec`中
 
@@ -347,7 +347,7 @@ namespace ns_util {
 
 `boost/algorithm/string/split.hpp`中, 关于`split()`的描述是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031825451.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225859208.webp)
 
 我们根据执行的结果其实已经可以了解到`boost::split()`的前三个参数是什么了:
 
@@ -384,13 +384,13 @@ int main() {
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031945603.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225901425.webp)
 
 第四个参数设置为`boost::algorithm::token_compress_on`时的结果是这样的.
 
 如果设置为`boost::algorithm::token_compress_off`:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308031946809.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225902877.webp)
 
 在分割出来的两个字符串之间, 还存在`9`个空行.
 
@@ -402,7 +402,7 @@ int main() {
 
 如果, 在打印`strV`内容的时候不换行:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032002662.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225904731.webp)
 
 可以看到, 中间是没有任何数据的.
 
@@ -425,11 +425,11 @@ git clone https://github.com/yanyiwu/cppjieba.git
 git clone https://github.com/yanyiwu/limonp.git
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032011789.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225906781.webp)
 
 先看一看`cppjieba/deps/limonp`目录下有没有内容:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032012195.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225908416.webp)
 
 ```bash
 # 如果cppjieba/deps/limonp没有内容, 执行下面的命令
@@ -440,7 +440,7 @@ cp -r cppjieba/deps/limonp cppjieba/include/cppjieba/.
 
 然后查看`cppjieba/include/cppjieba/limonp`目录下 应该是有内容的:
 
-![|line](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032015453.webp)
+![|line](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225909980.webp)
 
 然后, 将`cppjieba/include/cppjieba`和`cppjieba/dict`拷贝到项目目录下:
 
@@ -455,13 +455,13 @@ cp -r cppjieba/dict /home/July/gitCode/github/Boost-Doc-Searcher/.
 
 然后查看项目路径下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032021449.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225911598.webp)
 
 这样就把`cppjieba`库和`dict`分词库都安装到项目中了
 
 > 这里博主将 `dict`目录重命名为`cppjiebaDict`
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032022735.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225913005.webp)
 
 ##### 关于`cppjieba`的使用
 
@@ -469,21 +469,21 @@ cp -r cppjieba/dict /home/July/gitCode/github/Boost-Doc-Searcher/.
 
 可以也将其临时拷贝到项目目录下, 然后打开补全 并修正 头文件:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032031372.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225914557.webp)
 
 然后编译, 运行可以执行程序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032033300.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225916381.webp)
 
 可以看到有许多的分词方式, 我们选择`CutForSearch`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032035937.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225917972.webp)
 
 `cppjieba`的使用是先根据各种分词库, 创建一个`Jieba`对象. 然后调用`Jieba`对象中的相应的接口, 来实现分词.
 
 `jieba.CutForSearch()`是按照搜索的风格分词分词的, 第一个参数是需要分词的字符串, 第二个参数是需要记录分词的`vector`
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032038159.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225919979.webp)
 
 #### 开始: 实现`buildInvertedIndex()`接口
 
@@ -560,7 +560,7 @@ bool buildInvertedIndex(const docInfo_t& doc) {
 
 然后分别遍历 标题分词 和 内容分词, 并将当前分词转换为全小写, 然后通过`unordered_map::operator[]()`来记录分词和分词的词频
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032055292.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225922806.webp)
 
 最终, 将 标题和内容 的所有分词 以及对应出现在标题的频率和内容的频率, 都记录在了`keywordsMap`中
 
@@ -568,7 +568,7 @@ bool buildInvertedIndex(const docInfo_t& doc) {
 
 填充完之后, 获取对应关键词在`invertedIndex`中的倒排拉链, 将`invertedElem`添加到倒排拉链中, 完成对文档的倒排索引建立
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308032100094.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225924715.webp)
 
 ##### `ns_util::jiebaUtil::cutString()`接口 实现
 

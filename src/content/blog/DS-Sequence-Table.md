@@ -19,10 +19,10 @@ tags:
 
 | 线性结构 | 逻辑结构图示:                                                |
 | :----- | :----------------------------------------------------------- |
-| 顺序表 | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SeqList_photo.webp" style="zoom:67%;" /> |
-| 链表   | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/List_photo.webp" style="zoom:62%;" /> |
-| 栈     | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Stack_photo.webp" style="zoom:66%;" /> |
-| 队列   | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Queue_photo.webp" style="zoom:67%;" /> |
+| **`顺序表`** | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154431878.webp) |
+| 链表   | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154433617.webp) |
+| 栈     | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154435731.webp) |
+| 队列   | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154437808.webp) |
 
 本篇文章将详细介绍 **`顺序表`** 的 `结构` `增` `删` `查` `改` `插入` 等操作。
 
@@ -41,7 +41,7 @@ tags:
     
     即: 
     
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Quiet_Seq.gif)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154506638.gif)
     
     采用定长的数组实现顺序表, `顺序表存满(即数组存满)之后, 无法直接继续存储数据, 想要继续存储数据就需要改动源代码.`
     一般实现代码为: 
@@ -67,7 +67,7 @@ tags:
    
    即: 
    
-   ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/dynamic_SeqList.gif)
+   ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154510524.gif)
    
    当数组处于已满的状态且再要存入数据时, 数组扩容。
    
@@ -147,7 +147,7 @@ void seqListInit(SeqList* psl)
 
 创建一个顺序表验证一下: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SLInit.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154514137.webp)
 
 创建出的顺序表, 初始化成功。
 
@@ -219,7 +219,7 @@ void seqListPushBack(SeqList* psl, SLDataType x)
 
 尾插三个整型数据, 验证
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SLPushBack_blog.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154518213.webp)
 
 尾插三次, 扩容两次, 尾插成功.
 
@@ -248,7 +248,7 @@ void seqListPrint(SeqList* psl)
 
 验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SLPrint_blog.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154520349.webp)
 
 ### 顺序表尾删
 ```cpp
@@ -292,14 +292,14 @@ void seqListPopBack(SeqList* psl)
 	psl->Size--;
 }
 ```
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/popBack_beyond.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154522887.webp)
 
 `尾插 3 个数据, 但是尾删了 5 次`
 可以看到, 顺序表中的 `Size` 变成了 `-3`
 变成负数之后, 如果继续进行其他操作, 一定会发生错误
 比如: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/popBack_beyond3.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154524664.webp)
 
 即使, 尾插了两次, 顺序表中还是无法输出数据, 也就是说, 再次尾插的两个数据并没有存放至顺序表中。
 因为 这两次尾插, 是从 `Size 为 -3` 的地方执行的, 并没有从 `0` 位置开始, 所以无法存入, `同时也发生了越界现象`。
@@ -322,7 +322,7 @@ void seqListPopBack(SeqList* psl)
 ```
 这样就不会发生使 `Size` 减到负 的问题: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/popBack_beyond2.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154527553.webp)
 
 即使 尾删次数过多, `Size` 也不会变为负数, 也就不会发生其他操作错误的情况。
 
@@ -339,7 +339,7 @@ void seqListPushFront(SeqList* psl, SLDataType x);
 顺序表本质上是 `数组实现的`, 那么需要在数组的首位置插入数据就不仅仅是插入数据那么简单。`需要先将数组中的数据向后移动一位, 然后才能将新数据放入首位置`
 `演示: `
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/PushFront.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154529846.gif)
 
 `那么来实现头插一下: `
 ```cpp
@@ -376,7 +376,7 @@ void seqListPushFront(SeqList* psl, SLDataType x)
 
 验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/seqListPushFront.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154532419.webp)
 
 头插成功。
 
@@ -392,7 +392,7 @@ void seqListPopFront(SeqList* psl);
 不过, 头删同样需要保证 `Size > 0` 才能执行。
 `演示: `
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/PopFront.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154534608.gif)
 
 `头删实现: `
 
@@ -418,7 +418,7 @@ void seqListPopFront(SeqList* psl)
 
 验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/popFront_beyond.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154536884.webp)
 
 即使删除过多, 也不会出错。
 
@@ -449,7 +449,7 @@ int seqListFind(SeqList* psl, SLDataType x)
 
 验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/seqListFind.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154539694.webp)
 
 验证了, 一般情况、边界情况、未找到情况, 均返回正确。
 
@@ -485,7 +485,7 @@ void seqListInsert(SeqList* psl, size_t pos, SLDataType x)
 验证一下: 
 > 在插入之前可以使用 查找函数 获取一下 `pos` 位置
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SeqList_posInsert.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154542454.webp)
 
 `pos` 位置插入数据 成功了。
 
@@ -494,7 +494,7 @@ void seqListInsert(SeqList* psl, size_t pos, SLDataType x)
 比如, 当我在 `20` 这个位置插入, 会发生什么呢？
 看一下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SeqList_posInsert2.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154544490.webp)
 
 在 `20` 位置插入数据没有报错, 但是输出的时候输出的是随机值
 而且, 在实际的操作中, 程序是延迟了一会才结束的
@@ -534,7 +534,7 @@ void seqListInsert(SeqList* psl, size_t pos, SLDataType x)
 ```
 现在再执行一遍代码: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SeqList_posInsert3.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154547362.webp)
 
 当 `pos` 大于 `Size` 时, 会输出警告, 并停止插入。
 
@@ -597,7 +597,7 @@ void seqListPushFront(SeqList* psl, SLDataType x)
 
 使用改良后的 `头插` `尾插`验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/seqListPushBack_Front_UPTATE.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154550225.webp)
 
 改良后的 `头插` 和 `尾插` 成功
 
@@ -638,7 +638,7 @@ void seqListErase(SeqList* psl, size_t pos)
 验证一下: 
 删除之前插入的三个 `0`: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/seqListErase.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154552774.webp)
 
 删除成功, 同样 超出 `Size` 直接取消删除。
 
@@ -689,7 +689,7 @@ void seqListPopFront(SeqList* psl)
 
 也使用改良后的 `头删` `尾删`验证: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/seqListErase_FrontBack.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154555774.webp)
 
 改良后的 `头删` 和 `尾删` 成功
 

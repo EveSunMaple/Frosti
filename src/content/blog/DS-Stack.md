@@ -18,11 +18,12 @@ tags:
 被称为线性表是因为, 数据用以上四种结构存储, 在逻辑结构上都是 `在一条线上相邻连续的`
 
 | 线性结构 | 逻辑结构图示:                                                |
-| :------- | :----------------------------------------------------------- |
-| 顺序表   | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SeqList_photo.webp" style="zoom:67%;" /> |
-| 链表     | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/List_photo.webp" style="zoom:62%;" /> |
-| **`栈`** | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Stack_photo.webp" style="zoom:67%;" /> |
-| 队列     | <img src="https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Queue_photo.webp" style="zoom:67%;" /> |
+| :----- | :----------------------------------------------------------- |
+| 顺序表 | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154431878.webp) |
+| 链表 | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154433617.webp) |
+| **`栈`** | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154435731.webp) |
+| 队列   | ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154437808.webp) |
+
 
 前面已经介绍了前两个: `顺序表` 和 `链表`
 
@@ -54,7 +55,7 @@ tags:
 
 `栈` 存放数据的方式就像 砌砖, 在 `不破坏结构` 的情况下只能这样 放 和 拿: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/6929a33778e6355875037e2cade6f591.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155139086.gif)
 
 由图 可以看出 `栈` 是一种 `后进先出(LIFO)` 的数据结构, 即 最后放入的数据, 最先出来
 
@@ -90,11 +91,11 @@ typedef struct Stack
 > `Top` 初值不同, 接口的实现 会有细微的差异: 
 > 初值为 `-1`, `Top` 指向数组最后一个元素的位置；压栈时, `Top` 先加一, 再入数据
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507160801719.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155142840.webp)
 >
 > 初值为 `0`, `Top` 指向数组最后一个元素的下一位置；压栈时, 先入数据, `Top` 再加一
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507160745124.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155144254.webp)
 >
 > `并且, 由于 Top 有不同的情况, 与栈有关的操作最好使用已有接口进行`
 
@@ -130,7 +131,7 @@ void StackInit(Stack *pst)
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507173412153.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155147487.webp)
 
 ### 入栈 `StackPush`
 
@@ -162,7 +163,7 @@ void StackPush(Stack *pst, StackDataType x)
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507174850928.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155149947.webp)
 
 ### 出栈 `StackPop`
 
@@ -201,7 +202,7 @@ StackDataType StackTop(const Stack *pst)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507181738115.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155151945.webp)
 
 ### 判空 `StackEmpty`
 
@@ -218,7 +219,7 @@ bool StackEmpty(const Stack *pst)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507182200048.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155153865.webp)
 
 ### 栈元素个数 `StackSize`
 
@@ -234,7 +235,7 @@ int StackSize(const Stack *pst)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507182706721.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155155701.webp)
 
 ### 栈销毁 `StackDestroy`
 
@@ -249,7 +250,7 @@ void StackDestory(Stack *pst)
 }
 ```
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220507183021201.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155157638.webp)
 
 
 
@@ -269,4 +270,4 @@ void StackDestory(Stack *pst)
 
 OK~ 本篇文章到此结束~ 
 
-![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/005PeXV6gy1grtp9ji59cg306r07iaf0.gif)
+![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722155159741.gif)

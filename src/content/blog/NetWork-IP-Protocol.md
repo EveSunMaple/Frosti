@@ -57,7 +57,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 当主机B要向主机C发数据, 通过`IP`协议, 主机B就能将数据通过网络"传送"到主机C中
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202409091015673.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181556803.webp)
 
 数据, 会在不同的路由器之间进行转发, 直到找到目的主机
 
@@ -77,7 +77,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 与`TCP`协议相同, `IP`协议 以`ipv4`报头的标准长度为`20`字节:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202409041757463.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181558743.webp)
 
 分析一下`ipv4`协议报头的字段:
 
@@ -171,7 +171,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 不过有几个字段需要在解释一下:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202409051139389.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181601615.webp)
 
 这三个字段是比较重要的, 不过在解释作用之前, 要先了解一个概念: **分片**
 
@@ -302,7 +302,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 过去有一种划分方式, 将`IP`地址分为了5类:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202409091126913.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181604824.webp)
 
 1. `A类`, 前8位为网络号, 且必须最高位必须为`0`
 
@@ -436,7 +436,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 比如: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202409101912841.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181607898.webp)
 
 `172.19.4.141/20`就是本机的私有`IP`, 前20位是网络号, 后12位是主机号
 
@@ -450,11 +450,11 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 1. `Windows`可以在设置 或 通过`ipconfig`命令, 查看当前网络的`IP`:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411271137973.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181609844.webp)
 
 2. `Linux`也可以通过`ifconfig` 或 `ip`命令, 查看当前网络`IP`:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411271141807.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181611399.webp)
 
 可以看到, `IPv4`的`IP`地址大多都是私有`IP`地址
 
@@ -480,7 +480,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 这就是, 查看设备的`IP`地址 一般都为私有`IP`的原因
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411271540854.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181613501.webp)
 
 从直觉上, 家用路由器与运营商路由器配置好之后, 设备就可以通过家用路由器实现上网
 
@@ -494,7 +494,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 设备`A`, 会在发送的数据报的`IP`报头 填充 源`IP: 192.168.5.2` 和 目的`IP: 166.33.28.22`
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411271600798.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181615286.webp)
 
 并且, 数据报不会直接发送到公网中, 不允许 也没有那个能力
 
@@ -508,7 +508,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
     **路由器会将 数据报中 `IP`报头的源`IP`字段, 填充为路由器的`WAN`口`IP: 10.1.1.2`, 目的`IP`字段不变**
 
-    ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411271604459.webp)
+    ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181617137.webp)
 
     家用路由器, 会对比目的`IP`, 对新的数据报进行转发, 目的`IP`不在路由器所在局域网内, 是在公网中
 
@@ -518,7 +518,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
     路由器会执行相同的操作, **将数据报的`IP`报头的源`IP`字段, 填充为路由器的`WAN`口`IP: 122.77.241.4`, 目的`IP`字段不变**
 
-    ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411271609213.webp)
+    ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181618640.webp)
 
     运营商路由器, `WAN`口`IP`已经是公网`IP`了, 已经可以访问公网了
 
@@ -534,7 +534,7 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 **由 设备`A`发出的数据报, 源`IP`地址被 家用路由器 和 运营商路由器 转换为路由器自己的`WAN`口`IP`, 这样的源`IP`地址转换, 即为 `NAT`技术**
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411271707766.gif)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181620374.gif)
 
 这是, 从私网设备`A` 向 公网发送数据的简易过程
 
@@ -641,11 +641,11 @@ TCP/IP 四层协议模型, 前面的文章, 已经通过介绍具体协议了解
 
 `Linux`中, 可以通过执行`route -n`来查看 已经建立好的路由表:
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411281715093.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181623524.webp)
 
 `Windows`中, 可以通过`route PRINT -4`来查看 已经建立好的路由表:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411281846951.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181625279.webp)
 
 路由器中, 也存储有自己的一张路由表
 

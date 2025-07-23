@@ -12,7 +12,7 @@ site:
     code: catppuccin-macchiato # 代码块的主题 https://shiki.style/themes
   date_format: ddd MMM DD YYYY # 日期格式设置，支持自定义格式
   blog: # 博客相关配置
-    pageSize: 6 # 每页显示的文章数量
+    pageSize: 4 # 每页显示的文章数量
   menu: # 菜单配置
     - id: Home # 菜单项的唯一标识符
       text: 主页 # 菜单项显示的文本

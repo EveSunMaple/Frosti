@@ -29,7 +29,7 @@ tags:
 
 那么, 学生购买商品, 工厂供应商品, 其实都是通过**超市**这个渠道的:
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420102219748.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180848455.webp)
 
 ---
 
@@ -193,7 +193,7 @@ tags:
 
 那么, 阻塞队列的大致结构为: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420151703532.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180852360.webp)
 
 成员变量: 
 
@@ -207,13 +207,13 @@ tags:
 
 上锁、解锁、条件等待、唤醒等待、判空、判满、生产任务、消费任务
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420163113768.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180854440.webp)
 
 这些都是私有的接口, 实际还需要两个公共的接口
 
 完整的从阻塞队列中消费的接口 以及 完整的向阻塞队列中生产的接口:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420163247899.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180856537.webp)
 
 实现了之后, 就可以测试一下了: 
 
@@ -394,17 +394,17 @@ int main() {
 
 执行结果为: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/pro_con_data_test.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180901178.gif)
 
 `productor`生产线程 每2s, 生产一个数据, `consumer`消费线程跟随生产的节奏来消费数据.
 
 如果我们修改一下生产和消费的间隔, 或许更能说明条件变量的作用: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420165209035.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180903024.webp)
 
 消费线程2s一消费, 生产线程1s一生产: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/pro_con_data_12.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180904953.gif)
 
 可以看到, 刚开始因为 队列未满, 所以`1s`生成一个, 顺序为: `5 4 3 3 4 0 1 6`
 
@@ -422,7 +422,7 @@ int main() {
 
 ### 问题2: 什么时候唤醒 或者 什么时候解锁？
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420171705354.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180906785.webp)
 
 上面实现的接口, **队列的解锁是在唤醒线程之前的, 即先解锁, 再唤醒线程**
 
@@ -602,7 +602,7 @@ int main() {
 
 那么, 这段代码的执行结果: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/pro_con_task.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180911622.gif)
 
 上面代码, 是使用阻塞队列 模拟生产者消费者模型, **生产和消费加减乘除的任务**
 
@@ -620,7 +620,7 @@ int main() {
 
 在上例中, 就是生产者制作任务 和 消费者处理任务的过程 : 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420183123290.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180913610.webp)
 
 虽然 还是不太明显, 但是 多行的语句其实已经可以说明, 制作任务和处理任务的过程其实是需要消耗一定的资源的, 比如时间
 

@@ -3,7 +3,7 @@ draft: true
 title: "[C++] C++11新特性--右值引用的深入分析: 右值引用、万能引用、引用折叠、完美转发、移动语义..."
 pubDate: "2023-04-26"
 description: "本篇文章是关于C++11右值引用相关内容的深入分析介绍"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412201708973.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153408390.webp
 categories:
     - Blogs
 tags: 
@@ -65,11 +65,11 @@ int main() {
 
 1. `int &g = 10;` 无法编译通过
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041803172.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175305988.webp)
 
 2. `const int &g = 10; ` 可以编译通过
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041806267.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175307968.webp)
 
 ## 明确理解对象的 类型和“值型” ***
 
@@ -147,7 +147,7 @@ int main() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307041809978.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175311493.webp)
 
 右值本身是不能取地址的, 这样是错误的: `&10`
 
@@ -182,7 +182,7 @@ int main() {
 
 先来回顾一下, 在很久之前 模拟实现的`July::string`部分代码(下面称呼以`string`代替):
 
-![string_default](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307042040063.webp)
+![string_default](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175313801.webp)
 
 展示的部分代码中, 只包含了几个类的默认函数、自定义的`int`转`string`的`to_string()`函数
 
@@ -371,11 +371,11 @@ July::string to_string(int value) {
 
 **`vector`:**
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307051418871.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175324859.webp)
 
 **`string`:**
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307051421175.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175326940.webp)
 
 所有的STL容器都增加了这两个成员函数
 
@@ -389,7 +389,7 @@ July::string to_string(int value) {
 
 **右值引用类型做返回值, 返回值会被编译器认为是将亡值, 将亡值是右值的一种**
 
-![|biger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307051430262.webp)
+![|biger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175329039.webp)
 
 也就是说, 某些情况需要将左值作为右值使用时
 
@@ -440,9 +440,9 @@ July::string to_string(int value) {
 
 比如, `push_back()`、`insert()`等一系列向容器中插入数据的接口:
 
-![|bigger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307051505735.webp)
+![|bigger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175331500.webp)
 
-![|bigger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307051507705.webp)
+![|bigger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175332940.webp)
 
 不仅`vector`, 其他容器也同样实现了**数据添加接口的右值引用参数版本**
 
@@ -510,7 +510,7 @@ int main() {
 
 而实际的结果是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307051719360.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175335696.webp)
 
 无论是**左值**还是**右值**, 传入模板函数之后, 识别出的类型都是**左值**相关的
 
@@ -624,7 +624,7 @@ int main() {
 
 这段代码 编译是不通过的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307051953061.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175339429.webp)
 
 **其实就可以说明, 当右值引用对象被直接用于当作表达式时, 会被认为是左值**
 
@@ -672,7 +672,7 @@ int main() {
 
 执行结果是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307052006779.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175342167.webp)
 
 可以看到, 最终的执行结果是 执行了默认构造 和 拷贝构造, 都没有执行移动构造
 
@@ -696,7 +696,7 @@ int main() {
 
 这时候, 就要用到`C++11`的一个新接口: **`std::forward()`完美转发**
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307052020225.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175344432.webp)
 
 这个接口看起来非常的复杂, 但是实际使用并没有那么复杂:
 
@@ -741,7 +741,7 @@ int main() {
 
 这段代码的执行结果是:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307052028288.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175346796.webp)
 
 可以发现, **经过完美转发的引用变量 会被识别为原本的类型**
 
@@ -796,7 +796,7 @@ constexpr _Tp&& forward(typename std::remove_reference<_Tp>::type& __t) noexcept
 
 并且, STL容器都是类模板, 肯定需要使用到完美转发. 就像这样:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307052040700.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175349527.webp)
 
 此例中, 由于 `List` 是一个模板类
 

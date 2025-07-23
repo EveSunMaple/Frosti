@@ -27,7 +27,7 @@ tags:
 
 2. 其次, shell 需要一个设置一个提示符. 类似这样的东西: 
    
-    ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311192332112.webp)
+    ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161053634.webp)
 
 3. 第三, 我们使用shell是需要执行命令的, 且这些命令需要在环境变量PATH下
 
@@ -49,17 +49,17 @@ tags:
 
 且在接收用户输入的指令之前, 需要先输出一个用户提示符: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311195500369.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161055474.webp)
 
 执行: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/GIF%202023-3-11%2019-56-28.gif)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161057146.gif)
 
 用户提示符是打印出来了, 但是 是无限循环地打印.
 
 解决这个无限循环的打印, 只需要在printf之后设置一个接收输入内容地函数即可, 这里我们使用 `fgets()`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311201651077.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161059549.webp)
 
 ```cpp
 #include <stdio.h>
@@ -88,7 +88,7 @@ int main() {
 
 执行上述代码的结果是: 
 
-![myShell_fgets  |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/myShell_fgets.gif)
+![myShell_fgets  |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161102175.gif)
 
 可以实现命令行输入, 并且接收输入内容.
 
@@ -109,7 +109,7 @@ C语言中, 关于字符串的函数中, 有一个strtok()函数是用来分割�
 
 > `strtok`:
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311215224476.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161104519.webp)
 >
 > 第一个参数`str`, 传入需要分割的字符串
 >
@@ -149,9 +149,9 @@ command_argV[0] 设置为 命令名之后, 从 command_arg[1] 开始 将每一�
 
 分割存储之后的 command_argV 内容可以展示一下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311225342322.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161108011.webp)
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311225845184.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161110048.webp)
 
 将接收到的字符串分割存储到字符指针数组中之后, 就可以创建子进程并进程替换了
 
@@ -200,7 +200,7 @@ int main() {
 
 此时的代码, 就可以完成一些命令操作了: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311231019639.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161113068.webp)
 
 但是 执行结果好像有些奇怪
 
@@ -261,7 +261,7 @@ int main() {
 
 此时, 再执行代码: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311231631386.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161116314.webp)
 
 可以看到, 命令就可以正常执行了.
 
@@ -269,13 +269,13 @@ int main() {
 
 我们的myShell已经可以正常执行大部分的命令了, 但是还存在一些不足: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311231958249.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161118516.webp)
 
 导致这些不足的原因是什么？怎么优化这些不足呢？
 
 当我们使用 bash, 查看这些命令时: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311232612930.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161121145.webp)
 
 可以发现, 这两个命令真正执行的并不是简单的原命令, 那么我们也可以在myShell中做出优化
 
@@ -340,7 +340,7 @@ int main() {
 
 此时, ll 和 ls 就可以更加完善的执行: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230311233716429.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161123545.webp)
 
 ### 5. 自建命令添加
 
@@ -350,15 +350,15 @@ shell最基本的功能已经实现了
 
 但是 有一些命令是无法执行的: 
 
-![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313154548153.webp)
+![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161125585.webp)
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313154906491.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161127537.webp)
 
 为什么 cd 和 export 明明都可以执行, 但是却没有作用呢？
 
 因为, cd 和 export 命令实际上都是shell的内建命令, PATH环境变量路径下存在的程序其实也没有实际功能的: 
 
-![ |large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313162046302.webp)
+![ |large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161129681.webp)
 
 可以看到, 执行 /usr/bin 路径下的cd程序, 也是没有作用的
 
@@ -370,7 +370,7 @@ shell最基本的功能已经实现了
 >
 > 当我在/home/July 路径下执行 /home/July/procTest/a.out 程序时, 创建出来的进程运行的当前路径是什么呢？
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230315180607190.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161131449.webp)
 >
 > 可以看到, 在 /home/July 路径下执行 /home/July/procTest/a.out 程序时, 创建出的进程的当前运行的路径其实时 /home/July
 >
@@ -464,9 +464,9 @@ int main() {
 }
 ```
 
-![ |huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313164408816.webp)
+![ |huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161135195.webp)
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230313165631214.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722161136949.webp)
 
 ## 简易shell代码
 

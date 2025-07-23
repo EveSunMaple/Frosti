@@ -131,7 +131,7 @@ make
 
 这一次`make`没有再报`ssl`相关错误:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307210132623.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162355382.webp)
 
 然后`make install`将`python3`安装
 
@@ -150,7 +150,7 @@ ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 
 然后 尝试执行`pip3 install neovim`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307210135325.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162357249.webp)
 
 没有再报 **`WARNING: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.`** 警告.
 
@@ -158,7 +158,7 @@ ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 
 可以看到, `python3`成功被支持, `coc.nvim`也没有配置错误:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202307210138914.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722162359451.webp)
 
 问题解决~
 

@@ -1,9 +1,8 @@
 ---
-draft: true
-title: '从零接触C语言: 字符 和 字符串'
-description: ''
-pubDate: '2025-07-08'
-image: 'https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/20250318002323925.png'
+title: '从零接触C语言-III: 字符 和 字符串'
+description: 'C语言中的字符, 事实上并不是简单的字符, 它在程序中其实是另外一种类型'
+pubDate: '2025-07-09'
+image: 'https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710215328038.webp'
 categories:
     - Blogs
 tags:
@@ -15,6 +14,8 @@ import Info from "../../components/mdx/Info.astro";
 
 import Warning from "../../components/mdx/Warning.astro";
 
+import Kbd from "../../components/mdx/Kbd.astro"
+
 <Warning>
 
 如果你从未接触过C语言, 那么我建议你先阅读前面的文章:
@@ -22,6 +23,8 @@ import Warning from "../../components/mdx/Warning.astro";
 [📌从零接触C语言](https://www.humid1ch.cn/blog/tag/从零接触C语言)
 
 </Warning>
+
+
 
 ## C语言的字符和字符串
 
@@ -37,26 +40,400 @@ int main() {
 
 在这个例子中, 程序运行可以打印出`Hello World`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250708183212782.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723143201712.webp)
 
-但是, 你会看到一个奇怪的现象
+不过, 从运行结果中你可能会注意到一个现象: 输出的实际并不是`Hello World`, 而是`Hello World⏎`
 
-输出的实际并不是`Hello World`, 而是`Hello World⏎`
+难道这是C语言设计的吗? 通过`printf()`打印字符串, 打印结果会在末尾加一个特殊符号`⏎`? 很明显并不是这样的
 
-难道C语言就是这样设计的吗? 通过`printf()`打印字符串, 打印结果要在末尾加一个特殊符号`⏎`? 很明显并不是这样的
-
-实际上, 末尾的这个特殊符号, 是终端`shell`做的一个提醒字符: **上一个输出的结尾没有换行**
+事实上, 末尾的这个特殊符号, 只是终端`shell`做的一个提醒字符: **上一个输出的结尾没有换行**
 
 如果这样调用`printf("Hello World\n");`, 结果就会不一样:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20250708211037423.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723143314988.webp)
 
 两者之间的差别就只有一个`\n`
 
+### 字符
+
 `\n`具体是什么, 详情请看下面这张表:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/QQ%E6%88%AA%E5%9B%BE20250708233118.webp)
+#### `ASCII`码表 和 字符类型 **
 
-这张表是**`ASCII码`表**
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710224927713.webp)
 
-这张表在编程的世界里非常重要
+这张表是 **`ASCII`编码表**, 简称`ASCII`码表, 它在编程的世界里**非常重要**
+
+<Info>
+
+**`ASCII`是一种用于标准化英文字符在计算机中表示的编码方案, 是英语字符集中最小且最基本的通用标准**
+
+**在几乎所有现代主流的字符编码格式中(如 UTF-8、UTF-16、ISO-8859、GBK 等), `ASCII`编码表中的字符都具有统一且一致的含义**
+
+**同样, 在几乎所有主流的编程语言中, `ASCII`字符的定义和编码方式也完全一致**
+
+</Info>
+
+在`ASCII`码表中, 就可以找到`'\n'`这个符号, 对它的描述是: 换行
+
+是的`'\n'`只表示一个字符, 而不表示`'\'`和`'n'`两个字符
+
+现在你应该可以理解, 为什么执行`printf("Hello World\n");`终端不会提醒: 上一个输出的结尾没有换行
+
+因为`'\n'`的意思就是换行
+
+除了`'\n'`之外, 还可以看到更多`'\*'`样式的符号, 它们统一被称为**转义字符**, 通过`反斜杠'\'`与另一个字符组合, 用以表示某些**在代码中不方便直接书写或具有特殊含义的字符**:
+
+| 转义字符 | 十进制 | 描述/含义                                                    |
+| -------- | ------ | ------------------------------------------------------------ |
+| `'\0'`   | `0`    | 空字符(不是空格), 通常用于字符串的结尾                       |
+| `'\a'`   | `7`    | 响铃(会发出 系统指定声音, 可能是 "哔", 也可能被忽略掉)       |
+| `'\b'`   | `8`    | 退格, 即 <Kbd>Backspace</Kbd> 按键的输入                     |
+| `'\t'`   | `9`    | 水平制表符, 即 <Kbd>Tab</Kbd> 按键的输入                     |
+| `'\n'`   | `10`   | 换行, 即 切换到下一行                                        |
+| `'\v'`   | `11`   | 垂直制表符                                                   |
+| `'\f'`   | `12`   | 换页                                                         |
+| `'\r'`   | `13`   | 回车, 即 **回到当前行的起始位置**                            |
+| `'\e'`   | `27`   | 同 <Kbd>Esc</Kbd> 按键的输入(非标准ASCII C中的转义, GCC等编译器可能扩展实现) |
+| `'\"'`   | `34`   | 表示字符, 单个双引号`"`, 一般在编程中 用于在 字符串中输入`"` |
+| `'\''`   | `39`   | 表示字符, 单个单引号`'`, 一般在编程中 用于在 字符串中输入`'` |
+| `'\\'`   | `92`   | 表示字符, 单个反斜杠`\`, 一般在编程中 用于在 字符串中输入`\`, 因为如果是单个`\`会与其他字符组合被识别为转义字符 |
+
+在`ASCII`码表中, 还可以看到特殊符号和大小写英文字母
+
+并且, **`ASCII`码表中所有的字符都有一个对应的十进制数,** 这个十进制数表示什么呢?
+
+这个**十进制数就表示这个符号的值**
+
+```c
+#include <stdio.h>
+
+int main() {
+    char a = 'a';     // 初始化字符 'a'
+    char A = 'A';     // 初始化字符 'A'
+    char zero = '0';  // 初始化字符 '0'
+    char add = '+';   // 初始化字符 '+'
+    char space = ' '; // 初始化字符 ' '
+    char lf = '\n';   // 初始化字符 '\n'
+
+    printf("a: %d\n", a);
+    printf("A: %d\n", A);
+    printf("0: %d\n", zero);
+    printf("+: %d\n", add);
+    printf("\' \': %d\n", space);
+    printf("\\n: %d\n", lf);
+
+    return 0;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723144255148.webp)
+
+从结果中可以看到, 打印的几个字符确实是有一个值的
+
+实际上`ASCII`码表中的所有字符, 都有一个对应的整型值
+
+**在C语言中, `ASCII`码表中所有的字符实际上就是整型值, 需要字符形式输出的时候 表现为字符, 需要整型输出的时候 则表现为整型**
+
+以`'a'`为例, 上面的例子中 已经知道了`'a'是97`
+
+```c
+#include <stdio.h>
+
+int main() {
+    char aChar = 'a';
+    int aNumber = 97;
+
+    printf("aChar('a') 的值是 %d\n", aChar);
+    printf("aNumber(97) 表示的字符是 %c\n", aNumber);
+
+    return 0;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723144417587.webp)
+
+可以看到, 字符`'a'`可以打印出整型值`97`, 并且整型值`97`也可以直接打印出字符`'a'`
+
+这意味着, **在C语言中, 字符的真实类型实际是整型, `char`类型只是占用`1byte`大小的整型类型**
+
+所以, **C语言中, 字符和整型数据是可以直接进行计算的**:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int a = 'a';
+    printf("a = %c, a - 32 = %c\n", a, a - 32);
+
+    return 0;
+}
+```
+
+这段代码的执行结果是:
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723144532051.webp)
+
+注意到`'a' - 32`的结果, 以字符的形式打印是`'A'`
+
+这也就对应了: `'a'`的`ASCII`码值为`97`, `'A'`的`ASCII`码值是`65`
+
+这一切现象, 都说明了: **字符在C语言中的实际类型是整型**
+
+### 字符串 **
+
+#### 字符串的结尾
+
+**C语言中, 被`""`双引号包裹起来的一串字符, 被称为字符串, 也叫字符串字面量**
+
+**字符串结束的标志为`'\0'`, 即 `ASCII`码表中值为`0`的符号**
+
+C语言标准中, 处理字符串相关的函数基本都是以`'\0'`作为字符串的结尾判断的
+
+并且, 每个字符串字面量的结尾都存在一个隐藏的`'\0'`, 即:
+
+```c
+"Hello World"
+实际组成是
+'H' 'e' 'l' 'l' 'o' ' ' 'W' 'o' 'r' 'l' 'd' '\0'
+```
+
+也可以使用代码验证:
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    printf("\"Hello World\" size: %lu\n", sizeof("Hello World"));
+    printf("\"Hello World\" length: %lu\n", strlen("Hello World"));
+
+    return 0;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723144646035.webp)
+
+可以看到输出结果为: `"Hello World"`的实际占用空间大小是`12`, 而字符串的有效长度为`11`
+
+这就说明`"Hello World"`在实际的存储中, 并不是只有字面上的`11`个字符, 在结尾还有一个看不到的`'\0'`
+
+如果你手动把这个`'\0'`给拿掉, 再使用这个字符串就可能出现问题:
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[] = { 'H', 'e', 'l', 'l', 'o' };
+    char str2[] = { 'H', 'e', 'l', 'l', 'o', '\0' };
+    printf("str1: %s, size: %lu, length: %lu\n", str1, sizeof(str1), strlen(str1));
+    printf("str2: %s, size: %lu, length: %lu\n", str2, sizeof(str2), strlen(str2));
+
+    return 0;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723144748503.webp)
+
+不去细究, 从打印结果上 就可以看出端倪
+
+`str1`填入了`5`个字符, 计算出的实际大小也是`5`, 但 字符串长度却计算出了`6`
+
+这明显是有问题的
+
+虽然打印字符串确实是`Hello`, 但这可能是编译器做出了优化
+
+事实上, 如果像`str1`这样没有`'\0'`结尾的字符数组, 如果直接当作字符串使用, 是有问题的
+
+<Info>
+
+`strlen()`
+
+C语言标准中, 用于 取字符串有效长度的函数, 以`'\0'`判断字符串结尾
+
+使用前, 需要包含头文件`string.h`
+
+</Info>
+
+#### 字符串的格式化
+
+在上面的例子中, 已经使用过`printf()`打印字符串了
+
+一个完整的字符串打印是这样调用的: `printf("Hello World\n");`
+
+但是你不能使用`printf()`直接打印整型或者其他值数据:
+
+```c
+##include <stdio.h>
+
+int main() {
+    int age = 22;
+    printf(22);
+    printf(age);
+    printf("age");
+
+    return 0;
+}
+```
+
+这段代码编译会有警告, 运行会出错误:
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723145011362.webp)
+
+编译的警告大致为: **`printf()`的第一个参数预期应该传入`const char*`类型, 但是实际传入的确实`int`类型**
+
+不过, 也编译出了一个可执行程序
+
+但是, 运行可执行程序的时候, 会发生错误, 运行被终止
+
+难道`printf()`不能打印其他数据类型的值吗?
+
+当然不是的, **可以通过`printf()`将其他类型值格式化为字符串, 然后再打印出来**
+
+在之前的例子中也使用过, 但是并没有介绍过, 比如:
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int age1 = 18;
+    int age2 = 20;
+    printf("age1是: %d, age2是 %d\n", age1, age2);
+
+    printf("\"Hello World\" size: %lu\n", sizeof("Hello World"));
+    printf("\"Hello World\" length: %lu\n", strlen("Hello World"));
+
+    return 0;
+}
+```
+
+这段代码的执行结果是:
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723145200921.webp)
+
+可以看到, 虽然`printf()`需要打印的字符串中, 我们并没有填入`18` `20` `12` `11`这样的数字字符
+
+但是, 程序确实将 变量`age1`和`age2` 以及 `sizeof()`的结果 与 `strlen()`的返回值, 以字符串的形式打印出来了
+
+可以对比一下`printf()`的调用和实际的打印结果:
+
+```c
+printf("age1是: %d, age2是 %d\n", age1, age2);
+实际输出的可见字符为
+age1是: 18, age2是: 20
+
+printf("\"Hello World\" size: %lu\n", sizeof("Hello World"));
+实际输出的可见字符为
+"Hello World" size: 12
+
+printf("\"Hello World\" length: %lu\n", strlen("Hello World"));
+实际输出的可见字符为
+"Hello World" length: 11
+```
+
+通过对比可以发现: `printf()`调用中的`%d`和`%lu`被替换成了变量值的字符串 或 计算结果的字符串
+
+`printf()`的用法就是这样的:
+
+1. **第一个参数是一个字符串: `""`**
+2. **后面可以加参数, 参数类型要与 字符串中的<mark>格式说明符</mark>一一对应**
+
+这里提到的 **格式说明符** 是什么?
+
+C语言为格式化字符串 提供了一些 格式说明符, 可以在字符串中使用 用于将对应非字符串类型的数据 格式化为字符串
+
+格式说明符, 就是**以`%`开头 后接特定字符组合的字符串**
+
+C语言中的每种数据类型都对应一种格式说明符, 具体可以看下表:
+
+| 格式说明符  | 对应类型           | 举例                              | 含义                                                         |
+| ----------- | ------------------ | --------------------------------- | ------------------------------------------------------------ |
+| `%d`        | `int`              | `printf("%d", 10);`               | 打印有符号十进制整数                                         |
+| `%u`        | `unsigned int`     | `printf("%u", 10u);`              | 打印无符号十进制整数                                         |
+| `%x` / `%X` | `unsigned int`     | `printf("%x", 255);`              | 十六进制输出（小/大写）                                      |
+| `%o`        | `unsigned int`     | `printf("%o", 8);`                | 八进制输出                                                   |
+| `%ld`       | `long`             | `printf("%ld", 123456L);`         | 长整型输出                                                   |
+| `%lu`       | `unsigned long`    | `printf("%lu", 123456UL);`        | 无符号长整型                                                 |
+| `%lld`      | `long long`        | `printf("%lld", 123456789012LL);` | 长长整型                                                     |
+| `%f`        | `float` / `double` | `printf("%f", 3.14);`             | 浮点数输出                                                   |
+| `%c`        | `char`             | `printf("%c", 'A');`              | 字符输出                                                     |
+| `%s`        | `char*`            | `printf("%s", "abc");`            | 字符串输出                                                   |
+| `%p`        | 指针               | `printf("%p", ptr);`              | 输出地址                                                     |
+| `%%`        | ——                 | `printf("100%%");`                | 输出字面上的 `%` 字符<br />因为单个`%`已经被当作格式说明符的开始 |
+
+这张表是需要铭记在心的, 它为你格式化字符串提供了基础
+
+所以, 就可以使用`printf()`实现格式化的字符串打印, `print`是打印的意思, `f`就是格式化的意思
+
+##### `sprintf()` 和 `snprintf()`
+
+`printf()`是将字符串格式化打印到标准输出中, 一般就是终端中
+
+C语言还提供有其他相关函数, 可以将字符串格式化打印到另一个字符串中
+
+`sprintf()` 和 `snprintf()`:
+
+1. `sprintf()`
+
+    **用于将一个字符串格式化输出、存储到另一个 可存储字符串的空间中**
+
+    使用方法基本和`printf()`一致
+
+    但, 需要指定输出到某个可以存储字符串的空间中
+
+    示例代码如下:
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        char destStr[256] = {0};
+        printf("destStr: %s\n", destStr);
+    
+        sprintf(destStr, "1234 + 4321 = %d\n", 1234 + 4321);
+    
+        printf("destStr: %s\n", destStr);
+    
+        return 0;
+    }
+    ```
+
+    执行结果为:
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723145617953.webp)
+
+    可以看到`sprintf()`将`"1234 + 4321 = 5555"`写到了`destStr`这个空间中
+
+2. `snprintf()`
+
+    **用于将一个字符串的前`n`个字符格式化输出、存储到另一个 可存储字符串的空间中**
+
+    使用方法基本与`sprintf()`一致, 但除了需要指定目标空间以外, **还需要指定一个整型`n`, 表示只将第`n`个字节之前的字符**写入到另一个字符串中
+
+    **这里的`n`表示的是字节数**
+
+    实例代码如下:
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        char destStr[256] = {0};
+        printf("destStr: %s\n", destStr);
+    
+        snprintf(destStr, 6, "1234567890\n");
+    
+        printf("destStr: %s\n", destStr);
+    
+        return 0;
+    }
+    ```
+
+    执行结果为:
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250723145717226.webp)
+
+    `n`传入为`6`, 则只把前`5`个字节的字符写入到目标空间中
+

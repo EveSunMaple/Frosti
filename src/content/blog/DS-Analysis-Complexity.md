@@ -287,7 +287,7 @@ int Find_10(int *arr, int arrSize)
 > > 二分查找每次查找一次, `下一次查找的范围会缩小为当前范围的一半`
 > > 只需要一张动图就可解释: 
 > >
-> > ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/BinarySearch.gif)
+> > ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153916028.gif)
 > >
 > > 可以看出, 每次查找之后, 下一次需要查找的元素只剩下一半, 所以最坏的情况其实是 需要查找: `log N`次
 > > `复杂度中, log N即为 以2为底N的对数`
@@ -321,7 +321,7 @@ int Find_10(int *arr, int arrSize)
 > 此函数为 `递归求斐波那契数列`
 > 递归求斐波那契数列, 一个简单的递归分析图: 
 >
-> ![ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Fib_5.webp)
+> ![ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153918585.webp)
 >
 > 发现正常调用函数, 会再发生两次递归, 所以应该是 `2^N`
 > 但是因为当 `N < 3` 会返回 `1`, 不再递归, 所以应该是 `2^N - x` `(不容易计算所以用 x 表示)`, 但是无论怎样, 相减的常数因该是对`2^N` 造不成多大影响的
@@ -434,9 +434,9 @@ int Find_10(int *arr, int arrSize)
 
 常见的复杂度都有什么呢？
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Com_com.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153923912.webp)
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/Com_FUN.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153925717.webp)
 
 ---
 
@@ -451,4 +451,4 @@ int Find_10(int *arr, int arrSize)
 ---
 感谢阅读！
 
-![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/fangun_dog.gif)
+![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153929292.gif)

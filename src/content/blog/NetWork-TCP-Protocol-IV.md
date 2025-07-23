@@ -33,7 +33,7 @@ tags:
 
 `TCP`发送缓冲区可以看作是一块连续的空间, 但在逻辑结构上内容大致可以分为三部分:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202407011441110.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181922389.webp)
 
 1. 已经确认接收的数据
 

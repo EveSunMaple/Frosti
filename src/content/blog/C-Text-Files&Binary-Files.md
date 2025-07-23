@@ -4,7 +4,7 @@ title: "[C语言] 什么是文本文件和二进制文件？"
 pubDate: "2022-03-27"
 description: '文件按照功能分类, 可以分为 程序文件、数据文件 两类。
 此外, 文件的分类还有其他的分类方法, 比如 按照文件数据的组织形式 来分为 二进制文件 和 文本文件。'
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251813684.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722153240596.webp
 categories:
     - Blogs
 tags:
@@ -30,11 +30,11 @@ tags:
 
 > 一个 `.txt` 文件: 
 >
-> ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-TEXT_FILE.webp)
+> ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175019348.webp)
 >
 > 或者 一个 `.md` 文件 :
 > 
-> ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-BINARY_FILE.webp)
+> ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175020735.webp)
 
 而对于二进制文件, 一般人打开二进制文件是没有办法直接看懂的, 因为大部分内容都是乱码
 
@@ -42,15 +42,15 @@ tags:
 
 >类似这样: 
 >
->![BINARY_READ1 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-BINARY_READ1.webp)
+>![BINARY_READ1 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175022327.webp)
 >
 >这样: 
 >
->![BINARY_READ2 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-BINARY_READ2.webp)
+>![BINARY_READ2 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175024068.webp)
 >
 >或者这样: 
 >
->![BINARY_READ3 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-BINARY_READ3.webp)
+>![BINARY_READ3 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175025492.webp)
 >
 >类似于, 这些文件, 一般人（反正我是）真的看不懂。
 
@@ -115,23 +115,23 @@ tags:
 > > 
 > >     即: 
 > > 
-> >     ![DATA_STORAGE-ASCII |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-DATA_STORAGE-ASCII.webp)
+> >     ![DATA_STORAGE-ASCII |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175028640.webp)
 > > 
 > >     `VS2013`:
 > > 
-> >     ![ASCII-READ |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-DATA_STORAGE-ASCII-READ.webp)
+> >     ![ASCII-READ |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175030887.webp)
 > > 
 > > 2. 直接以数值的二进制存储: 
 > > 
 > >     即: 
 > > 
-> >     ![DATA_STORAGE-BINARY |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-DATA_STORAGE-BINARY.webp)
+> >     ![DATA_STORAGE-BINARY |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175032395.webp)
 > > 
 > >     `VS2013`: 对文件中以二进制输出 `99999`
 > > 
-> >     ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-DATA_STORAGE-BINARY-READ.webp)
+> >     ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175034000.webp)
 > > 
-> >     ![BINARY-READ2 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/file-DATA_STORAGE-BINARY-READ2.webp)
+> >     ![BINARY-READ2 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711175036443.webp)
 > >
 > > 我们可以非常明确的看到, 对于同一个数值型数据, 以 `99999` 为例
 > >

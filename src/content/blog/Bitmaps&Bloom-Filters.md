@@ -3,7 +3,7 @@ draft: true
 title: "[C++] 位图与布隆过滤器的相关介绍"
 pubDate: "2023-02-20"
 description: "哈希是一种思想, 位图 和 布隆过滤器是哈希思想的实现的一种"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251805666.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225333698.webp
 categories:
     - Blogs
 tags:
@@ -92,7 +92,7 @@ private:
 
 以 14 这个数为例, 在位图中映射的位置就应该是第2个单元的第2位上(右–>左 0–>7)
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230214185132886.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225138842.webp)
 
 以此规则, 添加 可以将数据映射的比特位设置为`0`或`1`的接口: 
 
@@ -182,7 +182,7 @@ bool test(size_t x) {
 
 这样的话, 一个`key`数据就再位图上映射了多个位置, 只有这些位置上同时表示数据存在时, `key`数据才真正存在: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230410144947499.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225151216.webp)
 
 意思为: **当`IP`计算出的三个不同的哈希值在位图中映射同时存在时, 表示此`IP`存在**
 
@@ -192,7 +192,7 @@ bool test(size_t x) {
 
 依旧以`IP`的问题为例: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230410144952521.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225153025.webp)
 
 在此例中, 粉色`IP: 212.0.222.67`计算出的三个哈希值分别是11、12、15, 而这三个哈希值也**分别在其他的`IP`哈希值中**
 
@@ -200,13 +200,13 @@ bool test(size_t x) {
 
 将粉色`IP`的映射在位图中删除: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230216210452763.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225154856.webp)
 
 但是通过观察可以发现, 原粉色`IP: 212.0.222.67`计算出的三个哈希值11、12、15, 依旧映射在位图中
 
 这也说明了如果此时查找`IP: 212.0.222.67`, 依旧可以在位图中查找到, 即使 此`IP`实际并没有在位图中映射: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230216213740848.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225157888.webp)
 
 使用多个哈希值进行映射减少了发生哈希冲突的概率, 但并不能完全避免哈希冲突
 
@@ -241,11 +241,11 @@ bool test(size_t x) {
 
 那么对于第二个问题, 该如何解决 一个比特位的映射, 可能是多个数据共同占用这一位 这个问题呢? 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230410145044646.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225200158.webp)
 
 在上图中展示的IP中, 如果为了删除粉色IP 进而直接删除其在比特位中的映射, 即: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230410145049695.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225201888.webp)
 
 将粉色IP哈希值的映射位直接删除, 那么会造成什么问题? 
 
@@ -277,7 +277,7 @@ bool test(size_t x) {
 
 这种思路的布隆过滤器被称为`Counting BloomFilter`
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230220143343068.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225203862.webp)
 
 以多个比特位实际表示一个哈希映射位和映射次数的这种结构, 可以实现对原数据的删除。
 
@@ -285,7 +285,7 @@ bool test(size_t x) {
 
 比如删除蓝色和粉色IP, 之后`Counting BloomFilter`的大致模型就应该是: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230220144928203.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710225211824.webp)
 
 这样的思路, 就可以实现布隆过滤器对数据的删除
 

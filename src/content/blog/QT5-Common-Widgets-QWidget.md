@@ -3,7 +3,7 @@ draft: true
 title: "[QT5] 常用控件: QWidget是什么? 了解 控件常用公共属性, QT的qrc资源管理机制..."
 pubDate: "2024-12-16"
 description: "QT是一种GUI开发框架, 它内置有许多各种各样的控件, 接下来就对常用控件做一些介绍"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412241544080.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182600541.webp
 categories:
     - Blogs
 tags: 
@@ -25,23 +25,23 @@ tags:
 
 除此之外, `QT`内置了种类非常丰富的控件(但是颜值并不高), 打开`QT Creator`->`Designer`(双击`QT`项目的`.ui`文件)就能看到`QT`内置的控件:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161611939.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182232978.webp)
 
 在了解各种控件类之前, 先了解一下`QWidget`类
 
 `QWidget`是`QT`中控件的通用属性类, 在`QT Designer`中查看:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161912112.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182235356.webp)
 
 # `QWidget` **
 
 `QWidget`拥有很多属性, 可以直接在`QT`的文档中查看:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171110425.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182237207.webp)
 
 也可以在`QT Designer`中查看:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161913847.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182239362.webp)
 
 对于常用的公共属性, 可以一一进行介绍一下
 
@@ -89,7 +89,7 @@ Widget::~Widget() {
 
 执行结果为:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161920522.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182241805.webp)
 
 可以看到, 按钮1为灰色, 处于不可选中状态; 按钮2, 则处于正常状态
 
@@ -176,7 +176,7 @@ void Widget::btn2ClickedHandler() {
 
 这段代码的执行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161934913.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182244876.gif)
 
 ## `geometry`
 
@@ -266,7 +266,7 @@ void Widget::btn2ClickedHandler() {
 
 这段代码的执行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412161952948.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182248137.gif)
 
 `geometry()`接口, 可以获取控件当前的坐标和尺寸, 返回值是一个`QRect`对象
 
@@ -317,7 +317,7 @@ void Widget::on_pushButton_clicked() {
 
 这样一个简单的小游戏就实现了:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412170917188.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182250686.gif)
 
 不过, 上面是实现了对`clicked`信号的槽, 还有一个信号是`pressed`
 
@@ -360,19 +360,19 @@ void Widget::on_pushButton_pressed() {
 
 对`pressed`信号实现槽, 可以实现鼠标左键不松的状态下, 光标移动到按钮上, 按钮就跳跃移动:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412170926079.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182253063.gif)
 
 ### `WindowFrame`的影响 **
 
 `WindowFrame`一般是由系统的桌面环境提供的, 它通常是窗口默认的标题栏、边框等元素
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412170938473.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182255041.webp)
 
 边框也算`WindowFrame`的一部分
 
 之前的代码中, `QPushButton`控件`move()`、`geometry()`、`setGeometry()`接口, 设置或获取的都是控件相对于`Widget`本体的位置信息(左上角为`(0, 0)`):
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412170943952.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182256864.webp)
 
 窗口的`WindowFrame`元素是没有被计算在内的
 
@@ -418,7 +418,7 @@ void Widget::on_pushButton_clicked() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171015756.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182259593.webp)
 
 > 要想获取包含了`WindowFrame`的窗口属性
 >
@@ -426,7 +426,7 @@ void Widget::on_pushButton_clicked() {
 >
 > 所以, 在窗口构造阶段, `WindowFrame`还没有被添加, 无法正确获取:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171020240.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182301617.webp)
 
 ## `windowTitle`
 
@@ -434,7 +434,7 @@ void Widget::on_pushButton_clicked() {
 
 点击`Widget`窗口就能够看到`window...`的相关属性:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171058521.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182303608.webp)
 
 ---
 
@@ -464,7 +464,7 @@ Widget::Widget(QWidget* parent)
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171128946.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182306035.webp)
 
 `windowTitle`这个属性只对独立的窗口有效, 不过 其他控件设置并不会报错:
 
@@ -502,7 +502,7 @@ void Widget::btnClickedHandler() {
 
 执行代码, 点击按钮
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171135857.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182308608.gif)
 
 什么事都没有发生
 
@@ -554,7 +554,7 @@ Widget::~Widget() {
 }
 ```
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171149792.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182311631.webp)
 
 `QIcon`的图标路径, 除了绝对路径之外, 也可以使用相对路径
 
@@ -562,11 +562,11 @@ Widget::~Widget() {
 
 我的项目路径在: `C:\Users\humid1ch\gitCode\codeRecords\QT`
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171152125.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182313685.webp)
 
 可执行程序的所在目录是`build-xxxxx`的`debug/release`目录下:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171154715.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182315534.webp)
 
 而, `QT Creator`运行可执行程序时所在目录, 会在`build-xxxxx`目录下
 
@@ -601,7 +601,7 @@ Widget::~Widget() {
 
 编译运行, 同样可以实现窗口图标的设置:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171338829.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182317982.webp)
 
 但是, **无论是绝对路径或是相对路径, 实际上都不能保证程序能实际找到图片资源**
 
@@ -621,23 +621,23 @@ Widget::~Widget() {
 
 `QT Creator`创建`.qrc`文件很简单:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171403497.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182320248.webp)
 
 要清楚`.qrc`文件的所在路径, 因为**需要被`.qrc`管理的文件, 要与`.qrc`文件处于同级目录或子目录下**
 
 创建好`.qrc`文件之后, 就可以通过`QT Creator`添加要管理的文件资源了:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171406673.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182322232.webp)
 
 首先要添加`Prefix`, 即 前缀, 前缀是什么, 在代码中访问资源的路径就需要添加什么, 一般为`/`
 
 然后可以在已添加的`Prefix`下添加文件, 点击`Add Files`添加文件资源, 且**文件要处与`.qrc`同级目录或子目录下**:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171416033.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182323914.webp)
 
 此时, `.qrc`文件内容为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171426404.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182326183.webp)
 
 然后, 就可以在代码中使用`:/smile.png`访问到文件资源:
 
@@ -669,7 +669,7 @@ Widget::~Widget() {
 }
 ```
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171420842.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182328254.webp)
 
 ---
 
@@ -677,7 +677,7 @@ Widget::~Widget() {
 
 在`build-xxxxx`的子目录下可以看到`qrc`相关的`.cpp`文件:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171430142.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182330893.webp)
 
 这个数组, 就是文件的二进制数据, 数组的每一个元素都是1字节`unsigned char`
 
@@ -761,7 +761,7 @@ void Widget::btn2ClickedHandler() {
 
 这段代码的运行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171453521.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182334281.gif)
 
 从结果可以看到, **`windowOpacity`这个属性, 是自带范围控制的`[0, 1]`**
 
@@ -773,17 +773,17 @@ void Widget::btn2ClickedHandler() {
 
 光标就是这个东西:
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171635749.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182336617.webp)
 
 `QT`可以设置光标在控件范围时的光标形式, 可以在`QT Designer`中直接选择控件进行设置, 也可以通过代码的方式进行设置
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171644235.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182338736.webp)
 
 设置`Widget`的`cursor`为**上箭头**, `pushButton`的`cursor`为**等待**
 
 设置完之后, 运行结果如下:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171650604.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182340846.gif)
 
 也可以通过代码进行设置, `QT`提供了相应的接口
 
@@ -822,11 +822,11 @@ Widget::~Widget() {
 
 程序运行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171658051.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182343458.gif)
 
 `QT`提供了许多的`cursor`类型, 都可以在`QCursor`对象中设置:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171659387.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182345652.webp)
 
 ### 自定义光标样式
 
@@ -844,7 +844,7 @@ Widget::~Widget() {
 
 `QPixmap`类, 就是用于使用图片资源的类, 使用图片之前可以用`qrc`将图片资源管理起来
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171727414.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182347734.webp)
 
 `widget.cc`:
 
@@ -872,7 +872,7 @@ Widget::~Widget() {
 
 程序运行的结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171729084.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182350141.gif)
 
 在使用图片自定义光标时, 如果没有特殊情况 默认的有效点击位置是图片的左上角`(0, 0)`的位置, 有效点击位置被叫做**热点**
 
@@ -882,15 +882,15 @@ Widget::~Widget() {
 
 通过`QCursor::hotSpot()`可以查看光标的热点:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171740756.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182352860.webp)
 
 也可以在`QCursor`对象实例化时 构造函数传参设置光标的热点, 或通过成员函数`setPos()`设置光标的热点:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171748487.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182354972.webp)
 
 如果, 设置的热点位置超出了图片尺寸, 则光标热点会发生偏移:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171753208.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182357211.webp)
 
 ## `font`
 
@@ -898,7 +898,7 @@ Widget::~Widget() {
 
 `QT Designer`可以直接设置控件的`font`属性, 并且在`QT Designer`中可以实时预览:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171800409.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182359174.webp)
 
 也可以通过代码的形式设置控件的`font`属性
 
@@ -976,7 +976,7 @@ Widget::~Widget() {
 
 程序的执行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171833295.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182402660.webp)
 
 ## `tooltip`
 
@@ -984,13 +984,13 @@ Widget::~Widget() {
 
 什么意思呢, 举个例子:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171928502.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182404618.webp)
 
 这样的提示就是`tooltip`可以显示的内容
 
 `QT Designer`中有相关的设置:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171921921.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182406930.webp)
 
 也可以直接通过代码设置, `QT`相关的接口有:
 
@@ -1025,7 +1025,7 @@ Widget::~Widget() {
 
 程序运行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171925209.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182409412.gif)
 
 ## `focusPolicy`
 
@@ -1035,17 +1035,17 @@ Widget::~Widget() {
 
 在上网的过程中, 一定遇到过各种登录的场景, 比如:
 
-![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412172013687.webp)
+![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182411606.webp)
 
 在需要从键盘输入数据时, 需要先点击单行文本编辑框, 将输入焦点聚焦在单行文本编辑框上
 
 然后才能将文本输入到聚焦的单行文本编辑框中:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412172020171.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182413575.webp)
 
 并且, 可以通过点击或`Tab`的方式, 切换所聚焦的单行文本编辑框:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412172024214.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182415624.gif)
 
 而`focusPolicy`就是设置这些控件的聚焦方式
 
@@ -1065,11 +1065,11 @@ enum FocusPolicy {
 
 `NoFocus` `TabFocus` `TabFocus` `ClickFocus` `StrongFocus`
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180846671.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182420618.webp)
 
 执行结果为:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180850430.gif)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182422479.gif)
 
 代码实现`QT`相关的接口有:
 
@@ -1118,7 +1118,7 @@ Widget::~Widget() {
 
 运行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180910614.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182425450.gif)
 
 ## `styleSheet`
 
@@ -1128,7 +1128,7 @@ Widget::~Widget() {
 
 `CSS`在网页前端的开发中是必备的, 它一般长这样:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412171933773.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182428436.webp)
 
 由标签和其所拥有的若干的键值对组成, 设置网页元素的风格, 用于网页元素的渲染
 
@@ -1140,7 +1140,7 @@ Widget::~Widget() {
 
 在`QT Designer`中, 可以直接对控件进行`QSS`风格设置:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180917332.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182430780.webp)
 
 比如: 
 
@@ -1152,11 +1152,11 @@ font-weight: 800;
 font-size: 16pt;
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180924301.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182433067.webp)
 
 运行, 并输入文本:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180925491.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182435748.webp)
 
 如果要通过代码实现, `QT`相关的接口有:
 
@@ -1196,13 +1196,13 @@ Widget::~Widget() {
 
 运行结果为:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180941599.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182438565.gif)
 
 ### 日间与夜间模式(小玩具程序)
 
 `QT Designer`:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180953284.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182440930.webp)
 
 `widget.h`:
 
@@ -1280,7 +1280,7 @@ void Widget::on_pushButton_clicked() {
 
 运行结果:
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202412180956034.gif)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182444806.gif)
 
 ---
 

@@ -48,7 +48,7 @@ tags:
 
 这样才能完成数据再不同计算机之间的传输
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230424114812249.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181629907.webp)
 
 如果多台计算机之间总是需要数据的传输, 这样的方式毫无疑问是非常的麻烦的
 
@@ -66,7 +66,7 @@ tags:
 
 而计算机内部的各种硬件之间也是需要数据交互的, 它们之间的交互其实就是通过 主板中的连接各硬件的线路 来交互的
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230424155848181.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181631865.webp)
 
 如果将上图看作是一个计算机的结构简略图, 那么, 它们之间的连接线, 就可以看作是主板上连接各设备的线路
 
@@ -98,7 +98,7 @@ tags:
 
 可以以类似的方式将多个不同的计算机的网卡设备相连接起来, 以实现多计算机之间数据交互的功能
 
-![|big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230424172530267.webp)
+![|big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181634447.webp)
 
 计算机内部设备之间连接的线比较短, 且比较密集
 
@@ -310,7 +310,7 @@ tags:
 
 通过七个层次化的结构模型使不同的系统不同的网络之间实现可靠的通讯;
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/2023-06-08_22-48.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181640315.webp)
 
 `OSI`七层模型在框架上、逻辑设计上是非常的优秀的
 
@@ -382,7 +382,7 @@ tags:
 
 `TCP/IP`网络协议栈是5层的, 但是也可以对应`OSI`七层模型:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230515224404521.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181644205.webp)
 
 而一般网络开发的情况下, 物理层考虑的比较少
 
@@ -411,7 +411,7 @@ tags:
 
 首先可以从一张图来表述: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230516223515037.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181646244.webp)
 
 这张图表述的内容, 是**网络中不同层级的协议, 其实是操作系统整个体系中各个部分中的一个模块**
 
@@ -437,7 +437,7 @@ tags:
 
 假设存在两个`TCP/IP`网络协议标准的平台, `Windows`发送, `Linux`接收, 那么对应的流程用图片表述, 整个过程大概是这样的:
 
-![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230517000923841.webp)
+![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181648333.webp)
 
 两个主机之间通过网络通信的整个大概流程, 大概就是这样的.
 
@@ -550,7 +550,7 @@ tags:
 
 1. 当主机一要向主机二传输 "你好" 信息时, 生成的信息数据包 在主机一内部的网络协议栈中 的变化 是这样的:
 
-    ![PC1 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211616981.gif)
+    ![PC1 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181651424.gif)
 
     首先, 主机一产生的数据 在主机一内部的**流向是从上到下**的
 
@@ -566,7 +566,7 @@ tags:
 
 3. 主机二 接收到数据之后, 数据在主机二内部的网络协议栈的变化是这样的:
 
-    ![PC2 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211616263.gif)
+    ![PC2 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181653995.gif)
 
     首先, 接收到的数据包, 在主机二内部的网络协议栈中的**流向是从下到上**的
 
@@ -628,13 +628,13 @@ tags:
 >
 >     打开`Windows Powershell`或者`CMD`, 执行 `ipconfig /all` 即可查看 当前主机网络的信息, 可以在其中找物理设备的`MAC`地址:
 >
->     ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306181112482.webp)
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181657241.webp)
 >
 > - `Linux`:
 >
 >     打开终端, 执行 `ifconfig`, 即可查看 当前主机的部分网络信息:
 >
->     ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306181134260.webp)
+>     ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181659235.webp)
 
 每台可以连接到网络的主机都要有一个**唯一的标识符**, 这个标识符就是主机中**物理网络设备的`MAC`物理地址**
 
@@ -660,7 +660,7 @@ tags:
 
 ---
 
-![局域网通信的简单原理 |big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306181217971.webp)
+![局域网通信的简单原理 |big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181701615.webp)
 
 这是局域网通信时, 不同主机之间可能发生的数据流动图, 即**局域网通信的简单原理图**
 
@@ -678,7 +678,7 @@ tags:
 
 那么不同局域网之间该如何通信呢?
 
-![不同局域网之间通信简单原理](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251011777.webp)
+![不同局域网之间通信简单原理](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181703560.webp)
 
 当局域网一的某台主机 要向局域网二的某台主机发送信息时
 
@@ -732,7 +732,7 @@ tags:
 
 上面的网络通信原理简单介绍时, 举出的例子的主机内部协议都是 指定的, 即:
 
-![ |big](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251130568.webp)
+![ |big](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181706246.webp)
 
 但是, 实际上不同主机的不同层级所使用的协议很大可能是不同的. 不同层级的协议也有很多:
 

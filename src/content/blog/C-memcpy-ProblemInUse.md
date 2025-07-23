@@ -3,7 +3,7 @@ draft: true
 title: "[C/CPP] memcpy()的一个使用问题"
 pubDate: "2024-11-21"
 description: "使用memcpy()将字符数组的前几个元素, 拷贝到一个整型变量中时, 发现了一个问题..."
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411212340590.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230318589.webp
 categories:
     - Blogs
 tags: 
@@ -36,7 +36,7 @@ int main() {
 
 执行结果如下:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411212244464.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174840990.webp)
 
 虽然之前简单地模拟实现过`memcpu()`函数, 但是第一次看见类似这样的结果时, 愣了一下
 
@@ -44,7 +44,7 @@ int main() {
 
 而且, 如果 字符数组之间通过`memcpy()`进行拷贝, 也不会出现预期不一致的情况:
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411212250069.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174843025.webp)
 
 所以, 应该不仅仅是字节序的问题, 应该还有`unsigned char`与`unsigned int`之间的问题
 
@@ -126,7 +126,7 @@ int main() {
 
 最终, 整个拷贝过程完成, 就实现了`array[4] = {0x12, 0x34, 0x56, 0x78}`拷贝到`num`结果为`0x78563412` 
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202411212244464.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711174846330.webp)
 
 > 如果, 某个平台使用的是大端字节序存储数据, 相信应该不会出现上面的这个现象
 

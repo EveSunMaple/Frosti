@@ -25,7 +25,7 @@ tags:
 
 而在通信的最后, `TCP`协议断开连接 需要"四次挥手":
 
-![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401271707265.webp)
+![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181845255.webp)
 
 从图中看, `TCP`的"四次挥手", 是由 **两端分别发送`FIN`报文, 对端再应答`ACK`报文** 形成的
 
@@ -301,13 +301,13 @@ int main(int argc, char* argv[]) {
 
     使用`netstat -nlpt`查看, 系统中处于`LISTEN`状态的`TCP`服务
 
-    ![|huger](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401282054317.webp)
+    ![|huger](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181850176.webp)
 
 2. 当使用`telnet`向服务器发起连接之后
 
     使用`netstat -npt`查看`TCP`服务的连接状态
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401282059635.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181852186.webp)
 
     可以看到, 系统维护有 **从客户端到服务端的连接** 和 **从服务端到客户端的连接**, 并且状态都处于`ESTABLISHED`
 
@@ -325,7 +325,7 @@ int main(int argc, char* argv[]) {
 
     再次使用`netstat -npt`查看`TCP`服务的连接状态
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401282115992.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181854243.webp)
 
     可以看到, `telnet`4次尝试向服务端建立连接, 系统成功建立了3条`TCP`连接
 
@@ -347,7 +347,7 @@ int main(int argc, char* argv[]) {
 
 4. 重新使用`telnet`向服务器发起连接, 并且记录从建立连接, 到断开连接, 服务端连接状态的变化
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401282247759.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181856202.webp)
 
     可以看到:
 
@@ -369,7 +369,7 @@ int main(int argc, char* argv[]) {
         >
         > 执行`man tcp`的命令, 并搜索`tcp_fin_timeout`:
         >
-        > ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401282259457.webp)
+        > ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181859215.webp)
         >
         > **tcp_fin_timeout（整数; 默认值: 60; 自 Linux2.2 起）**
         >
@@ -397,7 +397,7 @@ int main(int argc, char* argv[]) {
 
     实际的结果:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401291554118.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181902037.webp)
 
     实际的结果, 也正如预测的那样, 服务端基本是在连接建立成功`120s`之后, 调用了`close()`关闭了连接, 从而解决了一直处于`CLOSE_WAIT`的情况
 
@@ -421,7 +421,7 @@ int main(int argc, char* argv[]) {
 
 `telnet`发起连接之后, 主动关闭连接, 并查看客户端状态变化:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401291631389.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181904416.webp)
 
 可以看到, 在连接成功建立(24:01) 的`40s`左右之后(24:40), 被动端(服务端)调用`close()` 发送`FIN`报文
 
@@ -533,11 +533,11 @@ int main(int argc, char* argv[]) {
 >
 > 但实际不是的. 查看Linux源码可以看到, `MSL=60`:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401300028550.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181907505.webp)
 >
 > 同样 可以看到`TIME_WAIT`的持续时间, 也可以看作默认`60s`:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401300037389.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181909178.webp)
 >
 > > Linux系统实现的`TIME_WAIT`的持续时间, 并不只是简单的`60s`, 但是一般可以看作是`60s`
 >
@@ -547,7 +547,7 @@ int main(int argc, char* argv[]) {
 >
 > `cat /proc/sys/net/ipv4/tcp_fin_timeout`
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401300039718.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181911201.webp)
 >
 > ---
 >
@@ -565,7 +565,7 @@ int main(int argc, char* argv[]) {
 
 如果是服务端`TIME_WAIT`持续太久, 会出现这种情况:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401301633910.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181913165.webp)
 
 由于服务端主动关闭连接, 维持在`TIME_WAIT`状态, 导致端口资源无法释放, 耽误服务重启
 
@@ -605,7 +605,7 @@ int setsockopt(int sockfd, int level, int optname,
     setsockopt(_listenSock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
     ```
 
-    ![在TIME_WAIT状态 |wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401301714483.webp)
+    ![在TIME_WAIT状态 |wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181916061.webp)
 
 2. `SO_REUSEPORT`
 
@@ -617,7 +617,7 @@ int setsockopt(int sockfd, int level, int optname,
     setsockopt(_listenSock, SOL_SOCKET, SO_REUSEPORT, &opt, sizeof(opt));
     ```
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401301721903.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181918134.webp)
 
 ---
 

@@ -28,9 +28,9 @@ unordered_set 和 unordered_map在大体使用上与 set 和 map相似, 只是�
 
 官方文档中对于 这两个容器的描述是这样的: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221110175001906.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180810726.webp)
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221110175156194.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180812370.webp)
 
 > unordered_set 的介绍可以参考 unordered_map
 
@@ -80,7 +80,7 @@ unordered_set 和 unordered_map在大体使用上与 set 和 map相似, 只是�
 >
 > 使用哈希方法 将这届数据 放入容量大小为10的数组中, 则 使用 `hash(key) = key % capacity` 计算位置:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221111080739507.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180815550.webp)
 
 ## 哈希冲突
 
@@ -126,7 +126,7 @@ unordered_set 和 unordered_map在大体使用上与 set 和 map相似, 只是�
 
 那么以上面的例子为基础: 再次插入 13, 那么哈希表中应该就是这样的情况:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221111093214911.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180818452.webp)
 
 >  13 直接存储在 3 的后面
 >
@@ -146,7 +146,7 @@ unordered_set 和 unordered_map在大体使用上与 set 和 map相似, 只是�
 
 即 如果使用二次探测 在哈希表中插入: 2 12 22 32, 那么 哈希表中应该是这样的情况:
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221111100247841.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180820570.webp)
 
 > 使用二次探测, 不会造成向后数据堆积的情况, 但是会造成`空间浪费太多`
 
@@ -158,7 +158,7 @@ unordered_set 和 unordered_map在大体使用上与 set 和 map相似, 只是�
 
 比如像下面这样直接删除 22:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221111100921080.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180822450.webp)
 
 > 没有删除的时候, 查找 32, 则会先找到 2, 再找到 12, 再找到 22, 最后找到 32
 >
@@ -327,7 +327,7 @@ private:
 
 > 将 `4 11 99 17 14 24 47 19 31 49 37 39 34 55` 以此插入 哈希桶中, 哈希桶的结构就可以示意为:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221111145748481.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180827729.webp)
 >
 > 将 哈希地址相同的数据 以 `单链表的形式存储在各个位置中`
 
@@ -603,11 +603,11 @@ size_t BKDRHash(const string& str) {
 
 这个时候 `仿函数` 就又需要上场了
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221112073636532.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180836155.webp)
 
 官方文档中对于 unordered_map 的模板参数的描述, `第三个 Hash , 需要传入的函数就是 取key类型的哈希值的仿函数`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20221112074536539.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711180838058.webp)
 
 仿函数的具体内容就是针对 key类型计算哈希值:
 

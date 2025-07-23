@@ -104,7 +104,7 @@ tags:
 
 再Linux内核源码中, 有关进程状态分类的部分是这样的: 
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303151243423.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175901945.webp)
 
 Linux将进程的状态分为了: R(running)、S(sleeping)、D(disk sleep)、T(stopped)、t(tracing stop)、Z(zombie) 和 X(dead) 7种
 
@@ -132,13 +132,13 @@ int main() {
 }
 ```
 
-![SleepStat](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/SleepStat%2015-32-21.gif)
+![SleepStat](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175904601.gif)
 
 可以看到, 进程是运行着的, 并且右边一直在屏幕上刷着一句话`"I am a process, pid = 17590"`
 
 而使用 ps 查询17590时 也可以查询的到, 但是此时系统显示 进程的状态却是 `S`~~(忽略‘+’号)~~ ！
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303153810698.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175906712.webp)
 
 上面介绍了, 只要一个进程在CPU的运行队列中, 那么这个进程就在运行态, 在Linux中就应该处于 R 状态。而且 程序不停地在运行时可以观察得到的。那为什么系统显示当前进程的状态是 S 呢？S 究竟是个什么状态？
 
@@ -154,9 +154,9 @@ int main() {
 >
 > 其实很简单, 只需要将上面代码中 cout 语句删除, 让此进程不需要使用其他硬件资源, 那就可以看到此进程在R (running)状态了: 
 >
-> ![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303155607212.webp)
+> ![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175908728.webp)
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303155535534.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175910544.webp)
 
 S 状态是睡眠状态, 也可以被称为`浅度睡眠`。既然有浅度睡眠, 那与之对应的深度睡眠也不会缺少。
 
@@ -170,7 +170,7 @@ D(disk sleeping) 深度睡眠状态, 其实也是阻塞状态, 不过是 `特指
 
 S 状态是可中断的, 即可以被 kill 掉: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303160601469.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175912586.webp)
 
 但 D 状态是不能被中断的, 也没有办法演示
 
@@ -220,7 +220,7 @@ Linux系统中的 X状态, 就是概念中的终止状态。当进程不会再�
 
 >  `task_struct` 中部分退出信息
 >
->  ![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303170038653.webp)
+>  ![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175915656.webp)
 
 ### 模拟僵尸进程
 
@@ -250,7 +250,7 @@ int main() {
 }
 ```
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303172722044.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175918377.webp)
 
 此时, 子进程运行已经结束, 而父进程也不读取退出信息, 就会导致子进程一直处于僵尸状态。
 
@@ -289,7 +289,7 @@ int main() {
 
 然后使用`kill -19 进程标识符` 或 `Ctrl+Z`, 将进程暂停: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303180222917.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175921339.webp)
 
 此时显示进程的状态为 T状态
 
@@ -297,7 +297,7 @@ int main() {
 
 既然 t特指进程调试时遇到断点时所处的状态, 那就用gdb调试的方式查看: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230303181109616.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175925482.webp)
 
 可以看到, 使用gdb调试进程的时候, 当进程遇到断点, 此时进程的状态就会进入 t(stracing stop)状态
 
@@ -307,17 +307,17 @@ Linux中, 存在一种特殊的进程——孤儿进程
 
 只看名字其实就已经能想象到是什么意思了, 孤儿进程是指 `子进程运行没有结束, 但是父进程的运行结束了, 父进程先被回收了, 那么此时的子进程就成了孤儿,  被称为孤儿进程`
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304094123880.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175928045.webp)
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304094431837.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175930266.webp)
 
 并且, 此时子进程一直在命令行中运行, 但是并不影响其他指令的执行: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304094640370.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175943632.webp)
 
 并且, `此时的子进程无法被Ctrl+C终止掉, 只能使用kill -9 PID的方式kill`
 
-![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304095030602.webp)
+![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175946076.webp)
 
 > 因为此时的子进程已经成为了后台进程, 在进程状态一栏中, 之前的进程的状态后都会有一个`+`号, 此 `+`号表示此程序是前台进程
 >
@@ -327,7 +327,7 @@ Linux中, 存在一种特殊的进程——孤儿进程
 
 因为当子进程的父进程提前结束的时候, 此子进程就会被系统接管, 此子进程也变成了孤儿进程, PID为1的进程就是系统: 
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304095400283.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175948316.webp)
 
 # Linux进程的优先级
 
@@ -354,7 +354,7 @@ Linux中, 存在一种特殊的进程——孤儿进程
 1. `priority`: 在Linux系统中, `指当前进程的优先级, 此数值越小即表明进程的优先级越高`
 2. `nice`: 在Linux系统中, 可以理解为 `当前进程优先级被调整的数值`
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304091910718.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175950787.webp)
 
 > PRI即为priority, NI即为nice
 
@@ -370,29 +370,29 @@ Linux中, 存在一种特殊的进程——孤儿进程
 >
 > `知道进程的PID时, 进入top, 再按r, 再输入PID, 再输入需要的NI值, 就可以做到NI值的修改(必须为root用户)`
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304100931552.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175952648.webp)
 
 运行了一个死循环进程, PID 为 27495
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304101126267.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175954798.webp)
 
 进入top界面
 
 输入进程PID: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304101255970.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175956357.webp)
 
 在输入需要修改到的NI值: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304101416265.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175957780.webp)
 
 然后可以发现, top界面中, NI和PR值都改变了: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304101550416.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722175959643.webp)
 
 使用ps -la查看此进程的优先级, 发现同样发生了改变: 
 
-![|huge](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304101731404.webp)
+![|huge](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180001385.webp)
 
 > PS: 不同程序界面的PRI值不同, 可能是因为基准不同
 
@@ -404,9 +404,9 @@ Linux中, 存在一种特殊的进程——孤儿进程
 
 当我设置NI值 -100 和 100 时: 
 
-![设置NI -100 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304102113415.webp)
+![设置NI -100 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180003163.webp)
 
-![设置NI 100 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230304102240387.webp)
+![设置NI 100 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180004821.webp)
 
 可以发现, 其实 NI最低只能设置到-20, 最高只能设置到19。
 

@@ -103,7 +103,7 @@ tags:
 
 条件变量的使用接口 与 互斥锁相似: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230419184512504.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180827702.webp)
 
 条件变量, 是由`pthread_cond_t`类型定义的
 
@@ -115,7 +115,7 @@ tags:
 
 除了这两个接口外, 还有提供有使用条件变量的接口: 
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230419190529442.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180829438.webp)
 
 `pthread_cond_wait()`是`pthread`库提供的 使用条件变量进行等待的接口
 
@@ -133,7 +133,7 @@ tags:
 
 这两个接口, 可以通过条件变量 **让线程等待**
 
-![ ](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230419191343494.webp)
+![ ](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180831259.webp)
 
 有通过条件变量 让线程等待的接口, 就有通过条件变量唤醒线程的接口.
 
@@ -207,7 +207,7 @@ int main() {
 
 然后在主线程中通过输入`n`和`N`来调用唤醒函数, 唤醒线程, 观察现象: 
 
-![show_cond |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/show_cond.gif)
+![show_cond |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180834178.gif)
 
 在其他线程通过条件变量等待时, 在主线程内通过 输入`N`和`n`来唤醒等待的线程
 
@@ -217,7 +217,7 @@ int main() {
 
 还可以使用`pthread_cond_broadcast()`来广播唤醒所有等待的线程: 
 
-![使用 broadcast 唤醒所有等待的线程 |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/show_cond_broadcast.gif)
+![使用 broadcast 唤醒所有等待的线程 |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180836085.gif)
 
 这里演示的是, `cond`条件变量的没有场景的用法
 
@@ -297,7 +297,7 @@ int main() {
 
 执行结果为: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/show_cond_broadcast_withquit.gif)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180839557.gif)
 
 这就是条件和条件变量的最简单的使用
 
@@ -387,7 +387,7 @@ int main() {
 
 这也是为什么, 上面例子中, 想让多线程退出时需要在条件满足时先释放锁, 然后再让线程退出: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230420121724747.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180842450.webp)
 
 在`第2行`, 我们让线程分离自己, 不用回收.
 
@@ -399,7 +399,7 @@ int main() {
 
 不然后面会出现死锁的状态(如果我们不分离线程的话): 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/cond_exitnounlock_deadlock.gif)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722180844390.gif)
 
 ---
 

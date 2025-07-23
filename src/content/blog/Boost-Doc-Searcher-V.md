@@ -3,7 +3,7 @@ draft: true
 title: "[C++项目] Boost文档 站内搜索引擎(5): cpphttplib实现网络服务、html页面实现、服务器部署..."
 pubDate: "2023-08-07"
 description: "本篇文章 介绍如何使用cpphttplib 将已经完成的后端工作, 部署到网络中. 并实现页面的制作以及 Boost库文档搜索引擎服务器的部署."
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081258103.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230056681.webp
 categories:
     - Blogs
 tags: 
@@ -69,7 +69,7 @@ Thread model: posix
 gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC)
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081333095.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230116045.webp)
 
 ### 安装`cpphttplib`
 
@@ -79,7 +79,7 @@ gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC)
 
 这里推荐`0.7.16`的版本: https://github.com/yhirose/cpp-httplib/tree/v0.7.16
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081344996.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230117841.webp)
 
 可以直接获取此版本的源码:
 
@@ -117,7 +117,7 @@ drwxr-xr-x 6 July July 4.0K Aug  8 13:52 gitHub
 cp cpp-httplib-0.7.16/httplib.h gitHub/Boost-Doc-Searcher/.
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081427948.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230119909.webp)
 
 这就算在项目中安装成功了
 
@@ -125,7 +125,7 @@ cp cpp-httplib-0.7.16/httplib.h gitHub/Boost-Doc-Searcher/.
 
 关于`cpphttplib`的使用, Github文档有简单的使用介绍
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081407842.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722183120245.webp)
 
 直接使用这段代码 可以实现怎么样的结果呢?
 
@@ -149,13 +149,13 @@ int main() {
 }
 ```
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211618704.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230121998.gif)
 
 直接访问根`url`, 没有任何响应. 但是如果我们在`url`之后添加`/hi`. 就能看到`Hello World!`的字样.
 
 这就是我们设定的 申请`/hi`资源时, 会响应的内容:
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081432420.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230125016.webp)
 
 `httplib::Server::Get()`是用来处理`HTTP`的`GET`方法的接口.
 
@@ -181,7 +181,7 @@ int main() {
 
 但是, 创建网络服务之前. 可以先了解一下 搜索引擎的搜索结果是怎么出现的?
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081449611.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230126969.webp)
 
 当我们搜索时, 会申请`/search`这个服务. 并携带了`?q=Searcher`这个`key(q)=value(Searcher)`属性.
 
@@ -201,13 +201,13 @@ svr.Get("/search", [](const httplib::Request& request, httplib::Response& respon
 
 然后运行服务器并访问`/search`:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081506418.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230128931.webp)
 
 当`url`中没有`key`为`word`的键值时, 就会显示 **请输入内容后搜索**
 
 如果有`key`为`word`的键值, 因为我们没有做任何操作, 所以不会有任何内容:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081507232.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230132091.webp)
 
 除了判断是否存在`key`, 还可以通过接口获得对应的`value`:
 
@@ -225,7 +225,7 @@ svr.Get("/search", [](const httplib::Request& request, httplib::Response& respon
 
 此时, 再携带`key=value`键对:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081511313.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230134021.webp)
 
 就获取到了`value`的内容, 并设置为了响应内容.
 
@@ -272,7 +272,7 @@ int main() {
 
 运行程序. 建立索引 等待服务器开启成功之后:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081531448.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230136456.webp)
 
 直接在`url`添加键值 就可以看到直接的搜索结果.
 
@@ -533,7 +533,7 @@ int main() {
 
 这个`html`文件是创建在项目目录下的`wwwRoot`目录下的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081541152.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230141755.webp)
 
 > 一个是页面`html`文件, 一个是图标文件
 
@@ -689,11 +689,11 @@ svr.set_base_dir(rootPath.c_str());
 
 1. 没有执行搜索的界面:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081604117.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230146275.webp)
 
 2. 执行了搜索之后的界面:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081605218.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230147826.webp)
 
     搜索结果, 都会按照权重一个个排列在下面
 
@@ -707,7 +707,7 @@ svr.set_base_dir(rootPath.c_str());
 
 1. 没有搜索到内容时, 不会有任何反应. 可能会让用户认为服务器没有运作. 
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081621125.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230149747.webp)
 
     所以可以考虑在没有搜索到任何文档的时候, 响应一个没有任何内容的`item`元素. 并实现, 点击标题 跳转回主页:
 
@@ -754,7 +754,7 @@ svr.set_base_dir(rootPath.c_str());
 
     此时, 搜索不到内容:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308211618829.gif)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230152131.gif)
 
     点击就会跳转至主页.
 
@@ -762,11 +762,11 @@ svr.set_base_dir(rootPath.c_str());
 
     当搜索到的文章没有标题时, 就不会显示出来. 显示不出来也就无法通过标题跳转至指定的页面:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081611602.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230154463.webp)
 
     为什么没有标题呢? 不是因为出错了, 是因为 这篇文章本身就没有标题:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081613122.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230156882.webp)
 
     所以, 我们可以考虑修改搜索时获取标题的代码:
 
@@ -812,13 +812,13 @@ svr.set_base_dir(rootPath.c_str());
 
     然后, 再搜索:
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081627207.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230159275.webp)
 
 3. 我们之前为了方便观测调试, 把文档的`docId`和`weight`也存储并发送了. 现在可以去除
 
 4. 在使用`parser`模块处理文档`html`文件的时候, 有三个符号被转换成了编码`<: &lt;` `>: &gt;` `&: &amp;`
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081703735.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230201346.webp)
 
     搜索的结果在页面中显示的时候, `<` `>` `&` 符号会以编码的形式显示. 所以我们可以在构建结果的的时候, 再将其转换回去:
 
@@ -851,7 +851,7 @@ svr.set_base_dir(rootPath.c_str());
     }
     ```
 
-    ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202308081705536.webp)
+    ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230203748.webp)
 
 ## 添加日志 并 部署服务器
 

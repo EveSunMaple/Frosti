@@ -27,7 +27,7 @@ tags:
 
 使用`TCP`协议进行通信, 操作系统会对数据添加`TCP`的协议报头, 那么`TCP`协议的格式是这样的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240116205033001.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181747053.webp)
 
 可以看到, `TCP`协议报头要比`UDP`协议报头复杂的多
 
@@ -119,7 +119,7 @@ tags:
 
 就像这样:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240117001126901.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181750412.webp)
 
 你会发现, 如果想要做到每条消息都确定对方收到了, 是不可能的
 
@@ -163,7 +163,7 @@ tags:
 
 用图片可以很形象的表示出来:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401302232394.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181752842.webp)
 
 同时, **接收端还可以通过接收到报文的序号对报文进行排序**
 
@@ -179,7 +179,7 @@ tags:
 >
 > 那么, 基于协议, 在实际实现时就可能会出现这样的情况:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401171656408.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181754714.webp)
 >
 > 这是种实现被称为 **积累应答** 或 **延迟应答**, 可以有效提高通信效率
 >
@@ -201,13 +201,13 @@ tags:
 >
 > 如果存在此次`TCP`通信的第一个报文:
 >
-> ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401251711659.webp)
+> ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181756517.webp)
 >
 > 那么上图表示的这个报文中, `7214`表示此次`TCP`通信的初始序号, 同样也表示此报文数据的第一个字节的编号, 
 >
 > 那么第二个报文应为:
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401251657517.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181758044.webp)
 >
 > 再之后的报文, 同样会按照相同的规则进行编号
 
@@ -225,7 +225,7 @@ tags:
 
 那么, 两个主机在使用`TCP`协议进行通信, 使用`write()/send()`和`read()/recv()`接口实现数据发送和接收所执行的操作, 简单理解可以看作:
 
-![|lwide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401251738510.webp)
+![|lwide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181824592.webp)
 
 > ```cpp
 > ssize_t write(int fd, const void *buf, size_t count);
@@ -302,7 +302,7 @@ tags:
 
 而`TCP`报文的类型, 则是通过`TCP`报头中的**6个标记位**来标识、分区的:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202401182201647.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722181827843.webp)
 
 下面, 就来认识一下这6个标记位:
 

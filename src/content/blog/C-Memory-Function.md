@@ -3,7 +3,7 @@ draft: true
 title: "[C语言] 内存函数介绍与模拟实现"
 pubDate: "2022-02-16"
 description: "memcpy、memmove……"
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202306251812215.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710230336932.webp
 categories:
     - Blogs
 tags:

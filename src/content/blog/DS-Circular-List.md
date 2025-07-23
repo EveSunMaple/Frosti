@@ -85,7 +85,7 @@ struct ListNode* middleNode(struct ListNode* head)
 }
 ```
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220430201513575.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154318178.webp)
 
 ## 题2: 链表中倒数最后k个结点
 
@@ -93,7 +93,7 @@ struct ListNode* middleNode(struct ListNode* head)
 
 > 例如, 输入 `{1,2,3,4,5}, 2` 时, 对应的链表结构如下图所示: 
 >
-> ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230820113325345.webp)
+> ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154320270.webp)
 >
 > 其中蓝色部分为该链表的最后2个结点, 所以 `返回倒数第2个结点（也即结点值为4的结点）` 即可, 系统会打印后面所有的节点来比较。
 >
@@ -154,7 +154,7 @@ struct ListNode* FindKthToTail(struct ListNode* pHead, int k )
 }
 ```
 
-![|medium](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220430203858767.webp)
+![|medium](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154323081.webp)
 
 在分析带环链表之前, 需要 需要了解一下 `快慢指针` , 因为 `带环链表的分析` 是根据 `快慢指针` 分析的.
 
@@ -175,7 +175,7 @@ struct ListNode* FindKthToTail(struct ListNode* pHead, int k )
 >
 > **`示例 1`**: 
 >
-> > ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20230820113356909.webp)
+> > ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154325933.webp)
 > >
 > > 输入: `head = [3,2,0,-4], pos = 1`
 > >
@@ -185,7 +185,7 @@ struct ListNode* FindKthToTail(struct ListNode* pHead, int k )
 >
 > **`示例 2`**: 
 >
-> > ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501161526766.webp)
+> > ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154328229.webp)
 > >
 > > 输入: `head = [1,2], pos = 0`
 > >
@@ -195,7 +195,7 @@ struct ListNode* FindKthToTail(struct ListNode* pHead, int k )
 >
 > **`示例 3`** : 
 >
-> > ![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501161546352.webp)
+> > ![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154330062.webp)
 > >
 > > 输入: `head = [1], pos = -1`
 > >
@@ -237,7 +237,7 @@ bool hasCycle(struct ListNode *head)
 }
 ```
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220430210039173.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154332345.webp)
 
 OK, 带环链表的题做出来了
 
@@ -271,7 +271,7 @@ OK, 带环链表的题做出来了
 
 画图抽象图来分析, 一个带环链表, 抽象的形式可以看作: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220430232045310.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154334704.webp)
 
 快慢指针 `同时` 从首节点开始走, 快指针走得快, 慢指针走得慢
 
@@ -279,11 +279,11 @@ OK, 带环链表的题做出来了
 
 此时的情况可能是`(设一下, 只是假设)`: 
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220430232210782.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154336376.webp)
 
 两个指针都入环之后, 快指针开始在环内追逐慢指针: 
 
-![pfast_2_pslow |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/pfast_2_pslow.gif)
+![pfast_2_pslow |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154337953.gif)
 
 因为 `当这样的两个指针都入环之后, 两个指针之间的距离变化就变为了 每走一步减一`
 
@@ -313,7 +313,7 @@ OK, 带环链表的题做出来了
 >
 >  >  **`情况 2: `** `X` 为 奇数
 >  >
->  >  ![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/pfast_3_pslow_J.gif)
+>  >  ![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154340378.gif)
 >  >
 >  >  此情况, 快指针 超过 慢指针, 但是由于快指针的移动是不连续的, 所以两指针并不会相遇
 >  >
@@ -365,7 +365,7 @@ OK, 带环链表的题做出来了
 
 首先还是画图假设一下: 
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501142311619.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154343324.webp)
 
 > 先思考一个问题: 慢指针 `从入环到被追上` , 走过的长度 是不是如假设的那样, `会不会已经走了一圈后才被追上的`？
 >
@@ -398,7 +398,7 @@ OK, 带环链表的题做出来了
 
 这个式子有什么用呢？
 
-![|inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501142311619.webp)
+![|inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154345922.webp)
 
 其实, 这个等式说明: 
 
@@ -432,7 +432,7 @@ OK, 带环链表的题做出来了
 >
 > **`示例 1`**: 
 >
-> > ![|large](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501161642662.webp)
+> > ![|large](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154351267.webp)
 >>
 > > 输入: `head = [3,2,0,-4], pos = 1`
 > >
@@ -442,7 +442,7 @@ OK, 带环链表的题做出来了
 >
 > **`示例 2`**: 
 >
-> > ![|small](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501161623339.webp)
+> > ![|small](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154353120.webp)
 >>
 > > 输入: `head = [1,2], pos = 0`
 > >
@@ -452,7 +452,7 @@ OK, 带环链表的题做出来了
 >
 > **`示例 3`**: 
 >
-> > ![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501161546352.webp)
+> > ![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154355006.webp)
 >>
 > > 输入: `head = [1], pos = -1`
 > >
@@ -496,7 +496,7 @@ struct ListNode *detectCycle(struct ListNode *head)
 }
 ```
 
-![ |inline](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20220501150938765.webp)
+![ |inline](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154357534.webp)
 
 
 
@@ -514,4 +514,4 @@ struct ListNode *detectCycle(struct ListNode *head)
 
 感谢阅读~
 
-![|tiny](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/%E7%BF%BB%E6%BB%9A%E5%B0%8F%E7%8C%AB.gif)
+![|tiny](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722154400061.gif)

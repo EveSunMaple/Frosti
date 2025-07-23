@@ -3,7 +3,7 @@ draft: true
 title: "[算法] 八大排序I: 冒泡、选择、插入、希尔排序 的逻辑、复杂度、稳定性详解 - C++实现"
 pubDate: "2024-8-1"
 description: ""
-image: https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/202408281114640.webp
+image: https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250722182944758.webp
 categories:
     - Blogs
 tags: 
@@ -48,7 +48,7 @@ tags:
 >         }
 >         cout << endl;
 >     }
->                                                                                 
+>                                                                                             
 >     void printVector(const std::vector<int>& nums, int begin, int end) {
 >         for (int i = begin; i <= end; i++) {
 >             cout << nums[i] << " ";
@@ -70,7 +70,7 @@ tags:
 
 冒泡排序, 是在一趟排序种, 如果 当前位置数值 比 +1位置数值 大, 就将数据交换位置. 如果不大, 就不做交换. 这样, 一趟遍历完成的同时, 就可以将数组中的最大值放到数组的结尾. 就像这样
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/bubbleSort1.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183113752.gif)
 
 当前者大于后者时, 进行数据交换, 反之, 不做处理, 进入本趟冒泡的下一次循环
 
@@ -93,7 +93,7 @@ void bubbleSort(std::vector<int>& nums) {
 
 使用这段代码进行测试:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240802203740424.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183116142.webp)
 
 结果符合冒泡的特点
 
@@ -134,7 +134,7 @@ void bubbleSort(std::vector<int>& nums) {
 
 如果使用这段代码在进行排序, 输出的结果会有什么不同吗?
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240802204144834.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183118878.webp)
 
 对比使用没有优化过的代码输出的结果, 少了一趟遍历
 
@@ -193,7 +193,7 @@ void selectSort(std::vector<int>& nums) {
 
 使用这段代码进行测试:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240802203606083.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183122451.webp)
 
 从结果看可以完成排序的, 并且每次选择一个最大值放在后面
 
@@ -245,7 +245,7 @@ void selectSort(std::vector<int>& nums) {
 
 使用优化过的代码进行排序, 会输出什么养的结果呢:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240805093722702.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183125283.webp)
 
 优化过的选择排序, 一共执行了9趟, 而没有优化过的选择排序则一共执行了18趟
 
@@ -303,7 +303,7 @@ void selectSort(std::vector<int>& nums) {
 
     这一部分, 在排序过程中, 会逐步缩小
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240802165424557.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183127768.webp)
 
 **而插入排序的实现思路, 就是 拿还未排序的数据, 插入到已经排序过的部分的合适的位置, 保证前半部分依旧有序**
 
@@ -337,7 +337,7 @@ void selectSort(std::vector<int>& nums) {
 
 下面是动图演示:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/insertSort.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183131669.gif)
 
 ## 代码实现
 
@@ -374,7 +374,7 @@ void insertSort(std::vector<int>& nums) {
 
 下面可以使用这段代码进行排序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240802180353587.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183134196.webp)
 
 ---
 
@@ -510,7 +510,7 @@ void insertSort(std::vector<int>& nums) {
 
 上面只用文字对希尔排序的过程进行分析, 并没有那么明显, 如果以动图的形式展现出来, 就可以看出来 预排序的作用:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/shell_firstGap.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183138692.gif)
 
 从排序结果来看, **第一次分组插入排序十分有效的将数组中较大的数据放在的末尾了**
 
@@ -523,7 +523,7 @@ void insertSort(std::vector<int>& nums) {
 
 多次预排序之后, 最后一次直接插入排序的过程, 以动图来演示:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/shell_lastGap.gif)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183140755.gif)
 
 从演示中可以看到, 最后一次直接插入排序, **每次从`[end+1]`向前对比的的次数不会超过第一次分组的间隔**, 很多次甚至只需要对比一次, 不用再向前继续遍历对比
 
@@ -569,7 +569,7 @@ void shellSort(std::vector<int>& nums) {
 
 使用这段代码进行排序:
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240805193227111.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183143235.webp)
 
 可以正常的实现排序
 
@@ -579,9 +579,9 @@ void shellSort(std::vector<int>& nums) {
 
 但是, 如果 **在`while`循环内部记录数据的对比次数**, 然后再分别测试直接插入排序和希尔排序:
 
-![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240805194348494.webp)
+![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183145370.webp)
 
-![|wide](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240805194441684.webp)
+![|wide](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183147408.webp)
 
 经过实际的对比可以看到, 希尔排序和直接插入排序 时间复杂度差值还是比较大的
 
@@ -645,7 +645,7 @@ void shellSort(std::vector<int>& nums) {
 
 不会影响排序时, 数据的对比次数, 更不会影响时间复杂度
 
-![](https://dxyt-july-image.oss-cn-beijing.aliyuncs.com/image-20240805200942479.webp)
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250711183150572.webp)
 
 ## 时间复杂度
 
