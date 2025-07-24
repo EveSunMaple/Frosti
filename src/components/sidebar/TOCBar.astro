@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Card from "../temple/Card.astro";
 import type { TOCBarProps } from "@interfaces/data";
+import { marked } from 'marked';
 
 // This prop indicates whether to render the TOC
 // (useful to conditionally show on certain pages)
@@ -34,7 +35,11 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
                       name="tabler:chevron-right"
                       class="icon-indicator absolute left-1 opacity-0 transition-all duration-200 w-4 h-4 text-primary"
                     />
-                    <span class="link-text transition-transform duration-200">{heading.text}</span>
+                    {/* <span class="link-text transition-transform duration-200">{heading.text}</span> */}
+                    <span
+                      class="link-text transition-transform duration-200"
+                      set:html={marked.parseInline(heading.text)}
+                    ></span>
                   </a>
                 </li>
               ))}
