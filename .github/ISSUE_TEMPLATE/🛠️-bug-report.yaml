@@ -1,0 +1,82 @@
+name: 🛠️ Bug 报告
+description: 创建一个报告以帮助我们改进项目
+title: "[Bug]: "
+labels: [bug]
+assignees:
+  - ""
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你提交 Bug 报告！请尽可能详细地填写以下信息，以帮助我们快速定位并解决问题。
+
+  - type: input
+    id: version
+    attributes:
+      label: 受影响的版本
+      description: 你是在哪个版本的项目中遇到这个问题的？
+      placeholder: 例如：v1.2.3 或 main 分支
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 请详细描述你遇到的 Bug。包括任何错误信息、非预期行为等。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: 重现步骤
+      description: 请清晰地列出重现此问题的步骤。
+      placeholder: |
+        1. 前往 '...' 页面
+        2. 点击 '....' 按钮
+        3. 滚动到 '....'
+        4. 问题出现
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: 预期结果
+      description: 在没有这个 Bug 的情况下，应该发生什么？
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-result
+    attributes:
+      label: 实际结果
+      description: 实际发生了什么？如果可以，请附上错误日志。
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        **截图或附件**
+        如果可以，请将相关截图、录屏或日志文件直接拖拽到输入框中进行上传。
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 严重性
+      description: 你认为这个 Bug 的严重程度是？
+      options:
+        - 低 - 不影响核心功能
+        - 中 - 影响部分功能，但有替代方案
+        - 高 - 严重影响核心功能，难以使用
+        - 紧急 - 导致系统崩溃或数据丢失
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        我们将会通过你的 GitHub 账户与你联系，无需在此留下个人联系方式。

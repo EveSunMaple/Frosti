@@ -12,7 +12,7 @@ import { CODE_THEME, USER_SITE } from "./src/config.ts";
 
 import updateConfig from "./src/integration/updateConfig.ts";
 
-import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
+import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
 // https://astro.build/config
 export default defineConfig({

@@ -45,6 +45,9 @@ en:
     404exploreBlog: Explore our blog
     404browseArchives: Browse archives
     404searchContent: Search content
+    notFound: Not Found
+    tagNotFoundDescription: "We couldn't find any posts with this tag. Perhaps you can browse all available tags to find what you're looking for."
+    categoryNotFoundDescription: "We couldn't find any posts in this category. Perhaps you can browse all available categories to find what you're looking for."
   months:
     1: January
     2: February
@@ -105,6 +108,9 @@ zh:
     404exploreBlog: 浏览我们的博客
     404browseArchives: 浏览归档
     404searchContent: 搜索内容
+    notFound: 未找到
+    tagNotFoundDescription: 我们未能找到带有此标签的文章。也许您可以浏览所有标签列表以找到所需内容。
+    categoryNotFoundDescription: 我们未能找到此分类下的文章。也许您可以浏览所有分类列表以找到所需内容。
   months:
     1: 一月
     2: 二月
@@ -165,6 +171,9 @@ fr:
     404exploreBlog: Explorer notre blog
     404browseArchives: Parcourir les archives
     404searchContent: Rechercher du contenu
+    notFound: Introuvable
+    tagNotFoundDescription: "Nous n'avons trouvé aucun article avec ce tag. Peut-être pouvez-vous parcourir toutes les étiquettes disponibles pour trouver ce que vous cherchez."
+    categoryNotFoundDescription: "Nous n'avons trouvé aucun article dans cette catégorie. Peut-être pouvez-vous parcourir toutes les catégories disponibles pour trouver ce que vous cherchez."
   months:
     1: Janvier
     2: Février
@@ -225,6 +234,9 @@ ja:
     404exploreBlog: ブログを探る
     404browseArchives: アーカイブを閲覧
     404searchContent: コンテンツを検索
+    notFound: 見つかりません
+    tagNotFoundDescription: このタグの記事は見つかりませんでした。利用可能なすべてのタグを閲覧して、お探しのものを見つけることができるかもしれません。
+    categoryNotFoundDescription: このカテゴリの記事は見つかりませんでした。利用可能なすべてのカテゴリを閲覧して、お探しのものを見つけることができるかもしれません。
   months:
     1: 1月
     2: 2月
@@ -285,6 +297,9 @@ ko:
     404exploreBlog: 블로그 탐색
     404browseArchives: 아카이브 둘러보기
     404searchContent: 콘텐츠 검색
+    notFound: 찾을 수 없음
+    tagNotFoundDescription: 이 태그가 있는 게시물을 찾을 수 없습니다. 사용 가능한 모든 태그를 탐색하여 원하는 것을 찾을 수 있습니다.
+    categoryNotFoundDescription: 이 카테고리의 게시물을 찾을 수 없습니다. 사용 가능한 모든 카테고리를 탐색하여 원하는 것을 찾을 수 있습니다.
   months:
     1: 1월
     2: 2월
@@ -345,6 +360,9 @@ es:
     404exploreBlog: Explora nuestro blog
     404browseArchives: Explorar archivos
     404searchContent: Buscar contenido
+    notFound: No encontrado
+    tagNotFoundDescription: No pudimos encontrar ninguna publicación con esta etiqueta. Tal vez puedas navegar por todas las etiquetas disponibles para encontrar lo que buscas.
+    categoryNotFoundDescription: No pudimos encontrar ninguna publicación en esta categoría. Tal vez puedas navegar por todas las categorías disponibles para encontrar lo que buscas.
   months:
     1: Enero
     2: Febrero
@@ -405,6 +423,9 @@ de:
     404exploreBlog: Unser Blog erkunden
     404browseArchives: Archive durchstöbern
     404searchContent: Inhalte suchen
+    notFound: Nicht gefunden
+    tagNotFoundDescription: "Wir konnten keine Beiträge mit diesem Tag finden. Vielleicht können Sie alle verfügbaren Tags durchsuchen, um zu finden, was Sie suchen."
+    categoryNotFoundDescription: "Wir konnten keine Beiträge in dieser Kategorie finden. Vielleicht können Sie alle verfügbaren Kategorien durchsuchen, um zu finden, was Sie suchen."
   months:
     1: Januar
     2: Februar
@@ -465,6 +486,9 @@ ru:
     404exploreBlog: Исследуйте наш блог
     404browseArchives: Просмотреть архивы
     404searchContent: Поиск контента
+    notFound: Не найдено
+    tagNotFoundDescription: "Мы не смогли найти ни одной записи с этим тегом. Возможно, вы сможете просмотреть все доступные теги, чтобы найти то, что ищете."
+    categoryNotFoundDescription: "Мы не смогли найти ни одной записи в этой категории. Возможно, вы сможете просмотреть все доступные категории, чтобы найти то, что ищете."
   months:
     1: Январь
     2: Февраль
@@ -525,6 +549,9 @@ pt:
     404exploreBlog: Explore nosso blog
     404browseArchives: Navegar pelos arquivos
     404searchContent: Pesquisar conteúdo
+    notFound: Não encontrado
+    tagNotFoundDescription: Não conseguimos encontrar nenhum post com esta tag. Talvez você possa navegar por todas as tags disponíveis para encontrar o que procura.
+    categoryNotFoundDescription: Não conseguimos encontrar nenhum post nesta categoria. Talvez você possa navegar por todas as categorias disponíveis para encontrar o que procura.
   months:
     1: Janeiro
     2: Fevereiro
@@ -585,6 +612,9 @@ it:
     404exploreBlog: Esplora il nostro blog
     404browseArchives: Sfoglia gli archivi
     404searchContent: Cerca contenuti
+    notFound: Non trovato
+    tagNotFoundDescription: Non siamo riusciti a trovare nessun post con questo tag. Forse puoi sfogliare tutti i tag disponibili per trovare quello che stai cercando.
+    categoryNotFoundDescription: Non siamo riusciti a trovare nessun post in questa categoria. Forse puoi sfogliare tutte le categorie disponibili per trovare quello che stai cercando.
   months:
     1: Gennaio
     2: Febbraio

@@ -947,3 +947,18 @@
 ### Fixed
 
 - 修复了在 `title` 过长时，标题样式与 `MainCard` 边框重叠的问题，现在会自动适应
+
+## [3.2.1] - 2025-7-28
+
+### Chore
+
+- 现在如果访问不存在的标签或者分类，会返回特定的 404 页面 [#86](https://github.com/EveSunMaple/Frosti/discussions/86)
+- 修改了 Issue 提问的模板
+
+### Refactored
+
+- 将统计字数与时间的插件从 `.mjs` 改成了 `.ts`
+
+### Fixed
+
+- 修复了在 `SearchBar` 多次搜索导致出现多个搜索框的问题 [#87](https://github.com/EveSunMaple/Frosti/issues/87)

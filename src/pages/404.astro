@@ -3,27 +3,59 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
 import MainCard from "@/components/MainCard.astro";
+
+Astro.response.status = 404;
+const pathname = Astro.url.pathname;
+
+let title: string;
+let description: string;
+let textOverlay: string;
+let primaryAction: { href: string; text: string; icon: string };
+
+if (pathname.startsWith("/blog/tag/")) {
+  const attemptedValue = decodeURIComponent(pathname.split("/")[3] || "");
+  title = `${t("label.tagPage")} "${attemptedValue}" ${t("label.notFound")}`;
+  description = t("label.tagNotFoundDescription");
+  textOverlay = "404";
+  primaryAction = {
+    href: "/blog/tags",
+    text: t("label.allTags"),
+    icon: "lucide:tags",
+  };
+} else if (pathname.startsWith("/blog/category/")) {
+  const attemptedValue = decodeURIComponent(pathname.split("/")[3] || "");
+  title = `${t("label.categoryPage")} "${attemptedValue}" ${t("label.notFound")}`;
+  description = t("label.categoryNotFoundDescription");
+  textOverlay = "404";
+  primaryAction = {
+    href: "/blog/categories",
+    text: t("label.allCategories"),
+    icon: "lucide:folders",
+  };
+} else {
+  title = t("label.404title");
+  description = t("label.404description");
+  textOverlay = "404";
+  primaryAction = {
+    href: "/",
+    text: t("label.404backHome"),
+    icon: "lucide:home",
+  };
+}
 ---
 
-<BaseLayout title="404" isIndexed={false}>
-  <MainCard
-    title={t("label.404title") || "Page Not Found"}
-    description={t("label.404description") ||
-      "Looks like you've ventured into the unknown. The page you're looking for doesn't exist or has been moved to another dimension."}
-    textOverlay="404"
-    infoIcon="lucide:help-circle"
-  >
+<BaseLayout title={title} isIndexed={false}>
+  <MainCard title={title} description={description} textOverlay={textOverlay} infoIcon="lucide:help-circle">
     <div class="flex flex-col sm:flex-row gap-4 justify-center my-8">
-      <a href="/" class="btn btn-primary gap-2 btn-shine-effect">
-        <Icon name="lucide:home" class="w-5 h-5" />
-        <span>{t("label.404backHome") || "Back to Home"}</span>
+      <a href={primaryAction.href} class="btn btn-primary gap-2 btn-shine-effect">
+        <Icon name={primaryAction.icon} class="w-5 h-5" />
+        <span>{primaryAction.text}</span>
       </a>
       <button id="goBackBtn" class="btn btn-outline gap-2" onclick="history.back()">
         <Icon name="lucide:corner-up-left" class="w-5 h-5" />
-        <span>{t("label.404goBack") || "Go Back"}</span>
+        <span>{t("label.404goBack")}</span>
       </button>
     </div>
-
     <div class="divider my-6">
       <Icon name="lucide:map" class="w-10 h-10" />
     </div>
@@ -33,21 +65,21 @@ import MainCard from "@/components/MainCard.astro";
         <div class="text-info mb-2">
           <Icon name="lucide:book-open" class="w-8 h-8 mx-auto" />
         </div>
-        <h3 class="font-semibold">{t("label.404exploreBlog") || "Explore our blog"}</h3>
+        <h3 class="font-semibold">{t("label.404exploreBlog")}</h3>
       </a>
 
       <a href="/blog/archives" class="card bg-base-200 p-4 hover-lift text-center transition-all duration-300">
         <div class="text-info mb-2">
           <Icon name="lucide:archive" class="w-8 h-8 mx-auto" />
         </div>
-        <h3 class="font-semibold">{t("label.404browseArchives") || "Browse archives"}</h3>
+        <h3 class="font-semibold">{t("label.404browseArchives")}</h3>
       </a>
 
       <a href="/blog/search" class="card bg-base-200 p-4 hover-lift text-center transition-all duration-300">
         <div class="text-info mb-2">
           <Icon name="lucide:search" class="w-8 h-8 mx-auto" />
         </div>
-        <h3 class="font-semibold">{t("label.404searchContent") || "Search content"}</h3>
+        <h3 class="font-semibold">{t("label.404searchContent")}</h3>
       </a>
     </div>
   </MainCard>
