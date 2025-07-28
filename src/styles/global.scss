@@ -34,7 +34,6 @@ html {
   font-family: 'FiraCode Nerd Mono Thin';
   @apply scroll-smooth;
 }
-
 kbd {
   @apply kbd;
 }
@@ -810,9 +809,12 @@ main .alert {
   padding-right: 0.8rem;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
+  max-width: 100%;
 }
 
 main .alert p {
   margin-top: 0.7em;
   margin-bottom: 0.7em;
+  overflow-wrap: break-word; /* 允许单词内换行 */
+  word-break: break-word; /* 更积极的换行策略 */
 }

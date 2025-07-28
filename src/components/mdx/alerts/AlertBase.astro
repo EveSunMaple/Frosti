@@ -10,3 +10,21 @@ const { type, icon } = Astro.props;
   </slot>
   <span><slot /></span>
 </div>
+
+<style>
+  /* 直接在组件中添加样式以确保优先级 */
+  .alert {
+    overflow: visible !important;
+  }
+  
+  .alert > span {
+    min-width: 0;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .alert :global(.frosti-code-content) {
+    overflow-x: auto !important;
+    max-width: 100% !important;
+  }
+</style>
