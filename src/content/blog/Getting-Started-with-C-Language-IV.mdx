@@ -1,6 +1,6 @@
 ---
 title: '从零接触C语言-IV: 键盘输入'
-description: 'C语言可以实现从键盘输入数据到程序中'
+description: 'C语言也可以实现从键盘输入数据到程序中'
 pubDate: '2025-07-23'
 image: 'https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710215328038.webp'
 categories:
@@ -23,7 +23,6 @@ import Kbd from "../../components/mdx/Kbd.astro"
 [📌从零开始接触C语言](https://www.humid1ch.cn/blog/tag/从零接触C语言)
 
 </Warning>
-
 
 ## 键盘输入
 
@@ -72,10 +71,6 @@ int main() {
 
 `scanf()`需要传入地址, 才能将解析到的格式化数据, 存储到对应的变量的内存空间中, 这个地址就是目标变量的内存空间的地址
 
-你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你你
-
-000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-
 **C语言中, 想要改变变量的值, 就需要找到此变量的内存空间的地址,然后改变内存空间种的数据, 就是改变这个变量的值**
 
 </Info>
@@ -104,7 +99,7 @@ scanf("%d, %d, %s", &age, &height, name);
 int main() {
     int age = 0;
     int height = 0;
-    char name[32] = {0};
+    char name[32] = {0};	// 初始化能容纳 32 个char类型数据的连续空间
     
     printf("请按格式输入年龄、身高和名字(年龄, 身高, 名字):> ");
     scanf("%d, %d, %s", &age, &height, name);
@@ -202,13 +197,13 @@ int main() {
 
 使用`scanf()`进行键盘输入时, 如果没有 **严格按照格式字符串的格式** 进行输入, 可能会出现与预期不符的解析情况
 
-但, `scanf()`的输入也可以不用非常严格
+但, `scanf()`的输入也可以不用非常严格, 前提是要使用空白字符
 
 因为 **`scanf()`对空白字符的处理是特殊的, 连续的 `空格` `\t` `\n` 等不显示的字符, 会被`scanf()`读取并丢弃**
 
 即, **连续的空白字符会被视为单个分隔符，并且会被自动忽略**
 
-这句话有些抽象, 但是通过代码可以很简单的理解:
+这句话有些抽象, 但是通过代码以及运行现象可以很简单的理解:
 
 ```c
 #include <stdio.h>
@@ -229,7 +224,7 @@ int main() {
 
 格式字符串为`"%d %d %s"`, 如果要严格遵循, 就需要输入`"整型 整型 字符串"`
 
-但是`scanf()`对空白字符串的处理是特殊的:
+但是`scanf()`对空白字符串的处理是特殊的, 输入时对数据之间的空格数量是没有限制的:
 
 ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250725172206652.webp)
 
@@ -270,3 +265,114 @@ int main() {
 
 </Info>
 
+### `gets()` 和 `fgets()`
+
+`gets()`和`fgets()`在C语言中被用来, **从标准输入中读取一行字符串, 直到遇到换行符`\n`或文件结束`EOF`, 或输入内容超出目标长度**
+
+1. 首先是`gets()`
+
+    使用很简单:
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        char inputs[256] = {0};	// 开辟一个能容纳 256 个char类型数据的连续空间, 即 存储输入数据的缓冲区
+        printf("请输入字符串:> ");
+        gets(inputs);
+        printf("你输入的内容是: %s", inputs);
+    
+        return 0;
+    }
+    ```
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250728180422724.webp)
+
+    不过, `gets()`有一个非常致命的问题: **不能限制输入长度, 也不会判断存储输入数据的缓冲区的大小**
+
+    这会造成一个问题:
+
+    以上例来说, 如果`inputs`的空间很小, 至少比输入的字符串的长度要小, 在输入结束之后, 可能会造成程序的崩溃
+
+    假如修改`inputs`的大小为`2`, 即`char inputs[2] = {0}`:
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250728180716555.webp)
+
+    可以看到, 程序并没有打印输入的内容, 而是直接崩溃了: `'./a.out' terminated by signal SIGSEGV (Address boundary error)`
+
+    输入的数据长度超出了, 可容纳的大小, 程序崩溃了
+
+    所以 **`gets()`这个函数, 是非常不安全的, 已经被弃用了, 甚至有可能被某些编译器直接删除**
+
+2. 然后就是`fgets()`
+
+    `fgets()`的实际作用与`gets()`是相同的
+
+    但是, **`fgets()`是安全的, 在使用时需要指定存储输入数据的缓冲区的大小, 实际存储的内容不会超过输入数据的缓冲区的大小**
+
+    所以, 它可以实现 即使输入数据再长, 也不会超范围存储, 不会造成程序崩溃
+
+    使用也很简单:
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        char inputs[256] = {0};
+        printf("请输入字符串:> ");
+        fgets(inputs, sizeof(inputs), stdin);
+        printf("你输入的内容是: %s", inputs);
+    
+        return 0;
+    }
+    ```
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250728181340877.webp)
+
+    如果`inputs`非常小, **但只要`fgets()`使用正确, 就不会出现输入数据让程序崩溃的情况, 即使输入的数据过分的长**
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250728181621972.webp)
+
+    **`fgets()`在使用时必须指定实际接收数据的大小, 这个大小必须`<=`存储输入数据缓冲区的大小, 否则也可能会造成程序崩溃**
+
+    **`fgets()`在接收数据时, 实际只会接收`目标大小-1`个字节的数据, 并且会自动在目标缓冲区的最后一个空间填充`'\0'`作为字符串结尾, 剩余没有接收的输入数据, 依旧保存在输入缓冲区中**
+
+### `getchar()` 和 `getc(stdin)`
+
+`getchar()`和`getc(stdin)`的作用只有一个: **从标准输入中读取一个字符, `stdin`就表示标准输入, 通常默认是键盘输入**
+
+事实上, `getchar()`就是`getc(stdin)`, 所以只介绍其中一个就可以了
+
+这两个函数的使用更简单:
+
+```c
+#include <stdio.h>
+
+int main() {
+    char theChar = 0;
+    printf("请输入1个字符:> ");
+    theChar = getc(stdin);
+    printf("你输入的字符是: %c", theChar);
+
+    return 0;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250728183451173.webp)
+
+与`scanf()`不同, 在调用`scanf()`进行输入是, 如果只输入空白字符并回车, `scanf()`会丢弃所有空白字符, 并判断然你继续输入
+
+但`getchar()`和`getc(stdin)`不会判断你输入的是否是空白字符, 他总是会尝试从输入缓冲区中拿出一个字符, 并返回输出
+
+当然, 如果缓冲区为空, 则会阻塞等待输入
+
+<Info>
+
+`getchar()`和`getc(stdin)`也常用来清空标准输入缓冲区:
+
+```c
+while (getchar() != EOF)
+    ;
+```
+
+</Info>

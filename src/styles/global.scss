@@ -44,7 +44,15 @@ h3 code,
 h4 code,
 h5 code,
 h6 code {
-  font-size: 0.95em !important;
+  font-size: 1em !important;
+}
+
+h3 {
+  font-size: 1.3em !important;
+}
+
+h4 {
+  font-size: 1.15em !important;
 }
 
 main hr {
@@ -120,6 +128,8 @@ main tr code {
 main code span {
   font-family: 'FiraCode Nerd Mono';
   font-size: 0.95em !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 main img:not(main a img) {
@@ -187,6 +197,11 @@ main a:not(:has(img)) {
     &-language {
       @apply text-sm font-semibold text-base-content/80;
     }
+
+    & {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
   }
 
   &-content {
@@ -204,6 +219,11 @@ main a:not(:has(img)) {
         content: counter(line);
         @apply text-current mr-4 inline-block w-4 text-right;
       }
+    }
+
+    & {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
     }
   }
 
@@ -817,4 +837,43 @@ main .alert p {
   margin-bottom: 0.7em;
   overflow-wrap: break-word; /* 允许单词内换行 */
   word-break: break-word; /* 更积极的换行策略 */
+}
+
+
+main pre code {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 确保垂直滚动，一个一个滚动 */
+.custom-scroll {
+    max-height: 200px; /* 大约5个项目的高度 */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+}
+
+/* 确保每个 li 元素垂直排列 */
+.custom-scroll li {
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+/* 隐藏滚动条 - Webkit浏览器 (Chrome, Safari, Edge) */
+.custom-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* 隐藏滚动条 - Firefox */
+.custom-scroll {
+    scrollbar-width: none;
+}
+
+/* 兼容IE */
+.custom-scroll {
+    -ms-overflow-style: none;
 }
