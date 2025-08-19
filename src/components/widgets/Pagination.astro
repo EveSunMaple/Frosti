@@ -6,10 +6,22 @@ import PaginationDropdown from "./PaginationDropdown.astro";
 import { t } from "@config";
 
 const { page, totalPages, pageLinks, baseUrl } = Astro.props as PaginationProps;
+
+function getTargetPage(url?: string, isPrev = false): number {
+  if (!url) return NaN; // 没有链接就返回 NaN 或者 0
+  if (url === "/blog/") return 1; // 特殊处理第一页
+  const match = url.match(/\/(\d+)\/?$/);
+  if (match) return parseInt(match[1], 10);
+  return 1; // 默认第一页
+}
+
+// 使用：
+const prevTarget = getTargetPage(page.url.prev, true);
+const nextTarget = getTargetPage(page.url.next);
 ---
 
 <div class="flex justify-between items-center w-full gap-2 order-4" transition:name="pagination">
-  <PaginationArrow direction="prev" url={page.url.prev} label={t("label.prevPage")} />
+  <PaginationArrow direction="prev" url={page.url.prev} label={t("label.prevPage")} target={prevTarget} />
   <div class="join">
     {
       totalPages > 3 ? (
@@ -29,5 +41,5 @@ const { page, totalPages, pageLinks, baseUrl } = Astro.props as PaginationProps;
       )
     }
   </div>
-  <PaginationArrow direction="next" url={page.url.next} label={t("label.nextPage")} />
+  <PaginationArrow direction="next" url={page.url.next} label={t("label.nextPage")} target={nextTarget} />
 </div>

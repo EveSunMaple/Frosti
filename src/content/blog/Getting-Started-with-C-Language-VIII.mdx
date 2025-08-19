@@ -22,7 +22,7 @@ import Kbd from "../../components/mdx/Kbd.astro"
 
 如果你从未接触过C语言, 那么我建议你先阅读前面的文章:
 
-[📌从零开始接触C语言](https://www.humid1ch.cn/blog/tag/从零接触C语言)
+[📌从零开始接触C语言](https://www.humid1ch.cn/blog/tag/从零开始接触C语言)
 
 </Warning>
 
@@ -405,4 +405,71 @@ C语言最常用的单目操作符有:
 
     但可以通过**`(int)floatData`将浮点类型数据强制转换为整型数据**, 这样再使用`%d`进行格式化, 就不是未定义行为了
 
-### 三目操作符
+#### 条件操作符
+
+C语言标准中定义了一个唯一一个三目操作符, 同时也被称作条件操作符: `condition ? result1 : result2`
+
+`condition`表示条件表达式, `result1`和`result2`表示两个结果
+
+条件操作符的用法为: **条件满足时, 执行并返回`result1`, 否则 执行并返回`result2`**
+
+以一个简单的例子做介绍:
+
+```c
+(a > b) ? (a - b) : (b - a)
+```
+
+例子的意思为:
+
+如果`a > b`成立, 则执行`a - b`并返回结果, `b - a`不会被执行
+
+如果`a > b`不成立, 则执行`b - a`并返回其结果, `a - b`不会被执行
+
+可以将`? :`当作一个简写的`if-else`条件语句, 逻辑上是完全等价的
+
+#### 逗号表达式
+
+C语言标准中提供了一个特殊的操作符`,`
+
+用法是这样的:
+
+```c
+expression1, expression2, expression3, expression4, expression5, expression6, expression7, expression8, ...
+```
+
+**可以通过`,`组成不限制长度的逗号表达式**
+
+逗号表达式的规则为: **从左到右按顺序执行所有的表达式, 但整个逗号表达式的结果为最后一个表达式的执行结果**
+
+以简单的代码为例:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int index = 0;
+    index = ++index, ++index, ++index, ++index, ++index;
+    printf("index: %d\n", index);
+
+    return 0;
+}
+```
+
+执行结果为:
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250819163312831.webp)
+
+可以看到, `index`的最终结果为`5`, 即为最后一次执行`++index`的结果
+
+#### 特殊操作符
+
+除了上述的操作符, C语言标准中还存在几个特殊的操作符, 具体功能需要结合具体的情况进行使用:
+
+1. `[]`数组下标访问操作符
+2. `()`函数调用操作符
+3. `.`结构体成员访问操作符
+4. `->`结构体成员访问操作符
+
+`[]`和`()`没有什么需要特别注意的
+
+`.`和`->`在介绍结构体时再进行介绍

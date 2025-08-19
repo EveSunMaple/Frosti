@@ -1,0 +1,92 @@
+---
+title: '从零接触C语言(初览)-IX: 关键字'
+description: 'C语言标准中定义了一些关键字, 这些关键字是不允许被定义成变量名的, 并且每个关键词都有自己的作用'
+pubDate: '2025-08-19'
+image: 'https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710215328038.webp'
+categories:
+    - Blogs
+tags:
+    - C
+    - 从零开始接触C语言
+---
+
+import Info from "../../components/mdx/Info.astro";
+
+import Warning from "../../components/mdx/Warning.astro";
+
+import Error from "../../components/mdx/Error.astro";
+
+import Kbd from "../../components/mdx/Kbd.astro"
+
+<Warning>
+
+如果你从未接触过C语言, 那么我建议你先阅读前面的文章:
+
+[📌从零开始接触C语言](https://www.humid1ch.cn/blog/tag/从零开始接触C语言)
+
+</Warning>
+
+## 关键字
+
+在介绍[C语言变量的命名规则时](https://www.humid1ch.cn/blog/getting-started-with-c-language-ii#heading-2), 提到过一条规则是: **禁止与关键字冲突**
+
+C语言标准中定义了许多的关键字, 这些关键字都具有特定的功能, 所以在变量命名时会明确禁止与关键字冲突, 否则编译器会无法确定该作为变量使用还是关键字使用
+
+C语言标准中存在许多的关键字, 虽然在之前的文章中已经见过不少, 但本篇文章会总览C语言标准中定义的所有关键字
+
+### 已知关键字
+
+前面的文章中已经见到过很多关键字了
+
+```c
+// 数据类型相关
+void
+char
+short
+int
+long
+float
+double
+const		// 定义不可修改的变量
+unsigned 	// 与数据类型一起使用, 表示无符号
+signed 		// 与数据类型一起使用, 表示有符号
+auto		// 通常不使用, 表示定义自动管理生命周期的变量
+
+// 条件、分支语句相关
+if
+else
+    
+switch
+case
+default
+    
+// 循环语句相关
+for
+while
+do
+continue
+break
+    
+// 函数返回
+return
+// 取变量、类型等占用空间大小
+sizeof
+// 跳转到指定标签
+goto
+```
+
+上面的关键字, 有三个是没怎么见过的: `unsigned` `signed` `auto`
+
+**其中`unsigned`和`signed`是相对的, 通常与类型一起使用, 声明数据是无符号数据还是有符号数据, 具体用法暂不过多介绍**
+
+而`auto`, 在C语言中则是一个十分不常用的关键字, 他几乎没有什么作用, 他的唯一作用就是 在定义变量时使用, 是用来定义一个由程序自动管理生命周期的变量的, 但即使省略`auto`, 定义的局部变量也是由程序自动管理生命周期的
+
+上面这些关键字, 本篇文章中不用再过多介绍
+
+本篇文章重点见一见更重要的关键字
+
+### `static`**
+
+C语言中有一个非常重要的关键字: `static`, 非常非常非常重要
+
+`static`具体的功能有两个, 但其中一个功能会延续出一些特性比较重要

@@ -76,6 +76,7 @@ export interface PaginationArrowProps {
   url: string | undefined;
   direction: "prev" | "next";
   label: string;
+  target: number;
 }
 
 export interface PaginationDropdownProps {
