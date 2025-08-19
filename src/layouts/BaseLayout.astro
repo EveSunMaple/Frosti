@@ -814,5 +814,27 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
       // 备用方案：如果 astro:page-load 不可用，监听其他可能的事件
       document.addEventListener('astro:after-swap', initImageViewer);
     </script>
+    <script>
+      document.querySelectorAll('code:not(pre code)').forEach(element => {
+          element.addEventListener('click', async () => {
+              const text = element.textContent || '';
+              try {
+                  await navigator.clipboard.writeText(text);
+
+                  // 视觉反馈
+                  const originalText = element.textContent;
+                  element.textContent = '已复制!';
+                  // element.style.backgroundColor = '#e8f5e9';
+
+                  setTimeout(() => {
+                      element.textContent = originalText;
+                      // element.style.backgroundColor = '';
+                  }, 1500);
+              } catch (err) {
+                  console.error('复制失败:', err);
+              }
+          });
+      });
+    </script>
   </body>
 </html>
