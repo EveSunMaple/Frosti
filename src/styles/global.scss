@@ -150,6 +150,16 @@ main pre code {
   cursor: text;
 }
 
+main code .line {
+  display: inline-block;
+  width: 100%;
+}
+
+main code .line.active {
+  background-color: #2f3347; /* 高亮背景 */
+  left: -1rem;   /* 把背景往左扩展 */
+}
+
 main strong code {
   font-weight: 600 !important;
 }

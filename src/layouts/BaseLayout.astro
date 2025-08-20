@@ -836,5 +836,28 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
           });
       });
     </script>
+    <script>
+    // document.querySelectorAll(".frosti-code-content .line").forEach(line => {
+    //   line.addEventListener("click", () => {
+    //     // 清除其他行的高亮
+    //     document.querySelectorAll(".frosti-code-content .line.active")
+    //       .forEach(el => el.classList.remove("active"));
+    //     // 当前行加高亮
+    //     line.classList.add("active");
+    //   });
+    // });
+    document.querySelectorAll(".frosti-code-content .line").forEach(line => {
+      line.addEventListener("mousedown", e => {
+        // 阻止鼠标选择文字（否则拖拽会选中文字）
+        // e.preventDefault();
+      
+        // 清除旧的高亮
+        document.querySelectorAll(".frosti-code-content .line.active")
+          .forEach(el => el.classList.remove("active"));
+        // 当前行加高亮
+        line.classList.add("active");
+      });
+    });
+    </script>
   </body>
 </html>
