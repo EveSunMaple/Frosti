@@ -97,13 +97,11 @@ const {
 >
   import { init } from "https://unpkg.com/@waline/client@v3/dist/waline.js";
 
-  let walineInstance;
+  async function initWaline() {
+    const container = document.querySelector("#waline-container");
+    if (!container) return;
 
-  async function mountWaline() {
-    if (walineInstance) {
-      await walineInstance.destroy();
-    }
-    walineInstance = init({
+    init({
       el: "#waline-container",
       serverURL,
       path: location.pathname,
@@ -117,13 +115,15 @@ const {
     });
   }
 
-  document.addEventListener("astro:after-swap", () => {
-    mountWaline();
+  document.addEventListener("astro:page-load", () => {
+    initWaline();
   });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    mountWaline();
-  });
+  if (document.readyState !== "loading") {
+    initWaline();
+  } else {
+    document.addEventListener("DOMContentLoaded", initWaline);
+  }
 </script>
 
 <style>
