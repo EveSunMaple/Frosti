@@ -132,6 +132,91 @@ int add(int num1, int num2) {
 
 最终完成了`10`和`20`的相加, 并得出了结果
 
+<Info>
+
+#### 函数的声明
+
+上面的例子, 函数`add`定义在函数调用之前:
+
+```c
+// 先定义函数
+// 再调用函数
+```
+
+如果先调用函数, 再定义函数呢? 即:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num = add(10, 20);
+    printf("num: %d\n", num);
+    
+    return 0;
+}
+
+// 自定义的函数
+int add(int num1, int num2) {
+	int num = num1 + num2;
+	
+	return num;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250822151255646.webp)
+
+如果是这样, 你会发现 编译时报出一个警告: 隐式声明`add`函数
+
+出现这个警告就说明一个问题, 这样定义函数并调用是存在一定问题的
+
+为什么呢?
+
+因为**函数在调用之前, 是需要先声明的**, 任何函数都是如此
+
+那么, 函数如何声明呢? 很简单:
+
+```c
+int add(int num1, int num2);
+```
+
+这样的语句, 就是**函数的声明, 与函数定义的区别就是, 没有实现函数体, 且结尾要加`;`**
+
+那么, 上面这个例子中, 把函数声明添加到调用函数之前, 就可以消除这个警告:
+
+```c
+#include <stdio.h>
+
+int add(int num1, int num2);
+
+int main() {
+    int num = add(10, 20);
+    printf("num: %d\n", num);
+    
+    return 0;
+}
+
+// 自定义的函数
+int add(int num1, int num2) {
+	int num = num1 + num2;
+	
+	return num;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250822151834459.webp)
+
+---
+
+如何更形象的理解函数定义和声明呢?
+
+你可以将函数定义当作一个真正的实体, 将函数调用当作触碰这个实体
+
+而函数声明, 就是告诉你这个实体存在 或者说 让你看见这个实体
+
+只有你知道这个实体 或 看到了这个实体, 你才能真正触碰到这个实体
+
+</Info>
+
 ### 函数的意义
 
 上面实现了一个非常简单的函数`add`, 作用是两个整型的加法

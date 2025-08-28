@@ -802,7 +802,7 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
         
         // 创建新的实例
         globalImageViewer = new ImageViewer();
-        console.log('ImageViewer initialized');
+        // console.log('ImageViewer initialized');
       }
     
       // 页面加载完成后初始化
@@ -812,52 +812,45 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
       document.addEventListener('astro:page-load', initImageViewer);
     
       // 备用方案：如果 astro:page-load 不可用，监听其他可能的事件
-      document.addEventListener('astro:after-swap', initImageViewer);
+      // document.addEventListener('astro:after-swap', initImageViewer);
     </script>
     <script>
-      document.querySelectorAll('code:not(pre code)').forEach(element => {
+      function initInlineCodeCopy() {
+        document.querySelectorAll('code:not(pre code)').forEach(element => {
           element.addEventListener('click', async () => {
-              const text = element.textContent || '';
-              try {
-                  await navigator.clipboard.writeText(text);
-
-                  // 视觉反馈
-                  const originalText = element.textContent;
-                  element.textContent = '已复制!';
-                  // element.style.backgroundColor = '#e8f5e9';
-
-                  setTimeout(() => {
-                      element.textContent = originalText;
-                      // element.style.backgroundColor = '';
-                  }, 1500);
-              } catch (err) {
-                  console.error('复制失败:', err);
-              }
+            const text = element.textContent || '';
+            try {
+              await navigator.clipboard.writeText(text);
+              const originalText = element.textContent;
+              element.textContent = '已复制!';
+              setTimeout(() => {
+                element.textContent = originalText;
+              }, 1500);
+            } catch (err) {
+              console.error('复制失败:', err);
+            }
           });
+        });
+      }
+    
+      function initCodeLineHighlight() {
+        document.querySelectorAll(".frosti-code-content .line").forEach(line => {
+          line.addEventListener("mousedown", () => {
+            document.querySelectorAll(".frosti-code-content .line.active")
+              .forEach(el => el.classList.remove("active"));
+            line.classList.add("active");
+          });
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initInlineCodeCopy();
+        initCodeLineHighlight();
       });
-    </script>
-    <script>
-    // document.querySelectorAll(".frosti-code-content .line").forEach(line => {
-    //   line.addEventListener("click", () => {
-    //     // 清除其他行的高亮
-    //     document.querySelectorAll(".frosti-code-content .line.active")
-    //       .forEach(el => el.classList.remove("active"));
-    //     // 当前行加高亮
-    //     line.classList.add("active");
-    //   });
-    // });
-    document.querySelectorAll(".frosti-code-content .line").forEach(line => {
-      line.addEventListener("mousedown", e => {
-        // 阻止鼠标选择文字（否则拖拽会选中文字）
-        // e.preventDefault();
-      
-        // 清除旧的高亮
-        document.querySelectorAll(".frosti-code-content .line.active")
-          .forEach(el => el.classList.remove("active"));
-        // 当前行加高亮
-        line.classList.add("active");
+      document.addEventListener("astro:page-load", () => {
+        initInlineCodeCopy();
+        initCodeLineHighlight();
       });
-    });
     </script>
   </body>
 </html>
