@@ -272,7 +272,7 @@ static int add(int num1, int num2) {
 但是, 不能再额外声明非静态函数之后, 再在函数定义时使用:
 
 ```c
-// 显示非静态函数, 但定义静态函数 ×
+// 显式声明非静态函数, 但定义静态函数 ×
 int add(int num1, int num2);
 static int add(int num1, int num2) {
     return num1 + num2;
@@ -297,7 +297,7 @@ static int add(int num1, int num2) {
 > // 显示函数声明 √
 > static int add(int num1, int num2);
 > int add(int num1, int num2) {
->     return num1 + num2;
+>  return num1 + num2;
 > }
 > ```
 >
@@ -307,7 +307,7 @@ static int add(int num1, int num2) {
 >
 > C语言标准中, 如果一个函数先被声明为`static`, 后续的定义即使没有`static`, 该函数仍然保持内部链接
 >
-> 这是因为**第一次显式声明确定了函数的链接属性**
+> 这是因为**第一次显式声明决定了函数的链接属性**
 
 <Warning>
 
@@ -315,5 +315,7 @@ static int add(int num1, int num2) {
 
 </Warning>
 
-然后就是`static`的第二个功能: **修饰变量, 创建静态变量**
+`static`还有非常重要的第二个功能: **修饰变量时, 创建静态变量**
+
+
 

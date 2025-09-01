@@ -1,5 +1,11 @@
 ---
-import { SITE_TAB, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "@config";
+import {
+  SITE_TAB,
+  SITE_DESCRIPTION,
+  SITE_FAVICON,
+  SITE_LANGUAGE,
+  SITE_THEME,
+} from "@config";
 import { ClientRouter } from "astro:transitions";
 import ElementCrossing from "astro-vtbot/components/ElementCrossing.astro";
 import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astro";
@@ -9,22 +15,39 @@ import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
 
-const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro.props;
+const {
+  title,
+  image,
+  headings = [],
+  showTOC = false,
+  isIndexed = true,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang={SITE_LANGUAGE} class="bg-base-300" data-theme={SITE_THEME.light} data-theme-type="light">
+<html
+  lang={SITE_LANGUAGE}
+  class="bg-base-300"
+  data-theme={SITE_THEME.light}
+  data-theme-type="light"
+>
   <head>
     <ClientRouter />
     <ElementCrossing />
     <PointerOnNavigation />
-    <Header description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
+    <Header
+      description={SITE_DESCRIPTION}
+      favicon={SITE_FAVICON}
+      image={image}
+    />
     <title>{`${title} - ${SITE_TAB}`}</title>
 
     <script define:vars={{ SITE_THEME }} is:inline>
       (function () {
         const storedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
         let theme;
         if (storedTheme) {
           theme = storedTheme;
@@ -35,47 +58,61 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
         document.documentElement.setAttribute("data-theme", theme);
         const themeType = theme === SITE_THEME.dark ? "dark" : "light";
         document.documentElement.setAttribute("data-theme-type", themeType);
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-          if (!localStorage.getItem("theme")) {
-            const newTheme = e.matches ? SITE_THEME.dark : SITE_THEME.light;
-            document.documentElement.setAttribute("data-theme", newTheme);
-            const newThemeType = e.matches ? "dark" : "light";
-            document.documentElement.setAttribute("data-theme-type", newThemeType);
-            localStorage.setItem("theme", newTheme);
-          }
-        });
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+              const newTheme = e.matches ? SITE_THEME.dark : SITE_THEME.light;
+              document.documentElement.setAttribute("data-theme", newTheme);
+              const newThemeType = e.matches ? "dark" : "light";
+              document.documentElement.setAttribute(
+                "data-theme-type",
+                newThemeType,
+              );
+              localStorage.setItem("theme", newTheme);
+            }
+          });
       })();
     </script>
   </head>
 
-  <body class="flex flex-col min-h-screen" {...isIndexed ? { "data-pagefind-body": true } : {}}>
+  <body
+    class="flex flex-col min-h-screen"
+    {...isIndexed ? { "data-pagefind-body": true } : {}}
+  >
     <Navbar />
 
     <div class="max-w-6xl mx-auto w-full flex-grow">
-      <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4 h-full">
+      <div
+        class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4 h-full"
+      >
         {/* 修复: 在这里添加 'gap-4' 来恢复内容和页脚之间的间距 */}
         <main
           class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2 mt-16 md:mt-0 flex flex-col gap-4"
         >
           <!-- 图片查看器 -->
           <div class="image-viewer" id="imageViewer">
-              <div class="viewer-content" id="viewerContent">
-                  <div class="image-container">
-                      <div class="loading" id="loading">
-                          <div class="spinner"></div>
-                          加载中...
-                      </div>
-                      <img class="viewer-image" id="viewerImage" style="display: none;">
-                  </div>
+            <div class="viewer-content" id="viewerContent">
+              <div class="image-container">
+                <div class="loading" id="loading">
+                  <div class="spinner"></div>
+                  加载中...
+                </div>
+                <img
+                  class="viewer-image"
+                  id="viewerImage"
+                  style="display: none;"
+                />
               </div>
-              <button class="close-btn" id="closeBtn">×</button>
+            </div>
+            <button class="close-btn" id="closeBtn">×</button>
           </div>
 
           <!-- 缩放控制（固定在视窗底部） -->
           <div class="zoom-controls" id="zoomControls" style="display: none;">
-              <button class="zoom-btn" id="zoomOutBtn">-</button>
-              <button class="zoom-btn" id="zoomInBtn">+</button>
-              <button class="zoom-btn" id="resetBtn">⌂</button>
+            <button class="zoom-btn" id="zoomOutBtn">-</button>
+            <button class="zoom-btn" id="zoomInBtn">+</button>
+            <button class="zoom-btn" id="resetBtn">⌂</button>
           </div>
           <div class="zoom-info" id="zoomInfo" style="display: none;">100%</div>
 
@@ -110,8 +147,12 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
           button.addEventListener("click", async () => {
             const codeBlock = button.closest(".frosti-code");
             const code = codeBlock.querySelector("code").textContent;
-            const copyIcon = button.querySelector(".frosti-code-toolbar-copy-icon");
-            const successIcon = button.querySelector(".frosti-code-toolbar-copy-success");
+            const copyIcon = button.querySelector(
+              ".frosti-code-toolbar-copy-icon",
+            );
+            const successIcon = button.querySelector(
+              ".frosti-code-toolbar-copy-success",
+            );
             try {
               await navigator.clipboard.writeText(code);
               copyIcon.classList.add("hidden");
@@ -157,192 +198,196 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
     <style>
       /* 查看器样式 */
       .image-viewer {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background-color: rgba(0, 0, 0, 0.6);
-          backdrop-filter: blur(8px); /* 添加模糊效果 */
-          -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
-          z-index: 10000;
-          /* cursor: pointer; */
-          opacity: 0;
-          transition: opacity 0.3s ease;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px); /* 添加模糊效果 */
+        -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
+        z-index: 10000;
+        /* cursor: pointer; */
+        opacity: 0;
+        transition: opacity 0.3s ease;
       }
 
       .image-viewer.active {
-          display: flex;
-          opacity: 1;
+        display: flex;
+        opacity: 1;
       }
 
       .viewer-content {
-          display: block;
-          overflow: auto;
-          width: 100%;
-          height: 100%;
-          padding: 20px;
-          box-sizing: border-box;
-          border: none;
-          border-radius: 5px;
+        display: block;
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 5px;
       }
 
       .image-container {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 100%;
-          min-height: 100%;
-          border: none;
-          border-radius: 5px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        min-height: 100%;
+        border: none;
+        border-radius: 5px;
       }
 
       .viewer-image {
-          /* max-width: 90%;
+        /* max-width: 90%;
           max-height: 90%; */
-          object-fit: contain;
-          /* border-radius: 4px; */
-          /* box-shadow: 0 4px 20px rgba(0,0,0,0.3); */
-          /* transform: scale(0.8); */
-          transition: transform 0.3s ease;
-          cursor: grab;
-          user-select: none;
+        object-fit: contain;
+        /* border-radius: 4px; */
+        /* box-shadow: 0 4px 20px rgba(0,0,0,0.3); */
+        /* transform: scale(0.8); */
+        transition: transform 0.3s ease;
+        cursor: grab;
+        user-select: none;
       }
 
       .viewer-image:active {
-          cursor: grabbing;
+        cursor: grabbing;
       }
 
       .image-viewer.active .viewer-image {
-          transform: scale(1);
+        transform: scale(1);
       }
 
       .close-btn {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          width: 40px;
-          height: 40px;
-          background-color: rgba(255, 255, 255, 0.2);
-          border: none;
-          border-radius: 50%;
-          color: white;
-          font-size: 20px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background-color 0.2s ease;
-          z-index: 10001;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+        z-index: 10001;
       }
 
       .close-btn:hover {
-          background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.3);
       }
 
       .zoom-controls {
-          position: fixed;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 10px;
-          z-index: 10001;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10001;
       }
 
       .zoom-btn {
-          width: 40px;
-          height: 40px;
-          background-color: rgba(0, 0, 0, 0.2);
-          border: none;
-          border-radius: 50%;
-          color: white;
-          font-size: 24px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background-color 0.2s ease;
-          box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2); /* 添加阴影 */
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2); /* 添加阴影 */
       }
 
       .zoom-btn:hover {
-          background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.4);
       }
 
       .zoom-btn:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
+        opacity: 0.5;
+        cursor: not-allowed;
       }
 
       .zoom-info {
-          position: fixed;
-          bottom: 70px;
-          left: 50%;
-          transform: translateX(-50%);
-          color: white;
-          font-size: 14px;
-          background-color: rgba(0, 0, 0, 0.5);
-          padding: 5px 10px;
-          border-radius: 4px;
-          z-index: 10001;
+        position: fixed;
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 5px 10px;
+        border-radius: 4px;
+        z-index: 10001;
       }
 
       .loading {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          color: white;
-          font-size: 18px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 18px;
       }
 
       .spinner {
-          border: 3px solid rgba(255, 255, 255, 0.3);
-          border-top: 3px solid white;
-          border-radius: 50%;
-          width: 30px;
-          height: 30px;
-          animation: spin 1s linear infinite;
-          margin: 0 auto 10px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 10px;
       }
 
       @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
 
       /* 响应式设计 */
       @media (max-width: 768px) {
-          .viewer-image {
-              max-width: 95%;
-              max-height: 95%;
-          }
-          
-          .close-btn {
-              top: 10px;
-              right: 10px;
-              width: 35px;
-              height: 35px;
-              font-size: 18px;
-          }
+        .viewer-image {
+          max-width: 95%;
+          max-height: 95%;
+        }
 
-          .zoom-btn {
-              width: 35px;
-              height: 35px;
-              font-size: 16px;
-          }
+        .close-btn {
+          top: 10px;
+          right: 10px;
+          width: 35px;
+          height: 35px;
+          font-size: 18px;
+        }
 
-          .zoom-controls {
-              bottom: 10px;
-          }
+        .zoom-btn {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+        }
 
-          .zoom-info {
-              bottom: 60px;
-              font-size: 12px;
-          }
+        .zoom-controls {
+          bottom: 10px;
+        }
+
+        .zoom-info {
+          bottom: 60px;
+          font-size: 12px;
+        }
       }
 
       /* 滚动条样式 */
@@ -361,7 +406,7 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
       }
 
       .viewer-content::-webkit-scrollbar-thumb:hover {
-          background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.5);
       }
     </style>
     <script>
@@ -376,474 +421,504 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
         zoomOutBtn;
         resetBtn;
         zoomInfo;
-    
+
         isOpen;
         currentImage: HTMLImageElement | null;
         currentZoom;
         minZoom;
         maxZoom;
         zoomStep;
-    
+
         isDragging;
         dragStart;
         scrollStart;
-    
+
         // 添加事件监听器引用，用于清理
         boundHandleImageClick;
         boundHandleKeydown;
-    
+
         constructor() {
-          this.viewer = document.getElementById('imageViewer');
-          this.viewerContent = document.getElementById('viewerContent');
-          this.viewerImage = document.getElementById('viewerImage') as HTMLImageElement;
-          this.loading = document.getElementById('loading');
-          this.closeBtn = document.getElementById('closeBtn');
-          this.zoomControls = document.getElementById('zoomControls');
-          this.zoomInBtn = document.getElementById('zoomInBtn') as HTMLButtonElement;
-          this.zoomOutBtn = document.getElementById('zoomOutBtn') as HTMLButtonElement;
-          this.resetBtn = document.getElementById('resetBtn');
-          this.zoomInfo = document.getElementById('zoomInfo');
-          
+          this.viewer = document.getElementById("imageViewer");
+          this.viewerContent = document.getElementById("viewerContent");
+          this.viewerImage = document.getElementById(
+            "viewerImage",
+          ) as HTMLImageElement;
+          this.loading = document.getElementById("loading");
+          this.closeBtn = document.getElementById("closeBtn");
+          this.zoomControls = document.getElementById("zoomControls");
+          this.zoomInBtn = document.getElementById(
+            "zoomInBtn",
+          ) as HTMLButtonElement;
+          this.zoomOutBtn = document.getElementById(
+            "zoomOutBtn",
+          ) as HTMLButtonElement;
+          this.resetBtn = document.getElementById("resetBtn");
+          this.zoomInfo = document.getElementById("zoomInfo");
+
           this.isOpen = false;
           this.currentZoom = 1;
           this.currentImage = null;
           this.minZoom = 0.1;
           this.maxZoom = 5;
           this.zoomStep = 0.1;
-          
+
           // 拖拽相关
           this.isDragging = false;
           this.dragStart = { x: 0, y: 0 };
           this.scrollStart = { x: 0, y: 0 };
-    
+
           // 绑定事件处理器
           this.boundHandleImageClick = this.handleImageClick.bind(this);
           this.boundHandleKeydown = this.handleKeydown.bind(this);
-          
+
           this.init();
         }
-    
+
         init() {
           // 事件委托 - 高性能的事件监听
-          document.addEventListener('click', this.boundHandleImageClick);
-          
+          document.addEventListener("click", this.boundHandleImageClick);
+
           // 关闭事件
-          this.closeBtn?.addEventListener('click', (e) => {
-              e.stopPropagation();
-              this.close();
+          this.closeBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.close();
           });
-          
+
           // 缩放控制
-          this.zoomInBtn?.addEventListener('click', (e) => {
-              e.stopPropagation();
-              this.zoomIn();
+          this.zoomInBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.zoomIn();
           });
-          
-          this.zoomOutBtn?.addEventListener('click', (e) => {
-              e.stopPropagation();
-              this.zoomOut();
+
+          this.zoomOutBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.zoomOut();
           });
-          
-          this.resetBtn?.addEventListener('click', (e) => {
-              e.stopPropagation();
-              this.resetZoom();
+
+          this.resetBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.resetZoom();
           });
-          
+
           // 拖拽功能
-          this.viewerImage?.addEventListener('mousedown', this.startDrag.bind(this));
-          document.addEventListener('mousemove', this.drag.bind(this));
-          document.addEventListener('mouseup', this.endDrag.bind(this));
-          
+          this.viewerImage?.addEventListener(
+            "mousedown",
+            this.startDrag.bind(this),
+          );
+          document.addEventListener("mousemove", this.drag.bind(this));
+          document.addEventListener("mouseup", this.endDrag.bind(this));
+
           // 触摸事件（移动端）
-          this.viewerImage?.addEventListener('touchstart', this.startTouchDrag.bind(this));
-          document.addEventListener('touchmove', this.touchDrag.bind(this));
-          document.addEventListener('touchend', this.endDrag.bind(this));
-          
+          this.viewerImage?.addEventListener(
+            "touchstart",
+            this.startTouchDrag.bind(this),
+          );
+          document.addEventListener("touchmove", this.touchDrag.bind(this));
+          document.addEventListener("touchend", this.endDrag.bind(this));
+
           // 双击重置
-          this.viewerImage?.addEventListener('dblclick', (e) => {
-              e.stopPropagation();
-              this.resetZoom();
+          this.viewerImage?.addEventListener("dblclick", (e) => {
+            e.stopPropagation();
+            this.resetZoom();
           });
-          
+
           // 点击背景关闭
-          this.viewer?.addEventListener('click', (e) => {
-              if (e.target != this.viewerImage) {
-                  this.close();
-              }
+          this.viewer?.addEventListener("click", (e) => {
+            // if (e.target != this.viewerImage) {
+            this.close();
+            // }
           });
-          
+
           // 键盘事件
-          document.addEventListener('keydown', this.boundHandleKeydown);
-          
+          document.addEventListener("keydown", this.boundHandleKeydown);
+
           // 防止图片拖拽
-          this.viewerImage?.addEventListener('dragstart', (e) => {
-              e.preventDefault();
+          this.viewerImage?.addEventListener("dragstart", (e) => {
+            e.preventDefault();
           });
         }
-    
+
         // 将键盘事件处理器单独提取
         handleKeydown(e: KeyboardEvent) {
           if (!this.isOpen) return;
-          
-          switch(e.key) {
-              case 'Escape':
-                  this.close();
-                  break;
-              case '+':
-              case '=':
-                  e.preventDefault();
-                  this.zoomIn();
-                  break;
-              case '-':
-                  e.preventDefault();
-                  this.zoomOut();
-                  break;
-              case '0':
-                  e.preventDefault();
-                  this.resetZoom();
-                  break;
+
+          switch (e.key) {
+            case "Escape":
+              this.close();
+              break;
+            case "+":
+            case "=":
+              e.preventDefault();
+              this.zoomIn();
+              break;
+            case "-":
+              e.preventDefault();
+              this.zoomOut();
+              break;
+            case "0":
+              e.preventDefault();
+              this.resetZoom();
+              break;
           }
         }
-    
+
         handleImageClick(e: MouseEvent) {
-          // 只处理 img 标签点击 
-          if ((e.target as HTMLElement).tagName === 'IMG' && !(e.target as HTMLElement).closest('aside')) {
+          const target = e.target as HTMLElement;
+
+          // 只处理 img 标签点击，排除 aside 内的图片和 id 为 viewerImage 的图片
+          if (
+            target.tagName === "IMG" &&
+            !target.closest("aside") &&
+            target.id !== "viewerImage"
+          ) {
             e.preventDefault();
-            this.open(e.target as HTMLImageElement);
+            this.open(target as HTMLImageElement);
           }
         }
-    
+
         // 添加清理方法
         destroy() {
-          document.removeEventListener('click', this.boundHandleImageClick);
-          document.removeEventListener('keydown', this.boundHandleKeydown);
+          document.removeEventListener("click", this.boundHandleImageClick);
+          document.removeEventListener("keydown", this.boundHandleKeydown);
         }
-    
+
         open(imgElement: HTMLImageElement) {
           if (this.isOpen) return;
-          
+
           this.isOpen = true;
           this.currentImage = imgElement;
           this.currentZoom = 1;
-          
+
           // 显示查看器
-          if (this.viewer)
-            this.viewer.style.display = 'flex';
-          
+          if (this.viewer) this.viewer.style.display = "flex";
+
           // 显示缩放控制
-          if (this.zoomControls) 
-            this.zoomControls.style.display = 'flex';
-          if (this.zoomInfo) 
-            this.zoomInfo.style.display = 'block';
-          
+          if (this.zoomControls) this.zoomControls.style.display = "flex";
+          if (this.zoomInfo) this.zoomInfo.style.display = "block";
+
           // 显示加载状态
-          if (this.loading)
-            this.loading.style.display = 'block';
-          if (this.viewerImage)
-            this.viewerImage.style.display = 'none';
-          
+          if (this.loading) this.loading.style.display = "block";
+          if (this.viewerImage) this.viewerImage.style.display = "none";
+
           // 重置滚动位置
           if (this.viewerContent) {
             this.viewerContent.scrollTop = 0;
             this.viewerContent.scrollLeft = 0;
           }
-          
+
           // 预加载图片
           this.loadImage(imgElement.src);
-          
+
           // 禁用页面滚动
-          document.body.style.overflow = 'hidden';
-          
+          document.body.style.overflow = "hidden";
+
           // 延迟添加active类以触发动画
           requestAnimationFrame(() => {
-              this.viewer?.classList.add('active');
+            this.viewer?.classList.add("active");
           });
-          
+
           this.updateZoomInfo();
           this.updateZoomButtons();
         }
-    
+
         loadImage(src: string) {
           const img = new Image();
-          
+
           img.onload = () => {
             if (this.viewerImage) {
               (this.viewerImage as HTMLImageElement).src = src;
               console.log(src);
             }
-            if (this.loading)
-              this.loading.style.display = 'none';
-            if (this.viewerImage)
-              this.viewerImage.style.display = 'block';
-    
+            if (this.loading) this.loading.style.display = "none";
+            if (this.viewerImage) this.viewerImage.style.display = "block";
+
             this.resetZoom();
             if (this.viewerImage)
               // 初始化鼠标样式
-              this.viewerImage.style.cursor = 'default';
+              this.viewerImage.style.cursor = "default";
           };
-          
+
           img.onerror = () => {
             if (this.loading)
-              this.loading.innerHTML = '<div style="color: #ff6b6b;">图片加载失败</div>';
+              this.loading.innerHTML =
+                '<div style="color: #ff6b6b;">图片加载失败</div>';
           };
-          
+
           img.src = src;
         }
-    
+
         close() {
           if (!this.isOpen) return;
-          
+
           this.isOpen = false;
-          this.viewer?.classList.remove('active');
-          
+          this.viewer?.classList.remove("active");
+
           // 隐藏缩放控制
-          if (this.zoomControls)
-            this.zoomControls.style.display = 'none';
-          if (this.zoomInfo)
-            this.zoomInfo.style.display = 'none';
-          
+          if (this.zoomControls) this.zoomControls.style.display = "none";
+          if (this.zoomInfo) this.zoomInfo.style.display = "none";
+
           // 恢复页面滚动
-          document.body.style.overflow = '';
-          
+          document.body.style.overflow = "";
+
           // 动画结束后隐藏
           setTimeout(() => {
-              if (!this.isOpen) {
-                if (this.viewer)
-                  this.viewer.style.display = 'none';
-    
-                if (this.viewerImage) {
-                  this.viewerImage.src = '';
-                }
-                this.currentImage = null;
-                this.currentZoom = 1;
+            if (!this.isOpen) {
+              if (this.viewer) this.viewer.style.display = "none";
+
+              if (this.viewerImage) {
+                this.viewerImage.src = "";
               }
+              this.currentImage = null;
+              this.currentZoom = 1;
+            }
           }, 300);
         }
-    
+
         zoomIn() {
-            if (this.currentZoom < this.maxZoom) {
-                this.setZoom(this.currentZoom + this.zoomStep);
-            }
+          if (this.currentZoom < this.maxZoom) {
+            this.setZoom(this.currentZoom + this.zoomStep);
+          }
         }
-    
+
         zoomOut() {
-            if (this.currentZoom > this.minZoom) {
-                this.setZoom(this.currentZoom - this.zoomStep);
-            }
+          if (this.currentZoom > this.minZoom) {
+            this.setZoom(this.currentZoom - this.zoomStep);
+          }
         }
-    
+
         resetZoom() {
-            this.setZoom(1);
-            // 重置滚动位置到中心
-            this.centerImage();
+          this.setZoom(1);
+          // 重置滚动位置到中心
+          this.centerImage();
         }
-    
+
         setZoom(zoom: number) {
-            this.currentZoom = Math.max(this.minZoom, Math.min(this.maxZoom, zoom));
-    
-            if (!this.viewerImage) return;
-    
-            const naturalWidth = this.viewerImage.naturalWidth;
-            const naturalHeight = this.viewerImage.naturalHeight;
-    
-            this.viewerImage.style.width = `${naturalWidth * this.currentZoom}px`;
-            this.viewerImage.style.height = `${naturalHeight * this.currentZoom}px`;
-            
-            // 更新鼠标样式
-            const container = this.viewerContent;
-            if (container) {
-              setTimeout(() => {
-                  const canScrollX = container.scrollWidth > container.clientWidth;
-                  const canScrollY = container.scrollHeight > container.clientHeight;
-                  if (this.viewerImage) {
-                    this.viewerImage.style.cursor = (canScrollX || canScrollY) ? 'grab' : 'default';
-                  }
-              }, 50);
-            }
-            
-            this.updateZoomInfo();
-            this.updateZoomButtons();
+          this.currentZoom = Math.max(
+            this.minZoom,
+            Math.min(this.maxZoom, zoom),
+          );
+
+          if (!this.viewerImage) return;
+
+          const naturalWidth = this.viewerImage.naturalWidth;
+          const naturalHeight = this.viewerImage.naturalHeight;
+
+          this.viewerImage.style.width = `${naturalWidth * this.currentZoom}px`;
+          this.viewerImage.style.height = `${naturalHeight * this.currentZoom}px`;
+
+          // 更新鼠标样式
+          const container = this.viewerContent;
+          if (container) {
+            setTimeout(() => {
+              const canScrollX = container.scrollWidth > container.clientWidth;
+              const canScrollY =
+                container.scrollHeight > container.clientHeight;
+              if (this.viewerImage) {
+                this.viewerImage.style.cursor =
+                  canScrollX || canScrollY ? "grab" : "default";
+              }
+            }, 50);
+          }
+
+          this.updateZoomInfo();
+          this.updateZoomButtons();
         }
-    
+
         centerImage() {
           const container = this.viewerContent;
           const image = this.viewerImage;
-          
+
           if (container && image) {
             // 计算居中位置
             const containerRect = container.getBoundingClientRect();
             const imageRect = image.getBoundingClientRect();
-          
-            const scrollLeft = (image.scrollWidth * this.currentZoom - containerRect.width) / 2;
-            const scrollTop = (image.scrollHeight * this.currentZoom - containerRect.height) / 2;
-          
+
+            const scrollLeft =
+              (image.scrollWidth * this.currentZoom - containerRect.width) / 2;
+            const scrollTop =
+              (image.scrollHeight * this.currentZoom - containerRect.height) /
+              2;
+
             container.scrollLeft = Math.max(0, scrollLeft);
             container.scrollTop = Math.max(0, scrollTop);
           }
         }
-    
+
         updateZoomInfo() {
           if (this.zoomInfo) {
             this.zoomInfo.textContent = `${Math.round(this.currentZoom * 100)}%`;
-            this.zoomInfo.style.display = 'block';
-    
+            this.zoomInfo.style.display = "block";
+
             // 动画结束后隐藏
             setTimeout(() => {
-              if (this.zoomInfo) 
-                this.zoomInfo.style.display = 'none';
+              if (this.zoomInfo) this.zoomInfo.style.display = "none";
             }, 2000);
           }
         }
-    
+
         updateZoomButtons() {
           if (this.zoomInBtn)
             this.zoomInBtn.disabled = this.currentZoom >= this.maxZoom;
-    
+
           if (this.zoomOutBtn)
             this.zoomOutBtn.disabled = this.currentZoom <= this.minZoom;
         }
-    
+
         startDrag(e: MouseEvent) {
           // 只有当图片可以滚动时才启用拖拽
           const container = this.viewerContent;
           if (container) {
             const canScrollX = container.scrollWidth > container.clientWidth;
             const canScrollY = container.scrollHeight > container.clientHeight;
-          
+
             if (!canScrollX && !canScrollY) return;
-          
+
             this.isDragging = true;
             this.dragStart.x = e.clientX;
             this.dragStart.y = e.clientY;
             this.scrollStart.x = container.scrollLeft;
             this.scrollStart.y = container.scrollTop;
-          
+
             if (this.viewerImage) {
-              this.viewerImage.style.cursor = 'grabbing';
+              this.viewerImage.style.cursor = "grabbing";
             }
             e.preventDefault();
           }
         }
-    
+
         startTouchDrag(e: TouchEvent) {
           if (e.touches.length !== 1) return;
-          
+
           // 只有当图片可以滚动时才启用拖拽
           const container = this.viewerContent;
           if (container) {
             const canScrollX = container.scrollWidth > container.clientWidth;
             const canScrollY = container.scrollHeight > container.clientHeight;
-          
+
             if (!canScrollX && !canScrollY) return;
-          
+
             this.isDragging = true;
             this.dragStart.x = e.touches[0].clientX;
             this.dragStart.y = e.touches[0].clientY;
             this.scrollStart.x = container.scrollLeft;
             this.scrollStart.y = container.scrollTop;
-          
+
             e.preventDefault();
           }
         }
-    
+
         drag(e: MouseEvent) {
           if (!this.isDragging) return;
-          
+
           const currentX = e.clientX;
           const currentY = e.clientY;
-          
+
           const deltaX = this.dragStart.x - currentX;
           const deltaY = this.dragStart.y - currentY;
-          
+
           if (this.viewerContent) {
             this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
             this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
           }
-          
+
           e.preventDefault();
         }
-    
+
         touchDrag(e: TouchEvent) {
           if (!this.isDragging || e.touches.length !== 1) return;
-          
+
           const currentX = e.touches[0].clientX;
           const currentY = e.touches[0].clientY;
-          
+
           const deltaX = this.dragStart.x - currentX;
           const deltaY = this.dragStart.y - currentY;
-          
+
           if (this.viewerContent) {
             this.viewerContent.scrollLeft = this.scrollStart.x + deltaX;
             this.viewerContent.scrollTop = this.scrollStart.y + deltaY;
           }
-          
+
           e.preventDefault();
         }
-    
+
         endDrag() {
           if (this.isDragging) {
-              this.isDragging = false;
-              if (this.viewerImage) {
-                this.viewerImage.style.cursor = 'grab';
-              }
+            this.isDragging = false;
+            if (this.viewerImage) {
+              this.viewerImage.style.cursor = "grab";
+            }
           }
         }
       }
-    
+
       // 全局变量存储当前的 ImageViewer 实例
       let globalImageViewer: ImageViewer | null = null;
-    
+
       // 初始化图片查看器的函数
       function initImageViewer() {
         // 如果已经存在实例，先销毁它
         if (globalImageViewer) {
           globalImageViewer.destroy();
         }
-        
+
         // 创建新的实例
         globalImageViewer = new ImageViewer();
         // console.log('ImageViewer initialized');
       }
-    
+
       // 页面加载完成后初始化
-      document.addEventListener('DOMContentLoaded', initImageViewer);
-    
+      document.addEventListener("DOMContentLoaded", initImageViewer);
+
       // 监听 Astro 的页面切换事件
-      document.addEventListener('astro:page-load', initImageViewer);
-    
+      document.addEventListener("astro:page-load", initImageViewer);
+
       // 备用方案：如果 astro:page-load 不可用，监听其他可能的事件
       // document.addEventListener('astro:after-swap', initImageViewer);
     </script>
     <script>
       function initInlineCodeCopy() {
-        document.querySelectorAll('code:not(pre code)').forEach(element => {
-          element.addEventListener('click', async () => {
-            const text = element.textContent || '';
+        document.querySelectorAll("code:not(pre code)").forEach((element) => {
+          element.addEventListener("click", async () => {
+            if (!(element instanceof HTMLElement)) return;
+
+            // 检查是否正在处理中
+            if (element.dataset.copying === "true") {
+              return; // 直接忽略后续点击
+            }
+
+            const text = element.textContent || "";
             try {
+              element.dataset.copying = "true"; // 标记为正在复制
               await navigator.clipboard.writeText(text);
               const originalText = element.textContent;
-              element.textContent = '已复制!';
+              element.textContent = "已复制!";
+
               setTimeout(() => {
                 element.textContent = originalText;
+                element.dataset.copying = "false"; // 恢复状态
               }, 1500);
             } catch (err) {
-              console.error('复制失败:', err);
+              console.error("复制失败:", err);
+              element.dataset.copying = "false"; // 出错时也要恢复状态
             }
           });
         });
       }
-    
+
       function initCodeLineHighlight() {
-        document.querySelectorAll(".frosti-code-content .line").forEach(line => {
-          line.addEventListener("mousedown", () => {
-            document.querySelectorAll(".frosti-code-content .line.active")
-              .forEach(el => el.classList.remove("active"));
-            line.classList.add("active");
+        document
+          .querySelectorAll(".frosti-code-content .line")
+          .forEach((line) => {
+            line.addEventListener("mousedown", () => {
+              document
+                .querySelectorAll(".frosti-code-content .line.active")
+                .forEach((el) => el.classList.remove("active"));
+              line.classList.add("active");
+            });
           });
-        });
       }
 
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         initInlineCodeCopy();
         initCodeLineHighlight();
       });
