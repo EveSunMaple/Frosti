@@ -153,6 +153,8 @@ main pre code {
 main code .line {
   display: inline-block;
   width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 main code .line.active {
@@ -915,4 +917,11 @@ main pre code {
 /* 兼容IE */
 .custom-scroll {
     -ms-overflow-style: none;
+}
+
+.frosti-code-content {
+	padding-top: 1rem !important;
+	padding-bottom: 1rem !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }

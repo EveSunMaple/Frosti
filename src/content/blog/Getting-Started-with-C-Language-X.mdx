@@ -1,0 +1,44 @@
+---
+title: '从零接触C语言(初览)-X: 宏'
+description: '宏是一种十分通用的思想, 核心思想是预录制复杂操作, 然后实现 用简单的指令自动执行复杂操作'
+pubDate: '2025-09-02'
+image: 'https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250710215328038.webp'
+categories:
+    - Blogs
+tags:
+    - C
+    - 从零开始接触C语言
+---
+
+import Info from "../../components/mdx/Info.astro";
+
+import Warning from "../../components/mdx/Warning.astro";
+
+import Error from "../../components/mdx/Error.astro";
+
+import Kbd from "../../components/mdx/Kbd.astro"
+
+<Warning>
+
+如果你从未接触过C语言, 那么我建议你先阅读前面的文章:
+
+[📌从零开始接触C语言](https://www.humid1ch.cn/blog/tag/从零开始接触C语言)
+
+</Warning>
+
+## 宏
+
+宏是一种十分通用的思想, 核心思想是预录制复杂操作, 然后实现 用简单的指令自动执行复杂操作
+
+如果你十分喜欢玩游戏, 你可能听说过一种宏: 鼠标宏 或 键盘宏
+
+鼠标宏或键盘宏 可以实现对鼠标、按键一系列操作的预录制, 然后将预录制完成的操作绑定到目标按键上, 之后只需要按下一个按键就能够按照预录制好的操作, 完整执行
+
+如果你能够熟练使用Excel, 你或许使用过其中的录制宏的功能
+
+Excel提供有录制宏的功能, 可以将表格操作(数据格式化、复制粘贴、数据计算等操作)进行录制, 录制完成之后可以自动转换为VBA宏, 在之后 可以直接使用宏完成相同的数据操作
+
+这就是宏的思想
+
+**C语言, 按照宏的思想, 实现了一种语法简单的宏定义功能**
+

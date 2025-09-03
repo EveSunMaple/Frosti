@@ -199,10 +199,14 @@ int main() {
 
 C语言中还有一个非常重要的关键字: `static`, 非常非常非常重要
 
-`static`可以用来修饰变量或函数, **被修饰的变量或函数被称为静态变量或静态函数**, C语言中`static`具体的功能有两个:
+`static`可以用来修饰变量或函数, **在变量或函数声明时, 用`static`修饰的变量或函数 被称为静态变量或静态函数**
+
+C语言中`static`具体的功能有两个:
 
 1. **限制变量或函数内部链接**
 2. **修饰变量, 为变量提供静态属性**
+
+#### 功能1: 限制变量或函数内部链接
 
 功能1的作用, 正好与`extern`的功能相反
 
@@ -243,6 +247,48 @@ int main() {
 也就是说, 虽然使用`extern int globalVar;`尝试声明外部变量, 但`globalVar.c`文件中定义的`globalVar.c`被`static`修饰了
 
 `static`将`globalVar`变量限定在了`globalVar.c`文件中, 不能在外部导入
+
+即, **被`static`修饰的变量, 被限定在了所在文件中**
+
+那么, **如果在两个文件中, 用`static`修饰并定义同名的变量, 会出现什么情况?**
+
+用下面的代码测试一下:
+
+`staticTest1.c`:
+
+```c
+#include <stdio.h>
+
+extern void printGlobalVar();
+
+static int globalVar = 1;
+
+int main() {
+    printf("file: Test1 globalVar %d, %p\n", globalVar, &globalVar);
+    printGlobalVar();
+
+    return 0;
+}
+```
+
+`staticTest2.c`:
+
+```c
+#include <stdio.h>
+static int globalVar = 2;
+
+void printGlobalVar() {
+    printf("file: Test2 globalVar %d, %p\n", globalVar, &globalVar);
+}
+```
+
+这段代码, 编译运行的结果为:
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250902152800935.webp)
+
+我们分别在两个文件中定义了同名的`static`变量`globalVar`, 并分别赋值`1`和`2`, 并在两个文件中分别打印`globalVar`的值和地址
+
+从结果来看, **两个变量相互独立 互不影响, 值不同, 在内存中的地址不同**
 
 ---
 
@@ -315,7 +361,139 @@ static int add(int num1, int num2) {
 
 </Warning>
 
+#### 功能2: 修饰变量, 提供静态属性
+
 `static`还有非常重要的第二个功能: **修饰变量时, 创建静态变量**
 
+什么是静态变量?
 
+**无论是尝试定义全局变量还是临时变量, 只要被`static`进行修饰定义, 此变量就被称为静态变量, 不过会区分为 静态全局变量和静态局部变量**
 
+静态变量具有的属性, 非常的重要:
+
+1. 被`static`修饰的变量, **生命周期为 程序运行期间**
+
+    即使尝试定义临时变量, 但只要使用`static`进行修饰, 此变量的生命周期就为 整个程序运行期间
+
+    即, **无论是静态全局变量, 还是静态局部变量, 生命周期 均为整个程序的运行期间**
+
+2. 被`static`修饰的变量, 作用域为 其所在代码块内
+
+    作用域方面, 静态全局变量和静态局部变量存在一定的不同
+
+    在介绍功能1时, 已经了解过, **静态全局变量的作用域是 其所在的文件内**
+
+    而静态局部变量不同, **静态局部变量的作用域是 定义此变量时, 其所在的代码块内**
+
+    可以用代码测试一下:
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        {
+            static int globalVar = 1;
+            printf("file: Test1 globalVar %d, %p\n", globalVar, &globalVar);
+        }
+        printf("file: Test1 globalVar %d, %p\n", globalVar, &globalVar);
+    
+        return 0;
+    }
+    ```
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250902160120114.webp)
+
+    从编译结果来看, 第`8`行的`printf("file: Test1 globalVar %d, %p\n", globalVar, &globalVar);`提示`globalVar`未定义
+
+    而第`6`行的相同语句, 并没有报错
+
+3. 被`static`修饰的变量, **在整个程序运行期间, 只会被初始化一次**
+
+    从字面来看, 这个属性好像并不容易理解
+
+    但可以结合代码理解:
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        int count = 5;
+        while (count--) {
+            int staticVal = 10;
+            printf("staticVal: %d\n", staticVal++);
+        }
+    
+        return 0;
+    }
+    ```
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250902161529967.webp)
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        int count = 5;
+        while (count--) {
+            int val = 10;
+            printf("val: %d\n", val++);
+        }
+    
+        return 0;
+    }
+    ```
+
+    ![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250902161434478.webp)
+
+    对比这两段代码 和 其运行结果
+
+    从结果中可以看到
+
+    1. 被`static`修饰的临时变量`staticVal`
+
+        初始化语句写在`while()`循环内, 但**即使多次循环, 也只初始化了一次**
+
+        在循环体内的`staticVal++`操作, 会对此静态变量随着循环执行累加操作
+
+    2. 没有被`static`修饰的**普通临时变量`val`**
+
+        初始化语句同样写在`while()`循环内, **但每次循环, 都会初始化一次**
+
+        循环体内的`val++`操作, `val`总是从`10`开始
+
+### `typedef`
+
+C语言中, `typedef`的功能只有一个: **可以为数据类型重新起一个新名字**
+
+用法也非常简单:
+
+```c
+typedef 数据类型 新名字;
+```
+
+使用`typedef`起的新名字, 可以直接使用
+
+```c
+#include <stdio.h>
+
+typedef unsigned int uint;
+
+int main() {
+    uint val = 10;
+    printf("val: %u\n", val);
+
+    return 0;
+}
+```
+
+![](https://humid1ch.oss-cn-shanghai.aliyuncs.com/20250902163230751.webp)
+
+可以看到, `uint`在C语言标准中是不存在的类型
+
+但使用`typedef`对`unsigned int`起一个新名字`uint`, 在之后就可以使用`uint`定义无符号整型数据
+
+`typedef`可以在一定程度上提升代码的简洁度, 毕竟`uint`比`unsigned int`要短的多
+
+---
+
+C语言还有一些其他的关键字, 各有作用, 但限于篇幅有限, 在之后的文章中再进行介绍
