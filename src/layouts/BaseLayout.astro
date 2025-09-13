@@ -9,7 +9,7 @@ import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
 
-const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro.props;
+const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = false, isIndexed = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,7 +18,7 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
     <ClientRouter />
     <ElementCrossing />
     <PointerOnNavigation />
-    <Header description={SITE_DESCRIPTION} favicon={SITE_FAVICON} image={image} />
+    <Header title={title} description={description} favicon={SITE_FAVICON} image={image} />
     <title>{`${title} - ${SITE_TAB}`}</title>
 
     <script define:vars={{ SITE_THEME }} is:inline>
@@ -53,7 +53,6 @@ const { title, image, headings = [], showTOC = false, isIndexed = true } = Astro
 
     <div class="max-w-6xl mx-auto w-full flex-grow">
       <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4 h-full">
-        {/* 修复: 在这里添加 'gap-4' 来恢复内容和页脚之间的间距 */}
         <main
           class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2 mt-16 md:mt-0 flex flex-col gap-4"
         >
