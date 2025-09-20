@@ -962,3 +962,10 @@
 ### Fixed
 
 - 修复了在 `SearchBar` 多次搜索导致出现多个搜索框的问题 [#87](https://github.com/EveSunMaple/Frosti/issues/87)
+
+## [3.3.0] - 2025-9-20
+
+### Features
+
+- 现在 Frosti 可以每一篇文章生成社交媒体图片
+- 使用 [Expressive Code](https://expressive-code.com/) 重新渲染代码框

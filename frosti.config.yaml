@@ -8,7 +8,7 @@ site:
   theme: # 更多主题 https://daisyui.com/docs/themes/
     light: winter # 主题的浅色模式
     dark: dracula # 主题的深色模式
-    code: github-dark # 代码块的主题 https://shiki.style/themes
+    code: github-dark # 代码块的主题 https://expressive-code.com/guides/themes/
   date_format: ddd MMM DD YYYY # 日期格式设置，支持自定义格式
   blog: # 博客相关配置
     pageSize: 8 # 每页显示的文章数量

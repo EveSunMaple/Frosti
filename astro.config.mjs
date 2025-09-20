@@ -10,7 +10,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
-import { USER_SITE } from "./src/config.ts";
+import { CODE_THEME, USER_SITE } from "./src/config.ts";
 
 import updateConfig from "./src/integration/updateConfig.ts";
 
@@ -26,6 +26,7 @@ export default defineConfig({
     },
   },
   integrations: [updateConfig(), expressiveCode({
+    themes: [CODE_THEME],
     styleOverrides: {
       borderRadius: "0.75rem",
     },
