@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
+import { Code } from "astro-expressive-code/components";
 import MainCard from "@/components/MainCard.astro";
 import FeatureCard from "@/components/mdx/FeatureCard.astro";
 import GitHubStats from "@/components/mdx/GitHubStats.astro";
@@ -113,9 +114,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
               </div>
               <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Use Git to clone the Frosti repository to your local machine:</p>
-                <div class="mockup-code text-sm mb-2">
-                  <pre><code>git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti</code></pre>
-                </div>
+                <Code code="git clone --depth 1 https://github.com/EveSunMaple/Frosti.git Frosti" lang="sh" />
               </div>
             </li>
 
@@ -130,9 +129,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
               </div>
               <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Navigate to the project directory and install dependencies:</p>
-                <div class="mockup-code text-sm mb-2">
-                  <pre><code>cd Frosti && npm install</code></pre>
-                </div>
+                <Code code="cd Frosti && npm install" lang="sh" />
               </div>
             </li>
 
@@ -147,14 +144,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
               </div>
               <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Launch the local development server to see your blog:</p>
-                <div class="mockup-code text-sm mb-2">
-                  <pre><code>npm run search:index && npm run dev</code></pre>
-                </div>
-                <p class="text-base-content/70">
-                  Open your browser and navigate to <code class="bg-base-300 px-2 py-1 rounded"
-                    >http://localhost:4321</code
-                  > to see your blog in action!
-                </p>
+                <Code code="npm run search:index && npm run dev" lang="sh" />
               </div>
             </li>
           </ol>
