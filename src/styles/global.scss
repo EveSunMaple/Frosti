@@ -231,7 +231,7 @@ code {
   }
 
   &-item {
-    @apply mb-2;
+    @apply mb-2 truncate;
 
     &:last-child {
       @apply mb-0;
@@ -251,11 +251,11 @@ code {
   }
 
   &-title {
-    @apply font-medium overflow-hidden text-ellipsis whitespace-nowrap text-base-content/90;
+    @apply flex-1 min-w-0 font-medium overflow-hidden text-ellipsis whitespace-nowrap text-base-content/90;
   }
 
   &-date {
-    @apply text-xs text-base-content/60 whitespace-nowrap py-1 px-2 rounded-full bg-base-300/30;
+    @apply text-xs text-base-content/60 whitespace-nowrap py-1 px-2 rounded-full bg-base-300/30 shrink-0 ml-2;
   }
 }
 

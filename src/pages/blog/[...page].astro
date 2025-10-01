@@ -8,7 +8,6 @@ import { Icon } from "astro-icon/components";
 import { t } from "@config";
 import { generatePageLinks } from "@utils/blogUtils";
 import { getMainBlogPaginationPaths } from "@utils/paginationUtils";
-import Card from "@/components/temple/Card.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   return getMainBlogPaginationPaths({ paginate });

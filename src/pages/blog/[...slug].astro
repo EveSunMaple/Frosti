@@ -23,7 +23,7 @@ const { blog } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await blog.render();
 const displayDate = blog.data.pubDate ? dayjs(blog.data.pubDate).format(DATE_FORMAT) : "";
 const image = new URL(`/og/${blog.slug}.png`, Astro.site).toString();
-const url = new URL(`/${blog.slug}`, Astro.url.origin);
+const url = new URL(`/blog/${blog.slug}`, Astro.url.origin);
 ---
 
 <BaseLayout

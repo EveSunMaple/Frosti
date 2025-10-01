@@ -25,15 +25,21 @@ export const prerender = true;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getCollection("blog");
-  const publishedPosts = allPosts.filter(post => !post.data.draft);
+  const publishedPosts = allPosts.filter((post) => !post.data.draft);
 
-  return publishedPosts.map(post => ({
+  return publishedPosts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
 };
 
+let fontCache: { regular: Buffer | null; bold: Buffer | null } | null = null;
+
 async function fetchNotoSansSCFonts() {
+  if (fontCache) {
+    return fontCache;
+  }
+
   try {
     const cssResp = await fetch(
       "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap",
@@ -61,7 +67,8 @@ async function fetchNotoSansSCFonts() {
       console.warn(
         "Could not find font urls in Google Fonts CSS; falling back to no fonts.",
       );
-      return { regular: null, bold: null };
+      fontCache = { regular: null, bold: null };
+      return fontCache;
     }
 
     const [rResp, bResp] = await Promise.all([
@@ -72,17 +79,20 @@ async function fetchNotoSansSCFonts() {
       console.warn(
         "Failed to download font files from Google; falling back to no fonts.",
       );
-      return { regular: null, bold: null };
+      fontCache = { regular: null, bold: null };
+      return fontCache;
     }
 
     const rBuf = Buffer.from(await rResp.arrayBuffer());
     const bBuf = Buffer.from(await bResp.arrayBuffer());
 
-    return { regular: rBuf, bold: bBuf };
+    fontCache = { regular: rBuf, bold: bBuf };
+    return fontCache;
   }
   catch (err) {
     console.warn("Error fetching fonts:", err);
-    return { regular: null, bold: null };
+    fontCache = { regular: null, bold: null };
+    return fontCache;
   }
 }
 

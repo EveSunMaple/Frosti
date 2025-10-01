@@ -7,7 +7,7 @@ import PostFilter from "./PostFilter.astro";
 
 const { title, url, pubDate, badge, categories = [], tags = [], word, time } = Astro.props as PostData;
 const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
-
+const ogImage = url ? String(url).replace("/blog/", "/og/") + ".png" : "";
 const socialLinks = [
   {
     name: "X (Twitter)",
@@ -125,30 +125,44 @@ const socialLinks = [
   </div>
 
   <!-- Share Modal -->
+  <!-- Share Modal -->
   <dialog id="share_modal" class="modal modal-bottom sm:modal-middle">
-    <div class="modal-box max-w-2xl rounded-none sm:rounded-xl">
-      <h3 class="font-bold text-lg sm:text-xl mb-6 text-center">
+    <div class="modal-box max-w-lg rounded-xl">
+      <h3 class="font-bold text-base sm:text-lg mb-4 text-center">
         {t("label.shareCard")}
       </h3>
-      <div class="flex flex-wrap gap-4 justify-center">
+
+      <div class="w-full mb-4 flex justify-center">
+        <img
+          src={ogImage}
+          alt={`Share preview for ${title}`}
+          class="rounded-lg shadow-md max-h-60 object-contain"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 按钮更小巧，排列紧凑 -->
+      <div class="flex flex-wrap gap-3 justify-center">
         {
           socialLinks.map(({ name, icon, class: bgClass, url }) => (
             <a
               href={url}
-              class={`btn btn-circle btn-lg transition-transform hover:scale-110 ${bgClass}`}
+              class={`btn btn-circle btn-md transition-transform hover:scale-110 ${bgClass}`}
               target="_blank"
               rel="noopener noreferrer"
               title={name}
             >
               <span class="sr-only">{name}</span>
-              <Icon name={icon} class="w-6 h-6 text-white" />
+              <Icon name={icon} class="w-5 h-5 text-white" />
             </a>
           ))
         }
       </div>
-      <div class="modal-action">
-        <form method="dialog">
-          <button class="btn btn-ghost hover:scale-105 transition-transform">
+
+      <!-- 底部关闭按钮 -->
+      <div class="modal-action mt-4">
+        <form method="dialog" class="w-full flex justify-center">
+          <button class="btn btn-md btn-ghost hover:scale-105 transition-transform">
             {t("label.close")}
           </button>
         </form>
