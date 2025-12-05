@@ -1,13 +1,22 @@
 ---
-import dayjs from "@utils/dayjs";
-import { USER_NAME, DATE_FORMAT, t } from "@config";
+import { DATE_FORMAT, t, USER_NAME } from "@config";
 import type { PostData } from "@interfaces/data";
+import dayjs from "@utils/dayjs";
 import { Icon } from "astro-icon/components";
 import PostFilter from "./PostFilter.astro";
 
-const { title, url, pubDate, badge, categories = [], tags = [], word, time } = Astro.props as PostData;
+const {
+  title,
+  url,
+  pubDate,
+  badge,
+  categories = [],
+  tags = [],
+  word,
+  time,
+} = Astro.props as PostData;
 const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
-const ogImage = url ? String(url).replace("/blog/", "/og/") + ".png" : "";
+const ogImage = url ? `${String(url).replace("/blog/", "/og/")}.png` : "";
 const socialLinks = [
   {
     name: "X (Twitter)",

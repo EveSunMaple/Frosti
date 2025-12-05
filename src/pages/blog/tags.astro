@@ -1,9 +1,14 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
 import { t } from "@config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import {
+  getAllPosts,
+  getTagColorClass,
+  getTagFontSize,
+  getTagsWithCount,
+} from "@utils/blogUtils";
 import { Icon } from "astro-icon/components";
-import { getAllPosts, getTagsWithCount, getTagColorClass, getTagFontSize } from "@utils/blogUtils";
 
 // 获取所有博客文章
 const allPosts = await getAllPosts();

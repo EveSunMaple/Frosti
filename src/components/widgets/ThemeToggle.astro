@@ -1,8 +1,7 @@
 ---
-import { SITE_THEME } from "@config";
-import { Icon } from "astro-icon/components";
+import { SITE_THEME, t } from "@config";
 import type { ThemeToggleProps } from "@interfaces/data";
-import { t } from "@config";
+import { Icon } from "astro-icon/components";
 
 // Generate a unique ID for each component instance
 const uniqueId = `theme-toggle-${Math.random().toString(36).substring(2, 11)}`;

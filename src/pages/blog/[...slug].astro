@@ -1,11 +1,11 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import License from "@components/widgets/License.astro";
-import PostInfo from "@components/widgets/PostInfo.astro";
-import PostFilter from "@components/widgets/PostFilter.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import dayjs from "@utils/dayjs";
+import License from "@components/widgets/License.astro";
+import PostFilter from "@components/widgets/PostFilter.astro";
+import PostInfo from "@components/widgets/PostInfo.astro";
 import { DATE_FORMAT } from "@config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import dayjs from "@utils/dayjs";
 import MainCard from "@/components/MainCard.astro";
 
 export async function getStaticPaths() {
@@ -21,7 +21,9 @@ interface Props {
 
 const { blog } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await blog.render();
-const displayDate = blog.data.pubDate ? dayjs(blog.data.pubDate).format(DATE_FORMAT) : "";
+const displayDate = blog.data.pubDate
+  ? dayjs(blog.data.pubDate).format(DATE_FORMAT)
+  : "";
 const image = new URL(`/og/${blog.slug}.png`, Astro.site).toString();
 const url = new URL(`/blog/${blog.slug}`, Astro.url.origin);
 ---

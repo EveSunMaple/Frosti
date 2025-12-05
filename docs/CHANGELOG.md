@@ -984,3 +984,24 @@
 
 - 修复 src/pages/og/[slug].png.ts 不支持子目录中的博客文章 #93
 - 修复了在分类页面标题会超出文章卡片的问题
+
+## [3.3.2] - 2025-12-05
+
+### Features
+
+- 新增 CI 流水线，使用 GitHub Actions 在每次推送和 Pull Request 时自动执行：
+  - `pnpm astro-check` 类型检查
+  - `pnpm biome:check` 代码检查
+  - `pnpm biome:format` 格式检查
+
+### Refactored
+
+- 用 `Biome` 统一接管代码格式化与 Lint 流程
+- 移除了旧的 ESLint 配置与依赖，改用 `@biomejs/biome` 作为开发依赖
+- 调整了 dayjs 与 `mdast` 相关类型声明，修复了类型重复声明和命名遮蔽的问题
+- 在 `content` 配置与部分插件中补充了显式的 TypeScript 类型注解，使 `astro check` 与 `biome check` 在严格模式下也能顺利通过
+- 根据 #95 将最前部的提示移到了最后
+
+### Chore
+
+- 清理了不再使用的 Lint/格式化依赖

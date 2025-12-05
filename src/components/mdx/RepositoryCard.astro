@@ -8,8 +8,8 @@ export interface RepositoryCardProps {
 
 const { repo, image, isPinned = false } = Astro.props as RepositoryCardProps;
 
-import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 // Extract username and repository name
 const [_, repoName] = repo.split("/");

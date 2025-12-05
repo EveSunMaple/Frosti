@@ -12,13 +12,13 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     categories: z
       .array(z.string())
-      .refine((items) => new Set(items).size === items.length, {
+      .refine((items: string[]) => new Set(items).size === items.length, {
         message: "categories must be unique",
       })
       .optional(),
     tags: z
       .array(z.string())
-      .refine((items) => new Set(items).size === items.length, {
+      .refine((items: string[]) => new Set(items).size === items.length, {
         message: "tags must be unique",
       })
       .optional(),

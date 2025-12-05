@@ -7,7 +7,13 @@ export interface FriendCardProps {
   type?: "friend" | "tech" | "contributor";
 }
 
-const { name, avatar, description, url, type = "friend" } = Astro.props as FriendCardProps;
+const {
+  name,
+  avatar,
+  description,
+  url,
+  type = "friend",
+} = Astro.props as FriendCardProps;
 
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";

@@ -1,13 +1,10 @@
 /* eslint-disable node/prefer-global/buffer */
-import type { APIContext, GetStaticPaths } from "astro";
+
 import type { CollectionEntry } from "astro:content";
-import fs from "node:fs";
-import {
-  SITE_TAB,
-  USER_AVATAR,
-  USER_NAME,
-} from "@config";
 import { getCollection } from "astro:content";
+import fs from "node:fs";
+import { SITE_TAB, USER_AVATAR, USER_NAME } from "@config";
+import type { APIContext, GetStaticPaths } from "astro";
 import satori from "satori";
 
 import sharp from "sharp";
@@ -44,8 +41,7 @@ async function fetchNotoSansSCFonts() {
     const cssResp = await fetch(
       "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap",
     );
-    if (!cssResp.ok)
-      throw new Error("Failed to fetch Google Fonts CSS");
+    if (!cssResp.ok) throw new Error("Failed to fetch Google Fonts CSS");
     const cssText = await cssResp.text();
 
     const getUrlForWeight = (weight: number) => {
@@ -54,8 +50,7 @@ async function fetchNotoSansSCFonts() {
         "g",
       );
       const match = cssText.match(blockRe);
-      if (!match || match.length === 0)
-        return null;
+      if (!match || match.length === 0) return null;
       const urlMatch = match[0].match(/url\((https:[^)]+)\)/);
       return urlMatch ? urlMatch[1] : null;
     };
@@ -88,8 +83,7 @@ async function fetchNotoSansSCFonts() {
 
     fontCache = { regular: rBuf, bold: bBuf };
     return fontCache;
-  }
-  catch (err) {
+  } catch (err) {
     console.warn("Error fetching fonts:", err);
     fontCache = { regular: null, bold: null };
     return fontCache;
@@ -130,7 +124,8 @@ export async function GET({
         display: "flex",
         flexDirection: "column",
         backgroundColor,
-        fontFamily: "\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        fontFamily:
+          '"Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         padding: "60px",
         paddingTop: "60px",
         paddingBottom: "80px",

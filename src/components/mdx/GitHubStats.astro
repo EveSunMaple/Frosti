@@ -5,11 +5,17 @@ export interface GitHubStatsProps {
   showCommitGraph?: boolean;
 }
 
-const { username, repositoryName, showCommitGraph = false } = Astro.props as GitHubStatsProps;
+const {
+  username,
+  repositoryName,
+  showCommitGraph = false,
+} = Astro.props as GitHubStatsProps;
 
 import { Icon } from "astro-icon/components";
 
-const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryName}` : `https://github.com/${username}`;
+const repoUrl = repositoryName
+  ? `https://github.com/${username}/${repositoryName}`
+  : `https://github.com/${username}`;
 ---
 
 <github-stats

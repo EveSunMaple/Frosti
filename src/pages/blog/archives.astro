@@ -1,11 +1,14 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
-import { t } from "@config";
-import { Icon } from "astro-icon/components";
+import { DATE_FORMAT, t } from "@config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import {
+  getAllPosts,
+  getPostsByYearAndMonth,
+  sortPostsByDate,
+} from "@utils/blogUtils";
 import dayjs from "@utils/dayjs";
-import { DATE_FORMAT } from "@config";
-import { getAllPosts, sortPostsByDate, getPostsByYearAndMonth } from "@utils/blogUtils";
+import { Icon } from "astro-icon/components";
 
 // 获取所有博客文章
 const allPosts = await getAllPosts();
@@ -17,11 +20,13 @@ const sortedPosts = sortPostsByDate(allPosts);
 const postsByDate = getPostsByYearAndMonth(sortedPosts);
 
 // 转换为数组并按年份排序（降序）和月份（降序）
-const years = Array.from(postsByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
+const years = Array.from(postsByDate.keys()).sort(
+  (a, b) => parseInt(b, 10) - parseInt(a, 10),
+);
 
 // 从翻译获取月份名称
 const getMonthName = (month: string): string => {
-  const monthIndex = parseInt(month);
+  const monthIndex = parseInt(month, 10);
   return t(`months.${monthIndex}`);
 };
 
@@ -58,7 +63,7 @@ const totalPosts = allPosts.length;
 
                 <div class="year-content">
                   {Array.from(postsByDate.get(year)!.entries())
-                    .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+                    .sort((a, b) => parseInt(b[0], 10) - parseInt(a[0], 10))
                     .map(([month, posts]) => (
                       <div class="timeline-month">
                         <h3 class="month-title">

@@ -1,15 +1,28 @@
 ---
-import { SITE_TAB, SITE_DESCRIPTION, SITE_FAVICON, SITE_LANGUAGE, SITE_THEME } from "@config";
 import { ClientRouter } from "astro:transitions";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Navbar from "@components/Navbar.astro";
+import Sidebar from "@components/Sidebar.astro";
+import MobileTOC from "@components/widgets/MobileTOC.astro";
+import {
+  SITE_DESCRIPTION,
+  SITE_FAVICON,
+  SITE_LANGUAGE,
+  SITE_TAB,
+  SITE_THEME,
+} from "@config";
 import ElementCrossing from "astro-vtbot/components/ElementCrossing.astro";
 import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astro";
-import Header from "@components/Header.astro";
-import Sidebar from "@components/Sidebar.astro";
-import Footer from "@components/Footer.astro";
-import Navbar from "@components/Navbar.astro";
-import MobileTOC from "@components/widgets/MobileTOC.astro";
 
-const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = false, isIndexed = true } = Astro.props;
+const {
+  title,
+  image,
+  description = SITE_DESCRIPTION,
+  headings = [],
+  showTOC = false,
+  isIndexed = true,
+} = Astro.props;
 ---
 
 <!doctype html>

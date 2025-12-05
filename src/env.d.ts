@@ -25,9 +25,11 @@ declare module "dayjs" {
   }
 
   export default function dayjs(date?: any): Dayjs;
-  namespace dayjs {
-    export const locale: (preset: string | ILocale, object?: Partial<ILocale>, isLocal?: boolean) => string;
-  }
+  export function locale(
+    preset: string | ILocale,
+    object?: Partial<ILocale>,
+    isLocal?: boolean,
+  ): string;
 }
 
 declare module "dayjs/locale/*" {

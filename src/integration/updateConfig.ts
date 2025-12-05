@@ -1,5 +1,5 @@
-import type { AstroIntegration } from "astro";
 import path from "node:path";
+import type { AstroIntegration } from "astro";
 
 export default (): AstroIntegration => ({
   name: "update-config",

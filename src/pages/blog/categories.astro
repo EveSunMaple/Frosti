@@ -1,12 +1,15 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import BaseCard from "@components/BaseCard.astro";
-import { t } from "@config";
-import { Icon } from "astro-icon/components";
-import dayjs from "@utils/dayjs";
-import { DATE_FORMAT } from "@config";
 import type { CollectionEntry } from "astro:content";
-import { getAllPosts, getCategoriesWithPosts, getCategoryColorClass } from "@utils/blogUtils";
+import BaseCard from "@components/BaseCard.astro";
+import { DATE_FORMAT, t } from "@config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import {
+  getAllPosts,
+  getCategoriesWithPosts,
+  getCategoryColorClass,
+} from "@utils/blogUtils";
+import dayjs from "@utils/dayjs";
+import { Icon } from "astro-icon/components";
 
 // 获取所有博客文章
 const allPosts = await getAllPosts();
