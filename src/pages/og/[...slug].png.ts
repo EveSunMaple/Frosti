@@ -1,5 +1,3 @@
-/* eslint-disable node/prefer-global/buffer */
-
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import fs from "node:fs";
@@ -22,9 +20,11 @@ export const prerender = true;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getCollection("blog");
-  const publishedPosts = allPosts.filter((post) => !post.data.draft);
+  const publishedPosts = allPosts.filter(
+    (post: CollectionEntry<"blog">) => !post.data.draft,
+  );
 
-  return publishedPosts.map((post) => ({
+  return publishedPosts.map((post: CollectionEntry<"blog">) => ({
     params: { slug: post.slug },
     props: { post },
   }));

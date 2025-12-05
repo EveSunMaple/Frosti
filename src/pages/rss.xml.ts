@@ -1,3 +1,4 @@
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
 import { SITE_DESCRIPTION, SITE_LANGUAGE, SITE_TAB, SITE_TITLE } from "@config";
@@ -7,10 +8,10 @@ export async function GET(context: any) {
   const allPosts = await getCollection("blog");
   // Filter out draft posts in production mode
   const posts = import.meta.env.PROD
-    ? allPosts.filter((post) => !post.data.draft)
+    ? allPosts.filter((post: CollectionEntry<"blog">) => !post.data.draft)
     : allPosts;
   const sortedPosts = posts.sort(
-    (a: any, b: any) =>
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
       new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
   );
 
@@ -28,7 +29,7 @@ export async function GET(context: any) {
   }
 
   const items = await Promise.all(
-    sortedPosts.map(async (blog: any) => {
+    sortedPosts.map(async (blog: CollectionEntry<"blog">) => {
       const {
         data: { title, description, pubDate },
         body,
