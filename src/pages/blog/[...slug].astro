@@ -21,6 +21,10 @@ export async function getStaticPaths() {
   }));
 }
 
+interface Props {
+  blog: CollectionEntry<"blog">;
+}
+
 const { blog } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await blog.render();
 const displayDate = blog.data.pubDate
