@@ -12,10 +12,10 @@ export async function getStaticPaths() {
   const posts = await getCollection("blog");
 
   const filteredPosts = import.meta.env.PROD
-    ? posts.filter((post) => !post.data.draft)
+    ? posts.filter((post: CollectionEntry<"blog">) => !post.data.draft)
     : posts;
 
-  return filteredPosts.map((blog) => ({
+  return filteredPosts.map((blog: CollectionEntry<"blog">) => ({
     params: { slug: blog.slug },
     props: { blog },
   }));
