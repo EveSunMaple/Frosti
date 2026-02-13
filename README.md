@@ -25,7 +25,7 @@ A clean, elegant, and fast static blog template! 🚀 Built with Astro
 - 🛠️ Easy to use blog
   - Customize your blog content in `frosti.config.yaml`
   
-  ## 💬 Comment System
+## 💬 Comment System
 
 - **Tutorial (Waline)**
   - https://frosti.saroprock.com/blog/adding-comment-systems
