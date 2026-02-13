@@ -24,6 +24,13 @@ A clean, elegant, and fast static blog template! 🚀 Built with Astro
 - ✅ RSS feed support
 - 🛠️ Easy to use blog
   - Customize your blog content in `frosti.config.yaml`
+  
+  ## 💬 Comment System
+
+- **Tutorial (Waline)**
+  - https://frosti.saroprock.com/blog/adding-comment-systems
+- **Custom styles (SCSS)**
+  - This repo provides a default, site-matching comment stylesheet at `src/styles/waline.scss`. You can use it as-is or modify it to fit your needs.
 
 ## ✒️ Article Information
 

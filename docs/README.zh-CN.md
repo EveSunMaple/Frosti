@@ -10,7 +10,7 @@
 
 [**🖥️ Frosti Demo**](https://frosti.saroprock.com)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**🌏 中文 README**](https://github.com/EveSunMaple/Frosti/blob/main/docs/README.zh-CN.md)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;[**❤️ My Blog**](https://www.saroprock.com)
 
-## 📷 Preview
+## 📷 预览
 
 ![preview](./preview-light.png)
 
@@ -24,6 +24,13 @@
 - ✅ RSS 订阅支持
 - 🛠️ 博客易上手
   - 可以在 `frosti.config.yaml` 自定义您博客的内容
+
+## 💬 评论系统
+
+- **教程（Waline）**
+  - https://frosti.saroprock.com/blog/adding-comment-systems
+- **自定义样式（SCSS）**
+  - 仓库已提供一份契合本站的默认评论样式：`src/styles/waline.scss`，你可以直接使用或自行修改。
 
 ## ✒️ 文章信息
 
