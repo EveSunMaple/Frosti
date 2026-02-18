@@ -18,6 +18,9 @@ interface FontOptions {
 }
 export const prerender = true;
 
+type FontCache = { regular: Buffer | null; bold: Buffer | null };
+type OgFonts = FontOptions[];
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getCollection("blog");
   const publishedPosts = allPosts.filter(
@@ -30,78 +33,65 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }));
 };
 
-let fontCache: { regular: Buffer | null; bold: Buffer | null } | null = null;
+let fontCache: FontCache | null = null;
+let fontCachePromise: Promise<FontCache> | null = null;
 
-async function fetchNotoSansSCFonts() {
-  if (fontCache) {
-    return fontCache;
-  }
+function validateSlug(slug: unknown): slug is string {
+  if (typeof slug !== "string") return false;
+  if (slug.length === 0 || slug.length > 200) return false;
+  if (slug.includes("..") || slug.includes("\\")) return false;
+  if (slug.startsWith("/")) return false;
+  return /^[a-z0-9\-\/]+$/i.test(slug);
+}
 
+function createTimeoutSignal(timeoutMs: number) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  return { signal: controller.signal, clear: () => clearTimeout(timeout) };
+}
+
+async function fetchWithTimeout(input: RequestInfo | URL, timeoutMs: number) {
+  const { signal, clear } = createTimeoutSignal(timeoutMs);
   try {
-    const cssResp = await fetch(
-      "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap",
-    );
-    if (!cssResp.ok) throw new Error("Failed to fetch Google Fonts CSS");
-    const cssText = await cssResp.text();
-
-    const getUrlForWeight = (weight: number) => {
-      const blockRe = new RegExp(
-        `@font-face\\s*{[^}]*font-weight:\\s*${weight}[^}]*}`,
-        "g",
-      );
-      const match = cssText.match(blockRe);
-      if (!match || match.length === 0) return null;
-      const urlMatch = match[0].match(/url\((https:[^)]+)\)/);
-      return urlMatch ? urlMatch[1] : null;
-    };
-
-    const regularUrl = getUrlForWeight(400);
-    const boldUrl = getUrlForWeight(700);
-
-    if (!regularUrl || !boldUrl) {
-      console.warn(
-        "Could not find font urls in Google Fonts CSS; falling back to no fonts.",
-      );
-      fontCache = { regular: null, bold: null };
-      return fontCache;
-    }
-
-    const [rResp, bResp] = await Promise.all([
-      fetch(regularUrl),
-      fetch(boldUrl),
-    ]);
-    if (!rResp.ok || !bResp.ok) {
-      console.warn(
-        "Failed to download font files from Google; falling back to no fonts.",
-      );
-      fontCache = { regular: null, bold: null };
-      return fontCache;
-    }
-
-    const rBuf = Buffer.from(await rResp.arrayBuffer());
-    const bBuf = Buffer.from(await bResp.arrayBuffer());
-
-    fontCache = { regular: rBuf, bold: bBuf };
-    return fontCache;
-  } catch (err) {
-    console.warn("Error fetching fonts:", err);
-    fontCache = { regular: null, bold: null };
-    return fontCache;
+    return await fetch(input, { signal });
+  } finally {
+    clear();
   }
 }
 
-export async function GET({
-  props,
-}: APIContext<{ post: CollectionEntry<"blog"> }>) {
-  const { post } = props;
+async function buildAvatarDataUri(): Promise<string> {
+  const avatarBuffer = await fs.promises.readFile(`./public/${USER_AVATAR}`);
+  return `data:image/png;base64,${avatarBuffer.toString("base64")}`;
+}
 
-  // Try to fetch fonts from Google Fonts (woff2) at runtime.
-  const { regular: fontRegular, bold: fontBold } = await fetchNotoSansSCFonts();
+function buildFonts(fontRegular: Buffer | null, fontBold: Buffer | null): OgFonts {
+  const fonts: FontOptions[] = [];
+  if (fontRegular) {
+    fonts.push({
+      name: "Noto Sans SC",
+      data: fontRegular,
+      weight: 400,
+      style: "normal",
+    });
+  }
+  if (fontBold) {
+    fonts.push({
+      name: "Noto Sans SC",
+      data: fontBold,
+      weight: 700,
+      style: "normal",
+    });
+  }
+  return fonts;
+}
 
-  // Avatar: still read from disk (small assets)
-  const avatarBuffer = fs.readFileSync(`./public/${USER_AVATAR}`);
-  const avatarBase64 = `data:image/png;base64,${avatarBuffer.toString("base64")}`;
-
+function buildOgTemplate({
+  post,
+  avatarBase64,
+}: {
+  post: CollectionEntry<"blog">;
+  avatarBase64: string;
+}) {
   const primaryColor = "#4F46E5";
   const textColor = "#1E293B";
   const subtleTextColor = "#64748B";
@@ -115,7 +105,7 @@ export async function GET({
 
   const description = post.data.description;
 
-  const template = {
+  return {
     type: "div",
     props: {
       style: {
@@ -155,7 +145,6 @@ export async function GET({
             ],
           },
         },
-
         {
           type: "div",
           props: {
@@ -285,37 +274,139 @@ export async function GET({
       ],
     },
   };
+}
 
-  const fonts: FontOptions[] = [];
-  if (fontRegular) {
-    fonts.push({
-      name: "Noto Sans SC",
-      data: fontRegular,
-      weight: 400,
-      style: "normal",
-    });
-  }
-  if (fontBold) {
-    fonts.push({
-      name: "Noto Sans SC",
-      data: fontBold,
-      weight: 700,
-      style: "normal",
-    });
-  }
-
+async function generateOgPng({
+  template,
+  fonts,
+}: {
+  template: any;
+  fonts: OgFonts;
+}): Promise<Buffer> {
   const svg = await satori(template, {
     width: 1200,
     height: 630,
     fonts,
   });
+  return await sharp(Buffer.from(svg)).png().toBuffer();
+}
 
-  const png = await sharp(Buffer.from(svg)).png().toBuffer();
-
-  return new Response(new Uint8Array(png), {
-    headers: {
-      "Content-Type": "image/png",
-      "Cache-Control": "public, max-age=31536000, immutable",
+async function generateFallbackPng(): Promise<Buffer> {
+  return await sharp({
+    create: {
+      width: 1200,
+      height: 630,
+      channels: 4,
+      background: { r: 255, g: 255, b: 255, alpha: 1 },
     },
-  });
+  })
+    .png()
+    .toBuffer();
+}
+
+async function fetchNotoSansSCFonts(): Promise<FontCache> {
+  if (fontCache) return fontCache;
+  if (fontCachePromise) return await fontCachePromise;
+
+  fontCachePromise = (async () => {
+    try {
+      const cssResp = await fetchWithTimeout(
+        "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap",
+        5000,
+      );
+      if (!cssResp.ok) throw new Error("Failed to fetch Google Fonts CSS");
+      const cssText = await cssResp.text();
+
+      const getUrlForWeight = (weight: number) => {
+        const blockRe = new RegExp(
+          `@font-face\\s*{[^}]*font-weight:\\s*${weight}[^}]*}`,
+          "g",
+        );
+        const match = cssText.match(blockRe);
+        if (!match || match.length === 0) return null;
+        const urlMatch = match[0].match(/url\((https:[^)]+)\)/);
+        return urlMatch ? urlMatch[1] : null;
+      };
+
+      const regularUrl = getUrlForWeight(400);
+      const boldUrl = getUrlForWeight(700);
+
+      if (!regularUrl || !boldUrl) {
+        const result = { regular: null, bold: null };
+        fontCache = result;
+        return result;
+      }
+
+      const [rResp, bResp] = await Promise.all([
+        fetchWithTimeout(regularUrl, 5000),
+        fetchWithTimeout(boldUrl, 5000),
+      ]);
+
+      if (!rResp.ok || !bResp.ok) {
+        const result = { regular: null, bold: null };
+        fontCache = result;
+        return result;
+      }
+
+      const rBuf = Buffer.from(await rResp.arrayBuffer());
+      const bBuf = Buffer.from(await bResp.arrayBuffer());
+
+      const result = { regular: rBuf, bold: bBuf };
+      fontCache = result;
+      return result;
+    } catch (err) {
+      console.error("[og] font fetch failed", err);
+      const result = { regular: null, bold: null };
+      fontCache = result;
+      return result;
+    } finally {
+      fontCachePromise = null;
+    }
+  })();
+
+  return await fontCachePromise;
+}
+
+export async function GET({
+  params,
+  props,
+}: APIContext<{ post: CollectionEntry<"blog"> }>) {
+  if (!validateSlug(params?.slug)) {
+    const png = await generateFallbackPng();
+    return new Response(new Uint8Array(png), {
+      status: 400,
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "no-store",
+      },
+    });
+  }
+
+  try {
+    const { post } = props;
+
+    const [{ regular: fontRegular, bold: fontBold }, avatarBase64] =
+      await Promise.all([fetchNotoSansSCFonts(), buildAvatarDataUri()]);
+
+    const template = buildOgTemplate({ post, avatarBase64 });
+    const fonts = buildFonts(fontRegular, fontBold);
+    const png = await generateOgPng({ template, fonts });
+
+    return new Response(new Uint8Array(png), {
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31536000, immutable",
+      },
+    });
+  } catch (err) {
+    console.error("[og] image generation failed", { slug: params?.slug, err });
+    const png = await generateFallbackPng();
+    return new Response(new Uint8Array(png), {
+      status: 500,
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "no-store",
+      },
+    });
+  }
 }

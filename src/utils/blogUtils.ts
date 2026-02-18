@@ -133,6 +133,10 @@ export function generatePageLinks(totalPages: number): {
   active: string[];
   hidden: string[];
 } {
+  if (!Number.isFinite(totalPages) || !Number.isInteger(totalPages) || totalPages < 0) {
+    throw new RangeError("totalPages must be a non-negative integer");
+  }
+
   const pages = {
     active: [] as string[],
     hidden: [] as string[],
@@ -164,14 +168,22 @@ export async function getPostsWithStats(
 ): Promise<any[]> {
   return Promise.all(
     posts.map(async (blog: CollectionEntry<"blog">) => {
-      const { remarkPluginFrontmatter } = await blog.render();
-      return {
-        ...blog,
-        remarkPluginFrontmatter: {
-          readingTime: remarkPluginFrontmatter.readingTime,
-          totalCharCount: remarkPluginFrontmatter.totalCharCount,
-        },
-      };
+      try {
+        const { remarkPluginFrontmatter } = await blog.render();
+        return {
+          ...blog,
+          remarkPluginFrontmatter: {
+            readingTime: remarkPluginFrontmatter.readingTime,
+            totalCharCount: remarkPluginFrontmatter.totalCharCount,
+          },
+        };
+      } catch (err) {
+        console.error("[blog] failed to render post stats", {
+          slug: blog.slug,
+          err,
+        });
+        throw new Error(`Failed to render blog stats for slug: ${blog.slug}`);
+      }
     }),
   );
 }

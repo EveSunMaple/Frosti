@@ -7,6 +7,35 @@ import {
   sortPostsByPinAndDate,
 } from "./blogUtils";
 
+async function getTaxonomyPaginationPaths({
+  paginate,
+  key,
+}: {
+  paginate: any;
+  key: "tags" | "categories";
+}) {
+  const allPosts = await getAllPosts();
+  const sortedPosts = sortPostsByDate(allPosts);
+  const values = [
+    ...new Set(
+      sortedPosts.flatMap(
+        (blog: CollectionEntry<"blog">) => (blog.data as any)[key] || [],
+      ),
+    ),
+  ];
+  const postsWithStats = await getPostsWithStats(sortedPosts);
+
+  return values.flatMap((value) => {
+    const filteredPosts = postsWithStats.filter((blog: any) =>
+      (blog.data as any)[key]?.includes(value),
+    );
+    return paginate(filteredPosts, {
+      params: key === "tags" ? { tag: value } : { category: value },
+      pageSize: BLOG_PAGE_SIZE,
+    });
+  });
+}
+
 /**
  * 获取主博客页面的分页数据
  * @param paginate 分页函数
@@ -30,26 +59,7 @@ export async function getMainBlogPaginationPaths({
  * @returns 分页路径数据
  */
 export async function getTagPaginationPaths({ paginate }: { paginate: any }) {
-  const allPosts = await getAllPosts();
-  const sortedPosts = sortPostsByDate(allPosts);
-  const allTags = [
-    ...new Set(
-      sortedPosts.flatMap(
-        (blog: CollectionEntry<"blog">) => blog.data.tags || [],
-      ),
-    ),
-  ];
-  const postsWithStats = await getPostsWithStats(sortedPosts);
-
-  return allTags.flatMap((tag) => {
-    const filteredPosts = postsWithStats.filter((blog: any) =>
-      blog.data.tags?.includes(tag),
-    );
-    return paginate(filteredPosts, {
-      params: { tag },
-      pageSize: BLOG_PAGE_SIZE,
-    });
-  });
+  return await getTaxonomyPaginationPaths({ paginate, key: "tags" });
 }
 
 /**
@@ -62,24 +72,5 @@ export async function getCategoryPaginationPaths({
 }: {
   paginate: any;
 }) {
-  const allPosts = await getAllPosts();
-  const sortedPosts = sortPostsByDate(allPosts);
-  const allCategories = [
-    ...new Set(
-      sortedPosts.flatMap(
-        (blog: CollectionEntry<"blog">) => blog.data.categories || [],
-      ),
-    ),
-  ];
-  const postsWithStats = await getPostsWithStats(sortedPosts);
-
-  return allCategories.flatMap((category) => {
-    const filteredPosts = postsWithStats.filter((blog: any) =>
-      blog.data.categories?.includes(category),
-    );
-    return paginate(filteredPosts, {
-      params: { category },
-      pageSize: BLOG_PAGE_SIZE,
-    });
-  });
+  return await getTaxonomyPaginationPaths({ paginate, key: "categories" });
 }
