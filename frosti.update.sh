@@ -34,7 +34,7 @@ fi
 if [[ -f "$I18N_DIR/$lang.sh" ]]; then
   source "$I18N_DIR/$lang.sh"
 else
-  echo -e "${C_RED}Error: Language file '$I18N_DIR/$lang.sh' not found. Exiting.${C_NC}"
+  echo -e "${C_RED}Error: Language file '$I18N_DIR/$lang.sh' not found. Exiting.${C_NC}" >&2
   exit 1
 fi
 
@@ -72,7 +72,7 @@ echo -e "${C_GREEN}${MSG_STEP1_CLONE_SUCCESS}${C_NC}"
 
 echo -e "${MSG_STEP2_RSYNC}"
 rsync -av --exclude-from='.updateignore' "$TEMP_DIR/" .
-if [ $? -ne 0 ]; then
+if [[ $? -ne 0 ]]; then
   echo -e "${C_RED}${ERR_STEP2_RSYNC_FAILED}${C_NC}"
   rm -rf "$TEMP_DIR"
   exit 1
