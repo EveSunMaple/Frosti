@@ -143,16 +143,12 @@ export function generatePageLinks(totalPages: number): {
   };
 
   if (totalPages > 3) {
-    pages.active.push("1");
-    pages.active.push("...");
-    pages.active.push(totalPages.toString());
+    pages.active.push("1", "...", totalPages.toString());
     for (let i = 2; i <= totalPages - 1; i++) {
       pages.hidden.push(i.toString());
     }
   } else {
-    for (let i = 1; i <= totalPages; i++) {
-      pages.active.push(i.toString());
-    }
+    pages.active.push(...Array.from({ length: totalPages }, (_, i) => (i + 1).toString()));
   }
 
   return pages;

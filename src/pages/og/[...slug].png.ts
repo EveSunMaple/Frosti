@@ -41,7 +41,7 @@ function validateSlug(slug: unknown): slug is string {
   if (slug.length === 0 || slug.length > 200) return false;
   if (slug.includes("..") || slug.includes("\\")) return false;
   if (slug.startsWith("/")) return false;
-  return /^[a-z0-9\-\/]+$/i.test(slug);
+  return /^[a-z0-9\-/]+$/i.test(slug);
 }
 
 function createTimeoutSignal(timeoutMs: number) {
@@ -319,12 +319,12 @@ async function fetchNotoSansSCFonts(): Promise<FontCache> {
 
       const getUrlForWeight = (weight: number) => {
         const blockRe = new RegExp(
-          `@font-face\\s*{[^}]*font-weight:\\s*${weight}[^}]*}`,
+          String.raw`@font-face\s*{[^}]*font-weight:\s*${weight}[^}]*}`,
           "g",
         );
-        const match = cssText.match(blockRe);
-        if (!match || match.length === 0) return null;
-        const urlMatch = match[0].match(/url\((https:[^)]+)\)/);
+        const match = blockRe.exec(cssText);
+        if (!match) return null;
+        const urlMatch = /url\((https:[^)]+)\)/.exec(match[0]);
         return urlMatch ? urlMatch[1] : null;
       };
 

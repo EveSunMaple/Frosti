@@ -21,17 +21,17 @@ if [[ "$LANG" == "zh"* ]]; then
   lang="zh"
 fi
 # Allow user to override language with a command-line argument (e.g., ./frosti.update.sh en)
-if [ -n "$1" ]; then
+if [[ -n "$1" ]]; then
   # Check if the language file exists for the given argument
-  if [ -f "$I18N_DIR/$1.sh" ]; then
+  if [[ -f "$I18N_DIR/$1.sh" ]]; then
     lang="$1"
   else
-    echo -e "${C_YELLOW}Warning: Language '$1' not found. Falling back to '$lang'.${C_NC}"
+    echo -e "${C_YELLOW}Warning: Language '$1' not found. Falling back to '$lang'.${C_NC}" >&2
   fi
 fi
 
 # Source the language file
-if [ -f "$I18N_DIR/$lang.sh" ]; then
+if [[ -f "$I18N_DIR/$lang.sh" ]]; then
   source "$I18N_DIR/$lang.sh"
 else
   echo -e "${C_RED}Error: Language file '$I18N_DIR/$lang.sh' not found. Exiting.${C_NC}"
@@ -64,7 +64,7 @@ echo -e "${C_GREEN}${MSG_GIT_CLEAN}${C_NC}"
 echo -e "${MSG_STEP1_CLONE}"
 rm -rf "$TEMP_DIR"
 git clone --depth 1 "$UPSTREAM_REPO" "$TEMP_DIR"
-if [ $? -ne 0 ]; then
+if [[ $? -ne 0 ]]; then
   echo -e "${C_RED}${ERR_STEP1_CLONE_FAILED}${C_NC}"
   exit 1
 fi
@@ -84,9 +84,9 @@ echo "${MSG_STEP3_DELETING_DRY_RUN}"
 # Use rsync's dry-run output to find files that would be deleted
 rsync -avn --delete --exclude-from='.updateignore' "$TEMP_DIR/" . | grep 'deleting ' | while read -r line ; do
     file_to_delete=$(echo "$line" | sed 's/deleting //')
-    if [ -d "$file_to_delete" ]; then
+    if [[ -d "$file_to_delete" ]]; then
         # Check if directory is empty
-        if [ -z "$(ls -A "$file_to_delete")" ]; then
+        if [[ -z "$(ls -A "$file_to_delete")" ]]; then
             echo "${MSG_STEP3_DELETING_EMPTY_DIR} $file_to_delete"
             rm -r "$file_to_delete"
         else
@@ -113,7 +113,7 @@ if ! command -v pnpm &> /dev/null; then
     echo "${WARN_PNPM_GUIDE}"
 else
     pnpm install
-    if [ $? -ne 0 ]; then
+    if [[ $? -ne 0 ]]; then
       echo -e "${C_RED}${ERR_PNPM_INSTALL_FAILED}${C_NC}"
       exit 1
     fi

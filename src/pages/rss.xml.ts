@@ -4,6 +4,19 @@ import rss from "@astrojs/rss";
 import { SITE_DESCRIPTION, SITE_LANGUAGE, SITE_TAB, SITE_TITLE } from "@config";
 import { marked } from "marked";
 
+function replacePath(content: string, siteUrl: string): string {
+  return content.replaceAll(/(src|img|r|l)="([^"]+)"/g, (match, attr, src) => {
+    if (
+      !src.startsWith("http") &&
+      !src.startsWith("//") &&
+      !src.startsWith("data:")
+    ) {
+      return `${attr}="${new URL(src, siteUrl).toString()}"`;
+    }
+    return match;
+  });
+}
+
 export async function GET(context: any) {
   const allPosts = await getCollection("blog");
   // Filter out draft posts in production mode
@@ -14,19 +27,6 @@ export async function GET(context: any) {
     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
       new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
   );
-
-  function replacePath(content: string, siteUrl: string): string {
-    return content.replace(/(src|img|r|l)="([^"]+)"/g, (match, attr, src) => {
-      if (
-        !src.startsWith("http") &&
-        !src.startsWith("//") &&
-        !src.startsWith("data:")
-      ) {
-        return `${attr}="${new URL(src, siteUrl).toString()}"`;
-      }
-      return match;
-    });
-  }
 
   const items = await Promise.all(
     sortedPosts.map(async (blog: CollectionEntry<"blog">) => {

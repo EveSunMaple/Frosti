@@ -1,7 +1,7 @@
 import path from "node:path";
 import type { AstroIntegration } from "astro";
 
-export default (): AstroIntegration => ({
+const updateConfigIntegration = (): AstroIntegration => ({
   name: "update-config",
   hooks: {
     "astro:config:setup": (options) => {
@@ -11,3 +11,5 @@ export default (): AstroIntegration => ({
     },
   },
 });
+
+export default updateConfigIntegration;

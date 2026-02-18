@@ -65,9 +65,7 @@ export function t(key: string): string {
   const keyParts = key.split(".");
   let result = currentLangTranslations;
 
-  for (let i = 0; i < keyParts.length; i++) {
-    const part = keyParts[i];
-
+  for (const part of keyParts) {
     if (!result || typeof result !== "object") {
       translationCache[key] = key; // 缓存结果
       return key;
