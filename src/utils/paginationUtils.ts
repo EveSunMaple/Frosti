@@ -19,7 +19,7 @@ async function getTaxonomyPaginationPaths({
   const values = [
     ...new Set(
       sortedPosts.flatMap(
-        (blog: CollectionEntry<"blog">) => (blog.data)[key] || [],
+        (blog: CollectionEntry<"blog">) => blog.data[key] || [],
       ),
     ),
   ];
@@ -27,7 +27,7 @@ async function getTaxonomyPaginationPaths({
 
   return values.flatMap((value) => {
     const filteredPosts = postsWithStats.filter((blog: any) =>
-      (blog.data)[key]?.includes(value),
+      blog.data[key]?.includes(value),
     );
     return paginate(filteredPosts, {
       params: key === "tags" ? { tag: value } : { category: value },

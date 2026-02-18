@@ -64,7 +64,10 @@ async function buildAvatarDataUri(): Promise<string> {
   return `data:image/png;base64,${avatarBuffer.toString("base64")}`;
 }
 
-function buildFonts(fontRegular: Buffer | null, fontBold: Buffer | null): OgFonts {
+function buildFonts(
+  fontRegular: Buffer | null,
+  fontBold: Buffer | null,
+): OgFonts {
   const fonts: FontOptions[] = [];
   if (fontRegular) {
     fonts.push({

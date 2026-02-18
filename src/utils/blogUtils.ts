@@ -133,7 +133,11 @@ export function generatePageLinks(totalPages: number): {
   active: string[];
   hidden: string[];
 } {
-  if (!Number.isFinite(totalPages) || !Number.isInteger(totalPages) || totalPages < 0) {
+  if (
+    !Number.isFinite(totalPages) ||
+    !Number.isInteger(totalPages) ||
+    totalPages < 0
+  ) {
     throw new RangeError("totalPages must be a non-negative integer");
   }
 
@@ -148,7 +152,9 @@ export function generatePageLinks(totalPages: number): {
       pages.hidden.push(i.toString());
     }
   } else {
-    pages.active.push(...Array.from({ length: totalPages }, (_, i) => (i + 1).toString()));
+    pages.active.push(
+      ...Array.from({ length: totalPages }, (_, i) => (i + 1).toString()),
+    );
   }
 
   return pages;
