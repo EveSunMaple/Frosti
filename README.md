@@ -14,6 +14,40 @@ A clean, elegant, and fast static blog template! 🚀 Built with Astro
 
 ![preview](./docs/preview-light.png)
 
+---
+
+# 🚀 Pull Request: Analytics UI, Category Grid & Publisher GUI
+这个pullrequest的更新是模块化的，不会影响到其他功能，插拔方便。
+PR的重点是我用node.js写了一个本地的server和GUI来优化博客发布流程，只需通过```pnpm run publish```就可以发布博客。
+新增的美化卡片可能会影响一定性能，但是可以不使用以保持原有性能。
+
+*This PR introduces several high-impact features and visual upgrades to Frosti, aiming to greatly enhance user engagement and drastically simplify the writing workflow without adding complex third-party dependencies.*
+
+## ✨ Proposed Features
+
+### 🌌 1. StarStatsCard (Interactive Statistics)
+- **Files**: `src/components/widgets/StarStatsCard.astro`, updated `src/pages/index.astro`
+- Added a breathtaking 60fps HTML5 Canvas orbital simulation component.
+- Automatically calculates published blog posts via `getCollection("blog")` and renders one glowing, orbiting star per post.
+- Fully respects `daisyUI` themes via `MutationObserver` (deep blue orbits for light mode, glowing nebulae for dark mode).
+- Built with zero external React/Vue libraries, maximizing Astro's vanilla JS performance.
+
+### 🪟 2. Glassmorphism Design & CategoryGrid
+- **Files**: `src/components/widgets/CategoryGrid.astro`, updated `MainCard.astro`
+- Upgraded the card layouts with premium glassmorphism (`backdrop-blur`).
+- Added a dynamic `CategoryGrid` component to provide a beautiful, modern grid layout for blog topic navigation.
+- Code Cleanup: Removed legacy unused props (like `bgFixed` in `MainCard.astro`) to ensure clean TypeScript checks without warnings.
+
+### 🚀 3. Blog Publisher GUI (Zero-Dependency Local Dashboard)
+- **Files**: `tools/publisher/server.js`, `tools/publisher/index.html`, added `pnpm run publish` script to `package.json`.
+- A completely standalone, local Node.js visual editor for publishing markdown.
+- **Drag & Drop**: Automatically routes uploaded `.md` / `.mdx` files to `src/content/blog/` and images to `public/image/`.
+- **Frontmatter Form**: Parses YAML automatically into a clean UI form for editing Title, Date, Description, Cover Image, Categories, and Tags.
+- **One-Click Publish**: A push-button GUI that safely executes `git add`, `git commit`, and `git push` directly to GitHub/remote.
+- Works concurrently on a separate port (3721) without interfering with the Astro dev server.
+
+---
+
 ## ✨ Features
 
 - ✅ **Light** / **Dark** mode available
