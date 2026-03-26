@@ -1,0 +1,72 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface CategoryItem {
+  name: string;
+  description: string;
+  icon: string;
+  url?: string; // Optional custom URL. Defaults to /blog/category/[lower-case-name]
+}
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  categories: CategoryItem[];
+}
+
+const { 
+  title = "Explore Topics", 
+  subtitle = "Browse articles by category", 
+  categories = [] 
+} = Astro.props;
+---
+
+<section class="w-full">
+  {(title || subtitle) && (
+    <div class="mb-8 flex flex-col items-start gap-1">
+      {title && (
+        <h2 class="text-2xl font-bold flex items-center gap-2 text-base-content">
+          <Icon name="lucide:layers" class="w-6 h-6 text-primary" />
+          <span>{title}</span>
+        </h2>
+      )}
+      {subtitle && <p class="text-base-content/70">{subtitle}</p>}
+    </div>
+  )}
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+    {
+      categories.map((category) => (
+        <a 
+          href={category.url || `/blog/category/${category.name.toLowerCase()}`}
+          class="group relative flex flex-col p-6 rounded-2xl bg-base-100 border border-base-content/5 shadow-sm hover:shadow-xl hover:border-base-content/20 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+        >
+          {/* Subtle background glow effect on hover */}
+          <div class="absolute inset-0 bg-gradient-to-br from-base-content/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div class="flex items-start gap-4 z-10">
+            {/* Icon Container */}
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-base-200 flex items-center justify-center text-base-content group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary/10 group-hover:text-primary">
+              <Icon name={category.icon} class="w-6 h-6" />
+            </div>
+            
+            {/* Text Content */}
+            <div class="flex flex-col pr-6">
+              <h3 class="font-bold text-lg text-base-content group-hover:text-primary transition-colors duration-300">
+                {category.name}
+              </h3>
+              <p class="text-sm text-base-content/70 mt-1 line-clamp-2">
+                {category.description}
+              </p>
+            </div>
+          </div>
+          
+          {/* Arrow indicator */}
+          <div class="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary z-10">
+            <Icon name="lucide:arrow-right" class="w-5 h-5" />
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

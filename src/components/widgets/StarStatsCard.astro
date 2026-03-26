@@ -1,0 +1,215 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+const posts = await getCollection("blog");
+
+// Filter out drafts if they exist, to only count published posts
+const publishedPosts = posts.filter((post: CollectionEntry<"blog">) => !post.data.draft);
+const totalPosts = publishedPosts.length;
+
+let latestDate = 0;
+publishedPosts.forEach((post: CollectionEntry<"blog">) => {
+  const dateObj = post.data.updatedDate || post.data.pubDate;
+  if (dateObj) {
+    const time = new Date(dateObj).getTime();
+    if (time > latestDate) {
+      latestDate = time;
+    }
+  }
+});
+
+const lastUpdated = latestDate > 0 
+  ? new Date(latestDate).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }) 
+  : "暂无文章";
+---
+
+<div class="w-full flex flex-col overflow-hidden rounded-3xl bg-base-100 border border-base-content/10 shadow-lg">
+  
+  {/* TOP: Screen (Canvas Viewport) */}
+  <div class="relative w-full h-64 md:h-80 overflow-hidden bg-gradient-to-br from-base-300 via-base-200 to-base-100 isolate transform-gpu shrink-0" style="backface-visibility: hidden; transform: translateZ(0);">
+    {/* CSS-driven background glow (centers behind the canvas) */}
+    <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none -z-20 transform-gpu">
+      <div class="w-[80%] h-[80%] blur-3xl rounded-full bg-primary/20"></div>
+    </div>
+
+    <canvas 
+      id="star-canvas" 
+      data-count={totalPosts} 
+      class="absolute inset-0 w-full h-full text-orange-400 pointer-events-none -z-10 transform-gpu"
+    ></canvas>
+  </div>
+  
+  {/* BOTTOM: Minimalist Dashboard */}
+  <div class="w-full bg-base-200/50 backdrop-blur-md border-t border-base-content/10 p-4 md:p-5 px-6 md:px-8 flex flex-row items-center justify-between">
+    
+    {/* Left Stat: Total Articles */}
+    <div class="flex items-center gap-4">
+      <div class="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-base-100 border border-base-content/10 shadow-sm text-primary group-hover:bg-primary/10 transition-colors">
+        <Icon name="lucide:database" class="w-5 h-5 md:w-6 md:h-6" />
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[10px] md:text-xs text-base-content/50 uppercase tracking-widest font-bold mb-0.5">Total Articles</span>
+        <span class="text-xl md:text-2xl font-black text-base-content leading-none">{totalPosts}</span>
+      </div>
+    </div>
+    
+    {/* Right Stat: System Update */}
+    <div class="flex items-center gap-4">
+      <div class="flex flex-col items-end text-right">
+        <span class="text-[10px] md:text-xs text-base-content/50 uppercase tracking-widest font-bold mb-0.5">Latest Update</span>
+        <span class="text-sm md:text-base font-medium text-base-content/80 tracking-wide">{lastUpdated}</span>
+      </div>
+      <div class="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-base-100 border border-base-content/10 shadow-sm text-base-content/70">
+        <Icon name="lucide:activity" class="w-5 h-5 md:w-6 md:h-6" />
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const canvas = document.getElementById("star-canvas") as HTMLCanvasElement;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    
+    const count = parseInt(canvas.dataset.count || "0", 10);
+    if (count === 0) return;
+    
+    let width = 0;
+    let height = 0;
+    let center = { x: 0, y: 0 };
+    let dpr = window.devicePixelRatio || 1;
+    
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      center = { x: width * dpr / 2, y: height * dpr / 2 };
+    };
+    
+    window.addEventListener("resize", resize);
+    resize();
+    
+    // Check if the page is currently in light mode (DaisyUI 'winter'/'light')
+    let isLightMode = false;
+    const checkTheme = () => {
+      const theme = document.documentElement.getAttribute("data-theme") || "";
+      isLightMode = theme === "winter" || theme === "light" || theme === "cupcake";
+    };
+    checkTheme();
+    
+    // Base particle color dynamically extracted from CSS
+    let particleColor = { r: 255, g: 255, b: 255 }; 
+    const updateThemeColor = () => {
+      const colorStr = getComputedStyle(canvas).color;
+      const match = colorStr.match(/\d+/g);
+      if (match && match.length >= 3) {
+        particleColor = { r: parseInt(match[0]), g: parseInt(match[1]), b: parseInt(match[2]) };
+      }
+    };
+    
+    updateThemeColor();
+    
+    // Watch for theme changes mapped to html tag
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "data-theme" || mutation.attributeName === "data-theme-type") {
+          updateThemeColor();
+          checkTheme();
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+
+    // Generate orbiting particles ensuring 100% are always inside the visible canvas box
+    const stars = Array.from({ length: count }, () => {
+      // normalizedRadius scales from 5% to 95% of the distance from center to the edge
+      const normalizedRadius = Math.random() * 0.9 + 0.05; 
+      
+      // Increased base size for better visibility
+      const size = (Math.random() * 2.5 + 1.2) * dpr;
+      
+      const angle = Math.random() * Math.PI * 2;
+      
+      const speedModifier = 1 - normalizedRadius; // outer orbits move slightly slower
+      const speedBase = 0.0005 + (speedModifier * 0.002);
+      const speed = speedBase * (Math.random() > 0.5 ? 1 : -1) * 0.5;
+      
+      const alpha = Math.random() * 0.6 + 0.4;
+      
+      return { size, normalizedRadius, angle, speed, alpha };
+    });
+    
+    let animationId: number;
+    let frame = 0;
+    
+    const draw = () => {
+      // Clean canvas clear allowing the pure CSS backdrop to show
+      ctx.clearRect(0, 0, width * dpr, height * dpr);
+      
+      // Draw orbital rings in BOTH modes
+      ctx.beginPath();
+      stars.forEach(star => {
+        const rx = (width * dpr / 2) * star.normalizedRadius;
+        const ry = (height * dpr / 2) * star.normalizedRadius;
+        // moveTo the right side of the ellipse to avoid connecting lines between orbits
+        ctx.moveTo(center.x + rx, center.y);
+        ctx.ellipse(center.x, center.y, rx, ry, 0, 0, Math.PI * 2);
+      });
+      
+      if (isLightMode) {
+        // Deep blue translucent stroke for light mode (better visibility)
+        ctx.strokeStyle = "rgba(30, 58, 138, 0.15)";
+      } else {
+        // Deep subtly glowing stroke for dark mode matching the star hue
+        ctx.strokeStyle = `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, 0.08)`;
+      }
+      ctx.lineWidth = 1 * dpr;
+      ctx.stroke();
+
+      stars.forEach(star => {
+        star.angle += star.speed;
+        
+        // Elliptical mapping: scale circle orbit uniformly to fit inside the rectangular canvas perfectly!
+        const rx = (width * dpr / 2) * star.normalizedRadius;
+        const ry = (height * dpr / 2) * star.normalizedRadius;
+        
+        const x = center.x + Math.cos(star.angle) * rx;
+        const y = center.y + Math.sin(star.angle) * ry;
+        
+        const twinkle = Math.sin(frame * 0.05 + star.angle * 10) * 0.3;
+        const currentAlpha = Math.max(0.1, Math.min(1, star.alpha + twinkle));
+        
+        ctx.beginPath();
+        ctx.arc(x, y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, ${currentAlpha})`;
+        ctx.fill();
+        
+        if (star.size > 1.8 * dpr) {
+          ctx.beginPath();
+          ctx.arc(x, y, star.size * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, ${currentAlpha * 0.2})`;
+          ctx.fill();
+        }
+      });
+      
+      frame++;
+      animationId = requestAnimationFrame(draw);
+    };
+    
+    draw();
+    
+    document.addEventListener("astro:before-swap", () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", resize);
+      observer.disconnect();
+    }, { once: true });
+  });
+</script>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Publisher</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{
+      fontFamily:{sans:['Inter','sans-serif']},
+      colors:{bgMain:'#0a0e1a',bgCard:'#1a1f33',accent:'#6366f1'}
+    }}}
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+    body { background-color: theme('colors.bgMain'); color: theme('colors.slate.200'); font-family: 'Inter', sans-serif; }
+    .drop-zone { border: 2px dashed theme('colors.slate.700'); transition: all 0.3s; }
+    .drop-zone.drag-over { border-color: theme('colors.accent'); background-color: theme('colors.slate.800'); }
+    /* Hidden scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: theme('colors.slate.700'); border-radius: 4px; }
+    @keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
+    .toast { animation: slideIn 0.3s ease forwards; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-6 pb-32">
+  <div class="w-full max-w-4xl">
+    
+    <!-- Header -->
+    <header class="flex justify-between items-center border-b border-slate-800 pb-6 mb-8">
+      <h1 class="text-3xl font-extrabold tracking-tight">📡 Blog <span class="text-accent">Publisher</span></h1>
+      <div class="flex gap-6">
+        <div class="text-center"><div class="text-2xl font-bold" id="postCount">—</div><div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Articles</div></div>
+        <div class="text-center"><div class="text-2xl font-bold" id="stagedCount">0</div><div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Staged</div></div>
+      </div>
+    </header>
+    
+    <!-- Drop Zones -->
+    <section class="mb-8">
+      <h2 class="text-xs uppercase tracking-widest text-slate-500 font-bold flex items-center gap-4 mb-4">
+        Drop Files <span class="h-px bg-slate-800 flex-1"></span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="drop-zone bg-bgCard rounded-2xl p-8 text-center cursor-pointer hover:border-accent hover:bg-slate-800/50 flex flex-col items-center justify-center group" id="mdDrop">
+          <input type="file" id="mdInput" accept=".md,.mdx" class="hidden" multiple />
+          <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">📝</div>
+          <div class="font-bold text-slate-200">Markdown Files</div>
+          <div class="text-xs text-slate-500 mt-1">.md / .mdx — Drop or click</div>
+        </div>
+        <div class="drop-zone bg-bgCard rounded-2xl p-8 text-center cursor-pointer hover:border-accent hover:bg-slate-800/50 flex flex-col items-center justify-center group" id="imgDrop">
+          <input type="file" id="imgInput" accept="image/*" class="hidden" multiple />
+          <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🖼️</div>
+          <div class="font-bold text-slate-200">Images</div>
+          <div class="text-xs text-slate-500 mt-1">.png / .jpg / .webp</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Editor -->
+    <section class="mb-8">
+      <h2 class="text-xs uppercase tracking-widest text-slate-500 font-bold flex items-center gap-4 mb-4">
+        Frontmatter Editor <span class="h-px bg-slate-800 flex-1"></span>
+      </h2>
+      <div id="fmEditor" class="hidden bg-bgCard border border-slate-800 rounded-2xl p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Title</label>
+            <input id="fmTitle" class="bg-slate-900 text-slate-200 placeholder-slate-600 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="Post Title" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Publish Date</label>
+            <input id="fmDate" type="date" class="bg-slate-900 text-slate-200 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:border-accent focus:outline-none transition-colors [color-scheme:dark]" />
+          </div>
+          <div class="flex flex-col gap-1 md:col-span-2">
+            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Description</label>
+            <input id="fmDesc" class="bg-slate-900 text-slate-200 placeholder-slate-600 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="Brief description" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Cover Image</label>
+            <input id="fmImage" class="bg-slate-900 text-slate-200 placeholder-slate-600 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="/image/cover.jpg" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Badge</label>
+            <input id="fmBadge" class="bg-slate-900 text-slate-200 placeholder-slate-600 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="e.g. Pin, New" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Categories (csv)</label>
+            <input id="fmCategories" class="bg-slate-900 text-slate-200 placeholder-slate-600 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="Tech, Life" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Tags (csv)</label>
+            <input id="fmTags" class="bg-slate-900 text-slate-200 placeholder-slate-600 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="js, astro" />
+          </div>
+          <div class="md:col-span-2 flex items-center gap-2 mt-2">
+            <input type="checkbox" id="fmDraft" class="w-4 h-4 accent-accent cursor-pointer" />
+            <label for="fmDraft" class="text-sm text-slate-400 cursor-pointer select-none">Mark as draft (won't be published publicly)</label>
+          </div>
+        </div>
+      </div>
+      <div id="fmEmpty" class="text-center p-8 border border-dashed border-slate-800 rounded-2xl text-sm text-slate-500">
+        Drop a Markdown file above to edit its frontmatter
+      </div>
+    </section>
+    
+    <!-- Staged Files -->
+    <section>
+      <h2 class="text-xs uppercase tracking-widest text-slate-500 font-bold flex items-center gap-4 mb-4">
+        Staged Files <span class="h-px bg-slate-800 flex-1"></span>
+      </h2>
+      <div id="stagedList" class="flex flex-col gap-2">
+        <div class="text-center p-8 text-sm text-slate-500">No files staged yet.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Publish Bar -->
+  <div class="fixed bottom-0 inset-x-0 bg-[#0a0e1a]/90 backdrop-blur-xl border-t border-slate-800 p-4 flex justify-center z-50">
+    <div class="w-full max-w-4xl flex gap-4">
+      <input id="commitMsg" class="flex-1 bg-slate-900 text-slate-200 placeholder-slate-600 border border-slate-700 rounded-full px-6 py-2.5 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="Commit message (auto-generated if empty)" />
+      <button id="btnPublish" disabled class="bg-accent hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 px-8 rounded-full shadow-lg shadow-accent/20 transition-all flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+        Publish
+      </button>
+    </div>
+  </div>
+
+  <div id="toasts" class="fixed top-6 right-6 z-50 flex flex-col gap-2"></div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const stagedFiles = []; 
+    let currentMdFile = null, mdBodyContent = "";
+
+    function toast(msg, type="info") {
+      const el = document.createElement('div');
+      const colors = { success: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', error: 'bg-rose-500/10 text-rose-400 border-rose-500/20', info: 'bg-accent/10 text-accent border-accent/20' };
+      el.className = `toast px-4 py-3 rounded-xl border text-sm font-semibold shadow-lg backdrop-blur-md max-w-sm ${colors[type]}`;
+      el.textContent = msg;
+      $('toasts').appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }
+
+    function wireDropZone(zone, input, type) {
+      zone.addEventListener("click", () => input.click());
+      zone.addEventListener("dragover", e => { e.preventDefault(); zone.classList.add("drag-over"); });
+      zone.addEventListener("dragleave", () => zone.classList.remove("drag-over"));
+      zone.addEventListener("drop", e => { e.preventDefault(); zone.classList.remove("drag-over"); handleFiles([...e.dataTransfer.files], type); });
+      input.addEventListener("change", () => { handleFiles([...input.files], type); input.value = ""; });
+    }
+    wireDropZone($("mdDrop"), $("mdInput"), "md");
+    wireDropZone($("imgDrop"), $("imgInput"), "img");
+
+    function handleFiles(files, type) {
+      for (const file of files) {
+        const ext = file.name.split(".").pop().toLowerCase();
+        const isMd = ["md", "mdx"].includes(ext), isImg = ["png", "jpg", "jpeg", "gif", "webp", "svg"].includes(ext);
+        if ((type === "md" && !isMd) || (type === "img" && !isImg)) { toast(`Skipped ${file.name}: wrong type`, "error"); continue; }
+        if (stagedFiles.some(s => s.name === file.name)) continue;
+        
+        stagedFiles.push({ file, type: isMd ? "md" : "img", status: "pending", name: file.name });
+        if (isMd) {
+          const reader = new FileReader();
+          reader.onload = () => parseFrontmatter(reader.result, file.name);
+          reader.readAsText(file);
+        }
+      }
+      renderStaged();
+      uploadAll();
+    }
+
+    function parseFrontmatter(text, filename) {
+      currentMdFile = filename;
+      const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)/);
+      let fm = {}, body = text;
+      
+      if (match) {
+        body = match[2] || "";
+        let currentKey = "", currentArray = null;
+        for (const line of match[1].split("\n")) {
+          const kv = line.match(/^(\w+):\s*(.*)/);
+          if (kv) {
+            currentKey = kv[1];
+            const val = kv[2].replace(/^["']|["']$/g, "").trim();
+            if (!val) { fm[currentKey] = []; currentArray = fm[currentKey]; }
+            else { fm[currentKey] = val; currentArray = null; }
+          } else if (currentArray && line.match(/^\s+-\s+(.*)/)) {
+            currentArray.push(line.match(/^\s+-\s+(.*)/)[1].trim());
+          }
+        }
+      }
+      
+      mdBodyContent = body;
+      $("fmTitle").value = fm.title || "";
+      $("fmDesc").value = fm.description || "";
+      let dStr = fm.pubDate;
+      $("fmDate").value = dStr && !isNaN(new Date(dStr)) ? new Date(dStr).toISOString().split("T")[0] : new Date().toISOString().split("T")[0];
+      $("fmImage").value = fm.image || "";
+      $("fmBadge").value = fm.badge || "";
+      $("fmCategories").value = Array.isArray(fm.categories) ? fm.categories.join(", ") : (fm.categories||"");
+      $("fmTags").value = Array.isArray(fm.tags) ? fm.tags.join(", ") : (fm.tags||"");
+      $("fmDraft").checked = fm.draft === "true" || fm.draft === true;
+      
+      $("fmEditor").classList.remove("hidden");
+      $("fmEmpty").classList.add("hidden");
+    }
+
+    function buildFrontmatter() {
+      const lines = [];
+      const add = (k, v) => { if(v) lines.push(`${k}: "${v}"`); };
+      const addRaw = (k, v) => { if(v) lines.push(`${k}: ${v}`); };
+      
+      add("title", $("fmTitle").value);
+      add("description", $("fmDesc").value);
+      add("pubDate", $("fmDate").value);
+      addRaw("image", $("fmImage").value);
+      addRaw("badge", $("fmBadge").value);
+      if($("fmDraft").checked) addRaw("draft", "true");
+      
+      const arr = (sel) => $(sel).value.split(",").map(s=>s.trim()).filter(Boolean);
+      const cats = arr("fmCategories"), tags = arr("fmTags");
+      if (cats.length) { lines.push("categories:"); cats.forEach(c => lines.push(`  - ${c}`)); }
+      if (tags.length) { lines.push("tags:"); tags.forEach(t => lines.push(`  - ${t}`)); }
+      return lines.join("\n");
+    }
+
+    function renderStaged() {
+      $("stagedCount").textContent = stagedFiles.length;
+      $("btnPublish").disabled = stagedFiles.length === 0 || stagedFiles.some(s => s.status === "pending");
+      
+      if (!stagedFiles.length) { $("stagedList").innerHTML = '<div class="text-center p-8 text-sm text-slate-500">No files staged yet.</div>'; return; }
+      
+      $("stagedList").innerHTML = stagedFiles.map((s, i) => {
+        const isMd = s.type === "md";
+        const iconBg = isMd ? "bg-orange-500/10 text-orange-400" : "bg-emerald-500/10 text-emerald-400";
+        const statBg = s.status === "pending" ? "bg-orange-500/10 text-orange-400" : s.status === "uploaded" ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400";
+        return `
+        <div class="flex items-center justify-between bg-bgCard border border-slate-800 rounded-xl p-3 hover:border-slate-700 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg ${iconBg}">${isMd?"📝":"🖼️"}</div>
+            <div><div class="font-semibold text-sm text-slate-200">${s.name}</div><div class="text-xs text-slate-500">${(s.file.size/1024).toFixed(1)} KB</div></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full ${statBg}">${s.status}</span>
+            <button class="text-slate-500 hover:text-rose-400 p-1" onclick="removeStaged(${i})">✕</button>
+          </div>
+        </div>`;
+      }).join("");
+    }
+    
+    window.removeStaged = (i) => {
+      const removed = stagedFiles.splice(i, 1)[0];
+      if (removed.type === "md" && removed.name === currentMdFile) {
+        currentMdFile = null; $("fmEditor").classList.add("hidden"); $("fmEmpty").classList.remove("hidden");
+      }
+      renderStaged();
+    };
+
+    async function uploadAll() {
+      const pending = stagedFiles.filter(s => s.status === "pending");
+      if (!pending.length) return;
+      
+      const fd = new FormData();
+      pending.forEach(s => fd.append("files", s.file, s.name));
+      try {
+        const data = await (await fetch("/api/upload", { method: "POST", body: fd })).json();
+        if (data.error) throw new Error(data.error);
+        data.results.forEach(r => { const f = stagedFiles.find(s=>s.name===r.filename); if(f) f.status = r.status==="ok"?"uploaded":"error"; });
+        if (currentMdFile) await saveFrontmatter();
+        renderStaged();
+        toast(`${data.results.length} files uploaded`, "success");
+      } catch (err) { toast(err.message, "error"); pending.forEach(s=>s.status="error"); renderStaged(); }
+    }
+
+    async function saveFrontmatter() {
+      if (!currentMdFile) return;
+      await fetch("/api/update-frontmatter", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filename: currentMdFile, frontmatter: buildFrontmatter(), content: mdBodyContent })
+      }).catch(e => toast(e.message, "error"));
+    }
+
+    ["fmTitle","fmDesc","fmDate","fmImage","fmBadge","fmCategories","fmTags","fmDraft"].forEach(id => {
+      $(id).addEventListener("change", saveFrontmatter);
+      if ($(id).type !== "checkbox" && $(id).type !== "date") {
+        let t; $(id).addEventListener("input", () => { clearTimeout(t); t = setTimeout(saveFrontmatter, 800); });
+      }
+    });
+
+    $("btnPublish").addEventListener("click", async () => {
+      $("btnPublish").disabled = true; $("btnPublish").innerHTML = "⏳ Publishing...";
+      if (currentMdFile) await saveFrontmatter();
+      try {
+        const data = await (await fetch("/api/publish", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: $("commitMsg").value.trim() || undefined })
+        })).json();
+        if (data.error) throw new Error(data.stderr || data.error);
+        toast("🎉 Published!", "success");
+        stagedFiles.length = 0; currentMdFile = null; 
+        $("fmEditor").classList.add("hidden"); $("fmEmpty").classList.remove("hidden");
+        $("commitMsg").value = ""; renderStaged(); loadStats();
+      } catch (err) { toast(err.message, "error"); }
+      $("btnPublish").innerHTML = `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg> Publish`;
+      $("btnPublish").disabled = !stagedFiles.length;
+    });
+
+    async function loadStats() {
+      try { $("postCount").textContent = (await (await fetch("/api/posts")).json()).posts.length; } catch { }
+    }
+    loadStats();
+  </script>
+</body>
+</html>

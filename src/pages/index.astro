@@ -5,6 +5,17 @@ import MainCard from "@/components/MainCard.astro";
 import FeatureCard from "@/components/mdx/FeatureCard.astro";
 import GitHubStats from "@/components/mdx/GitHubStats.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import CategoryGrid from "@/components/widgets/CategoryGrid.astro";
+import StarStatsCard from "@/components/widgets/StarStatsCard.astro";
+
+const categories = [
+  { name: "Tech", description: "探索最新的技术、开发工具与编程心得", icon: "lucide:terminal" },
+  { name: "pictures", description: "寻找美好的插画", icon: "lucide:palette" },
+  { name: "novel", description: "阅读我更新的小说", icon: "lucide:book-open" },
+  { name: "AI", description: "探索最新的AI技术", icon: "lucide:bot" },
+  { name: "article", description: "阅读我最近的文章", icon: "lucide:pen-tool" },
+  { name: "Resources", description: "精选效率工具软件、字体与网站素材推荐", icon: "lucide:folder-heart" },
+];
 ---
 
 <BaseLayout title="Home">
@@ -169,4 +180,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </section>
     </div>
   </MainCard>
+  <div class="mt-12 px-4 sm:px-0">
+    <CategoryGrid 
+      categories={categories} 
+      title="Discover Topics" 
+      subtitle="快速进入你感兴趣的文章分类" 
+    />
+  </div>
+  <div class="mt-8 mb-16 px-4 sm:px-0">
+    <StarStatsCard />
+  </div>
+
 </BaseLayout>

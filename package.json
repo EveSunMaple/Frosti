@@ -16,7 +16,8 @@
     "biome:format": "biome format ./src",
     "biome:summary": "biome check --reporter summary ./src",
     "format": "biome format --write ./src",
-    "check-all": "pnpm astro-check && pnpm biome:check"
+    "check-all": "pnpm astro-check && pnpm biome:check",
+    "publish": "node tools/publisher/server.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
