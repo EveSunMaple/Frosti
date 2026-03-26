@@ -45,6 +45,9 @@ PR的重点是我用node.js写了一个本地的server和GUI来优化博客发�
 - **Frontmatter Form**: Parses YAML automatically into a clean UI form for editing Title, Date, Description, Cover Image, Categories, and Tags.
 - **One-Click Publish**: A push-button GUI that safely executes `git add`, `git commit`, and `git push` directly to GitHub/remote.
 - Works concurrently on a separate port (3721) without interfering with the Astro dev server.
+更新快照
+![更新快照](./public/eg1.png)
+![更新快照](./public/eg2.png)
 
 ---
 
