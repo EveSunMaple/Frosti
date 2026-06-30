@@ -6,14 +6,16 @@ import { Icon } from "astro-icon/components";
 const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
 ---
 
+{showTOC && headings.length > 0 && (
 <button
   id="mobile-toc-button"
   aria-label={t("label.tableOfContents")}
   class="btn btn-circle btn-md fixed bottom-20 right-6 z-50 bg-base-100 shadow-lg md:hidden opacity-0 invisible transition-all hover:scale-110"
   onclick="mobile_toc_modal.showModal()"
 >
-  <Icon name="lucide:list" class="h-5 w-5" />
+  <Icon name="lucide:list" class="w-5 h-5" />
 </button>
+)}
 
 <dialog id="mobile_toc_modal" class="modal md:hidden">
   <div class="modal-box w-10/12 max-w-md bg-base-100 rounded-lg shadow-xl">
