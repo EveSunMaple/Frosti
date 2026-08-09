@@ -3,6 +3,7 @@ packages:
 
 allowBuilds:
   esbuild: true
+  "@parcel/watcher": true
 
 peerDependencyRules:
   allowedVersions:
@@ -23,3 +24,4 @@ overrides:
 
 onlyBuiltDependencies:
   - esbuild
+  - "@parcel/watcher"

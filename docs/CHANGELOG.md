@@ -1043,15 +1043,9 @@
 - 修复外部链接缺少 `rel="noopener noreferrer"` 的问题
 - 修复系统主题偏好首次访问后被固定、不再跟随系统变化的问题
 - 修复 `Makrdown` 标签拼写错误
+- 修复 Vercel 构建时 pnpm 版本与 lockfile 不匹配、`@parcel/watcher` 构建脚本未授权的问题
 
 ### Chore
 
 - 移除大量未使用的依赖与死代码
 - 更新 VS Code 配置、贡献指南与安全策略文档
-
-## [4.0.1] - 2026-08-09
-
-### Fix
-
-- 修复 Vercel 构建时 pnpm 9 无法识别 pnpm 11 生成的 lockfile overrides 的问题
-- 新增 `vercel.json`，显式使用 pnpm 11.8.0 执行安装与构建，保证本地与云端依赖解析一致
