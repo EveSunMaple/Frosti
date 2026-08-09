@@ -1011,3 +1011,40 @@
 ### Fix
 
 - 修复了站点地图包含草稿文章的问题，并且移除了之前的错误实现 #97
+
+## [4.0.0] - 2026-08-09
+
+### Breaking Changes
+
+- 升级到 Astro 7，内容集合配置已迁移到 `src/content.config.ts` 并使用新的 glob loader；自定义过内容集合的部署需要同步调整
+
+### Features
+
+- 同步升级 MDX、RSS、Sitemap、Expressive Code、Compress 等集成
+- 为文章页添加 `BlogPosting` JSON-LD，为其他页面添加 `WebSite` JSON-LD
+- 补全 Open Graph / Twitter Card 元信息，并为非文章页提供默认分享图
+- 新增“跳到主要内容”的无障碍快捷链接
+- CI 新增生产构建与依赖安全审计
+
+### Refactored
+
+- 使用 Astro 渲染后的 HTML 生成 RSS，不再出现 MDX 源码或未渲染的数学公式
+- 移除 GitHubStats 的随机假提交热力图，并清理无效 props
+- 优化图片：`public/` 大图全部转 WebP 并压缩，构建体积从约 10MB 降至约 4.5MB
+- DaisyUI 仅打包当前使用的两个主题，按需加载 KaTeX 与 dayjs 语言包
+- 统一 sharp 版本，消除构建期重复 libvips 警告
+- 收紧 TypeScript 类型，移除大量 `any`
+
+### Fix
+
+- 修复 `pnpm run search:clean` 因缺少 `rimraf` 而失败的问题
+- 修复 RSS 非法的 `xmlns:version` 命名空间与发布日期偏移
+- 修复博客卡片标题非法 ID、`BaseCard` 重复 ID、目录锚点在禁用 JS 时失效的问题
+- 修复外部链接缺少 `rel="noopener noreferrer"` 的问题
+- 修复系统主题偏好首次访问后被固定、不再跟随系统变化的问题
+- 修复 `Makrdown` 标签拼写错误
+
+### Chore
+
+- 移除大量未使用的依赖与死代码
+- 更新 VS Code 配置、贡献指南与安全策略文档
