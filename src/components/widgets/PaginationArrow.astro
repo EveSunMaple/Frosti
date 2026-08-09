@@ -5,8 +5,18 @@ import { Icon } from "astro-icon/components";
 const { url, direction, label } = Astro.props as PaginationArrowProps;
 ---
 
-<a href={url || "#"} class:list={["btn bg-base-100 shadow-xl", !url && "btn-disabled"]}>
-  {direction === "prev" && <Icon name="ri:arrow-left-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
-  <span class="hidden lg:inline">{label}</span>
-  {direction === "next" && <Icon name="ri:arrow-right-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
-</a>
+{
+  url ? (
+    <a href={url} aria-label={label} class="btn bg-base-100 shadow-xl">
+      {direction === "prev" && <Icon name="ri:arrow-left-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
+      <span class="hidden lg:inline">{label}</span>
+      {direction === "next" && <Icon name="ri:arrow-right-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
+    </a>
+  ) : (
+    <span class="btn bg-base-100 shadow-xl btn-disabled" aria-disabled="true" aria-label={label}>
+      {direction === "prev" && <Icon name="ri:arrow-left-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
+      <span class="hidden lg:inline">{label}</span>
+      {direction === "next" && <Icon name="ri:arrow-right-s-line" class="h-6 w-6 md:h-8 md:w-8" />}
+    </span>
+  )
+}

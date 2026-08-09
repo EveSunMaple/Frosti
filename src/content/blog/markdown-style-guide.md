@@ -2,12 +2,12 @@
 title: "Markdown Style Guide"
 description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
 pubDate: "Jul 01 2024"
-image: /image/image3.png
+image: /image/image3.webp
 categories:
   - Documentation
   - Examples
 tags:
-  - Makrdown
+  - Markdown
 badge: Pin
 ---
 
@@ -16,8 +16,6 @@ Here is a sample of some basic Markdown syntax that can be used when writing Mar
 ## Headings
 
 The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
-
-# H1
 
 ## H2
 
@@ -45,7 +43,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 #### Output
 
-![blog placeholder](/logo.png)
+![blog placeholder](/logo.webp)
 
 ## Blockquotes
 

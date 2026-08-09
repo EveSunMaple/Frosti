@@ -9,6 +9,7 @@
 # --- 核心配置文件 ---
 frosti.config.yaml
 src/i18n/translations.yaml
+pnpm-workspace.yaml
 
 # --- 用户内容 ---
 # 保护您所有的文章和页面

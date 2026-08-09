@@ -20,6 +20,8 @@ const pageLinks = generatePageLinks(totalPages);
 ---
 
 <BaseLayout title="Blog">
+  <h1 class="sr-only">{t("label.blogPage")}</h1>
+
   <!-- Blog Navigation Cards -->
   <CardGroup cols="2">
     <!-- Archives Card -->
@@ -86,12 +88,13 @@ const pageLinks = generatePageLinks(totalPages);
   <!-- Blog Post List -->
   <CardGroup cols="1">
     {
-      page.data.map((blog: Post) => (
+      page.data.map((blog: Post, index: number) => (
         <PostCard
+          priority={index === 0}
           title={blog.data.title}
           image={blog.data.image}
           description={blog.data.description}
-          url={"/blog/" + blog.slug}
+          url={"/blog/" + blog.id}
           pubDate={blog.data.pubDate}
           badge={blog.data.badge}
           categories={blog.data.categories}

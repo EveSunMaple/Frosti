@@ -19,6 +19,7 @@ const {
   tags = [],
   word = "0",
   time = "0",
+  priority = false,
   url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props as PostData;
 
@@ -53,7 +54,7 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
             width={800}
             height={400}
             format="webp"
-            loading="eager"
+            loading={priority ? "eager" : "lazy"}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </a>

@@ -20,13 +20,12 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
               class="absolute bg-primary/10 rounded-lg opacity-0 shadow-sm pointer-events-none z-0"
             />
             <ul class="space-y-0 relative z-10">
-              {headings.map((heading, index) => (
+              {headings.map((heading) => (
                 <li>
                   <a
-                    href={`#heading-${index}`}
+                    href={`#${heading.slug}`}
                     data-heading-slug={heading.slug}
                     data-heading-depth={heading.depth}
-                    data-index={index}
                     class={`toc-link relative flex items-center py-2 px-2 rounded-lg ${heading.depth === 1 ? "font-medium" : ""}`}
                     style={`padding-left: ${12 + (heading.depth - 1) * 16}px;`}
                   >
@@ -84,23 +83,6 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
     let disableObserverUpdates = false;
     let resizeTimer: number | null = null;
 
-    // Update IDs only once at initialization
-    const headingIds = new Map<string, string>();
-    headings.forEach((heading, index) => {
-      const oldId = heading.getAttribute("id");
-      const newId = `heading-${index}`;
-
-      if (oldId && oldId !== newId) {
-        heading.setAttribute("id", newId);
-        headingIds.set(oldId, newId);
-
-        // Only update non-TOC links that point to this heading
-        document
-          .querySelectorAll(`a[href="#${oldId}"]:not(.toc-nav a)`)
-          .forEach((link) => link.setAttribute("href", `#${newId}`));
-      }
-    });
-
     // Position the active indicator - optimized
     function updateActiveIndicator(link: HTMLAnchorElement, animate = true): void {
       if (!link) return;
@@ -152,10 +134,12 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
       // Remove active class from previous link
       if (activeLink) {
         activeLink.classList.remove("active");
+        activeLink.removeAttribute("aria-current");
       }
 
       // Set new active link
       link.classList.add("active");
+      link.setAttribute("aria-current", "true");
       activeLink = link;
       updateActiveIndicator(link);
 
@@ -200,19 +184,16 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
     });
 
     // Throttled resize handler
-    window.addEventListener(
-      "resize",
-      () => {
-        if (resizeTimer) clearTimeout(resizeTimer);
+    const onResize = () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
 
-        resizeTimer = window.setTimeout(() => {
-          if (activeLink) {
-            updateActiveIndicator(activeLink, false);
-          }
-        }, 100);
-      },
-      { passive: true },
-    );
+      resizeTimer = window.setTimeout(() => {
+        if (activeLink) {
+          updateActiveIndicator(activeLink, false);
+        }
+      }, 100);
+    };
+    window.addEventListener("resize", onResize, { passive: true });
 
     // Optimized intersection observer
     const observer = new IntersectionObserver(
@@ -272,7 +253,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
     }, 200);
 
     // Hash change handler - simplified
-    window.addEventListener("hashchange", () => {
+    const onHashChange = () => {
       if (disableObserverUpdates) return;
 
       const hash = window.location.hash.substring(1);
@@ -291,6 +272,17 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
       setTimeout(() => {
         disableObserverUpdates = false;
       }, 1000);
-    });
+    };
+    window.addEventListener("hashchange", onHashChange);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("resize", onResize);
+        window.removeEventListener("hashchange", onHashChange);
+        observer.disconnect();
+      },
+      { once: true },
+    );
   });
 </script>

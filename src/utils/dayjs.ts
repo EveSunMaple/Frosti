@@ -1,20 +1,20 @@
 import { SITE_LANGUAGE } from "@config";
 import dayjs from "dayjs";
 
-// Import all supported locales
-import "dayjs/locale/en";
-import "dayjs/locale/fr";
-import "dayjs/locale/zh";
-import "dayjs/locale/ja";
-import "dayjs/locale/ko";
-import "dayjs/locale/es";
-import "dayjs/locale/de";
-import "dayjs/locale/ru";
-import "dayjs/locale/pt";
-import "dayjs/locale/it";
+const localeLoaders: Record<string, () => Promise<unknown>> = {
+  en: () => import("dayjs/locale/en"),
+  fr: () => import("dayjs/locale/fr"),
+  zh: () => import("dayjs/locale/zh"),
+  ja: () => import("dayjs/locale/ja"),
+  ko: () => import("dayjs/locale/ko"),
+  es: () => import("dayjs/locale/es"),
+  de: () => import("dayjs/locale/de"),
+  ru: () => import("dayjs/locale/ru"),
+  pt: () => import("dayjs/locale/pt"),
+  it: () => import("dayjs/locale/it"),
+};
 
-// Set the default locale from the site configuration
-// @ts-expect-error - TypeScript
+await localeLoaders[SITE_LANGUAGE]?.();
 dayjs.locale(SITE_LANGUAGE);
 
 // Export the configured dayjs

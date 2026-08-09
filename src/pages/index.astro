@@ -18,11 +18,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <!-- Hero Section -->
       <section class="py-6">
         <div class="flex flex-col items-center text-center">
-          <h1
+          <h2
             class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-loose"
           >
             🌟 Frosti Blog Theme
-          </h1>
+          </h2>
           <p class="text-xl text-base-content/80 max-w-3xl mb-8">
             A minimal, responsive, and feature-rich Astro blog theme designed for creators who value beautiful content
             presentation and exceptional performance.
@@ -32,7 +32,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
               <Icon name="lucide:book-open" class="w-5 h-5" />
               <span>Explore Blog</span>
             </a>
-            <a href="https://github.com/EveSunMaple/Frosti" target="_blank" class="btn btn-outline gap-2">
+            <a href="https://github.com/EveSunMaple/Frosti" target="_blank" rel="noopener noreferrer" class="btn btn-outline gap-2">
               <Icon name="lucide:github" class="w-5 h-5" />
               <span>Star on GitHub</span>
             </a>
@@ -64,7 +64,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
           <FeatureCard
             title="MDX Support"
-            description="Write your content in MDX with full support for React components and JSX."
+            description="Write your content in MDX with full support for custom components and JSX."
             icon="lucide:file-code"
             color="oklch(0.6 0.2 160)"
           />
@@ -129,7 +129,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
               </div>
               <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Navigate to the project directory and install dependencies:</p>
-                <Code code="cd Frosti && npm install" lang="sh" />
+                <Code code="cd Frosti && pnpm install" lang="sh" />
               </div>
             </li>
 
@@ -144,7 +144,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
               </div>
               <div class="relative w-full">
                 <p class="text-base-content/70 mb-2">Launch the local development server to see your blog:</p>
-                <Code code="npm run search:index && npm run dev" lang="sh" />
+                <Code code="pnpm run search:index && pnpm run dev" lang="sh" />
               </div>
             </li>
           </ol>
@@ -165,7 +165,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           <span>Repository Stats</span>
         </h2>
 
-        <GitHubStats username="EveSunMaple" repositoryName="Frosti" showLanguages={true} showContributors={true} />
+        <GitHubStats username="EveSunMaple" repositoryName="Frosti" />
       </section>
     </div>
   </MainCard>

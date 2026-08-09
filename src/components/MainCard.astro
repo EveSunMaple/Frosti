@@ -28,6 +28,7 @@ const {
 
 // Create a more descriptive label for the button
 const accessibleHelpText = `${helpText}: ${title}`;
+const dropdownId = `info-dropdown-${Math.random().toString(36).substring(2, 10)}`;
 ---
 
 <Card class={`overflow-hidden ${extraClasses}`}>
@@ -58,8 +59,11 @@ const accessibleHelpText = `${helpText}: ${title}`;
           {description && (
             <div class="flex-shrink-0">
               <div class="dropdown dropdown-top dropdown-end dropdown-hover">
-                <label
-                  tabindex="0"
+                <button
+                  type="button"
+                  id={dropdownId}
+                  aria-expanded="false"
+                  aria-controls={`${dropdownId}-content`}
                   aria-label={accessibleHelpText}
                   class="group btn btn-sm px-2 bg-black/60 backdrop-blur-md hover:bg-black/80 border border-white/40 text-white shadow-lg rounded-full flex items-center gap-0 transition-all duration-300 ease-in-out"
                 >
@@ -67,9 +71,9 @@ const accessibleHelpText = `${helpText}: ${title}`;
                   <span class="w-0 overflow-hidden group-hover:w-20 transition-all duration-300 text-xs whitespace-nowrap">
                     {helpText}
                   </span>
-                </label>
+                </button>
                 <div
-                  tabindex="0"
+                  id={`${dropdownId}-content`}
                   class="dropdown-content z-[1] card w-64 sm:w-80 p-2 shadow-lg bg-black/70 backdrop-blur-md text-white border border-white/20 mb-4"
                   data-state="closed"
                 >
@@ -106,8 +110,11 @@ const accessibleHelpText = `${helpText}: ${title}`;
           {description && (
             <div class="flex-shrink-0">
               <div class="dropdown dropdown-top dropdown-end dropdown-hover">
-                <label
-                  tabindex="0"
+                <button
+                  type="button"
+                  id={dropdownId}
+                  aria-expanded="false"
+                  aria-controls={`${dropdownId}-content`}
                   aria-label={accessibleHelpText}
                   class="group btn btn-sm px-2 bg-black/60 backdrop-blur-md hover:bg-black/80 border border-white/40 text-white shadow-lg rounded-full flex items-center gap-0 transition-all duration-300 ease-in-out"
                 >
@@ -115,9 +122,9 @@ const accessibleHelpText = `${helpText}: ${title}`;
                   <span class="w-0 overflow-hidden group-hover:w-20 transition-all duration-300 text-xs whitespace-nowrap">
                     {helpText}
                   </span>
-                </label>
+                </button>
                 <div
-                  tabindex="0"
+                  id={`${dropdownId}-content`}
                   class="dropdown-content z-[1] card w-64 sm:w-80 p-2 shadow-lg bg-black/70 backdrop-blur-md text-white border border-white/20 mb-4"
                   data-state="closed"
                 >
@@ -148,7 +155,7 @@ const accessibleHelpText = `${helpText}: ${title}`;
 <script>
   document.addEventListener("astro:page-load", () => {
     // Get all info buttons and dropdown contents
-    const infoButtons = document.querySelectorAll(".dropdown label");
+    const infoButtons = document.querySelectorAll(".dropdown button[aria-label]");
     const dropdownContents = document.querySelectorAll(".dropdown-content");
 
     // Add click event listeners
@@ -156,9 +163,11 @@ const accessibleHelpText = `${helpText}: ${title}`;
       button.addEventListener("click", () => {
         const content = dropdownContents[index];
         const currentState = content.getAttribute("data-state");
+        const nextState = currentState === "closed" ? "open" : "closed";
 
         // Toggle state
-        if (currentState === "closed") {
+        button.setAttribute("aria-expanded", nextState === "open" ? "true" : "false");
+        if (nextState === "open") {
           content.setAttribute("data-state", "open");
           // Add animation classes when opening
           content.classList.add("scale-100", "opacity-100");

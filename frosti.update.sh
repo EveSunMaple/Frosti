@@ -23,7 +23,7 @@ fi
 # Allow user to override language with a command-line argument (e.g., ./frosti.update.sh en)
 if [[ -n "$1" ]]; then
   # Check if the language file exists for the given argument
-  if [[ -f "$I18N_DIR/$1.sh" ]]; then
+  if [[ "$1" =~ ^[a-zA-Z0-9_-]+$ ]] && [[ -f "$I18N_DIR/$1.sh" ]]; then
     lang="$1"
   else
     echo -e "${C_YELLOW}Warning: Language '$1' not found. Falling back to '$lang'.${C_NC}" >&2
@@ -112,7 +112,7 @@ if ! command -v pnpm &> /dev/null; then
     echo -e "${C_YELLOW}${WARN_PNPM_NOT_FOUND}${C_NC}"
     echo "${WARN_PNPM_GUIDE}"
 else
-    pnpm install
+    pnpm install --ignore-scripts
     if [[ $? -ne 0 ]]; then
       echo -e "${C_RED}${ERR_PNPM_INSTALL_FAILED}${C_NC}"
       exit 1

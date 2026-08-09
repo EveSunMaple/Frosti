@@ -11,6 +11,9 @@ import {
   SITE_LANGUAGE,
   SITE_TAB,
   SITE_THEME,
+  t,
+  USER_NAME,
+  USER_SITE,
 } from "@config";
 import ElementCrossing from "astro-vtbot/components/ElementCrossing.astro";
 import PointerOnNavigation from "astro-vtbot/components/PointerOnNavigation.astro";
@@ -22,7 +25,33 @@ const {
   headings = [],
   showTOC = false,
   isIndexed = true,
+  ogType = "website",
+  pubDate,
 } = Astro.props;
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const jsonLd =
+  ogType === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        description,
+        image,
+        url: pageUrl,
+        datePublished: pubDate?.toISOString(),
+        author: {
+          "@type": "Person",
+          name: USER_NAME,
+        },
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE_TAB,
+        url: USER_SITE,
+        description: SITE_DESCRIPTION,
+      };
 ---
 
 <!doctype html>
@@ -31,8 +60,15 @@ const {
     <ClientRouter />
     <ElementCrossing />
     <PointerOnNavigation />
-    <Header title={title} description={description} favicon={SITE_FAVICON} image={image} />
+    <Header
+      title={title}
+      description={description}
+      favicon={SITE_FAVICON}
+      image={image}
+      ogType={ogType}
+    />
     <title>{`${title} - ${SITE_TAB}`}</title>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
 
     <script define:vars={{ SITE_THEME }} is:inline>
       (function () {
@@ -43,7 +79,6 @@ const {
           theme = storedTheme;
         } else {
           theme = prefersDark ? SITE_THEME.dark : SITE_THEME.light;
-          localStorage.setItem("theme", theme);
         }
         document.documentElement.setAttribute("data-theme", theme);
         const themeType = theme === SITE_THEME.dark ? "dark" : "light";
@@ -54,7 +89,6 @@ const {
             document.documentElement.setAttribute("data-theme", newTheme);
             const newThemeType = e.matches ? "dark" : "light";
             document.documentElement.setAttribute("data-theme-type", newThemeType);
-            localStorage.setItem("theme", newTheme);
           }
         });
       })();
@@ -62,11 +96,20 @@ const {
   </head>
 
   <body class="flex flex-col min-h-screen" {...isIndexed ? { "data-pagefind-body": true } : {}}>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:btn focus:btn-primary"
+    >
+      {t("label.skipToContent")}
+    </a>
+
     <Navbar />
 
     <div class="max-w-6xl mx-auto w-full flex-grow">
       <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-4 h-full">
         <main
+          id="main-content"
+          tabindex="-1"
           class="col-span-1 md:col-span-4 lg:col-span-3 bg-transparent order-1 md:order-2 mt-16 md:mt-0 flex flex-col gap-4"
         >
           <div class="flex-grow flex flex-col gap-4">

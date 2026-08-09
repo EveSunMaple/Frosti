@@ -73,6 +73,7 @@ const typedMenu = SITE_MENU as MenuItem[];
                           "flex items-center p-2 hover:bg-base-200 rounded-lg",
                           currentPath === subItem.href && "bg-base-200",
                         ]}
+                        aria-current={currentPath === subItem.href ? "page" : undefined}
                         href={subItem.href}
                         target={subItem.target || "_self"}
                       >
@@ -89,6 +90,7 @@ const typedMenu = SITE_MENU as MenuItem[];
                   "flex items-center text-lg font-bold p-3 hover:bg-base-200 rounded-lg",
                   currentPath === item.href && "bg-base-200",
                 ]}
+                aria-current={currentPath === item.href ? "page" : undefined}
                 href={item.href}
                 target={item.target || "_self"}
               >
@@ -146,7 +148,7 @@ const typedMenu = SITE_MENU as MenuItem[];
 
     // Throttle scroll event for better performance
     let ticking = false;
-    window.addEventListener("scroll", () => {
+    const onScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           handleScroll();
@@ -154,10 +156,11 @@ const typedMenu = SITE_MENU as MenuItem[];
         });
         ticking = true;
       }
-    });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     // Close menu when clicking outside
-    document.addEventListener("click", (event) => {
+    const onClickOutside = (event: MouseEvent) => {
       if (!navbar || !headerMenu || !menuToggle) return;
 
       const target = event.target as Node;
@@ -166,7 +169,17 @@ const typedMenu = SITE_MENU as MenuItem[];
         headerMenu.classList.add("-translate-x-full");
         headerMenu.classList.remove("translate-x-0");
       }
-    });
+    };
+    document.addEventListener("click", onClickOutside);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("scroll", onScroll);
+        document.removeEventListener("click", onClickOutside);
+      },
+      { once: true },
+    );
 
     // Close menu when clicking menu items
     const menuItems = document.querySelectorAll("#header-menu a");

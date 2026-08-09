@@ -51,7 +51,7 @@ const totalTags = tagMap.size;
           <div class="tags-cloud">
             {tagEntries.map(([tag, count], index) => (
               <a
-                href={`/blog/tag/${tag}`}
+                href={`/blog/tag/${encodeURIComponent(tag)}`}
                 class={`tags-item ${getTagColorClass(count, maxCount)}`}
                 style={`font-size: ${getTagFontSize(count, maxCount, minCount)}rem;`}
                 data-count={count}

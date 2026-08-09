@@ -11,10 +11,10 @@ const { l, r, rightAlt = "Right image", leftAlt = "Left image" } = Astro.props;
 
 <div class="not-prose diff aspect-[16/9] rounded-lg overflow-hidden fade-in-up">
   <div class="diff-item-1">
-    <img alt={rightAlt} src={r} loading="lazy" />
+    <img alt={rightAlt} src={r} loading="lazy" width="1280" height="720" decoding="async" />
   </div>
   <div class="diff-item-2">
-    <img alt={leftAlt} src={l} loading="lazy" />
+    <img alt={leftAlt} src={l} loading="lazy" width="1280" height="720" decoding="async" />
   </div>
   <div class="diff-resizer"></div>
 </div>

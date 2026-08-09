@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 import {
   SITE_MENU,
   USER_AVATAR,
+  USER_NAME,
   USER_SIDEBAR_SOCIAL_ICONS,
 } from "../../config";
 import Card from "../temple/Card.astro";
@@ -21,7 +22,7 @@ const currentPath = Astro.url.pathname;
         width={250}
         height={250}
         src={USER_AVATAR}
-        alt="Profile"
+        alt={`${USER_NAME} avatar`}
         loading="eager"
       />
     </div>
@@ -45,6 +46,7 @@ const currentPath = Astro.url.pathname;
                         href={subItem.href}
                         target={subItem.target || "_self"}
                         aria-label={subItem.text}
+                        aria-current={currentPath === subItem.href ? "page" : undefined}
                       >
                         <Icon name={subItem.svg} />
                         <span class="hidden lg:inline ml-2">{subItem.text}</span>
@@ -61,6 +63,7 @@ const currentPath = Astro.url.pathname;
                 href={item.href}
                 target={item.target || "_self"}
                 aria-label={item.text}
+                aria-current={currentPath === item.href ? "page" : undefined}
               >
                 <Icon name={item.svg} />
                 <span class="hidden lg:inline ml-2">{item.text}</span>
@@ -82,6 +85,7 @@ const currentPath = Astro.url.pathname;
                 href={icon.href}
                 aria-label={icon.ariaLabel}
                 target="_blank"
+                rel="noopener noreferrer"
                 class="btn btn-circle btn-ghost"
               >
                 <Icon name={icon.svg} class="text-xl" />

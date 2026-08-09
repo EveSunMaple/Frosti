@@ -11,6 +11,8 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
     <button
       id="mobile-toc-button"
       aria-label={t("label.tableOfContents")}
+      aria-hidden="true"
+      tabindex="-1"
       class="btn btn-circle btn-md fixed bottom-20 right-6 z-50 bg-base-100 shadow-lg md:hidden opacity-0 invisible transition-all hover:scale-110"
       onclick="mobile_toc_modal.showModal()"
     >
@@ -22,7 +24,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
         <div class="flex justify-between items-center border-b border-base-200 pb-4">
           <h3 class="font-medium">{t("label.tableOfContents")}</h3>
           <form method="dialog">
-            <button class="btn btn-circle btn-ghost" aria-label={t("label.tableOfContents")}>
+            <button class="btn btn-circle btn-ghost" aria-label={t("label.close")}>
               <Icon name="lucide:x" class="h-5 w-5" />
             </button>
           </form>
@@ -45,7 +47,7 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
         </div>
       </div>
       <form method="dialog" class="modal-backdrop">
-        <button>close</button>
+        <button>{t("label.close")}</button>
       </form>
     </dialog>
   </>
@@ -70,9 +72,13 @@ const { headings = [], showTOC = true } = Astro.props as TOCBarProps;
         if (currentScrollY > 300) {
           tocButton.classList.remove("opacity-0", "invisible");
           tocButton.classList.add("opacity-100", "visible");
+          tocButton.setAttribute("aria-hidden", "false");
+          tocButton.tabIndex = 0;
         } else {
           tocButton.classList.remove("opacity-100", "visible");
           tocButton.classList.add("opacity-0", "invisible");
+          tocButton.setAttribute("aria-hidden", "true");
+          tocButton.tabIndex = -1;
         }
 
         if (tocLinks.length > 0 && headings.length > 0) {

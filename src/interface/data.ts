@@ -1,21 +1,11 @@
-export interface Post {
-  [x: string]: any;
-  data: {
-    [x: string]: any;
-    title: string;
-    image: string;
-    description: string;
-    pubDate: Date;
-    badge: string;
-    categories: string[];
-    tags: string[];
-  };
+import type { CollectionEntry } from "astro:content";
+
+export type Post = CollectionEntry<"blog"> & {
   remarkPluginFrontmatter: {
-    totalCharCount: string;
-    readingTime: string;
+    totalCharCount: number;
+    readingTime: number;
   };
-  slug: string;
-}
+};
 
 export interface Page {
   url: {
@@ -36,9 +26,10 @@ export interface PostData {
   badge?: string;
   categories?: string[];
   tags?: string[];
-  word?: string;
-  time?: string;
+  word?: string | number;
+  time?: string | number;
   url?: string;
+  priority?: boolean;
 }
 
 // ===== Header Components =====
@@ -47,6 +38,7 @@ export interface HeaderProps {
   description: string;
   favicon: string;
   image?: string;
+  ogType?: string;
 }
 
 // ===== Widget Components =====
@@ -141,11 +133,7 @@ export interface FeatureCardProps {
 
 export interface GitHubStatsProps {
   username: string;
-  showPrivate?: boolean;
-  showIcons?: boolean;
-  count?: number;
-  theme?: string;
-  layout?: "default" | "compact";
+  repositoryName?: string;
 }
 
 export interface TimelineItem {

@@ -5,6 +5,8 @@ import { Icon } from "astro-icon/components";
 <button
   id="scroll-to-top"
   aria-label="Scroll to top"
+  aria-hidden="true"
+  tabindex="-1"
   class="btn btn-circle btn-md fixed bottom-6 right-6 z-50 bg-base-100 shadow-lg opacity-0 invisible transition-all hover:scale-110"
 >
   <Icon name="material-symbols:arrow-upward-rounded" class="h-5 w-5" />
@@ -20,25 +22,41 @@ import { Icon } from "astro-icon/components";
         if (window.scrollY > 300) {
           scrollButton.classList.remove("opacity-0", "invisible");
           scrollButton.classList.add("opacity-100", "visible");
+          scrollButton.setAttribute("aria-hidden", "false");
+          scrollButton.tabIndex = 0;
         } else {
           scrollButton.classList.remove("opacity-100", "visible");
           scrollButton.classList.add("opacity-0", "invisible");
+          scrollButton.setAttribute("aria-hidden", "true");
+          scrollButton.tabIndex = -1;
         }
+      };
+
+      const onScroll = toggleVisibility;
+      const onClick = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       };
 
       // Initial check
       toggleVisibility();
 
       // Add scroll event listener
-      window.addEventListener("scroll", toggleVisibility);
+      window.addEventListener("scroll", onScroll, { passive: true });
 
       // Scroll to top with smooth animation
-      scrollButton.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
+      scrollButton.addEventListener("click", onClick);
+
+      document.addEventListener(
+        "astro:before-swap",
+        () => {
+          window.removeEventListener("scroll", onScroll);
+          scrollButton.removeEventListener("click", onClick);
+        },
+        { once: true },
+      );
     }
   });
 </script>

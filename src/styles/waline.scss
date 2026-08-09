@@ -45,7 +45,7 @@
   display: inline-block;
   color: var(--waline-theme-color);
   text-decoration: none;
-  word-break: break-word;
+  overflow-wrap: break-word;
   cursor: pointer;
 }
 
@@ -371,7 +371,7 @@
 .wl-preview .wl-content {
   min-height: 1.25em;
   padding: 0.25em;
-  word-break: break-word;
+  overflow-wrap: break-word;
   hyphens: auto;
 }
 

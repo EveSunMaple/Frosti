@@ -25,7 +25,7 @@ To contribute code, please follow these steps:
    git checkout -b your-feature-branch
    ```
 4. **Make Your Changes**: Implement your changes on the new branch. Be sure to write clear commit messages that explain the purpose of the changes.
-5. **Test Your Changes**: Ensure that your changes work as expected and do not break existing functionality. Run any tests or checks required by the project.
+5. **Test Your Changes**: Ensure that your changes work as expected and do not break existing functionality. Run `pnpm check-all` (Astro type checking + Biome lint/format). The project currently has no standalone test suite.
 6. **Push Your Changes**: Push your changes to your forked repository.
    ```bash
    git push origin your-feature-branch
@@ -36,9 +36,9 @@ To contribute code, please follow these steps:
 
 To maintain consistency, please follow these guidelines:
 
-- **Code Style**: Adhere to the code style used in the project. You can find specific style guidelines in the project's documentation or configuration files.
+- **Code Style**: Adhere to the code style used in the project. Biome is the source of truth for linting and formatting (`pnpm biome:check`).
 - **Documentation**: Update documentation to reflect any changes you make. This includes README files, comments, and other relevant documentation.
-- **Testing**: Write tests for any new features or bug fixes. Ensure that all tests pass before submitting your pull request.
+- **Testing**: Run `pnpm check-all` before submitting your pull request and ensure all checks pass.
 
 ### Communicating with the Team
 

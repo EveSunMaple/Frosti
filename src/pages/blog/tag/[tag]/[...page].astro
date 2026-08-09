@@ -16,17 +16,23 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 
 const { page } = Astro.props as { page: Page };
 const params = Astro.params as { tag: string; page: string };
+let tag = params.tag;
+try {
+  tag = decodeURIComponent(params.tag);
+} catch {
+  // keep the raw value when the tag is not valid percent-encoding
+}
 
 const totalPages = Math.ceil(page.total / page.size);
 const pageLinks = generatePageLinks(totalPages);
 ---
 
-<BaseLayout title={`${t("label.tagPage")} - ${params.tag}`}>
+<BaseLayout title={`${t("label.tagPage")} - ${tag}`}>
   <BaseCard title={t("label.tagPage")}>
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div class="flex items-center gap-2">
         <Icon name="lucide:tag" class="w-6 h-6 text-secondary" />
-        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{params.tag}</h1>
+        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{tag}</h1>
         <div class="badge badge-secondary">{page.total} {page.total === 1 ? t("label.post") : t("label.posts")}</div>
       </div>
       <a href="/blog/tags" class="btn btn-outline btn-sm gap-2">
@@ -39,12 +45,13 @@ const pageLinks = generatePageLinks(totalPages);
   </BaseCard>
   <CardGroup cols="1" gap="6">
     {
-      page.data.map((blog: Post) => (
+      page.data.map((blog: Post, index: number) => (
         <PostCard
+          priority={index === 0}
           title={blog.data.title}
           image={blog.data.image}
           description={blog.data.description}
-          url={"/blog/" + blog.slug}
+          url={"/blog/" + blog.id}
           pubDate={blog.data.pubDate}
           badge={blog.data.badge}
           categories={blog.data.categories}
@@ -55,5 +62,5 @@ const pageLinks = generatePageLinks(totalPages);
       ))
     }
   </CardGroup>
-  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog/tag/${params.tag}`} />
+  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog/tag/${encodeURIComponent(tag)}`} />
 </BaseLayout>

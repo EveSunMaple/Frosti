@@ -51,7 +51,11 @@ if (pathname.startsWith("/blog/tag/")) {
         <Icon name={primaryAction.icon} class="w-5 h-5" />
         <span>{primaryAction.text}</span>
       </a>
-      <button id="goBackBtn" class="btn btn-outline gap-2" onclick="history.back()">
+      <button
+        id="goBackBtn"
+        class="btn btn-outline gap-2"
+        onclick="if (history.length > 1) history.back(); else location.href = '/'"
+      >
         <Icon name="lucide:corner-up-left" class="w-5 h-5" />
         <span>{t("label.404goBack")}</span>
       </button>

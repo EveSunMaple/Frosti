@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import License from "@components/widgets/License.astro";
 import PostFilter from "@components/widgets/PostFilter.astro";
 import PostInfo from "@components/widgets/PostInfo.astro";
@@ -7,6 +7,7 @@ import { DATE_FORMAT } from "@config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import dayjs from "@utils/dayjs";
 import MainCard from "@/components/MainCard.astro";
+import "katex/dist/katex.min.css";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
     : posts;
 
   return filteredPosts.map((blog: CollectionEntry<"blog">) => ({
-    params: { slug: blog.slug },
+    params: { slug: blog.id },
     props: { blog },
   }));
 }
@@ -26,12 +27,12 @@ interface Props {
 }
 
 const { blog } = Astro.props;
-const { Content, remarkPluginFrontmatter, headings } = await blog.render();
+const { Content, remarkPluginFrontmatter, headings } = await render(blog);
 const displayDate = blog.data.pubDate
   ? dayjs(blog.data.pubDate).format(DATE_FORMAT)
   : "";
-const image = new URL(`/og/${blog.slug}.png`, Astro.site).toString();
-const url = new URL(`/blog/${blog.slug}`, Astro.url.origin);
+const image = new URL(`/og/${blog.id}.png`, Astro.site).toString();
+const url = new URL(`/blog/${blog.id}`, Astro.site ?? Astro.url.origin);
 ---
 
 <BaseLayout
@@ -40,6 +41,8 @@ const url = new URL(`/blog/${blog.slug}`, Astro.url.origin);
   image={image}
   headings={headings}
   showTOC={true}
+  ogType="article"
+  pubDate={blog.data.pubDate}
 >
   <MainCard title={blog.data.title} description={blog.data.description} image={blog.data.image} infoIcon="lucide:info">
     <PostInfo

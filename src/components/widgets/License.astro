@@ -22,31 +22,31 @@ const socialLinks = [
     name: "X (Twitter)",
     icon: "ri:twitter-x-line",
     class: "bg-black hover:bg-gray-800",
-    url: `https://twitter.com/intent/tweet/?text=${title}&url=${url}`,
+    url: `https://twitter.com/intent/tweet/?text=${encodeURIComponent(title)}&url=${encodeURIComponent(String(url))}`,
   },
   {
     name: "Telegram",
     icon: "ri:telegram-line",
     class: "bg-[#26a5e4] hover:bg-[#1e96d1]",
-    url: `https://telegram.me/share/url?text=${title}&url=${url}`,
+    url: `https://telegram.me/share/url?text=${encodeURIComponent(title)}&url=${encodeURIComponent(String(url))}`,
   },
   {
     name: "Reddit",
     icon: "ri:reddit-line",
     class: "bg-[#ff4500] hover:bg-[#e63e00]",
-    url: `https://reddit.com/submit/?url=${url}&title=${title}`,
+    url: `https://reddit.com/submit/?url=${encodeURIComponent(String(url))}&title=${encodeURIComponent(title)}`,
   },
   {
     name: "Facebook",
     icon: "ri:facebook-circle-line",
     class: "bg-[#0866ff] hover:bg-[#0755d6]",
-    url: `https://facebook.com/sharer/sharer.php?u=${url}`,
+    url: `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(String(url))}`,
   },
   {
     name: "Email",
     icon: "ri:mail-line",
     class: "bg-gray-600 hover:bg-gray-700",
-    url: `mailto:?subject=${title}&body=${url}`,
+    url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(String(url))}`,
   },
 ];
 ---

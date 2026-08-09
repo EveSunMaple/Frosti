@@ -28,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   );
 
   return publishedPosts.map((post: CollectionEntry<"blog">) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 };

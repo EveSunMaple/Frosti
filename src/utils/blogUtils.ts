@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
+import type { Post } from "@interfaces/data";
 
 /**
  * 获取所有博客文章并根据环境过滤草稿
@@ -167,24 +168,24 @@ export function generatePageLinks(totalPages: number): {
  */
 export async function getPostsWithStats(
   posts: CollectionEntry<"blog">[],
-): Promise<any[]> {
+): Promise<Post[]> {
   return Promise.all(
     posts.map(async (blog: CollectionEntry<"blog">) => {
       try {
-        const { remarkPluginFrontmatter } = await blog.render();
+        const { remarkPluginFrontmatter } = await render(blog);
         return {
           ...blog,
           remarkPluginFrontmatter: {
             readingTime: remarkPluginFrontmatter.readingTime,
             totalCharCount: remarkPluginFrontmatter.totalCharCount,
           },
-        };
+        } as Post;
       } catch (err) {
         console.error("[blog] failed to render post stats", {
-          slug: blog.slug,
+          slug: blog.id,
           err,
         });
-        throw new Error(`Failed to render blog stats for slug: ${blog.slug}`);
+        throw new Error(`Failed to render blog stats for slug: ${blog.id}`);
       }
     }),
   );

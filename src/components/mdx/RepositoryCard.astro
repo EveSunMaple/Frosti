@@ -19,6 +19,9 @@ const [_, repoName] = repo.split("/");
   class="card bg-base-100 shadow-md hover:shadow-xl overflow-hidden border border-base-200 transition-transform duration-300 ease-in-out"
   data-repo={repo}
   data-pinned={isPinned ? "true" : "false"}
+  role="link"
+  tabindex="0"
+  aria-label={`Open repository ${repo}`}
 >
   <div class="relative">
     {
@@ -142,6 +145,7 @@ const [_, repoName] = repo.split("/");
 
       // 添加点击事件
       this.addEventListener("click", this.handleClick);
+      this.addEventListener("keydown", this.handleKeyDown);
 
       // 设置卡片悬停效果
       this.classList.add("hover:-translate-y-1");
@@ -159,12 +163,21 @@ const [_, repoName] = repo.split("/");
 
       // 移除事件监听器
       this.removeEventListener("click", this.handleClick);
+      this.removeEventListener("keydown", this.handleKeyDown);
     }
 
     // 处理卡片点击
     handleClick() {
       const repoUrl = `https://github.com/${this.repoFullName}`;
-      window.open(repoUrl, "_blank", "noopener");
+      window.open(repoUrl, "_blank", "noopener,noreferrer");
+    }
+
+    // 支持键盘 Enter / Space 激活
+    handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        this.handleClick();
+      }
     }
 
     // 创建带有认证的请求头
@@ -221,7 +234,6 @@ const [_, repoName] = repo.split("/");
       // 检查缓存
       const cachedData = this.getCachedData(this.repoFullName);
       if (cachedData) {
-        console.log("Using cached repository data");
         this.updateUI(cachedData);
         return;
       }
@@ -245,7 +257,6 @@ const [_, repoName] = repo.split("/");
         this.updateUI(data);
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") {
-          console.log("Fetch aborted");
         } else {
           console.error("Error fetching repository data:", error);
           this.showError("Failed to load repository data");

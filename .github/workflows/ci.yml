@@ -5,9 +5,16 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -16,7 +23,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061
         with:
-          version: 9
+          version: 11.8.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -25,7 +32,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level high
 
       - name: Astro typecheck
         run: pnpm astro-check
@@ -35,3 +45,6 @@ jobs:
 
       - name: Biome formatting check on src (no write)
         run: pnpm biome:format -- ./src --write=false
+
+      - name: Production build
+        run: pnpm build

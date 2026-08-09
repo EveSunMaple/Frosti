@@ -2,6 +2,6 @@
   "recommendations": [
     "astro-build.astro-vscode",
     "unifiedjs.vscode-mdx",
-    "dbaeumer.vscode-eslint"
+    "biomejs.biome"
   ]
 }

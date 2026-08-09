@@ -77,7 +77,7 @@ const totalPosts = allPosts.length;
                         <ul class="archive-posts">
                           {posts.map((post) => (
                             <li class="archive-item">
-                              <a href={`/blog/${post.slug}`} class="archive-card">
+                              <a href={`/blog/${post.id}`} class="archive-card">
                                 <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
                                 <h4 class="archive-title">{post.data.title}</h4>
                                 {post.data.description && <p class="archive-description">{post.data.description}</p>}

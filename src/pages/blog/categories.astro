@@ -65,16 +65,21 @@ const totalCategories = categoryMap.size;
                       <h2>{category}</h2>
                       <span class="category-count">{posts.length}</span>
                     </div>
-                    <button class="toggle-btn" aria-label="Toggle category content">
+                    <button
+                      class="toggle-btn"
+                      aria-label="Toggle category content"
+                      aria-expanded="false"
+                      aria-controls={`category-content-${index}`}
+                    >
                       <Icon name="ri:arrow-down-s-line" class="toggle-icon" />
                     </button>
                   </div>
-                  <div class="category-content scrollbar-none">
+                  <div class="category-content scrollbar-none" id={`category-content-${index}`}>
                     <div class="category-divider" />
                     <ul class="post-list">
                       {posts.map((post) => (
                         <li class="post-item">
-                          <a href={`/blog/${post.slug}`} class="post-link">
+                          <a href={`/blog/${post.id}`} class="post-link">
                             <span class="post-title">{post.data.title}</span>
                             <span class="post-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</span>
                           </a>
@@ -111,6 +116,10 @@ const totalCategories = categoryMap.size;
       if (innerEl) {
         innerEl.classList.remove("expanded");
       }
+      contentEl
+        ?.closest(".category-card")
+        ?.querySelector(".toggle-btn")
+        ?.setAttribute("aria-expanded", "false");
     };
 
     const expandCategory = (contentEl: HTMLElement, iconEl: HTMLElement, innerEl: HTMLElement) => {
@@ -125,6 +134,10 @@ const totalCategories = categoryMap.size;
       if (innerEl) {
         innerEl.classList.add("expanded");
       }
+      contentEl
+        .closest(".category-card")
+        ?.querySelector(".toggle-btn")
+        ?.setAttribute("aria-expanded", "true");
     };
 
     const categoryHeaders = document.querySelectorAll(".category-header");
@@ -143,8 +156,10 @@ const totalCategories = categoryMap.size;
           // If initially expanded by class, set maxHeight appropriately
           const scrollHeight = content.scrollHeight;
           content.style.maxHeight = Math.min(scrollHeight, MAX_HEIGHT_PX) + "px";
+          card.querySelector(".toggle-btn")?.setAttribute("aria-expanded", "true");
         } else {
           content.style.maxHeight = "0px"; // Start collapsed
+          card.querySelector(".toggle-btn")?.setAttribute("aria-expanded", "false");
         }
       }
 

@@ -1,8 +1,8 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import { unified } from "@astrojs/markdown-remark";
 import playformCompress from "@playform/compress";
-import terser from "@rollup/plugin-terser";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
@@ -30,20 +30,22 @@ export default defineConfig({
     styleOverrides: {
       borderRadius: "0.75rem",
     },
-  }), mdx(), icon(), terser({
-    compress: true,
-    mangle: true,
-  }), sitemap(), tailwind({
+  }), mdx(), icon(), sitemap(), tailwind({
     configFile: "./tailwind.config.mjs",
   }), playformCompress()],
   markdown: {
-    remarkPlugins: [remarkMath, remarkReadingTime],
-    rehypePlugins: [rehypeKatex, [
-      rehypeExternalLinks,
-      {
-        content: { type: "text", value: "↗" },
-      },
-    ]],
+    processor: unified({
+      remarkPlugins: [remarkMath, remarkReadingTime],
+      rehypePlugins: [
+        rehypeKatex,
+        [
+          rehypeExternalLinks,
+          {
+            content: { type: "text", value: "↗" },
+          },
+        ],
+      ],
+    }),
   },
   vite: {
     css: {
