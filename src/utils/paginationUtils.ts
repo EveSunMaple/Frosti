@@ -33,8 +33,8 @@ async function getTaxonomyPaginationPaths({
     return paginate(filteredPosts, {
       params:
         key === "tags"
-          ? { tag: encodeURIComponent(value) }
-          : { category: encodeURIComponent(value) },
+          ? { tag: value }
+          : { category: value },
       pageSize: BLOG_PAGE_SIZE,
     });
   });
