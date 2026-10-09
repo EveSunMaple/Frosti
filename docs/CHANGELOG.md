@@ -1050,21 +1050,32 @@
 - 移除大量未使用的依赖与死代码
 - 更新 VS Code 配置、贡献指南与安全策略文档
 
-## [Unreleased]
+## [4.1.0] - 2026-10-09
 
 ### Breaking Changes
 
-- 迁移到 Tailwind CSS v4（`@tailwindcss/postcss`）与 daisyUI 5，删除 `tailwind.config.mjs`；daisyUI 主题列表由 `src/integration/updateConfig.ts` 根据 `frosti.config.yaml` 自动生成（`src/styles/daisyui-themes.css`，已加入 .gitignore）
+- 迁移到 Tailwind CSS v4（`@tailwindcss/postcss`）与 daisyUI 5，移除已废弃的 `@astrojs/tailwind` 并删除 `tailwind.config.mjs`；daisyUI 主题列表由 `src/integration/updateConfig.ts` 根据 `frosti.config.yaml` 自动生成，自定义过 Tailwind / daisyUI 配置的部署需要同步迁移
+
+### Features
+
+- 外链样式升级：使用 `astro-smart-links` 替换 `rehype-external-links`，外链自动附加图标，失效内链以波浪下划线高亮
+- daisyUI 主题列表自动生成，切换 `frosti.config.yaml` 中的主题名后无需再修改任何 CSS
+- 主题兜底：浅色主题作为 daisyUI `--default`，未知 `data-theme` 也能正常渲染
 
 ### Refactored
 
 - MDX 提示组件（Info / Success / Warning / Error）改为内联实现，类名全部静态化，移除 `AlertBase` 模板与 Tailwind safelist
-- 外部链接处理从 `rehype-external-links` 迁移到 `astro-smart-links`
-- 移除未使用的依赖（`prettier`、`shiki`、`@iconify/json`、`@iconify-json/logos`、`@iconify-json/mdi` 等）
+- 移除未使用的依赖（`prettier`、`shiki`、`@iconify/json`、`@iconify-json/logos`、`@iconify-json/mdi`、`@iconify/tailwind` 等）
 
 ### Fix
 
+- 修复标签路由 `getStaticPaths` 中多余的 `encodeURIComponent` 导致的预渲染路径不匹配 #103
+- 修复分页第 1 页链接指向 `${baseUrl}/1` 的问题
+- 修复视图过渡（View Transitions）后主题未恢复为系统偏好的问题
+- 修复切换主题名后旧 localStorage 主题残留导致的页面失样式：无效的已存主题会被忽略并清除
 - 修复 CI 中恒失败的 Biome 格式检查步骤；补充显式 `astro-check` 脚本
+
+### Chore
+
 - 统一换行符为 LF 并添加 `.gitattributes`
-- 修复分页第 1 页链接与视图过渡后的主题恢复问题
-- 修复切换主题名后旧 localStorage 主题残留导致的页面失样式：无效的已存主题会被忽略并清除，且浅色主题作为 daisyUI `--default` 兜底
+- 更新安全策略版本表、贡献指南与已过时的文档链接
