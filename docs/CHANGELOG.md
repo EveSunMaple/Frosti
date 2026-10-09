@@ -1074,6 +1074,7 @@
 - 修复视图过渡（View Transitions）后主题未恢复为系统偏好的问题
 - 修复切换主题名后旧 localStorage 主题残留导致的页面失样式：无效的已存主题会被忽略并清除
 - 修复 CI 中恒失败的 Biome 格式检查步骤；补充显式 `astro-check` 脚本
+- 升级 `astro`、`sharp`、`js-yaml` 等依赖并更新 pnpm overrides，修复 CI 中 `pnpm audit` 的安全审计失败（`braces` 暂无上游补丁，已加入审计忽略名单）
 
 ### Chore
 
