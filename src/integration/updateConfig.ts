@@ -12,12 +12,17 @@ const renderDaisyThemes = (): string => {
   const themes = [SITE_THEME.light, SITE_THEME.dark].filter(
     (theme, index, all) => theme && all.indexOf(theme) === index,
   );
+  // Mark the light theme as default so an unknown data-theme (for example a
+  // stale localStorage value from a previous configuration) still renders.
+  const themeEntries = themes.map((theme, index) =>
+    index === 0 ? `${theme} --default` : theme,
+  );
 
   return [
     "/* Auto-generated from frosti.config.yaml by src/integration/updateConfig.ts. */",
     "/* Do not edit; change `site.theme` in frosti.config.yaml instead. */",
     '@plugin "daisyui" {',
-    `  themes: ${themes.join(", ")};`,
+    `  themes: ${themeEntries.join(", ")};`,
     "  logs: false;",
     "}",
     "",

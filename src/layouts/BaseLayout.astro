@@ -72,14 +72,20 @@ const jsonLd =
 
     <script define:vars={{ SITE_THEME }} is:inline>
       (function () {
+        const allowedThemes = [SITE_THEME.light, SITE_THEME.dark];
         const storedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        let theme;
-        if (storedTheme) {
-          theme = storedTheme;
-        } else {
-          theme = prefersDark ? SITE_THEME.dark : SITE_THEME.light;
+        // Ignore values saved when a different theme was configured. Applying a
+        // theme that no longer exists would leave every daisyUI variable unset.
+        const isStoredThemeValid = storedTheme !== null && allowedThemes.includes(storedTheme);
+        if (storedTheme !== null && !isStoredThemeValid) {
+          localStorage.removeItem("theme");
         }
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = isStoredThemeValid
+          ? storedTheme
+          : prefersDark
+            ? SITE_THEME.dark
+            : SITE_THEME.light;
         document.documentElement.setAttribute("data-theme", theme);
         const themeType = theme === SITE_THEME.dark ? "dark" : "light";
         document.documentElement.setAttribute("data-theme-type", themeType);
@@ -131,9 +137,19 @@ const jsonLd =
         // Restore the theme after a view-transition navigation. When the user
         // has never toggled the theme, fall back to the system preference
         // instead of the light theme baked into the server-rendered <html>.
+        // Values saved under a previously configured theme are ignored.
+        const allowedThemes = [SITE_THEME.light, SITE_THEME.dark];
         const storedTheme = localStorage.getItem("theme");
+        const isStoredThemeValid = storedTheme !== null && allowedThemes.includes(storedTheme);
+        if (storedTheme !== null && !isStoredThemeValid) {
+          localStorage.removeItem("theme");
+        }
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = storedTheme || (prefersDark ? SITE_THEME.dark : SITE_THEME.light);
+        const theme = isStoredThemeValid
+          ? storedTheme
+          : prefersDark
+            ? SITE_THEME.dark
+            : SITE_THEME.light;
         const themeType = theme === SITE_THEME.dark ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.setAttribute("data-theme-type", themeType);

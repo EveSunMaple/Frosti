@@ -1067,3 +1067,4 @@
 - 修复 CI 中恒失败的 Biome 格式检查步骤；补充显式 `astro-check` 脚本
 - 统一换行符为 LF 并添加 `.gitattributes`
 - 修复分页第 1 页链接与视图过渡后的主题恢复问题
+- 修复切换主题名后旧 localStorage 主题残留导致的页面失样式：无效的已存主题会被忽略并清除，且浅色主题作为 daisyUI `--default` 兜底
