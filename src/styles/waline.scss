@@ -1,12 +1,14 @@
+@reference "./tailwind.css";
+
 :root {
   --waline-font-size: 1rem;
-  --waline-white: oklch(var(--b1));
+  --waline-white: var(--color-base-100);
   --waline-light-grey: #999;
   --waline-dark-grey: #666;
-  --waline-theme-color: oklch(var(--bc));
-  --waline-active-color: oklch(var(--nc));
-  --waline-color: oklch(var(--bc));
-  --waline-bg-color: oklch(var(--b1));
+  --waline-theme-color: var(--color-base-content);
+  --waline-active-color: var(--color-neutral-content);
+  --waline-color: var(--color-base-content);
+  --waline-bg-color: var(--color-base-100);
   --waline-bg-color-light: #f8f8f8;
   --waline-bg-color-hover: #f0f0f0;
   --waline-border-color: #ddd;
@@ -300,7 +302,7 @@
 }
 
 .wl-header-item .wl-input {
-  @apply input input-bordered input-xs w-full max-w-xs join-item;
+  @apply input input-xs w-full max-w-xs join-item;
 }
 
 .wl-header-item label,
@@ -340,7 +342,7 @@
 }
 
 .wl-editor {
-  @apply textarea textarea-bordered;
+  @apply textarea;
   width: calc(100% - 3em);
   padding: 1em;
   min-height: 8.75em;
@@ -610,7 +612,7 @@
   width: 100%;
   border-width: 2px;
   border-style: solid;
-  border-color: oklch(var(--b1));
+  border-color: var(--color-base-100);
   cursor: pointer;
 }
 
@@ -1314,7 +1316,7 @@
   padding: 0.5em 1em;
   border-radius: 2px;
   background: rgba(16, 16, 16, 0.95);
-  color: oklch(var(--b1));
+  color: var(--color-base-100);
   font-size: 12px;
   white-space: nowrap;
 }

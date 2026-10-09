@@ -5,7 +5,7 @@ site:
   description: A clean, elegant, and fast static blog template! 🚀 Developed with Astro # 网站的描述，用于SEO等
   language: en # 网站的语言，例如 "en" 是英文
   favicon: /favicon.ico # 网站的图标，用于浏览器标签栏和其他地方显示
-  theme: # 更多主题 https://daisyui.com/docs/themes/
+  theme: # 更多主题 https://daisyui.com/docs/themes/；修改后需同步更新 src/styles/tailwind.css 中 @plugin "daisyui" 的 themes 列表
     light: winter # 主题的浅色模式
     dark: dracula # 主题的深色模式
     code: github-dark # 代码块的主题 https://expressive-code.com/guides/themes/

@@ -16,7 +16,7 @@ const href = pageNumber === 1 ? baseUrl : `${baseUrl}/${pageNumber}`;
   title={`Page ${number}`}
   aria-label={`Page ${number}`}
   aria-current={number === current ? "page" : undefined}
-  class:list={["join-item btn bg-base-100", number === current && "btn-active", isOnly && "rounded-btn"]}
+  class:list={["join-item btn bg-base-100", number === current && "btn-active", isOnly && "rounded-field"]}
 >
   {number}
 </a>

@@ -5,10 +5,6 @@ allowBuilds:
   esbuild: true
   "@parcel/watcher": true
 
-peerDependencyRules:
-  allowedVersions:
-    astro: "^7.0.0"
-
 overrides:
   astro: "^7.2.0"
   tar: "^7.5.21"

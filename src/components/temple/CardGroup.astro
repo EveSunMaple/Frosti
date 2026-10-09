@@ -35,7 +35,7 @@ const {
 
     /* Add dividers between cards except the last one */
     :global(.card-group > :not(:last-child)) {
-      border-bottom: 1px dashed oklch(var(--bc) / 0.2);
+      border-bottom: 1px dashed color-mix(in oklab, var(--color-base-content) 20%, transparent);
       margin-bottom: 0;
       border-bottom-left-radius: 0 !important;
       border-bottom-right-radius: 0 !important;

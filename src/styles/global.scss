@@ -1,7 +1,4 @@
-/* Use postcss-nesting */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@reference "./tailwind.css";
 
 /* Color scheme configuration to prevent Chrome's auto dark theme */
 :root,
@@ -275,59 +272,40 @@ code {
 }
 
 // Mixin for creating category color variants
-@mixin category-color-variant($color-var) {
-  .category-#{$color-var} {
+@mixin category-color-variant($color) {
+  .category-#{$color} {
     .category-header {
-      background: linear-gradient(120deg, oklch(var(--#{$color-var}) / 0.1), oklch(var(--#{$color-var}) / 0.05));
+      background: linear-gradient(
+        120deg,
+        color-mix(in oklab, var(--color-#{$color}) 10%, transparent),
+        color-mix(in oklab, var(--color-#{$color}) 5%, transparent)
+      );
     }
 
     .category-icon {
-      background-color: oklch(var(--#{$color-var}) / 0.15);
-      color: oklch(var(--#{$color-var}));
+      background-color: color-mix(in oklab, var(--color-#{$color}) 15%, transparent);
+      color: var(--color-#{$color});
     }
 
     .category-count {
-      background-color: oklch(var(--#{$color-var}) / 0.15);
-      color: oklch(var(--#{$color-var}));
+      background-color: color-mix(in oklab, var(--color-#{$color}) 15%, transparent);
+      color: var(--color-#{$color});
     }
 
     &.expanded {
-      border-color: oklch(var(--#{$color-var}) / 0.3);
+      border-color: color-mix(in oklab, var(--color-#{$color}) 30%, transparent);
     }
   }
 }
 
 // Apply color variants
-@include category-color-variant("p");
-@include category-color-variant("s");
-@include category-color-variant("a");
-@include category-color-variant("in");
-@include category-color-variant("su");
-@include category-color-variant("wa");
-@include category-color-variant("er");
-
-// Rename for clarity in the component
-.category-primary {
-  @extend .category-p;
-}
-.category-secondary {
-  @extend .category-s;
-}
-.category-accent {
-  @extend .category-a;
-}
-.category-info {
-  @extend .category-in;
-}
-.category-success {
-  @extend .category-su;
-}
-.category-warning {
-  @extend .category-wa;
-}
-.category-error {
-  @extend .category-er;
-}
+@include category-color-variant("primary");
+@include category-color-variant("secondary");
+@include category-color-variant("accent");
+@include category-color-variant("info");
+@include category-color-variant("success");
+@include category-color-variant("warning");
+@include category-color-variant("error");
 
 // Tags Page Components
 // ===================================================
@@ -627,14 +605,14 @@ code {
   }
 }
 
-/* Pagefind UI customization with oklch colors */
+/* Pagefind UI customization with daisyUI theme colors */
 #pagefind-search {
   --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: oklch(var(--a));
-  --pagefind-ui-text: oklch(var(--bc));
-  --pagefind-ui-background: oklch(var(--b1));
-  --pagefind-ui-border: oklch(var(--bc) / 0.2);
-  --pagefind-ui-tag: oklch(var(--b2));
+  --pagefind-ui-primary: var(--color-accent);
+  --pagefind-ui-text: var(--color-base-content);
+  --pagefind-ui-background: var(--color-base-100);
+  --pagefind-ui-border: color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  --pagefind-ui-tag: var(--color-base-200);
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 0.5rem;
   --pagefind-ui-image-border-radius: 0.5rem;
@@ -642,8 +620,8 @@ code {
   --pagefind-ui-font: var(--font-sans, system-ui, sans-serif);
 
   .pagefind-ui__search-input {
-    @apply input input-bordered w-full;
-    border: 1px solid oklch(var(--bc) / 0.2);
+    @apply input w-full;
+    border: 1px solid color-mix(in oklab, var(--color-base-content) 20%, transparent);
   }
 
   .pagefind-ui__search-clear {

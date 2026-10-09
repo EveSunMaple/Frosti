@@ -1,0 +1,11 @@
+@import "tailwindcss/index.css";
+@plugin "@tailwindcss/typography";
+
+/*
+ * daisyUI theme names must match `site.theme` in frosti.config.yaml.
+ * Changing the YAML alone is not enough: update this line too, then rebuild.
+ */
+@plugin "daisyui" {
+  themes: winter, dracula;
+  logs: false;
+}

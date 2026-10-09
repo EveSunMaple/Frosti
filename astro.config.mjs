@@ -1,8 +1,8 @@
 import lucideIcons from "@iconify-json/lucide/icons.json";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import { unified as createMarkdownProcessor } from "@astrojs/markdown-remark";
+import tailwindcss from "@tailwindcss/postcss";
 import playformCompress from "@playform/compress";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
@@ -62,9 +62,6 @@ export default defineConfig({
     mdx(),
     icon(),
     sitemap(),
-    tailwind({
-      configFile: "./tailwind.config.mjs",
-    }),
     smartLinks({
       internalLinkClass: "smart-link smart-link--internal",
       externalLinkClass: "smart-link smart-link--external",
@@ -90,6 +87,9 @@ export default defineConfig({
   },
   vite: {
     css: {
+      postcss: {
+        plugins: [tailwindcss()],
+      },
       preprocessorOptions: {
         scss: {
           api: "modern-compiler",
