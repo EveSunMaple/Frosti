@@ -684,3 +684,18 @@ code {
     @apply block text-center py-8 text-base-content opacity-50;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * astro-smart-links
+ * Internal links keep the default prose link style; external links get the
+ * lucide `external-link` icon; broken internal links are highlighted like
+ * Wikipedia's red links.
+ * ------------------------------------------------------------------------- */
+
+.smart-link--broken {
+  @apply text-error underline decoration-error decoration-wavy underline-offset-2;
+}
+
+.smart-link-icon {
+  @apply inline-block w-3.5 h-3.5 ml-1 align-[-0.15em];
+}

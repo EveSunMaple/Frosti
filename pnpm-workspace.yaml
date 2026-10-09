@@ -25,3 +25,6 @@ overrides:
 onlyBuiltDependencies:
   - esbuild
   - "@parcel/watcher"
+
+minimumReleaseAgeExclude:
+  - astro-smart-links@1.1.1
