@@ -112,7 +112,8 @@ theme:
 ```
 
 - 主题基于 [daisyUI](https://daisyui.com/docs/themes/) 提供的主题选项
-- 代码块主题使用 [Shiki](https://shiki.style/themes) 提供的样式
+- 主题名称同时声明在 `src/styles/tailwind.css` 中，切换主题时请同步修改两处
+- 代码块主题使用 [Expressive Code](https://expressive-code.com/guides/themes/) 提供的样式
 
 ### 日期格式 (date_format)
 

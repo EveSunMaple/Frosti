@@ -112,7 +112,8 @@ theme:
 ```
 
 - Themes are based on options provided by [daisyUI](https://daisyui.com/docs/themes/)
-- Code block themes use styles from [Shiki](https://shiki.style/themes)
+- Theme names are also declared in `src/styles/tailwind.css`; keep both in sync when switching themes
+- Code block themes use styles provided by [Expressive Code](https://expressive-code.com/guides/themes/)
 
 ### Date Format (date_format)
 

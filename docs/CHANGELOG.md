@@ -1049,3 +1049,21 @@
 
 - 移除大量未使用的依赖与死代码
 - 更新 VS Code 配置、贡献指南与安全策略文档
+
+## [Unreleased]
+
+### Breaking Changes
+
+- 迁移到 Tailwind CSS v4（`@tailwindcss/postcss`）与 daisyUI 5，删除 `tailwind.config.mjs`，主题改在 `src/styles/tailwind.css` 中声明
+
+### Refactored
+
+- MDX 提示组件（Info / Success / Warning / Error）改为内联实现，类名全部静态化，移除 `AlertBase` 模板与 Tailwind safelist
+- 外部链接处理从 `rehype-external-links` 迁移到 `astro-smart-links`
+- 移除未使用的依赖（`prettier`、`shiki`、`@iconify/json`、`@iconify-json/logos`、`@iconify-json/mdi` 等）
+
+### Fix
+
+- 修复 CI 中恒失败的 Biome 格式检查步骤；补充显式 `astro-check` 脚本
+- 统一换行符为 LF 并添加 `.gitattributes`
+- 修复分页第 1 页链接与视图过渡后的主题恢复问题

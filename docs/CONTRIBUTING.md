@@ -18,7 +18,7 @@ To contribute code, please follow these steps:
 1. **Fork the Repository**: Fork the [Frosti repository](https://github.com/EveSunMaple/Frosti) to your own GitHub account.
 2. **Clone Your Fork**: Clone your forked repository to your local machine.
    ```bash
-   git clone git@github.com:EveSunMaple/Frosti.git
+   git clone git@github.com:YOUR_USERNAME/Frosti.git
    ```
 3. **Create a New Branch**: Create a new branch for your changes.
    ```bash
