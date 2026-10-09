@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# generated daisyUI theme list (see src/integration/updateConfig.ts)
+src/styles/daisyui-themes.css
 
 # dependencies
 node_modules/

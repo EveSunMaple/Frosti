@@ -1054,7 +1054,7 @@
 
 ### Breaking Changes
 
-- 迁移到 Tailwind CSS v4（`@tailwindcss/postcss`）与 daisyUI 5，删除 `tailwind.config.mjs`，主题改在 `src/styles/tailwind.css` 中声明
+- 迁移到 Tailwind CSS v4（`@tailwindcss/postcss`）与 daisyUI 5，删除 `tailwind.config.mjs`；daisyUI 主题列表由 `src/integration/updateConfig.ts` 根据 `frosti.config.yaml` 自动生成（`src/styles/daisyui-themes.css`，已加入 .gitignore）
 
 ### Refactored
 

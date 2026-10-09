@@ -112,7 +112,7 @@ theme:
 ```
 
 - Themes are based on options provided by [daisyUI](https://daisyui.com/docs/themes/)
-- Theme names are also declared in `src/styles/tailwind.css`; keep both in sync when switching themes
+- The daisyUI theme list is generated from this config on dev/build, so changing the theme names here is enough
 - Code block themes use styles provided by [Expressive Code](https://expressive-code.com/guides/themes/)
 
 ### Date Format (date_format)

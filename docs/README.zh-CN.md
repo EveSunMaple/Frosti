@@ -112,7 +112,7 @@ theme:
 ```
 
 - 主题基于 [daisyUI](https://daisyui.com/docs/themes/) 提供的主题选项
-- 主题名称同时声明在 `src/styles/tailwind.css` 中，切换主题时请同步修改两处
+- daisyUI 主题列表会在 dev/build 时根据此处配置自动生成，修改主题名后无需再改其他文件
 - 代码块主题使用 [Expressive Code](https://expressive-code.com/guides/themes/) 提供的样式
 
 ### 日期格式 (date_format)
