@@ -128,12 +128,15 @@ const jsonLd =
 
     <script define:vars={{ SITE_THEME }} is:inline>
       document.addEventListener("astro:after-swap", () => {
+        // Restore the theme after a view-transition navigation. When the user
+        // has never toggled the theme, fall back to the system preference
+        // instead of the light theme baked into the server-rendered <html>.
         const storedTheme = localStorage.getItem("theme");
-        if (storedTheme) {
-          document.documentElement.setAttribute("data-theme", storedTheme);
-          const themeType = storedTheme === SITE_THEME.dark ? "dark" : "light";
-          document.documentElement.setAttribute("data-theme-type", themeType);
-        }
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = storedTheme || (prefersDark ? SITE_THEME.dark : SITE_THEME.light);
+        const themeType = theme === SITE_THEME.dark ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.setAttribute("data-theme-type", themeType);
       });
     </script>
 

@@ -7,7 +7,8 @@ const {
   baseUrl,
   isOnly = false,
 } = Astro.props as PaginationNumberProps;
-const href = number === 1 ? baseUrl : `${baseUrl}/${number}`;
+const pageNumber = Number(number);
+const href = pageNumber === 1 ? baseUrl : `${baseUrl}/${pageNumber}`;
 ---
 
 <a
