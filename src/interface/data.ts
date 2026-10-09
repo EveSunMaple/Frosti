@@ -100,11 +100,6 @@ export interface Heading {
 }
 
 // ===== MDX Components =====
-export interface AlertBaseProps {
-  type: "info" | "success" | "warning" | "error";
-  icon: string;
-}
-
 export interface LinkCardProps {
   title: string;
   desc: string;

@@ -1,7 +1,8 @@
 ---
-import AlertBase from "./alerts/AlertBase.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<AlertBase type="warning" icon="lucide:alert-triangle">
-  <slot />
-</AlertBase>
+<div role="alert" class="alert alert-warning not-prose">
+  <Icon name="lucide:alert-triangle" class="shrink-0 w-6 h-6" />
+  <span><slot /></span>
+</div>

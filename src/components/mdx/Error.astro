@@ -1,7 +1,8 @@
 ---
-import AlertBase from "./alerts/AlertBase.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<AlertBase type="error" icon="lucide:x-circle">
-  <slot />
-</AlertBase>
+<div role="alert" class="alert alert-error not-prose">
+  <Icon name="lucide:x-circle" class="shrink-0 w-6 h-6" />
+  <span><slot /></span>
+</div>
