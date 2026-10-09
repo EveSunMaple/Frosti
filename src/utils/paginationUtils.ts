@@ -31,10 +31,7 @@ async function getTaxonomyPaginationPaths({
       blog.data[key]?.includes(value),
     );
     return paginate(filteredPosts, {
-      params:
-        key === "tags"
-          ? { tag: value }
-          : { category: value },
+      params: key === "tags" ? { tag: value } : { category: value },
       pageSize: BLOG_PAGE_SIZE,
     });
   });
