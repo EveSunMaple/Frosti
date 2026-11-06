@@ -1079,4 +1079,5 @@
 ### Chore
 
 - 统一换行符为 LF 并添加 `.gitattributes`
+- 统一许可证声明为 MIT（`LICENSE`、`package.json`、贡献指南）
 - 更新安全策略版本表、贡献指南与已过时的文档链接

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "4.1.0",
   "description": "A clean, elegant, and fast static blog template built with Astro.",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "packageManager": "pnpm@11.8.0",
   "engines": {
     "node": ">=22.12.0"

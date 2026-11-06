@@ -47,7 +47,7 @@ To maintain consistency, please follow these guidelines:
 
 ## License
 
-By contributing to Frosti, you agree that your contributions will be licensed under the [GNU General Public License v3.0](LICENSE).
+By contributing to Frosti, you agree that your contributions will be licensed under the [MIT License](LICENSE).
 
 ## Thank You!
 
